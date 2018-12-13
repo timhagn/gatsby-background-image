@@ -69,7 +69,7 @@ module.exports = {
 
 ## How to use
 
-This is what a component using `gatsby-image` looks like:
+This is what a component using `gatsby-background-image` looks like:
 
 ```jsx
 import React from 'react'
