@@ -3,6 +3,7 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
+var _exportNames = {};
 exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
@@ -11,8 +12,13 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _BackgroundUtils = _interopRequireDefault(require("./BackgroundUtils"));
+var _BackgroundUtils = require("./BackgroundUtils");
 
+Object.keys(_BackgroundUtils).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  exports[key] = _BackgroundUtils[key];
+});
 var _jsxFileName = "/mnt/speedydump/Projects/own_n_oss/gatsby-background-image/src/index.js";
 
 // Handle legacy names for image queries.
@@ -175,7 +181,7 @@ class BackgroundImage extends _react.default.Component {
     };
     this.bgImage = ``; // Get background(-*) styles from CSS (e.g. Styled Components).
 
-    this.backgroundStyles = (0, _BackgroundUtils.default)(this.props.className);
+    this.backgroundStyles = (0, _BackgroundUtils.getBackgroundStyles)(this.props.className);
     this.imageRef = _react.default.createRef();
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
     this.handleRef = this.handleRef.bind(this);

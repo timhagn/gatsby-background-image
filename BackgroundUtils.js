@@ -1,7 +1,7 @@
 "use strict";
 
 exports.__esModule = true;
-exports.default = void 0;
+exports.getBackgroundStyles = void 0;
 
 /**
  * Gets styles by a class name.
@@ -89,5 +89,4 @@ const getBackgroundStyles = className => {
   return getBackgroundStylesForSingleClass(className);
 };
 
-var _default = getBackgroundStyles;
-exports.default = _default;
+exports.getBackgroundStyles = getBackgroundStyles;
