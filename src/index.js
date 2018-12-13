@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import getBackgroundStyles from './BackgroundUtils'
 
-export * from './BackgroundUtils'
-
 // Handle legacy names for image queries.
 const convertProps = props => {
   let convertedProps = { ...props }
@@ -640,4 +638,5 @@ BackgroundImage.propTypes = {
   id: PropTypes.string,
 }
 
+export { getBackgroundStyles }
 export default BackgroundImage

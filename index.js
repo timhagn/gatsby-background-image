@@ -2,10 +2,7 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 exports.__esModule = true;
-var _exportNames = {};
 exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
@@ -14,13 +11,9 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _BackgroundUtils = _interopRequireWildcard(require("./BackgroundUtils"));
+var _BackgroundUtils = _interopRequireDefault(require("./BackgroundUtils"));
 
-Object.keys(_BackgroundUtils).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  exports[key] = _BackgroundUtils[key];
-});
+exports.getBackgroundStyles = _BackgroundUtils.default;
 var _jsxFileName = "/mnt/speedydump/Projects/own_n_oss/gatsby-background-image/src/index.js";
 
 // Handle legacy names for image queries.
@@ -132,7 +125,7 @@ const Img = _react.default.forwardRef((props, ref) => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 103
+      lineNumber: 101
     },
     __self: void 0
   }));
@@ -301,7 +294,7 @@ class BackgroundImage extends _react.default.Component {
         key: `fluid-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 292
+          lineNumber: 290
         },
         __self: this
       }, _react.default.createElement("style", {
@@ -338,7 +331,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 304
+          lineNumber: 302
         },
         __self: this
       }), image.base64 && _react.default.createElement(Img, (0, _extends2.default)({
@@ -352,7 +345,7 @@ class BackgroundImage extends _react.default.Component {
       }, placeholderImageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 338
+          lineNumber: 336
         },
         __self: this
       })), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
@@ -366,7 +359,7 @@ class BackgroundImage extends _react.default.Component {
       }, placeholderImageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 352
+          lineNumber: 350
         },
         __self: this
       })), bgColor && _react.default.createElement(Tag, {
@@ -382,7 +375,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 367
+          lineNumber: 365
         },
         __self: this
       }), this.state.isVisible && _react.default.createElement("picture", {
@@ -392,7 +385,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 383
+          lineNumber: 381
         },
         __self: this
       }, image.srcSetWebp && _react.default.createElement("source", {
@@ -401,7 +394,7 @@ class BackgroundImage extends _react.default.Component {
         sizes: image.sizes,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 387
+          lineNumber: 385
         },
         __self: this
       }), _react.default.createElement("source", {
@@ -409,7 +402,7 @@ class BackgroundImage extends _react.default.Component {
         sizes: image.sizes,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 393
+          lineNumber: 391
         },
         __self: this
       }), _react.default.createElement(Img, {
@@ -422,7 +415,7 @@ class BackgroundImage extends _react.default.Component {
         onError: this.props.onError,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 398
+          lineNumber: 396
         },
         __self: this
       })), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -435,7 +428,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 412
+          lineNumber: 410
         },
         __self: this
       }), children);
@@ -479,7 +472,7 @@ class BackgroundImage extends _react.default.Component {
         key: `fixed-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 451
+          lineNumber: 449
         },
         __self: this
       }, _react.default.createElement("style", {
@@ -516,7 +509,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 463
+          lineNumber: 461
         },
         __self: this
       }), image.base64 && _react.default.createElement(Img, (0, _extends2.default)({
@@ -530,7 +523,7 @@ class BackgroundImage extends _react.default.Component {
       }, placeholderImageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 497
+          lineNumber: 495
         },
         __self: this
       })), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
@@ -544,7 +537,7 @@ class BackgroundImage extends _react.default.Component {
       }, placeholderImageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 511
+          lineNumber: 509
         },
         __self: this
       })), bgColor && _react.default.createElement(Tag, {
@@ -560,7 +553,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 525
+          lineNumber: 523
         },
         __self: this
       }), this.state.isVisible && _react.default.createElement("picture", {
@@ -570,7 +563,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 541
+          lineNumber: 539
         },
         __self: this
       }, image.srcSetWebp && _react.default.createElement("source", {
@@ -579,7 +572,7 @@ class BackgroundImage extends _react.default.Component {
         sizes: image.sizes,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 545
+          lineNumber: 543
         },
         __self: this
       }), _react.default.createElement("source", {
@@ -587,7 +580,7 @@ class BackgroundImage extends _react.default.Component {
         sizes: image.sizes,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 551
+          lineNumber: 549
         },
         __self: this
       }), _react.default.createElement(Img, {
@@ -602,7 +595,7 @@ class BackgroundImage extends _react.default.Component {
         onError: this.props.onError,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 556
+          lineNumber: 554
         },
         __self: this
       })), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -617,7 +610,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 572
+          lineNumber: 570
         },
         __self: this
       }));
