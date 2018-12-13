@@ -37,7 +37,7 @@ const getStyle = className => {
  */
 
 
-const rulesForCssText = function rulesForCssText(styleContent) {
+const rulesForCssText = function (styleContent) {
   if (typeof document !== `undefined`) {
     const doc = document.implementation.createHTMLDocument(""),
           styleElement = document.createElement("style");
@@ -48,6 +48,35 @@ const rulesForCssText = function rulesForCssText(styleContent) {
   }
 
   return {};
+};
+/**
+ * Fixes non-enumerable style rules in Firefox.
+ * @param cssStyleRules
+ */
+
+
+const getStyleRules = cssStyleRules => {
+  let styles = {};
+
+  if (cssStyleRules.length > 0 && typeof cssStyleRules[0].style !== 'undefined') {
+    switch (cssStyleRules[0].style.constructor.name) {
+      case 'CSS2Properties':
+        Object.values(cssStyleRules[0].style).forEach(prop => {
+          styles[prop] = cssStyleRules[0].style[prop];
+        });
+        break;
+
+      case 'CSSStyleDeclaration':
+        styles = cssStyleRules[0].style;
+        break;
+
+      default:
+        console.error('Unknown style object prototype');
+        break;
+    }
+  }
+
+  return styles;
 };
 /**
  * Filters out Background Rules for a given class Name.
@@ -62,7 +91,7 @@ const getBackgroundStylesForSingleClass = className => {
 
   if (cssStyleRules.length > 0 && typeof cssStyleRules[0].style !== 'undefined') {
     // Filter out background(-*) rules that contain a definition.
-    return Object.keys(cssStyleRules[0].style).filter(k => k.indexOf('background') === 0 && cssStyleRules[0].style[k] !== '').reduce((newData, k) => {
+    return Object.keys(getStyleRules(cssStyleRules)).filter(k => k.indexOf('background') === 0 && cssStyleRules[0].style[k] !== '').reduce((newData, k) => {
       newData[k] = cssStyleRules[0].style[k];
       return newData;
     }, {});
