@@ -71,7 +71,7 @@ const getBackgroundStylesForSingleClass = className => {
  * @param className   string|array    className or array of classNames
  * @return {*}
  */
-const getBackgroundStyles = className => {
+export const getBackgroundStyles = className => {
   if (typeof(window) !== 'undefined' && className.includes(' ')) {
     const classes = className.split(' ')
     let classObjects = []
@@ -82,8 +82,6 @@ const getBackgroundStyles = className => {
   }
   return getBackgroundStylesForSingleClass(className)
 }
-
-export default getBackgroundStyles
 
 
 
