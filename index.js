@@ -13,7 +13,6 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _BackgroundUtils = _interopRequireDefault(require("./BackgroundUtils"));
 
-exports.getBackgroundStyles = _BackgroundUtils.default;
 var _jsxFileName = "/mnt/speedydump/Projects/own_n_oss/gatsby-background-image/src/index.js";
 
 // Handle legacy names for image queries.

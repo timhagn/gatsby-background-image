@@ -638,5 +638,4 @@ BackgroundImage.propTypes = {
   id: PropTypes.string,
 }
 
-export { getBackgroundStyles }
 export default BackgroundImage
