@@ -134,7 +134,7 @@ your CSS-in-JS "framework" of choice. It should work with CSS, too, you just
 have to target the BackgroundImage-component's class:
 
 ```css
-.gatsby-background-image-[YOUR_ID] {
+.gatsby-background-image-[YOUR_ID]/*(:before, :after)*/ {
    background-repeat: repeat-y;
 }
 ```
