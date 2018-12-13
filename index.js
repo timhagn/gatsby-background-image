@@ -7,18 +7,17 @@ exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
 var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _BackgroundUtils = _interopRequireDefault(require("./BackgroundUtils"));
 
-var _jsxFileName = "/mnt/speedydump/Projects/own_n_oss/gatsby-background-image/src/index.js";
-
 // Handle legacy names for image queries.
 const convertProps = props => {
-  let convertedProps = { ...props
-  };
+  let convertedProps = Object.assign({}, props);
 
   if (convertedProps.resolutions) {
     convertedProps.fixed = convertedProps.resolutions;
@@ -100,33 +99,25 @@ const noscriptImg = props => {
 };
 
 const Img = _react.default.forwardRef((props, ref) => {
-  const {
-    style,
-    onLoad,
-    onError,
-    alt,
-    ...otherProps
-  } = props;
+  const style = props.style,
+        onLoad = props.onLoad,
+        onError = props.onError,
+        alt = props.alt,
+        otherProps = (0, _objectWithoutPropertiesLoose2.default)(props, ["style", "onLoad", "onError", "alt"]);
   return _react.default.createElement("img", (0, _extends2.default)({}, otherProps, {
     alt: alt,
     onLoad: onLoad,
     onError: onError,
     ref: ref,
-    style: {
+    style: Object.assign({
       position: `absolute`,
       top: 0,
       left: 0,
       width: `100%`,
       height: `100%`,
       objectFit: `cover`,
-      objectPosition: `center`,
-      ...style
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 101
-    },
-    __self: void 0
+      objectPosition: `center`
+    }, style)
   }));
 });
 
@@ -230,34 +221,35 @@ class BackgroundImage extends _react.default.Component {
   }
 
   render() {
-    const {
-      title,
-      alt,
-      className,
-      style = {},
-      imgStyle = {},
-      placeholderStyle = {},
-      placeholderClassName,
-      fluid,
-      fixed,
-      backgroundColor,
-      Tag,
-      id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
-      children
-    } = convertProps(this.props);
+    const _convertProps = convertProps(this.props),
+          title = _convertProps.title,
+          alt = _convertProps.alt,
+          className = _convertProps.className,
+          _convertProps$style = _convertProps.style,
+          style = _convertProps$style === void 0 ? {} : _convertProps$style,
+          _convertProps$imgStyl = _convertProps.imgStyle,
+          imgStyle = _convertProps$imgStyl === void 0 ? {} : _convertProps$imgStyl,
+          _convertProps$placeho = _convertProps.placeholderStyle,
+          placeholderStyle = _convertProps$placeho === void 0 ? {} : _convertProps$placeho,
+          placeholderClassName = _convertProps.placeholderClassName,
+          fluid = _convertProps.fluid,
+          fixed = _convertProps.fixed,
+          backgroundColor = _convertProps.backgroundColor,
+          Tag = _convertProps.Tag,
+          _convertProps$id = _convertProps.id,
+          id = _convertProps$id === void 0 ? Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7) : _convertProps$id,
+          children = _convertProps.children;
+
     const bgColor = typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor;
-    const imagePlaceholderStyle = {
+    const imagePlaceholderStyle = Object.assign({
       opacity: this.state.imgLoaded ? 0 : 1,
       transition: `opacity 0.5s`,
-      transitionDelay: this.state.imgLoaded ? `0.5s` : `0.25s`,
-      ...imgStyle,
-      ...placeholderStyle
-    };
-    const imageStyle = {
+      transitionDelay: this.state.imgLoaded ? `0.5s` : `0.25s`
+    }, imgStyle, placeholderStyle);
+    const imageStyle = Object.assign({
       opacity: this.state.imgLoaded || this.state.fadeIn === false ? 1 : 0,
-      transition: this.state.fadeIn === true ? `opacity 0.5s` : `none`,
-      ...imgStyle
-    };
+      transition: this.state.fadeIn === true ? `opacity 0.5s` : `none`
+    }, imgStyle);
     const placeholderImageProps = {
       title,
       alt: !this.state.isVisible ? alt : ``,
@@ -283,19 +275,12 @@ class BackgroundImage extends _react.default.Component {
       return _react.default.createElement(Tag, {
         id: id,
         className: `${className ? className : ``} gatsby-background-image-${id} gatsby-image-wrapper`,
-        style: {
+        style: Object.assign({
           position: `relative`,
-          overflow: `hidden`,
-          ...style,
-          ...this.backgroundStyles
-        },
+          overflow: `hidden`
+        }, style, this.backgroundStyles),
         ref: this.handleRef,
-        key: `fluid-${JSON.stringify(image.srcSet)}`,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 290
-        },
-        __self: this
+        key: `fluid-${JSON.stringify(image.srcSet)}`
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
           __html: `
@@ -327,41 +312,24 @@ class BackgroundImage extends _react.default.Component {
                   opacity: ${afterOpacity};
                 }
               `
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 302
-        },
-        __self: this
+        }
       }), image.base64 && _react.default.createElement(Img, (0, _extends2.default)({
         alt: !this.state.isVisible ? alt : ``,
         title: title,
         src: image.base64,
-        style: { ...imagePlaceholderStyle,
+        style: Object.assign({}, imagePlaceholderStyle, {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
-        }
-      }, placeholderImageProps, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 336
-        },
-        __self: this
-      })), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
+        })
+      }, placeholderImageProps)), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
         alt: !this.state.isVisible ? alt : ``,
         title: title,
         src: image.tracedSVG,
-        style: { ...imagePlaceholderStyle,
+        style: Object.assign({}, imagePlaceholderStyle, {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
-        }
-      }, placeholderImageProps, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 350
-        },
-        __self: this
-      })), bgColor && _react.default.createElement(Tag, {
+        })
+      }, placeholderImageProps)), bgColor && _react.default.createElement(Tag, {
         title: title,
         style: {
           backgroundColor: bgImage === `` ? bgColor : ``,
@@ -371,39 +339,19 @@ class BackgroundImage extends _react.default.Component {
           opacity: !this.state.imgLoaded ? 1 : 0,
           transitionDelay: `0.25s`,
           height: image.height
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 365
-        },
-        __self: this
+        }
       }), this.state.isVisible && _react.default.createElement("picture", {
         style: {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 381
-        },
-        __self: this
+        }
       }, image.srcSetWebp && _react.default.createElement("source", {
         type: `image/webp`,
         srcSet: image.srcSetWebp,
-        sizes: image.sizes,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 385
-        },
-        __self: this
+        sizes: image.sizes
       }), _react.default.createElement("source", {
         srcSet: image.srcSet,
-        sizes: image.sizes,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 391
-        },
-        __self: this
+        sizes: image.sizes
       }), _react.default.createElement(Img, {
         alt: alt,
         title: title,
@@ -411,38 +359,26 @@ class BackgroundImage extends _react.default.Component {
         style: imageStyle,
         ref: this.imageRef,
         onLoad: this.handleImageLoaded,
-        onError: this.props.onError,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 396
-        },
-        __self: this
+        onError: this.props.onError
       })), this.state.hasNoScript && _react.default.createElement("noscript", {
         dangerouslySetInnerHTML: {
-          __html: noscriptImg({
+          __html: noscriptImg(Object.assign({
             alt,
-            title,
-            ...image
-          })
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 410
-        },
-        __self: this
+            title
+          }, image))
+        }
       }), children);
     }
 
     if (fixed) {
       const image = fixed;
-      const divStyle = {
+      const divStyle = Object.assign({
         position: `relative`,
         overflow: `hidden`,
         display: `inline-block`,
         width: image.width,
-        height: image.height,
-        ...style
-      };
+        height: image.height
+      }, style);
 
       if (style.display === `inherit`) {
         delete divStyle.display;
@@ -461,19 +397,12 @@ class BackgroundImage extends _react.default.Component {
       return _react.default.createElement(Tag, {
         id: id,
         className: `${className ? className : ``} gatsby-background-image-${id} gatsby-image-wrapper`,
-        style: {
+        style: Object.assign({
           position: `relative`,
-          overflow: `hidden`,
-          ...style,
-          ...this.backgroundStyles
-        },
+          overflow: `hidden`
+        }, style, this.backgroundStyles),
         ref: this.handleRef,
-        key: `fixed-${JSON.stringify(image.srcSet)}`,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 449
-        },
-        __self: this
+        key: `fixed-${JSON.stringify(image.srcSet)}`
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
           __html: `
@@ -505,41 +434,24 @@ class BackgroundImage extends _react.default.Component {
                   opacity: ${afterOpacity};
                 }
               `
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 461
-        },
-        __self: this
+        }
       }), image.base64 && _react.default.createElement(Img, (0, _extends2.default)({
         alt: !this.state.isVisible ? alt : ``,
         title: title,
         src: image.base64,
-        style: { ...imagePlaceholderStyle,
+        style: Object.assign({}, imagePlaceholderStyle, {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
-        }
-      }, placeholderImageProps, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 495
-        },
-        __self: this
-      })), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
+        })
+      }, placeholderImageProps)), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
         alt: !this.state.isVisible ? alt : ``,
         title: title,
         src: image.tracedSVG,
-        style: { ...imagePlaceholderStyle,
+        style: Object.assign({}, imagePlaceholderStyle, {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
-        }
-      }, placeholderImageProps, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 509
-        },
-        __self: this
-      })), bgColor && _react.default.createElement(Tag, {
+        })
+      }, placeholderImageProps)), bgColor && _react.default.createElement(Tag, {
         title: title,
         style: {
           backgroundColor: bgImage === `` ? bgColor : ``,
@@ -549,39 +461,19 @@ class BackgroundImage extends _react.default.Component {
           opacity: !this.state.imgLoaded ? 1 : 0,
           transitionDelay: `0.25s`,
           height: image.height
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 523
-        },
-        __self: this
+        }
       }), this.state.isVisible && _react.default.createElement("picture", {
         style: {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 539
-        },
-        __self: this
+        }
       }, image.srcSetWebp && _react.default.createElement("source", {
         type: `image/webp`,
         srcSet: image.srcSetWebp,
-        sizes: image.sizes,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 543
-        },
-        __self: this
+        sizes: image.sizes
       }), _react.default.createElement("source", {
         srcSet: image.srcSet,
-        sizes: image.sizes,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 549
-        },
-        __self: this
+        sizes: image.sizes
       }), _react.default.createElement(Img, {
         alt: alt,
         title: title,
@@ -591,27 +483,16 @@ class BackgroundImage extends _react.default.Component {
         style: imageStyle,
         ref: this.imageRef,
         onLoad: this.handleImageLoaded,
-        onError: this.props.onError,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 554
-        },
-        __self: this
+        onError: this.props.onError
       })), this.state.hasNoScript && _react.default.createElement("noscript", {
         dangerouslySetInnerHTML: {
-          __html: noscriptImg({
+          __html: noscriptImg(Object.assign({
             alt,
             title,
             width: image.width,
-            height: image.height,
-            ...image
-          })
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 570
-        },
-        __self: this
+            height: image.height
+          }, image))
+        }
       }));
     }
 
