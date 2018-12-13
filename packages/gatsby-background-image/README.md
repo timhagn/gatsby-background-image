@@ -91,7 +91,7 @@ const BackgroundSection = ({ className }) => (
       }
     `}
      render={data => {
-       // Switch Image according to size on desktop / mobile.
+       // Set ImageData.
        const imageData = data.desktop.childImageSharp
        return (
           <BackgroundImage Tag="section"
