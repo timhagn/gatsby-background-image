@@ -58,7 +58,7 @@ const rulesForCssText = function (styleContent) {
 
 const getBackgroundStylesForSingleClass = className => {
   const style = getStyle(`.${className}`);
-  const cssStyleRules = rulesForCssText(style); // console.log(className, style, cssStyleRules)
+  const cssStyleRules = rulesForCssText(style);
 
   if (cssStyleRules.length > 0 && typeof cssStyleRules[0].style !== 'undefined') {
     // Filter out background(-*) rules that contain a definition.
@@ -71,10 +71,9 @@ const getBackgroundStylesForSingleClass = className => {
   return {};
 };
 /**
- * Uses the above to get all background(-*) rules from given classes.
- * TODO: get classes for media queries...
+ * Uses the above to get all background(-*) rules from given class(es).
  *
- * @param className
+ * @param className   string|array    className or array of classNames
  * @return {*}
  */
 

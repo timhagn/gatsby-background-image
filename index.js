@@ -181,8 +181,7 @@ class BackgroundImage extends _react.default.Component {
       hasNoScript,
       seenBefore
     };
-    this.bgImage = ``;
-    this.randomId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7); // Get background(-*) styles from CSS (e.g. Styled Components).
+    this.bgImage = ``; // Get background(-*) styles from CSS (e.g. Styled Components).
 
     this.backgroundStyles = (0, _BackgroundUtils.default)(this.props.className);
     this.imageRef = _react.default.createRef();
@@ -251,7 +250,7 @@ class BackgroundImage extends _react.default.Component {
       fixed,
       backgroundColor,
       Tag,
-      id = this.randomId,
+      id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
       children
     } = convertProps(this.props);
     const bgColor = typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor;
@@ -291,7 +290,7 @@ class BackgroundImage extends _react.default.Component {
       this.bgImage = bgImage;
       return _react.default.createElement(Tag, {
         id: id,
-        className: `${className ? className : ``} after-background-image-${id} gatsby-image-wrapper`,
+        className: `${className ? className : ``} gatsby-background-image-${id} gatsby-image-wrapper`,
         style: {
           position: `relative`,
           overflow: `hidden`,
@@ -302,14 +301,14 @@ class BackgroundImage extends _react.default.Component {
         key: `fluid-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 294
+          lineNumber: 292
         },
         __self: this
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
           __html: `
-                .after-background-image-${id}:before,
-                .after-background-image-${id}:after {
+                .gatsby-background-image-${id}:before,
+                .gatsby-background-image-${id}:after {
                   background-size: ${backgroundSize};
                   content: '';
                   display: block;
@@ -323,12 +322,12 @@ class BackgroundImage extends _react.default.Component {
                   -moz-transition: opacity ${transitionDelay} ease-in-out;
                   -o-transition: opacity ${transitionDelay} ease-in-out;
                 }
-                .after-background-image-${id}:before {
+                .gatsby-background-image-${id}:before {
                   z-index: -101;
                   background-image: url(${bgImage});
                   ${backgroundRepeat}
                 }
-                .after-background-image-${id}:after {
+                .gatsby-background-image-${id}:after {
                   z-index: -100;
                   background-image: url(${nextImage});
                   ${backgroundRepeat}
@@ -339,7 +338,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 306
+          lineNumber: 304
         },
         __self: this
       }), image.base64 && _react.default.createElement(Img, (0, _extends2.default)({
@@ -353,7 +352,7 @@ class BackgroundImage extends _react.default.Component {
       }, placeholderImageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 340
+          lineNumber: 338
         },
         __self: this
       })), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
@@ -367,7 +366,7 @@ class BackgroundImage extends _react.default.Component {
       }, placeholderImageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 354
+          lineNumber: 352
         },
         __self: this
       })), bgColor && _react.default.createElement(Tag, {
@@ -383,7 +382,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 369
+          lineNumber: 367
         },
         __self: this
       }), this.state.isVisible && _react.default.createElement("picture", {
@@ -393,7 +392,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 385
+          lineNumber: 383
         },
         __self: this
       }, image.srcSetWebp && _react.default.createElement("source", {
@@ -402,7 +401,7 @@ class BackgroundImage extends _react.default.Component {
         sizes: image.sizes,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 389
+          lineNumber: 387
         },
         __self: this
       }), _react.default.createElement("source", {
@@ -410,7 +409,7 @@ class BackgroundImage extends _react.default.Component {
         sizes: image.sizes,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 395
+          lineNumber: 393
         },
         __self: this
       }), _react.default.createElement(Img, {
@@ -423,7 +422,7 @@ class BackgroundImage extends _react.default.Component {
         onError: this.props.onError,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 400
+          lineNumber: 398
         },
         __self: this
       })), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -436,7 +435,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 414
+          lineNumber: 412
         },
         __self: this
       }), children);
@@ -469,7 +468,7 @@ class BackgroundImage extends _react.default.Component {
       this.bgImage = bgImage;
       return _react.default.createElement(Tag, {
         id: id,
-        className: `${className ? className : ``} after-background-image-${id} gatsby-image-wrapper`,
+        className: `${className ? className : ``} gatsby-background-image-${id} gatsby-image-wrapper`,
         style: {
           position: `relative`,
           overflow: `hidden`,
@@ -480,14 +479,14 @@ class BackgroundImage extends _react.default.Component {
         key: `fixed-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 453
+          lineNumber: 451
         },
         __self: this
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
           __html: `
-                .after-background-image-${id}:before,
-                .after-background-image-${id}:after {
+                .gatsby-background-image-${id}:before,
+                .gatsby-background-image-${id}:after {
                   background-size: ${backgroundSize};
                   content: '';
                   display: block;
@@ -501,12 +500,12 @@ class BackgroundImage extends _react.default.Component {
                   -moz-transition: opacity ${transitionDelay} ease-in-out;
                   -o-transition: opacity ${transitionDelay} ease-in-out;
                 }
-                .after-background-image-${id}:before {
+                .gatsby-background-image-${id}:before {
                   z-index: -101;
                   background-image: url(${bgImage});
                   ${backgroundRepeat}
                 }
-                .after-background-image-${id}:after {
+                .gatsby-background-image-${id}:after {
                   z-index: -100;
                   background-image: url(${nextImage});
                   ${backgroundRepeat}
@@ -517,7 +516,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 465
+          lineNumber: 463
         },
         __self: this
       }), image.base64 && _react.default.createElement(Img, (0, _extends2.default)({
@@ -531,7 +530,7 @@ class BackgroundImage extends _react.default.Component {
       }, placeholderImageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 499
+          lineNumber: 497
         },
         __self: this
       })), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
@@ -545,7 +544,7 @@ class BackgroundImage extends _react.default.Component {
       }, placeholderImageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 513
+          lineNumber: 511
         },
         __self: this
       })), bgColor && _react.default.createElement(Tag, {
@@ -561,7 +560,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 527
+          lineNumber: 525
         },
         __self: this
       }), this.state.isVisible && _react.default.createElement("picture", {
@@ -571,7 +570,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 543
+          lineNumber: 541
         },
         __self: this
       }, image.srcSetWebp && _react.default.createElement("source", {
@@ -580,7 +579,7 @@ class BackgroundImage extends _react.default.Component {
         sizes: image.sizes,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 547
+          lineNumber: 545
         },
         __self: this
       }), _react.default.createElement("source", {
@@ -588,7 +587,7 @@ class BackgroundImage extends _react.default.Component {
         sizes: image.sizes,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 553
+          lineNumber: 551
         },
         __self: this
       }), _react.default.createElement(Img, {
@@ -603,7 +602,7 @@ class BackgroundImage extends _react.default.Component {
         onError: this.props.onError,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 558
+          lineNumber: 556
         },
         __self: this
       })), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -618,7 +617,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 574
+          lineNumber: 572
         },
         __self: this
       }));
