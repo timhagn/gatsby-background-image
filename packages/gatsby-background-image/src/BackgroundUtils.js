@@ -44,6 +44,21 @@ const rulesForCssText = function (styleContent) {
 }
 
 /**
+ * Changes CSS background(-*) strings to js rules.
+ * @param str
+ * @return {string}
+ */
+const toCamelCase = (str) =>
+    str.toLowerCase()
+        .replace(/(?:^\w|-|[A-Z]|\b\w)/g,
+            (letter, index) =>
+                index === 0 ?
+                    letter.toLowerCase() :
+                    letter.toUpperCase()
+        )
+        .replace(/\s|\W+/g, '')
+
+/**
  * Fixes non-enumerable style rules in Firefox.
  * @param cssStyleRules
  */
@@ -53,7 +68,7 @@ const getStyleRules = cssStyleRules => {
     switch (cssStyleRules[0].style.constructor.name) {
       case 'CSS2Properties':
         Object.values(cssStyleRules[0].style).forEach((prop) => {
-          styles[prop] = cssStyleRules[0].style[prop];
+          styles[toCamelCase(prop)] = cssStyleRules[0].style[prop];
         });
         break
       case 'CSSStyleDeclaration':
