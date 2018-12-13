@@ -1,66 +1,38 @@
-# gatsby-image
+# gatsby-background-image
 
-Speedy, optimized images without the work.
+Speedy, optimized **background**-images without the work.
 
-`gatsby-image` is a React component specially designed to work seamlessly with
-Gatsby's GraphQL queries. It combines
-[Gatsby's native image processing](https://image-processing.gatsbyjs.org/)
-capabilities with advanced image loading techniques to easily and completely
-optimize image loading for your sites. `gatsby-image` uses
-[gatsby-plugin-sharp](/packages/gatsby-plugin-sharp/)
-to power its image transformations.
+`gatsby-background-image` is a React component based on Gatsby's own `gatsby-image`
+(truthfully, I pilfered most of their excellent work and adapted it ; ).
 
-_Warning: gatsby-image is **not** a drop-in replacement for `<img />`. It's
-optimized for fixed width/height images and images that stretch the full-width
-of a container. Some ways you can use `<img />` won't work with gatsby-image._
+It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
+including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
+SVG to show a preview of the image while it loads,   
+*plus* being usable as a container (no more hacks with extra wrappers).
 
-**[Demo](https://using-gatsby-image.gatsbyjs.org)**
+All the glamour (and speed) of `gatsby-image` now for your Background Images!
 
-## Problem
+___And it's even styleable with `styled-components` and the like!___   
+(planned, media-queries: see [TODO](#TODO))
 
-Large, unoptimized images dramatically slow down your site.
+# Procedure
 
-But creating optimized images for websites has long been a thorny problem.
-Ideally you would:
+As `gatsby-image` is designed to work seamlessly with Gatsby's native image
+processing capabilities powered by GraphQL and Sharp, so is `gatsby-background-image`. 
+To produce perfect background-images, you need only:
 
-- Resize large images to the size needed by your design
-- Generate multiple smaller images so smartphones and tablets don't download
-  desktop-sized images
-- Strip all unnecessary metadata and optimize JPEG and PNG compression
-- Efficiently lazy load images to speed initial page load and save bandwidth
-- Use the "blur-up" technique or a
-  "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)" SVG to
-  show a preview of the image while it loads
-- Hold the image position so your page doesn't jump while images load
-
-Doing this consistently across a site feels like sisyphean labor. You manually
-optimize your images and then… several images are swapped in at the last minute
-or a design-tweak shaves 100px of width off your images.
-
-Most solutions involve a lot of manual labor and bookkeeping to ensure every
-image is optimized.
-
-This isn't ideal. Optimized images should be easy and the default.
-
-## Solution
-
-With Gatsby, we can make images way _way_ better.
-
-`gatsby-image` is designed to work seamlessly with Gatsby's native image
-processing capabilities powered by GraphQL and Sharp. To produce perfect images,
-you need only:
-
-1. Import `gatsby-image` and use it in place of the built-in `img`
+1. Import `gatsby-background-image` and use it in place of the built-in `div`
+   or suchlike containers. 
 2. Write a GraphQL query using one of the included GraphQL "fragments"
-   which specify the fields needed by `gatsby-image`.
+   which specify the fields needed by `gatsby-background-image`.
 
 The GraphQL query creates multiple thumbnails with optimized JPEG and PNG
-compression. The `gatsby-image` component automatically sets up the "blur-up"
-effect as well as lazy loading of images further down the screen.
+compression. The `gatsby-background-image` component automatically sets up the 
+"blur-up" effect as well as lazy loading of images further down the screen.
 
 ## Install
 
-`npm install --save gatsby-image`
+`npm install --save gatsby-background-image`
 
 Depending on the gatsby starter you used, you may need to include [gatsby-transformer-sharp](/packages/gatsby-transformer-sharp/) and [gatsby-plugin-sharp](/packages/gatsby-plugin-sharp/) as well, and make sure they are installed and included in your gatsby-config.
 
@@ -99,206 +71,92 @@ module.exports = {
 This is what a component using `gatsby-image` looks like:
 
 ```jsx
-import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import React from 'react'
+import { graphql, StaticQuery } from 'gatsby'
+import styled from 'styled-components'
 
-export default ({ data }) => (
-  <div>
-    <h1>Hello gatsby-image</h1>
-    <Img fixed={data.file.childImageSharp.fixed} />
-  </div>
-)
+import BackgroundImage from 'gatsby-background-image'
 
-export const query = graphql`
-  query {
-    file(relativePath: { eq: "blog/avatars/kyle-mathews.jpeg" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed(width: 125, height: 125) {
-          ...GatsbyImageSharpFixed
+const BackgroundSection = ({ className }) => (
+    <StaticQuery query={graphql`
+      query {
+        desktop: file(relativePath: { eq: "seamless-bg-desktop.jpg" }) {
+          childImageSharp {
+            fluid(quality: 100, maxWidth: 4160) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
         }
       }
-    }
-  }
+    `}
+     render={data => {
+       // Switch Image according to size on desktop / mobile.
+       const imageData = data.desktop.childImageSharp
+       return (
+          <BackgroundImage Tag="section"
+                           className={className}
+                           fluid={imageData}
+                           backgroundColor={BlueBackground}
+          >
+            <h1>Hello gatsby-background-image</h1>
+          </BackgroundImage>
+       )
+     }
+     }
+    />
+)
+
+const StyledBackgroundSection = styled(BackgroundSection)`
+  width: 100%;
+  background-repeat: repeat-y;
 `
+
+export default StyledBackgroundSection
+
 ```
 
-For other explanations of how to get started with gatsby-image, see this blog post by community member Kyle Gill [Image Optimization Made Easy with Gatsby.js](https://medium.com/@kyle.robert.gill/ridiculously-easy-image-optimization-with-gatsby-js-59d48e15db6e) or this one by Hunter Chang (which also includes some details about changes to gatsby-image for Gatsby v2): [An Intro To Gatsby Image V2](https://codebushi.com/using-gatsby-image/)
+## Configuration & props
 
-## Two types of responsive images
+`gatsby-background-image` nearly works the same as `gatsby-image` so have a look
+at their [options & props](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#two-types-of-responsive-images)
+to get started.
 
-There are two types of responsive images supported by gatsby-image.
-
-1. Images that have a _fixed_ width and height
-2. Images that stretch across a _fluid_ container
-
-In the first scenario, you want to vary the image's size for different screen
-resolutions -- in other words, create retina images.
-
-For the second scenario, you want to create multiple sizes of thumbnails for
-devices with widths stretching from smartphone to wide desktop monitors.
-
-To decide between the two, ask yourself: "do I know the exact size this image
-will be?" If yes, it's the first type. If no and its width and/or height need to
-vary depending on the size of the screen, then it's the second type.
-
-In Gatsby's GraphQL implementation, you query for the first type by querying a
-child object of an image called `fixed` — which you can see in the sample
-component above. For the second type, you do a similar query but for a child
-object called `fluid`.
-
-## Fragments
-
-GraphQL includes a concept called "query fragments". Which, as the name
-suggests, are a part of a query that can be used in multiple queries. To ease
-building with `gatsby-image`, Gatsby image processing plugins which support
-`gatsby-image` ship with fragments which you can easily include in your queries.
-
-Note,
-[due to a limitation of GraphiQL](https://github.com/graphql/graphiql/issues/612),
-you can not currently use these fragments in the GraphiQL IDE.
-
-Plugins supporting `gatsby-image` currently include
-[gatsby-transformer-sharp](/packages/gatsby-transformer-sharp/),
-[gatsby-source-contentful](/packages/gatsby-source-contentful/) and [gatsby-source-datocms](https://github.com/datocms/gatsby-source-datocms).
-
-Their fragments are:
-
-### gatsby-transformer-sharp
-
-- `GatsbyImageSharpFixed`
-- `GatsbyImageSharpFixed_noBase64`
-- `GatsbyImageSharpFixed_tracedSVG`
-- `GatsbyImageSharpFixed_withWebp`
-- `GatsbyImageSharpFixed_withWebp_noBase64`
-- `GatsbyImageSharpFixed_withWebp_tracedSVG`
-- `GatsbyImageSharpFluid`
-- `GatsbyImageSharpFluid_noBase64`
-- `GatsbyImageSharpFluid_tracedSVG`
-- `GatsbyImageSharpFluid_withWebp`
-- `GatsbyImageSharpFluid_withWebp_noBase64`
-- `GatsbyImageSharpFluid_withWebp_tracedSVG`
-
-### gatsby-source-contentful
-
-- `GatsbyContentfulFixed`
-- `GatsbyContentfulFixed_noBase64`
-- `GatsbyContentfulFixed_tracedSVG`
-- `GatsbyContentfulFixed_withWebp`
-- `GatsbyContentfulFixed_withWebp_noBase64`
-- `GatsbyContentfulFluid`
-- `GatsbyContentfulFluid_noBase64`
-- `GatsbyContentfulFluid_tracedSVG`
-- `GatsbyContentfulFluid_withWebp`
-- `GatsbyContentfulFluid_withWebp_noBase64`
-
-### gatsby-source-datocms
-
-- `GatsbyDatoCmsFixed`
-- `GatsbyDatoCmsFixed_noBase64`
-- `GatsbyDatoCmsFluid`
-- `GatsbyDatoCmsFluid_noBase64`
-
-If you don't want to use the blur-up effect, choose the fragment with `noBase64`
-at the end. If you want to use the traced placeholder SVGs, choose the fragment
-with `tracedSVG` at the end.
-
-If you want to automatically use WebP images when the browser supports the file
-format, use the `withWebp` fragments. If the browser doesn't support WebP,
-`gatsby-image` will fall back to the default image format.
-
-_Please see the
-[gatsby-plugin-sharp](/packages/gatsby-plugin-sharp/#tracedsvg)
-documentation for more information on `tracedSVG` and its configuration
-options._
-
-## "Fixed" queries
-
-### Component
-
-Pass in the data returned from the `fixed` object in your query via the
-`fixed` prop. e.g. `<Img fixed={fixed} />`
-
-### Query
-
-```graphql
-{
-  imageSharp {
-    # Other options include height (set both width and height to crop),
-    # grayscale, duotone, rotate, etc.
-    fixed(width: 400) {
-      # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-      ...GatsbyImageSharpFixed
-    }
-  }
-}
-```
-
-## "Fluid" queries
-
-### Component
-
-Pass in the data returned from the `fluid` object in your query via the `fluid`
-prop. e.g. `<Img fluid={fluid} />`
-
-### Query
-
-```graphql
-{
-  imageSharp {
-    # i.e. the max width of your container is 700 pixels.
-    #
-    # Other options include maxHeight (set both maxWidth and maxHeight to crop),
-    # grayscale, duotone, rotate, etc.
-    fluid(maxWidth: 700) {
-      # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-      ...GatsbyImageSharpFluid_noBase64
-    }
-  }
-}
-```
-
-## `gatsby-image` props
+`gatsby-background-image` has an added id (as we have to name pseudo-elements 
+and introduce a className for the returned container):
 
 | Name                   | Type                | Description                                                                                                                 |
 | ---------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `fixed`                | `object`            | Data returned from the `fixed` query                                                                                        |
-| `fluid`                | `object`            | Data returned from the `fluid` query                                                                                        |
-| `fadeIn`               | `bool`              | Defaults to fading in the image on load                                                                                     |
-| `title`                | `string`            | Passed to the `img` element                                                                                                 |
-| `alt`                  | `string`            | Passed to the `img` element                                                                                                 |
-| `className`            | `string` / `object` | Passed to the wrapper element. Object is needed to support Glamor's css prop                                                |
-| `style`                | `object`            | Spread into the default styles of the wrapper element                                                                       |
-| `imgStyle`             | `object`            | Spread into the default styles of the actual `img` element                                                                  |
-| `placeholderStyle`     | `object`            | Spread into the default styles of the placeholder `img` element                                                             |
-| `placeholderClassName` | `string`            | A class that is passed to the placeholder `img` element                                                                     |
-| `backgroundColor`      | `string` / `bool`   | Set a colored background placeholder. If true, uses "lightgray" for the color. You can also pass in any valid color string. |
-| `onLoad`               | `func`              | A callback that is called when the full-size image has loaded.                                                              |
-| `onStartLoad`          | `func`              | A callback that is called when the full-size image starts loading, it gets the parameter { wasCached: boolean } provided.   |
-| `onError`              | `func`              | A callback that is called when the image fails to load.                                                                     |
-| `Tag`                  | `string`            | Which HTML tag to use for wrapping elements. Defaults to `div`.                                                             |
-| `critical`             | `bool`              | Opt-out of lazy-loading behavior. Defaults to `false`.                                                                      |
+| `id`                   | `string`            | ID of the container element, defaults to a random lower case string of seven chars                                          |
 
-## Image processing arguments
+Additionally, you are able to style your component with `styled-components` or
+your CSS-in-JS "framework" of choice. It should work with CSS, too, you just
+have to target the BackgroundImage-component's class:
 
-[gatsby-plugin-sharp](/packages/gatsby-plugin-sharp) supports many additional arguments for transforming your images like
-`quality`, `sizeByPixelDensity`, `pngCompressionLevel`, `cropFocus`, `greyscale` and many more. See its documentation for more.
+```css
+.gatsby-background-image-[YOUR_ID] {
+   background-repeat: repeat-y;
+}
+```
 
-## Some other stuff to be aware of
+## Additional functions
 
-- If you want to set `display: none;` on a component using a `fixed` prop,
-  you need to also pass in to the style prop `{ display: 'inherit' }`.
-- By default, images don't load until JavaScript is loaded. Gatsby's automatic code
-  splitting generally makes this fine but if images seem slow coming in on a
-  page, check how much JavaScript is being loaded there.
-- Images marked as `critical` will start loading immediately as the DOM is
-  parsed, but unless `fadeIn` is set to `false`, the transition from placeholder
-  to final image will not occur until after the component is mounted.
-- gatsby-image is now backed by the newer `<picture>` tag. This newer standard allows for
-  media types to be chosen by the browser without using JavaScript. It also is
-  backward compatible to older browsers (IE 11, etc)
-- Gifs can't be resized the same way as pngs and jpegs, unfortunately—if you try
-  to use a gif with `gatsby-image`, it won't work. For now, the best workaround is
-  to [import the gif directly](/docs/adding-images-fonts-files).
+```js
+/**
+ * Uses window.document.styleSheets to get all background(-*) 
+ * rules from given classes.
+ * 
+ * @param className   string|array    className or array of classNames
+ * @return {*}
+ */
+getBackgroundStyles(className)
+```
+
+Necessary to be able to parse CSS-classes given by `styled-components` or the
+like for background(-*) rules.
+Might extend it in the future for non background ones.
+
+## TODO
+
+* add Media-Query support
+* use Image() instead of `gatsby-image` placeholder images - look into a11y!
+

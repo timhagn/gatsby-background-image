@@ -3,8 +3,8 @@
 exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elements 1`] = `
 <style>
   
-                .after-background-image-test:before,
-                .after-background-image-test:after {
+                .gatsby-background-image-test:before,
+                .gatsby-background-image-test:after {
                   background-size: cover;
                   content: '';
                   display: block;
@@ -18,12 +18,12 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
                   -moz-transition: opacity 0.25s ease-in-out;
                   -o-transition: opacity 0.25s ease-in-out;
                 }
-                .after-background-image-test:before {
+                .gatsby-background-image-test:before {
                   z-index: -101;
                   background-image: url(test_image.jpg);
                   background-repeat: 'repeat-y';
                 }
-                .after-background-image-test:after {
+                .gatsby-background-image-test:after {
                   z-index: -100;
                   background-image: url(test_image.jpg);
                   background-repeat: 'repeat-y';
@@ -37,8 +37,8 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
 exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = `
 <style>
   
-                .after-background-image-test:before,
-                .after-background-image-test:after {
+                .gatsby-background-image-test:before,
+                .gatsby-background-image-test:after {
                   background-size: cover;
                   content: '';
                   display: block;
@@ -52,12 +52,12 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
                   -moz-transition: opacity 0.25s ease-in-out;
                   -o-transition: opacity 0.25s ease-in-out;
                 }
-                .after-background-image-test:before {
+                .gatsby-background-image-test:before {
                   z-index: -101;
                   background-image: url(test_image.jpg);
                   background-repeat: 'repeat-y';
                 }
-                .after-background-image-test:after {
+                .gatsby-background-image-test:after {
                   z-index: -100;
                   background-image: url(test_image.jpg);
                   background-repeat: 'repeat-y';
@@ -71,14 +71,14 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
 exports[`<BackgroundImage /> should render fixed size images 1`] = `
 <div>
   <div
-    class="fixedImage after-background-image-test gatsby-image-wrapper"
+    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
     id="test"
-    style="position: relative; overflow: hidden; background-size: cover; z-index: -103; display: inline;"
+    style="position: relative; overflow: hidden; display: inline;"
   >
     <style>
       
-                .after-background-image-test:before,
-                .after-background-image-test:after {
+                .gatsby-background-image-test:before,
+                .gatsby-background-image-test:after {
                   background-size: cover;
                   content: '';
                   display: block;
@@ -92,12 +92,12 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
                   -moz-transition: opacity 0.25s ease-in-out;
                   -o-transition: opacity 0.25s ease-in-out;
                 }
-                .after-background-image-test:before {
+                .gatsby-background-image-test:before {
                   z-index: -101;
                   background-image: url(test_image.jpg);
                   background-repeat: no-repeat;
                 }
-                .after-background-image-test:after {
+                .gatsby-background-image-test:after {
                   z-index: -100;
                   background-image: url(test_image.jpg);
                   background-repeat: no-repeat;
@@ -146,14 +146,14 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
 exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
-    class="fixedImage after-background-image-test gatsby-image-wrapper"
+    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
     id="test"
     style="position: relative; overflow: hidden; display: inline;"
   >
     <style>
       
-                .after-background-image-test:before,
-                .after-background-image-test:after {
+                .gatsby-background-image-test:before,
+                .gatsby-background-image-test:after {
                   background-size: cover;
                   content: '';
                   display: block;
@@ -167,12 +167,12 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
                   -moz-transition: opacity 0.25s ease-in-out;
                   -o-transition: opacity 0.25s ease-in-out;
                 }
-                .after-background-image-test:before {
+                .gatsby-background-image-test:before {
                   z-index: -101;
                   background-image: url(test_image.jpg);
                   background-repeat: no-repeat;
                 }
-                .after-background-image-test:after {
+                .gatsby-background-image-test:after {
                   z-index: -100;
                   background-image: url(test_image.jpg);
                   background-repeat: no-repeat;
@@ -221,14 +221,14 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
 exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
-    class="fixedImage test after-background-image-test gatsby-image-wrapper"
+    class="fixedImage test gatsby-background-image-test gatsby-image-wrapper"
     id="test"
     style="position: relative; overflow: hidden; display: inline;"
   >
     <style>
       
-                .after-background-image-test:before,
-                .after-background-image-test:after {
+                .gatsby-background-image-test:before,
+                .gatsby-background-image-test:after {
                   background-size: cover;
                   content: '';
                   display: block;
@@ -242,12 +242,12 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
                   -moz-transition: opacity 0.25s ease-in-out;
                   -o-transition: opacity 0.25s ease-in-out;
                 }
-                .after-background-image-test:before {
+                .gatsby-background-image-test:before {
                   z-index: -101;
                   background-image: url(test_image.jpg);
                   background-repeat: 'repeat-y';
                 }
-                .after-background-image-test:after {
+                .gatsby-background-image-test:after {
                   z-index: -100;
                   background-image: url(test_image.jpg);
                   background-repeat: 'repeat-y';
@@ -296,14 +296,14 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
 exports[`<BackgroundImage /> should work with single external class 1`] = `
 <div>
   <div
-    class="fixedImage after-background-image-test gatsby-image-wrapper"
+    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
     id="test"
     style="position: relative; overflow: hidden; display: inline;"
   >
     <style>
       
-                .after-background-image-test:before,
-                .after-background-image-test:after {
+                .gatsby-background-image-test:before,
+                .gatsby-background-image-test:after {
                   background-size: cover;
                   content: '';
                   display: block;
@@ -317,12 +317,12 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
                   -moz-transition: opacity 0.25s ease-in-out;
                   -o-transition: opacity 0.25s ease-in-out;
                 }
-                .after-background-image-test:before {
+                .gatsby-background-image-test:before {
                   z-index: -101;
                   background-image: url(test_image.jpg);
                   background-repeat: no-repeat;
                 }
-                .after-background-image-test:after {
+                .gatsby-background-image-test:after {
                   z-index: -100;
                   background-image: url(test_image.jpg);
                   background-repeat: no-repeat;
