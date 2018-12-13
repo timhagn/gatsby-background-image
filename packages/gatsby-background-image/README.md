@@ -6,14 +6,15 @@ Speedy, optimized **background**-images without the work.
 (truthfully, I pilfered most of their excellent work and adapted it ; ).
 
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
-including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
+including the "blur-up" technique or  
+a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,   
 *plus* being usable as a container (no more hacks with extra wrappers).
 
 All the glamour (and speed) of `gatsby-image` now for your Background Images!
 
 ___And it's even styleable with `styled-components` and the like!___   
-(planned, media-queries: see [TODO](#TODO))
+(planned, media-queries: see [TODO](#todo))
 
 # Procedure
 
