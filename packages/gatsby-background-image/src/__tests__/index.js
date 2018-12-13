@@ -52,7 +52,7 @@ const setup = (fluid = false,
       onError={onError}
       placeholderStyle={{ color: `red` }}
       placeholderClassName={`placeholder`}
-      id="test"
+      classId="test"
     />
   )
 
