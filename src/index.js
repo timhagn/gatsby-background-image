@@ -232,7 +232,7 @@ class BackgroundImage extends React.Component {
       fixed,
       backgroundColor,
       Tag,
-      id,
+      id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
       children
     } = convertProps(this.props)
 
@@ -286,16 +286,12 @@ class BackgroundImage extends React.Component {
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : ``
       const afterOpacity = nextImage !== bgImage ? 1 : 0
-
-      // console.log('bgImage: ' + bgImage, '\nnextImage: ' + nextImage,
-      //     '\nafterOpacity: ' + afterOpacity, bgColor)
-
       this.bgImage = bgImage
 
       return (
           <Tag
               id={id}
-              className={`${className ? className : ``} after-background-image-${id} gatsby-image-wrapper`}
+              className={`${className ? className : ``} gatsby-background-image-${id} gatsby-image-wrapper`}
               style={{
                 position: `relative`,
                 overflow: `hidden`,
@@ -307,8 +303,8 @@ class BackgroundImage extends React.Component {
           >
             <style dangerouslySetInnerHTML={{
               __html:`
-                .after-background-image-${id}:before,
-                .after-background-image-${id}:after {
+                .gatsby-background-image-${id}:before,
+                .gatsby-background-image-${id}:after {
                   background-size: ${backgroundSize};
                   content: '';
                   display: block;
@@ -322,12 +318,12 @@ class BackgroundImage extends React.Component {
                   -moz-transition: opacity ${transitionDelay} ease-in-out;
                   -o-transition: opacity ${transitionDelay} ease-in-out;
                 }
-                .after-background-image-${id}:before {
+                .gatsby-background-image-${id}:before {
                   z-index: -101;
                   background-image: url(${bgImage});
                   ${backgroundRepeat}
                 }
-                .after-background-image-${id}:after {
+                .gatsby-background-image-${id}:after {
                   z-index: -100;
                   background-image: url(${nextImage});
                   ${backgroundRepeat}
@@ -449,19 +445,15 @@ class BackgroundImage extends React.Component {
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : ``
       const afterOpacity = nextImage !== bgImage ? 1 : 0
-
-      // console.log(this.backgroundStyles)
+      this.bgImage = bgImage
 
       return (
           <Tag
               id={id}
-              className={`${className ? className : ``} after-background-image-${id} gatsby-image-wrapper`}
+              className={`${className ? className : ``} gatsby-background-image-${id} gatsby-image-wrapper`}
               style={{
                 position: `relative`,
                 overflow: `hidden`,
-                backgroundColor: bgImage === `` ? bgColor : ``,
-                backgroundSize: backgroundSize,
-                zIndex: -103,
                 ...style,
                 ...this.backgroundStyles,
               }}
@@ -470,8 +462,8 @@ class BackgroundImage extends React.Component {
           >
             <style dangerouslySetInnerHTML={{
               __html:`
-                .after-background-image-${id}:before,
-                .after-background-image-${id}:after {
+                .gatsby-background-image-${id}:before,
+                .gatsby-background-image-${id}:after {
                   background-size: ${backgroundSize};
                   content: '';
                   display: block;
@@ -485,12 +477,12 @@ class BackgroundImage extends React.Component {
                   -moz-transition: opacity ${transitionDelay} ease-in-out;
                   -o-transition: opacity ${transitionDelay} ease-in-out;
                 }
-                .after-background-image-${id}:before {
+                .gatsby-background-image-${id}:before {
                   z-index: -101;
                   background-image: url(${bgImage});
                   ${backgroundRepeat}
                 }
-                .after-background-image-${id}:after {
+                .gatsby-background-image-${id}:after {
                   z-index: -100;
                   background-image: url(${nextImage});
                   ${backgroundRepeat}

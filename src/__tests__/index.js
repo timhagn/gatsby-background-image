@@ -95,7 +95,7 @@ describe(`<BackgroundImage />`, () => {
   it(`should have class with pseudo element in style tag`, () => {
     const styleTag = setup(true, true, ` test`).querySelector(`style`)
     expect(styleTag)
-        .toHaveTextContent(`.after-background-image-test:before`)
+        .toHaveTextContent(`.gatsby-background-image-test:before`)
     expect(styleTag)
         .toHaveTextContent(`background-repeat: 'repeat-y';`)
   })

@@ -18,16 +18,10 @@ const getStyle = className => {
 
     for (let x = 0; x < classes.length; x++) {
       if (classes[x].selectorText === className) {
-        let ret;
-
-        if (classes[x].cssText) {
-          ret = classes[x].cssText;
-        } else {
-          ret = classes[x].style.cssText;
-        }
+        const ret = classes[x].cssText ? classes[x].cssText : classes[x].style.cssText;
 
         if (ret.indexOf(classes[x].selectorText) === -1) {
-          ret = `${classes[x].selectorText}{${ret}}`;
+          return `${classes[x].selectorText}{${ret}}`;
         }
 
         return ret;
@@ -43,7 +37,7 @@ const getStyle = className => {
  */
 
 
-const rulesForCssText = function rulesForCssText(styleContent) {
+const rulesForCssText = function (styleContent) {
   if (typeof document !== `undefined`) {
     const doc = document.implementation.createHTMLDocument(""),
           styleElement = document.createElement("style");
