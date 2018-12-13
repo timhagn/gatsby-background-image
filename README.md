@@ -138,25 +138,8 @@ have to target the BackgroundImage-component's class:
 }
 ```
 
-## Additional functions
-
-```js
-/**
- * Uses window.document.styleSheets to get all background(-*) 
- * rules from given classes.
- * 
- * @param className   string|array    className or array of classNames
- * @return {*}
- */
-getBackgroundStyles(className)
-```
-
-Necessary to be able to parse CSS-classes given by `styled-components` or the
-like for background(-*) rules.
-Might extend it in the future for non background ones.
-
 ## TODO
 
 * add Media-Query support
-* use Image() instead of `gatsby-image` placeholder images - look into a11y!
+* use Image() instead of `gatsby-image` placeholder images - look into `a11y`!
 
