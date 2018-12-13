@@ -230,7 +230,7 @@ class BackgroundImage extends React.Component {
       fixed,
       backgroundColor,
       Tag,
-      id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
+      classId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
       children
     } = convertProps(this.props)
 
@@ -288,8 +288,7 @@ class BackgroundImage extends React.Component {
 
       return (
           <Tag
-              // id={id}
-              className={`${className ? className : ``} gatsby-background-image-${id} gatsby-image-wrapper`}
+              className={`${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`}
               style={{
                 position: `relative`,
                 overflow: `hidden`,
@@ -301,8 +300,8 @@ class BackgroundImage extends React.Component {
           >
             <style dangerouslySetInnerHTML={{
               __html:`
-                .gatsby-background-image-${id}:before,
-                .gatsby-background-image-${id}:after {
+                .gatsby-background-image-${classId}:before,
+                .gatsby-background-image-${classId}:after {
                   background-size: ${backgroundSize};
                   content: '';
                   display: block;
@@ -316,12 +315,12 @@ class BackgroundImage extends React.Component {
                   -moz-transition: opacity ${transitionDelay} ease-in-out;
                   -o-transition: opacity ${transitionDelay} ease-in-out;
                 }
-                .gatsby-background-image-${id}:before {
+                .gatsby-background-image-${classId}:before {
                   z-index: -101;
                   background-image: url(${bgImage});
                   ${backgroundRepeat}
                 }
-                .gatsby-background-image-${id}:after {
+                .gatsby-background-image-${classId}:after {
                   z-index: -100;
                   background-image: url(${nextImage});
                   ${backgroundRepeat}
@@ -447,8 +446,7 @@ class BackgroundImage extends React.Component {
 
       return (
           <Tag
-              // id={id}
-              className={`${className ? className : ``} gatsby-background-image-${id} gatsby-image-wrapper`}
+              className={`${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`}
               style={{
                 position: `relative`,
                 overflow: `hidden`,
@@ -460,8 +458,8 @@ class BackgroundImage extends React.Component {
           >
             <style dangerouslySetInnerHTML={{
               __html:`
-                .gatsby-background-image-${id}:before,
-                .gatsby-background-image-${id}:after {
+                .gatsby-background-image-${classId}:before,
+                .gatsby-background-image-${classId}:after {
                   background-size: ${backgroundSize};
                   content: '';
                   display: block;
@@ -475,12 +473,12 @@ class BackgroundImage extends React.Component {
                   -moz-transition: opacity ${transitionDelay} ease-in-out;
                   -o-transition: opacity ${transitionDelay} ease-in-out;
                 }
-                .gatsby-background-image-${id}:before {
+                .gatsby-background-image-${classId}:before {
                   z-index: -101;
                   background-image: url(${bgImage});
                   ${backgroundRepeat}
                 }
-                .gatsby-background-image-${id}:after {
+                .gatsby-background-image-${classId}:after {
                   z-index: -100;
                   background-image: url(${nextImage});
                   ${backgroundRepeat}
@@ -635,7 +633,7 @@ BackgroundImage.propTypes = {
   onError: PropTypes.func,
   onStartLoad: PropTypes.func,
   Tag: PropTypes.string,
-  id: PropTypes.string,
+  classId: PropTypes.string,
 }
 
 export default BackgroundImage
