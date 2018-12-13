@@ -122,12 +122,12 @@ export default StyledBackgroundSection
 at their [options & props](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#two-types-of-responsive-images)
 to get started.
 
-`gatsby-background-image` has an added id (as we have to name pseudo-elements 
-and introduce a className for the returned container):
+`gatsby-background-image` has an added classId (as we have to name
+pseudo-elements and introduce a className for the returned container):
 
 | Name                   | Type                | Description                                                                                                                 |
 | ---------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `id`                   | `string`            | ID of the container element, defaults to a random lower case string of seven chars                                          |
+| `classId`              | `string`            | classID of the container element, defaults to a random lower case string of seven chars                                          |
 
 Additionally, you are able to style your component with `styled-components` or
 your CSS-in-JS "framework" of choice. It should work with CSS, too, you just
