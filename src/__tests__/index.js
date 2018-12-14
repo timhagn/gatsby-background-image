@@ -2,6 +2,7 @@ import "@babel/polyfill"
 import { render, cleanup, fireEvent } from "react-testing-library"
 import React from "react"
 import BackgroundImage from "../"
+import getBackgroundStyles from "../BackgroundUtils";
 
 afterAll(cleanup)
 
@@ -26,6 +27,7 @@ const fluidShapeMock = {
 const setup = (fluid = false,
                addClass = false,
                additionalClass = ``,
+               fixedClass = true,
                onLoad = () => {},
                onError = () => {}) => {
 
@@ -39,10 +41,12 @@ const setup = (fluid = false,
     `
     document.body.appendChild(styleElement)
   }
+  const classNames = fixedClass ?
+      `fixedImage${additionalClass}` : additionalClass.trim()
   const { container } = render(
     <BackgroundImage
       backgroundColor
-      className={`fixedImage${additionalClass}`}
+      className={classNames}
       style={{ display: `inline` }}
       title={`Title for the image`}
       alt={`Alt text for the image`}
@@ -100,6 +104,11 @@ describe(`<BackgroundImage />`, () => {
         .toHaveTextContent(`background-repeat: 'repeat-y';`)
   })
 
+  it(`should parse background styles`, () => {
+    const backgroundStyles = getBackgroundStyles(``)
+    expect(backgroundStyles).toEqual({})
+  })
+
   it(`should have correct src, title and alt attributes`, () => {
     const imageTag = setup().querySelector(`picture img`)
     expect(imageTag.getAttribute(`src`)).toEqual(`test_image.jpg`)
@@ -115,7 +124,7 @@ describe(`<BackgroundImage />`, () => {
     )
     // No Intersection Observer in JSDOM, so placeholder img will be visible (opacity 1) by default
     expect(placeholderImageTag.getAttribute(`style`)).toEqual(
-      `position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; opacity: 1; color: red;`
+      `position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; opacity: 1; color: red; display: none;`
     )
     expect(placeholderImageTag.getAttribute(`class`)).toEqual(`placeholder`)
   })
@@ -123,7 +132,7 @@ describe(`<BackgroundImage />`, () => {
   it(`should call onLoad and onError image events`, () => {
     const onLoadMock = jest.fn()
     const onErrorMock = jest.fn()
-    const imageTag = setup(true, false, ``, onLoadMock, onErrorMock).querySelector(
+    const imageTag = setup(true, false, ``, true, onLoadMock, onErrorMock).querySelector(
       `picture img`
     )
     fireEvent.load(imageTag)
