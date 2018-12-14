@@ -315,22 +315,20 @@ class BackgroundImage extends _react.default.Component {
       }), image.base64 && _react.default.createElement(Img, (0, _extends2.default)({
         alt: !this.state.isVisible ? alt : ``,
         title: title,
-        src: image.base64
-      }, placeholderImageProps, {
+        src: image.base64,
         style: Object.assign({}, imagePlaceholderStyle, {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
         })
-      })), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
+      }, placeholderImageProps)), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
         alt: !this.state.isVisible ? alt : ``,
         title: title,
-        src: image.tracedSVG
-      }, placeholderImageProps, {
+        src: image.tracedSVG,
         style: Object.assign({}, imagePlaceholderStyle, {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
         })
-      })), bgColor && _react.default.createElement(Tag, {
+      }, placeholderImageProps)), bgColor && _react.default.createElement(Tag, {
         title: title,
         style: {
           backgroundColor: bgImage === `` ? bgColor : ``,
@@ -438,22 +436,20 @@ class BackgroundImage extends _react.default.Component {
       }), image.base64 && _react.default.createElement(Img, (0, _extends2.default)({
         alt: !this.state.isVisible ? alt : ``,
         title: title,
-        src: image.base64
-      }, placeholderImageProps, {
+        src: image.base64,
         style: Object.assign({}, imagePlaceholderStyle, {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
         })
-      })), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
+      }, placeholderImageProps)), image.tracedSVG && _react.default.createElement(Img, (0, _extends2.default)({
         alt: !this.state.isVisible ? alt : ``,
         title: title,
-        src: image.tracedSVG
-      }, placeholderImageProps, {
+        src: image.tracedSVG,
         style: Object.assign({}, imagePlaceholderStyle, {
           // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
           display: `none`
         })
-      })), bgColor && _react.default.createElement(Tag, {
+      }, placeholderImageProps)), bgColor && _react.default.createElement(Tag, {
         title: title,
         style: {
           backgroundColor: bgImage === `` ? bgColor : ``,

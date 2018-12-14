@@ -336,11 +336,11 @@ class BackgroundImage extends React.Component {
                     alt={!this.state.isVisible ? alt : ``}
                     title={title}
                     src={image.base64}
-                    {...placeholderImageProps}
                     style={{...imagePlaceholderStyle,
                       // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
                       display: `none`,
                     }}
+                    {...placeholderImageProps}
                 />
             )}
 
@@ -350,11 +350,11 @@ class BackgroundImage extends React.Component {
                     alt={!this.state.isVisible ? alt : ``}
                     title={title}
                     src={image.tracedSVG}
-                    {...placeholderImageProps}
                     style={{...imagePlaceholderStyle,
                       // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
                       display: `none`,
                     }}
+                    {...placeholderImageProps}
                 />
             )}
 
@@ -494,11 +494,11 @@ class BackgroundImage extends React.Component {
                     alt={!this.state.isVisible ? alt : ``}
                     title={title}
                     src={image.base64}
-                    {...placeholderImageProps}
                     style={{...imagePlaceholderStyle,
                       // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
                       display: `none`,
                     }}
+                    {...placeholderImageProps}
                 />
             )}
 
@@ -508,11 +508,11 @@ class BackgroundImage extends React.Component {
                     alt={!this.state.isVisible ? alt : ``}
                     title={title}
                     src={image.tracedSVG}
-                    {...placeholderImageProps}
                     style={{...imagePlaceholderStyle,
                       // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
                       display: `none`,
                     }}
+                    {...placeholderImageProps}
                 />
             )}
 
