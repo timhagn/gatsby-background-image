@@ -8,7 +8,9 @@ const getStyle = className => {
   const styleSheets = typeof window !== `undefined` ?
       window.document.styleSheets : []
   for (let i = 0; i < styleSheets.length; i++) {
-    const classes = styleSheets[i].rules || styleSheets[i].cssRules
+    const classes =
+      (styleSheets[i].hasOwnProperty('rules') && styleSheets[i].rules) ||
+      (styleSheets[i].hasOwnProperty('cssRules') && styleSheets[i].cssRules)
     if (!classes)
       continue;
     for (let x = 0; x < classes.length; x++) {
@@ -123,5 +125,3 @@ const getBackgroundStyles = className => {
 }
 
 export default getBackgroundStyles
-
-
