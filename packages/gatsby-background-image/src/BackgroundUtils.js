@@ -8,9 +8,8 @@ const getStyle = className => {
   const styleSheets = typeof window !== `undefined` ?
       window.document.styleSheets : []
   for (let i = 0; i < styleSheets.length; i++) {
-    const classes =
-      (styleSheets[i].hasOwnProperty('rules') && styleSheets[i].rules) ||
-      (styleSheets[i].hasOwnProperty('cssRules') && styleSheets[i].cssRules)
+    const classes = typeof styleSheets[i].rules !== 'undefined' ? styleSheets[i].rules :
+      typeof styleSheets[i].cssRules !== 'undefined' ? styleSheets[i].cssRules : ''
     if (!classes)
       continue;
     for (let x = 0; x < classes.length; x++) {
