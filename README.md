@@ -92,7 +92,7 @@ const BackgroundSection = ({ className }) => (
     `}
      render={data => {
        // Set ImageData.
-       const imageData = data.desktop.childImageSharp
+       const imageData = data.desktop.childImageSharp.fluid
        return (
           <BackgroundImage Tag="section"
                            className={className}
