@@ -254,7 +254,11 @@ class BackgroundImage extends React.Component {
     const placeholderImageProps = {
       title,
       alt: !this.state.isVisible ? alt : ``,
-      style: imagePlaceholderStyle,
+      style: {
+        ...imagePlaceholderStyle,
+        // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
+        display: `none`,
+      },
       className: placeholderClassName,
     }
 
