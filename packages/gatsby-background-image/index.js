@@ -5,8 +5,6 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports.default = exports.createImageToLoad = void 0;
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
 var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
@@ -31,10 +29,11 @@ const convertProps = props => {
   }
 
   return convertedProps;
-};
+}; // Create lazy image loader with Image().
+// Only get's exported for tests!
+
 
 const createImageToLoad = props => {
-  // if (typeof window !== `undefined`) {
   const convertedProps = convertProps(props);
   const img = new Image();
 
@@ -48,8 +47,7 @@ const createImageToLoad = props => {
 
 
   img.src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
-  return img; // }
-  // return null
+  return img;
 }; // Cache if we've seen an image before so we don't both with
 // lazy-loading & fading in on subsequent mounts.
 
@@ -117,43 +115,6 @@ const noscriptImg = props => {
   const opacity = props.opacity ? props.opacity : `1`;
   const transitionDelay = props.transitionDelay ? props.transitionDelay : `0.5s`;
   return `<picture>${srcSetWebp}${srcSet}<img ${width}${height}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`;
-};
-
-const Img = _react.default.forwardRef((props, ref) => {
-  const {
-    style,
-    onLoad,
-    onError,
-    alt,
-    ...otherProps
-  } = props;
-  return _react.default.createElement("img", (0, _extends2.default)({}, otherProps, {
-    alt: alt,
-    onLoad: onLoad,
-    onError: onError,
-    ref: ref,
-    style: {
-      position: `absolute`,
-      top: 0,
-      left: 0,
-      width: `100%`,
-      height: `100%`,
-      objectFit: `cover`,
-      objectPosition: `center`,
-      ...style
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 122
-    },
-    __self: void 0
-  }));
-});
-
-Img.propTypes = {
-  style: _propTypes.default.object,
-  onError: _propTypes.default.func,
-  onLoad: _propTypes.default.func
 };
 
 class BackgroundImage extends _react.default.Component {
@@ -274,14 +235,29 @@ class BackgroundImage extends _react.default.Component {
       const image = fluid; // Set the backgroundImage according to images available.
 
       let bgImage = this.bgImage,
-          nextImage = ``;
-      if (image.tracedSVG) nextImage = `'${image.tracedSVG}'`;
-      if (image.base64 && !image.tracedSVG) nextImage = image.base64;
-      if (this.state.isVisible) nextImage = image.src; // Switch bgImage & nextImage and opacity accordingly.
+          nextImage = null;
+
+      if (image.tracedSVG) {
+        nextImage = `'${image.tracedSVG}'`;
+        console.log('tracedSVG');
+      }
+
+      if (image.base64 && !image.tracedSVG) {
+        nextImage = image.base64;
+        console.log('base64');
+      }
+
+      if (this.state.isVisible) {
+        nextImage = image.src;
+        console.log('image');
+      } // TODO: find a better way to switch!
+      // Switch bgImage & nextImage and opacity accordingly.
+
 
       bgImage = bgImage === `` ? nextImage : ``;
       const afterOpacity = nextImage !== bgImage ? 1 : 0;
       this.bgImage = bgImage;
+      console.log(bgImage, nextImage, afterOpacity);
       return _react.default.createElement(Tag, {
         className: `${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`,
         style: {
@@ -294,7 +270,7 @@ class BackgroundImage extends _react.default.Component {
         key: `fluid-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 292
+          lineNumber: 273
         },
         __self: this
       }, _react.default.createElement("style", {
@@ -331,7 +307,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 303
+          lineNumber: 284
         },
         __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -344,7 +320,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 354
+          lineNumber: 335
         },
         __self: this
       }), children);
@@ -387,7 +363,7 @@ class BackgroundImage extends _react.default.Component {
         key: `fixed-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 393
+          lineNumber: 374
         },
         __self: this
       }, _react.default.createElement("style", {
@@ -424,7 +400,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 404
+          lineNumber: 385
         },
         __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -439,7 +415,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 438
+          lineNumber: 419
         },
         __self: this
       }));

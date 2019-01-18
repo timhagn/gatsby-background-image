@@ -17,24 +17,23 @@ const convertProps = props => {
   return convertedProps
 }
 
+// Create lazy image loader with Image().
+// Only get's exported for tests!
 export const createImageToLoad = props => {
-  // if (typeof window !== `undefined`) {
-    const convertedProps = convertProps(props)
+  const convertedProps = convertProps(props)
 
-    const img = new Image()
-    if (!img.complete && typeof convertedProps.onLoad === `function`) {
-      img.addEventListener('load', convertedProps.onLoad)
-    }
-    if (typeof convertedProps.onError === `function`) {
-      img.addEventListener('error', convertedProps.onError)
-    }
-    // Find src
-    img.src = convertedProps.fluid
-        ? convertedProps.fluid.src
-        : convertedProps.fixed.src
-    return img
-  // }
-  // return null
+  const img = new Image()
+  if (!img.complete && typeof convertedProps.onLoad === `function`) {
+    img.addEventListener('load', convertedProps.onLoad)
+  }
+  if (typeof convertedProps.onError === `function`) {
+    img.addEventListener('error', convertedProps.onError)
+  }
+  // Find src
+  img.src = convertedProps.fluid
+      ? convertedProps.fluid.src
+      : convertedProps.fixed.src
+  return img
 }
 
 // Cache if we've seen an image before so we don't both with
@@ -113,36 +112,6 @@ const noscriptImg = props => {
   const opacity = props.opacity ? props.opacity : `1`
   const transitionDelay = props.transitionDelay ? props.transitionDelay : `0.5s`
   return `<picture>${srcSetWebp}${srcSet}<img ${width}${height}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
-}
-
-const Img = React.forwardRef((props, ref) => {
-  const { style, onLoad, onError, alt, ...otherProps } = props
-
-  return (
-    <img
-      {...otherProps}
-      alt={alt}
-      onLoad={onLoad}
-      onError={onError}
-      ref={ref}
-      style={{
-        position: `absolute`,
-        top: 0,
-        left: 0,
-        width: `100%`,
-        height: `100%`,
-        objectFit: `cover`,
-        objectPosition: `center`,
-        ...style,
-      }}
-    />
-  )
-})
-
-Img.propTypes = {
-  style: PropTypes.object,
-  onError: PropTypes.func,
-  onLoad: PropTypes.func,
 }
 
 class BackgroundImage extends React.Component {
@@ -278,15 +247,27 @@ class BackgroundImage extends React.Component {
 
       // Set the backgroundImage according to images available.
       let bgImage = this.bgImage,
-          nextImage = ``
-      if (image.tracedSVG) nextImage = `'${ image.tracedSVG }'`
-      if (image.base64 && !image.tracedSVG) nextImage = image.base64
-      if (this.state.isVisible) nextImage = image.src
+          nextImage = null
+      if (image.tracedSVG) {
+        nextImage = `'${ image.tracedSVG }'`
+        console.log('tracedSVG')
+      }
+      if (image.base64 && !image.tracedSVG) {
+        nextImage = image.base64
+        console.log('base64')
+      }
+      if (this.state.isVisible) {
+        nextImage = image.src
+        console.log('image')
+      }
 
+      // TODO: find a better way to switch!
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : ``
       const afterOpacity = nextImage !== bgImage ? 1 : 0
       this.bgImage = bgImage
+
+      console.log(bgImage, nextImage, afterOpacity)
 
       return (
           <Tag
