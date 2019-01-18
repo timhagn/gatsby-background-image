@@ -16,7 +16,13 @@ All the glamour (and speed) of `gatsby-image` now for your Background Images!
 ___And it's even styleable with `styled-components` and the like!___   
 (planned are media-queries: see [TODO](#todo))
 
-# Procedure
+## Example Repo
+
+`gatsby-background-image` now has an example repository, where you can see
+it's similarities & differences to `gatsby-image` side by side.  
+It's located at: [gbitest](https://github.com/timhagn/gbitest)
+
+## Procedure
 
 As `gatsby-image` is designed to work seamlessly with Gatsby's native image
 processing capabilities powered by GraphQL and Sharp, so is `gatsby-background-image`. 
