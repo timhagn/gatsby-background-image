@@ -31,20 +31,24 @@ const convertProps = props => {
 
 
 const createImageToLoad = props => {
-  const convertedProps = convertProps(props);
-  const img = new Image();
+  if (typeof window !== `undefined`) {
+    const convertedProps = convertProps(props);
+    const img = new Image();
 
-  if (!img.complete && typeof convertedProps.onLoad === `function`) {
-    img.addEventListener('load', convertedProps.onLoad);
+    if (!img.complete && typeof convertedProps.onLoad === `function`) {
+      img.addEventListener('load', convertedProps.onLoad);
+    }
+
+    if (typeof convertedProps.onError === `function`) {
+      img.addEventListener('error', convertedProps.onError);
+    } // Find src
+
+
+    img.src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
+    return img;
   }
 
-  if (typeof convertedProps.onError === `function`) {
-    img.addEventListener('error', convertedProps.onError);
-  } // Find src
-
-
-  img.src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
-  return img;
+  return null;
 }; // Cache if we've seen an image before so we don't both with
 // lazy-loading & fading in on subsequent mounts.
 
