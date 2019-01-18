@@ -45,25 +45,25 @@ const listeners = []
 
 function getIO() {
   if (
-      typeof io === `undefined` &&
-      typeof window !== `undefined` &&
-      window.IntersectionObserver
+    typeof io === `undefined` &&
+    typeof window !== `undefined` &&
+    window.IntersectionObserver
   ) {
     io = new window.IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            listeners.forEach(l => {
-              if (l[0] === entry.target) {
-                // Edge doesn't currently support isIntersecting, so also test for an intersectionRatio > 0
-                if (entry.isIntersecting || entry.intersectionRatio > 0) {
-                  io.unobserve(l[0])
-                  l[1]()
-                }
+      entries => {
+        entries.forEach(entry => {
+          listeners.forEach(l => {
+            if (l[0] === entry.target) {
+              // Edge doesn't currently support isIntersecting, so also test for an intersectionRatio > 0
+              if (entry.isIntersecting || entry.intersectionRatio > 0) {
+                io.unobserve(l[0])
+                l[1]()
               }
-            })
+            }
           })
-        },
-        { rootMargin: `200px` }
+        })
+      },
+      { rootMargin: `200px` }
     )
   }
 
@@ -81,11 +81,11 @@ const noscriptImg = props => {
   const src = props.src ? `src="${props.src}" ` : `src="" ` // required attribute
   const sizes = props.sizes ? `sizes="${props.sizes}" ` : ``
   const srcSetWebp = props.srcSetWebp
-      ? `<source type='image/webp' srcSet="${props.srcSetWebp}" ${sizes}/>`
-      : ``
+    ? `<source type='image/webp' srcSet="${props.srcSetWebp}" ${sizes}/>`
+    : ``
   const srcSet = props.srcSet
-      ? `<source srcSet="${props.srcSet}" ${sizes}/>`
-      : ``
+    ? `<source srcSet="${props.srcSet}" ${sizes}/>`
+    : ``
   const title = props.title ? `title="${props.title}" ` : ``
   const alt = props.alt ? `alt="${props.alt}" ` : `alt="" ` // required attribute
   const width = props.width ? `width="${props.width}" ` : ``
@@ -97,24 +97,25 @@ const noscriptImg = props => {
 
 const Img = React.forwardRef((props, ref) => {
   const { style, onLoad, onError, alt, ...otherProps } = props
+
   return (
-      <img
-          {...otherProps}
-          alt={alt}
-          onLoad={onLoad}
-          onError={onError}
-          ref={ref}
-          style={{
-            position: `absolute`,
-            top: 0,
-            left: 0,
-            width: `100%`,
-            height: `100%`,
-            objectFit: `cover`,
-            objectPosition: `center`,
-            ...style,
-          }}
-      />
+    <img
+      {...otherProps}
+      alt={alt}
+      onLoad={onLoad}
+      onError={onError}
+      ref={ref}
+      style={{
+        position: `absolute`,
+        top: 0,
+        left: 0,
+        width: `100%`,
+        height: `100%`,
+        objectFit: `cover`,
+        objectPosition: `center`,
+        ...style,
+      }}
+    />
   )
 })
 
@@ -140,9 +141,9 @@ class BackgroundImage extends React.Component {
 
     // browser with Intersection Observer available
     if (
-        !seenBefore &&
-        typeof window !== `undefined` &&
-        window.IntersectionObserver
+      !seenBefore &&
+      typeof window !== `undefined` &&
+      window.IntersectionObserver
     ) {
       isVisible = false
       IOSupported = true
@@ -159,7 +160,7 @@ class BackgroundImage extends React.Component {
       IOSupported = false
     }
 
-    const hasNoScript =  !(this.props.critical && !this.props.fadeIn)
+    const hasNoScript = !(this.props.critical && !this.props.fadeIn)
 
     this.state = {
       isVisible,
@@ -190,15 +191,14 @@ class BackgroundImage extends React.Component {
         this.handleImageLoaded()
       }
     }
-
   }
 
   handleRef(ref) {
     if (this.state.IOSupported && ref) {
       listenToIntersections(ref, () => {
         if (
-            !this.state.isVisible &&
-            typeof this.props.onStartLoad === `function`
+          !this.state.isVisible &&
+          typeof this.props.onStartLoad === `function`
         ) {
           this.props.onStartLoad({ wasCached: inImageCache(this.props) })
         }
@@ -210,11 +210,15 @@ class BackgroundImage extends React.Component {
 
   handleImageLoaded() {
     activateCacheForImage(this.props)
+
     this.setState({ imgLoaded: true })
     if (this.state.seenBefore) {
       this.setState({ fadeIn: false })
     }
-    this.props.onLoad && this.props.onLoad()
+
+    if (this.props.onLoad) {
+      this.props.onLoad()
+    }
   }
 
   render() {
@@ -235,7 +239,7 @@ class BackgroundImage extends React.Component {
     } = convertProps(this.props)
 
     const bgColor =
-        typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor
+      typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor
 
     const imagePlaceholderStyle = {
       opacity: this.state.imgLoaded ? 0 : 1,
