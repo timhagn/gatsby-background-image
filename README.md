@@ -141,6 +141,8 @@ have to target the BackgroundImage-component's class:
 
 ## TODO
 
+* use Image() instead of `gatsby-image` placeholder images - <s>look into `a11y`</s>!
+* `a11y` only relevant for background images used as sprites or such (*sources*) 
 * add Media-Query support
-* use Image() instead of `gatsby-image` placeholder images - look into `a11y`!
+
 
