@@ -17,6 +17,26 @@ const convertProps = props => {
   return convertedProps
 }
 
+export const createImageToLoad = props => {
+  // if (typeof window !== `undefined`) {
+    const convertedProps = convertProps(props)
+
+    const img = new Image()
+    if (!img.complete && typeof convertedProps.onLoad === `function`) {
+      img.addEventListener('load', convertedProps.onLoad)
+    }
+    if (typeof convertedProps.onError === `function`) {
+      img.addEventListener('error', convertedProps.onError)
+    }
+    // Find src
+    img.src = convertedProps.fluid
+        ? convertedProps.fluid.src
+        : convertedProps.fixed.src
+    return img
+  // }
+  // return null
+}
+
 // Cache if we've seen an image before so we don't both with
 // lazy-loading & fading in on subsequent mounts.
 const imageCache = {}
@@ -176,7 +196,9 @@ class BackgroundImage extends React.Component {
     // Get background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = getBackgroundStyles(this.props.className)
 
-    this.imageRef = React.createRef()
+    // "Fake" a reference to an Image loaded in background.
+    this.imageRef = createImageToLoad(this.props)
+
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
     this.handleRef = this.handleRef.bind(this)
   }
@@ -186,7 +208,7 @@ class BackgroundImage extends React.Component {
       this.props.onStartLoad({ wasCached: inImageCache(this.props) })
     }
     if (this.props.critical) {
-      const img = this.imageRef.current
+      const img = this.imageRef
       if (img && img.complete) {
         this.handleImageLoaded()
       }
@@ -227,9 +249,6 @@ class BackgroundImage extends React.Component {
       alt,
       className,
       style = {},
-      imgStyle = {},
-      placeholderStyle = {},
-      placeholderClassName,
       fluid,
       fixed,
       backgroundColor,
@@ -240,31 +259,6 @@ class BackgroundImage extends React.Component {
 
     const bgColor =
       typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor
-
-    const imagePlaceholderStyle = {
-      opacity: this.state.imgLoaded ? 0 : 1,
-      transition: `opacity 0.5s`,
-      transitionDelay: this.state.imgLoaded ? `0.5s` : `0.25s`,
-      ...imgStyle,
-      ...placeholderStyle,
-    }
-
-    const imageStyle = {
-      opacity: this.state.imgLoaded || this.state.fadeIn === false ? 1 : 0,
-      transition: this.state.fadeIn === true ? `opacity 0.5s` : `none`,
-      ...imgStyle,
-    }
-
-    const placeholderImageProps = {
-      title,
-      alt: !this.state.isVisible ? alt : ``,
-      style: {
-        ...imagePlaceholderStyle,
-        // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
-        display: `none`,
-      },
-      className: placeholderClassName,
-    }
 
     const backgroundSize =
         this.backgroundStyles.hasOwnProperty(`backgroundSize`) ?
@@ -338,80 +332,23 @@ class BackgroundImage extends React.Component {
               `
             }}>
             </style>
-            {/* Show the blurry base64 image. */}
-            {image.base64 && (
-                <Img
-                    alt={!this.state.isVisible ? alt : ``}
-                    title={title}
-                    src={image.base64}
-                    style={{...imagePlaceholderStyle,
-                      // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
-                      display: `none`,
-                    }}
-                    {...placeholderImageProps}
-                />
-            )}
-
-            {/* Show the traced SVG image. */}
-            {image.tracedSVG && (
-                <Img
-                    alt={!this.state.isVisible ? alt : ``}
-                    title={title}
-                    src={image.tracedSVG}
-                    style={{...imagePlaceholderStyle,
-                      // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
-                      display: `none`,
-                    }}
-                    {...placeholderImageProps}
-                />
-            )}
-
-
             {/* Show a solid background color. */}
-            {bgColor && (
-                <Tag
-                    title={title}
-                    style={{
-                      backgroundColor: bgImage === `` ? bgColor : ``,
-                      backgroundSize: backgroundSize,
-                      zIndex: -103,
-                      width: image.width,
-                      opacity: !this.state.imgLoaded ? 1 : 0,
-                      transitionDelay: `0.25s`,
-                      height: image.height,
-                    }}
-                />
-            )}
-
-            {/* Once the image is visible (or the browser doesn't support IntersectionObserver), start downloading the image */}
-            {this.state.isVisible && (
-                <picture style={{
-                  // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
-                  display: `none`,
-                }}>
-                  {image.srcSetWebp && (<source
-                      type={`image/webp`}
-                      srcSet={image.srcSetWebp}
-                      sizes={image.sizes}
-                  />)}
-
-                  <source
-                      srcSet={image.srcSet}
-                      sizes={image.sizes}
-                  />
-
-                  <Img
-                      alt={alt}
-                      title={title}
-                      src={image.src}
-                      style={imageStyle}
-                      ref={this.imageRef}
-                      onLoad={this.handleImageLoaded}
-                      onError={this.props.onError}
-                  />
-                </picture>
-            )}
-
+            {/*{bgColor && (*/}
+                {/*<Tag*/}
+                    {/*title={title}*/}
+                    {/*style={{*/}
+                      {/*backgroundColor: bgColor,*/}
+                      {/*position: `absolute`,*/}
+                      {/*top: 0,*/}
+                      {/*bottom: 0,*/}
+                      {/*opacity: !this.state.imgLoaded ? 1 : 0,*/}
+                      {/*transitionDelay: `0.35s`,*/}
+                      {/*right: 0,*/}
+                      {/*left: 0,*/}
+                      {/*zIndex: -103,*/}
+                    {/*}}*/}
+                {/*/>*/}
+            {/*)}*/}
             {/* Show the original image during server-side rendering if JavaScript is disabled */}
             {this.state.hasNoScript && (
                 <noscript
@@ -496,81 +433,6 @@ class BackgroundImage extends React.Component {
               `
             }}>
             </style>
-            {/* Show the blurry base64 image. */}
-            {image.base64 && (
-                <Img
-                    alt={!this.state.isVisible ? alt : ``}
-                    title={title}
-                    src={image.base64}
-                    style={{...imagePlaceholderStyle,
-                      // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
-                      display: `none`,
-                    }}
-                    {...placeholderImageProps}
-                />
-            )}
-
-            {/* Show the traced SVG image. */}
-            {image.tracedSVG && (
-                <Img
-                    alt={!this.state.isVisible ? alt : ``}
-                    title={title}
-                    src={image.tracedSVG}
-                    style={{...imagePlaceholderStyle,
-                      // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
-                      display: `none`,
-                    }}
-                    {...placeholderImageProps}
-                />
-            )}
-
-            {/* Show a solid background color. */}
-            {bgColor && (
-                <Tag
-                    title={title}
-                    style={{
-                      backgroundColor: bgImage === `` ? bgColor : ``,
-                      backgroundSize: backgroundSize,
-                      zIndex: -103,
-                      width: image.width,
-                      opacity: !this.state.imgLoaded ? 1 : 0,
-                      transitionDelay: `0.25s`,
-                      height: image.height,
-                    }}
-                />
-            )}
-
-            {/* Once the image is visible, start downloading the image */}
-            {this.state.isVisible && (
-                <picture style={{
-                  // Prevent Gatsby Image from being shown, as we only need it for the Backgrounds.
-                  display: `none`,
-                }}>
-                  {image.srcSetWebp && (<source
-                      type={`image/webp`}
-                      srcSet={image.srcSetWebp}
-                      sizes={image.sizes}
-                  />)}
-
-                  <source
-                      srcSet={image.srcSet}
-                      sizes={image.sizes}
-                  />
-
-                  <Img
-                      alt={alt}
-                      title={title}
-                      width={image.width}
-                      height={image.height}
-                      src={image.src}
-                      style={imageStyle}
-                      ref={this.imageRef}
-                      onLoad={this.handleImageLoaded}
-                      onError={this.props.onError}
-                  />
-                </picture>
-            )}
-
             {/* Show the original image during server-side rendering if JavaScript is disabled */}
             {this.state.hasNoScript && (
                 <noscript
