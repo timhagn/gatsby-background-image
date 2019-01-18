@@ -20,20 +20,23 @@ const convertProps = props => {
 // Create lazy image loader with Image().
 // Only get's exported for tests!
 export const createImageToLoad = props => {
-  const convertedProps = convertProps(props)
+  if (typeof window !== `undefined`) {
+    const convertedProps = convertProps(props)
 
-  const img = new Image()
-  if (!img.complete && typeof convertedProps.onLoad === `function`) {
-    img.addEventListener('load', convertedProps.onLoad)
+    const img = new Image()
+    if (!img.complete && typeof convertedProps.onLoad === `function`) {
+      img.addEventListener('load', convertedProps.onLoad)
+    }
+    if (typeof convertedProps.onError === `function`) {
+      img.addEventListener('error', convertedProps.onError)
+    }
+    // Find src
+    img.src = convertedProps.fluid
+        ? convertedProps.fluid.src
+        : convertedProps.fixed.src
+    return img
   }
-  if (typeof convertedProps.onError === `function`) {
-    img.addEventListener('error', convertedProps.onError)
-  }
-  // Find src
-  img.src = convertedProps.fluid
-      ? convertedProps.fluid.src
-      : convertedProps.fixed.src
-  return img
+  return null
 }
 
 // Cache if we've seen an image before so we don't both with
