@@ -2,6 +2,7 @@ import "@babel/polyfill"
 import { render, cleanup, fireEvent } from "react-testing-library"
 import React from "react"
 import BackgroundImage from "../"
+import { createImageToLoad } from "../";
 import getBackgroundStyles from "../BackgroundUtils";
 
 afterAll(cleanup)
@@ -109,35 +110,18 @@ describe(`<BackgroundImage />`, () => {
     expect(backgroundStyles).toEqual({})
   })
 
-  it(`should have correct src, title and alt attributes`, () => {
-    const imageTag = setup().querySelector(`picture img`)
-    expect(imageTag.getAttribute(`src`)).toEqual(`test_image.jpg`)
-    expect(imageTag.getAttribute(`title`)).toEqual(`Title for the image`)
-    expect(imageTag.getAttribute(`alt`)).toEqual(`Alt text for the image`)
-  })
-
-  it(`should have correct placeholder src, title, style and class attributes`, () => {
-    const placeholderImageTag = setup().querySelector(`img`)
-    expect(placeholderImageTag.getAttribute(`src`)).toEqual(`string_of_base64`)
-    expect(placeholderImageTag.getAttribute(`title`)).toEqual(
-      `Title for the image`
-    )
-    // No Intersection Observer in JSDOM, so placeholder img will be visible (opacity 1) by default
-    expect(placeholderImageTag.getAttribute(`style`)).toEqual(
-
-      `position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; opacity: 1; color: red; display: none;`
-    )
-    expect(placeholderImageTag.getAttribute(`class`)).toEqual(`placeholder`)
-  })
-
   it(`should call onLoad and onError image events`, () => {
     const onLoadMock = jest.fn()
     const onErrorMock = jest.fn()
-    const imageTag = setup(true, false, ``, true, onLoadMock, onErrorMock).querySelector(
-      `picture img`
-    )
-    fireEvent.load(imageTag)
-    fireEvent.error(imageTag)
+    const image = createImageToLoad({
+      fluid: {
+        src: ``,
+      },
+      onLoad: onLoadMock,
+      onError: onErrorMock
+    })
+    fireEvent.load(image)
+    fireEvent.error(image)
 
     expect(onLoadMock).toHaveBeenCalledTimes(1)
     expect(onErrorMock).toHaveBeenCalledTimes(1)
