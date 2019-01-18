@@ -7,4 +7,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.1.0](https://github.com/timhagn/gatsby-background-image) (2018-12-13)
 
-**Initial commit:** Tests running and module working. 
+**Initial commit:** Tests running and module working.
+
+## [0.2.0](https://github.com/timhagn/gatsby-background-image) (2018-12-13)
+
+**Breaking commit:** Remove superfluous placeholder images, tracedSVG working.

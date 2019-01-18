@@ -14,7 +14,7 @@ SVG to show a preview of the image while it loads,
 All the glamour (and speed) of `gatsby-image` now for your Background Images!
 
 ___And it's even styleable with `styled-components` and the like!___   
-(planned, media-queries: see [TODO](#todo))
+(planned are media-queries: see [TODO](#todo))
 
 # Procedure
 
@@ -125,9 +125,9 @@ to get started.
 `gatsby-background-image` has an added classId (as we have to name
 pseudo-elements and introduce a className for the returned container):
 
-| Name                   | Type                | Description                                                                                                                 |
-| ---------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `classId`              | `string`            | classID of the container element, defaults to a random lower case string of seven chars                                          |
+| Name                   | Type                | Description                                                                             |
+| ---------------------- | ------------------- | ----------------------------------------------------------------------------------------|
+| `classId`              | `string`            | classID of the container element, defaults to a random lower case string of seven chars |
 
 Additionally, you are able to style your component with `styled-components` or
 your CSS-in-JS "framework" of choice. It should work with CSS, too, you just
@@ -139,10 +139,18 @@ have to target the BackgroundImage-component's class:
 }
 ```
 
-## TODO
+## props not available
 
-* use Image() instead of `gatsby-image` placeholder images - <s>look into `a11y`</s>!
-* `a11y` only relevant for background images used as sprites or such (*sources*) 
+As `gatsby-background-image` doesn't use placeholder-images, the following two
+props from `gatsby-image` are of course not available (at the moment).
+
+| Name                   | Type                | Old Usage                                                     |
+| ---------------------- | ------------------- | --------------------------------------------------------------|
+| `placeholderStyle`     | `object`            | Spread into the default styles of the placeholder img element |
+| `placeholderClassName` | `string`            | A class that is passed to the placeholder img element         |
+
+
+## TODO
 * add Media-Query support
 
 
