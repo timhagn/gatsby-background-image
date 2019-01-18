@@ -100,11 +100,11 @@ const noscriptImg = props => {
   const src = props.src ? `src="${props.src}" ` : `src="" ` // required attribute
   const sizes = props.sizes ? `sizes="${props.sizes}" ` : ``
   const srcSetWebp = props.srcSetWebp
-    ? `<source type='image/webp' srcSet="${props.srcSetWebp}" ${sizes}/>`
-    : ``
+      ? `<source type='image/webp' srcSet="${props.srcSetWebp}" ${sizes}/>`
+      : ``
   const srcSet = props.srcSet
-    ? `<source srcSet="${props.srcSet}" ${sizes}/>`
-    : ``
+      ? `<source srcSet="${props.srcSet}" ${sizes}/>`
+      : ``
   const title = props.title ? `title="${props.title}" ` : ``
   const alt = props.alt ? `alt="${props.alt}" ` : `alt="" ` // required attribute
   const width = props.width ? `width="${props.width}" ` : ``
@@ -112,6 +112,50 @@ const noscriptImg = props => {
   const opacity = props.opacity ? props.opacity : `1`
   const transitionDelay = props.transitionDelay ? props.transitionDelay : `0.5s`
   return `<picture>${srcSetWebp}${srcSet}<img ${width}${height}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
+}
+
+const createPseudoStyles = ({
+                              classId,
+                              backgroundSize,
+                              backgroundRepeat,
+                              transitionDelay,
+                              bgImage,
+                              nextImage,
+                              afterOpacity,
+                              bgColor,
+                            }) => {
+  return `
+          .gatsby-background-image-${classId}:before,
+          .gatsby-background-image-${classId}:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            -webkit-background-size: ${backgroundSize};
+            -moz-background-size: ${backgroundSize};
+            -o-background-size: ${backgroundSize};
+            background-size: ${backgroundSize};
+            transition: opacity ${transitionDelay} ease-in-out;
+            -webkit-transition: opacity ${transitionDelay} ease-in-out;
+            -moz-transition: opacity ${transitionDelay} ease-in-out;
+            -o-transition: opacity ${transitionDelay} ease-in-out;
+          }
+          .gatsby-background-image-${classId}:before {
+            z-index: -101;
+            background-color: ${bgColor};
+            background-image: url(${bgImage});
+            ${backgroundRepeat}
+          }
+          .gatsby-background-image-${classId}:after {
+            z-index: -100;
+            background-image: url(${nextImage});
+            ${backgroundRepeat}
+            opacity: ${afterOpacity};
+          }
+        `
 }
 
 class BackgroundImage extends React.Component {
@@ -248,26 +292,26 @@ class BackgroundImage extends React.Component {
       // Set the backgroundImage according to images available.
       let bgImage = this.bgImage,
           nextImage = null
-      if (image.tracedSVG) {
-        nextImage = `'${ image.tracedSVG }'`
-        console.log('tracedSVG')
-      }
-      if (image.base64 && !image.tracedSVG) {
-        nextImage = image.base64
-        console.log('base64')
-      }
-      if (this.state.isVisible) {
-        nextImage = image.src
-        console.log('image')
-      }
+      if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
+      if (image.base64 && !image.tracedSVG) nextImage = image.base64
+      if (this.state.isVisible) nextImage = image.src
 
-      // TODO: find a better way to switch!
       // Switch bgImage & nextImage and opacity accordingly.
-      bgImage = bgImage === `` ? nextImage : ``
-      const afterOpacity = nextImage !== bgImage ? 1 : 0
+      bgImage = bgImage === `` ? nextImage : this.bgImage
+      const afterOpacity =
+          nextImage !== bgImage || this.state.fadeIn === false ? 1 : 0
       this.bgImage = bgImage
 
-      console.log(bgImage, nextImage, afterOpacity)
+      const pseudoStyles = {
+        classId,
+        backgroundSize,
+        backgroundRepeat,
+        transitionDelay,
+        bgImage,
+        nextImage,
+        afterOpacity,
+        bgColor,
+      }
 
       return (
           <Tag
@@ -282,54 +326,9 @@ class BackgroundImage extends React.Component {
               key={`fluid-${JSON.stringify(image.srcSet)}`}
           >
             <style dangerouslySetInnerHTML={{
-              __html:`
-                .gatsby-background-image-${classId}:before,
-                .gatsby-background-image-${classId}:after {
-                  background-size: ${backgroundSize};
-                  content: '';
-                  display: block;
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  top: 0;
-                  left: 0;
-                  transition: opacity ${transitionDelay} ease-in-out;
-                  -webkit-transition: opacity ${transitionDelay} ease-in-out;
-                  -moz-transition: opacity ${transitionDelay} ease-in-out;
-                  -o-transition: opacity ${transitionDelay} ease-in-out;
-                }
-                .gatsby-background-image-${classId}:before {
-                  z-index: -101;
-                  background-image: url(${bgImage});
-                  ${backgroundRepeat}
-                }
-                .gatsby-background-image-${classId}:after {
-                  z-index: -100;
-                  background-image: url(${nextImage});
-                  ${backgroundRepeat}
-                  content: "";
-                  opacity: ${afterOpacity};
-                }
-              `
+              __html: createPseudoStyles(pseudoStyles)
             }}>
             </style>
-            {/* Show a solid background color. */}
-            {/*{bgColor && (*/}
-                {/*<Tag*/}
-                    {/*title={title}*/}
-                    {/*style={{*/}
-                      {/*backgroundColor: bgColor,*/}
-                      {/*position: `absolute`,*/}
-                      {/*top: 0,*/}
-                      {/*bottom: 0,*/}
-                      {/*opacity: !this.state.imgLoaded ? 1 : 0,*/}
-                      {/*transitionDelay: `0.35s`,*/}
-                      {/*right: 0,*/}
-                      {/*left: 0,*/}
-                      {/*zIndex: -103,*/}
-                    {/*}}*/}
-                {/*/>*/}
-            {/*)}*/}
             {/* Show the original image during server-side rendering if JavaScript is disabled */}
             {this.state.hasNoScript && (
                 <noscript
@@ -370,48 +369,28 @@ class BackgroundImage extends React.Component {
       const afterOpacity = nextImage !== bgImage ? 1 : 0
       this.bgImage = bgImage
 
+      const pseudoStyles = {
+        classId,
+        backgroundSize,
+        backgroundRepeat,
+        transitionDelay,
+        bgImage,
+        nextImage,
+        afterOpacity,
+      }
+
       return (
           <Tag
               className={`${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`}
               style={{
-                position: `relative`,
-                overflow: `hidden`,
-                ...style,
+                ...divStyle,
                 ...this.backgroundStyles,
               }}
               ref={this.handleRef}
               key={`fixed-${JSON.stringify(image.srcSet)}`}
           >
             <style dangerouslySetInnerHTML={{
-              __html:`
-                .gatsby-background-image-${classId}:before,
-                .gatsby-background-image-${classId}:after {
-                  background-size: ${backgroundSize};
-                  content: '';
-                  display: block;
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  top: 0;
-                  left: 0;
-                  transition: opacity ${transitionDelay} ease-in-out;
-                  -webkit-transition: opacity ${transitionDelay} ease-in-out;
-                  -moz-transition: opacity ${transitionDelay} ease-in-out;
-                  -o-transition: opacity ${transitionDelay} ease-in-out;
-                }
-                .gatsby-background-image-${classId}:before {
-                  z-index: -101;
-                  background-image: url(${bgImage});
-                  ${backgroundRepeat}
-                }
-                .gatsby-background-image-${classId}:after {
-                  z-index: -100;
-                  background-image: url(${nextImage});
-                  ${backgroundRepeat}
-                  content: "";
-                  opacity: ${afterOpacity};
-                }
-              `
+              __html: createPseudoStyles(pseudoStyles)
             }}>
             </style>
             {/* Show the original image during server-side rendering if JavaScript is disabled */}
@@ -428,6 +407,7 @@ class BackgroundImage extends React.Component {
                     }}
                 />
             )}
+            {children}
           </Tag>
       )
     }

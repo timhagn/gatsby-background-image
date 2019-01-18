@@ -58,7 +58,7 @@ const setup = (fluid = false,
       placeholderStyle={{ color: `red` }}
       placeholderClassName={`placeholder`}
       classId="test"
-    />
+    ><h1>test</h1></BackgroundImage>
   )
 
   return container

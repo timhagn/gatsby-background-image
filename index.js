@@ -117,6 +117,50 @@ const noscriptImg = props => {
   return `<picture>${srcSetWebp}${srcSet}<img ${width}${height}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`;
 };
 
+const createPseudoStyles = ({
+  classId,
+  backgroundSize,
+  backgroundRepeat,
+  transitionDelay,
+  bgImage,
+  nextImage,
+  afterOpacity,
+  bgColor
+}) => {
+  return `
+          .gatsby-background-image-${classId}:before,
+          .gatsby-background-image-${classId}:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            -webkit-background-size: ${backgroundSize};
+            -moz-background-size: ${backgroundSize};
+            -o-background-size: ${backgroundSize};
+            background-size: ${backgroundSize};
+            transition: opacity ${transitionDelay} ease-in-out;
+            -webkit-transition: opacity ${transitionDelay} ease-in-out;
+            -moz-transition: opacity ${transitionDelay} ease-in-out;
+            -o-transition: opacity ${transitionDelay} ease-in-out;
+          }
+          .gatsby-background-image-${classId}:before {
+            z-index: -101;
+            background-color: ${bgColor};
+            background-image: url(${bgImage});
+            ${backgroundRepeat}
+          }
+          .gatsby-background-image-${classId}:after {
+            z-index: -100;
+            background-image: url(${nextImage});
+            ${backgroundRepeat}
+            opacity: ${afterOpacity};
+          }
+        `;
+};
+
 class BackgroundImage extends _react.default.Component {
   constructor(props) {
     super(props); // default settings for browser without Intersection Observer available
@@ -236,28 +280,23 @@ class BackgroundImage extends _react.default.Component {
 
       let bgImage = this.bgImage,
           nextImage = null;
+      if (image.tracedSVG) nextImage = `"${image.tracedSVG}"`;
+      if (image.base64 && !image.tracedSVG) nextImage = image.base64;
+      if (this.state.isVisible) nextImage = image.src; // Switch bgImage & nextImage and opacity accordingly.
 
-      if (image.tracedSVG) {
-        nextImage = `'${image.tracedSVG}'`;
-        console.log('tracedSVG');
-      }
-
-      if (image.base64 && !image.tracedSVG) {
-        nextImage = image.base64;
-        console.log('base64');
-      }
-
-      if (this.state.isVisible) {
-        nextImage = image.src;
-        console.log('image');
-      } // TODO: find a better way to switch!
-      // Switch bgImage & nextImage and opacity accordingly.
-
-
-      bgImage = bgImage === `` ? nextImage : ``;
-      const afterOpacity = nextImage !== bgImage ? 1 : 0;
+      bgImage = bgImage === `` ? nextImage : this.bgImage;
+      const afterOpacity = nextImage !== bgImage || this.state.fadeIn === false ? 1 : 0;
       this.bgImage = bgImage;
-      console.log(bgImage, nextImage, afterOpacity);
+      const pseudoStyles = {
+        classId,
+        backgroundSize,
+        backgroundRepeat,
+        transitionDelay,
+        bgImage,
+        nextImage,
+        afterOpacity,
+        bgColor
+      };
       return _react.default.createElement(Tag, {
         className: `${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`,
         style: {
@@ -270,44 +309,16 @@ class BackgroundImage extends _react.default.Component {
         key: `fluid-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 273
+          lineNumber: 317
         },
         __self: this
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
-          __html: `
-                .gatsby-background-image-${classId}:before,
-                .gatsby-background-image-${classId}:after {
-                  background-size: ${backgroundSize};
-                  content: '';
-                  display: block;
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  top: 0;
-                  left: 0;
-                  transition: opacity ${transitionDelay} ease-in-out;
-                  -webkit-transition: opacity ${transitionDelay} ease-in-out;
-                  -moz-transition: opacity ${transitionDelay} ease-in-out;
-                  -o-transition: opacity ${transitionDelay} ease-in-out;
-                }
-                .gatsby-background-image-${classId}:before {
-                  z-index: -101;
-                  background-image: url(${bgImage});
-                  ${backgroundRepeat}
-                }
-                .gatsby-background-image-${classId}:after {
-                  z-index: -100;
-                  background-image: url(${nextImage});
-                  ${backgroundRepeat}
-                  content: "";
-                  opacity: ${afterOpacity};
-                }
-              `
+          __html: createPseudoStyles(pseudoStyles)
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 284
+          lineNumber: 328
         },
         __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -320,7 +331,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 335
+          lineNumber: 334
         },
         __self: this
       }), children);
@@ -351,56 +362,34 @@ class BackgroundImage extends _react.default.Component {
       bgImage = bgImage === `` ? nextImage : ``;
       const afterOpacity = nextImage !== bgImage ? 1 : 0;
       this.bgImage = bgImage;
+      const pseudoStyles = {
+        classId,
+        backgroundSize,
+        backgroundRepeat,
+        transitionDelay,
+        bgImage,
+        nextImage,
+        afterOpacity
+      };
       return _react.default.createElement(Tag, {
         className: `${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`,
-        style: {
-          position: `relative`,
-          overflow: `hidden`,
-          ...style,
+        style: { ...divStyle,
           ...this.backgroundStyles
         },
         ref: this.handleRef,
         key: `fixed-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 374
+          lineNumber: 383
         },
         __self: this
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
-          __html: `
-                .gatsby-background-image-${classId}:before,
-                .gatsby-background-image-${classId}:after {
-                  background-size: ${backgroundSize};
-                  content: '';
-                  display: block;
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  top: 0;
-                  left: 0;
-                  transition: opacity ${transitionDelay} ease-in-out;
-                  -webkit-transition: opacity ${transitionDelay} ease-in-out;
-                  -moz-transition: opacity ${transitionDelay} ease-in-out;
-                  -o-transition: opacity ${transitionDelay} ease-in-out;
-                }
-                .gatsby-background-image-${classId}:before {
-                  z-index: -101;
-                  background-image: url(${bgImage});
-                  ${backgroundRepeat}
-                }
-                .gatsby-background-image-${classId}:after {
-                  z-index: -100;
-                  background-image: url(${nextImage});
-                  ${backgroundRepeat}
-                  content: "";
-                  opacity: ${afterOpacity};
-                }
-              `
+          __html: createPseudoStyles(pseudoStyles)
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 385
+          lineNumber: 392
         },
         __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -415,10 +404,10 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 419
+          lineNumber: 398
         },
         __self: this
-      }));
+      }), children);
     }
 
     return null;
