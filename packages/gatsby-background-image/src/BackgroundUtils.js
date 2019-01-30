@@ -93,7 +93,7 @@ const getBackgroundStylesForSingleClass = className => {
   const cssStyleRules = rulesForCssText(style)
 
   if (cssStyleRules.length > 0 &&
-      typeof(cssStyleRules[0].style) !== 'undefined') {
+      typeof cssStyleRules[0].style !== 'undefined') {
     // Filter out background(-*) rules that contain a definition.
     return Object.keys(getStyleRules(cssStyleRules))
         .filter(k => k.indexOf('background') === 0 && cssStyleRules[0].style[k] !== '')
@@ -112,15 +112,25 @@ const getBackgroundStylesForSingleClass = className => {
  * @return {*}
  */
 const getBackgroundStyles = className => {
-  if (typeof(window) !== 'undefined' && className.includes(' ')) {
-    const classes = className.split(' ')
-    let classObjects = []
-    classes.forEach(item =>
-        classObjects.push(getBackgroundStylesForSingleClass(item))
-    )
-    return Object.assign(...classObjects)
+  if (typeof window !== 'undefined' &&
+      className !== null &&
+      (
+          className instanceof Object ||
+          className instanceof String ||
+          typeof className === 'string'
+      ) &&
+      !(className instanceof Array)) {
+    if (className.includes(' ')) {
+      const classes = className.split(' ')
+      let classObjects = []
+      classes.forEach(item =>
+          classObjects.push(getBackgroundStylesForSingleClass(item))
+      )
+      return Object.assign(...classObjects)
+    }
+    return getBackgroundStylesForSingleClass(className)
   }
-  return getBackgroundStylesForSingleClass(className)
+  return {}
 }
 
 export default getBackgroundStyles

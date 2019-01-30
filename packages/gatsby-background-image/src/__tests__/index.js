@@ -75,6 +75,15 @@ describe(`<BackgroundImage />`, () => {
     expect(component).toMatchSnapshot()
   })
 
+  it(`should work without external class`, () => {
+    const { container } = render(
+        <BackgroundImage
+            fluid={ fluidShapeMock }
+        ><h1>testempty</h1></BackgroundImage>
+    )
+    expect(container).toMatchSnapshot()
+  })
+
   it(`should work with single external class`, () => {
     const component = setup(true)
     expect(component).toMatchSnapshot()
