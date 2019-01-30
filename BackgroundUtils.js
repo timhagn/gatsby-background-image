@@ -37,7 +37,7 @@ const getStyle = className => {
  */
 
 
-const rulesForCssText = function rulesForCssText(styleContent) {
+const rulesForCssText = function (styleContent) {
   if (typeof document !== `undefined`) {
     const doc = document.implementation.createHTMLDocument(""),
           styleElement = document.createElement("style");
@@ -116,14 +116,18 @@ const getBackgroundStylesForSingleClass = className => {
 
 
 const getBackgroundStyles = className => {
-  if (typeof window !== 'undefined' && className.includes(' ')) {
-    const classes = className.split(' ');
-    let classObjects = [];
-    classes.forEach(item => classObjects.push(getBackgroundStylesForSingleClass(item)));
-    return Object.assign(...classObjects);
+  if (typeof window !== 'undefined' && className !== null && (className instanceof Object || className instanceof String || typeof className === 'string') && !(className instanceof Array)) {
+    if (className.includes(' ')) {
+      const classes = className.split(' ');
+      let classObjects = [];
+      classes.forEach(item => classObjects.push(getBackgroundStylesForSingleClass(item)));
+      return Object.assign(...classObjects);
+    }
+
+    return getBackgroundStylesForSingleClass(className);
   }
 
-  return getBackgroundStylesForSingleClass(className);
+  return {};
 };
 
 var _default = getBackgroundStyles;
