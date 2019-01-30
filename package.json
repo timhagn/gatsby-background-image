@@ -11,7 +11,7 @@
     "url": "https://github.com/timhagn/gatsby-background-image/issues"
   },
   "dependencies": {
-    "@babel/runtime": "^7.2.0",
+    "@babel/runtime": "^7.3.1",
     "prop-types": "^15.6.2"
   },
   "devDependencies": {
@@ -22,7 +22,7 @@
     "babel-preset-gatsby-package": "^0.1.3",
     "cross-env": "^5.2.0",
     "jest": "^23.6.0",
-    "jest-dom": "^3.0.0",
+    "jest-dom": "^3.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-testing-library": "^5.4.4"
