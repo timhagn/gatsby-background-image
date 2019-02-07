@@ -8,10 +8,15 @@ const getStyle = className => {
   const styleSheets = typeof window !== `undefined` ?
       window.document.styleSheets : []
   for (let i = 0; i < styleSheets.length; i++) {
-    const classes = typeof styleSheets[i].rules !== 'undefined' ? styleSheets[i].rules :
-      typeof styleSheets[i].cssRules !== 'undefined' ? styleSheets[i].cssRules : ''
+    let classes
+    try {
+      classes = typeof styleSheets[i].rules !== 'undefined' ? styleSheets[i].rules :
+          typeof styleSheets[i].cssRules !== 'undefined' ? styleSheets[i].cssRules : ''
+    } catch (e) {
+      console.debug(`Unable to read stylesheet rules for ${ styleSheets[i].href }`, e)
+    }
     if (!classes)
-      continue;
+      continue
     for (let x = 0; x < classes.length; x++) {
       if (classes[x].selectorText === className) {
         const ret = classes[x].cssText ? classes[x].cssText : classes[x].style.cssText
@@ -32,8 +37,8 @@ const getStyle = className => {
  */
 const rulesForCssText = function (styleContent) {
   if (typeof document !== `undefined`) {
-    const doc = document.implementation.createHTMLDocument(""),
-          styleElement = document.createElement("style")
+    const doc = document.implementation.createHTMLDocument(''),
+          styleElement = document.createElement('style')
 
     styleElement.textContent = styleContent
     // the style will only be parsed once it is added to a document
