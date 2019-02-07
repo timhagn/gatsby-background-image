@@ -11,9 +11,12 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _BackgroundUtils = _interopRequireDefault(require("./BackgroundUtils"));
 
+var _jsxFileName = "/media/hagn/horsedump/Projects/own_n_oss/gatsby-background-image/src/index.js";
+
 // Handle legacy names for image queries.
 const convertProps = props => {
-  let convertedProps = Object.assign({}, props);
+  let convertedProps = { ...props
+  };
 
   if (convertedProps.resolutions) {
     convertedProps.fixed = convertedProps.resolutions;
@@ -259,20 +262,18 @@ class BackgroundImage extends _react.default.Component {
   }
 
   render() {
-    const _convertProps = convertProps(this.props),
-          title = _convertProps.title,
-          alt = _convertProps.alt,
-          className = _convertProps.className,
-          _convertProps$style = _convertProps.style,
-          style = _convertProps$style === void 0 ? {} : _convertProps$style,
-          fluid = _convertProps.fluid,
-          fixed = _convertProps.fixed,
-          backgroundColor = _convertProps.backgroundColor,
-          Tag = _convertProps.Tag,
-          _convertProps$classId = _convertProps.classId,
-          classId = _convertProps$classId === void 0 ? Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7) : _convertProps$classId,
-          children = _convertProps.children;
-
+    const {
+      title,
+      alt,
+      className,
+      style = {},
+      fluid,
+      fixed,
+      backgroundColor,
+      Tag,
+      classId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
+      children
+    } = convertProps(this.props);
     const bgColor = typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor;
     const backgroundSize = this.backgroundStyles.hasOwnProperty(`backgroundSize`) ? this.backgroundStyles.backgroundSize : `cover`;
     const backgroundRepeat = `background-repeat: ${this.backgroundStyles.hasOwnProperty(`backgroundRepeat`) ? this.backgroundStyles.backgroundRepeat : `no-repeat`};`;
@@ -302,35 +303,54 @@ class BackgroundImage extends _react.default.Component {
       };
       return _react.default.createElement(Tag, {
         className: `${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`,
-        style: Object.assign({
+        style: {
           position: `relative`,
-          overflow: `hidden`
-        }, style, this.backgroundStyles),
+          overflow: `hidden`,
+          ...style,
+          ...this.backgroundStyles
+        },
         ref: this.handleRef,
-        key: `fluid-${JSON.stringify(image.srcSet)}`
+        key: `fluid-${JSON.stringify(image.srcSet)}`,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 320
+        },
+        __self: this
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
           __html: createPseudoStyles(pseudoStyles)
-        }
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 331
+        },
+        __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
         dangerouslySetInnerHTML: {
-          __html: noscriptImg(Object.assign({
+          __html: noscriptImg({
             alt,
-            title
-          }, image))
-        }
+            title,
+            ...image
+          })
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 337
+        },
+        __self: this
       }), children);
     }
 
     if (fixed) {
       const image = fixed;
-      const divStyle = Object.assign({
+      const divStyle = {
         position: `relative`,
         overflow: `hidden`,
         display: `inline-block`,
         width: image.width,
-        height: image.height
-      }, style);
+        height: image.height,
+        ...style
+      };
 
       if (style.display === `inherit`) {
         delete divStyle.display;
@@ -357,22 +377,40 @@ class BackgroundImage extends _react.default.Component {
       };
       return _react.default.createElement(Tag, {
         className: `${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`,
-        style: Object.assign({}, divStyle, this.backgroundStyles),
+        style: { ...divStyle,
+          ...this.backgroundStyles
+        },
         ref: this.handleRef,
-        key: `fixed-${JSON.stringify(image.srcSet)}`
+        key: `fixed-${JSON.stringify(image.srcSet)}`,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 386
+        },
+        __self: this
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
           __html: createPseudoStyles(pseudoStyles)
-        }
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 395
+        },
+        __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
         dangerouslySetInnerHTML: {
-          __html: noscriptImg(Object.assign({
+          __html: noscriptImg({
             alt,
             title,
             width: image.width,
-            height: image.height
-          }, image))
-        }
+            height: image.height,
+            ...image
+          })
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 401
+        },
+        __self: this
       }), children);
     }
 
