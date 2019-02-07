@@ -22,10 +22,10 @@
     "babel-preset-gatsby-package": "^0.1.3",
     "cross-env": "^5.2.0",
     "jest": "^23.6.0",
-    "jest-dom": "^3.0.1",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-testing-library": "^5.4.4"
+    "jest-dom": "^3.0.2",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-testing-library": "^5.5.3"
   },
   "homepage": "https://github.com/timhagn/gatsby-background-image#readme",
   "keywords": [
