@@ -2,7 +2,7 @@
   gatsby-background-image
 </h1>
 <p align="center">
-  <i>Speedy, optimized <strong>background<strong>-images without the work!</i>
+  <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
 </p>
 <p align="center">
   <a href="https://github.com/timhagn/gatsby-background-image/blob/master/LICENSE">
