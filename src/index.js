@@ -19,7 +19,7 @@ const convertProps = props => {
 
 // Create lazy image loader with Image().
 // Only get's exported for tests!
-export const createImageToLoad = props => {
+export const _createImageToLoad = props => {
   if (typeof window !== `undefined`) {
     const convertedProps = convertProps(props)
 
@@ -211,7 +211,7 @@ class BackgroundImage extends React.Component {
     this.backgroundStyles = getBackgroundStyles(this.props.className)
 
     // "Fake" a reference to an Image loaded in background.
-    this.imageRef = createImageToLoad(this.props)
+    this.imageRef = _createImageToLoad(this.props)
 
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
     this.handleRef = this.handleRef.bind(this)
