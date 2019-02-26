@@ -32,8 +32,8 @@ ___And it's even styleable with `styled-components` and the like!___
 
 ## Example Repo
 
-`gatsby-background-image` now has an example repository, where you can see
-it's similarities & differences to `gatsby-image` side by side.  
+`gatsby-background-image` now has an example repository,  
+to see it's similarities & differences to `gatsby-image` side by side.  
 It's located at: [gbitest](https://github.com/timhagn/gbitest)
 
 ## Procedure
