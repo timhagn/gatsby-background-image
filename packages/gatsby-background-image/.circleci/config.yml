@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:11
 
-    working_directory: ~/repo
+    working_directory: ~/gatsby-background-image
 
     steps:
       - checkout
