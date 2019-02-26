@@ -8,6 +8,9 @@
   <a href="https://github.com/timhagn/gatsby-background-image/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="gatsby-background-image is released under the MIT license." />
   </a>
+    <a href="https://circleci.com/gh/timhagn/gatsby-background-image">
+      <img src="https://circleci.com/gh/timhagn/gatsby-background-image.svg?style=shield" alt="Current CircleCI build status of gatsby-background-image." />
+    </a>
   <a href="https://www.npmjs.org/package/gatsby-background-image">
     <img src="https://img.shields.io/npm/v/gatsby-background-image.svg" alt="Current npm package version." />
   </a>
@@ -16,7 +19,7 @@
   </a>
 </p>
 
-`gatsby-background-image` is a React component based on Gatsby's own `gatsby-image`
+`gatsby-background-image` is a React component based on Gatsby's own `gatsby-image`  
 (truthfully, I pilfered most of their excellent work and adapted it ; ).
 
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
