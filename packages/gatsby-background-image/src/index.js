@@ -46,8 +46,8 @@ const inImageCache = props => {
   const convertedProps = convertProps(props)
   // Find src
   const src = convertedProps.fluid
-      ? convertedProps.fluid.src
-      : convertedProps.fixed.src
+    ? convertedProps.fluid.src
+    : convertedProps.fixed.src
 
   return imageCache[src] || false
 }
@@ -56,8 +56,8 @@ const activateCacheForImage = props => {
   const convertedProps = convertProps(props)
   // Find src
   const src = convertedProps.fluid
-      ? convertedProps.fluid.src
-      : convertedProps.fixed.src
+    ? convertedProps.fluid.src
+    : convertedProps.fixed.src
 
   imageCache[src] = true
 }
@@ -103,18 +103,16 @@ const noscriptImg = props => {
   const src = props.src ? `src="${props.src}" ` : `src="" ` // required attribute
   const sizes = props.sizes ? `sizes="${props.sizes}" ` : ``
   const srcSetWebp = props.srcSetWebp
-      ? `<source type='image/webp' srcSet="${props.srcSetWebp}" ${sizes}/>`
-      : ``
-  const srcSet = props.srcSet
-      ? `<source srcSet="${props.srcSet}" ${sizes}/>`
-      : ``
+    ? `<source type='image/webp' srcset="${props.srcSetWebp}" ${sizes}/>`
+    : ``
+  const srcSet = props.srcSet ? `srcset="${props.srcSet}" ` : ``
   const title = props.title ? `title="${props.title}" ` : ``
   const alt = props.alt ? `alt="${props.alt}" ` : `alt="" ` // required attribute
   const width = props.width ? `width="${props.width}" ` : ``
   const height = props.height ? `height="${props.height}" ` : ``
   const opacity = props.opacity ? props.opacity : `1`
   const transitionDelay = props.transitionDelay ? props.transitionDelay : `0.5s`
-  return `<picture>${srcSetWebp}${srcSet}<img ${width}${height}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
+  return `<picture>${srcSetWebp}<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
 }
 
 const createPseudoStyles = ({
@@ -234,14 +232,15 @@ class BackgroundImage extends React.Component {
   handleRef(ref) {
     if (this.state.IOSupported && ref) {
       listenToIntersections(ref, () => {
+        const imageInCache = inImageCache(this.props)
         if (
           !this.state.isVisible &&
           typeof this.props.onStartLoad === `function`
         ) {
-          this.props.onStartLoad({ wasCached: inImageCache(this.props) })
+          this.props.onStartLoad({ wasCached: imageInCache })
         }
 
-        this.setState({ isVisible: true, imgLoaded: false })
+        this.setState({ isVisible: true, imgLoaded: imageInCache })
       })
     }
   }
