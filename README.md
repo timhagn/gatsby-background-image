@@ -93,10 +93,9 @@ module.exports = {
 **Important:**
 
 If you support *Safari* and/or *Internet Explorer*, you have to install several 
-polyfills, as neither fully implements the former feature, 
-and IE doesn't implement the latter.  
-Both Safari and IE need the `IntersectionObserver` polyfill, and IE also needs 
-the `Object-fit/Object-position` polyfill.
+polyfills. Both need the `IntersectionObserver` polyfill, and IE also needs the 
+`Object-fit/Object-position` one. As - at the time of writing - neither fully 
+implements the former feature, and IE doesn't implement the latter.
 
 A solution to this issue was mentioned in a comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)   
 
