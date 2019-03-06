@@ -90,6 +90,15 @@ module.exports = {
 }
 ```
 
+**Important:**
+
+For *Safari* on macOS as well as *Internet Explorer* install the 
+IntersectionObserver and Object-fit/Object-position polyfills,
+as (at the moment of writing) both don't fully implement the first
+and IE the latter.
+
+A solution to the issue was mentioned in this comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)   
+
 ## How to use
 
 This is what a component using `gatsby-background-image` looks like:
@@ -171,6 +180,11 @@ props from `gatsby-image` are of course not available (at the moment).
 | ---------------------- | ------------------- | --------------------------------------------------------------|
 | `placeholderStyle`     | `object`            | Spread into the default styles of the placeholder img element |
 | `placeholderClassName` | `string`            | A class that is passed to the placeholder img element         |
+
+
+## Troubleshooting
+
+
 
 
 ## TODO
