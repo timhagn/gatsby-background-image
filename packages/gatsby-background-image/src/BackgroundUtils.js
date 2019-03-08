@@ -13,7 +13,7 @@ const getStyle = className => {
       classes = typeof styleSheets[i].rules !== 'undefined' ? styleSheets[i].rules :
           typeof styleSheets[i].cssRules !== 'undefined' ? styleSheets[i].cssRules : ''
     } catch (e) {
-      console.debug(`Unable to read stylesheet rules for ${ styleSheets[i].href }`, e)
+      console.debug(`Unable to read stylesheet rules for ${ styleSheets[i].href }: `, e.message)
     }
     if (!classes)
       continue

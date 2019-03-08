@@ -78,7 +78,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px;"
+    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99;"
   >
     <style>
       
@@ -128,7 +128,7 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline;"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline;"
   >
     <style>
       
@@ -178,7 +178,7 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
     class="fixedImage test gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline;"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline;"
   >
     <style>
       
@@ -228,7 +228,7 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline;"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline;"
   >
     <style>
       
@@ -277,13 +277,13 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
 exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
-    class=" gatsby-background-image-kgoxqq gatsby-image-wrapper"
-    style="position: relative; overflow: hidden;"
+    class=" gatsby-background-image-sttxnyo gatsby-image-wrapper"
+    style="position: relative; overflow: hidden; opacity: 0.99;"
   >
     <style>
       
-          .gatsby-background-image-kgoxqq:before,
-          .gatsby-background-image-kgoxqq:after {
+          .gatsby-background-image-sttxnyo:before,
+          .gatsby-background-image-sttxnyo:after {
             content: '';
             display: block;
             position: absolute;
@@ -300,13 +300,13 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             -moz-transition: opacity 0.25s ease-in-out;
             -o-transition: opacity 0.25s ease-in-out;
           }
-          .gatsby-background-image-kgoxqq:before {
+          .gatsby-background-image-sttxnyo:before {
             z-index: -101;
             background-color: undefined;
             background-image: url(test_image.jpg);
             background-repeat: no-repeat;
           }
-          .gatsby-background-image-kgoxqq:after {
+          .gatsby-background-image-sttxnyo:after {
             z-index: -100;
             background-image: url(test_image.jpg);
             background-repeat: no-repeat;

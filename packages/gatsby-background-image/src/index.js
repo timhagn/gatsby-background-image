@@ -17,6 +17,23 @@ const convertProps = props => {
   return convertedProps
 }
 
+// Prevent possible stacking order mismatch with opacity "hack".
+const fixOpacity = props => {
+  let styledProps = { ...props }
+
+  try {
+    if (styledProps.style.opacity) {
+      if (isNaN(styledProps.style.opacity) || styledProps.style.opacity > .99) {
+        styledProps.style.opacity = .99
+      }
+    }
+  } catch (e) {
+    console.debug('Error getting opacity from style prop: ', e.message)
+  }
+
+  return styledProps
+}
+
 // Create lazy image loader with Image().
 // Only get's exported for tests!
 export const _createImageToLoad = props => {
@@ -270,7 +287,7 @@ class BackgroundImage extends React.Component {
       Tag,
       classId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
       children
-    } = convertProps(this.props)
+    } = fixOpacity(convertProps(this.props))
 
     const bgColor =
       typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor
@@ -321,6 +338,7 @@ class BackgroundImage extends React.Component {
               style={{
                 position: `relative`,
                 overflow: `hidden`,
+                opacity: .99,
                 ...style,
                 ...this.backgroundStyles,
               }}
@@ -352,6 +370,7 @@ class BackgroundImage extends React.Component {
         display: `inline-block`,
         width: image.width,
         height: image.height,
+        opacity: .99,
         ...style,
       }
 
