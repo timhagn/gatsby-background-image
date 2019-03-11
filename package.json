@@ -39,13 +39,13 @@
     "react-component"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/timhagn/gatsby-background-image",
   "scripts": {
-    "build": "babel src --out-dir . --ignore **/__tests__",
+    "build": "babel src --out-dir dist --ignore **/__tests__",
     "prepare": "cross-env NODE_ENV=production npm run build",
-    "watch": "babel -w src --out-dir . --ignore **/__tests__",
+    "watch": "babel -w src --out-dir dist --ignore **/__tests__",
     "test": "jest --env=jsdom",
-    "test:update": "yarn test -- --updateSnapshot --coverage"
+    "test:update": "yarn test --updateSnapshot --coverage"
   }
 }

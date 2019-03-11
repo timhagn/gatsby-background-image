@@ -18,24 +18,6 @@ var _ImageUtils = require("./ImageUtils");
 var _StyleUtils = require("./StyleUtils");
 
 var _jsxFileName = "/media/hagn/horsedump/Projects/own_n_oss/gatsby-background-image/src/index.js";
-// Cache if we've seen an image before so we don't both with
-// lazy-loading & fading in on subsequent mounts.
-const imageCache = {};
-
-const inImageCache = props => {
-  const convertedProps = (0, _HelperUtils.convertProps)(props); // Find src
-
-  const src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
-  return imageCache[src] || false;
-};
-
-const activateCacheForImage = props => {
-  const convertedProps = (0, _HelperUtils.convertProps)(props); // Find src
-
-  const src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
-  imageCache[src] = true;
-};
-
 let io;
 const listeners = [];
 
@@ -76,7 +58,7 @@ class BackgroundImage extends _react.default.Component {
     let fadeIn = props.fadeIn; // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
 
-    const seenBefore = inImageCache(props); // browser with Intersection Observer available
+    const seenBefore = (0, _ImageUtils.inImageCache)(props); // browser with Intersection Observer available
 
     if (!seenBefore && typeof window !== `undefined` && window.IntersectionObserver) {
       isVisible = false;
@@ -115,7 +97,7 @@ class BackgroundImage extends _react.default.Component {
   componentDidMount() {
     if (this.state.isVisible && typeof this.props.onStartLoad === `function`) {
       this.props.onStartLoad({
-        wasCached: inImageCache(this.props)
+        wasCached: (0, _ImageUtils.inImageCache)(this.props)
       });
     }
 
@@ -131,7 +113,7 @@ class BackgroundImage extends _react.default.Component {
   handleRef(ref) {
     if (this.state.IOSupported && ref) {
       listenToIntersections(ref, () => {
-        const imageInCache = inImageCache(this.props);
+        const imageInCache = (0, _ImageUtils.inImageCache)(this.props);
 
         if (!this.state.isVisible && typeof this.props.onStartLoad === `function`) {
           this.props.onStartLoad({
@@ -148,7 +130,7 @@ class BackgroundImage extends _react.default.Component {
   }
 
   handleImageLoaded() {
-    activateCacheForImage(this.props);
+    (0, _ImageUtils.activateCacheForImage)(this.props);
     this.setState({
       imgLoaded: true
     });
@@ -217,7 +199,7 @@ class BackgroundImage extends _react.default.Component {
         key: `fluid-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 223
+          lineNumber: 205
         },
         __self: this
       }, _react.default.createElement("style", {
@@ -226,7 +208,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 235
+          lineNumber: 217
         },
         __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -239,7 +221,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 241
+          lineNumber: 223
         },
         __self: this
       }), children);
@@ -289,7 +271,7 @@ class BackgroundImage extends _react.default.Component {
         key: `fixed-${JSON.stringify(image.srcSet)}`,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 291
+          lineNumber: 273
         },
         __self: this
       }, _react.default.createElement("style", {
@@ -298,7 +280,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 300
+          lineNumber: 282
         },
         __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
@@ -313,7 +295,7 @@ class BackgroundImage extends _react.default.Component {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 306
+          lineNumber: 288
         },
         __self: this
       }), children);

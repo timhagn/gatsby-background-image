@@ -1,10 +1,29 @@
 "use strict";
 
 exports.__esModule = true;
-exports.noscriptImg = exports.createImageToLoad = void 0;
+exports.noscriptImg = exports.createImageToLoad = exports.activateCacheForImage = exports.inImageCache = void 0;
 
 var _HelperUtils = require("./HelperUtils");
 
+// Cache if we've seen an image before so we don't both with
+// lazy-loading & fading in on subsequent mounts.
+const imageCache = {};
+
+const inImageCache = props => {
+  const convertedProps = (0, _HelperUtils.convertProps)(props); // Find src
+
+  const src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
+  return imageCache[src] || false;
+};
+
+exports.inImageCache = inImageCache;
+
+const activateCacheForImage = props => {
+  const convertedProps = (0, _HelperUtils.convertProps)(props); // Find src
+
+  const src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
+  imageCache[src] = true;
+};
 /**
  * Create lazy image loader with Image().
  *
@@ -12,9 +31,14 @@ var _HelperUtils = require("./HelperUtils");
  * @return {*}
  * @public
  */
+
+
+exports.activateCacheForImage = activateCacheForImage;
+
 const createImageToLoad = props => {
-  if (typeof window !== `undefined`) {
-    const convertedProps = (0, _HelperUtils.convertProps)(props);
+  const convertedProps = (0, _HelperUtils.convertProps)(props);
+
+  if (typeof window !== `undefined` && (typeof convertedProps.fluid !== `undefined` || typeof convertedProps.fixed !== `undefined`)) {
     const img = new Image();
 
     if (!img.complete && typeof convertedProps.onLoad === `function`) {
