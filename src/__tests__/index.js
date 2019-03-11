@@ -1,9 +1,9 @@
-import "@babel/polyfill"
-import { render, cleanup, fireEvent } from "react-testing-library"
-import React from "react"
-import BackgroundImage from "../"
-import { _createImageToLoad } from "../";
-import getBackgroundStyles from "../BackgroundUtils";
+import '@babel/polyfill'
+import { render, cleanup, fireEvent } from 'react-testing-library'
+import React from 'react'
+import BackgroundImage from '../'
+import { createImageToLoad } from '../ImageUtils'
+import getBackgroundStyles from '../BackgroundUtils'
 
 afterAll(cleanup)
 
@@ -122,7 +122,7 @@ describe(`<BackgroundImage />`, () => {
   it(`should call onLoad and onError image events`, () => {
     const onLoadMock = jest.fn()
     const onErrorMock = jest.fn()
-    const image = _createImageToLoad({
+    const image = createImageToLoad({
       fluid: {
         src: ``,
       },

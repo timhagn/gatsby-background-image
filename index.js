@@ -3,7 +3,7 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.default = exports._createImageToLoad = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -11,77 +11,26 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _BackgroundUtils = _interopRequireDefault(require("./BackgroundUtils"));
 
-// Handle legacy names for image queries.
-const convertProps = props => {
-  let convertedProps = Object.assign({}, props);
+var _HelperUtils = require("./HelperUtils");
 
-  if (convertedProps.resolutions) {
-    convertedProps.fixed = convertedProps.resolutions;
-    delete convertedProps.resolutions;
-  }
+var _ImageUtils = require("./ImageUtils");
 
-  if (convertedProps.sizes) {
-    convertedProps.fluid = convertedProps.sizes;
-    delete convertedProps.sizes;
-  }
+var _StyleUtils = require("./StyleUtils");
 
-  return convertedProps;
-}; // Prevent possible stacking order mismatch with opacity "hack".
-
-
-const fixOpacity = props => {
-  let styledProps = Object.assign({}, props);
-
-  try {
-    if (styledProps.style.opacity) {
-      if (isNaN(styledProps.style.opacity) || styledProps.style.opacity > .99) {
-        styledProps.style.opacity = .99;
-      }
-    }
-  } catch (e) {
-    console.debug('Error getting opacity from style prop: ', e.message);
-  }
-
-  return styledProps;
-}; // Create lazy image loader with Image().
-// Only get's exported for tests!
-
-
-const _createImageToLoad = props => {
-  if (typeof window !== `undefined`) {
-    const convertedProps = convertProps(props);
-    const img = new Image();
-
-    if (!img.complete && typeof convertedProps.onLoad === `function`) {
-      img.addEventListener('load', convertedProps.onLoad);
-    }
-
-    if (typeof convertedProps.onError === `function`) {
-      img.addEventListener('error', convertedProps.onError);
-    } // Find src
-
-
-    img.src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
-    return img;
-  }
-
-  return null;
-}; // Cache if we've seen an image before so we don't both with
+var _jsxFileName = "/media/hagn/horsedump/Projects/own_n_oss/gatsby-background-image/src/index.js";
+// Cache if we've seen an image before so we don't both with
 // lazy-loading & fading in on subsequent mounts.
-
-
-exports._createImageToLoad = _createImageToLoad;
 const imageCache = {};
 
 const inImageCache = props => {
-  const convertedProps = convertProps(props); // Find src
+  const convertedProps = (0, _HelperUtils.convertProps)(props); // Find src
 
   const src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
   return imageCache[src] || false;
 };
 
 const activateCacheForImage = props => {
-  const convertedProps = convertProps(props); // Find src
+  const convertedProps = (0, _HelperUtils.convertProps)(props); // Find src
 
   const src = convertedProps.fluid ? convertedProps.fluid.src : convertedProps.fixed.src;
   imageCache[src] = true;
@@ -115,68 +64,6 @@ function getIO() {
 const listenToIntersections = (el, cb) => {
   getIO().observe(el);
   listeners.push([el, cb]);
-};
-
-const noscriptImg = props => {
-  // Check if prop exists before adding each attribute to the string output below to prevent
-  // HTML validation issues caused by empty values like width="" and height=""
-  const src = props.src ? `src="${props.src}" ` : `src="" `; // required attribute
-
-  const sizes = props.sizes ? `sizes="${props.sizes}" ` : ``;
-  const srcSetWebp = props.srcSetWebp ? `<source type='image/webp' srcset="${props.srcSetWebp}" ${sizes}/>` : ``;
-  const srcSet = props.srcSet ? `srcset="${props.srcSet}" ` : ``;
-  const title = props.title ? `title="${props.title}" ` : ``;
-  const alt = props.alt ? `alt="${props.alt}" ` : `alt="" `; // required attribute
-
-  const width = props.width ? `width="${props.width}" ` : ``;
-  const height = props.height ? `height="${props.height}" ` : ``;
-  const opacity = props.opacity ? props.opacity : `1`;
-  const transitionDelay = props.transitionDelay ? props.transitionDelay : `0.5s`;
-  return `<picture>${srcSetWebp}<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`;
-};
-
-const createPseudoStyles = ({
-  classId,
-  backgroundSize,
-  backgroundRepeat,
-  transitionDelay,
-  bgImage,
-  nextImage,
-  afterOpacity,
-  bgColor
-}) => {
-  return `
-          .gatsby-background-image-${classId}:before,
-          .gatsby-background-image-${classId}:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            -webkit-background-size: ${backgroundSize};
-            -moz-background-size: ${backgroundSize};
-            -o-background-size: ${backgroundSize};
-            background-size: ${backgroundSize};
-            transition: opacity ${transitionDelay} ease-in-out;
-            -webkit-transition: opacity ${transitionDelay} ease-in-out;
-            -moz-transition: opacity ${transitionDelay} ease-in-out;
-            -o-transition: opacity ${transitionDelay} ease-in-out;
-          }
-          .gatsby-background-image-${classId}:before {
-            z-index: -101;
-            background-color: ${bgColor};
-            background-image: url(${bgImage});
-            ${backgroundRepeat}
-          }
-          .gatsby-background-image-${classId}:after {
-            z-index: -100;
-            background-image: url(${nextImage});
-            ${backgroundRepeat}
-            opacity: ${afterOpacity};
-          }
-        `;
 };
 
 class BackgroundImage extends _react.default.Component {
@@ -220,7 +107,7 @@ class BackgroundImage extends _react.default.Component {
 
     this.backgroundStyles = (0, _BackgroundUtils.default)(this.props.className); // "Fake" a reference to an Image loaded in background.
 
-    this.imageRef = _createImageToLoad(this.props);
+    this.imageRef = (0, _ImageUtils.createImageToLoad)(this.props);
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
     this.handleRef = this.handleRef.bind(this);
   }
@@ -278,20 +165,18 @@ class BackgroundImage extends _react.default.Component {
   }
 
   render() {
-    const _fixOpacity = fixOpacity(convertProps(this.props)),
-          title = _fixOpacity.title,
-          alt = _fixOpacity.alt,
-          className = _fixOpacity.className,
-          _fixOpacity$style = _fixOpacity.style,
-          style = _fixOpacity$style === void 0 ? {} : _fixOpacity$style,
-          fluid = _fixOpacity.fluid,
-          fixed = _fixOpacity.fixed,
-          backgroundColor = _fixOpacity.backgroundColor,
-          Tag = _fixOpacity.Tag,
-          _fixOpacity$classId = _fixOpacity.classId,
-          classId = _fixOpacity$classId === void 0 ? Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7) : _fixOpacity$classId,
-          children = _fixOpacity.children;
-
+    const {
+      title,
+      alt,
+      className,
+      style = {},
+      fluid,
+      fixed,
+      backgroundColor,
+      Tag,
+      classId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
+      children
+    } = (0, _StyleUtils.fixOpacity)((0, _HelperUtils.convertProps)(this.props));
     const bgColor = typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor;
     const backgroundSize = this.backgroundStyles.hasOwnProperty(`backgroundSize`) ? this.backgroundStyles.backgroundSize : `cover`;
     const backgroundRepeat = `background-repeat: ${this.backgroundStyles.hasOwnProperty(`backgroundRepeat`) ? this.backgroundStyles.backgroundRepeat : `no-repeat`};`;
@@ -321,37 +206,56 @@ class BackgroundImage extends _react.default.Component {
       };
       return _react.default.createElement(Tag, {
         className: `${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`,
-        style: Object.assign({
+        style: {
           position: `relative`,
           overflow: `hidden`,
-          opacity: .99
-        }, style, this.backgroundStyles),
+          opacity: .99,
+          ...style,
+          ...this.backgroundStyles
+        },
         ref: this.handleRef,
-        key: `fluid-${JSON.stringify(image.srcSet)}`
+        key: `fluid-${JSON.stringify(image.srcSet)}`,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 223
+        },
+        __self: this
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
-          __html: createPseudoStyles(pseudoStyles)
-        }
+          __html: (0, _StyleUtils.createPseudoStyles)(pseudoStyles)
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 235
+        },
+        __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
         dangerouslySetInnerHTML: {
-          __html: noscriptImg(Object.assign({
+          __html: (0, _ImageUtils.noscriptImg)({
             alt,
-            title
-          }, image))
-        }
+            title,
+            ...image
+          })
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 241
+        },
+        __self: this
       }), children);
     }
 
     if (fixed) {
       const image = fixed;
-      const divStyle = Object.assign({
+      const divStyle = {
         position: `relative`,
         overflow: `hidden`,
         display: `inline-block`,
         width: image.width,
         height: image.height,
-        opacity: .99
-      }, style);
+        opacity: .99,
+        ...style
+      };
 
       if (style.display === `inherit`) {
         delete divStyle.display;
@@ -378,22 +282,40 @@ class BackgroundImage extends _react.default.Component {
       };
       return _react.default.createElement(Tag, {
         className: `${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`,
-        style: Object.assign({}, divStyle, this.backgroundStyles),
+        style: { ...divStyle,
+          ...this.backgroundStyles
+        },
         ref: this.handleRef,
-        key: `fixed-${JSON.stringify(image.srcSet)}`
+        key: `fixed-${JSON.stringify(image.srcSet)}`,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 291
+        },
+        __self: this
       }, _react.default.createElement("style", {
         dangerouslySetInnerHTML: {
-          __html: createPseudoStyles(pseudoStyles)
-        }
+          __html: (0, _StyleUtils.createPseudoStyles)(pseudoStyles)
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 300
+        },
+        __self: this
       }), this.state.hasNoScript && _react.default.createElement("noscript", {
         dangerouslySetInnerHTML: {
-          __html: noscriptImg(Object.assign({
+          __html: (0, _ImageUtils.noscriptImg)({
             alt,
             title,
             width: image.width,
-            height: image.height
-          }, image))
-        }
+            height: image.height,
+            ...image
+          })
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 306
+        },
+        __self: this
       }), children);
     }
 
