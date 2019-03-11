@@ -7,18 +7,18 @@ import getBackgroundStyles from '../BackgroundUtils'
 
 afterAll(cleanup)
 
-const fixedShapeMock = {
+export const fixedShapeMock = {
   width: 100,
   height: 100,
-  src: `test_image.jpg`,
+  src: `test_fixed_image.jpg`,
   srcSet: `some srcSet`,
   srcSetWebp: `some srcSetWebp`,
   base64: `string_of_base64`,
 }
 
-const fluidShapeMock = {
+export const fluidShapeMock = {
   aspectRatio: 1.5,
-  src: `test_image.jpg`,
+  src: `test_fluid_image.jpg`,
   srcSet: `some srcSet`,
   srcSetWebp: `some srcSetWebp`,
   sizes: `(max-width: 600px) 100vw, 600px`,
@@ -48,7 +48,7 @@ const setup = (fluid = false,
     <BackgroundImage
       backgroundColor
       className={classNames}
-      style={{ display: `inline` }}
+      style={{ display: `inline`, opacity: .99 }}
       title={`Title for the image`}
       alt={`Alt text for the image`}
       {...fluid && { fluid: fluidShapeMock }}

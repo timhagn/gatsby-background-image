@@ -1,5 +1,28 @@
 import { convertProps } from './HelperUtils'
 
+// Cache if we've seen an image before so we don't both with
+// lazy-loading & fading in on subsequent mounts.
+const imageCache = {}
+export const inImageCache = props => {
+  const convertedProps = convertProps(props)
+  // Find src
+  const src = convertedProps.fluid
+      ? convertedProps.fluid.src
+      : convertedProps.fixed.src
+
+  return imageCache[src] || false
+}
+
+export const activateCacheForImage = props => {
+  const convertedProps = convertProps(props)
+  // Find src
+  const src = convertedProps.fluid
+      ? convertedProps.fluid.src
+      : convertedProps.fixed.src
+
+  imageCache[src] = true
+}
+
 /**
  * Create lazy image loader with Image().
  *
@@ -8,9 +31,10 @@ import { convertProps } from './HelperUtils'
  * @public
  */
 export const createImageToLoad = props => {
-  if (typeof window !== `undefined`) {
-    const convertedProps = convertProps(props)
-
+  const convertedProps = convertProps(props)
+  if (typeof window !== `undefined` &&
+      (typeof convertedProps.fluid !== `undefined` ||
+       typeof convertedProps.fixed !== `undefined`)) {
     const img = new Image()
     if (!img.complete && typeof convertedProps.onLoad === `function`) {
       img.addEventListener('load', convertedProps.onLoad)

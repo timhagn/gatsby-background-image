@@ -2,31 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import getBackgroundStyles from './BackgroundUtils'
 import { convertProps } from './HelperUtils'
-import { createImageToLoad, noscriptImg } from './ImageUtils'
+import {
+  activateCacheForImage,
+  createImageToLoad,
+  inImageCache,
+  noscriptImg
+} from './ImageUtils'
 import { createPseudoStyles, fixOpacity } from './StyleUtils'
-
-// Cache if we've seen an image before so we don't both with
-// lazy-loading & fading in on subsequent mounts.
-const imageCache = {}
-const inImageCache = props => {
-  const convertedProps = convertProps(props)
-  // Find src
-  const src = convertedProps.fluid
-    ? convertedProps.fluid.src
-    : convertedProps.fixed.src
-
-  return imageCache[src] || false
-}
-
-const activateCacheForImage = props => {
-  const convertedProps = convertProps(props)
-  // Find src
-  const src = convertedProps.fluid
-    ? convertedProps.fluid.src
-    : convertedProps.fixed.src
-
-  imageCache[src] = true
-}
 
 let io
 const listeners = []
