@@ -1,60 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import getBackgroundStyles from './BackgroundUtils'
-
-// Handle legacy names for image queries.
-const convertProps = props => {
-  let convertedProps = { ...props }
-  if (convertedProps.resolutions) {
-    convertedProps.fixed = convertedProps.resolutions
-    delete convertedProps.resolutions
-  }
-  if (convertedProps.sizes) {
-    convertedProps.fluid = convertedProps.sizes
-    delete convertedProps.sizes
-  }
-
-  return convertedProps
-}
-
-// Prevent possible stacking order mismatch with opacity "hack".
-const fixOpacity = props => {
-  let styledProps = { ...props }
-
-  try {
-    if (styledProps.style.opacity) {
-      if (isNaN(styledProps.style.opacity) || styledProps.style.opacity > .99) {
-        styledProps.style.opacity = .99
-      }
-    }
-  } catch (e) {
-    console.debug('Error getting opacity from style prop: ', e.message)
-  }
-
-  return styledProps
-}
-
-// Create lazy image loader with Image().
-// Only get's exported for tests!
-export const _createImageToLoad = props => {
-  if (typeof window !== `undefined`) {
-    const convertedProps = convertProps(props)
-
-    const img = new Image()
-    if (!img.complete && typeof convertedProps.onLoad === `function`) {
-      img.addEventListener('load', convertedProps.onLoad)
-    }
-    if (typeof convertedProps.onError === `function`) {
-      img.addEventListener('error', convertedProps.onError)
-    }
-    // Find src
-    img.src = convertedProps.fluid
-        ? convertedProps.fluid.src
-        : convertedProps.fixed.src
-    return img
-  }
-  return null
-}
+import { convertProps } from './HelperUtils'
+import { createImageToLoad, noscriptImg } from './ImageUtils'
+import { createPseudoStyles, fixOpacity } from './StyleUtils'
 
 // Cache if we've seen an image before so we don't both with
 // lazy-loading & fading in on subsequent mounts.
@@ -114,68 +63,6 @@ const listenToIntersections = (el, cb) => {
   listeners.push([el, cb])
 }
 
-const noscriptImg = props => {
-  // Check if prop exists before adding each attribute to the string output below to prevent
-  // HTML validation issues caused by empty values like width="" and height=""
-  const src = props.src ? `src="${props.src}" ` : `src="" ` // required attribute
-  const sizes = props.sizes ? `sizes="${props.sizes}" ` : ``
-  const srcSetWebp = props.srcSetWebp
-    ? `<source type='image/webp' srcset="${props.srcSetWebp}" ${sizes}/>`
-    : ``
-  const srcSet = props.srcSet ? `srcset="${props.srcSet}" ` : ``
-  const title = props.title ? `title="${props.title}" ` : ``
-  const alt = props.alt ? `alt="${props.alt}" ` : `alt="" ` // required attribute
-  const width = props.width ? `width="${props.width}" ` : ``
-  const height = props.height ? `height="${props.height}" ` : ``
-  const opacity = props.opacity ? props.opacity : `1`
-  const transitionDelay = props.transitionDelay ? props.transitionDelay : `0.5s`
-  return `<picture>${srcSetWebp}<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
-}
-
-const createPseudoStyles = ({
-                              classId,
-                              backgroundSize,
-                              backgroundRepeat,
-                              transitionDelay,
-                              bgImage,
-                              nextImage,
-                              afterOpacity,
-                              bgColor,
-                            }) => {
-  return `
-          .gatsby-background-image-${classId}:before,
-          .gatsby-background-image-${classId}:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            -webkit-background-size: ${backgroundSize};
-            -moz-background-size: ${backgroundSize};
-            -o-background-size: ${backgroundSize};
-            background-size: ${backgroundSize};
-            transition: opacity ${transitionDelay} ease-in-out;
-            -webkit-transition: opacity ${transitionDelay} ease-in-out;
-            -moz-transition: opacity ${transitionDelay} ease-in-out;
-            -o-transition: opacity ${transitionDelay} ease-in-out;
-          }
-          .gatsby-background-image-${classId}:before {
-            z-index: -101;
-            background-color: ${bgColor};
-            background-image: url(${bgImage});
-            ${backgroundRepeat}
-          }
-          .gatsby-background-image-${classId}:after {
-            z-index: -100;
-            background-image: url(${nextImage});
-            ${backgroundRepeat}
-            opacity: ${afterOpacity};
-          }
-        `
-}
-
 class BackgroundImage extends React.Component {
   constructor(props) {
     super(props)
@@ -228,7 +115,7 @@ class BackgroundImage extends React.Component {
     this.backgroundStyles = getBackgroundStyles(this.props.className)
 
     // "Fake" a reference to an Image loaded in background.
-    this.imageRef = _createImageToLoad(this.props)
+    this.imageRef = createImageToLoad(this.props)
 
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
     this.handleRef = this.handleRef.bind(this)

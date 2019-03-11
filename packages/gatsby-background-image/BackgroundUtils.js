@@ -44,7 +44,7 @@ const getStyle = className => {
  */
 
 
-const rulesForCssText = function rulesForCssText(styleContent) {
+const rulesForCssText = function (styleContent) {
   if (typeof document !== `undefined`) {
     const doc = document.implementation.createHTMLDocument(''),
           styleElement = document.createElement('style');
