@@ -3,7 +3,6 @@ import { render, cleanup, fireEvent } from 'react-testing-library'
 import React from 'react'
 import BackgroundImage from '../'
 import { createImageToLoad } from '../ImageUtils'
-import getBackgroundStyles from '../BackgroundUtils'
 
 afterAll(cleanup)
 
@@ -112,17 +111,6 @@ describe(`<BackgroundImage />`, () => {
         .toHaveTextContent(`.gatsby-background-image-test:before`)
     expect(styleTag)
         .toHaveTextContent(`background-repeat: 'repeat-y';`)
-  })
-
-  it(`should parse background styles`, () => {
-    setup(true, true)
-    const backgroundStyles = getBackgroundStyles(`fixedImage`)
-    expect(backgroundStyles).toEqual({ "backgroundRepeat": "'repeat-y'", })
-  })
-
-  it(`should parse empty background styles`, () => {
-    const backgroundStyles = getBackgroundStyles(``)
-    expect(backgroundStyles).toEqual({})
   })
 
   it(`should call onLoad and onError image events`, () => {

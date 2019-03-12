@@ -51,19 +51,3 @@ describe(`fixOpacity()`, () => {
     expect(global.console.debug).toHaveBeenCalledWith(`Error getting opacity from style prop: `, `Cannot read property 'opacity' of undefined`)
   })
 })
-
-// export const fixOpacity = props => {
-//   let styledProps = { ...props }
-//
-//   try {
-//     if (styledProps.style.opacity) {
-//       if (isNaN(styledProps.style.opacity) || styledProps.style.opacity > .99) {
-//         styledProps.style.opacity = .99
-//       }
-//     }
-//   } catch (e) {
-//     console.debug('Error getting opacity from style prop: ', e.message)
-//   }
-//
-//   return styledProps
-// }
