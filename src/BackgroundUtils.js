@@ -4,7 +4,7 @@
  * @notice The className has to exactly match the CSS class
  * @param className string
  */
-const getStyle = className => {
+export const getStyle = className => {
   const styleSheets = typeof window !== `undefined` ?
       window.document.styleSheets : []
   for (let i = 0; i < styleSheets.length; i++) {
@@ -35,8 +35,8 @@ const getStyle = className => {
  * @param styleContent
  * @return {*}
  */
-const rulesForCssText = function (styleContent) {
-  if (typeof document !== `undefined`) {
+export const rulesForCssText = styleContent => {
+  if (typeof document !== `undefined` && styleContent) {
     const doc = document.implementation.createHTMLDocument(''),
           styleElement = document.createElement('style')
 
@@ -54,7 +54,8 @@ const rulesForCssText = function (styleContent) {
  * @param str
  * @return {string}
  */
-const toCamelCase = (str) =>
+export const toCamelCase = str =>
+    typeof str === 'string' &&
     str.toLowerCase()
         .replace(/(?:^\w|-|[A-Z]|\b\w)/g,
             (letter, index) =>
@@ -68,7 +69,7 @@ const toCamelCase = (str) =>
  * Fixes non-enumerable style rules in Firefox.
  * @param cssStyleRules
  */
-const getStyleRules = cssStyleRules => {
+export const getStyleRules = cssStyleRules => {
   let styles = {};
   if (cssStyleRules.length > 0 && typeof cssStyleRules[0].style !== 'undefined') {
     switch (cssStyleRules[0].style.constructor.name) {
@@ -93,7 +94,7 @@ const getStyleRules = cssStyleRules => {
  * @param className
  * @return {{}}
  */
-const getBackgroundStylesForSingleClass = className => {
+export const getBackgroundStylesForSingleClass = className => {
   const style = getStyle(`.${className}`)
   const cssStyleRules = rulesForCssText(style)
 

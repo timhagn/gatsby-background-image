@@ -277,13 +277,13 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
 exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
-    class=" gatsby-background-image-ixtsuqm gatsby-image-wrapper"
+    class=" gatsby-background-image-fgvvtv gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99;"
   >
     <style>
       
-          .gatsby-background-image-ixtsuqm:before,
-          .gatsby-background-image-ixtsuqm:after {
+          .gatsby-background-image-fgvvtv:before,
+          .gatsby-background-image-fgvvtv:after {
             content: '';
             display: block;
             position: absolute;
@@ -300,13 +300,13 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             -moz-transition: opacity 0.25s ease-in-out;
             -o-transition: opacity 0.25s ease-in-out;
           }
-          .gatsby-background-image-ixtsuqm:before {
+          .gatsby-background-image-fgvvtv:before {
             z-index: -101;
             background-color: undefined;
             background-image: url(test_fluid_image.jpg);
             background-repeat: no-repeat;
           }
-          .gatsby-background-image-ixtsuqm:after {
+          .gatsby-background-image-fgvvtv:after {
             z-index: -100;
             background-image: url(test_fluid_image.jpg);
             background-repeat: no-repeat;
