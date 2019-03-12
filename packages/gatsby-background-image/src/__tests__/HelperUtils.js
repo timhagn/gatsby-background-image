@@ -2,6 +2,7 @@ import '@babel/polyfill'
 import { convertProps } from '../HelperUtils'
 import { fixedShapeMock, fluidShapeMock } from './index'
 
+
 const legacySizesFixedMock = {
   resolutions: fixedShapeMock,
 }
