@@ -1,10 +1,8 @@
 import '@babel/polyfill'
 import { fixOpacity } from '../StyleUtils'
 
-global.console = {
-  debug: jest.fn(),
-  log: jest.fn()
-}
+global.console.debug = jest.fn()
+
 
 describe(`fixOpacity()`, () => {
   it(`should return fixedOpacityProps for style prop with text content`, () => {
