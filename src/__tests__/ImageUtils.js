@@ -1,5 +1,5 @@
 import '@babel/polyfill'
-import { render, cleanup, fireEvent } from 'react-testing-library'
+import { render, cleanup } from 'react-testing-library'
 import React from 'react'
 import { fixedShapeMock, fluidShapeMock } from './index'
 import {
@@ -17,14 +17,6 @@ global.console = {
 afterAll(cleanup)
 
 
-describe(`createImageToLoad()`, () => {
-  it(`should return null on ssr or empty fluid / fixed prop`, () => {
-    const emptyImageRef = createImageToLoad({})
-    expect(emptyImageRef).toBeNull()
-  })
-})
-
-
 const fixedMock = {
   fixed: fixedShapeMock,
 }
@@ -32,6 +24,15 @@ const fixedMock = {
 const fluidMock = {
   fluid: fluidShapeMock,
 }
+
+
+describe(`createImageToLoad()`, () => {
+  it(`should return null on ssr or empty fluid / fixed prop`, () => {
+    const emptyImageRef = createImageToLoad({})
+    expect(emptyImageRef).toBeNull()
+  })
+})
+
 
 describe(`inImageCache() / activateCacheForImage()`, () => {
   it(`inImageCache() should return false for initial load (fixed)`, () => {

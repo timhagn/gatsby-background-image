@@ -11,6 +11,7 @@ global.console = {
 
 afterAll(cleanup)
 
+
 export const fixedShapeMock = {
   width: 100,
   height: 100,
@@ -29,6 +30,19 @@ export const fluidShapeMock = {
   base64: `string_of_base64`,
 }
 
+/**
+ * Sets up a (react-testing-library) rendered container.
+ *
+ * @param fluid
+ * @param addClass
+ * @param additionalClass
+ * @param fixedClass
+ * @param onLoad
+ * @param onError
+ * @param critical
+ * @param onStartLoad
+ * @return {RenderResult.container}
+ */
 const setup = (fluid = false,
                addClass = false,
                additionalClass = ``,
