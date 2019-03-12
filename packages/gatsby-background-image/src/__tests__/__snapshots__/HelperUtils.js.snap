@@ -100,6 +100,56 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 </div>
 `;
 
+exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inline-block' 1`] = `
+<div>
+  <div
+    class=" gatsby-background-image-fwatluf gatsby-image-wrapper"
+    style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99;"
+  >
+    <style>
+      
+          .gatsby-background-image-fwatluf:before,
+          .gatsby-background-image-fwatluf:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            transition: opacity 0.25s ease-in-out;
+            -webkit-transition: opacity 0.25s ease-in-out;
+            -moz-transition: opacity 0.25s ease-in-out;
+            -o-transition: opacity 0.25s ease-in-out;
+          }
+          .gatsby-background-image-fwatluf:before {
+            z-index: -101;
+            background-color: undefined;
+            background-image: url(string_of_base64);
+            background-repeat: no-repeat;
+          }
+          .gatsby-background-image-fwatluf:after {
+            z-index: -100;
+            background-image: url(string_of_base64);
+            background-repeat: no-repeat;
+            opacity: 0;
+          }
+        
+    </style>
+    <noscript>
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+    </noscript>
+    <h1>
+      testempty
+    </h1>
+  </div>
+</div>
+`;
+
 exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elements 1`] = `
 <style>
   

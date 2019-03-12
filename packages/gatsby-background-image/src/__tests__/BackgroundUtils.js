@@ -6,9 +6,7 @@ import getBackgroundStyles, {
 } from '../BackgroundUtils'
 
 
-global.console = {
-  error: jest.fn(),
-}
+global.console.error = jest.fn()
 
 
 /**

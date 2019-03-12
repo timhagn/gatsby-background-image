@@ -5,9 +5,7 @@ import BackgroundImage from '../'
 import { createImageToLoad } from '../ImageUtils'
 
 
-global.console = {
-  debug: jest.fn(),
-}
+global.console.debug = jest.fn()
 
 afterAll(cleanup)
 
@@ -119,6 +117,18 @@ describe(`<BackgroundImage />`, () => {
     const { container } = render(
         <BackgroundImage
             fluid={ fluidShapeMock }
+        ><h1>testempty</h1></BackgroundImage>
+    )
+    expect(container).toMatchSnapshot()
+  })
+
+  it(`should change style.display from 'inherit' to 'inline-block'`, () => {
+    // Mock Math.random beforehand, lest another random classname is created.
+    Math.random = jest.fn(() => 0.424303425546642)
+    const { container } = render(
+        <BackgroundImage
+            fixed={ fixedShapeMock }
+            style={{ display: `inherit` }}
         ><h1>testempty</h1></BackgroundImage>
     )
     expect(container).toMatchSnapshot()

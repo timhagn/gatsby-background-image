@@ -10,9 +10,8 @@ import {
 } from '../ImageUtils'
 
 
-global.console = {
-  debug: jest.fn(),
-}
+global.console.debug = jest.fn()
+
 
 afterAll(cleanup)
 
