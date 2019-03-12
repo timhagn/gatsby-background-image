@@ -9,7 +9,13 @@ import {
   createImageToLoad
 } from '../ImageUtils'
 
+
+global.console = {
+  debug: jest.fn(),
+}
+
 afterAll(cleanup)
+
 
 describe(`createImageToLoad()`, () => {
   it(`should return null on ssr or empty fluid / fixed prop`, () => {

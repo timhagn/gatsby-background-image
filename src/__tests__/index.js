@@ -4,6 +4,11 @@ import React from 'react'
 import BackgroundImage from '../'
 import { createImageToLoad } from '../ImageUtils'
 
+
+global.console = {
+  debug: jest.fn(),
+}
+
 afterAll(cleanup)
 
 export const fixedShapeMock = {
@@ -29,7 +34,9 @@ const setup = (fluid = false,
                additionalClass = ``,
                fixedClass = true,
                onLoad = () => {},
-               onError = () => {}) => {
+               onError = () => {},
+               critical = false,
+               onStartLoad = null) => {
 
   if (addClass) {
     // Create the style class.
@@ -57,6 +64,8 @@ const setup = (fluid = false,
       placeholderStyle={{ color: `red` }}
       placeholderClassName={`placeholder`}
       classId="test"
+      critical={critical}
+      onStartLoad={onStartLoad}
     ><h1>test</h1></BackgroundImage>
   )
 
@@ -64,13 +73,29 @@ const setup = (fluid = false,
 }
 
 describe(`<BackgroundImage />`, () => {
+  beforeEach(() => {
+    global.IntersectionObserver = jest.fn(() => ({
+      observe: jest.fn(),
+    }))
+  })
+
   it(`should render fixed size images`, () => {
     const component = setup()
     expect(component).toMatchSnapshot()
   })
 
+  it(`should call critical fixed images`, () => {
+    const component = setup(false, true, ``, true, null, null, true)
+    expect(component).toMatchSnapshot()
+  })
+
   it(`should render fluid images`, () => {
     const component = setup(true)
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should call critical fluid images`, () => {
+    const component = setup(true, true, ``, true, null, null, true)
     expect(component).toMatchSnapshot()
   })
 
@@ -128,5 +153,19 @@ describe(`<BackgroundImage />`, () => {
 
     expect(onLoadMock).toHaveBeenCalledTimes(1)
     expect(onErrorMock).toHaveBeenCalledTimes(1)
+  })
+})
+
+
+describe(`<BackgroundImage /> without IO`, () => {
+  beforeEach(() => {
+    global.IntersectionObserver = undefined
+  })
+
+  it(`should call onLoadFunction`, () => {
+    const onLoadFunctionMock = jest.fn()
+    const component = setup(true, true, ``, true, null, null, true, onLoadFunctionMock)
+    expect(component).toMatchSnapshot()
+    expect(onLoadFunctionMock).toHaveBeenCalled()
   })
 })
