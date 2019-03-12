@@ -115,6 +115,12 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should parse background styles`, () => {
+    setup(true, true)
+    const backgroundStyles = getBackgroundStyles(`fixedImage`)
+    expect(backgroundStyles).toEqual({ "backgroundRepeat": "'repeat-y'", })
+  })
+
+  it(`should parse empty background styles`, () => {
     const backgroundStyles = getBackgroundStyles(``)
     expect(backgroundStyles).toEqual({})
   })
