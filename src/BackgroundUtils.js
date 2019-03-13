@@ -13,17 +13,16 @@ export const getStyle = className => {
       classes = typeof styleSheets[i].rules !== 'undefined' ? styleSheets[i].rules :
           typeof styleSheets[i].cssRules !== 'undefined' ? styleSheets[i].cssRules : ''
     } catch (e) {
-      console.debug(`Unable to read stylesheet rules for ${ styleSheets[i].href }: `, e.message)
+      console.debug(`Unable to read stylesheet rules for ${ styleSheets[i] && styleSheets[i].href }: `, e.message)
     }
     if (!classes)
       continue
     for (let x = 0; x < classes.length; x++) {
       if (classes[x].selectorText === className) {
         const ret = classes[x].cssText ? classes[x].cssText : classes[x].style.cssText
-        if(ret.indexOf(classes[x].selectorText) === -1){
-          return `${classes[x].selectorText}{${ret}}`
-        }
-        return ret
+        return ret.indexOf(classes[x].selectorText) === -1
+            ? `${classes[x].selectorText}{${ret}}`
+            : ret
       }
     }
   }

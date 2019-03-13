@@ -1,5 +1,6 @@
 import '@babel/polyfill'
 import getBackgroundStyles, {
+  getStyle,
   getStyleRules,
   rulesForCssText,
   toCamelCase
@@ -7,7 +8,7 @@ import getBackgroundStyles, {
 
 
 global.console.error = jest.fn()
-
+global.console.debug = jest.fn()
 
 /**
  * Creates a dummy class for getBackgroundStyles() to fetch.
@@ -121,5 +122,34 @@ describe(`getStyleRules()`, () => {
     ]
     getStyleRules(mockStyleRules)
     expect(global.console.error).toHaveBeenCalledWith(`Unknown style object prototype`)
+  })
+})
+
+
+describe(`getStyle()`, () => {
+  beforeEach(() => {
+    createClass()
+  })
+
+  it(`should fail for unknown classname`, () => {
+    global.document.styleSheets.length = 10
+    getStyle('fixedImage')
+    expect(global.console.debug)
+        .toHaveBeenCalledWith(
+            `Unable to read stylesheet rules for undefined: `,
+            `Cannot read property 'rules' of undefined`
+        )
+  })
+
+  it(`should return class for known classname via .cssRules`, () => {
+    global.document.styleSheets[0].rules = undefined
+    const style = getStyle('.fixedImage')
+    expect(style).toEqual(`.fixedImage {backgroundRepeat: 'repeat-y';}`)
+  })
+
+  it(`should return class for known classname via .rules`, () => {
+    global.document.styleSheets[0].cssRules = undefined
+    const style = getStyle('.fixedImage')
+    expect(style).toEqual(`.fixedImage {backgroundRepeat: 'repeat-y';}`)
   })
 })
