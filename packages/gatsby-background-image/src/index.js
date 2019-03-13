@@ -4,46 +4,12 @@ import getBackgroundStyles from './BackgroundUtils'
 import { convertProps } from './HelperUtils'
 import {
   activateCacheForImage,
-  createImageToLoad,
+  createPictureRef,
   inImageCache,
   noscriptImg
 } from './ImageUtils'
 import { createPseudoStyles, fixOpacity } from './StyleUtils'
-
-let io
-const listeners = []
-
-function getIO() {
-  if (
-    typeof io === `undefined` &&
-    typeof window !== `undefined` &&
-    window.IntersectionObserver
-  ) {
-    io = new window.IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          listeners.forEach(l => {
-            if (l[0] === entry.target) {
-              // Edge doesn't currently support isIntersecting, so also test for an intersectionRatio > 0
-              if (entry.isIntersecting || entry.intersectionRatio > 0) {
-                io.unobserve(l[0])
-                l[1]()
-              }
-            }
-          })
-        })
-      },
-      { rootMargin: `200px` }
-    )
-  }
-
-  return io
-}
-
-const listenToIntersections = (el, cb) => {
-  getIO().observe(el)
-  listeners.push([el, cb])
-}
+import { listenToIntersections } from './IntersectionObserverUtils'
 
 class BackgroundImage extends React.Component {
   constructor(props) {
@@ -96,11 +62,16 @@ class BackgroundImage extends React.Component {
     // Get background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = getBackgroundStyles(this.props.className)
 
-    // "Fake" a reference to an Image loaded in background.
-    this.imageRef = createImageToLoad(this.props)
-
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
     this.handleRef = this.handleRef.bind(this)
+
+    // "Fake" a reference to an Image loaded via picture element in background.
+    this.imageRef = createPictureRef(
+        this.props,
+        this.handleImageLoaded
+    )
+     //createImageToLoad(this.props)
+    // console.log(createPictureRef(this.props))
   }
 
   componentDidMount() {
@@ -182,7 +153,7 @@ class BackgroundImage extends React.Component {
           nextImage = null
       if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
       if (image.base64 && !image.tracedSVG) nextImage = image.base64
-      if (this.state.isVisible) nextImage = image.src
+      if (this.state.isVisible) nextImage = this.imageRef.currentSrc || image.src
 
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : this.bgImage
@@ -301,7 +272,6 @@ class BackgroundImage extends React.Component {
           </Tag>
       )
     }
-
     return null
   }
 }

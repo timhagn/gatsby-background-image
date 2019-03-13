@@ -2,7 +2,7 @@ import '@babel/polyfill'
 import { render, cleanup, fireEvent } from 'react-testing-library'
 import React from 'react'
 import BackgroundImage from '../'
-import { createImageToLoad } from '../ImageUtils'
+import { createPictureRef } from '../ImageUtils'
 
 
 global.console.debug = jest.fn()
@@ -167,17 +167,17 @@ describe(`<BackgroundImage />`, () => {
   it(`should call onLoad and onError image events`, () => {
     const onLoadMock = jest.fn()
     const onErrorMock = jest.fn()
-    const image = createImageToLoad({
+    const image = createPictureRef({
       fluid: {
         src: ``,
       },
       onLoad: onLoadMock,
       onError: onErrorMock
-    })
+    }, onLoadMock)
     fireEvent.load(image)
     fireEvent.error(image)
 
-    expect(onLoadMock).toHaveBeenCalledTimes(1)
+    expect(onLoadMock).toHaveBeenCalledTimes(2)
     expect(onErrorMock).toHaveBeenCalledTimes(1)
   })
 })
@@ -185,10 +185,10 @@ describe(`<BackgroundImage />`, () => {
 
 describe(`<BackgroundImage /> without IO`, () => {
   beforeEach(() => {
-    global.IntersectionObserver = undefined
+    delete global.IntersectionObserver
   })
 
-  it(`should call onLoadFunction`, () => {
+  it(`should call onLoadFunction without IO`, () => {
     const onLoadFunctionMock = jest.fn()
     const component = setup(true, true, ``, true, null, null, true, onLoadFunctionMock)
     expect(component).toMatchSnapshot()

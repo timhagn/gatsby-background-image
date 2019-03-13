@@ -1,8 +1,14 @@
 import { convertProps } from './HelperUtils'
 
-// Cache if we've seen an image before so we don't both with
-// lazy-loading & fading in on subsequent mounts.
+
 const imageCache = {}
+/**
+ * Cache if we've seen an image before so we don't both with
+ * lazy-loading & fading in on subsequent mounts.
+ *
+ * @param props
+ * @return {*|boolean}
+ */
 export const inImageCache = props => {
   const convertedProps = convertProps(props)
   // Find src
@@ -13,6 +19,11 @@ export const inImageCache = props => {
   return imageCache[src] || false
 }
 
+
+/**
+ * Adds an Image to imageCache.
+ * @param props
+ */
 export const activateCacheForImage = props => {
   const convertedProps = convertProps(props)
   // Find src
@@ -23,29 +34,44 @@ export const activateCacheForImage = props => {
   imageCache[src] = true
 }
 
+
 /**
- * Create lazy image loader with Image().
+ * Creates a picture element for the browser to decide which image to load.
  *
  * @param props
- * @return {*}
- * @public
+ * @param onLoad
+ * @return {HTMLImageElement|null}
  */
-export const createImageToLoad = props => {
+export const createPictureRef = (props, onLoad = () => {}) => {
   const convertedProps = convertProps(props)
   if (typeof window !== `undefined` &&
       (typeof convertedProps.fluid !== `undefined` ||
        typeof convertedProps.fixed !== `undefined`)) {
+    const imageData = props.fluid
+        ? props.fluid
+        : props.fixed
+
     const img = new Image()
+    const pic = document.createElement('picture')
+    if (imageData.srcSetWebp) {
+      const sourcesWebP = document.createElement('source')
+      sourcesWebP.type = `image/webp`
+      sourcesWebP.srcset = imageData.srcSetWebp
+      sourcesWebP.sizes = imageData.sizes
+      pic.appendChild(sourcesWebP)
+    }
+    pic.appendChild(img)
+
+    img.onload = () => onLoad()
     if (!img.complete && typeof convertedProps.onLoad === `function`) {
       img.addEventListener('load', convertedProps.onLoad)
     }
     if (typeof convertedProps.onError === `function`) {
       img.addEventListener('error', convertedProps.onError)
     }
-    // Find src
-    img.src = convertedProps.fluid
-        ? convertedProps.fluid.src
-        : convertedProps.fixed.src
+    img.srcset = imageData.srcSet ? imageData.srcSet : ``
+    img.src = imageData.src ? imageData.srcSet : ``
+
     return img
   }
   return null

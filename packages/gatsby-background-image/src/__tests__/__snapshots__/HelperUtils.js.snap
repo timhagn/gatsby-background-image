@@ -474,7 +474,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
 </div>
 `;
 
-exports[`<BackgroundImage /> without IO should call onLoadFunction 1`] = `
+exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"

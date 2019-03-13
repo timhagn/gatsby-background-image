@@ -6,7 +6,7 @@ import {
   noscriptImg,
   inImageCache,
   activateCacheForImage,
-  createImageToLoad
+  createPictureRef
 } from '../ImageUtils'
 
 
@@ -27,7 +27,7 @@ const fluidMock = {
 
 describe(`createImageToLoad()`, () => {
   it(`should return null on ssr or empty fluid / fixed prop`, () => {
-    const emptyImageRef = createImageToLoad({})
+    const emptyImageRef = createPictureRef({})
     expect(emptyImageRef).toBeNull()
   })
 })
