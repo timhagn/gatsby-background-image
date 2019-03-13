@@ -220,14 +220,15 @@ class BackgroundImage extends React.Component {
 
       // Set the backgroundImage according to images available.
       let bgImage = this.bgImage,
-          nextImage = ``
-      if (image.tracedSVG) nextImage = `'${ image.tracedSVG }'`
+          nextImage = null
+      if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
       if (image.base64 && !image.tracedSVG) nextImage = image.base64
-      if (this.state.isVisible) nextImage = image.src
+      if (this.state.isVisible) nextImage = this.imageRef.currentSrc || image.src
 
       // Switch bgImage & nextImage and opacity accordingly.
-      bgImage = bgImage === `` ? nextImage : ``
-      const afterOpacity = nextImage !== bgImage ? 1 : 0
+      bgImage = bgImage === `` ? nextImage : this.bgImage
+      const afterOpacity =
+          nextImage !== bgImage || this.state.fadeIn === false ? 1 : 0
       this.bgImage = bgImage
 
       const pseudoStyles = {
