@@ -8,7 +8,7 @@ export const fixOpacity = props => {
   let styledProps = { ...props }
 
   try {
-    if (styledProps.style.opacity) {
+    if (styledProps.style && styledProps.style.opacity) {
       if (isNaN(styledProps.style.opacity) || styledProps.style.opacity > .99) {
         styledProps.style.opacity = .99
       }
