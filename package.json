@@ -40,9 +40,9 @@
     "react-component"
   ],
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "files": [
-    "/dist"
+    "./dist"
   ],
   "repository": "https://github.com/timhagn/gatsby-background-image",
   "scripts": {
