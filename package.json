@@ -40,6 +40,9 @@
   ],
   "license": "MIT",
   "main": "dist/index.js",
+  "files": [
+    "/dist"
+  ],
   "repository": "https://github.com/timhagn/gatsby-background-image",
   "scripts": {
     "build": "babel src --out-dir dist --ignore **/__tests__",
