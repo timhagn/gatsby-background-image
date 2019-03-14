@@ -12,9 +12,7 @@ export const getStyle = className => {
     try {
       classes = typeof styleSheets[i].rules !== 'undefined' ? styleSheets[i].rules :
           typeof styleSheets[i].cssRules !== 'undefined' ? styleSheets[i].cssRules : ''
-    } catch (e) {
-      console.debug(`Unable to read stylesheet rules for ${ styleSheets[i] && styleSheets[i].href }: `, e.message)
-    }
+    } catch (e) {}
     if (!classes)
       continue
     for (let x = 0; x < classes.length; x++) {

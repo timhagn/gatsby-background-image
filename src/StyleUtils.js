@@ -13,9 +13,7 @@ export const fixOpacity = props => {
         styledProps.style.opacity = .99
       }
     }
-  } catch (e) {
-    console.debug('Error getting opacity from style prop: ', e.message)
-  }
+  } catch (e) {}
 
   return styledProps
 }
