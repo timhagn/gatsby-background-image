@@ -131,16 +131,6 @@ describe(`getStyle()`, () => {
     createClass()
   })
 
-  it(`should fail for unknown classname`, () => {
-    global.document.styleSheets.length = 10
-    getStyle('fixedImage')
-    expect(global.console.debug)
-        .toHaveBeenCalledWith(
-            `Unable to read stylesheet rules for undefined: `,
-            `Cannot read property 'rules' of undefined`
-        )
-  })
-
   it(`should return class for known classname via .cssRules`, () => {
     global.document.styleSheets[0].rules = undefined
     const style = getStyle('.fixedImage')

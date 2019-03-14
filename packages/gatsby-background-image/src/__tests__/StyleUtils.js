@@ -42,10 +42,4 @@ describe(`fixOpacity()`, () => {
     const fixedOpacityProps = fixOpacity(styledPropsNoOpacity)
     expect(fixedOpacityProps.style.opacity).toBeUndefined()
   })
-
-  it(`should log debug msg for missing style prop`, () => {
-    const styledPropsNoOpacity = {}
-    fixOpacity(styledPropsNoOpacity)
-    expect(global.console.debug).toHaveBeenCalledWith(`Error getting opacity from style prop: `, `Cannot read property 'opacity' of undefined`)
-  })
 })
