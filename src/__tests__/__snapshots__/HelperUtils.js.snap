@@ -21,22 +21,27 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
-            z-index: -101;
-            background-color: undefined;
-            background-image: url(test_fixed_image.jpg);
+            z-index: -100;
+            
             background-repeat: 'repeat-y';
+            background-color: lightgray;
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
-            z-index: -100;
+            z-index: -101;
+            background-color: lightgray;
             background-image: url(test_fixed_image.jpg);
             background-repeat: 'repeat-y';
-            opacity: 0;
           }
         
     </style>
@@ -71,22 +76,27 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
+            z-index: -100;
+            
+            background-repeat: 'repeat-y';
+            background-color: lightgray;
+            opacity: 0; 
+          }
+          .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             background-image: url(test_fluid_image.jpg);
             background-repeat: 'repeat-y';
-          }
-          .gatsby-background-image-test:after {
-            z-index: -100;
-            background-image: url(test_fluid_image.jpg);
-            background-repeat: 'repeat-y';
-            opacity: 0;
           }
         
     </style>
@@ -121,22 +131,27 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-fwatluf:before {
-            z-index: -101;
-            background-color: undefined;
-            background-image: url(string_of_base64);
+            z-index: -100;
+            
             background-repeat: no-repeat;
+            
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
-            z-index: -100;
+            z-index: -101;
+            
             background-image: url(string_of_base64);
             background-repeat: no-repeat;
-            opacity: 0;
           }
         
     </style>
@@ -166,22 +181,27 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
-            z-index: -101;
-            background-color: undefined;
-            background-image: url(string_of_base64);
+            z-index: -100;
+            
             background-repeat: 'repeat-y';
+            background-color: lightgray;
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
-            z-index: -100;
+            z-index: -101;
+            background-color: lightgray;
             background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
-            opacity: 0;
           }
         
 </style>
@@ -203,22 +223,27 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
+            z-index: -100;
+            
+            background-repeat: 'repeat-y';
+            background-color: lightgray;
+            opacity: 0; 
+          }
+          .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
-          }
-          .gatsby-background-image-test:after {
-            z-index: -100;
-            background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
-            opacity: 0;
           }
         
 </style>
@@ -245,22 +270,27 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
-            z-index: -101;
-            background-color: undefined;
-            background-image: url(string_of_base64);
+            z-index: -100;
+            
             background-repeat: no-repeat;
+            background-color: lightgray;
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
-            z-index: -100;
+            z-index: -101;
+            background-color: lightgray;
             background-image: url(string_of_base64);
             background-repeat: no-repeat;
-            opacity: 0;
           }
         
     </style>
@@ -295,22 +325,27 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
+            z-index: -100;
+            
+            background-repeat: 'repeat-y';
+            background-color: lightgray;
+            opacity: 0; 
+          }
+          .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
-          }
-          .gatsby-background-image-test:after {
-            z-index: -100;
-            background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
-            opacity: 0;
           }
         
     </style>
@@ -345,22 +380,27 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
+            z-index: -100;
+            
+            background-repeat: 'repeat-y';
+            background-color: lightgray;
+            opacity: 0; 
+          }
+          .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
-          }
-          .gatsby-background-image-test:after {
-            z-index: -100;
-            background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
-            opacity: 0;
           }
         
     </style>
@@ -395,22 +435,27 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
+            z-index: -100;
+            
+            background-repeat: 'repeat-y';
+            background-color: lightgray;
+            opacity: 0; 
+          }
+          .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
-          }
-          .gatsby-background-image-test:after {
-            z-index: -100;
-            background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
-            opacity: 0;
           }
         
     </style>
@@ -445,22 +490,27 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-fwatluf:before {
-            z-index: -101;
-            background-color: undefined;
-            background-image: url(string_of_base64);
+            z-index: -100;
+            
             background-repeat: no-repeat;
+            
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
-            z-index: -100;
+            z-index: -101;
+            
             background-image: url(string_of_base64);
             background-repeat: no-repeat;
-            opacity: 0;
           }
         
     </style>
@@ -495,22 +545,27 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            transition: opacity 0.25s ease-in-out;
-            -webkit-transition: opacity 0.25s ease-in-out;
-            -moz-transition: opacity 0.25s ease-in-out;
-            -o-transition: opacity 0.25s ease-in-out;
+            -webkit-transition-delay: 0.25s;
+            -moz-transition-delay: 0.25s;
+            -o-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
+            z-index: -100;
+            
+            background-repeat: 'repeat-y';
+            background-color: lightgray;
+            opacity: 0; 
+          }
+          .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             background-image: url(test_fluid_image.jpg);
             background-repeat: 'repeat-y';
-          }
-          .gatsby-background-image-test:after {
-            z-index: -100;
-            background-image: url(test_fluid_image.jpg);
-            background-repeat: 'repeat-y';
-            opacity: 0;
           }
         
     </style>
