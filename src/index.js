@@ -107,10 +107,10 @@ class BackgroundImage extends React.Component {
     activateCacheForImage(this.props)
 
     this.setState({ imgLoaded: true })
-    if (this.state.seenBefore) {
-      console.log(`seen`)
-      this.setState({ fadeIn: false })
-    }
+    // if (this.state.seenBefore) {
+    //   console.log(`seen`)
+    //   this.setState({ fadeIn: false })
+    // }
 
     if (this.props.onLoad) {
       this.props.onLoad()
