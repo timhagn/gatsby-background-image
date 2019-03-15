@@ -23,6 +23,7 @@ class BackgroundImage extends React.Component {
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
+    // TODO: useState in imageCache or suchlike!
     const seenBefore = inImageCache(props)
 
     // browser with Intersection Observer available
@@ -107,6 +108,7 @@ class BackgroundImage extends React.Component {
 
     this.setState({ imgLoaded: true })
     if (this.state.seenBefore) {
+      console.log(`seen`)
       this.setState({ fadeIn: false })
     }
 
@@ -130,7 +132,11 @@ class BackgroundImage extends React.Component {
     } = fixOpacity(convertProps(this.props))
 
     const bgColor =
-      typeof backgroundColor === `boolean` ? `lightgray` : backgroundColor
+      typeof backgroundColor === `boolean`
+          ? `lightgray`
+          : typeof backgroundColor !== `undefined`
+              ? backgroundColor
+              : ``
 
     const backgroundSize =
         this.backgroundStyles.hasOwnProperty(`backgroundSize`) ?
@@ -150,10 +156,11 @@ class BackgroundImage extends React.Component {
 
       // Set the backgroundImage according to images available.
       let bgImage = this.bgImage,
-          nextImage = null
+          nextImage = ``
       if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
       if (image.base64 && !image.tracedSVG) nextImage = image.base64
       if (this.state.isVisible) nextImage = this.imageRef.currentSrc || image.src
+      const noBase64 = !image.base64
 
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : this.bgImage
@@ -170,7 +177,11 @@ class BackgroundImage extends React.Component {
         nextImage,
         afterOpacity,
         bgColor,
+        noBase64,
       }
+
+      // console.log(createPseudoStyles(pseudoStyles))
+      // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
           <Tag
@@ -224,12 +235,14 @@ class BackgroundImage extends React.Component {
       if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
       if (image.base64 && !image.tracedSVG) nextImage = image.base64
       if (this.state.isVisible) nextImage = this.imageRef.currentSrc || image.src
+      const noBase64 = !!image.base64
 
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : this.bgImage
       const afterOpacity =
           nextImage !== bgImage || this.state.fadeIn === false ? 1 : 0
       this.bgImage = bgImage
+
 
       const pseudoStyles = {
         classId,
@@ -239,6 +252,8 @@ class BackgroundImage extends React.Component {
         bgImage,
         nextImage,
         afterOpacity,
+        bgColor,
+        noBase64,
       }
 
       return (

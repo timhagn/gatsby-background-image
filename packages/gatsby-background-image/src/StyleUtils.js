@@ -30,6 +30,7 @@ export const fixOpacity = props => {
  * @param nextImage
  * @param afterOpacity
  * @param bgColor
+ * @param noBase64
  * @return {string}
  */
 export const createPseudoStyles = ({
@@ -41,6 +42,7 @@ export const createPseudoStyles = ({
                               nextImage,
                               afterOpacity,
                               bgColor,
+                              noBase64,
                             }) => {
   return `
           .gatsby-background-image-${classId}:before,
@@ -56,22 +58,27 @@ export const createPseudoStyles = ({
             -moz-background-size: ${backgroundSize};
             -o-background-size: ${backgroundSize};
             background-size: ${backgroundSize};
-            transition: opacity ${transitionDelay} ease-in-out;
-            -webkit-transition: opacity ${transitionDelay} ease-in-out;
-            -moz-transition: opacity ${transitionDelay} ease-in-out;
-            -o-transition: opacity ${transitionDelay} ease-in-out;
+            -webkit-transition-delay: ${transitionDelay};
+            -moz-transition-delay: ${transitionDelay};
+            -o-transition-delay: ${transitionDelay};
+            transition-delay: ${transitionDelay};
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            transition: opacity 0.5s;
           }
           .gatsby-background-image-${classId}:before {
-            z-index: -101;
-            background-color: ${bgColor};
-            background-image: url(${bgImage});
+            z-index: -100;
+            ${nextImage && nextImage !== bgImage ? `background-image: url(${nextImage});` : ``}
             ${backgroundRepeat}
+            ${bgColor && `background-color: ${bgColor};`}
+            opacity: ${afterOpacity}; 
           }
           .gatsby-background-image-${classId}:after {
-            z-index: -100;
-            background-image: url(${nextImage});
+            z-index: -101;
+            ${bgColor && `background-color: ${bgColor};`}
+            ${bgImage && `background-image: url(${bgImage});`}
             ${backgroundRepeat}
-            opacity: ${afterOpacity};
           }
         `
 }
