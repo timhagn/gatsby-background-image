@@ -108,7 +108,7 @@ class BackgroundImage extends React.Component {
 
     this.setState({ imgLoaded: true })
     if (this.state.seenBefore) {
-      console.log(`seen`)
+      // console.log(`seen`)
       this.setState({ fadeIn: false })
     }
 

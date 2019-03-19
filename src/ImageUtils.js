@@ -70,7 +70,7 @@ export const createPictureRef = (props, onLoad = () => {}) => {
       img.addEventListener('error', convertedProps.onError)
     }
     img.srcset = imageData.srcSet ? imageData.srcSet : ``
-    img.src = imageData.src ? imageData.srcSet : ``
+    img.src = imageData.src ? imageData.src : ``
 
     return img
   }
