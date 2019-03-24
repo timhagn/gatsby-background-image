@@ -24,6 +24,7 @@ export const fixOpacity = props => {
  *
  * @param classId
  * @param backgroundSize
+ * @param backgroundPosition
  * @param backgroundRepeat
  * @param transitionDelay
  * @param bgImage
@@ -36,6 +37,7 @@ export const fixOpacity = props => {
 export const createPseudoStyles = ({
                               classId,
                               backgroundSize,
+                              backgroundPosition,
                               backgroundRepeat,
                               transitionDelay,
                               bgImage,
@@ -58,6 +60,7 @@ export const createPseudoStyles = ({
             -moz-background-size: ${backgroundSize};
             -o-background-size: ${backgroundSize};
             background-size: ${backgroundSize};
+            background-position: ${backgroundPosition};
             -webkit-transition-delay: ${transitionDelay};
             -moz-transition-delay: ${transitionDelay};
             -o-transition-delay: ${transitionDelay};
