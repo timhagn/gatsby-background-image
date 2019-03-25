@@ -12,6 +12,8 @@ import { createPseudoStyles, fixOpacity } from './StyleUtils'
 import { listenToIntersections } from './IntersectionObserverUtils'
 
 class BackgroundImage extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props)
 
@@ -76,6 +78,8 @@ class BackgroundImage extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
+
     if (this.state.isVisible && typeof this.props.onStartLoad === `function`) {
       this.props.onStartLoad({ wasCached: inImageCache(this.props) })
     }
@@ -85,6 +89,10 @@ class BackgroundImage extends React.Component {
         this.handleImageLoaded()
       }
     }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   handleRef(ref) {
@@ -104,16 +112,18 @@ class BackgroundImage extends React.Component {
   }
 
   handleImageLoaded() {
-    activateCacheForImage(this.props)
+    if (this._isMounted) {
+      activateCacheForImage(this.props)
 
-    this.setState({ imgLoaded: true })
-    if (this.state.seenBefore) {
-      // console.log(`seen`)
-      this.setState({ fadeIn: false })
-    }
+      this.setState({ imgLoaded: true })
+      if (this.state.seenBefore) {
+        // console.log(`seen`)
+        this.setState({ fadeIn: false })
+      }
 
-    if (this.props.onLoad) {
-      this.props.onLoad()
+      if (this.props.onLoad) {
+        this.props.onLoad()
+      }
     }
   }
 
