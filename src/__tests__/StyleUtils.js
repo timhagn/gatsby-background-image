@@ -1,5 +1,5 @@
 import '@babel/polyfill'
-import { fixOpacity } from '../StyleUtils'
+import { fixOpacity, vendorPrefixBackgroundStyles } from '../StyleUtils'
 
 global.console.debug = jest.fn()
 
@@ -41,5 +41,25 @@ describe(`fixOpacity()`, () => {
     }
     const fixedOpacityProps = fixOpacity(styledPropsNoOpacity)
     expect(fixedOpacityProps.style.opacity).toBeUndefined()
+  })
+})
+
+
+describe(`vendorPrefixBackgroundStyles()`, () => {
+  it(`should return vendor prefixed backgroundStyles with defaults`, () => {
+    expect(vendorPrefixBackgroundStyles()).toEqual(
+`-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+`)
   })
 })

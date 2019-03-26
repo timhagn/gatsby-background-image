@@ -54,18 +54,7 @@ export const createPseudoStyles = ({
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: ${backgroundSize};
-            -moz-background-size: ${backgroundSize};
-            -o-background-size: ${backgroundSize};
-            background-size: ${backgroundSize};
-            -webkit-transition-delay: ${transitionDelay};
-            -moz-transition-delay: ${transitionDelay};
-            -o-transition-delay: ${transitionDelay};
-            transition-delay: ${transitionDelay};
-            -webkit-transition: opacity 0.5s;
-            -moz-transition: opacity 0.5s;
-            -o-transition: opacity 0.5s;
-            transition: opacity 0.5s;
+            ${vendorPrefixBackgroundStyles(backgroundSize, transitionDelay)}
           }
           .gatsby-background-image-${classId}:before {
             z-index: -100;
@@ -83,6 +72,23 @@ export const createPseudoStyles = ({
         `
 }
 
-export const vendorPrefix = () => {
-
+/**
+ * Creates vendor prefixed background styles.
+ *
+ * @param backgroundSize
+ * @param transitionDelay
+ * @return {string}
+ */
+export const vendorPrefixBackgroundStyles = (backgroundSize = `cover`,
+                                             transitionDelay = `0.25s`) => {
+  const vendorPrefixes = [
+    `-webkit-`,
+    `-moz-`,
+    `-o-`,
+    `-ms-`,
+    ``,
+  ]
+  return vendorPrefixes.join(`background-size: ${backgroundSize};\n`) +
+         vendorPrefixes.join(`transition-delay: ${transitionDelay};\n`) +
+         vendorPrefixes.join(`transition: opacity 0.5s;\n`)
 }

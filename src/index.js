@@ -190,8 +190,8 @@ class BackgroundImage extends React.Component {
         noBase64,
       }
 
-      console.log(createPseudoStyles(pseudoStyles))
-      console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
+      // console.log(createPseudoStyles(pseudoStyles))
+      // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
           <Tag
