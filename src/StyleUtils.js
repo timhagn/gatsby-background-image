@@ -82,3 +82,7 @@ export const createPseudoStyles = ({
           }
         `
 }
+
+export const vendorPrefix = () => {
+
+}
