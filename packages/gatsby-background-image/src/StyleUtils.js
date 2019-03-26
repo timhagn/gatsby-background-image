@@ -58,7 +58,7 @@ export const createPseudoStyles = ({
           }
           .gatsby-background-image-${classId}:before {
             z-index: -100;
-            ${nextImage && nextImage !== bgImage ? `background-image: url(${nextImage});` : ``}
+            ${nextImage && `background-image: url(${nextImage});`}
             ${backgroundRepeat}
             ${bgColor && `background-color: ${bgColor};`}
             opacity: ${afterOpacity}; 
@@ -66,7 +66,7 @@ export const createPseudoStyles = ({
           .gatsby-background-image-${classId}:after {
             z-index: -101;
             ${bgColor && `background-color: ${bgColor};`}
-            ${bgImage && `background-image: url(${bgImage});`}
+            ${bgImage && nextImage !== bgImage ? `background-image: url(${bgImage});` : ``}
             ${backgroundRepeat}
           }
         `
