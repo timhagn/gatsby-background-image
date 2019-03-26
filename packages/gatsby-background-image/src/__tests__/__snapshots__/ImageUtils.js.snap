@@ -21,14 +21,17 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
@@ -77,14 +80,17 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
@@ -133,14 +139,17 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-fwatluf:before {
@@ -184,14 +193,17 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
@@ -227,14 +239,17 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
@@ -275,14 +290,17 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
@@ -331,14 +349,17 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
@@ -387,14 +408,17 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
@@ -443,14 +467,17 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
@@ -499,14 +526,17 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-fwatluf:before {
@@ -555,14 +585,17 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-test:before {
