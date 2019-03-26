@@ -195,7 +195,7 @@ class BackgroundImage extends React.Component {
         noBase64,
       }
 
-       console.log(createPseudoStyles(pseudoStyles))
+       //console.log(createPseudoStyles(pseudoStyles))
       // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
@@ -230,6 +230,7 @@ class BackgroundImage extends React.Component {
 
     if (fixed) {
       const image = fixed
+      const noBase64 = !!image.base64
       const divStyle = {
         position: `relative`,
         overflow: `hidden`,
@@ -240,24 +241,21 @@ class BackgroundImage extends React.Component {
         ...style,
       }
 
-      if (style.display === `inherit`) {
-        delete divStyle.display
-      }
-
       // Set the backgroundImage according to images available.
       let bgImage = this.bgImage,
-          nextImage = null
+          nextImage = ``
       if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
       if (image.base64 && !image.tracedSVG) nextImage = image.base64
-      if (this.state.isVisible) nextImage = (this.imageRef && this.imageRef.currentSrc) || image.src
-      const noBase64 = !!image.base64
+      if (this.state.isVisible) nextImage =
+          (this.imageRef && this.imageRef.currentSrc) || image.src
 
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : this.bgImage
       const afterOpacity =
           nextImage !== bgImage ||
           this.state.fadeIn === false ||
-          (noBase64 && this.state.visible)
+          (noBase64 && this.state.isVisible) ||
+          this.state.isVisible
               ? 1 : 0
       this.bgImage = bgImage
 

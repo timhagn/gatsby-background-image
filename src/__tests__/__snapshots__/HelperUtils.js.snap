@@ -36,15 +36,15 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(test_fixed_image.jpg);
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(test_fixed_image.jpg);
+            
             background-repeat: 'repeat-y';
           }
         
@@ -95,15 +95,15 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(test_fluid_image.jpg);
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(test_fluid_image.jpg);
+            
             background-repeat: 'repeat-y';
           }
         
@@ -122,7 +122,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
 <div>
   <div
     class=" gatsby-background-image-fwatluf gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99;"
+    style="position: relative; overflow: hidden; display: inherit; width: 100px; height: 100px; opacity: 0.99;"
   >
     <style>
       
@@ -154,7 +154,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
-            
+            background-image: url(string_of_base64);
             background-repeat: no-repeat;
             
             opacity: 0; 
@@ -162,7 +162,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             background-repeat: no-repeat;
           }
         
@@ -208,7 +208,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
@@ -216,7 +216,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(string_of_base64);
+            
             background-repeat: 'repeat-y';
           }
         
@@ -254,7 +254,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
@@ -262,7 +262,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(string_of_base64);
+            
             background-repeat: 'repeat-y';
           }
         
@@ -305,7 +305,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(string_of_base64);
             background-repeat: no-repeat;
             background-color: lightgray;
             opacity: 0; 
@@ -313,7 +313,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(string_of_base64);
+            
             background-repeat: no-repeat;
           }
         
@@ -364,7 +364,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
@@ -372,7 +372,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(string_of_base64);
+            
             background-repeat: 'repeat-y';
           }
         
@@ -423,7 +423,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
@@ -431,7 +431,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(string_of_base64);
+            
             background-repeat: 'repeat-y';
           }
         
@@ -482,7 +482,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
@@ -490,7 +490,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(string_of_base64);
+            
             background-repeat: 'repeat-y';
           }
         
@@ -541,7 +541,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
-            
+            background-image: url(string_of_base64);
             background-repeat: no-repeat;
             
             opacity: 0; 
@@ -549,7 +549,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             background-repeat: no-repeat;
           }
         
@@ -600,15 +600,15 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            
+            background-image: url(test_fluid_image.jpg);
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
-            background-image: url(test_fluid_image.jpg);
+            
             background-repeat: 'repeat-y';
           }
         
