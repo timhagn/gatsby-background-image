@@ -82,13 +82,16 @@ export const createPseudoStyles = ({
 export const vendorPrefixBackgroundStyles = (backgroundSize = `cover`,
                                              transitionDelay = `0.25s`) => {
   const vendorPrefixes = [
-    `-webkit-`,
-    `-moz-`,
-    `-o-`,
-    `-ms-`,
-    ``,
+    '-webkit-',
+    '-moz-',
+    '-o-',
+    '-ms-',
+    ''
   ]
-  return vendorPrefixes.join(`background-size: ${backgroundSize};\n`) +
-         vendorPrefixes.join(`transition-delay: ${transitionDelay};\n`) +
+  return vendorPrefixes.join(`background-size: ${backgroundSize};\n`)
+         .concat(`background-size: ${backgroundSize};\n`) +
+         vendorPrefixes.join(`transition-delay: ${transitionDelay};\n`)
+         .concat(`transition-delay: ${transitionDelay};\n`) +
          vendorPrefixes.join(`transition: opacity 0.5s;\n`)
+         .concat(`transition: opacity 0.5s;\n`)
 }

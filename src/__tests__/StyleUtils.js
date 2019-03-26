@@ -52,14 +52,37 @@ describe(`vendorPrefixBackgroundStyles()`, () => {
 -moz-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
+background-size: cover;
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
 -ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
 -webkit-transition: opacity 0.5s;
 -moz-transition: opacity 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
+`)
+  })
+
+  it(`should return vendor prefixed backgroundStyles with parameters`, () => {
+    expect(vendorPrefixBackgroundStyles(`contain`, `0.5s`)).toEqual(
+`-webkit-background-size: contain;
+-moz-background-size: contain;
+-o-background-size: contain;
+-ms-background-size: contain;
+background-size: contain;
+-webkit-transition-delay: 0.5s;
+-moz-transition-delay: 0.5s;
+-o-transition-delay: 0.5s;
+-ms-transition-delay: 0.5s;
+transition-delay: 0.5s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 `)
   })
 })
