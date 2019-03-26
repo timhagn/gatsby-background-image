@@ -170,7 +170,8 @@ class BackgroundImage extends React.Component {
           nextImage = ``
       if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
       if (image.base64 && !image.tracedSVG) nextImage = image.base64
-      if (this.state.isVisible) nextImage = (this.imageRef && this.imageRef.currentSrc) || image.src
+      if (this.state.isVisible) nextImage =
+          (this.imageRef && this.imageRef.currentSrc) || image.src
 
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : this.bgImage
