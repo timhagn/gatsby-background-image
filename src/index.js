@@ -163,6 +163,7 @@ class BackgroundImage extends React.Component {
 
     if (fluid) {
       const image = fluid
+      const noBase64 = !!image.base64
 
       // Set the backgroundImage according to images available.
       let bgImage = this.bgImage,
@@ -170,12 +171,15 @@ class BackgroundImage extends React.Component {
       if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
       if (image.base64 && !image.tracedSVG) nextImage = image.base64
       if (this.state.isVisible) nextImage = (this.imageRef && this.imageRef.currentSrc) || image.src
-      const noBase64 = !image.base64
 
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : this.bgImage
       const afterOpacity =
-          nextImage !== bgImage || this.state.fadeIn === false ? 1 : 0
+          nextImage !== bgImage ||
+          this.state.fadeIn === false ||
+          (noBase64 && this.state.isVisible) ||
+          this.state.isVisible
+              ? 1 : 0
       this.bgImage = bgImage
 
       const pseudoStyles = {
@@ -190,7 +194,7 @@ class BackgroundImage extends React.Component {
         noBase64,
       }
 
-      // console.log(createPseudoStyles(pseudoStyles))
+       console.log(createPseudoStyles(pseudoStyles))
       // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
@@ -250,7 +254,10 @@ class BackgroundImage extends React.Component {
       // Switch bgImage & nextImage and opacity accordingly.
       bgImage = bgImage === `` ? nextImage : this.bgImage
       const afterOpacity =
-          nextImage !== bgImage || this.state.fadeIn === false ? 1 : 0
+          nextImage !== bgImage ||
+          this.state.fadeIn === false ||
+          (noBase64 && this.state.visible)
+              ? 1 : 0
       this.bgImage = bgImage
 
 
