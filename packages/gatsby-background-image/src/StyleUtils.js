@@ -24,6 +24,7 @@ export const fixOpacity = props => {
  *
  * @param classId
  * @param backgroundSize
+ * @param backgroundPosition
  * @param backgroundRepeat
  * @param transitionDelay
  * @param bgImage
@@ -36,6 +37,7 @@ export const fixOpacity = props => {
 export const createPseudoStyles = ({
                               classId,
                               backgroundSize,
+                              backgroundPosition,
                               backgroundRepeat,
                               transitionDelay,
                               bgImage,
@@ -54,6 +56,7 @@ export const createPseudoStyles = ({
             height: 100%;
             top: 0;
             left: 0;
+            background-position: ${backgroundPosition};
             ${vendorPrefixBackgroundStyles(backgroundSize, transitionDelay)}
           }
           .gatsby-background-image-${classId}:before {

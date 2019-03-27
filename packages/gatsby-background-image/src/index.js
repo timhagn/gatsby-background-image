@@ -156,6 +156,11 @@ class BackgroundImage extends React.Component {
               ? backgroundColor
               : ``
 
+    const backgroundPosition =
+      this.backgroundStyles.hasOwnProperty(`backgroundPosition`) ?
+        this.backgroundStyles.backgroundPosition :
+        `center`
+
     const backgroundSize =
         this.backgroundStyles.hasOwnProperty(`backgroundSize`) ?
             this.backgroundStyles.backgroundSize :
@@ -194,6 +199,7 @@ class BackgroundImage extends React.Component {
       const pseudoStyles = {
         classId,
         backgroundSize,
+        backgroundPosition,
         backgroundRepeat,
         transitionDelay,
         bgImage,

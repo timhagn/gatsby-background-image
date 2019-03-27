@@ -142,6 +142,8 @@ const BackgroundSection = ({ className }) => (
 const StyledBackgroundSection = styled(BackgroundSection)`
   width: 100%;
   background-repeat: repeat-y;
+  background-position: bottom center;
+  background-size: cover;
 `
 
 export default StyledBackgroundSection
