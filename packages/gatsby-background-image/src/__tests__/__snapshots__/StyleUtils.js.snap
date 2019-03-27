@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createPseudoStyles() should create different styles for different bgImage & nextImage 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            background-image: url(test.jpg);
+            repeat-y
+            background-color: #000;
+            opacity: 1; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            background-image: url(test.webp);
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create styles from given pseudoStyles Object 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            background-image: url(test.webp);
+            repeat-y
+            background-color: #000;
+            opacity: 1; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
+            repeat-y
+          }
+        "
+`;
