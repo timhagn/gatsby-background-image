@@ -1,5 +1,9 @@
 import '@babel/polyfill'
-import { fixOpacity, vendorPrefixBackgroundStyles } from '../StyleUtils'
+import {
+  createPseudoStyles,
+  fixOpacity,
+  vendorPrefixBackgroundStyles
+} from '../StyleUtils'
 
 global.console.debug = jest.fn()
 
@@ -84,5 +88,31 @@ transition-delay: 0.5s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 `)
+  })
+})
+
+
+describe(`createPseudoStyles()`, () => {
+  const pseudoStyles = {
+    classId: `gbi`,
+    backgroundSize: `cover`,
+    backgroundPosition: `center`,
+    backgroundRepeat: `repeat-y`,
+    transitionDelay: `0.25s`,
+    bgImage: `test.webp`,
+    nextImage: `test.webp`,
+    afterOpacity: 1,
+    bgColor: `#000`,
+    noBase64: true,
+  }
+  it(`should create styles from given pseudoStyles Object`, () => {
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create different styles for different bgImage & nextImage`, () => {
+    pseudoStyles.nextImage = `test.jpg`;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
   })
 })

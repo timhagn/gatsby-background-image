@@ -56,6 +56,8 @@ const setup = (fluid = false,
     styleElement.textContent = `
       .fixedImage {
         backgroundRepeat: 'repeat-y';
+        backgroundPosition: 'center';
+        backgroundSize: 'contain';
       }
     `
     document.body.appendChild(styleElement)
@@ -162,6 +164,10 @@ describe(`<BackgroundImage />`, () => {
         .toHaveTextContent(`.gatsby-background-image-test:before`)
     expect(styleTag)
         .toHaveTextContent(`background-repeat: 'repeat-y';`)
+    expect(styleTag)
+        .toHaveTextContent(`background-position: 'center';`)
+    expect(styleTag)
+        .toHaveTextContent(`background-size: 'contain';`)
   })
 
   it(`should call onLoad and onError image events`, () => {

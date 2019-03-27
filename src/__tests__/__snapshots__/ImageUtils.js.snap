@@ -4,7 +4,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99;"
+    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
   >
     <style>
       
@@ -17,11 +17,12 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
+            background-position: 'center';
+            -webkit-background-size: 'contain';
+-moz-background-size: 'contain';
+-o-background-size: 'contain';
+-ms-background-size: 'contain';
+background-size: 'contain';
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
@@ -63,7 +64,7 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline;"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
       
@@ -76,11 +77,12 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
+            background-position: 'center';
+            -webkit-background-size: 'contain';
+-moz-background-size: 'contain';
+-o-background-size: 'contain';
+-ms-background-size: 'contain';
+background-size: 'contain';
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
@@ -135,6 +137,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
             height: 100%;
             top: 0;
             left: 0;
+            background-position: center;
             -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -189,11 +192,12 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
+            background-position: 'center';
+            -webkit-background-size: 'contain';
+-moz-background-size: 'contain';
+-o-background-size: 'contain';
+-ms-background-size: 'contain';
+background-size: 'contain';
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
@@ -235,11 +239,12 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
+            background-position: 'center';
+            -webkit-background-size: 'contain';
+-moz-background-size: 'contain';
+-o-background-size: 'contain';
+-ms-background-size: 'contain';
+background-size: 'contain';
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
@@ -286,6 +291,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-position: center;
             -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -332,7 +338,7 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline;"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
       
@@ -345,11 +351,12 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
+            background-position: 'center';
+            -webkit-background-size: 'contain';
+-moz-background-size: 'contain';
+-o-background-size: 'contain';
+-ms-background-size: 'contain';
+background-size: 'contain';
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
@@ -391,7 +398,7 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
     class="fixedImage test gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline;"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
       
@@ -404,11 +411,12 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
+            background-position: 'center';
+            -webkit-background-size: 'contain';
+-moz-background-size: 'contain';
+-o-background-size: 'contain';
+-ms-background-size: 'contain';
+background-size: 'contain';
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
@@ -450,7 +458,7 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline;"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
       
@@ -463,11 +471,12 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
+            background-position: 'center';
+            -webkit-background-size: 'contain';
+-moz-background-size: 'contain';
+-o-background-size: 'contain';
+-ms-background-size: 'contain';
+background-size: 'contain';
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;
@@ -522,6 +531,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-position: center;
             -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -568,7 +578,7 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline;"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
       
@@ -581,11 +591,12 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
+            background-position: 'center';
+            -webkit-background-size: 'contain';
+-moz-background-size: 'contain';
+-o-background-size: 'contain';
+-ms-background-size: 'contain';
+background-size: 'contain';
 -webkit-transition-delay: 0.25s;
 -moz-transition-delay: 0.25s;
 -o-transition-delay: 0.25s;

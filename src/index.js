@@ -278,6 +278,7 @@ class BackgroundImage extends React.Component {
       const pseudoStyles = {
         classId,
         backgroundSize,
+        backgroundPosition,
         backgroundRepeat,
         transitionDelay,
         bgImage,
