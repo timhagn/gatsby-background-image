@@ -6,7 +6,8 @@ import {
   noscriptImg,
   inImageCache,
   activateCacheForImage,
-  createPictureRef
+  createPictureRef,
+  switchImageSettings,
 } from '../ImageUtils'
 
 
@@ -71,5 +72,117 @@ describe(`noscriptImg()`, () => {
     }
     const { container } = render(noscriptImg(dummyProps))
     expect(container).toMatchSnapshot()
+  })
+})
+
+
+describe(`switchImageSettings()`, () => {
+  const mockImageRef = {
+    src: `test.jpg`,
+    currentSrc: `test.webp`,
+  }
+  it(`should return settings from fluid with empty bgImage`, () => {
+    const createdSettings = switchImageSettings({
+      image: fluidShapeMock,
+      bgImage: ``,
+      mockImageRef,
+      isVisible: false,
+      fadeIn: true,
+    })
+    expect(createdSettings).toEqual({
+      "afterOpacity": 1,
+      "bgImage": "string_of_base64",
+      "nextImage": "string_of_base64",
+      "noBase64": true
+    })
+  })
+
+  it(`should return settings from fixed with set bgImage`, () => {
+    const createdSettings = switchImageSettings({
+      image: fixedShapeMock,
+      bgImage: `string_of_base64`,
+      mockImageRef,
+      isVisible: false,
+      fadeIn: true,
+    })
+    expect(createdSettings).toEqual({
+      "afterOpacity": 1,
+      "bgImage": "string_of_base64",
+      "nextImage": "string_of_base64",
+      "noBase64": true
+    })
+  })
+
+  it(`should return settings from fixed with set bgImage`, () => {
+    const createdSettings = switchImageSettings({
+      image: fluidShapeMock,
+      bgImage: `string_of_base64`,
+      mockImageRef,
+      isVisible: false,
+      fadeIn: true,
+    })
+    expect(createdSettings).toEqual({
+      "afterOpacity": 1,
+      "bgImage": "string_of_base64",
+      "nextImage": "string_of_base64",
+      "noBase64": true
+    })
+  })
+
+  it(`should return settings from fluid with set bgImage without base64`, () => {
+    const fluid = fluidShapeMock
+    delete fluid.base64
+    const createdSettings = switchImageSettings({
+      image: fluid,
+      bgImage: `string_of_base64`,
+      mockImageRef,
+      isVisible: false,
+      fadeIn: true,
+    })
+    expect(createdSettings).toEqual({
+      "afterOpacity": 1,
+      "bgImage": "string_of_base64",
+      "nextImage": "",
+      "noBase64": false
+    })
+  })
+
+  it(`should return settings from fluid with set bgImage and tracedSVG`, () => {
+    const fluid = {
+      ...fluidShapeMock,
+      tracedSVG: 'test_tracedSVG.svg',
+    }
+    delete fluid.base64
+    const createdSettings = switchImageSettings({
+      image: fluid,
+      bgImage: `test_tracedSVG.svg`,
+      mockImageRef,
+      isVisible: false,
+      fadeIn: false,
+    })
+    expect(createdSettings).toEqual({
+      "afterOpacity": 1,
+      "bgImage": "test_tracedSVG.svg",
+      "nextImage": "\"test_tracedSVG.svg\"",
+      "noBase64": false
+    })
+  })
+
+  it(`should return settings from fluid with set bgImage and base64`, () => {
+    const mockRef = mockImageRef
+    delete mockRef.src
+    const createdSettings = switchImageSettings({
+      image: fluidShapeMock,
+      bgImage: `string_of_base64`,
+      mockRef,
+      isVisible: true,
+      fadeIn: true,
+    })
+    expect(createdSettings).toEqual({
+      "afterOpacity": 1,
+      "bgImage": "string_of_base64",
+      "nextImage": "test_fluid_image.jpg",
+      "noBase64": false
+    })
   })
 })
