@@ -10,14 +10,19 @@ export const getStyle = className => {
   for (let i = 0; i < styleSheets.length; i++) {
     let classes
     try {
-      classes = typeof styleSheets[i].rules !== 'undefined' ? styleSheets[i].rules :
-          typeof styleSheets[i].cssRules !== 'undefined' ? styleSheets[i].cssRules : ''
+      classes = typeof styleSheets[i].rules !== 'undefined'
+          ? styleSheets[i].rules
+          : typeof styleSheets[i].cssRules !== 'undefined'
+              ? styleSheets[i].cssRules
+              : ''
     } catch (e) {}
     if (!classes)
       continue
     for (let x = 0; x < classes.length; x++) {
       if (classes[x].selectorText === className) {
-        const ret = classes[x].cssText ? classes[x].cssText : classes[x].style.cssText
+        const ret = classes[x].cssText
+            ? classes[x].cssText
+            : classes[x].style.cssText
         return ret.indexOf(classes[x].selectorText) === -1
             ? `${classes[x].selectorText}{${ret}}`
             : ret
