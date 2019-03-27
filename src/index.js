@@ -64,6 +64,14 @@ class BackgroundImage extends React.Component {
 
     // Get background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = getBackgroundStyles(this.props.className)
+    // Testing how to grab pseudo-Elements' styles & media-queries
+    // this.backgroundPseudoStyles =
+    //   getBackgroundStyles(
+    //     this.props.className.split(' ').map(name => `.${name}::after, .${name}::before`).join(' ')
+    //   )
+    // this.backgroundBeforeStyles =       getBackgroundStyles(
+    //   this.props.className.split(' ').map(name => `${name}::before`).join(' ')
+    // )
 
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
     this.handleRef = this.handleRef.bind(this)
@@ -193,6 +201,7 @@ class BackgroundImage extends React.Component {
         afterOpacity,
         bgColor,
         noBase64,
+
       }
 
        //console.log(createPseudoStyles(pseudoStyles))
