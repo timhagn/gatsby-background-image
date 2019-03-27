@@ -14,7 +14,9 @@ export const inImageCache = props => {
   // Find src
   const src = convertedProps.fluid
       ? convertedProps.fluid.src
-      : convertedProps.fixed.src
+      : convertedProps.fixed
+          ? convertedProps.fixed.src
+          : null
 
   return imageCache[src] || false
 }
@@ -29,7 +31,9 @@ export const activateCacheForImage = props => {
   // Find src
   const src = convertedProps.fluid
       ? convertedProps.fluid.src
-      : convertedProps.fixed.src
+      : convertedProps.fixed
+          ? convertedProps.fixed.src
+          : null
 
   imageCache[src] = true
 }

@@ -35,7 +35,7 @@ describe(`createImageToLoad()`, () => {
 
 
 describe(`inImageCache() / activateCacheForImage()`, () => {
-  it(`inImageCache() should return false for initial load (fixed)`, () => {
+  it(`should return false for initial load (fixed)`, () => {
     const inCache = inImageCache(fixedMock)
     expect(inCache).toBeFalsy()
   })
@@ -55,6 +55,11 @@ describe(`inImageCache() / activateCacheForImage()`, () => {
     activateCacheForImage(fluidMock)
     const inCache = inImageCache(fluidMock)
     expect(inCache).toBeTruthy()
+  })
+
+  it(`should return false without mock`, () => {
+    const inCache = inImageCache()
+    expect(inCache).toBeFalsy()
   })
 })
 

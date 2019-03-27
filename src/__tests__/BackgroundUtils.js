@@ -22,6 +22,7 @@ const createClass = () => {
       }
     `
   document.body.appendChild(styleElement)
+  return styleElement
 }
 
 
@@ -123,6 +124,11 @@ describe(`getStyleRules()`, () => {
     getStyleRules(mockStyleRules)
     expect(global.console.error).toHaveBeenCalledWith(`Unknown style object prototype`)
   })
+
+  it(`should fail for empty style object prototype`, () => {
+    getStyleRules([])
+    expect(global.console.error).toHaveBeenCalledWith(`Unknown style object prototype`)
+  })
 })
 
 
@@ -141,5 +147,11 @@ describe(`getStyle()`, () => {
     global.document.styleSheets[0].cssRules = undefined
     const style = getStyle('.fixedImage')
     expect(style).toEqual(`.fixedImage {backgroundRepeat: 'repeat-y';}`)
+  })
+
+  it(`should fail for window = undefined`, () => {
+    delete global.window
+    const style = getStyle('')
+    expect(style).toEqual()
   })
 })

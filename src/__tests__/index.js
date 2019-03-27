@@ -39,6 +39,7 @@ export const fluidShapeMock = {
  * @param onError
  * @param critical
  * @param onStartLoad
+ * @param fixed
  * @return {RenderResult.container}
  */
 const setup = (fluid = false,
@@ -48,7 +49,8 @@ const setup = (fluid = false,
                onLoad = () => {},
                onError = () => {},
                critical = false,
-               onStartLoad = null) => {
+               onStartLoad = null,
+               fixed = true) => {
 
   if (addClass) {
     // Create the style class.
@@ -72,7 +74,7 @@ const setup = (fluid = false,
       title={`Title for the image`}
       alt={`Alt text for the image`}
       {...fluid && { fluid: fluidShapeMock }}
-      {...!fluid && { fixed: fixedShapeMock }}
+      {...(!fluid && fixed) && { fixed: fixedShapeMock }}
       onLoad={onLoad}
       onError={onError}
       placeholderStyle={{ color: `red` }}
@@ -143,6 +145,11 @@ describe(`<BackgroundImage />`, () => {
 
   it(`should work with another external class`, () => {
     const component = setup(true, true, ` test`)
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should return null without fluid / fixed`, () => {
+    const component = setup(false, false, ``, false, null, null, false, null, false)
     expect(component).toMatchSnapshot()
   })
 

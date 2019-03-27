@@ -394,6 +394,8 @@ transition: opacity 0.5s;
 </div>
 `;
 
+exports[`<BackgroundImage /> should return null without fluid / fixed 1`] = `<div />`;
+
 exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
