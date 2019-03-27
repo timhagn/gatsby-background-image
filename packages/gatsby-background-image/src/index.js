@@ -179,12 +179,12 @@ class BackgroundImage extends React.Component {
       const image = fluid
 
       // Set the backgroundImage according to images available.
-      const bgImage = this.bgImage;
       const newImageSettings = switchImageSettings({
         image,
-        bgImage,
+        bgImage: this.bgImage,
         imageRef: this.imageRef,
         isVisible: this.state.isVisible,
+        fadeIn: this.state.fadeIn,
       })
       this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : ``
 
@@ -194,6 +194,7 @@ class BackgroundImage extends React.Component {
         backgroundPosition,
         backgroundRepeat,
         transitionDelay,
+        bgColor,
         ...newImageSettings,
       }
 
@@ -243,10 +244,9 @@ class BackgroundImage extends React.Component {
       }
 
       // Set the backgroundImage according to images available.
-      const bgImage = this.bgImage;
       const newImageSettings = switchImageSettings({
         image,
-        bgImage,
+        bgImage: this.bgImage,
         imageRef: this.imageRef,
         isVisible: this.state.isVisible,
       })
@@ -258,6 +258,7 @@ class BackgroundImage extends React.Component {
         backgroundPosition,
         backgroundRepeat,
         transitionDelay,
+        bgColor,
         ...newImageSettings,
       }
 
