@@ -6,7 +6,8 @@ import {
   activateCacheForImage,
   createPictureRef,
   inImageCache,
-  noscriptImg
+  noscriptImg,
+  switchImageSettings,
 } from './ImageUtils'
 import { createPseudoStyles, fixOpacity } from './StyleUtils'
 import { listenToIntersections } from './IntersectionObserverUtils'
@@ -176,25 +177,16 @@ class BackgroundImage extends React.Component {
 
     if (fluid) {
       const image = fluid
-      const noBase64 = !!image.base64
 
       // Set the backgroundImage according to images available.
-      let bgImage = this.bgImage,
-          nextImage = ``
-      if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
-      if (image.base64 && !image.tracedSVG) nextImage = image.base64
-      if (this.state.isVisible) nextImage =
-          (this.imageRef && this.imageRef.currentSrc) || image.src
-
-      // Switch bgImage & nextImage and opacity accordingly.
-      bgImage = bgImage === `` ? nextImage : this.bgImage
-      const afterOpacity =
-          nextImage !== bgImage ||
-          this.state.fadeIn === false ||
-          (noBase64 && this.state.isVisible) ||
-          this.state.isVisible
-              ? 1 : 0
-      this.bgImage = bgImage
+      const bgImage = this.bgImage;
+      const newImageSettings = switchImageSettings({
+        image,
+        bgImage,
+        imageRef: this.imageRef,
+        isVisible: this.state.isVisible,
+      })
+      this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : ``
 
       const pseudoStyles = {
         classId,
@@ -202,12 +194,7 @@ class BackgroundImage extends React.Component {
         backgroundPosition,
         backgroundRepeat,
         transitionDelay,
-        bgImage,
-        nextImage,
-        afterOpacity,
-        bgColor,
-        noBase64,
-
+        ...newImageSettings,
       }
 
        //console.log(createPseudoStyles(pseudoStyles))
@@ -245,7 +232,6 @@ class BackgroundImage extends React.Component {
 
     if (fixed) {
       const image = fixed
-      const noBase64 = !!image.base64
       const divStyle = {
         position: `relative`,
         overflow: `hidden`,
@@ -257,23 +243,14 @@ class BackgroundImage extends React.Component {
       }
 
       // Set the backgroundImage according to images available.
-      let bgImage = this.bgImage,
-          nextImage = ``
-      if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
-      if (image.base64 && !image.tracedSVG) nextImage = image.base64
-      if (this.state.isVisible) nextImage =
-          (this.imageRef && this.imageRef.currentSrc) || image.src
-
-      // Switch bgImage & nextImage and opacity accordingly.
-      bgImage = bgImage === `` ? nextImage : this.bgImage
-      const afterOpacity =
-          nextImage !== bgImage ||
-          this.state.fadeIn === false ||
-          (noBase64 && this.state.isVisible) ||
-          this.state.isVisible
-              ? 1 : 0
-      this.bgImage = bgImage
-
+      const bgImage = this.bgImage;
+      const newImageSettings = switchImageSettings({
+        image,
+        bgImage,
+        imageRef: this.imageRef,
+        isVisible: this.state.isVisible,
+      })
+      this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : ``
 
       const pseudoStyles = {
         classId,
@@ -281,11 +258,7 @@ class BackgroundImage extends React.Component {
         backgroundPosition,
         backgroundRepeat,
         transitionDelay,
-        bgImage,
-        nextImage,
-        afterOpacity,
-        bgColor,
-        noBase64,
+        ...newImageSettings,
       }
 
       return (

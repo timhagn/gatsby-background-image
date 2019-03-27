@@ -101,3 +101,39 @@ export const noscriptImg = props => {
   const transitionDelay = props.transitionDelay ? props.transitionDelay : `0.5s`
   return `<picture>${srcSetWebp}<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
 }
+
+/**
+ * Compares the old states to the new and changes image settings accordingly.
+ *
+ * @param image
+ * @param bgImage
+ * @param imageRef
+ * @param isVisible
+ * @return {{noBase64: boolean, afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
+ */
+export const switchImageSettings = ({image, bgImage, imageRef, isVisible}) => {
+  const noBase64 = !!image.base64
+  // Set the backgroundImage according to images available.
+  let nextImage = ``
+  if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
+  if (image.base64 && !image.tracedSVG) nextImage = image.base64
+  if (isVisible) nextImage =
+      (imageRef && imageRef.currentSrc) || image.src
+
+  // Switch bgImage & nextImage and opacity accordingly.
+  bgImage = bgImage === `` ? nextImage : bgImage
+  const afterOpacity =
+      nextImage !== bgImage ||
+      this.state.fadeIn === false ||
+      (noBase64 && this.state.isVisible) ||
+      this.state.isVisible
+          ? 1 : 0
+
+  return {
+    bgImage,
+    nextImage,
+    afterOpacity,
+    bgColor,
+    noBase64,
+  }
+}
