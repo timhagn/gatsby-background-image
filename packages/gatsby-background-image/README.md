@@ -169,9 +169,14 @@ have to target the BackgroundImage-component's class:
 
 ```css
 .gatsby-background-image-[YOUR_ID]/*(:before, :after)*/ {
-   background-repeat: repeat-y;
+  background-repeat: repeat-y;
+  background-position: bottom center;
+  background-size: cover;
 }
 ```
+
+Those three mentioned `background-` styles directly get applied to the 
+pseudo-Elements as well!
 
 ## props not available
 
