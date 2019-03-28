@@ -101,17 +101,72 @@ describe(`createPseudoStyles()`, () => {
     transitionDelay: `0.25s`,
     bgImage: `test.webp`,
     nextImage: `test.webp`,
+    lastImage: `some_base64_string`,
     afterOpacity: 1,
     bgColor: `#000`,
-    noBase64: true,
+    fadeIn: true,
   }
   it(`should create styles from given pseudoStyles Object`, () => {
     const createdPseudoStyles = createPseudoStyles(pseudoStyles)
     expect(createdPseudoStyles).toMatchSnapshot()
   })
 
-  it(`should create different styles for different bgImage & nextImage`, () => {
-    pseudoStyles.nextImage = `test.jpg`;
+  it(`should create styles from given pseudoStyles Object with opacity 0`, () => {
+    pseudoStyles.afterOpacity = 0
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create styles from given pseudoStyles Object without fadeIn`, () => {
+    pseudoStyles.fadeIn = false
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create different styles for empty nextImage`, () => {
+    delete pseudoStyles.nextImage
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create different styles for empty bgImage`, () => {
+    delete pseudoStyles.bgImage
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create different styles for empty nextImage with opacity 0`, () => {
+    delete pseudoStyles.nextImage
+    pseudoStyles.afterOpacity = 0
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create different styles for empty bgImage with opacity 0`, () => {
+    delete pseudoStyles.bgImage
+    pseudoStyles.afterOpacity = 0
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create different styles for empty lastImage with opacity 0`, () => {
+    pseudoStyles.lastImage = ``
+    pseudoStyles.afterOpacity = 0
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create different styles for empty bgImage & nextImage`, () => {
+    delete pseudoStyles.bgImage
+    delete pseudoStyles.nextImage
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create different styles for empty bgImage & nextImage with opacity 0`, () => {
+    delete pseudoStyles.bgImage
+    delete pseudoStyles.nextImage
+    pseudoStyles.afterOpacity = 0
     const createdPseudoStyles = createPseudoStyles(pseudoStyles)
     expect(createdPseudoStyles).toMatchSnapshot()
   })

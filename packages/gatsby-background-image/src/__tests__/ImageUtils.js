@@ -9,7 +9,7 @@ import {
   createPictureRef,
   switchImageSettings,
 } from '../ImageUtils'
-
+import * as helperUtils from '../HelperUtils'
 
 global.console.debug = jest.fn()
 
@@ -68,7 +68,6 @@ describe(`inImageCache() / activateCacheForImage()`, () => {
     expect(inCache).toBeFalsy()
   })
 })
-
 
 describe(`noscriptImg()`, () => {
   it(`should return default noscriptImg on {}`, () => {
