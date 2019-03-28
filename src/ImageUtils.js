@@ -34,8 +34,9 @@ export const activateCacheForImage = props => {
       : convertedProps.fixed
           ? convertedProps.fixed.src
           : null
-
-  imageCache[src] = true
+  if (src) {
+    imageCache[src] = true
+  }
 }
 
 
