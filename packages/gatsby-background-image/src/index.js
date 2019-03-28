@@ -198,7 +198,7 @@ class BackgroundImage extends React.Component {
         ...newImageSettings,
       })
 
-      console.log(pseudoStyles)
+      // console.log(pseudoStyles)
       // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
@@ -250,7 +250,7 @@ class BackgroundImage extends React.Component {
         imageRef: this.imageRef,
         isVisible: this.state.isVisible,
       })
-      this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : ``
+      this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : newImageSettings.lastImage
 
       const pseudoStyles = createPseudoStyles({
         classId,

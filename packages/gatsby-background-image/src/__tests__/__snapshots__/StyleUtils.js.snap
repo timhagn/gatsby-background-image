@@ -31,7 +31,8 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(test.jpg);
+            
+            background-image: url(test.webp);
             repeat-y
             background-color: #000;
             opacity: 1; 
@@ -39,7 +40,8 @@ transition: opacity 0.5s;
           .gatsby-background-image-gbi:after {
             z-index: -101;
             background-color: #000;
-            background-image: url(test.webp);
+            background-image: url(undefined);
+            
             repeat-y
           }
         "
@@ -76,6 +78,7 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
+            
             background-image: url(test.webp);
             repeat-y
             background-color: #000;
@@ -84,6 +87,7 @@ transition: opacity 0.5s;
           .gatsby-background-image-gbi:after {
             z-index: -101;
             background-color: #000;
+            background-image: url(undefined);
             
             repeat-y
           }

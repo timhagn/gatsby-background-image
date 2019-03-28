@@ -40,6 +40,12 @@ describe(`inImageCache() / activateCacheForImage()`, () => {
     expect(inCache).toBeFalsy()
   })
 
+  it(`shouldn't activate cache without fixed / fluid`, () => {
+    activateCacheForImage()
+    const inCache = inImageCache()
+    expect(inCache).toBeFalsy()
+  })
+
   it(`should return img from cache after activateCacheForImage() (fixed)`, () => {
     activateCacheForImage(fixedMock)
     const inCache = inImageCache(fixedMock)
@@ -94,12 +100,7 @@ describe(`switchImageSettings()`, () => {
       isVisible: false,
       fadeIn: true,
     })
-    expect(createdSettings).toEqual({
-      "afterOpacity": 1,
-      "bgImage": "string_of_base64",
-      "nextImage": "string_of_base64",
-      "noBase64": true
-    })
+    expect(createdSettings).toMatchSnapshot()
   })
 
   it(`should return settings from fixed with set bgImage`, () => {
@@ -110,12 +111,7 @@ describe(`switchImageSettings()`, () => {
       isVisible: false,
       fadeIn: true,
     })
-    expect(createdSettings).toEqual({
-      "afterOpacity": 1,
-      "bgImage": "string_of_base64",
-      "nextImage": "string_of_base64",
-      "noBase64": true
-    })
+    expect(createdSettings).toMatchSnapshot()
   })
 
   it(`should return settings from fixed with set bgImage`, () => {
@@ -126,12 +122,7 @@ describe(`switchImageSettings()`, () => {
       isVisible: false,
       fadeIn: true,
     })
-    expect(createdSettings).toEqual({
-      "afterOpacity": 1,
-      "bgImage": "string_of_base64",
-      "nextImage": "string_of_base64",
-      "noBase64": true
-    })
+    expect(createdSettings).toMatchSnapshot()
   })
 
   it(`should return settings from fluid with set bgImage without base64`, () => {
@@ -144,12 +135,7 @@ describe(`switchImageSettings()`, () => {
       isVisible: false,
       fadeIn: true,
     })
-    expect(createdSettings).toEqual({
-      "afterOpacity": 1,
-      "bgImage": "string_of_base64",
-      "nextImage": "",
-      "noBase64": false
-    })
+    expect(createdSettings).toMatchSnapshot()
   })
 
   it(`should return settings from fluid with set bgImage and tracedSVG`, () => {
@@ -165,12 +151,7 @@ describe(`switchImageSettings()`, () => {
       isVisible: false,
       fadeIn: false,
     })
-    expect(createdSettings).toEqual({
-      "afterOpacity": 1,
-      "bgImage": "test_tracedSVG.svg",
-      "nextImage": "\"test_tracedSVG.svg\"",
-      "noBase64": false
-    })
+    expect(createdSettings).toMatchSnapshot()
   })
 
   it(`should return settings from fluid with set bgImage and base64`, () => {
@@ -183,11 +164,6 @@ describe(`switchImageSettings()`, () => {
       isVisible: true,
       fadeIn: true,
     })
-    expect(createdSettings).toEqual({
-      "afterOpacity": 1,
-      "bgImage": "string_of_base64",
-      "nextImage": "test_fluid_image.jpg",
-      "noBase64": false
-    })
+    expect(createdSettings).toMatchSnapshot()
   })
 })

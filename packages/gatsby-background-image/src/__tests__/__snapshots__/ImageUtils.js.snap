@@ -37,15 +37,17 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(test_fixed_image.jpg);
+            
+            
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(test_fixed_image.jpg);
             background-repeat: 'repeat-y';
           }
         
@@ -97,15 +99,17 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(test_fluid_image.jpg);
+            
+            
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(test_fluid_image.jpg);
             background-repeat: 'repeat-y';
           }
         
@@ -157,7 +161,8 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            
+            
             background-repeat: no-repeat;
             
             opacity: 0; 
@@ -166,6 +171,7 @@ transition: opacity 0.5s;
             z-index: -101;
             
             
+            background-image: url(string_of_base64);
             background-repeat: no-repeat;
           }
         
@@ -212,7 +218,8 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            
+            
             background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
@@ -221,6 +228,7 @@ transition: opacity 0.5s;
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
           }
         
@@ -259,15 +267,17 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            
+            
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
           }
         
@@ -311,7 +321,8 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            
+            
             background-repeat: no-repeat;
             background-color: lightgray;
             opacity: 0; 
@@ -320,6 +331,7 @@ transition: opacity 0.5s;
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(string_of_base64);
             background-repeat: no-repeat;
           }
         
@@ -371,15 +383,17 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            
+            
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
           }
         
@@ -433,15 +447,17 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            
+            
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
           }
         
@@ -493,15 +509,17 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            
+            
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(string_of_base64);
             background-repeat: 'repeat-y';
           }
         
@@ -553,15 +571,17 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            
+            
             background-repeat: no-repeat;
             
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
             
+            background-image: url(string_of_base64);
             background-repeat: no-repeat;
           }
         
@@ -613,15 +633,17 @@ transition: opacity 0.5s;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(test_fluid_image.jpg);
+            
+            
             background-repeat: 'repeat-y';
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
             background-color: lightgray;
             
+            background-image: url(test_fluid_image.jpg);
             background-repeat: 'repeat-y';
           }
         
@@ -646,4 +668,64 @@ exports[`noscriptImg() should return noscriptImg with opacity & transitionDelay 
 <div>
   &lt;picture&gt;&lt;img src="" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:100;opacity:0.99;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
 </div>
+`;
+
+exports[`switchImageSettings() should return settings from fixed with set bgImage 1`] = `
+Object {
+  "afterOpacity": 1,
+  "bgImage": "",
+  "lastImage": "string_of_base64",
+  "nextImage": "string_of_base64",
+  "noBase64": false,
+}
+`;
+
+exports[`switchImageSettings() should return settings from fixed with set bgImage 2`] = `
+Object {
+  "afterOpacity": 1,
+  "bgImage": "",
+  "lastImage": "string_of_base64",
+  "nextImage": "string_of_base64",
+  "noBase64": false,
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid with empty bgImage 1`] = `
+Object {
+  "afterOpacity": 0,
+  "bgImage": "string_of_base64",
+  "lastImage": "",
+  "nextImage": "",
+  "noBase64": false,
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid with set bgImage and base64 1`] = `
+Object {
+  "afterOpacity": 1,
+  "bgImage": "",
+  "lastImage": "string_of_base64",
+  "nextImage": "test_fluid_image.jpg",
+  "noBase64": true,
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid with set bgImage and tracedSVG 1`] = `
+Object {
+  "afterOpacity": 1,
+  "bgImage": "",
+  "lastImage": "test_tracedSVG.svg",
+  "nextImage": "\\"test_tracedSVG.svg\\"",
+  "noBase64": true,
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid with set bgImage without base64 1`] = `
+Object {
+  "afterOpacity": 0,
+  "bgImage": "",
+  "lastImage": "string_of_base64",
+  "nextImage": "",
+  "noBase64": true,
+}
 `;
