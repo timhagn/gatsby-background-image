@@ -65,8 +65,8 @@ export const createPseudoStyles = ({
             ${!afterOpacity && lastImage !== `` 
                 ? `background-image: url(${lastImage});` 
                 : ``}
-            ${afterOpacity && (bgImage || nextImage) 
-                ? `background-image: url(${bgImage || nextImage});` 
+            ${afterOpacity && (nextImage || bgImage) 
+                ? `background-image: url(${nextImage || bgImage});` 
                 : ``}
             ${backgroundRepeat}
             ${bgColor && `background-color: ${bgColor};`}

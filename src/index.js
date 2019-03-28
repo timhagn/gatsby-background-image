@@ -26,7 +26,6 @@ class BackgroundImage extends React.Component {
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
-    // TODO: useState in imageCache or suchlike!
     const seenBefore = inImageCache(props)
 
     // browser with Intersection Observer available
@@ -82,8 +81,6 @@ class BackgroundImage extends React.Component {
         this.props,
         this.handleImageLoaded
     )
-     //createImageToLoad(this.props)
-    // console.log(createPictureRef(this.props))
   }
 
   componentDidMount() {
@@ -126,7 +123,6 @@ class BackgroundImage extends React.Component {
 
       this.setState({ imgLoaded: true })
       if (this.state.seenBefore) {
-        // console.log(`seen`)
         this.setState({ fadeIn: false })
       }
 
