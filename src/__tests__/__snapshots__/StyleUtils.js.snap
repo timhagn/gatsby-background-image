@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createPseudoStyles() should create different styles for different bgImage & nextImage 1`] = `
+exports[`createPseudoStyles() should create different styles for empty bgImage & nextImage 1`] = `
 "
           .gatsby-background-image-gbi:before,
           .gatsby-background-image-gbi:after {
@@ -17,30 +17,277 @@ exports[`createPseudoStyles() should create different styles for different bgIma
 -o-background-size: cover;
 -ms-background-size: cover;
 background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+-ms-transition: none;
+transition: none;
 
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             
-            background-image: url(test.webp);
+            
             repeat-y
             background-color: #000;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
             background-color: #000;
-            background-image: url(undefined);
+            
+            
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty bgImage & nextImage with opacity 0 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+-ms-transition: none;
+transition: none;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            
+            
+            repeat-y
+            background-color: #000;
+            opacity: 0; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
+            
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty bgImage 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+-ms-transition: none;
+transition: none;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            background-image: url(some_base64_string);
+            
+            repeat-y
+            background-color: #000;
+            opacity: 0; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
+            
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty bgImage with opacity 0 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+-ms-transition: none;
+transition: none;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            background-image: url(some_base64_string);
+            
+            repeat-y
+            background-color: #000;
+            opacity: 0; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
+            
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty lastImage with opacity 0 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+-ms-transition: none;
+transition: none;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            
+            
+            repeat-y
+            background-color: #000;
+            opacity: 0; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
+            
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty nextImage 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+-ms-transition: none;
+transition: none;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            background-image: url(some_base64_string);
+            
+            repeat-y
+            background-color: #000;
+            opacity: 0; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
+            background-image: url(test.webp);
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty nextImage with opacity 0 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+-ms-transition: none;
+transition: none;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            background-image: url(some_base64_string);
+            
+            repeat-y
+            background-color: #000;
+            opacity: 0; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
             
             repeat-y
           }
@@ -87,8 +334,97 @@ transition: opacity 0.5s;
           .gatsby-background-image-gbi:after {
             z-index: -101;
             background-color: #000;
-            background-image: url(undefined);
+            background-image: url(some_base64_string);
             
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create styles from given pseudoStyles Object with opacity 0 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            background-image: url(some_base64_string);
+            
+            repeat-y
+            background-color: #000;
+            opacity: 0; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
+            background-image: url(test.webp);
+            repeat-y
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create styles from given pseudoStyles Object without fadeIn 1`] = `
+"
+          .gatsby-background-image-gbi:before,
+          .gatsby-background-image-gbi:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-position: center;
+            -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-size: cover;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+-ms-transition: none;
+transition: none;
+
+          }
+          .gatsby-background-image-gbi:before {
+            z-index: -100;
+            background-image: url(some_base64_string);
+            
+            repeat-y
+            background-color: #000;
+            opacity: 0; 
+          }
+          .gatsby-background-image-gbi:after {
+            z-index: -101;
+            background-color: #000;
+            
+            background-image: url(test.webp);
             repeat-y
           }
         "
