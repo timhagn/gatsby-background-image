@@ -184,21 +184,21 @@ class BackgroundImage extends React.Component {
         bgImage: this.bgImage,
         imageRef: this.imageRef,
         isVisible: this.state.isVisible,
-        fadeIn: this.state.fadeIn,
       })
-      this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : ``
+      this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : newImageSettings.lastImage
 
-      const pseudoStyles = {
+      const pseudoStyles = createPseudoStyles({
         classId,
         backgroundSize,
         backgroundPosition,
         backgroundRepeat,
         transitionDelay,
         bgColor,
+        fadeIn: this.state.fadeIn,
         ...newImageSettings,
-      }
+      })
 
-       //console.log(createPseudoStyles(pseudoStyles))
+      console.log(pseudoStyles)
       // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
@@ -215,7 +215,7 @@ class BackgroundImage extends React.Component {
               key={`fluid-${JSON.stringify(image.srcSet)}`}
           >
             <style dangerouslySetInnerHTML={{
-              __html: createPseudoStyles(pseudoStyles)
+              __html: pseudoStyles
             }}>
             </style>
             {/* Show the original image during server-side rendering if JavaScript is disabled */}
@@ -252,15 +252,16 @@ class BackgroundImage extends React.Component {
       })
       this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : ``
 
-      const pseudoStyles = {
+      const pseudoStyles = createPseudoStyles({
         classId,
         backgroundSize,
         backgroundPosition,
         backgroundRepeat,
         transitionDelay,
         bgColor,
+        fadeIn: this.state.fadeIn,
         ...newImageSettings,
-      }
+      })
 
       return (
           <Tag
@@ -273,7 +274,7 @@ class BackgroundImage extends React.Component {
               key={`fixed-${JSON.stringify(image.srcSet)}`}
           >
             <style dangerouslySetInnerHTML={{
-              __html: createPseudoStyles(pseudoStyles)
+              __html: pseudoStyles
             }}>
             </style>
             {/* Show the original image during server-side rendering if JavaScript is disabled */}
