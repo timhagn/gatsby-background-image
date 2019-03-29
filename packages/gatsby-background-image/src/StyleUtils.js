@@ -9,15 +9,17 @@ export const fixOpacity = props => {
 
   try {
     if (styledProps.style && styledProps.style.opacity) {
-      if (isNaN(styledProps.style.opacity) || styledProps.style.opacity > .99) {
-        styledProps.style.opacity = .99
+      if (
+        isNaN(styledProps.style.opacity) ||
+        styledProps.style.opacity > 0.99
+      ) {
+        styledProps.style.opacity = 0.99
       }
     }
   } catch (e) {}
 
   return styledProps
 }
-
 
 /**
  * Creates styles for the changing pseudo-elements' backgrounds.
@@ -35,18 +37,18 @@ export const fixOpacity = props => {
  * @return {string}
  */
 export const createPseudoStyles = ({
-                              classId,
-                              backgroundSize,
-                              backgroundPosition,
-                              backgroundRepeat,
-                              transitionDelay,
-                              bgImage,
-                              lastImage,
-                              nextImage,
-                              afterOpacity,
-                              bgColor,
-                              fadeIn,
-                            }) => {
+  classId,
+  backgroundSize,
+  backgroundPosition,
+  backgroundRepeat,
+  transitionDelay,
+  bgImage,
+  lastImage,
+  nextImage,
+  afterOpacity,
+  bgColor,
+  fadeIn,
+}) => {
   return `
           .gatsby-background-image-${classId}:before,
           .gatsby-background-image-${classId}:after {
@@ -58,16 +60,24 @@ export const createPseudoStyles = ({
             top: 0;
             left: 0;
             background-position: ${backgroundPosition};
-            ${vendorPrefixBackgroundStyles(backgroundSize, transitionDelay, fadeIn)}
+            ${vendorPrefixBackgroundStyles(
+              backgroundSize,
+              transitionDelay,
+              fadeIn
+            )}
           }
           .gatsby-background-image-${classId}:before {
             z-index: -100;
-            ${!afterOpacity && lastImage !== `` 
-                ? `background-image: url(${lastImage});` 
-                : ``}
-            ${afterOpacity && (nextImage || bgImage) 
-                ? `background-image: url(${nextImage || bgImage});` 
-                : ``}
+            ${
+              !afterOpacity && lastImage !== ``
+                ? `background-image: url(${lastImage});`
+                : ``
+            }
+            ${
+              afterOpacity && (nextImage || bgImage)
+                ? `background-image: url(${nextImage || bgImage});`
+                : ``
+            }
             ${backgroundRepeat}
             ${bgColor && `background-color: ${bgColor};`}
             opacity: ${afterOpacity}; 
@@ -75,12 +85,16 @@ export const createPseudoStyles = ({
           .gatsby-background-image-${classId}:after {
             z-index: -101;
             ${bgColor && `background-color: ${bgColor};`}
-            ${afterOpacity && lastImage !== `` 
-                ? `background-image: url(${lastImage});` 
-                : ``}
-            ${!afterOpacity && (bgImage || nextImage) 
+            ${
+              afterOpacity && lastImage !== ``
+                ? `background-image: url(${lastImage});`
+                : ``
+            }
+            ${
+              !afterOpacity && (bgImage || nextImage)
                 ? `background-image: url(${bgImage || nextImage});`
-                : ``}
+                : ``
+            }
             ${backgroundRepeat}
           }
         `
@@ -94,27 +108,27 @@ export const createPseudoStyles = ({
  * @param fadeIn
  * @return {string}
  */
-export const vendorPrefixBackgroundStyles = (backgroundSize = `cover`,
-                                             transitionDelay = `0.25s`,
-                                             fadeIn = true) => {
-  const vendorPrefixes = [
-    '-webkit-',
-    '-moz-',
-    '-o-',
-    '-ms-',
-    ''
-  ]
-  let prefixed = vendorPrefixes.join(`background-size: ${backgroundSize};\n`)
-         .concat(`background-size: ${backgroundSize};\n`)
+export const vendorPrefixBackgroundStyles = (
+  backgroundSize = `cover`,
+  transitionDelay = `0.25s`,
+  fadeIn = true
+) => {
+  const vendorPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-', '']
+  let prefixed = vendorPrefixes
+    .join(`background-size: ${backgroundSize};\n`)
+    .concat(`background-size: ${backgroundSize};\n`)
   if (fadeIn) {
-    prefixed += vendorPrefixes.join(`transition-delay: ${transitionDelay};\n`)
+    prefixed +=
+      vendorPrefixes
+        .join(`transition-delay: ${transitionDelay};\n`)
         .concat(`transition-delay: ${transitionDelay};\n`) +
-    vendorPrefixes.join(`transition: opacity 0.5s;\n`)
+      vendorPrefixes
+        .join(`transition: opacity 0.5s;\n`)
         .concat(`transition: opacity 0.5s;\n`)
-  }
-  else {
-    prefixed += vendorPrefixes.join(`transition: none;\n`)
-        .concat(`transition: none;\n`)
+  } else {
+    prefixed += vendorPrefixes
+      .join(`transition: none;\n`)
+      .concat(`transition: none;\n`)
   }
   return prefixed
 }

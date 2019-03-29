@@ -17,19 +17,15 @@ export const callbackIO = entries => {
 
 export const getIO = () => {
   if (
-      typeof io === `undefined` &&
-      typeof window !== `undefined` &&
-      window.IntersectionObserver
+    typeof io === `undefined` &&
+    typeof window !== `undefined` &&
+    window.IntersectionObserver
   ) {
-    io = new window.IntersectionObserver(
-        callbackIO,
-        { rootMargin: `200px` }
-    )
+    io = new window.IntersectionObserver(callbackIO, { rootMargin: `200px` })
   }
 
   return io
 }
-
 
 export const listenToIntersections = (el, cb) => {
   getIO().observe(el)
