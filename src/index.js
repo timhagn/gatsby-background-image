@@ -13,7 +13,7 @@ import { createPseudoStyles, fixOpacity } from './StyleUtils'
 import { listenToIntersections } from './IntersectionObserverUtils'
 
 class BackgroundImage extends React.Component {
-  _isMounted = false;
+  _isMounted = false
 
   constructor(props) {
     super(props)
@@ -77,14 +77,11 @@ class BackgroundImage extends React.Component {
     this.handleRef = this.handleRef.bind(this)
 
     // "Fake" a reference to an Image loaded via picture element in background.
-    this.imageRef = createPictureRef(
-        this.props,
-        this.handleImageLoaded
-    )
+    this.imageRef = createPictureRef(this.props, this.handleImageLoaded)
   }
 
   componentDidMount() {
-    this._isMounted = true;
+    this._isMounted = true
 
     if (this.state.isVisible && typeof this.props.onStartLoad === `function`) {
       this.props.onStartLoad({ wasCached: inImageCache(this.props) })
@@ -98,7 +95,7 @@ class BackgroundImage extends React.Component {
   }
 
   componentWillUnmount() {
-    this._isMounted = false;
+    this._isMounted = false
   }
 
   handleRef(ref) {
@@ -142,32 +139,37 @@ class BackgroundImage extends React.Component {
       fixed,
       backgroundColor,
       Tag,
-      classId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
-      children
+      classId = Math.random()
+        .toString(36)
+        .replace(/[^a-z]+/g, '')
+        .substr(0, 7),
+      children,
     } = fixOpacity(convertProps(this.props))
 
     const bgColor =
       typeof backgroundColor === `boolean`
-          ? `lightgray`
-          : typeof backgroundColor !== `undefined`
-              ? backgroundColor
-              : ``
+        ? `lightgray`
+        : typeof backgroundColor !== `undefined`
+        ? backgroundColor
+        : ``
 
-    const backgroundPosition =
-      this.backgroundStyles.hasOwnProperty(`backgroundPosition`) ?
-        this.backgroundStyles.backgroundPosition :
-        `center`
+    const backgroundPosition = this.backgroundStyles.hasOwnProperty(
+      `backgroundPosition`
+    )
+      ? this.backgroundStyles.backgroundPosition
+      : `center`
 
-    const backgroundSize =
-        this.backgroundStyles.hasOwnProperty(`backgroundSize`) ?
-            this.backgroundStyles.backgroundSize :
-            `cover`
+    const backgroundSize = this.backgroundStyles.hasOwnProperty(
+      `backgroundSize`
+    )
+      ? this.backgroundStyles.backgroundSize
+      : `cover`
 
     const backgroundRepeat = `background-repeat: ${
-        this.backgroundStyles.hasOwnProperty(`backgroundRepeat`) ?
-            this.backgroundStyles.backgroundRepeat :
-            `no-repeat`
-        };`
+      this.backgroundStyles.hasOwnProperty(`backgroundRepeat`)
+        ? this.backgroundStyles.backgroundRepeat
+        : `no-repeat`
+    };`
 
     const transitionDelay = this.state.imgLoaded ? `0.5s` : `0.25s`
 
@@ -181,7 +183,9 @@ class BackgroundImage extends React.Component {
         imageRef: this.imageRef,
         isVisible: this.state.isVisible,
       })
-      this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : newImageSettings.lastImage
+      this.bgImage = newImageSettings.bgImage
+        ? newImageSettings.bgImage
+        : newImageSettings.lastImage
 
       const pseudoStyles = createPseudoStyles({
         classId,
@@ -198,32 +202,35 @@ class BackgroundImage extends React.Component {
       // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
-          <Tag
-              className={`${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`}
-              style={{
-                position: `relative`,
-                overflow: `hidden`,
-                opacity: .99,
-                ...style,
-                ...this.backgroundStyles,
+        <Tag
+          className={`${
+            className ? className : ``
+          } gatsby-background-image-${classId} gatsby-image-wrapper`}
+          style={{
+            position: `relative`,
+            overflow: `hidden`,
+            opacity: 0.99,
+            ...style,
+            ...this.backgroundStyles,
+          }}
+          ref={this.handleRef}
+          key={`fluid-${JSON.stringify(image.srcSet)}`}
+        >
+          <style
+            dangerouslySetInnerHTML={{
+              __html: pseudoStyles,
+            }}
+          />
+          {/* Show the original image during server-side rendering if JavaScript is disabled */}
+          {this.state.hasNoScript && (
+            <noscript
+              dangerouslySetInnerHTML={{
+                __html: noscriptImg({ alt, title, ...image }),
               }}
-              ref={this.handleRef}
-              key={`fluid-${JSON.stringify(image.srcSet)}`}
-          >
-            <style dangerouslySetInnerHTML={{
-              __html: pseudoStyles
-            }}>
-            </style>
-            {/* Show the original image during server-side rendering if JavaScript is disabled */}
-            {this.state.hasNoScript && (
-                <noscript
-                    dangerouslySetInnerHTML={{
-                      __html: noscriptImg({ alt, title, ...image }),
-                    }}
-                />
-            )}
-            {children}
-          </Tag>
+            />
+          )}
+          {children}
+        </Tag>
       )
     }
 
@@ -235,7 +242,7 @@ class BackgroundImage extends React.Component {
         display: `inline-block`,
         width: image.width,
         height: image.height,
-        opacity: .99,
+        opacity: 0.99,
         ...style,
       }
 
@@ -246,7 +253,9 @@ class BackgroundImage extends React.Component {
         imageRef: this.imageRef,
         isVisible: this.state.isVisible,
       })
-      this.bgImage = newImageSettings.bgImage ? newImageSettings.bgImage : newImageSettings.lastImage
+      this.bgImage = newImageSettings.bgImage
+        ? newImageSettings.bgImage
+        : newImageSettings.lastImage
 
       const pseudoStyles = createPseudoStyles({
         classId,
@@ -260,35 +269,38 @@ class BackgroundImage extends React.Component {
       })
 
       return (
-          <Tag
-              className={`${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`}
-              style={{
-                ...divStyle,
-                ...this.backgroundStyles,
+        <Tag
+          className={`${
+            className ? className : ``
+          } gatsby-background-image-${classId} gatsby-image-wrapper`}
+          style={{
+            ...divStyle,
+            ...this.backgroundStyles,
+          }}
+          ref={this.handleRef}
+          key={`fixed-${JSON.stringify(image.srcSet)}`}
+        >
+          <style
+            dangerouslySetInnerHTML={{
+              __html: pseudoStyles,
+            }}
+          />
+          {/* Show the original image during server-side rendering if JavaScript is disabled */}
+          {this.state.hasNoScript && (
+            <noscript
+              dangerouslySetInnerHTML={{
+                __html: noscriptImg({
+                  alt,
+                  title,
+                  width: image.width,
+                  height: image.height,
+                  ...image,
+                }),
               }}
-              ref={this.handleRef}
-              key={`fixed-${JSON.stringify(image.srcSet)}`}
-          >
-            <style dangerouslySetInnerHTML={{
-              __html: pseudoStyles
-            }}>
-            </style>
-            {/* Show the original image during server-side rendering if JavaScript is disabled */}
-            {this.state.hasNoScript && (
-                <noscript
-                    dangerouslySetInnerHTML={{
-                      __html: noscriptImg({
-                        alt,
-                        title,
-                        width: image.width,
-                        height: image.height,
-                        ...image,
-                      }),
-                    }}
-                />
-            )}
-            {children}
-          </Tag>
+            />
+          )}
+          {children}
+        </Tag>
       )
     }
     return null

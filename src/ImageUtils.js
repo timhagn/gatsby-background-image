@@ -1,6 +1,5 @@
 import { convertProps } from './HelperUtils'
 
-
 const imageCache = {}
 /**
  * Cache if we've seen an image before so we don't both with
@@ -13,14 +12,13 @@ export const inImageCache = props => {
   const convertedProps = convertProps(props)
   // Find src
   const src = convertedProps.fluid
-      ? convertedProps.fluid.src
-      : convertedProps.fixed
-          ? convertedProps.fixed.src
-          : null
+    ? convertedProps.fluid.src
+    : convertedProps.fixed
+    ? convertedProps.fixed.src
+    : null
 
   return imageCache[src] || false
 }
-
 
 /**
  * Adds an Image to imageCache.
@@ -30,15 +28,14 @@ export const activateCacheForImage = props => {
   const convertedProps = convertProps(props)
   // Find src
   const src = convertedProps.fluid
-      ? convertedProps.fluid.src
-      : convertedProps.fixed
-          ? convertedProps.fixed.src
-          : null
+    ? convertedProps.fluid.src
+    : convertedProps.fixed
+    ? convertedProps.fixed.src
+    : null
   if (src) {
     imageCache[src] = true
   }
 }
-
 
 /**
  * Creates a picture element for the browser to decide which image to load.
@@ -49,12 +46,12 @@ export const activateCacheForImage = props => {
  */
 export const createPictureRef = (props, onLoad = () => {}) => {
   const convertedProps = convertProps(props)
-  if (typeof window !== `undefined` &&
-      (typeof convertedProps.fluid !== `undefined` ||
-       typeof convertedProps.fixed !== `undefined`)) {
-    const imageData = props.fluid
-        ? props.fluid
-        : props.fixed
+  if (
+    typeof window !== `undefined` &&
+    (typeof convertedProps.fluid !== `undefined` ||
+      typeof convertedProps.fixed !== `undefined`)
+  ) {
+    const imageData = props.fluid ? props.fluid : props.fixed
 
     const img = new Image()
     const pic = document.createElement('picture')
@@ -82,7 +79,6 @@ export const createPictureRef = (props, onLoad = () => {}) => {
   return null
 }
 
-
 /**
  * Create basic image for a noscript event.
  *
@@ -95,8 +91,8 @@ export const noscriptImg = props => {
   const src = props.src ? `src="${props.src}" ` : `src="" ` // required attribute
   const sizes = props.sizes ? `sizes="${props.sizes}" ` : ``
   const srcSetWebp = props.srcSetWebp
-      ? `<source type='image/webp' srcset="${props.srcSetWebp}" ${sizes}/>`
-      : ``
+    ? `<source type='image/webp' srcset="${props.srcSetWebp}" ${sizes}/>`
+    : ``
   const srcSet = props.srcSet ? `srcset="${props.srcSet}" ` : ``
   const title = props.title ? `title="${props.title}" ` : ``
   const alt = props.alt ? `alt="${props.alt}" ` : `alt="" ` // required attribute
@@ -117,26 +113,24 @@ export const noscriptImg = props => {
  * @param fadeIn
  * @return {{noBase64: boolean, afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
  */
-export const switchImageSettings = ({ image,
-                                      bgImage,
-                                      imageRef,
-                                      isVisible }) => {
+export const switchImageSettings = ({
+  image,
+  bgImage,
+  imageRef,
+  isVisible,
+}) => {
   const noBase64 = !image.base64
   // Set the backgroundImage according to images available.
   let nextImage = ``
-  if (image.tracedSVG) nextImage = `"${ image.tracedSVG }"`
+  if (image.tracedSVG) nextImage = `"${image.tracedSVG}"`
   if (image.base64 && !image.tracedSVG) nextImage = image.base64
-  if (isVisible) nextImage =
-      (imageRef && imageRef.currentSrc) || image.src
+  if (isVisible) nextImage = (imageRef && imageRef.currentSrc) || image.src
 
   // Switch bgImage & nextImage and opacity accordingly.
   const lastImage = bgImage
   bgImage = bgImage === `` ? nextImage : ``
   nextImage = nextImage === bgImage ? `` : nextImage
-  const afterOpacity =
-      nextImage !== `` ||
-      (noBase64 && isVisible)
-          ? 1 : 0
+  const afterOpacity = nextImage !== `` || (noBase64 && isVisible) ? 1 : 0
 
   return {
     bgImage,
