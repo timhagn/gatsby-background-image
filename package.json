@@ -29,6 +29,10 @@
     "react-dom": "^16.8.6",
     "react-testing-library": "^6.0.3"
   },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
+  },
   "homepage": "https://github.com/timhagn/gatsby-background-image#readme",
   "keywords": [
     "gatsby",
