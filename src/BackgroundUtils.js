@@ -20,21 +20,21 @@ export const getStyle = className => {
       continue
     for (let x = 0; x < classes.length; x++) {
       if (classes[x].selectorText === className) {
-        const ret = classes[x].cssText
+        const resultingStyleText = classes[x].cssText
             ? classes[x].cssText
             : classes[x].style.cssText
-        return ret.indexOf(classes[x].selectorText) === -1
-            ? `${classes[x].selectorText}{${ret}}`
-            : ret
+        return resultingStyleText.indexOf(classes[x].selectorText) === -1
+            ? `${classes[x].selectorText}{${resultingStyleText}}`
+            : resultingStyleText
       }
     }
   }
 }
 
 /**
- * Gets rules from a css Text.
+ * Creates a temporary style element to read rules from.
  *
- * @param styleContent
+ * @param styleContent  string    CSS-Styles to apply
  * @return {*}
  */
 export const rulesForCssText = styleContent => {
@@ -43,7 +43,7 @@ export const rulesForCssText = styleContent => {
           styleElement = document.createElement('style')
 
     styleElement.textContent = styleContent
-    // the style will only be parsed once it is added to a document
+    // The style element will only be parsed once it is added to a document.
     doc.body.appendChild(styleElement)
 
     return styleElement.sheet.cssRules
@@ -53,7 +53,8 @@ export const rulesForCssText = styleContent => {
 
 /**
  * Changes CSS background(-*) strings to js rules.
- * @param str
+ *
+ * @param str   string    Rule to transform
  * @return {string}
  */
 export const toCamelCase = str =>
@@ -69,7 +70,9 @@ export const toCamelCase = str =>
 
 /**
  * Fixes non-enumerable style rules in Firefox.
- * @param cssStyleRules
+ *
+ * @param cssStyleRules CSSStyleRules   DOM-StyleRules-Object
+ * @return {*}
  */
 export const getStyleRules = cssStyleRules => {
   let styles = {};
@@ -93,7 +96,8 @@ export const getStyleRules = cssStyleRules => {
 
 /**
  * Filters out Background Rules for a given class Name.
- * @param className
+ *
+ * @param className   string    The class to filter rules from
  * @return {{}}
  */
 export const getBackgroundStylesForSingleClass = className => {
@@ -104,9 +108,9 @@ export const getBackgroundStylesForSingleClass = className => {
       typeof cssStyleRules[0].style !== 'undefined') {
     // Filter out background(-*) rules that contain a definition.
     return Object.keys(getStyleRules(cssStyleRules))
-        .filter(k => k.indexOf('background') === 0 && cssStyleRules[0].style[k] !== '')
-        .reduce((newData, k) => {
-          newData[k] = cssStyleRules[0].style[k]
+        .filter(key => key.indexOf('background') === 0 && cssStyleRules[0].style[key] !== '')
+        .reduce((newData, key) => {
+          newData[key] = cssStyleRules[0].style[key]
           return newData
         }, {})
   }
