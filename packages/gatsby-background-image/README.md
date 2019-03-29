@@ -191,10 +191,10 @@ props from `gatsby-image` are of course not available (at the moment).
 | `placeholderClassName` | `string`            | A class that is passed to the placeholder img element         |
 
 
-## Troubleshooting
+## Contributing
 
-
-
+Have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
+Thanks in advance!
 
 ## TODO
 * add Media-Query support
