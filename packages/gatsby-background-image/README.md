@@ -20,7 +20,8 @@
 </p>
 
 `gatsby-background-image` is a React component which for background-images
-provides, what Gatsby's own `gatsby-image` does for the rest of your images.
+provides,  
+what Gatsby's own `gatsby-image` does for the rest of your images.  
 It started by pilfering their excellent work and adapting it - but slowly it's
 outgrowing those wee beginnings.  
 
