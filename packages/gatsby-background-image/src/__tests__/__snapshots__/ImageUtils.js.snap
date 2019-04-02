@@ -4,6 +4,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
   >
     <style>
@@ -66,6 +67,7 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
@@ -128,7 +130,8 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
 <div>
   <div
     class=" gatsby-background-image-fwatluf gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inherit; width: 100px; height: 100px; opacity: 0.99;"
+    id=""
+    style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99;"
   >
     <style>
       
@@ -288,6 +291,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99;"
   >
     <style>
@@ -350,6 +354,7 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
@@ -414,6 +419,7 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
     class="fixedImage test gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
@@ -476,6 +482,7 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>
@@ -538,6 +545,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
     class=" gatsby-background-image-fwatluf gatsby-image-wrapper"
+    id=""
     style="position: relative; overflow: hidden; opacity: 0.99;"
   >
     <style>
@@ -600,6 +608,7 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
 <div>
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
     <style>

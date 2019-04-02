@@ -73,6 +73,7 @@ const setup = (fluid = false,
       style={{ display: `inline`, opacity: .99 }}
       title={`Title for the image`}
       alt={`Alt text for the image`}
+      id={`testid`}
       {...fluid && { fluid: fluidShapeMock }}
       {...(!fluid && fixed) && { fixed: fixedShapeMock }}
       onLoad={onLoad}
