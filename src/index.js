@@ -120,6 +120,7 @@ class BackgroundImage extends React.Component {
 
       this.setState({ imgLoaded: true })
       if (this.state.seenBefore) {
+        // console.log(`seen`)
         this.setState({ fadeIn: false })
       }
 
@@ -132,6 +133,7 @@ class BackgroundImage extends React.Component {
   render() {
     const {
       title,
+      id,
       alt,
       className,
       style = {},
@@ -202,35 +204,34 @@ class BackgroundImage extends React.Component {
       // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
-        <Tag
-          className={`${
-            className ? className : ``
-          } gatsby-background-image-${classId} gatsby-image-wrapper`}
-          style={{
-            position: `relative`,
-            overflow: `hidden`,
-            opacity: 0.99,
-            ...style,
-            ...this.backgroundStyles,
-          }}
-          ref={this.handleRef}
-          key={`fluid-${JSON.stringify(image.srcSet)}`}
-        >
-          <style
-            dangerouslySetInnerHTML={{
-              __html: pseudoStyles,
-            }}
-          />
-          {/* Show the original image during server-side rendering if JavaScript is disabled */}
-          {this.state.hasNoScript && (
-            <noscript
+          <Tag
+              className={`${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`}
+              style={{
+                position: `relative`,
+                overflow: `hidden`,
+                opacity: .99,
+                ...style,
+                ...this.backgroundStyles,
+              }}
+              id={id}
+              ref={this.handleRef}
+              key={`fluid-${JSON.stringify(image.srcSet)}`}
+          >
+            <style
               dangerouslySetInnerHTML={{
-                __html: noscriptImg({ alt, title, ...image }),
+                __html: pseudoStyles,
               }}
             />
-          )}
-          {children}
-        </Tag>
+            {/* Show the original image during server-side rendering if JavaScript is disabled */}
+            {this.state.hasNoScript && (
+                <noscript
+                    dangerouslySetInnerHTML={{
+                      __html: noscriptImg({ alt, title, ...image }),
+                    }}
+                />
+            )}
+            {children}
+          </Tag>
       )
     }
 
@@ -242,8 +243,12 @@ class BackgroundImage extends React.Component {
         display: `inline-block`,
         width: image.width,
         height: image.height,
-        opacity: 0.99,
+        opacity: .99,
         ...style,
+      }
+
+      if (style.display === `inherit`) {
+        delete divStyle.display
       }
 
       // Set the backgroundImage according to images available.
@@ -272,11 +277,12 @@ class BackgroundImage extends React.Component {
         <Tag
           className={`${
             className ? className : ``
-          } gatsby-background-image-${classId} gatsby-image-wrapper`}
+            } gatsby-background-image-${classId} gatsby-image-wrapper`}
           style={{
             ...divStyle,
             ...this.backgroundStyles,
           }}
+          id={id}
           ref={this.handleRef}
           key={`fixed-${JSON.stringify(image.srcSet)}`}
         >
@@ -311,6 +317,7 @@ BackgroundImage.defaultProps = {
   critical: false,
   fadeIn: true,
   alt: ``,
+  id: ``,
   Tag: `div`,
 }
 
@@ -343,6 +350,7 @@ BackgroundImage.propTypes = {
   fluid: fluidObject,
   fadeIn: PropTypes.bool,
   title: PropTypes.string,
+  id: PropTypes.string,
   alt: PropTypes.string,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
   critical: PropTypes.bool,
