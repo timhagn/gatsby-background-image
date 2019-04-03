@@ -36,20 +36,45 @@ Haven't found one? Open a new issue and follow the template guidelines there!
 
 ### Pull Requests
 
+Fork [gatsby-background-image](https://github.com/timhagn/gatsby-background-image), 
+clone your fork of it and execute either `yarn` or `npm install` in it's folder 
+to get yourself up and running for development.
+
+To ease debugging, I'd recommend cloning [gbitest](https://github.com/timhagn/gbitest),
+or use your own project. But be sure to run `yarn link` or `npm link` in
+`gatsby-background-image`'s folder so you are then able to change back to your 
+project's or `gbitest`'s folder and execute `yarn link gatsby-background-image` 
+or `npm link gatsby-background-image` accordingly.
+
+As Gatsby compiles your project with each change thanks to hot reloading,
+you rather might want to change the line `import BackgroundImage from 'gatsby-background-image'`
+to `import BackgroundImage from 'gatsby-background-image/src'` in your component,
+to prevent a "double-babelification" and this way some warnings when using
+`gatsby-background-image`'s `yarn watch` or `npm run watch` scripts in the background.
+
+But now you are good to go and make some changes!
+
+To finalize your changes, first run `yarn format` or `npm run format`, to use 
+prettier to bring your code in line with our "coding standards", head over to 
+GitHub and create a Pull Request : )! 
+
 ### Testing
 
+Of course this package will never be able to have enough coverage ; )!  
+Especially functional tests are missing at the moment.
 
-TODO!
+All tests are run with `jest` / `jest-dom` and `react-testing-library`
+at the moment, transformed through `babel-jest`.
+  
+To get an overview of the tests already existing, run either `yarn test` or 
+`npm run test` and head over to the [test folder](src/__tests__) to see where
+you may help out with some changes : )!
 
-From `gbitest`:  
-Fork [`gatsby-background-image`](https://github.com/timhagn/gatsby-background-image), 
-clone your fork of it to it's own folder and execute either `yarn link` or `npm link` 
-in there.
+### Final thoughts
 
-Then change back to your `gbitest` folder and execute 
-`yarn link gatsby-background-image` or `npm link gatsby-background-image` accordingly.
+Thanks again for reading this and happy contributing!
 
-Now you only have to change the line `import BackgroundImage from 'gatsby-background-image'`
-to `import BackgroundImage from 'gatsby-background-image/src'` in 
-[src/components/index.js](src/components/index.js) and you are good to go!    
+Best,
+
+Tim.
 
