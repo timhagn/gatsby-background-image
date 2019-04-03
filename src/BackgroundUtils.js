@@ -52,7 +52,7 @@ export const rulesForCssText = styleContent => {
 }
 
 /**
- * Changes CSS background(-*) strings to js rules.
+ * Converts CSS kebab-case strings to camel-cased js style rules.
  *
  * @param str   string    Rule to transform
  * @return {string}
@@ -65,6 +65,19 @@ export const toCamelCase = str =>
       index === 0 ? letter.toLowerCase() : letter.toUpperCase()
     )
     .replace(/\s|\W+/g, '')
+
+/**
+ * Converts camel-cased js style rules to CSS kebab-case strings.
+ *
+ * @param str string    Rule to transform
+ * @return {boolean|string}
+ */
+export const toKebabCase = str =>
+  typeof str === 'string' &&
+  str.replace(/\s|\W+/g, '')
+    .replace(/[A-Z]/g, match =>
+      '-' + match.toLowerCase()
+    )
 
 /**
  * Fixes non-enumerable style rules in Firefox.
