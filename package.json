@@ -61,6 +61,6 @@
     "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "babel -w src --out-dir . --ignore **/__tests__",
     "test": "jest --env=jsdom",
-    "test:update": "npm run test --updateSnapshot --coverage"
+    "test:update": "jest --env=jsdom -u --coverage"
   }
 }
