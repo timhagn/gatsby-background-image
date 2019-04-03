@@ -21,7 +21,7 @@ export const convertProps = props => {
  * Converts CSS kebab-case strings to camel-cased js style rules.
  *
  * @param str   string    Rule to transform
- * @return {string}
+ * @return {boolean|string}
  */
 export const toCamelCase = str =>
   typeof str === 'string' &&
