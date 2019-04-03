@@ -28,6 +28,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -75,6 +76,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -122,6 +124,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -169,6 +172,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -216,6 +220,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -263,6 +268,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -310,6 +316,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -357,6 +364,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -404,6 +412,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
@@ -446,6 +455,7 @@ background-size: cover;
 -ms-transition: none;
 transition: none;
 
+            
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;

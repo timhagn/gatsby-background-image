@@ -35,6 +35,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -97,6 +98,10 @@ transition-delay: 0.25s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
+
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
 
           }
           .gatsby-background-image-test:before {
@@ -161,6 +166,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
@@ -218,6 +224,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -266,6 +273,10 @@ transition-delay: 0.25s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
+
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
 
           }
           .gatsby-background-image-test:before {
@@ -322,6 +333,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -384,6 +396,10 @@ transition-delay: 0.25s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
+
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
 
           }
           .gatsby-background-image-test:before {
@@ -450,6 +466,10 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -512,6 +532,10 @@ transition-delay: 0.25s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
+
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
 
           }
           .gatsby-background-image-test:before {
@@ -576,6 +600,7 @@ transition-delay: 0.25s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
 
+            
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
@@ -638,6 +663,10 @@ transition-delay: 0.25s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
+
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
 
           }
           .gatsby-background-image-test:before {
