@@ -17,11 +17,16 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
 -o-background-size: cover;
 -ms-background-size: cover;
 background-size: cover;
--webkit-transition: none;
--moz-transition: none;
--o-transition: none;
--ms-transition: none;
-transition: none;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-gbi:before {
@@ -30,12 +35,12 @@ transition: none;
             
             repeat-y
             background-color: #000;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
             background-color: #000;
-            
+            background-image: url(some_base64_string);
             
             repeat-y
           }
@@ -59,16 +64,21 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
 -o-background-size: cover;
 -ms-background-size: cover;
 background-size: cover;
--webkit-transition: none;
--moz-transition: none;
--o-transition: none;
--ms-transition: none;
-transition: none;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
-            
+            background-image: url(some_base64_string);
             
             repeat-y
             background-color: #000;
@@ -101,25 +111,30 @@ exports[`createPseudoStyles() should create different styles for empty bgImage 1
 -o-background-size: cover;
 -ms-background-size: cover;
 background-size: cover;
--webkit-transition: none;
--moz-transition: none;
--o-transition: none;
--ms-transition: none;
-transition: none;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(some_base64_string);
             
+            background-image: url(test.webp);
             repeat-y
             background-color: #000;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
             background-color: #000;
-            
+            background-image: url(some_base64_string);
             
             repeat-y
           }
@@ -143,11 +158,16 @@ exports[`createPseudoStyles() should create different styles for empty bgImage w
 -o-background-size: cover;
 -ms-background-size: cover;
 background-size: cover;
--webkit-transition: none;
--moz-transition: none;
--o-transition: none;
--ms-transition: none;
-transition: none;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-gbi:before {
@@ -162,7 +182,7 @@ transition: none;
             z-index: -101;
             background-color: #000;
             
-            
+            background-image: url(test.webp);
             repeat-y
           }
         "
@@ -185,11 +205,16 @@ exports[`createPseudoStyles() should create different styles for empty lastImage
 -o-background-size: cover;
 -ms-background-size: cover;
 background-size: cover;
--webkit-transition: none;
--moz-transition: none;
--o-transition: none;
--ms-transition: none;
-transition: none;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-gbi:before {
@@ -204,7 +229,7 @@ transition: none;
             z-index: -101;
             background-color: #000;
             
-            
+            background-image: url(test.webp);
             repeat-y
           }
         "
@@ -227,26 +252,31 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
 -o-background-size: cover;
 -ms-background-size: cover;
 background-size: cover;
--webkit-transition: none;
--moz-transition: none;
--o-transition: none;
--ms-transition: none;
-transition: none;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(some_base64_string);
             
+            background-image: url(test.webp);
             repeat-y
             background-color: #000;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
             background-color: #000;
+            background-image: url(some_base64_string);
             
-            background-image: url(test.webp);
             repeat-y
           }
         "
@@ -269,11 +299,16 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
 -o-background-size: cover;
 -ms-background-size: cover;
 background-size: cover;
--webkit-transition: none;
--moz-transition: none;
--o-transition: none;
--ms-transition: none;
-transition: none;
+-webkit-transition-delay: 0.25s;
+-moz-transition-delay: 0.25s;
+-o-transition-delay: 0.25s;
+-ms-transition-delay: 0.25s;
+transition-delay: 0.25s;
+-webkit-transition: opacity 0.5s;
+-moz-transition: opacity 0.5s;
+-o-transition: opacity 0.5s;
+-ms-transition: opacity 0.5s;
+transition: opacity 0.5s;
 
           }
           .gatsby-background-image-gbi:before {
@@ -288,7 +323,7 @@ transition: none;
             z-index: -101;
             background-color: #000;
             
-            
+            background-image: url(test.webp);
             repeat-y
           }
         "
@@ -414,17 +449,17 @@ transition: none;
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(some_base64_string);
             
+            background-image: url(test.webp);
             repeat-y
             background-color: #000;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
             background-color: #000;
+            background-image: url(some_base64_string);
             
-            background-image: url(test.webp);
             repeat-y
           }
         "
