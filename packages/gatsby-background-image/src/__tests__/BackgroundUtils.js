@@ -3,8 +3,6 @@ import getBackgroundStyles, {
   getStyle,
   getStyleRules,
   rulesForCssText,
-  toCamelCase,
-  toKebabCase,
 } from '../BackgroundUtils'
 
 
@@ -37,51 +35,6 @@ describe(`getBackgroundStyles()`, () => {
   it(`should parse empty background styles`, () => {
     const backgroundStyles = getBackgroundStyles(``)
     expect(backgroundStyles).toEqual({})
-  })
-})
-
-
-describe(`toCamelCase()`, () => {
-  it(`should convert various words to camelCase`, () => {
-    const testWords = [
-        `background`,
-        `background-image`,
-        `object-position`,
-        `GaRbL DIGOG`,
-        `GaRbL    DIGOG    GIG`,
-    ]
-    const expected = [
-        `background`,
-        `backgroundImage`,
-        `objectPosition`,
-        `garblDigog`,
-        `garblDigogGig`,
-    ]
-    testWords.forEach((wordToConvert, index) =>
-        expect(toCamelCase(wordToConvert)).toEqual(expected[index]))
-  })
-})
-
-describe(`toKebabCase()`, () => {
-  it(`should convert various words to camelCase`, () => {
-    const testWords = [
-      `background`,
-      `backgroundImage`,
-      `objectPosition`,
-      `WebkitTransitionDelay`,
-      `GaRbL DIGOG`,
-      `GaRbL    DIGOG    GIG`,
-    ]
-    const expected = [
-      `background`,
-      `background-image`,
-      `object-position`,
-      `-webkit-transition-delay`,
-      `-ga-rb-l-d-i-g-o-g`,
-      `-ga-rb-l-d-i-g-o-g-g-i-g`,
-    ]
-    testWords.forEach((wordToConvert, index) =>
-      expect(toKebabCase(wordToConvert)).toEqual(expected[index]))
   })
 })
 
