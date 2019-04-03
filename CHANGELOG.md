@@ -16,3 +16,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.2.5](https://github.com/timhagn/gatsby-background-image) (2019-03-13)
 
 **Breaking commit:** Add picture wrapper in image creation.
+
+## [0.2.8-beta](https://github.com/timhagn/gatsby-background-image) (2019-03-13)
+
+**Breaking commit:** Add some props, parse more backgroundStyles.
