@@ -93,7 +93,9 @@ transition: opacity 0.5s;
 
 
 describe(`createPseudoStyles()`, () => {
-  const pseudoStyles = {
+let pseudoStyles = {}
+beforeEach(() => {
+  pseudoStyles = {
     classId: `gbi`,
     backgroundSize: `cover`,
     backgroundPosition: `center`,
@@ -106,6 +108,7 @@ describe(`createPseudoStyles()`, () => {
     bgColor: `#000`,
     fadeIn: true,
   }
+})
   it(`should create styles from given pseudoStyles Object`, () => {
     const createdPseudoStyles = createPseudoStyles(pseudoStyles)
     expect(createdPseudoStyles).toMatchSnapshot()
