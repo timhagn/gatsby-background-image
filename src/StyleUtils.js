@@ -4,6 +4,8 @@
  * @param props
  * @return {Object}
  */
+import { toKebabCase } from './HelperUtils'
+
 export const fixOpacity = props => {
   let styledProps = { ...props }
 
@@ -48,6 +50,7 @@ export const createPseudoStyles = ({
   afterOpacity,
   bgColor,
   fadeIn,
+  backgroundStyles,
 }) => {
   return `
           .gatsby-background-image-${classId}:before,
@@ -65,6 +68,7 @@ export const createPseudoStyles = ({
               transitionDelay,
               fadeIn
             )}
+            ${kebabifyBackgroundStyles(backgroundStyles)}
           }
           .gatsby-background-image-${classId}:before {
             z-index: -100;
@@ -131,4 +135,30 @@ export const vendorPrefixBackgroundStyles = (
       .concat(`transition: none;\n`)
   }
   return prefixed
+}
+
+/**
+ * Converts a style object into CSS kebab-cased style rules.
+ *
+ * @param styles
+ * @return {*}
+ */
+export const kebabifyBackgroundStyles = styles => {
+  if (styles instanceof Object ||
+      styles instanceof String ||
+      typeof styles === 'string') {
+    if (styles instanceof String ||
+        typeof styles === 'string') {
+      return styles
+    }
+    else {
+      return Object.keys(styles).filter(
+        key =>
+          key.indexOf('background') === 0 && styles[key] !== ''
+      ).reduce((resultingStyles, key) => (
+        `${resultingStyles}${toKebabCase(key)}: ${styles[key]};\n`
+      ), ``)
+    }
+  }
+  return ``
 }
