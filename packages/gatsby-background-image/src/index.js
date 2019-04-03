@@ -204,34 +204,36 @@ class BackgroundImage extends React.Component {
       // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
-          <Tag
-              className={`${className ? className : ``} gatsby-background-image-${classId} gatsby-image-wrapper`}
-              style={{
-                position: `relative`,
-                overflow: `hidden`,
-                opacity: .99,
-                ...style,
-                ...this.backgroundStyles,
-              }}
-              id={id}
-              ref={this.handleRef}
-              key={`fluid-${JSON.stringify(image.srcSet)}`}
-          >
-            <style
+        <Tag
+          className={`${
+            className ? className : ``
+          } gatsby-background-image-${classId} gatsby-image-wrapper`}
+          style={{
+            position: `relative`,
+            overflow: `hidden`,
+            opacity: 0.99,
+            ...style,
+            ...this.backgroundStyles,
+          }}
+          id={id}
+          ref={this.handleRef}
+          key={`fluid-${JSON.stringify(image.srcSet)}`}
+        >
+          <style
+            dangerouslySetInnerHTML={{
+              __html: pseudoStyles,
+            }}
+          />
+          {/* Show the original image during server-side rendering if JavaScript is disabled */}
+          {this.state.hasNoScript && (
+            <noscript
               dangerouslySetInnerHTML={{
-                __html: pseudoStyles,
+                __html: noscriptImg({ alt, title, ...image }),
               }}
             />
-            {/* Show the original image during server-side rendering if JavaScript is disabled */}
-            {this.state.hasNoScript && (
-                <noscript
-                    dangerouslySetInnerHTML={{
-                      __html: noscriptImg({ alt, title, ...image }),
-                    }}
-                />
-            )}
-            {children}
-          </Tag>
+          )}
+          {children}
+        </Tag>
       )
     }
 
@@ -243,7 +245,7 @@ class BackgroundImage extends React.Component {
         display: `inline-block`,
         width: image.width,
         height: image.height,
-        opacity: .99,
+        opacity: 0.99,
         ...style,
       }
 
@@ -277,7 +279,7 @@ class BackgroundImage extends React.Component {
         <Tag
           className={`${
             className ? className : ``
-            } gatsby-background-image-${classId} gatsby-image-wrapper`}
+          } gatsby-background-image-${classId} gatsby-image-wrapper`}
           style={{
             ...divStyle,
             ...this.backgroundStyles,

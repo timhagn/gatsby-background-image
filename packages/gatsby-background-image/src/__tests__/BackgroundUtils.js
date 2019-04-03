@@ -3,7 +3,8 @@ import getBackgroundStyles, {
   getStyle,
   getStyleRules,
   rulesForCssText,
-  toCamelCase
+  toCamelCase,
+  toKebabCase,
 } from '../BackgroundUtils'
 
 
@@ -58,6 +59,29 @@ describe(`toCamelCase()`, () => {
     ]
     testWords.forEach((wordToConvert, index) =>
         expect(toCamelCase(wordToConvert)).toEqual(expected[index]))
+  })
+})
+
+describe(`toKebabCase()`, () => {
+  it(`should convert various words to camelCase`, () => {
+    const testWords = [
+      `background`,
+      `backgroundImage`,
+      `objectPosition`,
+      `WebkitTransitionDelay`,
+      `GaRbL DIGOG`,
+      `GaRbL    DIGOG    GIG`,
+    ]
+    const expected = [
+      `background`,
+      `background-image`,
+      `object-position`,
+      `-webkit-transition-delay`,
+      `-ga-rb-l-d-i-g-o-g`,
+      `-ga-rb-l-d-i-g-o-g-g-i-g`,
+    ]
+    testWords.forEach((wordToConvert, index) =>
+      expect(toKebabCase(wordToConvert)).toEqual(expected[index]))
   })
 })
 
