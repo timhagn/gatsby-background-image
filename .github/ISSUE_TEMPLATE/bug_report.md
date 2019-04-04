@@ -4,7 +4,7 @@ about: Some real functional problem occurred? Here's the place to tell!
 ---
 
 <!--
-  To make it easier for us to help you, please include as much useful information as possible.
+  To make it easier for me to help you, please include as much useful information as possible.
   Before opening a new issue, please search existing issues https://github.com/timhagn/gatsby-background-image/issues
 -->
 
@@ -35,5 +35,5 @@ about: Some real functional problem occurred? Here's the place to tell!
   Required. Run `gatsby info --clipboard` in your gatsby project directory and 
   paste its contents here. Should your CLI of choice not support copying directly 
   to clipboard, just copy & paste `gatsby info`'s output here - both ways
-  enclosing it with tripple backticks (```) would be great! 
+  enclosing it within a code block (tripple backticks / ```) would be great!
 -->
