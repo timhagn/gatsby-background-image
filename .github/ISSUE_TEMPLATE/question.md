@@ -17,7 +17,10 @@ about: Usage question or discussion about `gatsby-background-image`.
 ### Environment (if relevant)
 
 <!--
-  Required. Run `gatsby info --clipboard` in your gatsby project directory and paste its contents here.
+  Required. Run `gatsby info --clipboard` in your gatsby project directory and 
+  paste its contents here. Should your CLI of choice not support copying directly 
+  to clipboard, just copy & paste `gatsby info`'s output here - both ways
+  enclosing it with tripple backticks (```) would be great! 
 -->
 
 ### File contents (if changed)
