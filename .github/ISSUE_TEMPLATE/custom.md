@@ -1,6 +1,6 @@
 ---
-name: Issues not describable with the other templates
-about: Describe this issue's purpose here.
+name: Regular Issue
+about: Issues not describable with the other templates.
 ---
 
 <!--
