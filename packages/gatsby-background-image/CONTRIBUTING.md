@@ -14,7 +14,7 @@ I'd rather like it to stay that way, so without further ado:
 just try to be and write as your very best self - nobody's here to bite or be 
 bitten, right ; )?  
 
-This said or should you need more specic guidelines, 
+This said or should you need more specic guidelines,  
 this package-project wants to follow the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## How to start to contribute
