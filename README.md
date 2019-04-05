@@ -37,7 +37,7 @@ ___And it's even styleable with `styled-components` and the like!___
 
 ## Example Repo
 
-`gatsby-background-image` now has an example repository,  
+`gatsby-background-image` now has an example repository  
 to see it's similarities & differences to `gatsby-image` side by side.  
 It's located at: [gbitest](https://github.com/timhagn/gbitest)
 
@@ -53,7 +53,8 @@ To produce perfect background-images, you need only:
    which specify the fields needed by `gatsby-background-image`.
 
 The GraphQL query creates multiple thumbnails with optimized JPEG and PNG
-compression. The `gatsby-background-image` component automatically sets up the 
+compression (or even WebP files for browsers that support them).
+The `gatsby-background-image` component automatically sets up the 
 "blur-up" effect as well as lazy loading of images further down the screen.
 
 ## Install
@@ -100,6 +101,7 @@ polyfills. Both need the `IntersectionObserver` polyfill, and IE also needs the
 implements the former feature, and IE doesn't implement the latter.
 
 A solution to this issue was mentioned in a comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)   
+(An automatic integration is planned, see [TODO](#todo))
 
 ## How to use
 
@@ -198,9 +200,9 @@ So have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
 ## TODO
-- things raised by me in issue [#20](https://github.com/timhagn/gatsby-background-image/issues/20) 
-for a further discussion of how this package should progress 
-- integrate `gatsby-image/withIEPolyfill`
+- things raised in issue [#20](https://github.com/timhagn/gatsby-background-image/issues/20) 
+created by me for to further discussions of how this package should progress 
+- integrate `gatsby-image/withIEPolyfill` [Gatsby PR #12681](https://github.com/gatsbyjs/gatsby/pull/12681)
 
 
 
