@@ -359,8 +359,6 @@ BackgroundImage.propTypes = {
   critical: PropTypes.bool,
   style: PropTypes.object,
   imgStyle: PropTypes.object,
-  placeholderStyle: PropTypes.object,
-  placeholderClassName: PropTypes.string,
   backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   onLoad: PropTypes.func,
   onError: PropTypes.func,

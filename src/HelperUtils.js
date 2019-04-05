@@ -40,7 +40,6 @@ export const toCamelCase = str =>
  */
 export const toKebabCase = str =>
   typeof str === 'string' &&
-  str.replace(/\s|\W+/g, '')
-    .replace(/[A-Z]/g, match =>
-      '-' + match.toLowerCase()
-    )
+  str
+    .replace(/\s|\W+/g, '')
+    .replace(/[A-Z]/g, match => '-' + match.toLowerCase())
