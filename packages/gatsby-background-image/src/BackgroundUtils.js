@@ -1,6 +1,5 @@
 import { toCamelCase } from './HelperUtils'
 
-
 /**
  * Gets styles by a class name.
  *
