@@ -34,7 +34,6 @@ SVG to show a preview of the image while it loads,
 All the glamour (and speed) of `gatsby-image` now for your Background Images!
 
 ___And it's even styleable with `styled-components` and the like!___   
-(planned are media-queries: see [TODO](#todo))
 
 ## Example Repo
 
@@ -194,10 +193,14 @@ props from `gatsby-image` are of course not available (at the moment).
 
 ## Contributing
 
-Have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
+Everyone is more than welcome to contribute to this little package!   
+So have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
 ## TODO
-* add Media-Query support
+- things raised by me in issue [#20](https://github.com/timhagn/gatsby-background-image/issues/20) 
+for a further discussion of how this package should progress 
+- integrate `gatsby-image/withIEPolyfill`
+
 
 
