@@ -51,7 +51,7 @@ describe(`fixOpacity()`, () => {
 
 describe(`vendorPrefixBackgroundStyles()`, () => {
   it(`should return vendor prefixed backgroundStyles with defaults`, () => {
-    expect(vendorPrefixBackgroundStyles()).toEqual(
+    expect(vendorPrefixBackgroundStyles()).toMatchSnapshot()/*.toEqual(
 `-webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -67,11 +67,11 @@ transition-delay: 0.25s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
-`)
+`)*/
   })
 
   it(`should return vendor prefixed backgroundStyles with parameters`, () => {
-    expect(vendorPrefixBackgroundStyles(`contain`, `0.5s`)).toEqual(
+    expect(vendorPrefixBackgroundStyles(`contain`, `0.5s`)).toMatchSnapshot()/*.toEqual(
 `-webkit-background-size: contain;
 -moz-background-size: contain;
 -o-background-size: contain;
@@ -87,7 +87,7 @@ transition-delay: 0.5s;
 -o-transition: opacity 0.5s;
 -ms-transition: opacity 0.5s;
 transition: opacity 0.5s;
-`)
+`)*/
   })
 })
 
