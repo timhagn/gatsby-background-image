@@ -9,7 +9,11 @@ import {
   noscriptImg,
   switchImageSettings,
 } from './ImageUtils'
-import { createPseudoStyles, fixOpacity } from './StyleUtils'
+import {
+  createPseudoStyles,
+  fixOpacity,
+  presetBackgroundStyles,
+} from './StyleUtils'
 import { listenToIntersections } from './IntersectionObserverUtils'
 
 class BackgroundImage extends React.Component {
@@ -63,7 +67,9 @@ class BackgroundImage extends React.Component {
     this.bgImage = ``
 
     // Get background(-*) styles from CSS (e.g. Styled Components).
-    this.backgroundStyles = getBackgroundStyles(this.props.className)
+    this.backgroundStyles = presetBackgroundStyles(
+      getBackgroundStyles(this.props.className)
+    )
     // Testing how to grab pseudo-Elements' styles & media-queries
     // this.backgroundPseudoStyles =
     //   getBackgroundStyles(
@@ -155,24 +161,6 @@ class BackgroundImage extends React.Component {
         ? backgroundColor
         : ``
 
-    const backgroundPosition = this.backgroundStyles.hasOwnProperty(
-      `backgroundPosition`
-    )
-      ? this.backgroundStyles.backgroundPosition
-      : `center`
-
-    const backgroundSize = this.backgroundStyles.hasOwnProperty(
-      `backgroundSize`
-    )
-      ? this.backgroundStyles.backgroundSize
-      : `cover`
-
-    const backgroundRepeat = `background-repeat: ${
-      this.backgroundStyles.hasOwnProperty(`backgroundRepeat`)
-        ? this.backgroundStyles.backgroundRepeat
-        : `no-repeat`
-    };`
-
     const transitionDelay = this.state.imgLoaded ? `0.5s` : `0.25s`
 
     if (fluid) {
@@ -191,9 +179,6 @@ class BackgroundImage extends React.Component {
 
       const pseudoStyles = createPseudoStyles({
         classId,
-        backgroundSize,
-        backgroundPosition,
-        backgroundRepeat,
         transitionDelay,
         bgColor,
         backgroundStyles: this.backgroundStyles,
@@ -267,9 +252,6 @@ class BackgroundImage extends React.Component {
 
       const pseudoStyles = createPseudoStyles({
         classId,
-        backgroundSize,
-        backgroundPosition,
-        backgroundRepeat,
         transitionDelay,
         bgColor,
         backgroundStyles: this.backgroundStyles,
