@@ -196,6 +196,7 @@ class BackgroundImage extends React.Component {
         backgroundRepeat,
         transitionDelay,
         bgColor,
+        backgroundStyles: this.backgroundStyles,
         fadeIn: this.state.fadeIn,
         ...newImageSettings,
       })
@@ -271,6 +272,7 @@ class BackgroundImage extends React.Component {
         backgroundRepeat,
         transitionDelay,
         bgColor,
+        backgroundStyles: this.backgroundStyles,
         fadeIn: this.state.fadeIn,
         ...newImageSettings,
       })

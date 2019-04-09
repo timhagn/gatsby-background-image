@@ -65,6 +65,7 @@ export const createPseudoStyles = ({
               transitionDelay,
               fadeIn
             )}
+            ${backgroundRepeat}
           }
           .gatsby-background-image-${classId}:before {
             z-index: -100;
@@ -78,13 +79,11 @@ export const createPseudoStyles = ({
                 ? `background-image: url(${nextImage || bgImage});`
                 : ``
             }
-            ${backgroundRepeat}
             ${bgColor && `background-color: ${bgColor};`}
             opacity: ${afterOpacity}; 
           }
           .gatsby-background-image-${classId}:after {
             z-index: -101;
-            ${bgColor && `background-color: ${bgColor};`}
             ${
               afterOpacity && lastImage !== ``
                 ? `background-image: url(${lastImage});`
@@ -95,7 +94,7 @@ export const createPseudoStyles = ({
                 ? `background-image: url(${bgImage || nextImage});`
                 : ``
             }
-            ${backgroundRepeat}
+            ${bgColor && `background-color: ${bgColor};`}
           }
         `
 }
@@ -113,6 +112,8 @@ export const vendorPrefixBackgroundStyles = (
   transitionDelay = `0.25s`,
   fadeIn = true
 ) => {
+  // Remove vendor-prefixes for the moment...
+  /*
   const vendorPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-', '']
   let prefixed = vendorPrefixes
     .join(`background-size: ${backgroundSize};\n`)
@@ -130,5 +131,13 @@ export const vendorPrefixBackgroundStyles = (
       .join(`transition: none;\n`)
       .concat(`transition: none;\n`)
   }
+  */
+  let prefixed = `background-size: ${backgroundSize};
+                 ${
+                   fadeIn
+                     ? `transition-delay: ${transitionDelay};
+                       transition: opacity 0.5s;`
+                     : `transition: none;`
+                 }`
   return prefixed
 }
