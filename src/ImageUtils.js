@@ -110,7 +110,6 @@ export const noscriptImg = props => {
  * @param bgImage
  * @param imageRef
  * @param isVisible
- * @param fadeIn
  * @return {{noBase64: boolean, afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
  */
 export const switchImageSettings = ({
