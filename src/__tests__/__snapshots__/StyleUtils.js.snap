@@ -12,38 +12,23 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             
             
-            repeat-y
             background-color: #000;
             opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             background-image: url(some_base64_string);
             
-            repeat-y
+            background-color: #000;
           }
         "
 `;
@@ -60,38 +45,23 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             background-image: url(some_base64_string);
             
-            repeat-y
             background-color: #000;
             opacity: 0; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
+            
+            
             background-color: #000;
-            
-            
-            repeat-y
           }
         "
 `;
@@ -108,38 +78,23 @@ exports[`createPseudoStyles() should create different styles for empty bgImage 1
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             
             background-image: url(test.webp);
-            repeat-y
             background-color: #000;
             opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             background-image: url(some_base64_string);
             
-            repeat-y
+            background-color: #000;
           }
         "
 `;
@@ -156,38 +111,23 @@ exports[`createPseudoStyles() should create different styles for empty bgImage w
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             background-image: url(some_base64_string);
             
-            repeat-y
             background-color: #000;
             opacity: 0; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             
             background-image: url(test.webp);
-            repeat-y
+            background-color: #000;
           }
         "
 `;
@@ -204,38 +144,23 @@ exports[`createPseudoStyles() should create different styles for empty lastImage
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             
             
-            repeat-y
             background-color: #000;
             opacity: 0; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             
             background-image: url(test.webp);
-            repeat-y
+            background-color: #000;
           }
         "
 `;
@@ -252,38 +177,23 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             
             background-image: url(test.webp);
-            repeat-y
             background-color: #000;
             opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             background-image: url(some_base64_string);
             
-            repeat-y
+            background-color: #000;
           }
         "
 `;
@@ -300,38 +210,23 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             background-image: url(some_base64_string);
             
-            repeat-y
             background-color: #000;
             opacity: 0; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             
             background-image: url(test.webp);
-            repeat-y
+            background-color: #000;
           }
         "
 `;
@@ -348,38 +243,23 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             
             background-image: url(test.webp);
-            repeat-y
             background-color: #000;
             opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             background-image: url(some_base64_string);
             
-            repeat-y
+            background-color: #000;
           }
         "
 `;
@@ -396,38 +276,23 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
-            
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             background-image: url(some_base64_string);
             
-            repeat-y
             background-color: #000;
             opacity: 0; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             
             background-image: url(test.webp);
-            repeat-y
+            background-color: #000;
           }
         "
 `;
@@ -444,33 +309,34 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition: none;
--moz-transition: none;
--o-transition: none;
--ms-transition: none;
-transition: none;
-
-            
+            background-size: cover;
+                 transition: none;
+            repeat-y
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
             
             background-image: url(test.webp);
-            repeat-y
             background-color: #000;
             opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-color: #000;
             background-image: url(some_base64_string);
             
-            repeat-y
+            background-color: #000;
           }
         "
+`;
+
+exports[`vendorPrefixBackgroundStyles() should return vendor prefixed backgroundStyles with defaults 1`] = `
+"background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;"
+`;
+
+exports[`vendorPrefixBackgroundStyles() should return vendor prefixed backgroundStyles with parameters 1`] = `
+"background-size: contain;
+                 transition-delay: 0.5s;
+                       transition: opacity 0.5s;"
 `;
