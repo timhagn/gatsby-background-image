@@ -24,25 +24,37 @@ export const fixOpacity = props => {
 }
 
 /**
+ * Set some needed backgroundStyles.
+ *
+ * @return {Object}
+ * @param backgroundStyles
+ */
+export const presetBackgroundStyles = backgroundStyles => {
+  const defaultBackgroundStyles = {
+    backgroundPosition: `center`,
+    backgroundRepeat: `no-repeat`,
+    backgroundSize: `cover`,
+  }
+
+  return { ...defaultBackgroundStyles, ...backgroundStyles }
+}
+
+/**
  * Creates styles for the changing pseudo-elements' backgrounds.
  *
  * @param classId
- * @param backgroundSize
- * @param backgroundPosition
- * @param backgroundRepeat
  * @param transitionDelay
  * @param bgImage
+ * @param lastImage
  * @param nextImage
  * @param afterOpacity
  * @param bgColor
- * @param noBase64
+ * @param fadeIn
+ * @param backgroundStyles
  * @return {string}
  */
 export const createPseudoStyles = ({
   classId,
-  backgroundSize,
-  backgroundPosition,
-  backgroundRepeat,
   transitionDelay,
   bgImage,
   lastImage,
@@ -62,14 +74,8 @@ export const createPseudoStyles = ({
             height: 100%;
             top: 0;
             left: 0;
-            background-position: ${backgroundPosition};
-            ${vendorPrefixBackgroundStyles(
-              backgroundSize,
-              transitionDelay,
-              fadeIn
-            )}
+            ${vendorPrefixBackgroundStyles(transitionDelay, fadeIn)}
             ${kebabifyBackgroundStyles(backgroundStyles)}
-            ${backgroundRepeat}
           }
           .gatsby-background-image-${classId}:before {
             z-index: -100;
@@ -106,13 +112,12 @@ export const createPseudoStyles = ({
 /**
  * Creates vendor prefixed background styles.
  *
- * @param backgroundSize
  * @param transitionDelay
  * @param fadeIn
  * @return {string}
  */
 export const vendorPrefixBackgroundStyles = (
-  backgroundSize = `cover`,
+  // backgroundSize = `cover`,
   transitionDelay = `0.25s`,
   fadeIn = true
 ) => {
@@ -136,13 +141,10 @@ export const vendorPrefixBackgroundStyles = (
       .concat(`transition: none;\n`)
   }
   */
-  let prefixed = `background-size: ${backgroundSize};
-                 ${
-                   fadeIn
-                     ? `transition-delay: ${transitionDelay};
-                       transition: opacity 0.5s;`
-                     : `transition: none;`
-                 }`
+  let prefixed = fadeIn
+    ? `transition-delay: ${transitionDelay};
+            transition: opacity 0.5s;`
+    : `transition: none;`
   return prefixed
 }
 
@@ -153,20 +155,21 @@ export const vendorPrefixBackgroundStyles = (
  * @return {*}
  */
 export const kebabifyBackgroundStyles = styles => {
-  if (styles instanceof Object ||
-      styles instanceof String ||
-      typeof styles === 'string') {
-    if (styles instanceof String ||
-        typeof styles === 'string') {
+  if (
+    styles instanceof Object ||
+    styles instanceof String ||
+    typeof styles === 'string'
+  ) {
+    if (styles instanceof String || typeof styles === 'string') {
       return styles
-    }
-    else {
-      return Object.keys(styles).filter(
-        key =>
-          key.indexOf('background') === 0 && styles[key] !== ''
-      ).reduce((resultingStyles, key) => (
-        `${resultingStyles}${toKebabCase(key)}: ${styles[key]};\n`
-      ), ``)
+    } else {
+      return Object.keys(styles)
+        .filter(key => key.indexOf('background') === 0 && styles[key] !== '')
+        .reduce(
+          (resultingStyles, key) =>
+            `${resultingStyles}${toKebabCase(key)}: ${styles[key]};\n`,
+          ``
+        )
     }
   }
   return ``

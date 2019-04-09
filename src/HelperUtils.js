@@ -1,5 +1,6 @@
 /**
  * Handle legacy names for image queries.
+ *
  * @param props
  * @return {Object}
  */
