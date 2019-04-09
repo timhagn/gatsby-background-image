@@ -15,6 +15,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -48,6 +49,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -81,6 +83,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage 1
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -114,6 +117,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage w
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -147,6 +151,7 @@ exports[`createPseudoStyles() should create different styles for empty lastImage
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -180,6 +185,7 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -213,6 +219,7 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -246,6 +253,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -279,6 +287,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {
@@ -311,6 +320,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             background-position: center;
             background-size: cover;
                  transition: none;
+            
             repeat-y
           }
           .gatsby-background-image-gbi:before {

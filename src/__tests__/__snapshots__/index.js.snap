@@ -23,6 +23,10 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
             background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -72,6 +76,10 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
             background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -120,6 +128,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             background-repeat: no-repeat;
           }
           .gatsby-background-image-fwatluf:before {
@@ -164,6 +173,10 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
             background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -198,6 +211,10 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
             background-size: 'contain';
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
             background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
@@ -239,6 +256,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             background-repeat: no-repeat;
           }
           .gatsby-background-image-test:before {
@@ -288,6 +306,10 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
             background-size: 'contain';
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
             background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
@@ -340,6 +362,10 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
             background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -389,6 +415,10 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
             background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -437,6 +467,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             background-size: cover;
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            
             background-repeat: no-repeat;
           }
           .gatsby-background-image-fwatluf:before {
@@ -486,6 +517,10 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
             background-size: 'contain';
                  transition-delay: 0.25s;
                        transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
+background-position: 'center';
+background-size: 'contain';
+
             background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
