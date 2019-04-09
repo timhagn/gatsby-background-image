@@ -19,42 +19,28 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-position: 'center';
-            -webkit-background-size: 'contain';
--moz-background-size: 'contain';
--o-background-size: 'contain';
--ms-background-size: 'contain';
-background-size: 'contain';
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: 'contain';
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(test_fixed_image.jpg);
-            background-repeat: 'repeat-y';
+            background-color: lightgray;
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       test
@@ -82,42 +68,28 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
             top: 0;
             left: 0;
             background-position: 'center';
-            -webkit-background-size: 'contain';
--moz-background-size: 'contain';
--o-background-size: 'contain';
--ms-background-size: 'contain';
-background-size: 'contain';
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: 'contain';
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(test_fluid_image.jpg);
-            background-repeat: 'repeat-y';
+            background-color: lightgray;
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       test
@@ -145,42 +117,28 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: no-repeat;
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
             
-            background-repeat: no-repeat;
             
             opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            
             background-image: url(string_of_base64);
-            background-repeat: no-repeat;
+            
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       testempty
@@ -202,37 +160,23 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
             top: 0;
             left: 0;
             background-position: 'center';
-            -webkit-background-size: 'contain';
--moz-background-size: 'contain';
--o-background-size: 'contain';
--ms-background-size: 'contain';
-background-size: 'contain';
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: 'contain';
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
+            background-color: lightgray;
           }
         
 </style>
@@ -251,37 +195,23 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
             top: 0;
             left: 0;
             background-position: 'center';
-            -webkit-background-size: 'contain';
--moz-background-size: 'contain';
--o-background-size: 'contain';
--ms-background-size: 'contain';
-background-size: 'contain';
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: 'contain';
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
+            background-color: lightgray;
           }
         
 </style>
@@ -306,42 +236,28 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: no-repeat;
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: no-repeat;
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(string_of_base64);
-            background-repeat: no-repeat;
+            background-color: lightgray;
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       test
@@ -369,42 +285,28 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
             top: 0;
             left: 0;
             background-position: 'center';
-            -webkit-background-size: 'contain';
--moz-background-size: 'contain';
--o-background-size: 'contain';
--ms-background-size: 'contain';
-background-size: 'contain';
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: 'contain';
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
+            background-color: lightgray;
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       test
@@ -434,42 +336,28 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
             top: 0;
             left: 0;
             background-position: 'center';
-            -webkit-background-size: 'contain';
--moz-background-size: 'contain';
--o-background-size: 'contain';
--ms-background-size: 'contain';
-background-size: 'contain';
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: 'contain';
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
+            background-color: lightgray;
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       test
@@ -497,42 +385,28 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
             top: 0;
             left: 0;
             background-position: 'center';
-            -webkit-background-size: 'contain';
--moz-background-size: 'contain';
--o-background-size: 'contain';
--ms-background-size: 'contain';
-background-size: 'contain';
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: 'contain';
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(string_of_base64);
-            background-repeat: 'repeat-y';
+            background-color: lightgray;
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       test
@@ -560,42 +434,28 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             top: 0;
             left: 0;
             background-position: center;
-            -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: cover;
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: no-repeat;
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
             
-            background-repeat: no-repeat;
             
             opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            
             background-image: url(string_of_base64);
-            background-repeat: no-repeat;
+            
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       testempty
@@ -623,42 +483,28 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
             top: 0;
             left: 0;
             background-position: 'center';
-            -webkit-background-size: 'contain';
--moz-background-size: 'contain';
--o-background-size: 'contain';
--ms-background-size: 'contain';
-background-size: 'contain';
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-
+            background-size: 'contain';
+                 transition-delay: 0.25s;
+                       transition: opacity 0.5s;
+            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
             
             
-            background-repeat: 'repeat-y';
             background-color: lightgray;
             opacity: 0; 
           }
           .gatsby-background-image-test:after {
             z-index: -101;
-            background-color: lightgray;
             
             background-image: url(test_fluid_image.jpg);
-            background-repeat: 'repeat-y';
+            background-color: lightgray;
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
     <h1>
       test
