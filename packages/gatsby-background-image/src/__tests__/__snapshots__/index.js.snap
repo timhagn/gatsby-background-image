@@ -18,15 +18,12 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
-            background-size: 'contain';
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            background-repeat: 'repeat-y';
-background-position: 'center';
+background-repeat: 'repeat-y';
 background-size: 'contain';
 
-            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -71,15 +68,12 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
-            background-size: 'contain';
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            background-repeat: 'repeat-y';
-background-position: 'center';
+background-repeat: 'repeat-y';
 background-size: 'contain';
 
-            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -111,7 +105,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
   <div
     class=" gatsby-background-image-fwatluf gatsby-image-wrapper"
     id=""
-    style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99;"
+    style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
@@ -124,12 +118,12 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: center;
-            background-size: cover;
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            
-            background-repeat: no-repeat;
+background-repeat: no-repeat;
+background-size: cover;
+
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
@@ -168,15 +162,12 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
-            background-size: 'contain';
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            background-repeat: 'repeat-y';
-background-position: 'center';
+background-repeat: 'repeat-y';
 background-size: 'contain';
 
-            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -207,15 +198,12 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
-            background-size: 'contain';
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            background-repeat: 'repeat-y';
-background-position: 'center';
+background-repeat: 'repeat-y';
 background-size: 'contain';
 
-            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -239,7 +227,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
   <div
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99;"
+    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
@@ -252,12 +240,12 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: center;
-            background-size: cover;
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            
-            background-repeat: no-repeat;
+background-repeat: no-repeat;
+background-size: cover;
+
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -302,15 +290,12 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
-            background-size: 'contain';
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            background-repeat: 'repeat-y';
-background-position: 'center';
+background-repeat: 'repeat-y';
 background-size: 'contain';
 
-            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -357,15 +342,12 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
-            background-size: 'contain';
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            background-repeat: 'repeat-y';
-background-position: 'center';
+background-repeat: 'repeat-y';
 background-size: 'contain';
 
-            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -410,15 +392,12 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
-            background-size: 'contain';
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            background-repeat: 'repeat-y';
-background-position: 'center';
+background-repeat: 'repeat-y';
 background-size: 'contain';
 
-            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;
@@ -450,7 +429,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
   <div
     class=" gatsby-background-image-fwatluf gatsby-image-wrapper"
     id=""
-    style="position: relative; overflow: hidden; opacity: 0.99;"
+    style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
@@ -463,12 +442,12 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: center;
-            background-size: cover;
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            
-            background-repeat: no-repeat;
+background-repeat: no-repeat;
+background-size: cover;
+
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
@@ -513,15 +492,12 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
             height: 100%;
             top: 0;
             left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
-            background-size: 'contain';
-                 transition-delay: 0.25s;
-                       transition: opacity 0.5s;
-            background-repeat: 'repeat-y';
-background-position: 'center';
+background-repeat: 'repeat-y';
 background-size: 'contain';
 
-            background-repeat: 'repeat-y';
           }
           .gatsby-background-image-test:before {
             z-index: -100;

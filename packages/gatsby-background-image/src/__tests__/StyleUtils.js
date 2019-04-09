@@ -2,7 +2,9 @@ import '@babel/polyfill'
 import {
   createPseudoStyles,
   fixOpacity,
-  vendorPrefixBackgroundStyles
+  presetBackgroundStyles,
+  vendorPrefixBackgroundStyles,
+  kebabifyBackgroundStyles,
 } from '../StyleUtils'
 
 global.console.debug = jest.fn()
@@ -172,5 +174,29 @@ beforeEach(() => {
     pseudoStyles.afterOpacity = 0
     const createdPseudoStyles = createPseudoStyles(pseudoStyles)
     expect(createdPseudoStyles).toMatchSnapshot()
+  })
+})
+
+
+describe(`presetBackgroundStyles()`, () => {
+  it(`should return defaultBackgroundStyles with empty backgroundStyles`, () => {
+    const defaultBackgroundStyles = {
+      backgroundPosition: `center`,
+      backgroundRepeat: `no-repeat`,
+      backgroundSize: `cover`,
+    }
+
+    const backgroundStyles = presetBackgroundStyles({})
+    expect(backgroundStyles).toEqual(defaultBackgroundStyles)
+  })
+})
+
+
+describe(`kebabifyBackgroundStyles()`, () => {
+  it(`should return string for style props with text content`, () => {
+    const someStyles = `background-position: 'center';`
+
+    const backgroundStyles = kebabifyBackgroundStyles(someStyles)
+    expect(backgroundStyles).toEqual(someStyles)
   })
 })
