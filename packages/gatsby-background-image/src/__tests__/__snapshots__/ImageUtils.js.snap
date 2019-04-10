@@ -153,8 +153,10 @@ background-size: cover;
 exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elements 1`] = `
 <style>
   
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .fixedImage.test:before,
+.gatsby-background-image-test:before,
+          .fixedImage.test:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -169,14 +171,16 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .gatsby-background-image-test:before {
+          .fixedImage.test:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .fixedImage.test:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
@@ -189,8 +193,10 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = `
 <style>
   
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .fixedImage.test:before,
+.gatsby-background-image-test:before,
+          .fixedImage.test:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -205,14 +211,16 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .gatsby-background-image-test:before {
+          .fixedImage.test:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .fixedImage.test:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
@@ -333,8 +341,10 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
   >
     <style>
       
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .fixedImage.test:before,
+.gatsby-background-image-test:before,
+          .fixedImage.test:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -349,14 +359,16 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .gatsby-background-image-test:before {
+          .fixedImage.test:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .fixedImage.test:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(string_of_base64);

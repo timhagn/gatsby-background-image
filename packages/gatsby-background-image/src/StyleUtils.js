@@ -1,4 +1,4 @@
-import { isString, toKebabCase } from './HelperUtils'
+import { isString, stringToArray, toKebabCase } from './HelperUtils'
 
 /**
  * Prevent possible stacking order mismatch with opacity "hack".
@@ -43,6 +43,7 @@ export const presetBackgroundStyles = backgroundStyles => {
  * Creates styles for the changing pseudo-elements' backgrounds.
  *
  * @param classId
+ * @param className
  * @param transitionDelay
  * @param bgImage
  * @param lastImage
@@ -55,6 +56,7 @@ export const presetBackgroundStyles = backgroundStyles => {
  */
 export const createPseudoStyles = ({
   classId,
+  className,
   transitionDelay,
   bgImage,
   lastImage,
@@ -65,9 +67,11 @@ export const createPseudoStyles = ({
   backgroundStyles,
 }) => {
   // TODO: change classId to most specific className prop
+  const pseudoBefore = createPseudoElement(className, classId)
+  const pseudoAfter = createPseudoElement(className, classId, `:after`)
   return `
-          .gatsby-background-image-${classId}:before,
-          .gatsby-background-image-${classId}:after {
+          ${pseudoBefore},
+          ${pseudoAfter} {
             content: '';
             display: block;
             position: absolute;
@@ -78,7 +82,7 @@ export const createPseudoStyles = ({
             ${vendorPrefixBackgroundStyles(transitionDelay, fadeIn)}
             ${kebabifyBackgroundStyles(backgroundStyles)}
           }
-          .gatsby-background-image-${classId}:before {
+          ${pseudoBefore} {
             z-index: -100;
             ${
               !afterOpacity && lastImage !== ``
@@ -93,7 +97,7 @@ export const createPseudoStyles = ({
             ${bgColor && `background-color: ${bgColor};`}
             opacity: ${afterOpacity}; 
           }
-          .gatsby-background-image-${classId}:after {
+          ${pseudoAfter} {
             z-index: -101;
             ${
               afterOpacity && lastImage !== ``
@@ -108,6 +112,30 @@ export const createPseudoStyles = ({
             ${bgColor && `background-color: ${bgColor};`}
           }
         `
+}
+
+/**
+ * Creates pseudo-element(s) for className(s).
+ *
+ * @param className string  className given by props
+ * @param classId   string  Deprecated classId
+ * @param appendix  string  Pseudo-element to create, defaults to `:before`
+ * @return {string}
+ */
+export const createPseudoElement = (
+  className,
+  classId = ``,
+  appendix = `:before`
+) => {
+  const classes = stringToArray(className)
+  let pseudoClasses = ``
+  if (classes instanceof Array) {
+    pseudoClasses = `.${classes.join('.')}${appendix}`
+  }
+  if (classId !== ``) {
+    pseudoClasses += `${pseudoClasses && `,\n`}.gatsby-background-image-${classId}${appendix}`
+  }
+  return pseudoClasses
 }
 
 /**
