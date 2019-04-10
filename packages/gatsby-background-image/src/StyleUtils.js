@@ -1,4 +1,5 @@
 import { isString, stringToArray, toKebabCase } from './HelperUtils'
+import { getStyle } from './BackgroundUtils'
 
 /**
  * Prevent possible stacking order mismatch with opacity "hack".
@@ -66,7 +67,6 @@ export const createPseudoStyles = ({
   fadeIn,
   backgroundStyles,
 }) => {
-  // TODO: change classId to most specific className prop
   const pseudoBefore = createPseudoElement(className, classId)
   const pseudoAfter = createPseudoElement(className, classId, `:after`)
   return `
@@ -130,10 +130,16 @@ export const createPseudoElement = (
   const classes = stringToArray(className)
   let pseudoClasses = ``
   if (classes instanceof Array) {
-    pseudoClasses = `.${classes.join('.')}${appendix}`
+    pseudoClasses = `.${classes
+      .filter(currClass => {
+        const styles = getStyle(`.${currClass}`)
+        return typeof styles !== `undefined`
+      })
+      .join('.')}${appendix}`
   }
   if (classId !== ``) {
-    pseudoClasses += `${pseudoClasses && `,\n`}.gatsby-background-image-${classId}${appendix}`
+    pseudoClasses += `${pseudoClasses &&
+      `,\n`}.gatsby-background-image-${classId}${appendix}`
   }
   return pseudoClasses
 }
