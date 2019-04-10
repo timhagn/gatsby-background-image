@@ -1,4 +1,4 @@
-import { toKebabCase } from './HelperUtils'
+import { isString, toKebabCase } from './HelperUtils'
 
 /**
  * Prevent possible stacking order mismatch with opacity "hack".
@@ -64,6 +64,7 @@ export const createPseudoStyles = ({
   fadeIn,
   backgroundStyles,
 }) => {
+  // TODO: change classId to most specific className prop
   return `
           .gatsby-background-image-${classId}:before,
           .gatsby-background-image-${classId}:after {
@@ -155,22 +156,16 @@ export const vendorPrefixBackgroundStyles = (
  * @return {*}
  */
 export const kebabifyBackgroundStyles = styles => {
-  if (
-    styles instanceof Object ||
-    styles instanceof String ||
-    typeof styles === 'string'
-  ) {
-    if (styles instanceof String || typeof styles === 'string') {
-      return styles
-    } else {
-      return Object.keys(styles)
-        .filter(key => key.indexOf('background') === 0 && styles[key] !== '')
-        .reduce(
-          (resultingStyles, key) =>
-            `${resultingStyles}${toKebabCase(key)}: ${styles[key]};\n`,
-          ``
-        )
-    }
+  if (isString(styles)) {
+    return styles
+  } else if (styles instanceof Object) {
+    return Object.keys(styles)
+      .filter(key => key.indexOf('background') === 0 && styles[key] !== '')
+      .reduce(
+        (resultingStyles, key) =>
+          `${resultingStyles}${toKebabCase(key)}: ${styles[key]};\n`,
+        ``
+      )
   }
   return ``
 }
