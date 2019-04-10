@@ -25,7 +25,6 @@ export const getStyle = className => {
         const resultingStyleText = classes[x].cssText
           ? classes[x].cssText
           : classes[x].style.cssText
-        //console.log(classes[x].style, `${classes[x].selectorText}{${resultingStyleText}}`)
         return resultingStyleText.indexOf(classes[x].selectorText) === -1
           ? `${classes[x].selectorText}{${resultingStyleText}}`
           : resultingStyleText
