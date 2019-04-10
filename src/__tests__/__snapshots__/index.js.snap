@@ -153,9 +153,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elements 1`] = `
 <style>
   
-          .fixedImage.test:before,
+          .fixedImage:before,
 .gatsby-background-image-test:before,
-          .fixedImage.test:after,
+          .fixedImage:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -171,7 +171,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.test:before,
+          .fixedImage:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -179,7 +179,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 0; 
           }
-          .fixedImage.test:after,
+          .fixedImage:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -193,9 +193,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = `
 <style>
   
-          .fixedImage.test:before,
+          .fixedImage:before,
 .gatsby-background-image-test:before,
-          .fixedImage.test:after,
+          .fixedImage:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -211,7 +211,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.test:before,
+          .fixedImage:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -219,7 +219,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 0; 
           }
-          .fixedImage.test:after,
+          .fixedImage:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -341,9 +341,9 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
   >
     <style>
       
-          .fixedImage.test:before,
+          .fixedImage:before,
 .gatsby-background-image-test:before,
-          .fixedImage.test:after,
+          .fixedImage:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -359,7 +359,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.test:before,
+          .fixedImage:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -367,7 +367,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 0; 
           }
-          .fixedImage.test:after,
+          .fixedImage:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
