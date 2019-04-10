@@ -1,4 +1,4 @@
-import { toCamelCase } from './HelperUtils'
+import { isString, stringToArray, toCamelCase } from './HelperUtils'
 
 /**
  * Gets styles by a class name.
@@ -25,6 +25,7 @@ export const getStyle = className => {
         const resultingStyleText = classes[x].cssText
           ? classes[x].cssText
           : classes[x].style.cssText
+        //console.log(classes[x].style, `${classes[x].selectorText}{${resultingStyleText}}`)
         return resultingStyleText.indexOf(classes[x].selectorText) === -1
           ? `${classes[x].selectorText}{${resultingStyleText}}`
           : resultingStyleText
@@ -89,23 +90,26 @@ export const getStyleRules = cssStyleRules => {
  * @return {{}}
  */
 export const getBackgroundStylesForSingleClass = className => {
-  const style = getStyle(`.${className}`)
-  const cssStyleRules = rulesForCssText(style)
+  if (isString(className)) {
+    const style = getStyle(`.${className}`)
+    const cssStyleRules = rulesForCssText(style)
 
-  if (
-    cssStyleRules.length > 0 &&
-    typeof cssStyleRules[0].style !== 'undefined'
-  ) {
-    // Filter out background(-*) rules that contain a definition.
-    return Object.keys(getStyleRules(cssStyleRules))
-      .filter(
-        key =>
-          key.indexOf('background') === 0 && cssStyleRules[0].style[key] !== ''
-      )
-      .reduce((newData, key) => {
-        newData[key] = cssStyleRules[0].style[key]
-        return newData
-      }, {})
+    if (
+      cssStyleRules.length > 0 &&
+      typeof cssStyleRules[0].style !== 'undefined'
+    ) {
+      // Filter out background(-*) rules that contain a definition.
+      return Object.keys(getStyleRules(cssStyleRules))
+        .filter(
+          key =>
+            key.indexOf('background') === 0 &&
+            cssStyleRules[0].style[key] !== ''
+        )
+        .reduce((newData, key) => {
+          newData[key] = cssStyleRules[0].style[key]
+          return newData
+        }, {})
+    }
   }
   return {}
 }
@@ -117,23 +121,17 @@ export const getBackgroundStylesForSingleClass = className => {
  * @return {*}
  */
 const getBackgroundStyles = className => {
-  if (
-    typeof window !== 'undefined' &&
-    className !== null &&
-    (className instanceof Object ||
-      className instanceof String ||
-      typeof className === 'string') &&
-    !(className instanceof Array)
-  ) {
-    if (className.includes(' ')) {
-      const classes = className.split(' ')
+  if (typeof window !== `undefined`) {
+    const classes = stringToArray(className)
+    if (classes instanceof Array) {
       let classObjects = []
       classes.forEach(item =>
         classObjects.push(getBackgroundStylesForSingleClass(item))
       )
       return Object.assign(...classObjects)
+    } else {
+      return getBackgroundStylesForSingleClass(className)
     }
-    return getBackgroundStylesForSingleClass(className)
   }
   return {}
 }

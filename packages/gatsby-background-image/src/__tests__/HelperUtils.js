@@ -1,7 +1,11 @@
 import '@babel/polyfill'
-import { convertProps, toCamelCase, toKebabCase } from '../HelperUtils'
+import {
+  convertProps,
+  toCamelCase,
+  toKebabCase,
+  stringToArray,
+} from '../HelperUtils'
 import { fixedShapeMock, fluidShapeMock } from './index'
-
 
 const legacySizesFixedMock = {
   resolutions: fixedShapeMock,
@@ -23,7 +27,6 @@ describe(`convertProps()`, () => {
   })
 })
 
-
 describe(`toCamelCase()`, () => {
   it(`should convert various words to camelCase`, () => {
     const testWords = [
@@ -41,10 +44,10 @@ describe(`toCamelCase()`, () => {
       `garblDigogGig`,
     ]
     testWords.forEach((wordToConvert, index) =>
-      expect(toCamelCase(wordToConvert)).toEqual(expected[index]))
+      expect(toCamelCase(wordToConvert)).toEqual(expected[index])
+    )
   })
 })
-
 
 describe(`toKebabCase()`, () => {
   it(`should convert various words to camelCase`, () => {
@@ -65,6 +68,15 @@ describe(`toKebabCase()`, () => {
       `-ga-rb-l-d-i-g-o-g-g-i-g`,
     ]
     testWords.forEach((wordToConvert, index) =>
-      expect(toKebabCase(wordToConvert)).toEqual(expected[index]))
+      expect(toKebabCase(wordToConvert)).toEqual(expected[index])
+    )
+  })
+})
+
+
+describe(`stringToArray()`, () => {
+  it(`should return array on array`, () => {
+    const testConversion = stringToArray([])
+    expect(testConversion instanceof Array).toBeTruthy()
   })
 })

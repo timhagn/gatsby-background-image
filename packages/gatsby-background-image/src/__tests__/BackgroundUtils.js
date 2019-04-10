@@ -4,7 +4,9 @@ import getBackgroundStyles, {
   getStyleRules,
   rulesForCssText,
 } from '../BackgroundUtils'
+import { cleanup } from 'react-testing-library'
 
+afterAll(cleanup)
 
 global.console.error = jest.fn()
 global.console.debug = jest.fn()
@@ -126,9 +128,44 @@ describe(`getStyle()`, () => {
     expect(style).toEqual(`.fixedImage {backgroundRepeat: 'repeat-y';}`)
   })
 
+  it(`should return class for known classname via self built .rules`, () => {
+    global.document.styleSheets[0].rules = [
+      {
+        style: {
+          cssText: `.fixedImage {backgroundRepeat: 'repeat-y';}`
+        },
+        selectorText: `.fixedImage`,
+      },
+    ]
+    const style = getStyle(`.fixedImage`)
+    expect(style).toEqual(`.fixedImage {backgroundRepeat: 'repeat-y';}`)
+  })
+
+  it(`should build class for known classname via self built .rules`, () => {
+    global.document.styleSheets[0].rules = [
+      {
+        style: {
+          cssText: `backgroundRepeat: 'repeat-y';`
+        },
+        selectorText: `.fixedImage`,
+      },
+    ]
+    const style = getStyle(`.fixedImage`)
+    expect(style).toEqual(`.fixedImage{backgroundRepeat: 'repeat-y';}`)
+  })
+
   it(`should fail for window = undefined`, () => {
     delete global.window
     const style = getStyle('')
     expect(style).toEqual()
+  })
+})
+
+
+describe(`getBackgroundStyles() without window`, () => {
+  it(`should return empty object for window === 'undefined'`, () => {
+    delete global.window
+    const backgroundStyles = getBackgroundStyles(``)
+    expect(backgroundStyles).toEqual({})
   })
 })
