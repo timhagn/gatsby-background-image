@@ -99,6 +99,7 @@ let pseudoStyles = {}
 beforeEach(() => {
   pseudoStyles = {
     classId: `gbi`,
+    className: `test`,
     backgroundSize: `cover`,
     backgroundPosition: `center`,
     backgroundRepeat: `repeat-y`,
@@ -112,6 +113,25 @@ beforeEach(() => {
   }
 })
   it(`should create styles from given pseudoStyles Object`, () => {
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create styles from given pseudoStyles Object without classId`, () => {
+    delete pseudoStyles.classId
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create styles from given pseudoStyles Object without className`, () => {
+    delete pseudoStyles.className
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
+    expect(createdPseudoStyles).toMatchSnapshot()
+  })
+
+  it(`should create styles from given pseudoStyles Object without classId or className`, () => {
+    delete pseudoStyles.classId
+    delete pseudoStyles.className
     const createdPseudoStyles = createPseudoStyles(pseudoStyles)
     expect(createdPseudoStyles).toMatchSnapshot()
   })

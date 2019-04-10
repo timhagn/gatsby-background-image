@@ -179,6 +179,7 @@ class BackgroundImage extends React.Component {
 
       const pseudoStyles = createPseudoStyles({
         classId,
+        className,
         transitionDelay,
         bgColor,
         backgroundStyles: this.backgroundStyles,
@@ -252,6 +253,7 @@ class BackgroundImage extends React.Component {
 
       const pseudoStyles = createPseudoStyles({
         classId,
+        className,
         transitionDelay,
         bgColor,
         backgroundStyles: this.backgroundStyles,
@@ -340,7 +342,7 @@ BackgroundImage.propTypes = {
   alt: PropTypes.string,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
   critical: PropTypes.bool,
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   imgStyle: PropTypes.object,
   backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   onLoad: PropTypes.func,
