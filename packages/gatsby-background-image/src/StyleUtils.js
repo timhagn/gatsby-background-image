@@ -132,8 +132,7 @@ export const createPseudoElement = (
   const classes = stringToArray(className)
   let pseudoClasses = ``
   if (classes instanceof Array) {
-    pseudoClasses = `.${classes
-      .join('.')}${appendix}`
+    pseudoClasses = `.${classes.join('.')}${appendix}`
   }
   if (classId !== ``) {
     pseudoClasses += `${pseudoClasses &&
