@@ -43,17 +43,17 @@ export const presetBackgroundStyles = backgroundStyles => {
 /**
  * Creates styles for the changing pseudo-elements' backgrounds.
  *
- * @param classId
- * @param className
- * @param transitionDelay
- * @param bgImage
- * @param lastImage
- * @param nextImage
- * @param afterOpacity
- * @param bgColor
- * @param fadeIn
- * @param backgroundStyles
- * @param style
+ * @param classId           string    Pre 0.3.0 way to create pseudo-elements
+ * @param className         string    One or more className(s)
+ * @param transitionDelay   string
+ * @param bgImage           string
+ * @param lastImage         string
+ * @param nextImage         string
+ * @param afterOpacity      number
+ * @param bgColor           string
+ * @param fadeIn            boolean
+ * @param backgroundStyles  object
+ * @param style             object
  * @return {string}
  */
 export const createPseudoStyles = ({
@@ -133,10 +133,6 @@ export const createPseudoElement = (
   let pseudoClasses = ``
   if (classes instanceof Array) {
     pseudoClasses = `.${classes
-      // .filter(currClass => {
-      //   const styles = getStyle(`.${currClass}`)
-      //   return typeof styles !== `undefined`
-      // })
       .join('.')}${appendix}`
   }
   if (classId !== ``) {

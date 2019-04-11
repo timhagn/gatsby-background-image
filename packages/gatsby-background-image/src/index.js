@@ -16,13 +16,18 @@ import {
 } from './StyleUtils'
 import { listenToIntersections } from './IntersectionObserverUtils'
 
+/**
+ * Main Lazy-loading React background-image component
+ * with optional support for the blur-up effect.
+ */
 class BackgroundImage extends React.Component {
+  // Needed to prevent handleImageLoaded() firing on gatsby build.
   _isMounted = false
 
   constructor(props) {
     super(props)
 
-    // default settings for browser without Intersection Observer available
+    // Default settings for browser without Intersection Observer available.
     let isVisible = true
     let imgLoaded = false
     let IOSupported = false
@@ -32,7 +37,7 @@ class BackgroundImage extends React.Component {
     // already in the browser cache so it's cheap to just show directly.
     const seenBefore = inImageCache(props)
 
-    // browser with Intersection Observer available
+    // Browser with Intersection Observer available
     if (
       !seenBefore &&
       typeof window !== `undefined` &&
@@ -47,12 +52,13 @@ class BackgroundImage extends React.Component {
       isVisible = false
     }
 
-    // Force render for critical images
+    // Force render for critical images.
     if (props.critical) {
       isVisible = true
       IOSupported = false
     }
 
+    // Check if a noscript element should be included.
     const hasNoScript = !(this.props.critical && !this.props.fadeIn)
 
     this.state = {
@@ -64,20 +70,13 @@ class BackgroundImage extends React.Component {
       seenBefore,
     }
 
-    this.bgImage = ``
-
-    // Get background(-*) styles from CSS (e.g. Styled Components).
+    // Preset backgroundStyles (e.g. during SSR or gatsby build).
     this.backgroundStyles = presetBackgroundStyles(
       getBackgroundStyles(this.props.className)
     )
-    // Testing how to grab pseudo-Elements' styles & media-queries
-    // this.backgroundPseudoStyles =
-    //   getBackgroundStyles(
-    //     this.props.className.split(' ').map(name => `.${name}::after, .${name}::before`).join(' ')
-    //   )
-    // this.backgroundBeforeStyles =       getBackgroundStyles(
-    //   this.props.className.split(' ').map(name => `${name}::before`).join(' ')
-    // )
+
+    // Start with an empty background image.
+    this.bgImage = ``
 
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
     this.handleRef = this.handleRef.bind(this)
@@ -88,6 +87,11 @@ class BackgroundImage extends React.Component {
 
   componentDidMount() {
     this._isMounted = true
+
+    // Update background(-*) styles from CSS (e.g. Styled Components).
+    this.backgroundStyles = presetBackgroundStyles(
+      getBackgroundStyles(this.props.className)
+    )
 
     if (this.state.isVisible && typeof this.props.onStartLoad === `function`) {
       this.props.onStartLoad({ wasCached: inImageCache(this.props) })
@@ -126,7 +130,6 @@ class BackgroundImage extends React.Component {
 
       this.setState({ imgLoaded: true })
       if (this.state.seenBefore) {
-        // console.log(`seen`)
         this.setState({ fadeIn: false })
       }
 
@@ -168,7 +171,7 @@ class BackgroundImage extends React.Component {
     if (fluid) {
       const image = fluid
 
-      // Set the backgroundImage according to images available.
+      // Set images and visibility according to images available.
       const newImageSettings = switchImageSettings({
         image,
         bgImage: this.bgImage,
@@ -189,9 +192,6 @@ class BackgroundImage extends React.Component {
         fadeIn: this.state.fadeIn,
         ...newImageSettings,
       })
-      // TODO: Find out why this.backgroundStyles get prebuilt % (!
-      // console.log(this.backgroundStyles)
-      // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
         <Tag
@@ -202,13 +202,13 @@ class BackgroundImage extends React.Component {
             overflow: `hidden`,
             opacity: 0.99,
             ...style,
-            // TODO: Maybe we simply need to integrate the extra backgroundStyles in pseudoStyles for the main element??
             ...this.backgroundStyles,
           }}
           id={id}
           ref={this.handleRef}
           key={`fluid-${JSON.stringify(image.srcSet)}`}
         >
+          {/*Create style element to transition between pseudo-elements.*/}
           <style
             dangerouslySetInnerHTML={{
               __html: pseudoStyles,
@@ -243,7 +243,7 @@ class BackgroundImage extends React.Component {
         delete divStyle.display
       }
 
-      // Set the backgroundImage according to images available.
+      // Set images and visibility according to images available.
       const newImageSettings = switchImageSettings({
         image,
         bgImage: this.bgImage,
@@ -278,6 +278,7 @@ class BackgroundImage extends React.Component {
           ref={this.handleRef}
           key={`fixed-${JSON.stringify(image.srcSet)}`}
         >
+          {/*Create style element to transition between pseudo-elements.*/}
           <style
             dangerouslySetInnerHTML={{
               __html: pseudoStyles,
@@ -346,7 +347,7 @@ BackgroundImage.propTypes = {
   alt: PropTypes.string,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
   critical: PropTypes.bool,
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Just took the one from RN.
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Using PropTypes from RN.
   backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   onLoad: PropTypes.func,
   onError: PropTypes.func,
