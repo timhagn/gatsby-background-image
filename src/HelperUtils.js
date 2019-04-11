@@ -53,14 +53,14 @@ export const toKebabCase = str =>
  * @return {array|boolean}  Returns (split) string as array, false on failure
  */
 export const stringToArray = (str, delimiter = ` `) => {
-  if (isString(str)) {
+  if (str instanceof Array) {
+    return str
+  } else if (isString(str)) {
     if (str.includes(delimiter)) {
       return str.split(delimiter)
     } else {
       return [str]
     }
-  } else if (str instanceof Array) {
-    return str
   } else {
     return false
   }
