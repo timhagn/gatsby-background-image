@@ -184,14 +184,14 @@ pseudo-Elements as well!
 
 ## props not available
 
-As `gatsby-background-image` doesn't use placeholder-images, the following two
-props from `gatsby-image` are of course not available (at the moment).
+As `gatsby-background-image` doesn't use placeholder-images, the following
+props from `gatsby-image` are of course not available.
 
 | Name                   | Type                | Old Usage                                                     |
 | ---------------------- | ------------------- | --------------------------------------------------------------|
 | `placeholderStyle`     | `object`            | Spread into the default styles of the placeholder img element |
 | `placeholderClassName` | `string`            | A class that is passed to the placeholder img element         |
-
+| `imgStyle`             | `object`            | Spread into the default styles of the actual img element
 
 ## Contributing
 
