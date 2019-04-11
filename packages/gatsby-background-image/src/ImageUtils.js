@@ -44,7 +44,7 @@ export const activateCacheForImage = props => {
  * @param onLoad
  * @return {HTMLImageElement|null}
  */
-export const createPictureRef = (props, onLoad = () => {}) => {
+export const createPictureRef = (props, onLoad) => {
   const convertedProps = convertProps(props)
   if (
     typeof window !== `undefined` &&
@@ -64,7 +64,7 @@ export const createPictureRef = (props, onLoad = () => {}) => {
     }
     pic.appendChild(img)
 
-    img.onload = () => onLoad()
+    img.onload = onLoad
     if (!img.complete && typeof convertedProps.onLoad === `function`) {
       img.addEventListener('load', convertedProps.onLoad)
     }
@@ -78,6 +78,7 @@ export const createPictureRef = (props, onLoad = () => {}) => {
   }
   return null
 }
+
 
 /**
  * Create basic image for a noscript event.

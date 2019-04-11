@@ -9,7 +9,6 @@ import {
   createPictureRef,
   switchImageSettings,
 } from '../ImageUtils'
-// import * as helperUtils from '../HelperUtils'
 
 global.console.debug = jest.fn()
 
@@ -29,6 +28,11 @@ const fluidMock = {
 describe(`createImageToLoad()`, () => {
   it(`should return null on ssr or empty fluid / fixed prop`, () => {
     const emptyImageRef = createPictureRef({})
+    expect(emptyImageRef).toBeNull()
+  })
+
+  it(`should return null on ssr or empty fluid / fixed prop & wrong type for onLoad`, () => {
+    const emptyImageRef = createPictureRef({}, {})
     expect(emptyImageRef).toBeNull()
   })
 })
