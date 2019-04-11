@@ -133,10 +133,10 @@ export const createPseudoElement = (
   let pseudoClasses = ``
   if (classes instanceof Array) {
     pseudoClasses = `.${classes
-      .filter(currClass => {
-        const styles = getStyle(`.${currClass}`)
-        return typeof styles !== `undefined`
-      })
+      // .filter(currClass => {
+      //   const styles = getStyle(`.${currClass}`)
+      //   return typeof styles !== `undefined`
+      // })
       .join('.')}${appendix}`
   }
   if (classId !== ``) {
@@ -159,25 +159,22 @@ export const vendorPrefixBackgroundStyles = (
   fadeIn = true
 ) => {
   // TODO: Look into vendor-prefixes through autoprefix in Gatsby!
-  /*
-  const vendorPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-', '']
-  let prefixed = vendorPrefixes
-    .join(`background-size: ${backgroundSize};\n`)
-    .concat(`background-size: ${backgroundSize};\n`)
-  if (fadeIn) {
-    prefixed +=
-      vendorPrefixes
-        .join(`transition-delay: ${transitionDelay};\n`)
-        .concat(`transition-delay: ${transitionDelay};\n`) +
-      vendorPrefixes
-        .join(`transition: opacity 0.5s;\n`)
-        .concat(`transition: opacity 0.5s;\n`)
-  } else {
-    prefixed += vendorPrefixes
-      .join(`transition: none;\n`)
-      .concat(`transition: none;\n`)
-  }
-  */
+  // const vendorPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-', '']
+  // let prefixed = ``
+  // if (fadeIn) {
+  //   prefixed +=
+  //     vendorPrefixes
+  //       .join(`transition-delay: ${transitionDelay};\n`)
+  //       .concat(`transition-delay: ${transitionDelay};\n`) +
+  //     vendorPrefixes
+  //       .join(`transition: opacity 0.5s;\n`)
+  //       .concat(`transition: opacity 0.5s;\n`)
+  // } else {
+  //   prefixed += vendorPrefixes
+  //     .join(`transition: none;\n`)
+  //     .concat(`transition: none;\n`)
+  // }
+
   let prefixed = fadeIn
     ? `transition-delay: ${transitionDelay};
             transition: opacity 0.5s;`

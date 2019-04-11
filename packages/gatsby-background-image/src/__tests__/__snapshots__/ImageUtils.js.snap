@@ -161,9 +161,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elements 1`] = `
 <style>
   
-          .fixedImage:before,
+          .fixedImage.test:before,
 .gatsby-background-image-test:before,
-          .fixedImage:after,
+          .fixedImage.test:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -179,7 +179,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage:before,
+          .fixedImage.test:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -187,7 +187,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 0; 
           }
-          .fixedImage:after,
+          .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -201,9 +201,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = `
 <style>
   
-          .fixedImage:before,
+          .fixedImage.test:before,
 .gatsby-background-image-test:before,
-          .fixedImage:after,
+          .fixedImage.test:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -219,7 +219,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage:before,
+          .fixedImage.test:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -227,7 +227,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 0; 
           }
-          .fixedImage:after,
+          .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -247,9 +247,9 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
   >
     <style>
       
-          .:before,
+          .fixedImage:before,
 .gatsby-background-image-test:before,
-          .:after,
+          .fixedImage:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -265,7 +265,7 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .:before,
+          .fixedImage:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -273,7 +273,7 @@ background-size: cover;
             background-color: lightgray;
             opacity: 0; 
           }
-          .:after,
+          .fixedImage:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -357,9 +357,9 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
   >
     <style>
       
-          .fixedImage:before,
+          .fixedImage.test:before,
 .gatsby-background-image-test:before,
-          .fixedImage:after,
+          .fixedImage.test:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -375,7 +375,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage:before,
+          .fixedImage.test:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -383,7 +383,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 0; 
           }
-          .fixedImage:after,
+          .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -461,7 +461,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
   <div
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
     id=""
-    style="position: relative; overflow: hidden; opacity: 0.99;"
+    style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
@@ -476,7 +476,10 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             left: 0;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
-            
+            background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;

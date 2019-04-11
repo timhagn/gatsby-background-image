@@ -64,7 +64,7 @@ export const createPictureRef = (props, onLoad) => {
     }
     pic.appendChild(img)
 
-    img.onload = onLoad
+    img.onload = () => onLoad()
     if (!img.complete && typeof convertedProps.onLoad === `function`) {
       img.addEventListener('load', convertedProps.onLoad)
     }

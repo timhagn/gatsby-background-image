@@ -66,11 +66,10 @@ class BackgroundImage extends React.Component {
 
     this.bgImage = ``
 
-    if (props.style)
-      // Get background(-*) styles from CSS (e.g. Styled Components).
-      this.backgroundStyles = presetBackgroundStyles(
-        getBackgroundStyles(this.props.className)
-      )
+    // Get background(-*) styles from CSS (e.g. Styled Components).
+    this.backgroundStyles = presetBackgroundStyles(
+      getBackgroundStyles(this.props.className)
+    )
     // Testing how to grab pseudo-Elements' styles & media-queries
     // this.backgroundPseudoStyles =
     //   getBackgroundStyles(
@@ -190,8 +189,8 @@ class BackgroundImage extends React.Component {
         fadeIn: this.state.fadeIn,
         ...newImageSettings,
       })
-
-      // console.log(pseudoStyles)
+      // TODO: Find out why this.backgroundStyles get prebuilt % (!
+      // console.log(this.backgroundStyles)
       // console.log(backgroundColor, bgColor, `${bgColor && `background-color: ${bgColor};`}`)
 
       return (
@@ -203,6 +202,7 @@ class BackgroundImage extends React.Component {
             overflow: `hidden`,
             opacity: 0.99,
             ...style,
+            // TODO: Maybe we simply need to integrate the extra backgroundStyles in pseudoStyles for the main element??
             ...this.backgroundStyles,
           }}
           id={id}
