@@ -82,7 +82,7 @@ export const createPseudoStyles = ({
             top: 0;
             left: 0;
             ${vendorPrefixBackgroundStyles(transitionDelay, fadeIn)}
-            ${kebabifyBackgroundStyles({...backgroundStyles, ...style})}
+            ${kebabifyBackgroundStyles({ ...backgroundStyles, ...style })}
           }
           ${pseudoBefore} {
             z-index: -100;

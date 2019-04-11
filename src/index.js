@@ -67,11 +67,10 @@ class BackgroundImage extends React.Component {
     this.bgImage = ``
 
     if (props.style)
-
-    // Get background(-*) styles from CSS (e.g. Styled Components).
-    this.backgroundStyles = presetBackgroundStyles(
-      getBackgroundStyles(this.props.className)
-    )
+      // Get background(-*) styles from CSS (e.g. Styled Components).
+      this.backgroundStyles = presetBackgroundStyles(
+        getBackgroundStyles(this.props.className)
+      )
     // Testing how to grab pseudo-Elements' styles & media-queries
     // this.backgroundPseudoStyles =
     //   getBackgroundStyles(

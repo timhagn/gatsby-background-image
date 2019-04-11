@@ -79,7 +79,6 @@ export const createPictureRef = (props, onLoad) => {
   return null
 }
 
-
 /**
  * Create basic image for a noscript event.
  *
