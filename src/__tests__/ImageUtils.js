@@ -9,7 +9,7 @@ import {
   createPictureRef,
   switchImageSettings,
 } from '../ImageUtils'
-import * as helperUtils from '../HelperUtils'
+// import * as helperUtils from '../HelperUtils'
 
 global.console.debug = jest.fn()
 

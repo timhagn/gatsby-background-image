@@ -147,11 +147,13 @@ class BackgroundImage extends React.Component {
       fixed,
       backgroundColor,
       Tag,
-      classId = Math.random()
-        .toString(36)
-        .replace(/[^a-z]+/g, '')
-        .substr(0, 7),
       children,
+      classId = !className
+        ? Math.random()
+            .toString(36)
+            .replace(/[^a-z]+/g, '')
+            .substr(0, 7)
+        : ``,
     } = fixOpacity(convertProps(this.props))
 
     const bgColor =
@@ -192,9 +194,8 @@ class BackgroundImage extends React.Component {
 
       return (
         <Tag
-          className={`${
-            className ? className : ``
-          } gatsby-background-image-${classId} gatsby-image-wrapper`}
+          className={`${className ? className : ``}${classId &&
+            `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
           style={{
             position: `relative`,
             overflow: `hidden`,
@@ -263,9 +264,9 @@ class BackgroundImage extends React.Component {
 
       return (
         <Tag
-          className={`${
-            className ? className : ``
-          } gatsby-background-image-${classId} gatsby-image-wrapper`}
+          className={`${className ? className : ``}${
+            classId ? ` gatsby-background-image-${classId}` : ``
+          } gatsby-image-wrapper`}
           style={{
             ...divStyle,
             ...this.backgroundStyles,
@@ -342,7 +343,7 @@ BackgroundImage.propTypes = {
   alt: PropTypes.string,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
   critical: PropTypes.bool,
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Just took the one from RN.
   backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   onLoad: PropTypes.func,
   onError: PropTypes.func,
