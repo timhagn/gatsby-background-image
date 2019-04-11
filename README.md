@@ -49,8 +49,9 @@ To produce perfect background-images, you need only:
 
 1. Import `gatsby-background-image` and use it in place of the built-in `div`
    or suchlike containers. 
-2. Write a GraphQL query using one of the included GraphQL "fragments"
-   which specify the fields needed by `gatsby-background-image`.
+2. Write a GraphQL query using one of the included GraphQL "fragments" which
+   specify the fields  
+   needed by `gatsby-background-image`.
 
 The GraphQL query creates multiple thumbnails with optimized JPEG and PNG
 compression (or even WebP files for browsers that support them).
@@ -59,12 +60,28 @@ The `gatsby-background-image` component automatically sets up the
 
 ## Install
 
-`npm install --save gatsby-background-image`
+To add `gatsby-background-image` as a dependency to your Gatsby-project use  
+
+```bash
+npm install --save gatsby-background-image
+```
+
+or  
+
+```bash
+yarn add gatsby-background-image
+```
 
 Depending on the gatsby starter you used, you may need to include [gatsby-transformer-sharp](/packages/gatsby-transformer-sharp/) and [gatsby-plugin-sharp](/packages/gatsby-plugin-sharp/) as well, and make sure they are installed and included in your gatsby-config.
 
 ```bash
 npm install --save gatsby-transformer-sharp gatsby-plugin-sharp
+```
+
+or 
+
+```bash
+yarn add gatsby-transformer-sharp gatsby-plugin-sharp
 ```
 
 Then in your `gatsby-config.js`:
@@ -100,8 +117,8 @@ polyfills. Both need the `IntersectionObserver` polyfill, and IE also needs the
 `Object-fit/Object-position` one. As - at the time of writing - neither fully 
 implements the former feature, and IE doesn't implement the latter.
 
-A solution to this issue was mentioned in a comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)   
-(An automatic integration is planned, see [TODO](#todo))
+A solution to this issue was mentioned in a comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)  
+(and an integration of their PR for it is planned, see [TODO](#todo))
 
 ## How to use
 
@@ -145,8 +162,8 @@ const BackgroundSection = ({ className }) => (
 
 const StyledBackgroundSection = styled(BackgroundSection)`
   width: 100%;
-  background-repeat: repeat-y;
   background-position: bottom center;
+  background-repeat: repeat-y;
   background-size: cover;
 `
 
@@ -160,16 +177,59 @@ export default StyledBackgroundSection
 at their [options & props](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#two-types-of-responsive-images)
 to get started.
 
-`gatsby-background-image` has an added classId (as we have to name
-pseudo-elements and introduce a className for the returned container):
+## Styling & passed through styles
+
+You may style your `gatsby-background-image` BackgroundImage-component every way
+you like, be it CSS-Modules or even with `styled-components` or your CSS-in-JS 
+"framework" of choice. The `style={{}}` prop is supported as well.
+
+Whichever way you choose, *every* `background-*` style declared in the main 
+class (or the `style={{}}` prop) will directly get passed through to the 
+pseudo-elements as well (so you would have no need for specifically styling them)!
+
+The specificity hereby is in ascending order:
+- class-styles
+- extracted `background-*` styles 
+- `style={{}}` prop
+
+The three `background-` styles seen above are necessary and will default to:
+
+| Name                   | Default Value          |    
+| ---------------------- | ---------------------- |
+| `background-position`  | `center`               | 
+| `background-repeat`    | `no-repeat`            | 
+| `background-size`      | `cover`                | 
+
+To be able to overwrite them for each pseudo-element individually, you may reset 
+their values in the `style={{}}` prop with an empty string like such:
+
+```
+style={{
+  // Defaults are overwrite-able by setting one or each of the following:
+  backgroundSize: '',
+  backgroundPosition: '',
+  backgroundRepeat: '',
+}}
+```
+
+_**¡But be sure to target the `:before` and `:after` pseudo-elements in your CSS,
+lest your "blurred-up", traced placeholder SVG or lazy loaded background images
+might jump around!**_  
+
+#### Deprecated styling
+
+Though now considered deprecated and to be removed in `1.0.0` at the latest 
+(feel free to open an issue, should you really need them : ),
+`gatsby-background-image` has an added classId (as we had to name
+pseudo-elements and introduce a className for the returned container
+in the beginning):
 
 | Name                   | Type                | Description                                                                             |
 | ---------------------- | ------------------- | ----------------------------------------------------------------------------------------|
 | `classId`              | `string`            | classID of the container element, defaults to a random lower case string of seven chars |
 
-Additionally, you are able to style your component with `styled-components` or
-your CSS-in-JS "framework" of choice. It should work with CSS, too, you just
-have to target the BackgroundImage-component's class:
+Only if present,  It works with CSS, too, you just have to target the 
+BackgroundImage-component's class:
 
 ```css
 .gatsby-background-image-[YOUR_ID]/*(:before, :after)*/ {
@@ -178,9 +238,6 @@ have to target the BackgroundImage-component's class:
   background-size: cover;
 }
 ```
-
-Those three mentioned `background-` styles directly get applied to the 
-pseudo-Elements as well!
 
 ## props not available
 
@@ -200,8 +257,6 @@ So have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
 ## TODO
-- things raised in issue [#20](https://github.com/timhagn/gatsby-background-image/issues/20) 
-created by me for to further discussions of how this package should progress 
 - integrate `gatsby-image/withIEPolyfill` [Gatsby PR #12681](https://github.com/gatsbyjs/gatsby/pull/12681)
 
 
