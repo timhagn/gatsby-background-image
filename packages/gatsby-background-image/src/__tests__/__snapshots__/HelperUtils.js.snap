@@ -9,8 +9,10 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
   >
     <style>
       
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .fixedImage:before,
+.gatsby-background-image-test:before,
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -25,14 +27,16 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .gatsby-background-image-test:before {
+          .fixedImage:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(test_fixed_image.jpg);
@@ -59,8 +63,10 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
   >
     <style>
       
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .fixedImage:before,
+.gatsby-background-image-test:before,
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -75,14 +81,16 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .gatsby-background-image-test:before {
+          .fixedImage:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(test_fluid_image.jpg);
@@ -239,8 +247,10 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
   >
     <style>
       
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .:before,
+.gatsby-background-image-test:before,
+          .:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -255,14 +265,16 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-test:before {
+          .:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
@@ -289,8 +301,10 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
   >
     <style>
       
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .fixedImage:before,
+.gatsby-background-image-test:before,
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -305,14 +319,16 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .gatsby-background-image-test:before {
+          .fixedImage:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
@@ -395,8 +411,10 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
   >
     <style>
       
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .fixedImage:before,
+.gatsby-background-image-test:before,
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -411,14 +429,16 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .gatsby-background-image-test:before {
+          .fixedImage:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
@@ -441,7 +461,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
   <div
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
     id=""
-    style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; overflow: hidden; opacity: 0.99;"
   >
     <style>
       
@@ -456,10 +476,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             left: 0;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
-            background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-
+            
           }
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
@@ -495,8 +512,10 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
   >
     <style>
       
-          .gatsby-background-image-test:before,
-          .gatsby-background-image-test:after {
+          .fixedImage:before,
+.gatsby-background-image-test:before,
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             content: '';
             display: block;
             position: absolute;
@@ -511,14 +530,16 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .gatsby-background-image-test:before {
+          .fixedImage:before,
+.gatsby-background-image-test:before {
             z-index: -100;
             
             
             background-color: lightgray;
             opacity: 0; 
           }
-          .gatsby-background-image-test:after {
+          .fixedImage:after,
+.gatsby-background-image-test:after {
             z-index: -101;
             
             background-image: url(test_fluid_image.jpg);

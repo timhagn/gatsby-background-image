@@ -219,4 +219,8 @@ describe(`kebabifyBackgroundStyles()`, () => {
     const backgroundStyles = kebabifyBackgroundStyles(someStyles)
     expect(backgroundStyles).toEqual(someStyles)
   })
+  it(`should return empty string without style prop`, () => {
+    const backgroundStyles = kebabifyBackgroundStyles()
+    expect(backgroundStyles).toEqual(``)
+  })
 })
