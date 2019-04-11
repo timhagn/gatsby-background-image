@@ -19,6 +19,8 @@
   </a>
 </p>
 
+**This is an old version!**
+
 `gatsby-background-image` is a React component which for background-images
 provides,  
 what Gatsby's own `gatsby-image` does for the rest of your images.  
