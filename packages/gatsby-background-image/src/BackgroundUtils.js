@@ -20,15 +20,16 @@ export const getStyle = className => {
           : ''
     } catch (e) {}
     if (!classes) continue
-    for (let x = 0; x < classes.length; x++) {
-      if (classes[x].selectorText === className) {
-        const resultingStyleText = classes[x].cssText
-          ? classes[x].cssText
-          : classes[x].style.cssText
-        return resultingStyleText.indexOf(classes[x].selectorText) === -1
-          ? `${classes[x].selectorText}{${resultingStyleText}}`
-          : resultingStyleText
-      }
+    const foundClass = Array.from(classes).find(
+      styleRule => styleRule.selectorText === className
+    )
+    if (foundClass) {
+      const resultingStyleText = foundClass.cssText
+        ? foundClass.cssText
+        : foundClass.style.cssText
+      return resultingStyleText.indexOf(foundClass.selectorText) === -1
+        ? `${foundClass.selectorText}{${resultingStyleText}}`
+        : resultingStyleText
     }
   }
 }

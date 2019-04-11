@@ -53,7 +53,7 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
@@ -283,7 +283,7 @@ background-size: cover;
 exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
@@ -335,7 +335,7 @@ exports[`<BackgroundImage /> should return null without fluid / fixed 1`] = `<di
 exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
-    class="fixedImage test gatsby-background-image-test gatsby-image-wrapper"
+    class="fixedImage testgatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
@@ -389,7 +389,7 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should work with single external class 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
@@ -439,7 +439,7 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
-    class=" gatsby-background-image-fwatluf gatsby-image-wrapper"
+    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
     id=""
     style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
@@ -489,7 +489,7 @@ background-size: cover;
 exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
   >
