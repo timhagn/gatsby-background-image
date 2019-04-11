@@ -1,5 +1,5 @@
 /**
- * Handle legacy names for image queries.
+ * Handle legacy names for image queries
  *
  * @param props
  * @return {Object}
@@ -48,16 +48,16 @@ export const toKebabCase = str =>
 /**
  * Splits a given string (e.g. from classname) to an array.
  *
- * @param str string|array  String to split, gets returned without delimiter.
- * @param delimiter string  Delimiter on which to split str.
- * @return {array|string|boolean}  Returns split string as array, false on failure.
+ * @param str string|array  String to split or return as array
+ * @param delimiter string  Delimiter on which to split str
+ * @return {array|boolean}  Returns (split) string as array, false on failure
  */
 export const stringToArray = (str, delimiter = ` `) => {
   if (isString(str)) {
     if (str.includes(delimiter)) {
       return str.split(delimiter)
     } else {
-      return str
+      return [str]
     }
   } else if (str instanceof Array) {
     return str
@@ -69,7 +69,7 @@ export const stringToArray = (str, delimiter = ` `) => {
 /**
  * Tests a given value on being a string.
  *
- * @param value *   Value to test.
+ * @param value *   Value to test
  * @return {boolean}
  */
 export const isString = value =>

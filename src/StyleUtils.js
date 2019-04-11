@@ -27,8 +27,8 @@ export const fixOpacity = props => {
 /**
  * Set some needed backgroundStyles.
  *
- * @return {Object}
  * @param backgroundStyles
+ * @return {Object}
  */
 export const presetBackgroundStyles = backgroundStyles => {
   const defaultBackgroundStyles = {
@@ -53,6 +53,7 @@ export const presetBackgroundStyles = backgroundStyles => {
  * @param bgColor
  * @param fadeIn
  * @param backgroundStyles
+ * @param style
  * @return {string}
  */
 export const createPseudoStyles = ({
@@ -66,6 +67,7 @@ export const createPseudoStyles = ({
   bgColor,
   fadeIn,
   backgroundStyles,
+  style,
 }) => {
   const pseudoBefore = createPseudoElement(className, classId)
   const pseudoAfter = createPseudoElement(className, classId, `:after`)
@@ -80,7 +82,7 @@ export const createPseudoStyles = ({
             top: 0;
             left: 0;
             ${vendorPrefixBackgroundStyles(transitionDelay, fadeIn)}
-            ${kebabifyBackgroundStyles(backgroundStyles)}
+            ${kebabifyBackgroundStyles({...backgroundStyles, ...style})}
           }
           ${pseudoBefore} {
             z-index: -100;
@@ -156,7 +158,7 @@ export const vendorPrefixBackgroundStyles = (
   transitionDelay = `0.25s`,
   fadeIn = true
 ) => {
-  // Remove vendor-prefixes for the moment...
+  // TODO: Look into vendor-prefixes through autoprefix in Gatsby!
   /*
   const vendorPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-', '']
   let prefixed = vendorPrefixes

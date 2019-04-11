@@ -66,6 +66,8 @@ class BackgroundImage extends React.Component {
 
     this.bgImage = ``
 
+    if (props.style)
+
     // Get background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = presetBackgroundStyles(
       getBackgroundStyles(this.props.className)
@@ -185,6 +187,7 @@ class BackgroundImage extends React.Component {
         transitionDelay,
         bgColor,
         backgroundStyles: this.backgroundStyles,
+        style,
         fadeIn: this.state.fadeIn,
         ...newImageSettings,
       })
@@ -258,6 +261,7 @@ class BackgroundImage extends React.Component {
         transitionDelay,
         bgColor,
         backgroundStyles: this.backgroundStyles,
+        style,
         fadeIn: this.state.fadeIn,
         ...newImageSettings,
       })
