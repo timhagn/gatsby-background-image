@@ -180,8 +180,8 @@ to get started.
 ## Styling & passed through styles
 
 You may style your `gatsby-background-image` BackgroundImage-component every way
-you like, be it CSS-Modules or even with `styled-components` or your CSS-in-JS 
-"framework" of choice. The `style={{}}` prop is supported as well.
+you like, be it globasl CSS, CSS-Modules or even with `styled-components` or your 
+CSS-in-JS "framework" of choice. The `style={{}}` prop is supported as well.
 
 Whichever way you choose, *every* `background-*` style declared in the main 
 class (or the `style={{}}` prop) will directly get passed through to the 
@@ -198,7 +198,7 @@ The three `background-` styles seen above are necessary and will default to:
 | ---------------------- | ---------------------- |
 | `background-position`  | `center`               | 
 | `background-repeat`    | `no-repeat`            | 
-| `background-size`      | `cover`                | 
+| `background-size`      | `cover`                |
 
 To be able to overwrite them for each pseudo-element individually, you may reset 
 their values in the `style={{}}` prop with an empty string like such:

@@ -28,3 +28,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.2.9](https://github.com/timhagn/gatsby-background-image) (2019-04-05)
 
 **fix:** Change build to ES5.
+
+## [0.3.0](https://github.com/timhagn/gatsby-background-image) (2019-04-12)
+
+**fix / feat:** Add most changes from issue #20 (styling), fixes issue #22
