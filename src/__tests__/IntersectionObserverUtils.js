@@ -37,18 +37,19 @@ describe(`IntersectionObserverUtils`, () => {
     expect(mockCallback).toHaveBeenCalled()
   })
 
-  it(`callback should work with mock intersectionRatio`, () => {
+  it(`callback should work without both`, () => {
     const tmpImageRef = { mock: true }
     const mockCallback = jest.fn()
     listenToIntersections(tmpImageRef, mockCallback)
     const mockEntries = [
       {
         target: tmpImageRef,
-        intersectionRatio: 10,
+        isIntersecting: false,
+        intersectionRatio: 0,
       },
     ]
     callbackIO(mockEntries)
-    expect(mockCallback).toHaveBeenCalled()
+    expect(mockCallback).toHaveBeenCalledTimes(0)
   })
 })
 

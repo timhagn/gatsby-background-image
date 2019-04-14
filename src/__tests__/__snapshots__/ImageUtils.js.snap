@@ -60,6 +60,7 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
     class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
+    title="Title for the image"
   >
     <style>
       
@@ -298,6 +299,7 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
     class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
+    title="Title for the image"
   >
     <style>
       
@@ -354,6 +356,7 @@ exports[`<BackgroundImage /> should work with BackgroundColor 1`] = `
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    title="Title for the image"
   >
     <style>
       
@@ -404,6 +407,7 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
     class="fixedImage testgatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
+    title="Title for the image"
   >
     <style>
       
@@ -458,6 +462,7 @@ exports[`<BackgroundImage /> should work with only classId 1`] = `
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    title="Title for the image"
   >
     <style>
       
@@ -508,6 +513,7 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
     class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
+    title="Title for the image"
   >
     <style>
       
@@ -562,6 +568,7 @@ exports[`<BackgroundImage /> should work without classId but className 1`] = `
     class="fixedImagetest gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    title="Title for the image"
   >
     <style>
       
@@ -662,6 +669,7 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
     class="fixedImagetestgatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    title="Title for the image"
   >
     <style>
       
