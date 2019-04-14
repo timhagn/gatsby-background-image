@@ -120,7 +120,7 @@ implements the former feature, and IE doesn't implement the latter.
 A solution to this issue was mentioned in a comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)  
 (and an integration of their PR for it is planned, see [TODO](#todo))
 
-## How to use
+## How to Use
 
 This is what a component using `gatsby-background-image` looks like:
 
@@ -175,9 +175,10 @@ export default StyledBackgroundSection
 
 `gatsby-background-image` nearly works the same as `gatsby-image` so have a look
 at their [options & props](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#two-types-of-responsive-images)
-to get started.
+to get started. But be sure to also throw a glance at [props Not Available](#props-not-available)
+and [Handling of Remaining props](#handling-of-remaining-props) as well ; )!
 
-## Styling & passed through styles
+## Styling & Passed Through Styles
 
 You may style your `gatsby-background-image` BackgroundImage-component every way
 you like, be it globasl CSS, CSS-Modules or even with `styled-components` or your 
@@ -216,7 +217,7 @@ _**¡But be sure to target the `:before` and `:after` pseudo-elements in your CS
 lest your "blurred-up", traced placeholder SVG or lazy loaded background images
 might jump around!**_  
 
-#### Deprecated styling
+#### Deprecated Styling
 
 Though now considered deprecated and to be removed in `1.0.0` at the latest 
 (feel free to open an issue, should you really need them : ),
@@ -241,9 +242,9 @@ Now you are able to access it through CSS / CSS-in-JS with:
 ```
 
 But as the paragraph-title states: This behavior is considered deprecated, so
-don't count on it in production ; ). 
+don't count on it in production ; ).
 
-## props not available
+## props Not Available
 
 As `gatsby-background-image` doesn't use placeholder-images, the following
 props from `gatsby-image` are of course not available.
@@ -254,9 +255,17 @@ props from `gatsby-image` are of course not available.
 | `placeholderClassName` | `string`            | A class that is passed to the placeholder img element         |
 | `imgStyle`             | `object`            | Spread into the default styles of the actual img element
 
+## Handling of Remaining props
+
+After every available prop is handled, the remaining ones get cleaned up and
+spread into the `<BackgroundImage />`'s container element.
+This way you can "safely" add every ARIA or `data-*` attribute you might need
+without having to use `gatsby-image`'s `itemProp` ; ). 
+
 ## Contributing
 
 Everyone is more than welcome to contribute to this little package!   
+Docs, Reviews, Testing, Code - whatever you want to add, just go for it : ).
 So have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
