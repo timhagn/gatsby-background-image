@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import getBackgroundStyles from './BackgroundUtils'
-import { convertProps } from './HelperUtils'
+import { convertProps, stripRemainingProps } from './HelperUtils'
 import {
   activateCacheForImage,
   createPictureRef,
@@ -21,6 +21,26 @@ import { listenToIntersections } from './IntersectionObserverUtils'
  * with optional support for the blur-up effect.
  */
 class BackgroundImage extends React.Component {
+  static propTypes = {
+    resolutions: fixedObject,
+    sizes: fluidObject,
+    fixed: fixedObject,
+    fluid: fluidObject,
+    fadeIn: PropTypes.bool,
+    title: PropTypes.string,
+    id: PropTypes.string,
+    alt: PropTypes.string,
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
+    critical: PropTypes.bool,
+    style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Using PropTypes from RN.
+    backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    onLoad: PropTypes.func,
+    onError: PropTypes.func,
+    onStartLoad: PropTypes.func,
+    Tag: PropTypes.string,
+    classId: PropTypes.string,
+  }
+
   // Needed to prevent handleImageLoaded() firing on gatsby build.
   _isMounted = false
 
@@ -157,7 +177,10 @@ class BackgroundImage extends React.Component {
             .replace(/[^a-z]+/g, '')
             .substr(0, 7)
         : ``,
+      ...props
     } = fixOpacity(convertProps(this.props))
+
+    const remainingProps = stripRemainingProps(props)
 
     const bgColor =
       typeof backgroundColor === `boolean`
@@ -207,6 +230,7 @@ class BackgroundImage extends React.Component {
           id={id}
           ref={this.handleRef}
           key={`fluid-${JSON.stringify(image.srcSet)}`}
+          {...remainingProps}
         >
           {/*Create style element to transition between pseudo-elements.*/}
           <style
@@ -277,6 +301,7 @@ class BackgroundImage extends React.Component {
           id={id}
           ref={this.handleRef}
           key={`fixed-${JSON.stringify(image.srcSet)}`}
+          {...remainingProps}
         >
           {/*Create style element to transition between pseudo-elements.*/}
           <style
@@ -336,24 +361,6 @@ const fluidObject = PropTypes.shape({
   srcSetWebp: PropTypes.string,
 })
 
-BackgroundImage.propTypes = {
-  resolutions: fixedObject,
-  sizes: fluidObject,
-  fixed: fixedObject,
-  fluid: fluidObject,
-  fadeIn: PropTypes.bool,
-  title: PropTypes.string,
-  id: PropTypes.string,
-  alt: PropTypes.string,
-  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
-  critical: PropTypes.bool,
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Using PropTypes from RN.
-  backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  onLoad: PropTypes.func,
-  onError: PropTypes.func,
-  onStartLoad: PropTypes.func,
-  Tag: PropTypes.string,
-  classId: PropTypes.string,
-}
+
 
 export default BackgroundImage
