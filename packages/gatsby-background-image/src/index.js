@@ -322,6 +322,7 @@ class BackgroundImage extends React.Component {
             ...this.backgroundStyles,
           }}
           id={id}
+          title={title}
           ref={this.handleRef}
           key={`fixed-${JSON.stringify(image.srcSet)}`}
           {...remainingProps}
