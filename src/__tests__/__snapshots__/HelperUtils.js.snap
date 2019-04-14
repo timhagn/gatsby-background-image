@@ -6,6 +6,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
+    title="Title for the image"
   >
     <style>
       
@@ -245,6 +246,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
     class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    title="Title for the image"
   >
     <style>
       
