@@ -228,8 +228,9 @@ in the beginning):
 | ---------------------- | ------------------- | ----------------------------------------------------------------------------------------|
 | `classId`              | `string`            | classID of the container element, defaults to a random lower case string of seven chars |
 
-Only if present,  It works with CSS, too, you just have to target the 
-BackgroundImage-component's class:
+Only if present now, pseudo-elements are created on a class by the name of 
+`.gatsby-background-image-[YOUR_ID]` and the class is added to `BackgroundImage`.
+Now you are able to access it through CSS / CSS-in-JS with:
 
 ```css
 .gatsby-background-image-[YOUR_ID]/*(:before, :after)*/ {
@@ -238,6 +239,9 @@ BackgroundImage-component's class:
   background-size: cover;
 }
 ```
+
+But as the paragraph-title states: This behavior is considered deprecated, so
+don't count on it in production ; ). 
 
 ## props not available
 
