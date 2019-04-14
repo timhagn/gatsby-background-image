@@ -31,4 +31,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.3.0](https://github.com/timhagn/gatsby-background-image) (2019-04-12)
 
-**fix / feat:** Add most changes from issue #20 (styling), fixes issue #22
+**fix / feat:** Add most changes from issue #20 (styling), fixes issue #22.
+
+## [0.3.0](https://github.com/timhagn/gatsby-background-image) (2019-04-12)
+
+**feat:** Add stripRemainingProps() to safely add ARIA or other attributes.
