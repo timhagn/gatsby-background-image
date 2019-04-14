@@ -1,3 +1,5 @@
+import BackgroundImage from './index'
+
 /**
  * Handle legacy names for image queries
  *
@@ -16,6 +18,24 @@ export const convertProps = props => {
   }
 
   return convertedProps
+}
+
+/**
+ * Strip BackgroundImage propTypes from remaining props to be passed to <Tag />
+ *
+ * @param props
+ * @return {Object}
+ */
+export const stripRemainingProps = props => {
+  let remainingProps = { ...props }
+
+  Object.keys(BackgroundImage.propTypes).forEach(propTypesKey => {
+    if (remainingProps.hasOwnProperty(propTypesKey)) {
+      delete remainingProps[propTypesKey]
+    }
+  })
+
+  return remainingProps
 }
 
 /**

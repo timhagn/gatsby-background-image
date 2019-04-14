@@ -78,8 +78,6 @@ const setup = (fluid = false,
       {...(!fluid && fixed) && { fixed: fixedShapeMock }}
       onLoad={onLoad}
       onError={onError}
-      placeholderStyle={{ color: `red` }}
-      placeholderClassName={`placeholder`}
       classId="test"
       critical={critical}
       onStartLoad={onStartLoad}
