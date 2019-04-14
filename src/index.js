@@ -16,6 +16,28 @@ import {
 } from './StyleUtils'
 import { listenToIntersections } from './IntersectionObserverUtils'
 
+const fixedObject = PropTypes.shape({
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  srcSet: PropTypes.string.isRequired,
+  base64: PropTypes.string,
+  tracedSVG: PropTypes.string,
+  srcWebp: PropTypes.string,
+  srcSetWebp: PropTypes.string,
+})
+
+const fluidObject = PropTypes.shape({
+  aspectRatio: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  srcSet: PropTypes.string.isRequired,
+  sizes: PropTypes.string.isRequired,
+  base64: PropTypes.string,
+  tracedSVG: PropTypes.string,
+  srcWebp: PropTypes.string,
+  srcSetWebp: PropTypes.string,
+})
+
 /**
  * Main Lazy-loading React background-image component
  * with optional support for the blur-up effect.
@@ -338,29 +360,5 @@ BackgroundImage.defaultProps = {
   id: ``,
   Tag: `div`,
 }
-
-const fixedObject = PropTypes.shape({
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  src: PropTypes.string.isRequired,
-  srcSet: PropTypes.string.isRequired,
-  base64: PropTypes.string,
-  tracedSVG: PropTypes.string,
-  srcWebp: PropTypes.string,
-  srcSetWebp: PropTypes.string,
-})
-
-const fluidObject = PropTypes.shape({
-  aspectRatio: PropTypes.number.isRequired,
-  src: PropTypes.string.isRequired,
-  srcSet: PropTypes.string.isRequired,
-  sizes: PropTypes.string.isRequired,
-  base64: PropTypes.string,
-  tracedSVG: PropTypes.string,
-  srcWebp: PropTypes.string,
-  srcSetWebp: PropTypes.string,
-})
-
-
 
 export default BackgroundImage
