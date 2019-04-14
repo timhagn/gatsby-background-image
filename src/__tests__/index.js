@@ -40,6 +40,8 @@ export const fluidShapeMock = {
  * @param critical
  * @param onStartLoad
  * @param fixed
+ * @param addClassId
+ * @param addBackgroundColor
  * @return {RenderResult.container}
  */
 const setup = (fluid = false,
@@ -50,7 +52,9 @@ const setup = (fluid = false,
                onError = () => {},
                critical = false,
                onStartLoad = null,
-               fixed = true) => {
+               fixed = true,
+               addClassId = true,
+               addBackgroundColor = true) => {
 
   if (addClass) {
     // Create the style class.
@@ -68,8 +72,8 @@ const setup = (fluid = false,
       `fixedImage${additionalClass}` : additionalClass.trim()
   const { container } = render(
     <BackgroundImage
-      backgroundColor
-      className={classNames}
+      { ...addBackgroundColor && {backgroundColor: addBackgroundColor}}
+      { ...fixedClass && {className: classNames}}
       style={{ display: `inline`, opacity: .99 }}
       title={`Title for the image`}
       alt={`Alt text for the image`}
@@ -78,7 +82,7 @@ const setup = (fluid = false,
       {...(!fluid && fixed) && { fixed: fixedShapeMock }}
       onLoad={onLoad}
       onError={onError}
-      classId="test"
+      { ...addClassId && {classId: `test`}}
       critical={critical}
       onStartLoad={onStartLoad}
     ><h1>test</h1></BackgroundImage>
@@ -152,6 +156,21 @@ describe(`<BackgroundImage />`, () => {
     expect(component).toMatchSnapshot()
   })
 
+  it(`should work with only classId`, () => {
+    const component = setup(true, false, ``, false, null, null, false, null, false, false)
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should work without classId but className`, () => {
+    const component = setup(true, false, `test`, true, null, null, false, null, false, false)
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should work with BackgroundColor`, () => {
+    const component = setup(true, false, ``, false, null, null, false, null, false, false, `#fff`)
+    expect(component).toMatchSnapshot()
+  })
+
   it(`should create style tag with pseudo-elements`, () => {
     const styleTag = setup(true, true, ` test`).querySelector(`style`)
     expect(styleTag).toBeInTheDocument()
@@ -202,7 +221,7 @@ describe(`<BackgroundImage /> without IO`, () => {
 
   it(`should call onLoadFunction without IO`, () => {
     const onLoadFunctionMock = jest.fn()
-    const component = setup(true, true, ``, true, null, null, true, onLoadFunctionMock)
+    const component = setup(true, true, `test`, true, null, null, true, onLoadFunctionMock)
     expect(component).toMatchSnapshot()
     expect(onLoadFunctionMock).toHaveBeenCalled()
   })

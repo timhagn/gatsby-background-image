@@ -115,6 +115,7 @@ describe(`switchImageSettings()`, () => {
       fadeIn: true,
     })
     expect(createdSettings).toMatchSnapshot()
+    expect(createdSettings.lastImage).toEqual(`string_of_base64`)
   })
 
   it(`should return settings from fixed with set bgImage`, () => {
