@@ -1,6 +1,6 @@
 import { convertProps } from './HelperUtils'
 
-const imageCache = {}
+const imageCache = Object.create({})
 /**
  * Cache if we've seen an image before so we don't both with
  * lazy-loading & fading in on subsequent mounts.
