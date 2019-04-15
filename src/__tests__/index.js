@@ -9,6 +9,7 @@ global.console.debug = jest.fn()
 
 afterAll(cleanup)
 
+let elements = []
 
 export const fixedShapeMock = {
   width: 100,
@@ -92,9 +93,12 @@ const setup = (fluid = false,
 }
 
 describe(`<BackgroundImage />`, () => {
+  const observe = jest.fn(callback => elements.push(callback))
+  const unobserve = jest.fn(callback => elements.unshift(callback))
   beforeEach(() => {
     global.IntersectionObserver = jest.fn(() => ({
-      observe: jest.fn(),
+      observe,
+      unobserve,
     }))
   })
 
@@ -196,6 +200,7 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should call onLoad and onError image events`, () => {
+    global.window.HTMLImageElement.complete = true
     const onLoadMock = jest.fn()
     const onErrorMock = jest.fn()
     const image = createPictureRef({

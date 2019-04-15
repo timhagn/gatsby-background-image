@@ -66,6 +66,9 @@ class BackgroundImage extends React.Component {
   // Needed to prevent handleImageLoaded() firing on gatsby build.
   _isMounted = false
 
+  // IntersectionObserver listeners (if available).
+  cleanUpListeners
+
   constructor(props) {
     super(props)
 
@@ -148,11 +151,14 @@ class BackgroundImage extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false
+    if (this.cleanUpListeners) {
+      this.cleanUpListeners()
+    }
   }
 
   handleRef(ref) {
     if (this.state.IOSupported && ref) {
-      listenToIntersections(ref, () => {
+      this.cleanUpListeners = listenToIntersections(ref, () => {
         const imageInCache = inImageCache(this.props)
         if (
           !this.state.isVisible &&
@@ -161,7 +167,16 @@ class BackgroundImage extends React.Component {
           this.props.onStartLoad({ wasCached: imageInCache })
         }
 
-        this.setState({ isVisible: true, imgLoaded: imageInCache })
+        // imgCached and imgLoaded must update after isVisible,
+        // Once isVisible is true, imageRef becomes accessible, which imgCached needs access to.
+        // imgLoaded and imgCached are in a 2nd setState call to be changed together,
+        // avoiding initiating unnecessary animation frames from style changes.
+        this.setState({ isVisible: true }, () =>
+          this.setState({
+            imgLoaded: imageInCache,
+            imgCached: !!this.imageRef.currentSrc,
+          })
+        )
       })
     }
   }
@@ -211,6 +226,7 @@ class BackgroundImage extends React.Component {
         ? backgroundColor
         : ``
 
+    const shouldFadeIn = this.state.fadeIn === true && !this.state.imgCached
     const transitionDelay = this.state.imgLoaded ? `0.5s` : `0.25s`
 
     if (fluid) {
@@ -234,7 +250,7 @@ class BackgroundImage extends React.Component {
         bgColor,
         backgroundStyles: this.backgroundStyles,
         style,
-        fadeIn: this.state.fadeIn,
+        fadeIn: shouldFadeIn,
         ...newImageSettings,
       })
 
@@ -308,7 +324,7 @@ class BackgroundImage extends React.Component {
         bgColor,
         backgroundStyles: this.backgroundStyles,
         style,
-        fadeIn: this.state.fadeIn,
+        fadeIn: shouldFadeIn,
         ...newImageSettings,
       })
 
