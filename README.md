@@ -110,15 +110,39 @@ module.exports = {
 }
 ```
 
-**Important:**
+#### Important:
 
-If you support *Safari* and/or *Internet Explorer*, you have to install several 
-polyfills. Both need the `IntersectionObserver` polyfill, and IE also needs the 
-`Object-fit/Object-position` one. As - at the time of writing - neither fully 
-implements the former feature, and IE doesn't implement the latter.
+If you support *Safari* and/or *Internet Explorer*, you have to install the 
+`IntersectionObserver` polyfill. As - at the time of writing - neither fully 
+implements the feature (see [caniuse.com](https://caniuse.com/#search=IntersectionObserver)).
 
 A solution to this issue was mentioned in a comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)  
-(and an integration of their PR for it is planned, see [TODO](#todo))
+and you are able to apply it the following way:
+
+**1.** Install the [`intersection-observer`](https://www.npmjs.com/package/intersection-observer) 
+polyfill package by running:
+
+ ```bash
+ npm i --save intersection-observer
+ ```
+
+ or
+
+ ```bash
+ yarn add intersection-observer
+ ```
+
+**2.** Dynamically load the polyfill in your `gatsby-browser.js`:
+
+```js
+exports.onClientEntry = () => {
+  // IntersectionObserver polyfill for gatsby-background-image (Safari, IE)
+  if (typeof window.IntersectionObserver === `undefined`) {
+    import(`intersection-observer`)
+    console.log(`# IntersectionObserver is polyfilled!`)
+  }
+}
+```
 
 ## How to Use
 
@@ -270,7 +294,8 @@ So have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
 ## TODO
-- integrate `gatsby-image/withIEPolyfill` [Gatsby PR #12681](https://github.com/gatsbyjs/gatsby/pull/12681)
+
+Tell me by opening an issue or a PR : )!
 
 
 

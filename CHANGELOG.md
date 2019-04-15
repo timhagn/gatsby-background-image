@@ -40,3 +40,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.3.2](https://github.com/timhagn/gatsby-background-image) (2019-04-14)
 
 **fix:** Add title attribute.
+
+## [0.3.3](https://github.com/timhagn/gatsby-background-image) (2019-04-15)
+
+**doc:** Removed TODO for object-fit / -position (superfluous); specified how to
+use `intersection-observer` polyfill.
