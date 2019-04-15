@@ -43,5 +43,5 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.3.3](https://github.com/timhagn/gatsby-background-image) (2019-04-15)
 
-**doc:** Removed TODO for object-fit / -position (superfluous); specified how to
-use `intersection-observer` polyfill.
+**doc / feat:** Remove TODO for object-fit / -position (superfluous); specify 
+how to use `intersection-observer` polyfill. Sync IO with `gatsby-image`. 
