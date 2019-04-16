@@ -55,7 +55,8 @@ const setup = (fluid = false,
                onStartLoad = null,
                fixed = true,
                addClassId = true,
-               addBackgroundColor = true) => {
+               addBackgroundColor = true,
+               fadeIn = false) => {
 
   if (addClass) {
     // Create the style class.
@@ -86,6 +87,7 @@ const setup = (fluid = false,
       { ...addClassId && {classId: `test`}}
       critical={critical}
       onStartLoad={onStartLoad}
+      { ... fadeIn && {fadeIn: `soft`}}
     ><h1>test</h1></BackgroundImage>
   )
 
@@ -172,6 +174,11 @@ describe(`<BackgroundImage />`, () => {
 
   it(`should work with BackgroundColor`, () => {
     const component = setup(true, false, ``, false, null, null, false, null, false, false, `#fff`)
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should work with fadeIn`, () => {
+    const component = setup(true, false, ``, false, null, null, false, null, false, false, true, true)
     expect(component).toMatchSnapshot()
   })
 
