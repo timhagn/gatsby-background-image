@@ -87,7 +87,8 @@ export const createPseudoStyles = ({
           ${pseudoBefore} {
             z-index: -100;
             ${
-              !afterOpacity && lastImage !== ``
+              (!afterOpacity && lastImage !== ``) ||
+              (afterOpacity && !bgImage && !nextImage && lastImage !== ``)
                 ? `background-image: url(${lastImage});`
                 : ``
             }
@@ -102,7 +103,8 @@ export const createPseudoStyles = ({
           ${pseudoAfter} {
             z-index: -101;
             ${
-              afterOpacity && lastImage !== ``
+              (afterOpacity && lastImage !== ``) ||
+              (!afterOpacity && !bgImage && !nextImage && lastImage !== ``)
                 ? `background-image: url(${lastImage});`
                 : ``
             }

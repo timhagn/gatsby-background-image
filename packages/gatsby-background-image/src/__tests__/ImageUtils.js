@@ -7,7 +7,7 @@ import {
   inImageCache,
   activateCacheForImage,
   createPictureRef,
-  switchImageSettings,
+  switchImageSettings, imagePropsChanged,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
@@ -169,5 +169,28 @@ describe(`switchImageSettings()`, () => {
       fadeIn: true,
     })
     expect(createdSettings).toMatchSnapshot()
+  })
+})
+
+
+describe(`imagePropsChanged()`, () => {
+  it(`should return false for same fixed prop`, () => {
+    const changedFixed = imagePropsChanged(fixedMock, fixedMock)
+    expect(changedFixed).toBeFalsy()
+  })
+
+  it(`should return false for same fluid prop`, () => {
+    const changedFluid = imagePropsChanged(fluidMock, fluidMock)
+    expect(changedFluid).toBeFalsy()
+  })
+
+  it(`should return true from fluid to fixed`, () => {
+    const changedFluidToFixed = imagePropsChanged(fluidMock, fixedMock)
+    expect(changedFluidToFixed).toBeTruthy()
+  })
+
+  it(`should return true from fixed to fluid`, () => {
+    const changedFixedToFluid = imagePropsChanged(fixedMock, fluidMock)
+    expect(changedFixedToFluid).toBeTruthy()
   })
 })

@@ -139,3 +139,20 @@ export const switchImageSettings = ({
     noBase64,
   }
 }
+
+/**
+ * Checks if any image props have changed
+ *
+ * @param props
+ * @param prevProps
+ * @return {*}
+ */
+export const imagePropsChanged = (props, prevProps) =>
+  (props.fluid && !prevProps.fluid) ||
+  (props.fixed && !prevProps.fixed) ||
+  (props.fluid &&
+    prevProps.fluid &&
+    props.fluid.src !== prevProps.fluid.src) ||
+  (props.fixed &&
+    prevProps.fixed &&
+    props.fixed.src !== prevProps.fixed.src)

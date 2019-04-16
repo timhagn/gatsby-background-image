@@ -5,6 +5,7 @@ import { convertProps, stripRemainingProps } from './HelperUtils'
 import {
   activateCacheForImage,
   createPictureRef,
+  imagePropsChanged,
   inImageCache,
   noscriptImg,
   switchImageSettings,
@@ -48,7 +49,7 @@ class BackgroundImage extends React.Component {
     sizes: fluidObject,
     fixed: fixedObject,
     fluid: fluidObject,
-    fadeIn: PropTypes.bool,
+    fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     title: PropTypes.string,
     id: PropTypes.string,
     alt: PropTypes.string,
@@ -104,7 +105,7 @@ class BackgroundImage extends React.Component {
     }
 
     // Check if a noscript element should be included.
-    const hasNoScript = !(this.props.critical && !this.props.fadeIn)
+    const hasNoScript = !(props.critical && !fadeIn)
 
     this.state = {
       isVisible,
@@ -153,6 +154,27 @@ class BackgroundImage extends React.Component {
     this._isMounted = false
     if (this.cleanUpListeners) {
       this.cleanUpListeners()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // if (this.props.id === `test`)
+    //   console.log('prev:', prevProps, `next:`, this.props)
+    if (imagePropsChanged(this.props, prevProps)) {
+      const imageInCache = inImageCache(this.props)
+      this.setState(
+        {
+          isVisible: imageInCache,
+        },
+        () => {
+          this.bgImage =
+            (this.imageRef && this.imageRef.currentSrc) ||
+            (this.imageRef && this.imageRef.src) ||
+            ``
+          // console.log(`changed:`, this.bgImage)
+          this.imageRef = createPictureRef(this.props, this.handleImageLoaded)
+        }
+      )
     }
   }
 
@@ -226,7 +248,9 @@ class BackgroundImage extends React.Component {
         ? backgroundColor
         : ``
 
-    const shouldFadeIn = this.state.fadeIn === true && !this.state.imgCached
+    const shouldFadeIn =
+      (this.state.fadeIn === true && !this.state.imgCached) ||
+      this.props.fadeIn === `soft`
     const transitionDelay = this.state.imgLoaded ? `0.5s` : `0.25s`
 
     if (fluid) {
@@ -253,6 +277,8 @@ class BackgroundImage extends React.Component {
         fadeIn: shouldFadeIn,
         ...newImageSettings,
       })
+
+      // if (this.props.id === `test`) console.log(newImageSettings)
 
       return (
         <Tag
