@@ -268,6 +268,18 @@ Now you are able to access it through CSS / CSS-in-JS with:
 But as the paragraph-title states: This behavior is considered deprecated, so
 don't count on it in production ; ).
 
+## Changed props
+
+As `gatsby-image` now has a changed behavior for already loaded images
+(no soft fade in, even if prop `fadeIn` is setto `true` per default), 
+and this sometimes seemed a little hard for the eyes with background images, 
+the `fadeIn` prop may now be set to `soft` to ignore cached images and always
+try to fade in if `critical` isn't set.
+
+| Name                   | Type                  | Description                                                      |
+| ---------------------- | --------------------- | ---------------------------------------------------------------- |
+| `fadeIn`               | `boolean` / `string`  | Defaults to fading in the image on load, may be forced by `soft` |
+
 ## props Not Available
 
 As `gatsby-background-image` doesn't use placeholder-images, the following
@@ -277,7 +289,7 @@ props from `gatsby-image` are of course not available.
 | ---------------------- | ------------------- | --------------------------------------------------------------|
 | `placeholderStyle`     | `object`            | Spread into the default styles of the placeholder img element |
 | `placeholderClassName` | `string`            | A class that is passed to the placeholder img element         |
-| `imgStyle`             | `object`            | Spread into the default styles of the actual img element
+| `imgStyle`             | `object`            | Spread into the default styles of the actual img element      |
 
 ## Handling of Remaining props
 

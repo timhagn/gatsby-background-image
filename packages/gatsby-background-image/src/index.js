@@ -163,7 +163,7 @@ class BackgroundImage extends React.Component {
       const imageInCache = inImageCache(this.props)
       this.setState(
         {
-          isVisible: imageInCache,
+          isVisible: imageInCache || this.props.critical,
         },
         () => {
           // Update bgImage & create new imageRef.
