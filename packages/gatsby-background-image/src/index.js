@@ -158,8 +158,7 @@ class BackgroundImage extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (this.props.id === `test`)
-    //   console.log('prev:', prevProps, `next:`, this.props)
+    // Check if we received a changed fluid / fixed image.
     if (imagePropsChanged(this.props, prevProps)) {
       const imageInCache = inImageCache(this.props)
       this.setState(
@@ -167,11 +166,11 @@ class BackgroundImage extends React.Component {
           isVisible: imageInCache,
         },
         () => {
+          // Update bgImage & create new imageRef.
           this.bgImage =
             (this.imageRef && this.imageRef.currentSrc) ||
             (this.imageRef && this.imageRef.src) ||
             ``
-          // console.log(`changed:`, this.bgImage)
           this.imageRef = createPictureRef(this.props, this.handleImageLoaded)
         }
       )
@@ -278,8 +277,6 @@ class BackgroundImage extends React.Component {
         ...newImageSettings,
       })
 
-      // if (this.props.id === `test`) console.log(newImageSettings)
-
       return (
         <Tag
           className={`${className ? className : ``}${classId &&
@@ -356,9 +353,8 @@ class BackgroundImage extends React.Component {
 
       return (
         <Tag
-          className={`${className ? className : ``}${
-            classId ? ` gatsby-background-image-${classId}` : ``
-          } gatsby-image-wrapper`}
+          className={`${className ? className : ``}${classId &&
+          `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
           style={{
             ...divStyle,
             ...this.backgroundStyles,
