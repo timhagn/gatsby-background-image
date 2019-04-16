@@ -199,8 +199,9 @@ export default StyledBackgroundSection
 
 `gatsby-background-image` nearly works the same as `gatsby-image` so have a look
 at their [options & props](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#two-types-of-responsive-images)
-to get started. But be sure to also throw a glance at [props Not Available](#props-not-available)
-and [Handling of Remaining props](#handling-of-remaining-props) as well ; )!
+to get started. But be sure to also throw a glance at [Changed props](#changed-props), 
+[props Not Available](#props-not-available) and [Handling of Remaining props](#handling-of-remaining-props) 
+as well ; )!
 
 ## Styling & Passed Through Styles
 
