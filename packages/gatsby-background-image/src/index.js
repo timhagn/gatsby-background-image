@@ -354,7 +354,7 @@ class BackgroundImage extends React.Component {
       return (
         <Tag
           className={`${className ? className : ``}${classId &&
-          `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
+            `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
           style={{
             ...divStyle,
             ...this.backgroundStyles,
