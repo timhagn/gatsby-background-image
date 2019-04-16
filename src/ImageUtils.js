@@ -150,9 +150,5 @@ export const switchImageSettings = ({
 export const imagePropsChanged = (props, prevProps) =>
   (props.fluid && !prevProps.fluid) ||
   (props.fixed && !prevProps.fixed) ||
-  (props.fluid &&
-    prevProps.fluid &&
-    props.fluid.src !== prevProps.fluid.src) ||
-  (props.fixed &&
-    prevProps.fixed &&
-    props.fixed.src !== prevProps.fixed.src)
+  (props.fluid && prevProps.fluid && props.fluid.src !== prevProps.fluid.src) ||
+  (props.fixed && prevProps.fixed && props.fixed.src !== prevProps.fixed.src)
