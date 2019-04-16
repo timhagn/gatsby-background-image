@@ -45,3 +45,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **doc / feat:** Remove TODO for object-fit / -position (superfluous); specify 
 how to use `intersection-observer` polyfill. Sync IO with `gatsby-image`. 
+
+## [0.3.4](https://github.com/timhagn/gatsby-background-image) (2019-04-16)
+
+**fix / feat:** Fix behavior when changing fluid / fixed image props (didn't 
+recreate imageRef before). Add possibility for passing `soft` to `fadeIn` to
+"force" fading in and image even if it is in cache.  
