@@ -20,7 +20,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            
+            background-image: url(some_base64_string);
             
             background-color: #000;
             opacity: 1; 
@@ -63,7 +63,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            
+            background-image: url(some_base64_string);
             
             background-color: #000;
           }
