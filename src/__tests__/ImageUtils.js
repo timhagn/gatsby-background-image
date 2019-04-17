@@ -37,6 +37,7 @@ describe(`createImageToLoad()`, () => {
 
 describe(`inImageCache() / activateCacheForImage()`, () => {
   it(`should return false for initial load (fixed)`, () => {
+    fixedMock.src = `test.jpg`
     const inCache = inImageCache(fixedMock)
     expect(inCache).toBeFalsy()
   })

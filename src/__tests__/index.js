@@ -1,10 +1,9 @@
 import '@babel/polyfill'
-import { render, fireEvent } from 'react-testing-library'
+import { render } from 'react-testing-library'
 import 'react-testing-library/cleanup-after-each'
 
 import React from 'react'
 import BackgroundImage from '../'
-import { createPictureRef } from '../ImageUtils'
 
 global.console.debug = jest.fn()
 
@@ -183,19 +182,22 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should create style tag with pseudo-elements`, () => {
-    const styleTag = setup(true, true, ` test`).querySelector(`style`)
+    const component = setup(true, true, ` test`)
+    const styleTag = component.querySelector(`style`)
     expect(styleTag).toBeInTheDocument()
     expect(styleTag).toMatchSnapshot()
   })
 
   it(`should create style tag at fixed with pseudo-elements`, () => {
-    const styleTag = setup(false, true, ` test`).querySelector(`style`)
+    const component = setup(false, true, ` test`)
+    const styleTag = component.querySelector(`style`)
     expect(styleTag).toBeInTheDocument()
     expect(styleTag).toMatchSnapshot()
   })
 
   it(`should have class with pseudo element in style tag`, () => {
-    const styleTag = setup(true, true, ` test`).querySelector(`style`)
+    const component = setup(true, true, ` test`)
+    const styleTag = component.querySelector(`style`)
     expect(styleTag)
         .toHaveTextContent(`.gatsby-background-image-test:before`)
     expect(styleTag)
@@ -204,24 +206,6 @@ describe(`<BackgroundImage />`, () => {
         .toHaveTextContent(`background-position: 'center';`)
     expect(styleTag)
         .toHaveTextContent(`background-size: 'contain';`)
-  })
-
-  it(`should call onLoad and onError image events`, () => {
-    global.window.HTMLImageElement.complete = true
-    const onLoadMock = jest.fn()
-    const onErrorMock = jest.fn()
-    const image = createPictureRef({
-      fluid: {
-        src: ``,
-      },
-      onLoad: onLoadMock,
-      onError: onErrorMock
-    }, onLoadMock)
-    fireEvent.load(image)
-    fireEvent.error(image)
-
-    expect(onLoadMock).toHaveBeenCalledTimes(2)
-    expect(onErrorMock).toHaveBeenCalledTimes(1)
   })
 })
 
