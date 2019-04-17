@@ -50,4 +50,8 @@ how to use `intersection-observer` polyfill. Sync IO with `gatsby-image`.
 
 **fix / feat:** Fix behavior when changing fluid / fixed image props (didn't 
 recreate imageRef before). Add possibility for passing `soft` to `fadeIn` to
-"force" fading in and image even if it is in cache.  
+"force" fading in and image even if it is in cache. 
+
+## [0.3.5](https://github.com/timhagn/gatsby-background-image) (2019-04-14)
+
+**fix:** Duplicate propTypes names to gbiPropTypes array.
