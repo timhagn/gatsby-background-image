@@ -5,6 +5,7 @@ import getBackgroundStyles, {
   rulesForCssText,
 } from '../BackgroundUtils'
 import 'react-testing-library/cleanup-after-each'
+import * as IOUtils from '../IntersectionObserverUtils'
 
 global.console.error = jest.fn()
 global.console.debug = jest.fn()
@@ -151,18 +152,31 @@ describe(`getStyle()`, () => {
     const style = getStyle(`.fixedImage`)
     expect(style).toEqual(`.fixedImage{backgroundRepeat: 'repeat-y';}`)
   })
+})
+describe(`getStyle() without window`, () => {
+  const tmpWindow = global.window
+  beforeEach(() => {
+    delete global.window
+  })
+  afterEach(() => {
+    global.window = tmpWindow
+  })
 
   it(`should fail for window = undefined`, () => {
-    delete global.window
     const style = getStyle('')
     expect(style).toEqual()
   })
 })
 
-
 describe(`getBackgroundStyles() without window`, () => {
-  it(`should return empty object for window === 'undefined'`, () => {
+  const tmpWindow = global.window
+  beforeEach(() => {
     delete global.window
+  })
+  afterEach(() => {
+    global.window = tmpWindow
+  })
+  it(`should return empty object for window === 'undefined'`, () => {
     const backgroundStyles = getBackgroundStyles(``)
     expect(backgroundStyles).toEqual({})
   })
