@@ -716,20 +716,72 @@ background-size: cover;
 </div>
 `;
 
+exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] = `
+<div>
+  <div
+    class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
+    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
+    title="Title for the image"
+  >
+    <style>
+      
+          .fixedImage:before,
+.gatsby-background-image-test:before,
+          .fixedImage:after,
+.gatsby-background-image-test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition-delay: 0.5s;
+            transition: opacity 0.5s;
+            background-position: 'center';
+background-repeat: 'repeat-y';
+background-size: 'contain';
+
+          }
+          .fixedImage:before,
+.gatsby-background-image-test:before {
+            z-index: -100;
+            
+            background-image: url(test_fixed_image.jpg);
+            background-color: lightgray;
+            opacity: 1; 
+          }
+          .fixedImage:after,
+.gatsby-background-image-test:after {
+            z-index: -101;
+            background-image: url(test_fixed_image.jpg);
+            
+            background-color: lightgray;
+          }
+        
+    </style>
+    <noscript>
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+    </noscript>
+    <h1>
+      test
+    </h1>
+  </div>
+</div>
+`;
+
 exports[`<BackgroundImage /> with mock IO should render visible image 1`] = `
 <div>
   <div
-    class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
-    id="testid"
-    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
-    title="Title for the image"
+    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
+    id=""
+    style="position: relative; overflow: hidden; display: inline-block; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
-          .fixedImage:before,
-.gatsby-background-image-test:before,
-          .fixedImage:after,
-.gatsby-background-image-test:after {
+          .gatsby-background-image-fwatluf:before,
+          .gatsby-background-image-fwatluf:after {
             content: '';
             display: block;
             position: absolute;
@@ -739,92 +791,34 @@ exports[`<BackgroundImage /> with mock IO should render visible image 1`] = `
             left: 0;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
-            background-position: 'center';
-background-repeat: 'repeat-y';
-background-size: 'contain';
+            background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 
           }
-          .fixedImage:before,
-.gatsby-background-image-test:before {
+          .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
             
-            background-color: lightgray;
+            
             opacity: 0; 
           }
-          .fixedImage:after,
-.gatsby-background-image-test:after {
+          .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
-            background-color: lightgray;
+            
           }
         
     </style>
     <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
     </noscript>
-    <h1>
-      test
-    </h1>
   </div>
 </div>
 `;
 
-exports[`<BackgroundImage /> with mock IO should render visible image 2`] = `
-<div>
-  <div
-    class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
-    id="testid"
-    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
-    title="Title for the image"
-  >
-    <style>
-      
-          .fixedImage:before,
-.gatsby-background-image-test:before,
-          .fixedImage:after,
-.gatsby-background-image-test:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
-            background-position: 'center';
-background-repeat: 'repeat-y';
-background-size: 'contain';
-
-          }
-          .fixedImage:before,
-.gatsby-background-image-test:before {
-            z-index: -100;
-            
-            
-            background-color: lightgray;
-            opacity: 0; 
-          }
-          .fixedImage:after,
-.gatsby-background-image-test:after {
-            z-index: -101;
-            
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-          }
-        
-    </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
-    <h1>
-      test
-    </h1>
-  </div>
-</div>
-`;
+exports[`<BackgroundImage /> with mock IO should render visible image 2`] = `undefined`;
 
 exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`] = `
 <div>
