@@ -113,8 +113,9 @@ module.exports = {
 #### Important:
 
 If you support *Safari* and/or *Internet Explorer*, you have to install the 
-`IntersectionObserver` polyfill. As - at the time of writing - neither fully 
-implements the feature (see [caniuse.com](https://caniuse.com/#search=IntersectionObserver)).
+`IntersectionObserver` polyfill.   
+As - at the time of writing - neither fully implements the feature 
+(see [caniuse.com](https://caniuse.com/#search=IntersectionObserver)).
 
 A solution to this issue was mentioned in a comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)  
 and you are able to apply it the following way:
@@ -206,7 +207,7 @@ as well ; )!
 ## Styling & Passed Through Styles
 
 You may style your `gatsby-background-image` BackgroundImage-component every way
-you like, be it globasl CSS, CSS-Modules or even with `styled-components` or your 
+you like, be it global CSS, CSS-Modules or even with `styled-components` or your 
 CSS-in-JS "framework" of choice. The `style={{}}` prop is supported as well.
 
 Whichever way you choose, *every* `background-*` style declared in the main 
@@ -272,7 +273,7 @@ don't count on it in production ; ).
 ## Changed props
 
 As `gatsby-image` now has a changed behavior for already loaded images
-(no soft fade in, even if prop `fadeIn` is setto `true` per default), 
+(no soft fade in, even if prop `fadeIn` is set to `true` per default), 
 and this sometimes seemed a little hard for the eyes with background images, 
 the `fadeIn` prop may now be set to `soft` to ignore cached images and always
 try to fade in if `critical` isn't set.
@@ -284,7 +285,7 @@ try to fade in if `critical` isn't set.
 ## props Not Available
 
 As `gatsby-background-image` doesn't use placeholder-images, the following
-props from `gatsby-image` are of course not available.
+props from `gatsby-image` are not available, of course.
 
 | Name                   | Type                | Old Usage                                                     |
 | ---------------------- | ------------------- | --------------------------------------------------------------|
