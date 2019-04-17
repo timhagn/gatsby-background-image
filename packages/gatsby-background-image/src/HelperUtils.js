@@ -1,26 +1,26 @@
 /**
  * Mirror of BackgroundImage.propTypes. Keep in SYNC!
- * 
+ *
  * @type {Object}
  */
 const gbiPropTypes = [
- `resolutions`,
- `sizes`,
- `fixed`,
- `fluid`,
- `fadeIn`,
- `title`,
- `id`,
- `alt`,
- `className`,
- `critical`,
- `style`,
- `backgroundColor`,
- `onLoad`,
- `onError`,
- `onStartLoad`,
- `Tag`,
- `classId`,
+  `resolutions`,
+  `sizes`,
+  `fixed`,
+  `fluid`,
+  `fadeIn`,
+  `title`,
+  `id`,
+  `alt`,
+  `className`,
+  `critical`,
+  `style`,
+  `backgroundColor`,
+  `onLoad`,
+  `onError`,
+  `onStartLoad`,
+  `Tag`,
+  `classId`,
 ]
 
 /**

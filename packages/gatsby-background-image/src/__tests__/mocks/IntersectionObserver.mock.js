@@ -17,11 +17,11 @@ beforeAll(() => {
         : [options.threshold],
       root: options.root,
       rootMargin: options.rootMargin,
-      observe: jest.fn((element) => {
+      observe: jest.fn(element => {
         instanceMap.set(element, instance)
         observerMap.set(element, cb)
       }),
-      unobserve: jest.fn((element) => {
+      unobserve: jest.fn(element => {
         instanceMap.delete(element)
         observerMap.delete(element)
       }),
@@ -66,7 +66,7 @@ export function mockIsIntersecting(element, isIntersecting) {
     else cb(entry)
   } else {
     throw new Error(
-      'No IntersectionObserver instance found for element. Is it still mounted in the DOM?',
+      'No IntersectionObserver instance found for element. Is it still mounted in the DOM?'
     )
   }
 }
