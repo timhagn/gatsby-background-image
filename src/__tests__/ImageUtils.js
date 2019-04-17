@@ -1,5 +1,6 @@
 import '@babel/polyfill'
-import { render, cleanup } from 'react-testing-library'
+import { render } from 'react-testing-library'
+import 'react-testing-library/cleanup-after-each'
 import React from 'react'
 import { fixedShapeMock, fluidShapeMock } from './index'
 import {
@@ -11,10 +12,6 @@ import {
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
-
-
-afterAll(cleanup)
-
 
 const fixedMock = {
   fixed: fixedShapeMock,
