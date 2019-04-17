@@ -4,12 +4,13 @@
  *
  * Kudos to @thebuilder for figuring this out!
  */
+
 import { act } from 'react-dom/test-utils'
 
 const observerMap = new Map()
 const instanceMap = new Map()
 
-beforeAll(() => {
+beforeEach(() => {
   global.IntersectionObserver = jest.fn((cb, options) => {
     const instance = {
       thresholds: Array.isArray(options.threshold)
@@ -32,7 +33,8 @@ beforeAll(() => {
 })
 
 afterEach(() => {
-  global.IntersectionObserver.mockClear()
+  if (global.IntersectionObserver && global.IntersectionObserver.hasOwnProperty(`mockClear`))
+    global.IntersectionObserver.mockClear()
   instanceMap.clear()
   observerMap.clear()
 })

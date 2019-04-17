@@ -42,9 +42,10 @@ export const fluidShapeMock = {
  * @param fixed
  * @param addClassId
  * @param addBackgroundColor
+ * @param fadeIn
  * @return {RenderResult.container}
  */
-const setup = (fluid = false,
+export const setup = (fluid = false,
                addClass = false,
                additionalClass = ``,
                fixedClass = true,
@@ -225,15 +226,3 @@ describe(`<BackgroundImage />`, () => {
 })
 
 
-describe(`<BackgroundImage /> without IO`, () => {
-  beforeEach(() => {
-    delete global.IntersectionObserver
-  })
-
-  it(`should call onLoadFunction without IO`, () => {
-    const onLoadFunctionMock = jest.fn()
-    const component = setup(true, true, `test`, true, null, null, true, onLoadFunctionMock)
-    expect(component).toMatchSnapshot()
-    expect(onLoadFunctionMock).toHaveBeenCalled()
-  })
-})

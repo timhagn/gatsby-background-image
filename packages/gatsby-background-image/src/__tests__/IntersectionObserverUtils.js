@@ -10,6 +10,7 @@ let elements = []
 describe(`IntersectionObserverUtils without IO`, () => {
   const tmpGetIO = IOUtils.getIO()
   const tmpWindow = global.window
+  const tmpIO = global.IntersectionObserver
   beforeEach(() => {
     delete global.IntersectionObserver
     delete global.window
@@ -18,6 +19,7 @@ describe(`IntersectionObserverUtils without IO`, () => {
   afterEach(() => {
     IOUtils.getIO = tmpGetIO
     global.window = tmpWindow
+    global.IntersectionObserver = tmpIO
   })
 
   it(`should not call IntersectionObserver`, () => {
