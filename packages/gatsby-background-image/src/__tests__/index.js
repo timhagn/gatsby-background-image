@@ -1,13 +1,12 @@
 import '@babel/polyfill'
-import { render, cleanup, fireEvent } from 'react-testing-library'
+import { render, fireEvent } from 'react-testing-library'
+import 'react-testing-library/cleanup-after-each'
+
 import React from 'react'
 import BackgroundImage from '../'
 import { createPictureRef } from '../ImageUtils'
 
-
 global.console.debug = jest.fn()
-
-afterAll(cleanup)
 
 let elements = []
 

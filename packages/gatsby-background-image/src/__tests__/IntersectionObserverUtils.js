@@ -1,11 +1,9 @@
 import '@babel/polyfill'
 import React from 'react'
-import { cleanup } from 'react-testing-library'
+import 'react-testing-library/cleanup-after-each'
 import * as IOUtils from '../IntersectionObserverUtils'
 
 global.console.debug = jest.fn()
-
-afterEach(cleanup)
 
 let elements = []
 
