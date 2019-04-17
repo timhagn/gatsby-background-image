@@ -820,6 +820,55 @@ background-size: cover;
 
 exports[`<BackgroundImage /> with mock IO should render visible image 2`] = `undefined`;
 
+exports[`<BackgroundImage /> with mock IO should render visible image 3`] = `
+<div>
+  <div
+    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
+    id=""
+    style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+  >
+    <style>
+      
+          .gatsby-background-image-fwatluf:before,
+          .gatsby-background-image-fwatluf:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
+            background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+          }
+          .gatsby-background-image-fwatluf:before {
+            z-index: -100;
+            
+            
+            
+            opacity: 0; 
+          }
+          .gatsby-background-image-fwatluf:after {
+            z-index: -101;
+            
+            
+            
+          }
+        
+    </style>
+    <noscript>
+      &lt;picture&gt;&lt;img src="" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+    </noscript>
+  </div>
+</div>
+`;
+
+exports[`<BackgroundImage /> with mock IO should render visible image 4`] = `undefined`;
+
 exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`] = `
 <div>
   <div

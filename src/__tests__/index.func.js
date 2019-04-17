@@ -55,6 +55,14 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     expect(container).toMatchSnapshot()
   })
 
+  it(`should render visible image`, () => {
+    let { container, rerender } = render(<BackgroundImage fluid={{src: ``, aspectRatio: 1, srcSet: ``, sizes: ``}} />)
+    mockAllIsIntersecting(true)
+    expect(container).toMatchSnapshot()
+    container = rerender(<BackgroundImage fixed={fixedShapeMock} />)
+    expect(container).toMatchSnapshot()
+  })
+
   it(`should call critical fixed images`, () => {
     const component = setup(false, true, ``, true, null, null, true)
     mockAllIsIntersecting(true)
