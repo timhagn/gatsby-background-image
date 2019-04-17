@@ -1,4 +1,45 @@
-import BackgroundImage from './index'
+/**
+ * Mirror of BackgroundImage.propTypes. Keep in SYNC!
+ * 
+ * @type {Object}
+ */
+const gbiPropTypes = [
+ `resolutions`,
+ `sizes`,
+ `fixed`,
+ `fluid`,
+ `fadeIn`,
+ `title`,
+ `id`,
+ `alt`,
+ `className`,
+ `critical`,
+ `style`,
+ `backgroundColor`,
+ `onLoad`,
+ `onError`,
+ `onStartLoad`,
+ `Tag`,
+ `classId`,
+]
+
+/**
+ * Strip BackgroundImage propTypes from remaining props to be passed to <Tag />
+ *
+ * @param props
+ * @return {Object}
+ */
+export const stripRemainingProps = props => {
+  let remainingProps = { ...props }
+
+  gbiPropTypes.forEach(propTypesKey => {
+    if (remainingProps.hasOwnProperty(propTypesKey)) {
+      delete remainingProps[propTypesKey]
+    }
+  })
+
+  return remainingProps
+}
 
 /**
  * Handle legacy names for image queries
@@ -18,24 +59,6 @@ export const convertProps = props => {
   }
 
   return convertedProps
-}
-
-/**
- * Strip BackgroundImage propTypes from remaining props to be passed to <Tag />
- *
- * @param props
- * @return {Object}
- */
-export const stripRemainingProps = props => {
-  let remainingProps = { ...props }
-
-  Object.keys(BackgroundImage.propTypes).forEach(propTypesKey => {
-    if (remainingProps.hasOwnProperty(propTypesKey)) {
-      delete remainingProps[propTypesKey]
-    }
-  })
-
-  return remainingProps
 }
 
 /**
