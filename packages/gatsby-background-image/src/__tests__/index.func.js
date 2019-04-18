@@ -10,11 +10,12 @@ import BackgroundImage from '../'
 import { createPictureRef } from '../ImageUtils'
 
 
+const LOAD_FAILURE_SRC = 'test_fluid_image.jpg';
+const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg';
+
 
 describe(`<BackgroundImage /> with mock IO`, () => {
   const tmpImagePrototype = Object.getPrototypeOf(HTMLImageElement)
-  const LOAD_FAILURE_SRC = 'test_fluid_image.jpg';
-  const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg';
 
   beforeEach(() => {
     // Mocking HTMLImageElement.prototype.src to call the onload or onerror
@@ -74,7 +75,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     const onErrorMock = jest.fn()
     const image = createPictureRef({
       fixed: {
-        src: `test_fixed_image.jpg`,
+        src: LOAD_SUCCESS_SRC,
       },
       onLoad: onLoadMock,
       onError: onErrorMock
