@@ -72,7 +72,8 @@ or
 yarn add gatsby-background-image
 ```
 
-Depending on the gatsby starter you used, you may need to include [gatsby-transformer-sharp](/packages/gatsby-transformer-sharp/) and [gatsby-plugin-sharp](/packages/gatsby-plugin-sharp/) as well, and make sure they are installed and included in your gatsby-config.
+Depending on the gatsby starter you used, you may need to include [gatsby-transformer-sharp](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-transformer-sharp/) 
+and [gatsby-plugin-sharp](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-sharp/) as well, and make sure they are installed and included in your gatsby-config.
 
 ```bash
 npm install --save gatsby-transformer-sharp gatsby-plugin-sharp
