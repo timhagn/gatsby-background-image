@@ -136,7 +136,10 @@ polyfill package by running:
 **2.** Dynamically load the polyfill in your `gatsby-browser.js`:
 
 ```js
-exports.onClientEntry = () => {
+// ES5 way
+// exports.onClientEntry = () => {
+// ES6 way
+export const onClientEntry = () => {  
   // IntersectionObserver polyfill for gatsby-background-image (Safari, IE)
   if (typeof window.IntersectionObserver === `undefined`) {
     import(`intersection-observer`)
