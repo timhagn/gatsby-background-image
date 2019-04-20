@@ -75,9 +75,9 @@ class BackgroundImage extends React.Component {
 
     // Default settings for browser without Intersection Observer available.
     let isVisible = true
-    let imgLoaded = false
+    const imgLoaded = false
     let IOSupported = false
-    let fadeIn = props.fadeIn
+    const { fadeIn } = props
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
@@ -279,7 +279,7 @@ class BackgroundImage extends React.Component {
 
       return (
         <Tag
-          className={`${className ? className : ``}${classId &&
+          className={`${className || ``}${classId &&
             `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
           style={{
             position: `relative`,
@@ -294,7 +294,7 @@ class BackgroundImage extends React.Component {
           key={`fluid-${JSON.stringify(image.srcSet)}`}
           {...remainingProps}
         >
-          {/*Create style element to transition between pseudo-elements.*/}
+          {/* Create style element to transition between pseudo-elements. */}
           <style
             dangerouslySetInnerHTML={{
               __html: pseudoStyles,
@@ -353,7 +353,7 @@ class BackgroundImage extends React.Component {
 
       return (
         <Tag
-          className={`${className ? className : ``}${classId &&
+          className={`${className || ``}${classId &&
             `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
           style={{
             ...divStyle,
@@ -365,7 +365,7 @@ class BackgroundImage extends React.Component {
           key={`fixed-${JSON.stringify(image.srcSet)}`}
           {...remainingProps}
         >
-          {/*Create style element to transition between pseudo-elements.*/}
+          {/* Create style element to transition between pseudo-elements. */}
           <style
             dangerouslySetInnerHTML={{
               __html: pseudoStyles,
