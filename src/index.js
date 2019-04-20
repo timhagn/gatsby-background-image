@@ -44,31 +44,8 @@ const fluidObject = PropTypes.shape({
  * with optional support for the blur-up effect.
  */
 class BackgroundImage extends React.Component {
-  static propTypes = {
-    resolutions: fixedObject,
-    sizes: fluidObject,
-    fixed: fixedObject,
-    fluid: fluidObject,
-    fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-    title: PropTypes.string,
-    id: PropTypes.string,
-    alt: PropTypes.string,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
-    critical: PropTypes.bool,
-    style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Using PropTypes from RN.
-    backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-    onLoad: PropTypes.func,
-    onError: PropTypes.func,
-    onStartLoad: PropTypes.func,
-    Tag: PropTypes.string,
-    classId: PropTypes.string,
-  }
-
   // Needed to prevent handleImageLoaded() firing on gatsby build.
-  _isMounted = false
-
-  // IntersectionObserver listeners (if available).
-  cleanUpListeners
+  isMounted = false
 
   constructor(props) {
     super(props)
@@ -132,7 +109,7 @@ class BackgroundImage extends React.Component {
   }
 
   componentDidMount() {
-    this._isMounted = true
+    this.isMounted = true
 
     // Update background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = presetBackgroundStyles(
@@ -142,18 +119,12 @@ class BackgroundImage extends React.Component {
     if (this.state.isVisible && typeof this.props.onStartLoad === `function`) {
       this.props.onStartLoad({ wasCached: inImageCache(this.props) })
     }
+
     if (this.props.critical) {
       const img = this.imageRef
       if (img && img.complete) {
         this.handleImageLoaded()
       }
-    }
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false
-    if (this.cleanUpListeners) {
-      this.cleanUpListeners()
     }
   }
 
@@ -176,6 +147,16 @@ class BackgroundImage extends React.Component {
       )
     }
   }
+
+  componentWillUnmount() {
+    this.isMounted = false
+    if (this.cleanUpListeners) {
+      this.cleanUpListeners()
+    }
+  }
+
+  // IntersectionObserver listeners (if available).
+  cleanUpListeners
 
   handleRef(ref) {
     if (this.state.IOSupported && ref) {
@@ -203,7 +184,7 @@ class BackgroundImage extends React.Component {
   }
 
   handleImageLoaded() {
-    if (this._isMounted) {
+    if (this.isMounted) {
       activateCacheForImage(this.props)
 
       this.setState({ imgLoaded: true })
@@ -391,6 +372,26 @@ class BackgroundImage extends React.Component {
     }
     return null
   }
+}
+
+BackgroundImage.propTypes = {
+  resolutions: fixedObject,
+  sizes: fluidObject,
+  fixed: fixedObject,
+  fluid: fluidObject,
+  fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  title: PropTypes.string,
+  id: PropTypes.string,
+  alt: PropTypes.string,
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
+  critical: PropTypes.bool,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Using PropTypes from RN.
+  backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  onLoad: PropTypes.func,
+  onError: PropTypes.func,
+  onStartLoad: PropTypes.func,
+  Tag: PropTypes.string,
+  classId: PropTypes.string,
 }
 
 BackgroundImage.defaultProps = {
