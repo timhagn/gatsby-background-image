@@ -17,28 +17,6 @@ import {
 } from './StyleUtils'
 import { listenToIntersections } from './IntersectionObserverUtils'
 
-const fixedObject = PropTypes.shape({
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  src: PropTypes.string.isRequired,
-  srcSet: PropTypes.string.isRequired,
-  base64: PropTypes.string,
-  tracedSVG: PropTypes.string,
-  srcWebp: PropTypes.string,
-  srcSetWebp: PropTypes.string,
-})
-
-const fluidObject = PropTypes.shape({
-  aspectRatio: PropTypes.number.isRequired,
-  src: PropTypes.string.isRequired,
-  srcSet: PropTypes.string.isRequired,
-  sizes: PropTypes.string.isRequired,
-  base64: PropTypes.string,
-  tracedSVG: PropTypes.string,
-  srcWebp: PropTypes.string,
-  srcSetWebp: PropTypes.string,
-})
-
 /**
  * Main Lazy-loading React background-image component
  * with optional support for the blur-up effect.
@@ -374,6 +352,28 @@ class BackgroundImage extends React.Component {
   }
 }
 
+const fixedObject = PropTypes.shape({
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  srcSet: PropTypes.string.isRequired,
+  base64: PropTypes.string,
+  tracedSVG: PropTypes.string,
+  srcWebp: PropTypes.string,
+  srcSetWebp: PropTypes.string,
+})
+
+const fluidObject = PropTypes.shape({
+  aspectRatio: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  srcSet: PropTypes.string.isRequired,
+  sizes: PropTypes.string.isRequired,
+  base64: PropTypes.string,
+  tracedSVG: PropTypes.string,
+  srcWebp: PropTypes.string,
+  srcSetWebp: PropTypes.string,
+})
+
 BackgroundImage.propTypes = {
   resolutions: fixedObject,
   sizes: fluidObject,
@@ -395,23 +395,12 @@ BackgroundImage.propTypes = {
 }
 
 BackgroundImage.defaultProps = {
-  resolutions: {},
-  sizes: {},
-  fixed: {},
-  fluid: {},
   critical: false,
   fadeIn: true,
   alt: ``,
-  title: ``,
+  // title: ``,
   id: ``,
-  className: ``,
-  style: {},
-  backgroundColor: ``,
-  onLoad: null,
-  onError: null,
-  onStartLoad: null,
   Tag: `div`,
-  classId: ``,
 }
 
 export default BackgroundImage
