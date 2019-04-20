@@ -395,11 +395,23 @@ BackgroundImage.propTypes = {
 }
 
 BackgroundImage.defaultProps = {
+  resolutions: {},
+  sizes: {},
+  fixed: {},
+  fluid: {},
   critical: false,
   fadeIn: true,
   alt: ``,
+  title: ``,
   id: ``,
+  className: ``,
+  style: {},
+  backgroundColor: ``,
+  onLoad: null,
+  onError: null,
+  onStartLoad: null,
   Tag: `div`,
+  classId: ``,
 }
 
 export default BackgroundImage
