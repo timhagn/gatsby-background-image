@@ -116,6 +116,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
     id=""
     style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    title=""
   >
     <style>
       
@@ -672,6 +673,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
     id=""
     style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    title=""
   >
     <style>
       
