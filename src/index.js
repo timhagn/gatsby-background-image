@@ -398,7 +398,7 @@ BackgroundImage.defaultProps = {
   critical: false,
   fadeIn: true,
   alt: ``,
-  // title: ``,
+  title: ``,
   id: ``,
   Tag: `div`,
 }
