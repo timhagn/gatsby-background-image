@@ -55,3 +55,7 @@ recreate imageRef before). Add possibility for passing `soft` to `fadeIn` to
 ## [0.3.5](https://github.com/timhagn/gatsby-background-image) (2019-04-14)
 
 **fix:** Duplicate propTypes names to gbiPropTypes array.
+
+## [0.3.6](https://github.com/timhagn/gatsby-background-image) (2019-04-20)
+
+**feat / fix:** Merge #25, fix test errors.
