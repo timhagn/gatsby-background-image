@@ -44,40 +44,17 @@ const fluidObject = PropTypes.shape({
  * with optional support for the blur-up effect.
  */
 class BackgroundImage extends React.Component {
-  static propTypes = {
-    resolutions: fixedObject,
-    sizes: fluidObject,
-    fixed: fixedObject,
-    fluid: fluidObject,
-    fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-    title: PropTypes.string,
-    id: PropTypes.string,
-    alt: PropTypes.string,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
-    critical: PropTypes.bool,
-    style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Using PropTypes from RN.
-    backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-    onLoad: PropTypes.func,
-    onError: PropTypes.func,
-    onStartLoad: PropTypes.func,
-    Tag: PropTypes.string,
-    classId: PropTypes.string,
-  }
-
   // Needed to prevent handleImageLoaded() firing on gatsby build.
-  _isMounted = false
-
-  // IntersectionObserver listeners (if available).
-  cleanUpListeners
+  isMounted = false
 
   constructor(props) {
     super(props)
 
     // Default settings for browser without Intersection Observer available.
     let isVisible = true
-    let imgLoaded = false
+    const imgLoaded = false
     let IOSupported = false
-    let fadeIn = props.fadeIn
+    const { fadeIn } = props
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
@@ -132,7 +109,7 @@ class BackgroundImage extends React.Component {
   }
 
   componentDidMount() {
-    this._isMounted = true
+    this.isMounted = true
 
     // Update background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = presetBackgroundStyles(
@@ -142,18 +119,12 @@ class BackgroundImage extends React.Component {
     if (this.state.isVisible && typeof this.props.onStartLoad === `function`) {
       this.props.onStartLoad({ wasCached: inImageCache(this.props) })
     }
+
     if (this.props.critical) {
       const img = this.imageRef
       if (img && img.complete) {
         this.handleImageLoaded()
       }
-    }
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false
-    if (this.cleanUpListeners) {
-      this.cleanUpListeners()
     }
   }
 
@@ -176,6 +147,16 @@ class BackgroundImage extends React.Component {
       )
     }
   }
+
+  componentWillUnmount() {
+    this.isMounted = false
+    if (this.cleanUpListeners) {
+      this.cleanUpListeners()
+    }
+  }
+
+  // IntersectionObserver listeners (if available).
+  cleanUpListeners
 
   handleRef(ref) {
     if (this.state.IOSupported && ref) {
@@ -203,7 +184,7 @@ class BackgroundImage extends React.Component {
   }
 
   handleImageLoaded() {
-    if (this._isMounted) {
+    if (this.isMounted) {
       activateCacheForImage(this.props)
 
       this.setState({ imgLoaded: true })
@@ -279,7 +260,7 @@ class BackgroundImage extends React.Component {
 
       return (
         <Tag
-          className={`${className ? className : ``}${classId &&
+          className={`${className || ``}${classId &&
             `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
           style={{
             position: `relative`,
@@ -294,7 +275,7 @@ class BackgroundImage extends React.Component {
           key={`fluid-${JSON.stringify(image.srcSet)}`}
           {...remainingProps}
         >
-          {/*Create style element to transition between pseudo-elements.*/}
+          {/* Create style element to transition between pseudo-elements. */}
           <style
             dangerouslySetInnerHTML={{
               __html: pseudoStyles,
@@ -353,7 +334,7 @@ class BackgroundImage extends React.Component {
 
       return (
         <Tag
-          className={`${className ? className : ``}${classId &&
+          className={`${className || ``}${classId &&
             `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
           style={{
             ...divStyle,
@@ -365,7 +346,7 @@ class BackgroundImage extends React.Component {
           key={`fixed-${JSON.stringify(image.srcSet)}`}
           {...remainingProps}
         >
-          {/*Create style element to transition between pseudo-elements.*/}
+          {/* Create style element to transition between pseudo-elements. */}
           <style
             dangerouslySetInnerHTML={{
               __html: pseudoStyles,
@@ -393,12 +374,44 @@ class BackgroundImage extends React.Component {
   }
 }
 
+BackgroundImage.propTypes = {
+  resolutions: fixedObject,
+  sizes: fluidObject,
+  fixed: fixedObject,
+  fluid: fluidObject,
+  fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  title: PropTypes.string,
+  id: PropTypes.string,
+  alt: PropTypes.string,
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
+  critical: PropTypes.bool,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Using PropTypes from RN.
+  backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  onLoad: PropTypes.func,
+  onError: PropTypes.func,
+  onStartLoad: PropTypes.func,
+  Tag: PropTypes.string,
+  classId: PropTypes.string,
+}
+
 BackgroundImage.defaultProps = {
+  resolutions: {},
+  sizes: {},
+  fixed: {},
+  fluid: {},
   critical: false,
   fadeIn: true,
   alt: ``,
+  title: ``,
   id: ``,
+  className: ``,
+  style: {},
+  backgroundColor: ``,
+  onLoad: null,
+  onError: null,
+  onStartLoad: null,
   Tag: `div`,
+  classId: ``,
 }
 
 export default BackgroundImage

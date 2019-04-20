@@ -24,16 +24,25 @@ const gbiPropTypes = [
 ]
 
 /**
+ * Tests a given value on being a string.
+ *
+ * @param value *   Value to test
+ * @return {boolean}
+ */
+export const isString = value =>
+  Object.prototype.toString.call(value) === '[object String]'
+
+/**
  * Strip BackgroundImage propTypes from remaining props to be passed to <Tag />
  *
  * @param props
  * @return {Object}
  */
 export const stripRemainingProps = props => {
-  let remainingProps = { ...props }
+  const remainingProps = { ...props }
 
   gbiPropTypes.forEach(propTypesKey => {
-    if (remainingProps.hasOwnProperty(propTypesKey)) {
+    if (Object.prototype.hasOwnProperty.call(remainingProps, propTypesKey)) {
       delete remainingProps[propTypesKey]
     }
   })
@@ -48,7 +57,7 @@ export const stripRemainingProps = props => {
  * @return {Object}
  */
 export const convertProps = props => {
-  let convertedProps = { ...props }
+  const convertedProps = { ...props }
   if (convertedProps.resolutions) {
     convertedProps.fixed = convertedProps.resolutions
     delete convertedProps.resolutions
@@ -86,7 +95,7 @@ export const toKebabCase = str =>
   isString(str) &&
   str
     .replace(/\s|\W+/g, '')
-    .replace(/[A-Z]/g, match => '-' + match.toLowerCase())
+    .replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
 
 /**
  * Splits a given string (e.g. from classname) to an array.
@@ -98,22 +107,12 @@ export const toKebabCase = str =>
 export const stringToArray = (str, delimiter = ` `) => {
   if (str instanceof Array) {
     return str
-  } else if (isString(str)) {
+  }
+  if (isString(str)) {
     if (str.includes(delimiter)) {
       return str.split(delimiter)
-    } else {
-      return [str]
     }
-  } else {
-    return false
+    return [str]
   }
+  return false
 }
-
-/**
- * Tests a given value on being a string.
- *
- * @param value *   Value to test
- * @return {boolean}
- */
-export const isString = value =>
-  Object.prototype.toString.call(value) === '[object String]'
