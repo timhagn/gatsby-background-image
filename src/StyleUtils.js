@@ -1,5 +1,87 @@
 import { isString, stringToArray, toKebabCase } from './HelperUtils'
-import { getStyle } from './BackgroundUtils'
+
+/**
+ * Creates pseudo-element(s) for className(s).
+ *
+ * @param className string  className given by props
+ * @param classId   string  Deprecated classId
+ * @param appendix  string  Pseudo-element to create, defaults to `:before`
+ * @return {string}
+ */
+export const createPseudoElement = (
+  className,
+  classId = ``,
+  appendix = `:before`
+) => {
+  const classes = stringToArray(className)
+  let pseudoClasses = ``
+  if (classes instanceof Array) {
+    pseudoClasses = `.${classes.join('.')}${appendix}`
+  }
+  if (classId !== ``) {
+    pseudoClasses += `${pseudoClasses &&
+      `,\n`}.gatsby-background-image-${classId}${appendix}`
+  }
+  return pseudoClasses
+}
+
+/**
+ * Converts a style object into CSS kebab-cased style rules.
+ *
+ * @param styles
+ * @return {*}
+ */
+export const kebabifyBackgroundStyles = styles => {
+  if (isString(styles)) {
+    return styles
+  }
+  if (styles instanceof Object) {
+    return Object.keys(styles)
+      .filter(key => key.indexOf('background') === 0 && styles[key] !== '')
+      .reduce(
+        (resultingStyles, key) =>
+          `${resultingStyles}${toKebabCase(key)}: ${styles[key]};\n`,
+        ``
+      )
+  }
+  return ``
+}
+
+/**
+ * Creates vendor prefixed background styles.
+ *
+ * @param transitionDelay
+ * @param fadeIn
+ * @return {string}
+ */
+export const vendorPrefixBackgroundStyles = (
+  // backgroundSize = `cover`,
+  transitionDelay = `0.25s`,
+  fadeIn = true
+) => {
+  // TODO: Look into vendor-prefixes through autoprefix in Gatsby!
+  // const vendorPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-', '']
+  // let prefixed = ``
+  // if (fadeIn) {
+  //   prefixed +=
+  //     vendorPrefixes
+  //       .join(`transition-delay: ${transitionDelay};\n`)
+  //       .concat(`transition-delay: ${transitionDelay};\n`) +
+  //     vendorPrefixes
+  //       .join(`transition: opacity 0.5s;\n`)
+  //       .concat(`transition: opacity 0.5s;\n`)
+  // } else {
+  //   prefixed += vendorPrefixes
+  //     .join(`transition: none;\n`)
+  //     .concat(`transition: none;\n`)
+  // }
+
+  const prefixed = fadeIn
+    ? `transition-delay: ${transitionDelay};
+            transition: opacity 0.5s;`
+    : `transition: none;`
+  return prefixed
+}
 
 /**
  * Prevent possible stacking order mismatch with opacity "hack".
@@ -8,18 +90,20 @@ import { getStyle } from './BackgroundUtils'
  * @return {Object}
  */
 export const fixOpacity = props => {
-  let styledProps = { ...props }
+  const styledProps = { ...props }
 
   try {
     if (styledProps.style && styledProps.style.opacity) {
       if (
-        isNaN(styledProps.style.opacity) ||
+        Number.isNaN(styledProps.style.opacity) ||
         styledProps.style.opacity > 0.99
       ) {
         styledProps.style.opacity = 0.99
       }
     }
-  } catch (e) {}
+  } catch (e) {
+    // Continue regardless of error
+  }
 
   return styledProps
 }
@@ -116,86 +200,4 @@ export const createPseudoStyles = ({
             ${bgColor && `background-color: ${bgColor};`}
           }
         `
-}
-
-/**
- * Creates pseudo-element(s) for className(s).
- *
- * @param className string  className given by props
- * @param classId   string  Deprecated classId
- * @param appendix  string  Pseudo-element to create, defaults to `:before`
- * @return {string}
- */
-export const createPseudoElement = (
-  className,
-  classId = ``,
-  appendix = `:before`
-) => {
-  const classes = stringToArray(className)
-  let pseudoClasses = ``
-  if (classes instanceof Array) {
-    pseudoClasses = `.${classes.join('.')}${appendix}`
-  }
-  if (classId !== ``) {
-    pseudoClasses += `${pseudoClasses &&
-      `,\n`}.gatsby-background-image-${classId}${appendix}`
-  }
-  return pseudoClasses
-}
-
-/**
- * Creates vendor prefixed background styles.
- *
- * @param transitionDelay
- * @param fadeIn
- * @return {string}
- */
-export const vendorPrefixBackgroundStyles = (
-  // backgroundSize = `cover`,
-  transitionDelay = `0.25s`,
-  fadeIn = true
-) => {
-  // TODO: Look into vendor-prefixes through autoprefix in Gatsby!
-  // const vendorPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-', '']
-  // let prefixed = ``
-  // if (fadeIn) {
-  //   prefixed +=
-  //     vendorPrefixes
-  //       .join(`transition-delay: ${transitionDelay};\n`)
-  //       .concat(`transition-delay: ${transitionDelay};\n`) +
-  //     vendorPrefixes
-  //       .join(`transition: opacity 0.5s;\n`)
-  //       .concat(`transition: opacity 0.5s;\n`)
-  // } else {
-  //   prefixed += vendorPrefixes
-  //     .join(`transition: none;\n`)
-  //     .concat(`transition: none;\n`)
-  // }
-
-  let prefixed = fadeIn
-    ? `transition-delay: ${transitionDelay};
-            transition: opacity 0.5s;`
-    : `transition: none;`
-  return prefixed
-}
-
-/**
- * Converts a style object into CSS kebab-cased style rules.
- *
- * @param styles
- * @return {*}
- */
-export const kebabifyBackgroundStyles = styles => {
-  if (isString(styles)) {
-    return styles
-  } else if (styles instanceof Object) {
-    return Object.keys(styles)
-      .filter(key => key.indexOf('background') === 0 && styles[key] !== '')
-      .reduce(
-        (resultingStyles, key) =>
-          `${resultingStyles}${toKebabCase(key)}: ${styles[key]};\n`,
-        ``
-      )
-  }
-  return ``
 }

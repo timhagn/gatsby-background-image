@@ -42,8 +42,8 @@ export const getStyle = className => {
  */
 export const rulesForCssText = styleContent => {
   if (typeof document !== `undefined` && styleContent) {
-    const doc = document.implementation.createHTMLDocument(''),
-      styleElement = document.createElement('style')
+    const doc = document.implementation.createHTMLDocument('')
+    const styleElement = document.createElement('style')
 
     styleElement.textContent = styleContent
     // The style element will only be parsed once it is added to a document.
@@ -124,14 +124,13 @@ const getBackgroundStyles = className => {
   if (typeof window !== `undefined`) {
     const classes = stringToArray(className)
     if (classes instanceof Array) {
-      let classObjects = []
+      const classObjects = []
       classes.forEach(item =>
         classObjects.push(getBackgroundStylesForSingleClass(item))
       )
       return Object.assign(...classObjects)
-    } else {
-      return getBackgroundStylesForSingleClass(className)
     }
+    return getBackgroundStylesForSingleClass(className)
   }
   return {}
 }
