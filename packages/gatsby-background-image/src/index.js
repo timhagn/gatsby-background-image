@@ -179,7 +179,6 @@ class BackgroundImage extends React.Component {
   render() {
     const {
       title,
-      id,
       alt,
       className,
       style = {},
@@ -247,7 +246,6 @@ class BackgroundImage extends React.Component {
             ...style,
             ...this.backgroundStyles,
           }}
-          id={id}
           title={title}
           ref={this.handleRef}
           key={`fluid-${JSON.stringify(image.srcSet)}`}
@@ -318,7 +316,6 @@ class BackgroundImage extends React.Component {
             ...divStyle,
             ...this.backgroundStyles,
           }}
-          id={id}
           title={title}
           ref={this.handleRef}
           key={`fixed-${JSON.stringify(image.srcSet)}`}
@@ -381,7 +378,6 @@ BackgroundImage.propTypes = {
   fluid: fluidObject,
   fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   title: PropTypes.string,
-  id: PropTypes.string,
   alt: PropTypes.string,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
   critical: PropTypes.bool,
@@ -399,7 +395,6 @@ BackgroundImage.defaultProps = {
   fadeIn: true,
   alt: ``,
   title: ``,
-  id: ``,
   Tag: `div`,
 }
 
