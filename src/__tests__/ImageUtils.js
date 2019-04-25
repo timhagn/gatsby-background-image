@@ -25,7 +25,6 @@ const fluidMock = {
   fluid: fluidShapeMock,
 }
 
-
 describe(`createImageToLoad()`, () => {
   it(`should return null on ssr or empty fluid / fixed prop`, () => {
     const emptyImageRef = createPictureRef({})
@@ -38,6 +37,21 @@ describe(`createImageToLoad()`, () => {
   })
 })
 
+describe(`createImageToLoad() with crossOrigin`, () => {
+  it(`should set crossOrigin`, () => {
+    const emptyImageRef = createPictureRef({
+      fluid: fluidShapeMock,
+      crossOrigin: `anonymous`,
+    })
+    expect(emptyImageRef).toMatchInlineSnapshot(`
+      <img
+        crossorigin="anonymous"
+        src="test_fluid_image.jpg"
+        srcset="some srcSet"
+      />
+    `)
+  })
+})
 
 describe(`inImageCache() / activateCacheForImage()`, () => {
   it(`should return false for initial load (fixed)`, () => {
@@ -84,23 +98,22 @@ describe(`inImageCache() / activateCacheForImage() / resetImageCache()`, () => {
   })
 })
 
-
 describe(`noscriptImg()`, () => {
   it(`should return default noscriptImg on {}`, () => {
     const { container } = render(noscriptImg({}))
     expect(container).toMatchSnapshot()
   })
 
-  it(`should return noscriptImg with opacity & transitionDelay`, () => {
+  it(`should return noscriptImg with opacity & transitionDelay & crossOrigin`, () => {
     const dummyProps = {
-      opacity: .99,
+      opacity: 0.99,
       transitionDelay: 100,
+      crossOrigin: `anonymous`
     }
     const { container } = render(noscriptImg(dummyProps))
     expect(container).toMatchSnapshot()
   })
 })
-
 
 describe(`switchImageSettings()`, () => {
   const mockImageRef = {
@@ -183,7 +196,6 @@ describe(`switchImageSettings()`, () => {
     expect(createdSettings).toMatchSnapshot()
   })
 })
-
 
 describe(`imagePropsChanged()`, () => {
   it(`should return false for same fixed prop`, () => {

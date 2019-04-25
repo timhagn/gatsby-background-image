@@ -79,6 +79,9 @@ export const createPictureRef = (props, onLoad) => {
     if (typeof convertedProps.onError === `function`) {
       img.addEventListener('error', convertedProps.onError)
     }
+    if (convertedProps.crossOrigin) {
+      img.crossOrigin = convertedProps.crossOrigin
+    }
     img.srcset = imageData.srcSet ? imageData.srcSet : ``
     img.src = imageData.src ? imageData.src : ``
 
@@ -108,7 +111,10 @@ export const noscriptImg = props => {
   const height = props.height ? `height="${props.height}" ` : ``
   const opacity = props.opacity ? props.opacity : `1`
   const transitionDelay = props.transitionDelay ? props.transitionDelay : `0.5s`
-  return `<picture>${srcSetWebp}<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
+  const crossOrigin = props.crossOrigin
+    ? `crossorigin="${props.crossOrigin}" `
+    : ``
+  return `<picture>${srcSetWebp}<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}${crossOrigin}style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
 }
 
 /**

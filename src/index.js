@@ -394,6 +394,7 @@ BackgroundImage.propTypes = {
   alt: PropTypes.string,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
   critical: PropTypes.bool,
+  crossOrigin: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // Using PropTypes from RN.
   backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   onLoad: PropTypes.func,
