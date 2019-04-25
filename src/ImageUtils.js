@@ -41,10 +41,8 @@ export const activateCacheForImage = props => {
  * Resets the image cache (especially important for reliable tests).
  */
 export const resetImageCache = () => {
-  for (const prop in imageCache) {
-    if (imageCache.hasOwnProperty(prop))
-      delete imageCache[prop]
-  }
+  for (const prop in imageCache)
+     delete imageCache[prop]
 }
 
 /**
