@@ -136,14 +136,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
+            background-image: url(test_fixed_image.jpg);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             
           }
         
@@ -183,15 +183,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -223,15 +223,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -269,15 +269,15 @@ background-size: cover;
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -323,15 +323,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(test_fluid_image.jpg);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -376,14 +376,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            
+            background-image: url(test_fluid_image.jpg);
             background-color: #fff;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             background-color: #fff;
           }
         
@@ -480,14 +480,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            
+            background-image: url(test_fluid_image.jpg);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -530,14 +530,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
+            background-image: url(test_fluid_image.jpg);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             
           }
         
@@ -580,14 +580,14 @@ background-size: 'contain';
           .fixedImage.test:before {
             z-index: -100;
             
+            background-image: url(test_fluid_image.jpg);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.test:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             
           }
         
@@ -630,14 +630,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
+            background-image: url(test_fluid_image.jpg);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             
           }
         
@@ -683,15 +683,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -734,14 +734,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
+            background-image: url(test_fixed_image.jpg);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
             
           }
         
@@ -785,7 +785,7 @@ background-size: cover;
             
             
             
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;

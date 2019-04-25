@@ -24,6 +24,8 @@ import { listenToIntersections } from './IntersectionObserverUtils'
 class BackgroundImage extends React.Component {
   // Needed to prevent handleImageLoaded() firing on gatsby build.
   isMounted = false
+  // IntersectionObserver listeners (if available).
+  cleanUpListeners
 
   constructor(props) {
     super(props)
@@ -133,31 +135,30 @@ class BackgroundImage extends React.Component {
     }
   }
 
-  // IntersectionObserver listeners (if available).
-  cleanUpListeners
+  intersectionlistener = () => {
+    const imageInCache = inImageCache(this.props)
+    if (
+      !this.state.isVisible &&
+      typeof this.props.onStartLoad === `function`
+    ) {
+      this.props.onStartLoad({ wasCached: imageInCache })
+    }
+
+    // imgCached and imgLoaded must update after isVisible,
+    // Once isVisible is true, imageRef becomes accessible, which imgCached needs access to.
+    // imgLoaded and imgCached are in a 2nd setState call to be changed together,
+    // avoiding initiating unnecessary animation frames from style changes.
+    this.setState({ isVisible: true }, () =>
+      this.setState({
+        imgLoaded: imageInCache,
+        imgCached: !!this.imageRef.currentSrc,
+      })
+    )
+  }
 
   handleRef(ref) {
     if (this.state.IOSupported && ref) {
-      this.cleanUpListeners = listenToIntersections(ref, () => {
-        const imageInCache = inImageCache(this.props)
-        if (
-          !this.state.isVisible &&
-          typeof this.props.onStartLoad === `function`
-        ) {
-          this.props.onStartLoad({ wasCached: imageInCache })
-        }
-
-        // imgCached and imgLoaded must update after isVisible,
-        // Once isVisible is true, imageRef becomes accessible, which imgCached needs access to.
-        // imgLoaded and imgCached are in a 2nd setState call to be changed together,
-        // avoiding initiating unnecessary animation frames from style changes.
-        this.setState({ isVisible: true }, () =>
-          this.setState({
-            imgLoaded: imageInCache,
-            imgCached: !!this.imageRef.currentSrc,
-          })
-        )
-      })
+      this.cleanUpListeners = listenToIntersections(ref, this.intersectionlistener())
     }
   }
 

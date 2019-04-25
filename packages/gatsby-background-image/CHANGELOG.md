@@ -59,3 +59,9 @@ recreate imageRef before). Add possibility for passing `soft` to `fadeIn` to
 ## [0.3.6](https://github.com/timhagn/gatsby-background-image) (2019-04-20)
 
 **feat / fix:** Merge #25, fix test errors.
+
+## [0.4.0](https://github.com/timhagn/gatsby-background-image) (2019-04-25)
+
+**feat:** get feature par with gatsby-image again (add `durationFadeIn` & 
+`crossOrigin` props), update tests accordingly. Refactor anonymous IO callback 
+to intersectionlistener(), more tests.
