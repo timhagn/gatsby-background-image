@@ -119,10 +119,12 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should call critical fixed images`, () => {
+    resetImageCache()
     activateCacheForImage({ fixed: fixedShapeMock })
     const options = {
       addClass: true,
       critical: true,
+      fixed: true,
     }
     const component = setup(options)
     expect(component).toMatchSnapshot()
