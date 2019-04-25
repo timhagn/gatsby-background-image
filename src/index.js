@@ -185,6 +185,7 @@ class BackgroundImage extends React.Component {
       fluid,
       fixed,
       backgroundColor,
+      durationFadeIn,
       Tag,
       children,
       classId = !className
@@ -208,7 +209,9 @@ class BackgroundImage extends React.Component {
     const shouldFadeIn =
       (this.state.fadeIn === true && !this.state.imgCached) ||
       this.props.fadeIn === `soft`
-    const transitionDelay = this.state.imgLoaded ? `0.5s` : `0.25s`
+    const transitionDelay = this.state.imgLoaded
+      ? `${durationFadeIn}ms`
+      : `0.25s`
 
     if (fluid) {
       const image = fluid
@@ -349,6 +352,15 @@ class BackgroundImage extends React.Component {
   }
 }
 
+BackgroundImage.defaultProps = {
+  critical: false,
+  fadeIn: true,
+  durationFadeIn: 500,
+  alt: ``,
+  title: ``,
+  Tag: `div`,
+}
+
 const fixedObject = PropTypes.shape({
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
@@ -377,6 +389,7 @@ BackgroundImage.propTypes = {
   fixed: fixedObject,
   fluid: fluidObject,
   fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  durationFadeIn: PropTypes.number,
   title: PropTypes.string,
   alt: PropTypes.string,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // Support Glamor's css prop.
@@ -388,14 +401,6 @@ BackgroundImage.propTypes = {
   onStartLoad: PropTypes.func,
   Tag: PropTypes.string,
   classId: PropTypes.string,
-}
-
-BackgroundImage.defaultProps = {
-  critical: false,
-  fadeIn: true,
-  alt: ``,
-  title: ``,
-  Tag: `div`,
 }
 
 export default BackgroundImage

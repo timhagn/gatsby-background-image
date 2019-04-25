@@ -1,9 +1,12 @@
 import '@babel/polyfill'
-import { render } from 'react-testing-library'
+import { render, cleanup } from 'react-testing-library'
 import 'react-testing-library/cleanup-after-each'
 
 import React from 'react'
 import BackgroundImage from '../'
+import { activateCacheForImage, resetImageCache } from '../ImageUtils'
+
+afterEach(resetImageCache)
 
 global.console.debug = jest.fn()
 
@@ -109,6 +112,7 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should call critical fixed images`, () => {
+    activateCacheForImage({fluid: fluidShapeMock})
     const component = setup(false, true, ``, true, null, null, true)
     expect(component).toMatchSnapshot()
   })

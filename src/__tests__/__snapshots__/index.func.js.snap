@@ -726,7 +726,7 @@ exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] 
             height: 100%;
             top: 0;
             left: 0;
-            transition-delay: 0.5s;
+            transition-delay: 500ms;
             transition: opacity 0.5s;
             background-position: 'center';
 background-repeat: 'repeat-y';

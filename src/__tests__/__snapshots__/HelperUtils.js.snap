@@ -20,7 +20,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            transition-delay: 0.5s;
+            transition-delay: 500ms;
             transition: opacity 0.5s;
             background-position: 'center';
 background-repeat: 'repeat-y';
@@ -143,7 +143,7 @@ background-size: cover;
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(test_fixed_image.jpg);
+            background-image: url(string_of_base64);
             
           }
         
@@ -191,7 +191,7 @@ background-size: 'contain';
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(test_fixed_image.jpg);
+            background-image: url(string_of_base64);
             background-color: lightgray;
           }
         

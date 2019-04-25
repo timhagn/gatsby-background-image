@@ -7,11 +7,15 @@ import {
   noscriptImg,
   inImageCache,
   activateCacheForImage,
+  resetImageCache,
   createPictureRef,
-  switchImageSettings, imagePropsChanged,
+  switchImageSettings,
+  imagePropsChanged,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
+
+afterEach(resetImageCache)
 
 const fixedMock = {
   fixed: fixedShapeMock,
@@ -70,6 +74,16 @@ describe(`inImageCache() / activateCacheForImage()`, () => {
     expect(inCache).toBeFalsy()
   })
 })
+
+describe(`inImageCache() / activateCacheForImage() / resetImageCache()`, () => {
+  it(`should reset imageCache after caching`, () => {
+    activateCacheForImage(fluidMock)
+    resetImageCache()
+    const inCache = inImageCache(fluidMock)
+    expect(inCache).toBeFalsy()
+  })
+})
+
 
 describe(`noscriptImg()`, () => {
   it(`should return default noscriptImg on {}`, () => {
