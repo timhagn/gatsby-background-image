@@ -137,10 +137,7 @@ class BackgroundImage extends React.Component {
 
   intersectionlistener = () => {
     const imageInCache = inImageCache(this.props)
-    if (
-      !this.state.isVisible &&
-      typeof this.props.onStartLoad === `function`
-    ) {
+    if (!this.state.isVisible && typeof this.props.onStartLoad === `function`) {
       this.props.onStartLoad({ wasCached: imageInCache })
     }
 
@@ -158,7 +155,10 @@ class BackgroundImage extends React.Component {
 
   handleRef(ref) {
     if (this.state.IOSupported && ref) {
-      this.cleanUpListeners = listenToIntersections(ref, this.intersectionlistener())
+      this.cleanUpListeners = listenToIntersections(
+        ref,
+        this.intersectionlistener()
+      )
     }
   }
 
