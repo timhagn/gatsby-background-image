@@ -65,3 +65,7 @@ recreate imageRef before). Add possibility for passing `soft` to `fadeIn` to
 **feat:** Get feature par with gatsby-image again (add `durationFadeIn` & 
 `crossOrigin` props), update tests accordingly. Refactor anonymous IO callback 
 to intersectionlistener(), more tests.
+
+## [0.4.1](https://github.com/timhagn/gatsby-background-image) (2019-04-25)
+
+**fix:** Called extracted intersectionListener function instead of passing it. 

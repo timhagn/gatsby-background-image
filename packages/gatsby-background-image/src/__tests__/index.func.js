@@ -65,7 +65,13 @@ describe(`<BackgroundImage /> with mock IO`, () => {
   })
 
   it(`should call critical fixed images`, () => {
-    const component = setup(false, true, ``, true, null, null, true)
+    const options = {
+      addClass: true,
+      critical: true,
+      fixed: true,
+    }
+    const component = setup(options)
+    // const component = setup(false, true, ``, true, null, null, true)
     mockAllIsIntersecting(true)
     expect(component).toMatchSnapshot()
   })

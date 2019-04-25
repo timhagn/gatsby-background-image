@@ -20,8 +20,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -31,15 +30,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
             background-image: url(test_fixed_image.jpg);
+            
             background-color: lightgray;
           }
         
@@ -136,14 +135,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            background-image: url(test_fixed_image.jpg);
             
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -183,15 +182,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(test_fixed_image.jpg);
+            
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             background-color: lightgray;
           }
         
@@ -223,15 +222,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(test_fixed_image.jpg);
+            
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             background-color: lightgray;
           }
         
@@ -269,15 +268,15 @@ background-size: cover;
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(test_fixed_image.jpg);
+            
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             background-color: lightgray;
           }
         
@@ -323,15 +322,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(test_fluid_image.jpg);
+            
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             background-color: lightgray;
           }
         
@@ -376,14 +375,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            background-image: url(test_fluid_image.jpg);
+            
             background-color: #fff;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             background-color: #fff;
           }
         
@@ -480,14 +479,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            background-image: url(test_fluid_image.jpg);
+            
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             background-color: lightgray;
           }
         
@@ -530,14 +529,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            background-image: url(test_fluid_image.jpg);
             
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -580,14 +579,14 @@ background-size: 'contain';
           .fixedImage.test:before {
             z-index: -100;
             
-            background-image: url(test_fluid_image.jpg);
             
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .fixedImage.test:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -630,14 +629,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            background-image: url(test_fluid_image.jpg);
             
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
