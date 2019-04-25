@@ -45,24 +45,27 @@ export const fluidShapeMock = {
  * @param addClassId
  * @param addBackgroundColor
  * @param fadeIn
+ * @param props
  * @return {RenderResult.container}
  */
-export const setup = (fluid = false,
-               addClass = false,
-               additionalClass = ``,
-               fixedClass = true,
-               onLoad = () => {},
-               onError = () => {},
-               critical = false,
-               onStartLoad = null,
-               fixed = true,
-               addClassId = true,
-               addBackgroundColor = true,
-               fadeIn = false) => {
-
+export const setup = ({
+  fluid = false,
+  addClass = false,
+  additionalClass = ``,
+  fixedClass = true,
+  onLoad = () => {},
+  onError = () => {},
+  critical = false,
+  onStartLoad = null,
+  fixed = true,
+  addClassId = true,
+  addBackgroundColor = true,
+  fadeIn = false,
+  props = {},
+}) => {
   if (addClass) {
     // Create the style class.
-    const styleElement = document.createElement("style")
+    const styleElement = document.createElement('style')
     styleElement.textContent = `
       .fixedImage {
         backgroundRepeat: 'repeat-y';
@@ -72,25 +75,29 @@ export const setup = (fluid = false,
     `
     document.body.appendChild(styleElement)
   }
-  const classNames = fixedClass ?
-      `fixedImage${additionalClass}` : additionalClass.trim()
+  const classNames = fixedClass
+    ? `fixedImage ${additionalClass}`
+    : additionalClass.trim()
   const { container } = render(
     <BackgroundImage
-      { ...addBackgroundColor && {backgroundColor: addBackgroundColor}}
-      { ...fixedClass && {className: classNames}}
-      style={{ display: `inline`, opacity: .99 }}
+      {...addBackgroundColor && { backgroundColor: addBackgroundColor }}
+      {...fixedClass && { className: classNames }}
+      style={{ display: `inline`, opacity: 0.99 }}
       title={`Title for the image`}
       alt={`Alt text for the image`}
       id={`testid`}
       {...fluid && { fluid: fluidShapeMock }}
-      {...(!fluid && fixed) && { fixed: fixedShapeMock }}
+      {...!fluid && fixed && { fixed: fixedShapeMock }}
       onLoad={onLoad}
       onError={onError}
-      { ...addClassId && {classId: `test`}}
+      {...addClassId && { classId: `test` }}
       critical={critical}
       onStartLoad={onStartLoad}
-      { ... fadeIn && {fadeIn: `soft`}}
-    ><h1>test</h1></BackgroundImage>
+      {...fadeIn && { fadeIn: `soft` }}
+      {...props}
+    >
+      <h1>test</h1>
+    </BackgroundImage>
   )
 
   return container
@@ -107,23 +114,33 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should render fixed size images`, () => {
-    const component = setup()
+    const component = setup({})
     expect(component).toMatchSnapshot()
   })
 
   it(`should call critical fixed images`, () => {
-    activateCacheForImage({fluid: fluidShapeMock})
-    const component = setup(false, true, ``, true, null, null, true)
+    activateCacheForImage({ fixed: fixedShapeMock })
+    const options = {
+      addClass: true,
+      critical: true,
+    }
+    const component = setup(options)
     expect(component).toMatchSnapshot()
   })
 
   it(`should render fluid images`, () => {
-    const component = setup(true)
+    const component = setup({fluid: true})
     expect(component).toMatchSnapshot()
   })
 
   it(`should call critical fluid images`, () => {
-    const component = setup(true, true, ``, true, null, null, true)
+    activateCacheForImage({ fluid: fluidShapeMock })
+    const options = {
+      fluid: true,
+      addClass: true,
+      critical: true,
+    }
+    const component = setup(options)
     expect(component).toMatchSnapshot()
   })
 
@@ -131,9 +148,9 @@ describe(`<BackgroundImage />`, () => {
     // Mock Math.random beforehand, lest another random classname is created.
     Math.random = jest.fn(() => 0.424303425546642)
     const { container } = render(
-        <BackgroundImage
-            fluid={ fluidShapeMock }
-        ><h1>testempty</h1></BackgroundImage>
+      <BackgroundImage fluid={fluidShapeMock}>
+        <h1>testempty</h1>
+      </BackgroundImage>
     )
     expect(container).toMatchSnapshot()
   })
@@ -142,75 +159,130 @@ describe(`<BackgroundImage />`, () => {
     // Mock Math.random beforehand, lest another random classname is created.
     Math.random = jest.fn(() => 0.424303425546642)
     const { container } = render(
-        <BackgroundImage
-            fixed={ fixedShapeMock }
-            style={{ display: `inherit` }}
-        ><h1>testempty</h1></BackgroundImage>
+      <BackgroundImage fixed={fixedShapeMock} style={{ display: `inherit` }}>
+        <h1>testempty</h1>
+      </BackgroundImage>
     )
     expect(container).toMatchSnapshot()
   })
 
-  it(`should work with single external class`, () => {
-    const component = setup(true)
-    expect(component).toMatchSnapshot()
-  })
-
   it(`should work with another external class`, () => {
-    const component = setup(true, true, ` test`)
+    activateCacheForImage({ fluid: fluidShapeMock })
+    const options = {
+      fluid: true,
+      addClass: true,
+      additionalClass: `test`
+    }
+    const component = setup(options)
     expect(component).toMatchSnapshot()
   })
 
   it(`should return null without fluid / fixed`, () => {
-    const component = setup(false, false, ``, false, null, null, false, null, false)
+    const options = {
+      fixedClass: false,
+      onLoad: null,
+      onError: null,
+      onStartLoad: null,
+      fixed: false,
+    }
+    const component = setup(options)
     expect(component).toMatchSnapshot()
   })
 
   it(`should work with only classId`, () => {
-    const component = setup(true, false, ``, false, null, null, false, null, false, false)
+    const options = {
+      fluid: true,
+      fixedClass: false,
+      addClassId: false,
+      addBackgroundColor: false,
+    }
+    const component = setup(options)
     expect(component).toMatchSnapshot()
   })
 
   it(`should work without classId but className`, () => {
-    const component = setup(true, false, `test`, true, null, null, false, null, false, false)
+    const options = {
+      fluid: true,
+      additionalClass: `test`,
+      fixed: false,
+      addClassId: false,
+      addBackgroundColor: false,
+    }
+    const component = setup(options)
+    const defaultOptions = {
+      fluid: false,
+      addClass: false,
+      additionalClass: ``,
+      fixedClass: true,
+      onLoad: () => {},
+      onError: () => {},
+      critical: false,
+      onStartLoad: null,
+      fixed: true,
+      addClassId: true,
+      addBackgroundColor: true,
+      fadeIn: false,
+      props: {},
+    }
     expect(component).toMatchSnapshot()
   })
 
   it(`should work with BackgroundColor`, () => {
-    const component = setup(true, false, ``, false, null, null, false, null, false, false, `#fff`)
+    const options = {
+      fluid: true,
+      fixedClass: false,
+      fixed: false,
+      addClassId: false,
+      addBackgroundColor: `#fff`,
+    }
+    const component = setup(options)
     expect(component).toMatchSnapshot()
   })
 
   it(`should work with fadeIn`, () => {
-    const component = setup(true, false, ``, false, null, null, false, null, false, false, true, true)
+    const options = {
+      fluid: true,
+      fixedClass: false,
+      fixed: false,
+      addClassId: false,
+      fadeIn: true,
+    }
+    const component = setup(options)
     expect(component).toMatchSnapshot()
   })
 
   it(`should create style tag with pseudo-elements`, () => {
-    const component = setup(true, true, ` test`)
+    const options = {
+      additionalClass: `test`
+    }
+    const component = setup(options)
     const styleTag = component.querySelector(`style`)
     expect(styleTag).toBeInTheDocument()
     expect(styleTag).toMatchSnapshot()
   })
 
   it(`should create style tag at fixed with pseudo-elements`, () => {
-    const component = setup(false, true, ` test`)
+    const options = {
+      addClass: true,
+      additionalClass: `test`,
+    }
+    const component = setup(options)
     const styleTag = component.querySelector(`style`)
     expect(styleTag).toBeInTheDocument()
     expect(styleTag).toMatchSnapshot()
   })
 
   it(`should have class with pseudo element in style tag`, () => {
-    const component = setup(true, true, ` test`)
+    const options = {
+      fluid: true,
+      addClass: true,
+      additionalClass: `test`,
+    }
+    const component = setup(options)
     const styleTag = component.querySelector(`style`)
-    expect(styleTag)
-        .toHaveTextContent(`.gatsby-background-image-test:before`)
-    expect(styleTag)
-        .toHaveTextContent(`background-repeat: 'repeat-y';`)
-    expect(styleTag)
-        .toHaveTextContent(`background-position: 'center';`)
-    expect(styleTag)
-        .toHaveTextContent(`background-size: 'contain';`)
+    expect(styleTag).toHaveTextContent(`.gatsby-background-image-test:before`)
+    expect(styleTag).toHaveTextContent(`background-repeat: 'repeat-y';`)
+    expect(styleTag).toHaveTextContent(`background-position: 'center';`)
+    expect(styleTag).toHaveTextContent(`background-size: 'contain';`)
   })
 })
-
-

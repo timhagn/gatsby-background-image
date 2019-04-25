@@ -7,7 +7,7 @@ import { mockAllIsIntersecting } from './mocks/IntersectionObserver.mock'
 
 import { fixedShapeMock, fluidShapeMock, setup } from './index'
 import BackgroundImage from '../'
-import { createPictureRef } from '../ImageUtils'
+import { activateCacheForImage, createPictureRef } from '../ImageUtils'
 
 
 const LOAD_FAILURE_SRC = 'test_fluid_image.jpg';
@@ -116,7 +116,16 @@ describe(`<BackgroundImage /> without IO`, () => {
 
   it(`should call onLoadFunction without IO`, () => {
     const onLoadFunctionMock = jest.fn()
-    const component = setup(true, true, `test`, true, null, null, true, onLoadFunctionMock)
+    activateCacheForImage({ fluid: fluidShapeMock })
+    const options = {
+      fluid: true,
+      addClass: true,
+      additionalClass: `test`,
+      critical: true,
+      onStartLoad: onLoadFunctionMock,
+      fixed: false,
+    }
+    const component = setup(options)
     expect(component).toMatchSnapshot()
     expect(onLoadFunctionMock).toHaveBeenCalled()
   })
