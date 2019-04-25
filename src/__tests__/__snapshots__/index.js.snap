@@ -4,7 +4,6 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
 <div>
   <div
     class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -21,7 +20,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            transition-delay: 0.25s;
+            transition-delay: 0.5s;
             transition: opacity 0.5s;
             background-position: 'center';
 background-repeat: 'repeat-y';
@@ -32,15 +31,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
             background-image: url(test_fixed_image.jpg);
+            
             background-color: lightgray;
           }
         
@@ -59,7 +58,6 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 <div>
   <div
     class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
@@ -114,7 +112,6 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
 <div>
   <div
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
-    id=""
     style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
@@ -146,7 +143,7 @@ background-size: cover;
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            background-image: url(test_fixed_image.jpg);
             
           }
         
@@ -194,7 +191,7 @@ background-size: 'contain';
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
           }
         
@@ -245,7 +242,6 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
 <div>
   <div
     class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -300,7 +296,6 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
     class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
@@ -357,7 +352,6 @@ exports[`<BackgroundImage /> should work with BackgroundColor 1`] = `
 <div>
   <div
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -408,7 +402,6 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
     class="fixedImage testgatsby-background-image-test gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
@@ -463,7 +456,6 @@ exports[`<BackgroundImage /> should work with fadeIn 1`] = `
 <div>
   <div
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -514,7 +506,6 @@ exports[`<BackgroundImage /> should work with only classId 1`] = `
 <div>
   <div
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -565,7 +556,6 @@ exports[`<BackgroundImage /> should work with single external class 1`] = `
 <div>
   <div
     class="fixedImagegatsby-background-image-test gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
@@ -620,7 +610,6 @@ exports[`<BackgroundImage /> should work without classId but className 1`] = `
 <div>
   <div
     class="fixedImagetest gatsby-image-wrapper"
-    id="testid"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -671,7 +660,6 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
-    id=""
     style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
