@@ -165,7 +165,7 @@ const BackgroundSection = ({ className }) => (
       query {
         desktop: file(relativePath: { eq: "seamless-bg-desktop.jpg" }) {
           childImageSharp {
-            fluid(quality: 100, maxWidth: 4160) {
+            fluid(quality: 90, maxWidth: 4160) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
