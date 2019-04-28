@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 import 'react-testing-library/cleanup-after-each'
 import * as IOUtils from '../IntersectionObserverUtils'

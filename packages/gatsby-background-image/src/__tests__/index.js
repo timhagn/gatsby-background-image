@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import { render, cleanup } from 'react-testing-library'
 import 'react-testing-library/cleanup-after-each'
 
