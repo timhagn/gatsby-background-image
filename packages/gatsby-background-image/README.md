@@ -151,7 +151,7 @@ export const onClientEntry = () => {
 
 ## How to Use
 
-This is what a component using `gatsby-background-image` looks like:
+This is what a component using `gatsby-background-image` might look like:
 
 ```jsx
 import React from 'react'
