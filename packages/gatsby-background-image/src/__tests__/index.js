@@ -110,6 +110,7 @@ describe(`<BackgroundImage />`, () => {
       observe,
       unobserve,
     }))
+    resetImageCache()
   })
 
   it(`should render fixed size images`, () => {
@@ -118,7 +119,6 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should call critical fixed images`, () => {
-    resetImageCache()
     activateCacheForImage({ fixed: fixedShapeMock })
     const options = {
       addClass: true,
