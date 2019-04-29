@@ -68,4 +68,13 @@ to intersectionlistener(), more tests.
 
 ## [0.4.1](https://github.com/timhagn/gatsby-background-image) (2019-04-25)
 
-**fix:** Called extracted intersectionListener function instead of passing it. 
+**fix:** Called extracted intersectionListener function instead of passing it.
+
+## [0.4.2](https://github.com/timhagn/gatsby-background-image) (2019-04-28)
+
+**doc / feat:** Changed babel behavior from @babel/polyfill to new 
+core-js/stable & updated README.md
+
+## [0.4.3](https://github.com/timhagn/gatsby-background-image) (2019-04-28)
+
+**fix:** Fixed transitions for the moment for issue #26.
