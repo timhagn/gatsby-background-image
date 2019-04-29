@@ -217,12 +217,12 @@ class BackgroundImage extends React.Component {
     if (fluid) {
       const image = fluid
 
-      // Set images and visibility according to images available.
+      // Set background-images and visibility according to images available.
       const newImageSettings = switchImageSettings({
         image,
         bgImage: this.bgImage,
         imageRef: this.imageRef,
-        isVisible: this.state.isVisible,
+        state: this.state,
       })
       this.bgImage = newImageSettings.bgImage
         ? newImageSettings.bgImage
@@ -290,12 +290,12 @@ class BackgroundImage extends React.Component {
         delete divStyle.display
       }
 
-      // Set images and visibility according to images available.
+      // Set background-images and visibility according to images available.
       const newImageSettings = switchImageSettings({
         image,
         bgImage: this.bgImage,
         imageRef: this.imageRef,
-        isVisible: this.state.isVisible,
+        state: this.state,
       })
       this.bgImage = newImageSettings.bgImage
         ? newImageSettings.bgImage
