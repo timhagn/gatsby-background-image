@@ -45,13 +45,13 @@ It's located at: [gbitest](https://github.com/timhagn/gbitest)
 
 As `gatsby-image` is designed to work seamlessly with Gatsby's native image
 processing capabilities powered by GraphQL and Sharp, so is `gatsby-background-image`. 
-To produce perfect background-images, you need only:
+To produce optimized background-images, you need only to:
 
 1. Import `gatsby-background-image` and use it in place of the built-in `div`
    or suchlike containers. 
-2. Write a GraphQL query using one of the included GraphQL "fragments" which
-   specify the fields  
-   needed by `gatsby-background-image`.
+2. Write a GraphQL query using one of the GraphQL "fragments" provided by 
+   `gatsby-transformer-sharp`  
+   which specify the fields needed by `gatsby-background-image`.
 
 The GraphQL query creates multiple thumbnails with optimized JPEG and PNG
 compression (or even WebP files for browsers that support them).
@@ -314,6 +314,3 @@ Thanks in advance!
 ## TODO
 
 Tell me by opening an issue or a PR : )!
-
-
-
