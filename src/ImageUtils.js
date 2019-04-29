@@ -122,27 +122,24 @@ export const noscriptImg = props => {
  * @param image
  * @param bgImage
  * @param imageRef
- * @param isVisible
+ * @param state
  * @return {{noBase64: boolean, afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
  */
-export const switchImageSettings = ({
-  image,
-  bgImage,
-  imageRef,
-  isVisible,
-}) => {
+export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   const noBase64 = !image.base64
   // Set the backgroundImage according to images available.
   let nextImage = ``
   if (image.tracedSVG) nextImage = `"${image.tracedSVG}"`
   if (image.base64 && !image.tracedSVG) nextImage = image.base64
-  if (isVisible) nextImage = (imageRef && imageRef.currentSrc) || image.src
+  if (state.imgLoaded && state.isVisible)
+    nextImage = (imageRef && imageRef.currentSrc) || image.src
 
   // Switch bgImage & nextImage and opacity accordingly.
   const lastImage = bgImage
   bgImage = bgImage === `` ? nextImage : ``
   nextImage = nextImage === bgImage ? `` : nextImage
-  const afterOpacity = nextImage !== `` || (noBase64 && isVisible) ? 1 : 0
+  const afterOpacity =
+    nextImage !== `` || (noBase64 && state.isVisible && state.imgLoaded) ? 0 : 1
 
   return {
     bgImage,
