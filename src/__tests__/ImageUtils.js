@@ -119,13 +119,16 @@ describe(`switchImageSettings()`, () => {
     src: `test.jpg`,
     currentSrc: `test.webp`,
   }
+  const state = {
+    isVisible: false,
+    isLoaded: false,
+  }
   it(`should return settings from fluid with empty bgImage`, () => {
     const createdSettings = switchImageSettings({
       image: fluidShapeMock,
       bgImage: ``,
-      mockImageRef,
-      isVisible: false,
-      fadeIn: true,
+      imageRef: mockImageRef,
+      state,
     })
     expect(createdSettings).toMatchSnapshot()
   })
@@ -134,9 +137,8 @@ describe(`switchImageSettings()`, () => {
     const createdSettings = switchImageSettings({
       image: fixedShapeMock,
       bgImage: `string_of_base64`,
-      mockImageRef,
-      isVisible: false,
-      fadeIn: true,
+      imageRef: mockImageRef,
+      state,
     })
     expect(createdSettings).toMatchSnapshot()
     expect(createdSettings.lastImage).toEqual(`string_of_base64`)
@@ -146,9 +148,8 @@ describe(`switchImageSettings()`, () => {
     const createdSettings = switchImageSettings({
       image: fluidShapeMock,
       bgImage: `string_of_base64`,
-      mockImageRef,
-      isVisible: false,
-      fadeIn: true,
+      imageRef: mockImageRef,
+      state,
     })
     expect(createdSettings).toMatchSnapshot()
   })
@@ -158,10 +159,9 @@ describe(`switchImageSettings()`, () => {
     delete fluid.base64
     const createdSettings = switchImageSettings({
       image: fluid,
-      bgImage: `string_of_base64`,
-      mockImageRef,
-      isVisible: false,
-      fadeIn: true,
+      bgImage: ``,
+      imageRef: mockImageRef,
+      state,
     })
     expect(createdSettings).toMatchSnapshot()
   })
@@ -175,9 +175,8 @@ describe(`switchImageSettings()`, () => {
     const createdSettings = switchImageSettings({
       image: fluid,
       bgImage: `test_tracedSVG.svg`,
-      mockImageRef,
-      isVisible: false,
-      fadeIn: false,
+      imageRef: mockImageRef,
+      state,
     })
     expect(createdSettings).toMatchSnapshot()
   })
@@ -185,12 +184,13 @@ describe(`switchImageSettings()`, () => {
   it(`should return settings from fluid with set bgImage and base64`, () => {
     const mockRef = mockImageRef
     delete mockRef.src
+    state.isVisible = true
+    state.isLoaded = true
     const createdSettings = switchImageSettings({
       image: fluidShapeMock,
       bgImage: `string_of_base64`,
-      mockRef,
-      isVisible: true,
-      fadeIn: true,
+      imageRef: mockRef,
+      state,
     })
     expect(createdSettings).toMatchSnapshot()
   })

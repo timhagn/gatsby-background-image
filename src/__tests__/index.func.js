@@ -47,7 +47,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     Object.setPrototypeOf(HTMLImageElement, tmpImagePrototype)
   })
 
-  it(`should render visible image`, () => {
+  it(`should render visible fluid image`, () => {
     let { container, rerender } = render(<BackgroundImage fixed={fixedShapeMock} />)
     mockAllIsIntersecting(true)
     expect(container).toMatchSnapshot()
@@ -55,7 +55,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     expect(container).toMatchSnapshot()
   })
 
-  it(`should render visible image`, () => {
+  it(`should render visible fixed image`, () => {
     let { container, rerender } = render(<BackgroundImage fluid={{src: ``, aspectRatio: 1, srcSet: ``, sizes: ``}} />)
     mockAllIsIntersecting(true)
     expect(container).toMatchSnapshot()

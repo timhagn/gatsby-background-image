@@ -31,15 +31,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(test_fixed_image.jpg);
+            
             background-color: lightgray;
           }
         
@@ -85,15 +85,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(test_fluid_image.jpg);
+            
             background-color: lightgray;
           }
         
@@ -136,14 +136,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
+            background-image: url(string_of_base64);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             
           }
         
@@ -183,15 +183,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -223,15 +223,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -269,15 +269,15 @@ background-size: cover;
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -323,15 +323,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -376,14 +376,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: #fff;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             background-color: #fff;
           }
         
@@ -429,15 +429,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(test_fluid_image.jpg);
+            
             background-color: lightgray;
           }
         
@@ -480,14 +480,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             background-color: lightgray;
           }
         
@@ -530,14 +530,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
+            background-image: url(string_of_base64);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             
           }
         
@@ -580,14 +580,14 @@ background-size: 'contain';
           .fixedImage.test:before {
             z-index: -100;
             
+            background-image: url(string_of_base64);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.test:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             
           }
         
@@ -630,14 +630,14 @@ background-size: cover;
           .gatsby-background-image-fwatluf:before {
             z-index: -100;
             
+            background-image: url(string_of_base64);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
             
-            background-image: url(string_of_base64);
+            
             
           }
         
@@ -682,16 +682,16 @@ background-size: 'contain';
           .fixedImage.:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url(string_of_base64);
             
-            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
-            opacity: 1; 
+            opacity: 0; 
           }
           .fixedImage.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(test_fixed_image.jpg);
             
+            background-image: url(test_fixed_image.jpg);
             background-color: lightgray;
           }
         
@@ -706,56 +706,7 @@ background-size: 'contain';
 </div>
 `;
 
-exports[`<BackgroundImage /> with mock IO should render visible image 1`] = `
-<div>
-  <div
-    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline-block; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
-    title=""
-  >
-    <style>
-      
-          .gatsby-background-image-fwatluf:before,
-          .gatsby-background-image-fwatluf:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
-            background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-
-          }
-          .gatsby-background-image-fwatluf:before {
-            z-index: -100;
-            
-            
-            
-            opacity: 0; 
-          }
-          .gatsby-background-image-fwatluf:after {
-            z-index: -101;
-            
-            background-image: url(string_of_base64);
-            
-          }
-        
-    </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
-  </div>
-</div>
-`;
-
-exports[`<BackgroundImage /> with mock IO should render visible image 2`] = `undefined`;
-
-exports[`<BackgroundImage /> with mock IO should render visible image 3`] = `
+exports[`<BackgroundImage /> with mock IO should render visible fixed image 1`] = `
 <div>
   <div
     class="gatsby-background-image-fwatluf gatsby-image-wrapper"
@@ -785,7 +736,7 @@ background-size: cover;
             
             
             
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf:after {
             z-index: -101;
@@ -802,7 +753,56 @@ background-size: cover;
 </div>
 `;
 
-exports[`<BackgroundImage /> with mock IO should render visible image 4`] = `undefined`;
+exports[`<BackgroundImage /> with mock IO should render visible fixed image 2`] = `undefined`;
+
+exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] = `
+<div>
+  <div
+    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
+    style="position: relative; overflow: hidden; display: inline-block; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    title=""
+  >
+    <style>
+      
+          .gatsby-background-image-fwatluf:before,
+          .gatsby-background-image-fwatluf:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
+            background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+          }
+          .gatsby-background-image-fwatluf:before {
+            z-index: -100;
+            
+            background-image: url(string_of_base64);
+            
+            opacity: 1; 
+          }
+          .gatsby-background-image-fwatluf:after {
+            z-index: -101;
+            
+            
+            
+          }
+        
+    </style>
+    <noscript>
+      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+    </noscript>
+  </div>
+</div>
+`;
+
+exports[`<BackgroundImage /> with mock IO should render visible fluid image 2`] = `undefined`;
 
 exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`] = `
 <div>
@@ -835,15 +835,15 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .fixedImage.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(test_fluid_image.jpg);
+            
             background-color: lightgray;
           }
         
