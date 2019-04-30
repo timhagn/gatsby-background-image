@@ -64,6 +64,9 @@ class BackgroundImage extends React.Component {
     // Check if a noscript element should be included.
     const hasNoScript = !(props.critical && !fadeIn)
 
+    // Set initial image state for transitioning.
+    const imageState = 0
+
     this.state = {
       isVisible,
       imgLoaded,
@@ -71,6 +74,7 @@ class BackgroundImage extends React.Component {
       fadeIn,
       hasNoScript,
       seenBefore,
+      imageState,
     }
 
     // Preset backgroundStyles (e.g. during SSR or gatsby build).
@@ -86,6 +90,8 @@ class BackgroundImage extends React.Component {
 
     // "Fake" a reference to an Image loaded via picture element in background.
     this.imageRef = createPictureRef(this.props, this.handleImageLoaded)
+
+    console.log(`-------------------------------------------------------------`)
   }
 
   componentDidMount() {
@@ -115,6 +121,7 @@ class BackgroundImage extends React.Component {
       this.setState(
         {
           isVisible: imageInCache || this.props.critical,
+          imageState: 0,
         },
         () => {
           // Update bgImage & create new imageRef.
@@ -149,6 +156,7 @@ class BackgroundImage extends React.Component {
       this.setState({
         imgLoaded: imageInCache,
         imgCached: !!this.imageRef.currentSrc,
+        imageState: this.state.imageState + 1,
       })
     )
   }
@@ -166,7 +174,10 @@ class BackgroundImage extends React.Component {
     if (this.isMounted) {
       activateCacheForImage(this.props)
 
-      this.setState({ imgLoaded: true })
+      this.setState({
+        imgLoaded: true,
+        imageState: this.state.imageState + 1,
+      })
       if (this.state.seenBefore) {
         this.setState({ fadeIn: false })
       }
@@ -245,9 +256,10 @@ class BackgroundImage extends React.Component {
       imageRef: this.imageRef,
       state: this.state,
     })
-    this.bgImage = newImageSettings.bgImage
-      ? newImageSettings.bgImage
-      : newImageSettings.lastImage
+    // this.bgImage = newImageSettings.bgImage
+    //   ? newImageSettings.bgImage
+    //   : newImageSettings.lastImage
+    this.bgImage = newImageSettings.nextImage || this.bgImage
 
     const pseudoStyles = createPseudoStyles({
       classId,
@@ -259,6 +271,8 @@ class BackgroundImage extends React.Component {
       fadeIn: shouldFadeIn,
       ...newImageSettings,
     })
+
+    console.log(newImageSettings)
 
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&

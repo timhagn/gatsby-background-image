@@ -13,6 +13,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -20,17 +21,15 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            
             opacity: 1; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
           }
         "
 `;
@@ -48,6 +47,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -55,17 +55,15 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
             opacity: 0; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            
           }
         "
 `;
@@ -83,6 +81,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage 1
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -90,17 +89,15 @@ exports[`createPseudoStyles() should create different styles for empty bgImage 1
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
             opacity: 1; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
           }
         "
 `;
@@ -118,6 +115,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage w
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -125,17 +123,15 @@ exports[`createPseudoStyles() should create different styles for empty bgImage w
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
             opacity: 0; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
           }
         "
 `;
@@ -153,6 +149,7 @@ exports[`createPseudoStyles() should create different styles for empty lastImage
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -162,15 +159,13 @@ exports[`createPseudoStyles() should create different styles for empty lastImage
             z-index: -100;
             
             
-            background-color: #000;
             opacity: 0; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
           }
         "
 `;
@@ -188,6 +183,7 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -196,16 +192,14 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
 .gatsby-background-image-gbi:before {
             z-index: -100;
             
-            background-image: url(test.webp);
-            background-color: #000;
+            
             opacity: 1; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
           }
         "
 `;
@@ -223,6 +217,7 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -230,17 +225,15 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
             opacity: 0; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
             
-            background-image: url(test.webp);
-            background-color: #000;
+            
           }
         "
 `;
@@ -258,6 +251,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -265,17 +259,15 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
             opacity: 1; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
           }
         "
 `;
@@ -293,6 +285,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
@@ -300,17 +293,15 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
             opacity: 0; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
           }
         "
 `;
@@ -326,22 +317,21 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
           }
           .test:before {
             z-index: -100;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
             opacity: 1; 
           }
           .test:after {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
           }
         "
 `;
@@ -357,22 +347,21 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
           }
            {
             z-index: -100;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
             opacity: 1; 
           }
            {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
           }
         "
 `;
@@ -388,22 +377,21 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             
           }
           .gatsby-background-image-gbi:before {
             z-index: -100;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
             opacity: 1; 
           }
           .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
           }
         "
 `;
@@ -421,23 +409,22 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #000;
             transition: none;
             
           }
           .test:before,
 .gatsby-background-image-gbi:before {
             z-index: -100;
-            
             background-image: url(test.webp);
-            background-color: #000;
+            
             opacity: 1; 
           }
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
-            background-image: url(some_base64_string);
             
-            background-color: #000;
+            background-image: url(some_base64_string);
           }
         "
 `;

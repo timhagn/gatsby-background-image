@@ -20,6 +20,7 @@ exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] 
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 500ms;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -30,17 +31,15 @@ background-size: 'contain';
           .imageClass.:before,
 .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            background-image: url(test_fixed_image.jpg);
             
-            background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
           .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(test_fixed_image.jpg);
-            background-color: lightgray;
+            background-image: url(string_of_base64);
           }
         
     </style>
@@ -72,6 +71,7 @@ exports[`<BackgroundImage /> with mock IO should render visible fixed image 1`] 
             height: 100%;
             top: 0;
             left: 0;
+            
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: center;
@@ -83,12 +83,10 @@ background-size: cover;
             z-index: -100;
             
             
-            
             opacity: 1; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
-            
             
             
           }
@@ -121,6 +119,7 @@ exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] 
             height: 100%;
             top: 0;
             left: 0;
+            
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: center;
@@ -132,14 +131,12 @@ background-size: cover;
             z-index: -100;
             background-image: url(string_of_base64);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
-            
           }
         
     </style>
@@ -172,6 +169,7 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -183,16 +181,14 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .imageClass.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
     </style>
