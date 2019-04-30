@@ -75,6 +75,6 @@ to intersectionlistener(), more tests.
 **doc / feat:** Changed babel behavior from @babel/polyfill to new 
 core-js/stable & updated README.md
 
-## [0.4.3](https://github.com/timhagn/gatsby-background-image) (2019-04-28)
+## [0.4.3](https://github.com/timhagn/gatsby-background-image) (2019-04-29)
 
 **fix:** Fixed transitions for the moment for issue #26.
