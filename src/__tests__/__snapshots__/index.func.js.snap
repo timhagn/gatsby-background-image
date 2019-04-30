@@ -3,15 +3,15 @@
 exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
+    class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline-block; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before,
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -27,7 +27,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             background-image: url(string_of_base64);
@@ -35,7 +35,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 0; 
           }
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -107,7 +107,7 @@ exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] 
 <div>
   <div
     class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline-block; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; overflow: hidden; opacity: 0.99; width: 100px; height: 100px; display: inline-block; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
     <style>
@@ -155,15 +155,15 @@ exports[`<BackgroundImage /> with mock IO should render visible fluid image 2`] 
 exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`] = `
 <div>
   <div
-    class="fixedImage testgatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass testgatsby-background-image-test gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .fixedImage.test:before,
+          .imageClass.test:before,
 .gatsby-background-image-test:before,
-          .fixedImage.test:after,
+          .imageClass.test:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -179,7 +179,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.test:before,
+          .imageClass.test:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -187,7 +187,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 1; 
           }
-          .fixedImage.test:after,
+          .imageClass.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             

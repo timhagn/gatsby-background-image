@@ -3,15 +3,15 @@
 exports[`<BackgroundImage /> should call critical fixed images 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-size: 'contain';"
+    class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline-block; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before,
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -20,25 +20,26 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
-            transition: none;
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             background-color: lightgray;
-            opacity: 0; 
+            opacity: 1; 
           }
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
-            background-image: url(test_fixed_image.jpg);
+            
             background-color: lightgray;
           }
         
@@ -56,15 +57,15 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before,
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -80,7 +81,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -88,7 +89,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 1; 
           }
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -111,7 +112,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
 <div>
   <div
     class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; overflow: hidden; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
     <style>
@@ -160,9 +161,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elements 1`] = `
 <style>
   
-          .fixedImage.test:before,
+          .imageClass.test:before,
 .gatsby-background-image-test:before,
-          .fixedImage.test:after,
+          .imageClass.test:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -178,7 +179,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.test:before,
+          .imageClass.test:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -186,7 +187,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 1; 
           }
-          .fixedImage.test:after,
+          .imageClass.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -200,9 +201,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = `
 <style>
   
-          .fixedImage.test:before,
+          .imageClass.test:before,
 .gatsby-background-image-test:before,
-          .fixedImage.test:after,
+          .imageClass.test:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -218,7 +219,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.test:before,
+          .imageClass.test:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -226,7 +227,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 1; 
           }
-          .fixedImage.test:after,
+          .imageClass.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -240,15 +241,15 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should render fixed size images 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; display: inline; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    style="position: relative; overflow: hidden; opacity: 0.99; display: inline-block; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
       
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before,
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -264,7 +265,7 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -272,7 +273,7 @@ background-size: cover;
             background-color: lightgray;
             opacity: 1; 
           }
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -294,15 +295,15 @@ background-size: cover;
 exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
-    class="fixedImage gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before,
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -318,7 +319,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.:before,
+          .imageClass.:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -326,7 +327,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 1; 
           }
-          .fixedImage.:after,
+          .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -400,15 +401,15 @@ background-size: cover;
 exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
-    class="fixedImage testgatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass testgatsby-background-image-test gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .fixedImage.test:before,
+          .imageClass.test:before,
 .gatsby-background-image-test:before,
-          .fixedImage.test:after,
+          .imageClass.test:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -424,7 +425,7 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.test:before,
+          .imageClass.test:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
@@ -432,7 +433,7 @@ background-size: 'contain';
             background-color: lightgray;
             opacity: 1; 
           }
-          .fixedImage.test:after,
+          .imageClass.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -554,14 +555,14 @@ background-size: cover;
 exports[`<BackgroundImage /> should work without classId but className 1`] = `
 <div>
   <div
-    class="fixedImage test gatsby-image-wrapper"
+    class="imageClass test gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .fixedImage.test:before,
-          .fixedImage.test:after {
+          .imageClass.test:before,
+          .imageClass.test:after {
             content: '';
             display: block;
             position: absolute;
@@ -576,14 +577,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .fixedImage.test:before {
+          .imageClass.test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             
             opacity: 1; 
           }
-          .fixedImage.test:after {
+          .imageClass.test:after {
             z-index: -101;
             
             

@@ -214,142 +214,92 @@ class BackgroundImage extends React.Component {
       ? `${durationFadeIn}ms`
       : `0.25s`
 
-    if (fluid) {
-      const image = fluid
-
-      // Set background-images and visibility according to images available.
-      const newImageSettings = switchImageSettings({
-        image,
-        bgImage: this.bgImage,
-        imageRef: this.imageRef,
-        state: this.state,
-      })
-      this.bgImage = newImageSettings.bgImage
-        ? newImageSettings.bgImage
-        : newImageSettings.lastImage
-
-      const pseudoStyles = createPseudoStyles({
-        classId,
-        className,
-        transitionDelay,
-        bgColor,
-        backgroundStyles: this.backgroundStyles,
-        style,
-        fadeIn: shouldFadeIn,
-        ...newImageSettings,
-      })
-
-      return (
-        <Tag
-          className={`${className || ``}${classId &&
-            `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
-          style={{
-            position: `relative`,
-            overflow: `hidden`,
-            opacity: 0.99,
-            ...style,
-            ...this.backgroundStyles,
-          }}
-          title={title}
-          ref={this.handleRef}
-          key={`fluid-${JSON.stringify(image.srcSet)}`}
-          {...remainingProps}
-        >
-          {/* Create style element to transition between pseudo-elements. */}
-          <style
-            dangerouslySetInnerHTML={{
-              __html: pseudoStyles,
-            }}
-          />
-          {/* Show the original image during server-side rendering if JavaScript is disabled */}
-          {this.state.hasNoScript && (
-            <noscript
-              dangerouslySetInnerHTML={{
-                __html: noscriptImg({ alt, title, ...image }),
-              }}
-            />
-          )}
-          {children}
-        </Tag>
-      )
+    const divStyle = {
+      position: `relative`,
+      overflow: `hidden`,
+      opacity: 0.99,
+      ...style,
     }
 
-    if (fixed) {
-      const image = fixed
-      const divStyle = {
-        position: `relative`,
-        overflow: `hidden`,
-        display: `inline-block`,
-        width: image.width,
-        height: image.height,
-        opacity: 0.99,
-        ...style,
-      }
+    // Choose image object of fluid or fixed, return null if not present.
+    let image
+    if (fluid) {
+      image = fluid
+    } else if (fixed) {
+      image = fixed
+      divStyle.width = image.width
+      divStyle.height = image.height
+      divStyle.display = `inline-block`
 
       if (style.display === `inherit`) {
         delete divStyle.display
       }
+    } else {
+      return null
+    }
 
-      // Set background-images and visibility according to images available.
-      const newImageSettings = switchImageSettings({
-        image,
-        bgImage: this.bgImage,
-        imageRef: this.imageRef,
-        state: this.state,
-      })
-      this.bgImage = newImageSettings.bgImage
-        ? newImageSettings.bgImage
-        : newImageSettings.lastImage
+    // Set background-images and visibility according to images available.
+    const newImageSettings = switchImageSettings({
+      image,
+      bgImage: this.bgImage,
+      imageRef: this.imageRef,
+      state: this.state,
+    })
+    this.bgImage = newImageSettings.bgImage
+      ? newImageSettings.bgImage
+      : newImageSettings.lastImage
 
-      const pseudoStyles = createPseudoStyles({
-        classId,
-        className,
-        transitionDelay,
-        bgColor,
-        backgroundStyles: this.backgroundStyles,
-        style,
-        fadeIn: shouldFadeIn,
-        ...newImageSettings,
-      })
+    const pseudoStyles = createPseudoStyles({
+      classId,
+      className,
+      transitionDelay,
+      bgColor,
+      backgroundStyles: this.backgroundStyles,
+      style,
+      fadeIn: shouldFadeIn,
+      ...newImageSettings,
+    })
 
-      return (
-        <Tag
-          className={`${className || ``}${classId &&
-            `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
-          style={{
-            ...divStyle,
-            ...this.backgroundStyles,
+    // Switch key between fluid & fixed.
+    const componentKey = `${fluid && `fluid`}${fixed &&
+      `fixed`}-${JSON.stringify(image.srcSet)}`
+
+    return (
+      <Tag
+        className={`${className || ``}${classId &&
+          `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
+        style={{
+          ...divStyle,
+          ...this.backgroundStyles,
+        }}
+        title={title}
+        ref={this.handleRef}
+        key={componentKey}
+        {...remainingProps}
+      >
+        {/* Create style element to transition between pseudo-elements. */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: pseudoStyles,
           }}
-          title={title}
-          ref={this.handleRef}
-          key={`fixed-${JSON.stringify(image.srcSet)}`}
-          {...remainingProps}
-        >
-          {/* Create style element to transition between pseudo-elements. */}
-          <style
+        />
+        {/* Show the original image during server-side rendering if JavaScript is disabled */}
+        {this.state.hasNoScript && (
+          <noscript
             dangerouslySetInnerHTML={{
-              __html: pseudoStyles,
+              __html: noscriptImg({
+                alt,
+                title,
+                ...(divStyle.width && divStyle.width),
+                ...(divStyle.height && divStyle.height),
+                ...image,
+              }),
             }}
           />
-          {/* Show the original image during server-side rendering if JavaScript is disabled */}
-          {this.state.hasNoScript && (
-            <noscript
-              dangerouslySetInnerHTML={{
-                __html: noscriptImg({
-                  alt,
-                  title,
-                  width: image.width,
-                  height: image.height,
-                  ...image,
-                }),
-              }}
-            />
-          )}
-          {children}
-        </Tag>
-      )
-    }
-    return null
+        )}
+        {children}
+      </Tag>
+    )
   }
 }
 
