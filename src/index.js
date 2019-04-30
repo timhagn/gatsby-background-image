@@ -190,10 +190,10 @@ class BackgroundImage extends React.Component {
       Tag,
       children,
       classId = !className
-        ? Math.random()
+        ? `${Math.random()
             .toString(36)
             .replace(/[^a-z]+/g, '')
-            .substr(0, 7)
+            .substr(0, 7)}_depr`
         : ``,
       ...props
     } = fixOpacity(convertProps(this.props))

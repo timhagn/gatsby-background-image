@@ -4,14 +4,16 @@ import 'react-testing-library/cleanup-after-each'
 import './mocks/IntersectionObserver.mock'
 import { mockAllIsIntersecting } from './mocks/IntersectionObserver.mock'
 
-import { fixedShapeMock, fluidShapeMock, setup } from './index'
+import {
+  fixedShapeMock,
+  fluidShapeMock,
+  setupBackgroundImage,
+} from './mocks/Various.mock'
 import BackgroundImage from '../'
 import { activateCacheForImage, createPictureRef } from '../ImageUtils'
 
-
-const LOAD_FAILURE_SRC = 'test_fluid_image.jpg';
-const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg';
-
+const LOAD_FAILURE_SRC = 'test_fluid_image.jpg'
+const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg'
 
 describe(`<BackgroundImage /> with mock IO`, () => {
   const tmpImagePrototype = Object.getPrototypeOf(HTMLImageElement)
@@ -22,7 +24,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     Object.defineProperty(HTMLImageElement.prototype, 'src', {
       // Define the property setter
       set(src) {
-        this.setAttribute("src", src);
+        this.setAttribute('src', src)
         if (src === LOAD_FAILURE_SRC) {
           // Call with setTimeout to simulate async loading
           setTimeout(() => this.onerror(new Error('mocked error')))
@@ -40,7 +42,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
         if (this.getAttribute('src') === LOAD_SUCCESS_SRC) {
           return true
         }
-      }
+      },
     })
   })
   afterEach(() => {
@@ -48,7 +50,11 @@ describe(`<BackgroundImage /> with mock IO`, () => {
   })
 
   it(`should render visible fluid image`, () => {
-    let { container, rerender } = render(<BackgroundImage fixed={fixedShapeMock} />)
+    // Mock Math.random beforehand, lest another random classname is created.
+    Math.random = jest.fn(() => 0.424303425546642)
+    let { container, rerender } = render(
+      <BackgroundImage fixed={fixedShapeMock} />
+    )
     mockAllIsIntersecting(true)
     expect(container).toMatchSnapshot()
     container = rerender(<BackgroundImage fluid={fluidShapeMock} />)
@@ -56,7 +62,13 @@ describe(`<BackgroundImage /> with mock IO`, () => {
   })
 
   it(`should render visible fixed image`, () => {
-    let { container, rerender } = render(<BackgroundImage fluid={{src: ``, aspectRatio: 1, srcSet: ``, sizes: ``}} />)
+    // Mock Math.random beforehand, lest another random classname is created.
+    Math.random = jest.fn(() => 0.424303425546642)
+    let { container, rerender } = render(
+      <BackgroundImage
+        fluid={{ src: ``, aspectRatio: 1, srcSet: ``, sizes: `` }}
+      />
+    )
     mockAllIsIntersecting(true)
     expect(container).toMatchSnapshot()
     container = rerender(<BackgroundImage fixed={fixedShapeMock} />)
@@ -69,8 +81,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
       critical: true,
       fixed: true,
     }
-    const component = setup(options)
-    // const component = setup(false, true, ``, true, null, null, true)
+    const component = setupBackgroundImage(options)
     mockAllIsIntersecting(true)
     expect(component).toMatchSnapshot()
   })
@@ -78,13 +89,16 @@ describe(`<BackgroundImage /> with mock IO`, () => {
   it(`should call onLoad and onError image events for LOAD_SUCCESS_SRC`, () => {
     const onLoadMock = jest.fn()
     const onErrorMock = jest.fn()
-    const image = createPictureRef({
-      fixed: {
-        src: LOAD_SUCCESS_SRC,
+    const image = createPictureRef(
+      {
+        fixed: {
+          src: LOAD_SUCCESS_SRC,
+        },
+        onLoad: onLoadMock,
+        onError: onErrorMock,
       },
-      onLoad: onLoadMock,
-      onError: onErrorMock
-    }, onLoadMock)
+      onLoadMock
+    )
     fireEvent.load(image)
     fireEvent.error(image)
 
@@ -95,13 +109,16 @@ describe(`<BackgroundImage /> with mock IO`, () => {
   it(`shouldn't call onLoad and onError image events without src`, () => {
     const onLoadMock = jest.fn()
     const onErrorMock = jest.fn()
-    const image = createPictureRef({
-      fluid: {
-        src: ``,
+    const image = createPictureRef(
+      {
+        fluid: {
+          src: ``,
+        },
+        onLoad: onLoadMock,
+        onError: onErrorMock,
       },
-      onLoad: onLoadMock,
-      onError: onErrorMock
-    }, onLoadMock)
+      onLoadMock
+    )
     fireEvent.load(image)
     fireEvent.error(image)
 
@@ -115,7 +132,7 @@ describe(`<BackgroundImage /> without IO`, () => {
   beforeEach(() => {
     delete global.IntersectionObserver
   })
-  afterEach(()=> {
+  afterEach(() => {
     global.IntersectionObserver = tmpIO
   })
 
@@ -130,7 +147,7 @@ describe(`<BackgroundImage /> without IO`, () => {
       onStartLoad: onLoadFunctionMock,
       fixed: false,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
     expect(onLoadFunctionMock).toHaveBeenCalled()
   })

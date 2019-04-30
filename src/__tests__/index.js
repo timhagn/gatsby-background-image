@@ -1,7 +1,12 @@
-import { render, cleanup } from 'react-testing-library'
+import { render } from 'react-testing-library'
 import 'react-testing-library/cleanup-after-each'
 
 import React from 'react'
+import {
+  fixedShapeMock,
+  fluidShapeMock,
+  setupBackgroundImage,
+} from './mocks/Various.mock'
 import BackgroundImage from '../'
 import { activateCacheForImage, resetImageCache } from '../ImageUtils'
 
@@ -10,97 +15,6 @@ afterEach(resetImageCache)
 global.console.debug = jest.fn()
 
 let elements = []
-
-export const fixedShapeMock = {
-  width: 100,
-  height: 100,
-  src: `test_fixed_image.jpg`,
-  srcSet: `some srcSet`,
-  srcSetWebp: `some srcSetWebp`,
-  base64: `string_of_base64`,
-}
-
-export const fluidShapeMock = {
-  aspectRatio: 1.5,
-  src: `test_fluid_image.jpg`,
-  srcSet: `some srcSet`,
-  srcSetWebp: `some srcSetWebp`,
-  sizes: `(max-width: 600px) 100vw, 600px`,
-  base64: `string_of_base64`,
-}
-
-/**
- * Sets up a (react-testing-library) rendered container.
- *
- * @param fluid
- * @param addClass
- * @param additionalClass
- * @param fixedClass
- * @param onLoad
- * @param onError
- * @param critical
- * @param onStartLoad
- * @param fixed
- * @param addClassId
- * @param addBackgroundColor
- * @param fadeIn
- * @param props
- * @return {RenderResult.container}
- */
-export const setup = ({
-  fluid = false,
-  addClass = false,
-  additionalClass = ``,
-  fixedClass = true,
-  onLoad = () => {},
-  onError = () => {},
-  critical = false,
-  onStartLoad = null,
-  fixed = true,
-  addClassId = true,
-  addBackgroundColor = true,
-  fadeIn = false,
-  props = {},
-}) => {
-  if (addClass) {
-    // Create the style class.
-    const styleElement = document.createElement('style')
-    styleElement.textContent = `
-      .fixedImage {
-        backgroundRepeat: 'repeat-y';
-        backgroundPosition: 'center';
-        backgroundSize: 'contain';
-      }
-    `
-    document.body.appendChild(styleElement)
-  }
-  const classNames = fixedClass
-    ? `fixedImage ${additionalClass}`
-    : additionalClass.trim()
-  const { container } = render(
-    <BackgroundImage
-      {...addBackgroundColor && { backgroundColor: addBackgroundColor }}
-      {...fixedClass && { className: classNames }}
-      style={{ display: `inline`, opacity: 0.99 }}
-      title={`Title for the image`}
-      alt={`Alt text for the image`}
-      id={`testid`}
-      {...fluid && { fluid: fluidShapeMock }}
-      {...!fluid && fixed && { fixed: fixedShapeMock }}
-      onLoad={onLoad}
-      onError={onError}
-      {...addClassId && { classId: `test` }}
-      critical={critical}
-      onStartLoad={onStartLoad}
-      {...fadeIn && { fadeIn: `soft` }}
-      {...props}
-    >
-      <h1>test</h1>
-    </BackgroundImage>
-  )
-
-  return container
-}
 
 describe(`<BackgroundImage />`, () => {
   const observe = jest.fn(callback => elements.push(callback))
@@ -114,7 +28,7 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should render fixed size images`, () => {
-    const component = setup({})
+    const component = setupBackgroundImage({})
     expect(component).toMatchSnapshot()
   })
 
@@ -125,12 +39,12 @@ describe(`<BackgroundImage />`, () => {
       critical: true,
       fixed: true,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
   })
 
   it(`should render fluid images`, () => {
-    const component = setup({fluid: true})
+    const component = setupBackgroundImage({fluid: true})
     expect(component).toMatchSnapshot()
   })
 
@@ -141,7 +55,7 @@ describe(`<BackgroundImage />`, () => {
       addClass: true,
       critical: true,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
   })
 
@@ -174,7 +88,7 @@ describe(`<BackgroundImage />`, () => {
       addClass: true,
       additionalClass: `test`
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
   })
 
@@ -186,7 +100,7 @@ describe(`<BackgroundImage />`, () => {
       onStartLoad: null,
       fixed: false,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
   })
 
@@ -197,7 +111,7 @@ describe(`<BackgroundImage />`, () => {
       addClassId: false,
       addBackgroundColor: false,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
   })
 
@@ -209,7 +123,7 @@ describe(`<BackgroundImage />`, () => {
       addClassId: false,
       addBackgroundColor: false,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     const defaultOptions = {
       fluid: false,
       addClass: false,
@@ -236,7 +150,7 @@ describe(`<BackgroundImage />`, () => {
       addClassId: false,
       addBackgroundColor: `#fff`,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
   })
 
@@ -248,7 +162,7 @@ describe(`<BackgroundImage />`, () => {
       addClassId: false,
       fadeIn: true,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
   })
 
@@ -256,7 +170,7 @@ describe(`<BackgroundImage />`, () => {
     const options = {
       additionalClass: `test`
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     const styleTag = component.querySelector(`style`)
     expect(styleTag).toBeInTheDocument()
     expect(styleTag).toMatchSnapshot()
@@ -267,7 +181,7 @@ describe(`<BackgroundImage />`, () => {
       addClass: true,
       additionalClass: `test`,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     const styleTag = component.querySelector(`style`)
     expect(styleTag).toBeInTheDocument()
     expect(styleTag).toMatchSnapshot()
@@ -279,7 +193,7 @@ describe(`<BackgroundImage />`, () => {
       addClass: true,
       additionalClass: `test`,
     }
-    const component = setup(options)
+    const component = setupBackgroundImage(options)
     const styleTag = component.querySelector(`style`)
     expect(styleTag).toHaveTextContent(`.gatsby-background-image-test:before`)
     expect(styleTag).toHaveTextContent(`background-repeat: 'repeat-y';`)
