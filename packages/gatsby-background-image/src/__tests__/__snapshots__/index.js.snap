@@ -20,6 +20,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -31,16 +32,14 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
     </style>
@@ -74,6 +73,7 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -85,16 +85,14 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
     </style>
@@ -126,6 +124,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
             height: 100%;
             top: 0;
             left: 0;
+            
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: center;
@@ -136,14 +135,12 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
             
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
-            
-            
+            background-image: url(string_of_base64);
             
           }
         
@@ -172,6 +169,7 @@ exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elemen
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -183,16 +181,14 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .imageClass.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
 </style>
@@ -212,6 +208,7 @@ exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = 
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -223,16 +220,14 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .imageClass.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
 </style>
@@ -258,6 +253,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: center;
@@ -269,16 +265,14 @@ background-size: cover;
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
     </style>
@@ -312,6 +306,7 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -323,16 +318,14 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .imageClass.:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
     </style>
@@ -366,6 +359,7 @@ exports[`<BackgroundImage /> should work with BackgroundColor 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-color: #fff;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: center;
@@ -376,15 +370,13 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: #fff;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: #fff;
           }
         
     </style>
@@ -418,6 +410,7 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -429,16 +422,14 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .imageClass.test:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
     </style>
@@ -470,6 +461,7 @@ exports[`<BackgroundImage /> should work with fadeIn 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            background-color: lightgray;
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: center;
@@ -480,15 +472,13 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
-            background-color: lightgray;
-            opacity: 1; 
+            
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
+            background-image: url(string_of_base64);
             
-            
-            background-color: lightgray;
           }
         
     </style>
@@ -520,6 +510,7 @@ exports[`<BackgroundImage /> should work with only classId 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: center;
@@ -530,14 +521,12 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
             
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
-            
-            
+            background-image: url(string_of_base64);
             
           }
         
@@ -570,6 +559,7 @@ exports[`<BackgroundImage /> should work without classId but className 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: 'center';
@@ -580,14 +570,12 @@ background-size: 'contain';
           .imageClass.test:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
             
-            opacity: 1; 
+            opacity: 0; 
           }
           .imageClass.test:after {
             z-index: -101;
-            
-            
+            background-image: url(string_of_base64);
             
           }
         
@@ -620,6 +608,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
             height: 100%;
             top: 0;
             left: 0;
+            
             transition-delay: 0.25s;
             transition: opacity 0.5s;
             background-position: center;
@@ -630,14 +619,12 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            background-image: url(string_of_base64);
             
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
-            
-            
+            background-image: url(string_of_base64);
             
           }
         

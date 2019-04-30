@@ -130,7 +130,6 @@ export const presetBackgroundStyles = backgroundStyles => {
  * @param classId           string    Pre 0.3.0 way to create pseudo-elements
  * @param className         string    One or more className(s)
  * @param transitionDelay   string
- * @param bgImage           string
  * @param lastImage         string
  * @param nextImage         string
  * @param afterOpacity      number
@@ -144,7 +143,6 @@ export const createPseudoStyles = ({
   classId,
   className,
   transitionDelay,
-  bgImage,
   lastImage,
   nextImage,
   afterOpacity,
@@ -165,39 +163,50 @@ export const createPseudoStyles = ({
             height: 100%;
             top: 0;
             left: 0;
+            ${bgColor && `background-color: ${bgColor};`}
             ${vendorPrefixBackgroundStyles(transitionDelay, fadeIn)}
             ${kebabifyBackgroundStyles({ ...backgroundStyles, ...style })}
           }
           ${pseudoBefore} {
             z-index: -100;
             ${
-              (!afterOpacity && lastImage !== ``) ||
-              (afterOpacity && !bgImage && !nextImage && lastImage !== ``)
-                ? `background-image: url(${lastImage});`
+              // (!afterOpacity && lastImage !== ``) ||
+              // (afterOpacity && !bgImage && !nextImage && lastImage !== ``)
+              //   ? `background-image: url(${lastImage});`
+              //   : ``
+              afterOpacity && nextImage
+                ? `background-image: url(${nextImage});`
                 : ``
             }
             ${
-              afterOpacity && (nextImage || bgImage)
-                ? `background-image: url(${nextImage || bgImage});`
+              // afterOpacity && (nextImage || bgImage)
+              //   ? `background-image: url(${nextImage || bgImage});`
+              //   : ``
+              !afterOpacity && lastImage
+                ? `background-image: url(${lastImage});`
                 : ``
             }
-            ${bgColor && `background-color: ${bgColor};`}
             opacity: ${afterOpacity}; 
           }
           ${pseudoAfter} {
             z-index: -101;
             ${
-              (afterOpacity && lastImage !== ``) ||
-              (!afterOpacity && !bgImage && !nextImage && lastImage !== ``)
-                ? `background-image: url(${lastImage});`
+              // (afterOpacity && lastImage !== ``) ||
+              // (!afterOpacity && !bgImage && !nextImage && lastImage !== ``)
+              //   ? `background-image: url(${lastImage});`
+              //   : ``
+              !afterOpacity && nextImage
+                ? `background-image: url(${nextImage});`
                 : ``
             }
             ${
-              !afterOpacity && (bgImage || nextImage)
-                ? `background-image: url(${bgImage || nextImage});`
+              // !afterOpacity && (bgImage || nextImage)
+              //   ? `background-image: url(${bgImage || nextImage});`
+              //   : ``
+              afterOpacity && lastImage
+                ? `background-image: url(${lastImage});`
                 : ``
             }
-            ${bgColor && `background-color: ${bgColor};`}
           }
         `
 }

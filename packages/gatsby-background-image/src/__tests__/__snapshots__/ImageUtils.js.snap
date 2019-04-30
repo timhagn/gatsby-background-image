@@ -14,8 +14,7 @@ exports[`noscriptImg() should return noscriptImg with opacity & transitionDelay 
 
 exports[`switchImageSettings() should return settings from fixed with set bgImage 1`] = `
 Object {
-  "afterOpacity": 0,
-  "bgImage": "",
+  "afterOpacity": NaN,
   "lastImage": "string_of_base64",
   "nextImage": "string_of_base64",
   "noBase64": false,
@@ -24,8 +23,7 @@ Object {
 
 exports[`switchImageSettings() should return settings from fixed with set bgImage 2`] = `
 Object {
-  "afterOpacity": 0,
-  "bgImage": "",
+  "afterOpacity": NaN,
   "lastImage": "string_of_base64",
   "nextImage": "string_of_base64",
   "noBase64": false,
@@ -34,18 +32,16 @@ Object {
 
 exports[`switchImageSettings() should return settings from fluid with empty bgImage 1`] = `
 Object {
-  "afterOpacity": 1,
-  "bgImage": "string_of_base64",
+  "afterOpacity": NaN,
   "lastImage": "",
-  "nextImage": "",
+  "nextImage": "string_of_base64",
   "noBase64": false,
 }
 `;
 
 exports[`switchImageSettings() should return settings from fluid with set bgImage and base64 1`] = `
 Object {
-  "afterOpacity": 1,
-  "bgImage": "",
+  "afterOpacity": NaN,
   "lastImage": "string_of_base64",
   "nextImage": "",
   "noBase64": true,
@@ -54,8 +50,7 @@ Object {
 
 exports[`switchImageSettings() should return settings from fluid with set bgImage and tracedSVG 1`] = `
 Object {
-  "afterOpacity": 0,
-  "bgImage": "",
+  "afterOpacity": NaN,
   "lastImage": "test_tracedSVG.svg",
   "nextImage": "\\"test_tracedSVG.svg\\"",
   "noBase64": true,
@@ -64,8 +59,7 @@ Object {
 
 exports[`switchImageSettings() should return settings from fluid with set bgImage without base64 1`] = `
 Object {
-  "afterOpacity": 1,
-  "bgImage": "",
+  "afterOpacity": NaN,
   "lastImage": "",
   "nextImage": "",
   "noBase64": true,

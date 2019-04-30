@@ -136,13 +136,14 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
 
   // Switch bgImage & nextImage and opacity accordingly.
   const lastImage = bgImage
-  bgImage = bgImage === `` ? nextImage : ``
-  nextImage = nextImage === bgImage ? `` : nextImage
-  const afterOpacity =
-    nextImage !== `` || (noBase64 && state.isVisible && state.imgLoaded) ? 0 : 1
+  // bgImage = bgImage === `` ? nextImage : ``
+  // nextImage = nextImage === bgImage ? `` : nextImage
+  // Switch opacity
+  const afterOpacity = state.imageState % 2
+  // nextImage !== `` || (noBase64 && state.isVisible && state.imgLoaded) ? 0 : 1
 
   return {
-    bgImage,
+    // bgImage,
     lastImage,
     nextImage,
     afterOpacity,
