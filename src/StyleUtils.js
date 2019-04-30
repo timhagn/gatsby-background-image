@@ -170,18 +170,11 @@ export const createPseudoStyles = ({
           ${pseudoBefore} {
             z-index: -100;
             ${
-              // (!afterOpacity && lastImage !== ``) ||
-              // (afterOpacity && !bgImage && !nextImage && lastImage !== ``)
-              //   ? `background-image: url(${lastImage});`
-              //   : ``
               afterOpacity && nextImage
                 ? `background-image: url(${nextImage});`
                 : ``
             }
             ${
-              // afterOpacity && (nextImage || bgImage)
-              //   ? `background-image: url(${nextImage || bgImage});`
-              //   : ``
               !afterOpacity && lastImage
                 ? `background-image: url(${lastImage});`
                 : ``
@@ -191,18 +184,11 @@ export const createPseudoStyles = ({
           ${pseudoAfter} {
             z-index: -101;
             ${
-              // (afterOpacity && lastImage !== ``) ||
-              // (!afterOpacity && !bgImage && !nextImage && lastImage !== ``)
-              //   ? `background-image: url(${lastImage});`
-              //   : ``
               !afterOpacity && nextImage
                 ? `background-image: url(${nextImage});`
                 : ``
             }
             ${
-              // !afterOpacity && (bgImage || nextImage)
-              //   ? `background-image: url(${bgImage || nextImage});`
-              //   : ``
               afterOpacity && lastImage
                 ? `background-image: url(${lastImage});`
                 : ``

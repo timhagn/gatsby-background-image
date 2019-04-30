@@ -43,7 +43,7 @@ exports[`switchImageSettings() should return settings from fluid with set bgImag
 Object {
   "afterOpacity": NaN,
   "lastImage": "string_of_base64",
-  "nextImage": "",
+  "nextImage": "string_of_base64",
   "noBase64": true,
 }
 `;
