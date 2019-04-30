@@ -255,9 +255,9 @@ Though now considered deprecated and to be removed in `1.0.0` at the latest
 pseudo-elements and introduce a className for the returned container
 in the beginning):
 
-| Name                   | Type                | Description                                                                             |
-| ---------------------- | ------------------- | ----------------------------------------------------------------------------------------|
-| `classId`              | `string`            | classID of the container element, defaults to a random lower case string of seven chars |
+| Name                   | Type                | Description                                                                                                  |
+| ---------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `classId`              | `string`            | classID of the container element, defaults to a random lower case string of seven chars, followed by `_depr` |
 
 Only if present now, pseudo-elements are created on a class by the name of 
 `.gatsby-background-image-[YOUR_ID]` and the class is added to `BackgroundImage`.

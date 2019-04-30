@@ -4,7 +4,6 @@ import getBackgroundStyles, {
   rulesForCssText,
 } from '../BackgroundUtils'
 import 'react-testing-library/cleanup-after-each'
-import * as IOUtils from '../IntersectionObserverUtils'
 
 global.console.error = jest.fn()
 global.console.debug = jest.fn()

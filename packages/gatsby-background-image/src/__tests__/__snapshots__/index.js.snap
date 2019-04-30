@@ -110,14 +110,14 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inline-block' 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
+    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; width: 100px; height: 100px; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
     <style>
       
-          .gatsby-background-image-fwatluf:before,
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:before,
+          .gatsby-background-image-fwatluf_depr:after {
             content: '';
             display: block;
             position: absolute;
@@ -132,14 +132,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-fwatluf:before {
+          .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             
             opacity: 1; 
           }
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             
             
@@ -350,14 +350,14 @@ exports[`<BackgroundImage /> should return null without fluid / fixed 1`] = `<di
 exports[`<BackgroundImage /> should work with BackgroundColor 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
+    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
       
-          .gatsby-background-image-fwatluf:before,
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:before,
+          .gatsby-background-image-fwatluf_depr:after {
             content: '';
             display: block;
             position: absolute;
@@ -372,14 +372,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-fwatluf:before {
+          .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             background-color: #fff;
             opacity: 1; 
           }
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             
             
@@ -454,14 +454,14 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should work with fadeIn 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
+    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
       
-          .gatsby-background-image-fwatluf:before,
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:before,
+          .gatsby-background-image-fwatluf_depr:after {
             content: '';
             display: block;
             position: absolute;
@@ -476,14 +476,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-fwatluf:before {
+          .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             background-color: lightgray;
             opacity: 1; 
           }
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             
             
@@ -504,14 +504,14 @@ background-size: cover;
 exports[`<BackgroundImage /> should work with only classId 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
+    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
       
-          .gatsby-background-image-fwatluf:before,
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:before,
+          .gatsby-background-image-fwatluf_depr:after {
             content: '';
             display: block;
             position: absolute;
@@ -526,14 +526,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-fwatluf:before {
+          .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             
             opacity: 1; 
           }
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             
             
@@ -604,14 +604,14 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf gatsby-image-wrapper"
+    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
     <style>
       
-          .gatsby-background-image-fwatluf:before,
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:before,
+          .gatsby-background-image-fwatluf_depr:after {
             content: '';
             display: block;
             position: absolute;
@@ -626,14 +626,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-fwatluf:before {
+          .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             
             opacity: 1; 
           }
-          .gatsby-background-image-fwatluf:after {
+          .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             
             
