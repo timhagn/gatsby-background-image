@@ -124,21 +124,6 @@ describe(`<BackgroundImage />`, () => {
       addBackgroundColor: false,
     }
     const component = setupBackgroundImage(options)
-    const defaultOptions = {
-      fluid: false,
-      addClass: false,
-      additionalClass: ``,
-      fixedClass: true,
-      onLoad: () => {},
-      onError: () => {},
-      critical: false,
-      onStartLoad: null,
-      fixed: true,
-      addClassId: true,
-      addBackgroundColor: true,
-      fadeIn: false,
-      props: {},
-    }
     expect(component).toMatchSnapshot()
   })
 

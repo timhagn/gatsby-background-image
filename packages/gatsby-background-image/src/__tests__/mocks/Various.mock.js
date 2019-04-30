@@ -59,7 +59,7 @@ export const setupBackgroundImage = ({
     // Create the style class.
     const styleElement = document.createElement('style')
     styleElement.textContent = `
-      .fixedImage {
+      .imageClass {
         backgroundRepeat: 'repeat-y';
         backgroundPosition: 'center';
         backgroundSize: 'contain';
@@ -68,7 +68,7 @@ export const setupBackgroundImage = ({
     document.body.appendChild(styleElement)
   }
   const classNames = fixedClass
-    ? `fixedImage ${additionalClass}`
+    ? `imageClass ${additionalClass}`
     : additionalClass.trim()
   const { container } = render(
     <BackgroundImage
