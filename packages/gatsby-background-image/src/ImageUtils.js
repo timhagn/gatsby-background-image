@@ -132,16 +132,14 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   if (image.tracedSVG) nextImage = `"${image.tracedSVG}"`
   if (image.base64 && !image.tracedSVG) nextImage = image.base64
   if (state.imgLoaded && state.isVisible)
-    nextImage = (imageRef && imageRef.currentSrc) || image.src
+    nextImage = (imageRef && imageRef.currentSrc) || `` //image.src
 
   // Switch bgImage & nextImage and opacity accordingly.
   const lastImage = bgImage
-  // bgImage = bgImage === `` ? nextImage : ``
-  // nextImage = nextImage === bgImage ? `` : nextImage
-  // Switch opacity
+  // Change opacity according to imageState.
   const afterOpacity = state.imageState % 2
-  // nextImage !== `` || (noBase64 && state.isVisible && state.imgLoaded) ? 0 : 1
-
+  // Fall back on lastImage (important for prop changes).
+  if (nextImage === ``) nextImage = lastImage
   return {
     // bgImage,
     lastImage,

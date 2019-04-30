@@ -76,6 +76,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
   })
 
   it(`should call critical fixed images`, () => {
+    activateCacheForImage({ fixed: fixedShapeMock })
     const options = {
       addClass: true,
       critical: true,

@@ -91,7 +91,7 @@ class BackgroundImage extends React.Component {
     // "Fake" a reference to an Image loaded via picture element in background.
     this.imageRef = createPictureRef(this.props, this.handleImageLoaded)
 
-    console.log(`-------------------------------------------------------------`)
+    // console.log(`-------------------------------------------------------------`)
   }
 
   componentDidMount() {
@@ -121,13 +121,14 @@ class BackgroundImage extends React.Component {
       this.setState(
         {
           isVisible: imageInCache || this.props.critical,
-          imageState: 0,
+          imgLoaded: imageInCache,
+          // imageState: (this.state.imageState + 1) % 2,
         },
         () => {
           // Update bgImage & create new imageRef.
           this.bgImage =
             (this.imageRef && this.imageRef.currentSrc) ||
-            (this.imageRef && this.imageRef.src) ||
+            // (this.imageRef && this.imageRef.src) ||
             ``
           this.imageRef = createPictureRef(this.props, this.handleImageLoaded)
         }
@@ -149,7 +150,8 @@ class BackgroundImage extends React.Component {
     }
 
     // imgCached and imgLoaded must update after isVisible,
-    // Once isVisible is true, imageRef becomes accessible, which imgCached needs access to.
+    // Once isVisible is true, imageRef becomes "accessible",
+    // which imgCached needs access to.
     // imgLoaded and imgCached are in a 2nd setState call to be changed together,
     // avoiding initiating unnecessary animation frames from style changes.
     this.setState({ isVisible: true }, () =>
@@ -272,7 +274,7 @@ class BackgroundImage extends React.Component {
       ...newImageSettings,
     })
 
-    console.log(newImageSettings)
+    // className.indexOf(`StyledHeader`) !== -1 && console.log(newImageSettings)
 
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&
