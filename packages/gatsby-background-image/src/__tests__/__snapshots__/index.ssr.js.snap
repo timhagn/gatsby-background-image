@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BackgroundImage /> on SSR should work within SSR node environment 1`] = `
+"<div class=\\"gatsby-background-image-fwatluf_depr gatsby-image-wrapper\\" style=\\"position:relative;overflow:hidden;opacity:0.99;background-position:center;background-repeat:no-repeat;background-size:cover\\" title=\\"\\" data-reactroot=\\"\\"><style>
+          .gatsby-background-image-fwatluf_depr:before,
+          .gatsby-background-image-fwatluf_depr:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            
+            transition-delay: 0.25s;
+            transition: opacity 0.5s;
+            background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+          }
+          .gatsby-background-image-fwatluf_depr:before {
+            z-index: -100;
+            
+            
+            opacity: 0; 
+          }
+          .gatsby-background-image-fwatluf_depr:after {
+            z-index: -101;
+            background-image: url(string_of_base64);
+            
+          }
+        </style><noscript><picture><source type='image/webp' srcset=\\"some srcSetWebp\\" sizes=\\"(max-width: 600px) 100vw, 600px\\" /><img sizes=\\"(max-width: 600px) 100vw, 600px\\" srcset=\\"some srcSet\\" src=\\"test_fluid_image.jpg\\" alt=\\"\\" style=\\"position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture></noscript><h1>testempty</h1></div>"
+`;
