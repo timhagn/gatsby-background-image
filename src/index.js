@@ -153,7 +153,8 @@ class BackgroundImage extends React.Component {
     // Once isVisible is true, imageRef becomes "accessible",
     // which imgCached needs access to.
     // imgLoaded and imgCached are in a 2nd setState call to be changed together,
-    // avoiding initiating unnecessary animation frames from style changes.
+    // avoiding initiating unnecessary animation frames from style changes when
+    // setting next imageState.
     this.setState({ isVisible: true }, () =>
       this.setState({
         imgLoaded: imageInCache,
