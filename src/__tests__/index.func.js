@@ -176,3 +176,6 @@ describe(`<BackgroundImage /> without IO`, () => {
     expect(onLoadFunctionMock).toHaveBeenCalled()
   })
 })
+
+
+
