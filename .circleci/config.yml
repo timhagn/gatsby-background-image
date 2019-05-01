@@ -29,4 +29,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test:update
+      - run: yarn test:update --collectCoverage=true
+      - store_artifacts:
+          path: coverage
