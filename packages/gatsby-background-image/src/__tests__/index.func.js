@@ -10,7 +10,11 @@ import {
   setupBackgroundImage,
 } from './mocks/Various.mock'
 import BackgroundImage from '../'
-import { activateCacheForImage, createPictureRef } from '../ImageUtils'
+import {
+  activateCacheForImage,
+  createPictureRef,
+  resetImageCache,
+} from '../ImageUtils'
 
 const LOAD_FAILURE_SRC = 'test_fluid_image.jpg'
 const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg'
@@ -61,16 +65,20 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     expect(container).toMatchSnapshot()
   })
 
-  it(`should render visible fixed image`, () => {
+  it(`should render visible fixed image and call onLoadFunction`, () => {
     // Mock Math.random beforehand, lest another random classname is created.
     Math.random = jest.fn(() => 0.424303425546642)
+    // Mock onStartLoad().
+    const onLoadFunctionMock = jest.fn()
     let { container, rerender } = render(
       <BackgroundImage
         fluid={{ src: ``, aspectRatio: 1, srcSet: ``, sizes: `` }}
+        onStartLoad={onLoadFunctionMock}
       />
     )
     mockAllIsIntersecting(true)
     expect(container).toMatchSnapshot()
+    expect(onLoadFunctionMock).toHaveBeenCalled()
     container = rerender(<BackgroundImage fixed={fixedShapeMock} />)
     expect(container).toMatchSnapshot()
   })
@@ -132,6 +140,7 @@ describe(`<BackgroundImage /> without IO`, () => {
   const tmpIO = global.IntersectionObserver
   beforeEach(() => {
     delete global.IntersectionObserver
+    resetImageCache()
   })
   afterEach(() => {
     global.IntersectionObserver = tmpIO
