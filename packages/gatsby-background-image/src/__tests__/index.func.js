@@ -48,6 +48,8 @@ describe(`<BackgroundImage /> with mock IO`, () => {
         }
       },
     })
+
+    resetImageCache()
   })
   afterEach(() => {
     Object.setPrototypeOf(HTMLImageElement, tmpImagePrototype)
@@ -89,6 +91,18 @@ describe(`<BackgroundImage /> with mock IO`, () => {
       addClass: true,
       critical: true,
       fixed: true,
+    }
+    const component = setupBackgroundImage(options)
+    mockAllIsIntersecting(true)
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should not call onLoad without prop, fadeIn should stay falsy without seenBefore`, () => {
+    const options = {
+      addClass: true,
+      critical: true,
+      fixed: true,
+      onLoad: null,
     }
     const component = setupBackgroundImage(options)
     mockAllIsIntersecting(true)

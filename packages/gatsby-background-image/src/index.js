@@ -174,6 +174,7 @@ class BackgroundImage extends React.Component {
   }
 
   handleImageLoaded() {
+    console.log(this.isMounted)
     if (this.isMounted) {
       activateCacheForImage(this.props)
 
