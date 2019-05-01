@@ -22,8 +22,6 @@ import { listenToIntersections } from './IntersectionObserverUtils'
  * with optional support for the blur-up effect.
  */
 class BackgroundImage extends React.Component {
-  // Needed to prevent handleImageLoaded() firing on gatsby build.
-  isMounted = false
   // IntersectionObserver listeners (if available).
   cleanUpListeners
 
@@ -95,8 +93,6 @@ class BackgroundImage extends React.Component {
   }
 
   componentDidMount() {
-    this.isMounted = true
-
     // Update background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = presetBackgroundStyles(
       getBackgroundStyles(this.props.className)
@@ -107,8 +103,7 @@ class BackgroundImage extends React.Component {
     }
 
     if (this.props.critical) {
-      const img = this.imageRef
-      if (img && img.complete) {
+      if (this.imageRef && this.imageRef.complete) {
         this.handleImageLoaded()
       }
     }
@@ -137,7 +132,11 @@ class BackgroundImage extends React.Component {
   }
 
   componentWillUnmount() {
-    this.isMounted = false
+    // Prevent calling handleImageLoaded from the imageRef after unmount.
+    if (this.imageRef) {
+      this.imageRef.onload = null
+    }
+    // Clean up all IntersectionObserver listeners.
     if (this.cleanUpListeners) {
       this.cleanUpListeners()
     }
@@ -174,21 +173,18 @@ class BackgroundImage extends React.Component {
   }
 
   handleImageLoaded() {
-    console.log(this.isMounted)
-    if (this.isMounted) {
-      activateCacheForImage(this.props)
+    activateCacheForImage(this.props)
 
-      this.setState({
-        imgLoaded: true,
-        imageState: this.state.imageState + 1,
-      })
-      if (this.state.seenBefore) {
-        this.setState({ fadeIn: false })
-      }
+    this.setState({
+      imgLoaded: true,
+      imageState: this.state.imageState + 1,
+    })
+    if (this.state.seenBefore) {
+      this.setState({ fadeIn: false })
+    }
 
-      if (this.props.onLoad) {
-        this.props.onLoad()
-      }
+    if (this.props.onLoad) {
+      this.props.onLoad()
     }
   }
 
