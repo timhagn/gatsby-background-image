@@ -3,10 +3,14 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.2
+
 jobs:
   build:
     docker:
-      # specify the version you desire here
+      # Node 11 Image
       - image: circleci/node:11
 
     working_directory: ~/gatsby-background-image
@@ -32,3 +36,6 @@ jobs:
       - run: yarn test:update --collectCoverage=true
       - store_artifacts:
           path: coverage
+
+      - codecov/upload:
+          file: coverage/coverage-final.json
