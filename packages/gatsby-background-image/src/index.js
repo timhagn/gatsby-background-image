@@ -88,7 +88,10 @@ class BackgroundImage extends React.Component {
     this.handleRef = this.handleRef.bind(this)
 
     // "Fake" a reference to an Image loaded via picture element in background.
-    this.imageRef = createPictureRef(this.props, this.handleImageLoaded)
+    this.imageRef = createPictureRef(
+      { ...this.props, isVisible },
+      this.handleImageLoaded
+    )
 
     // console.log(`-------------------------------------------------------------`)
   }
@@ -126,7 +129,10 @@ class BackgroundImage extends React.Component {
             (this.imageRef && this.imageRef.currentSrc) ||
             // (this.imageRef && this.imageRef.src) ||
             ``
-          this.imageRef = createPictureRef(this.props, this.handleImageLoaded)
+          this.imageRef = createPictureRef(
+            { ...this.props, isVisible: this.state.isVisible },
+            this.handleImageLoaded
+          )
         }
       )
     }
@@ -155,8 +161,8 @@ class BackgroundImage extends React.Component {
     // imgLoaded and imgCached are in a 2nd setState call to be changed together,
     // avoiding initiating unnecessary animation frames from style changes when
     // setting next imageState.
+    this.imageRef = activatePictureRef(this.imageRef, this.props)
     this.setState({ isVisible: true }, () => {
-      this.imageRef = activatePictureRef(this.imageRef, this.props)
       this.setState({
         imgLoaded: imageInCache,
         imgCached: !!this.imageRef.currentSrc,

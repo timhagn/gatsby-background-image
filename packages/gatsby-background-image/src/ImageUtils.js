@@ -72,7 +72,7 @@ export const createPictureRef = (props, onLoad) => {
     }
 
     // Only directly activate the image if critical (preload).
-    if (convertedProps.critical) {
+    if (convertedProps.critical || convertedProps.isVisible) {
       return activatePictureRef(img, convertedProps)
     }
 
