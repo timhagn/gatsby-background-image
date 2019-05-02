@@ -9,7 +9,7 @@ import {
   resetImageCache,
   createPictureRef,
   switchImageSettings,
-  imagePropsChanged,
+  imagePropsChanged, activatePictureRef,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
@@ -24,7 +24,7 @@ const fluidMock = {
   fluid: fluidShapeMock,
 }
 
-describe(`createImageToLoad()`, () => {
+describe(`createPictureRef()`, () => {
   it(`should return null on ssr or empty fluid / fixed prop`, () => {
     const emptyImageRef = createPictureRef({})
     expect(emptyImageRef).toBeNull()
@@ -36,17 +36,72 @@ describe(`createImageToLoad()`, () => {
   })
 })
 
-describe(`createImageToLoad() with crossOrigin`, () => {
+describe(`createPictureRef() with crossOrigin`, () => {
   it(`should set crossOrigin`, () => {
     const emptyImageRef = createPictureRef({
       fluid: fluidShapeMock,
       crossOrigin: `anonymous`,
     })
     expect(emptyImageRef).toMatchInlineSnapshot(`
+            <img
+              crossorigin="anonymous"
+            />
+        `)
+  })
+})
+
+describe(`createPictureRef() / activatePictureRef()`, () => {
+  const tmpWindow = global.window
+  beforeEach(() => {
+    delete global.window
+  })
+  afterEach(() => {
+    global.window = tmpWindow
+  })
+
+  it(`should fail without window`, () => {
+    const emptyImageRef = createPictureRef({
+      fluid: fluidShapeMock,
+      critical: true,
+    })
+    expect(emptyImageRef).toBeNull()
+  })
+
+  it(`should fail without window`, () => {
+    const testImg = new Image()
+    const emptyImageRef = activatePictureRef(testImg, {
+      fluid: fluidShapeMock,
+      critical: true,
+    })
+    expect(emptyImageRef).toBeNull()
+  })
+})
+
+describe(`createPictureRef() with critical image`, () => {
+  it(`should preload image on critical`, () => {
+    const imageRef = createPictureRef({
+      fixed: fixedShapeMock,
+      critical: true,
+    })
+    expect(imageRef).toMatchInlineSnapshot(`
+                              <img
+                                src="test_fixed_image.jpg"
+                                srcset="some srcSet"
+                              />
+                    `)
+  })
+  it(`should set empty strings for image on critical without src & srcSet`, () => {
+    const fixedMock = { ...fixedShapeMock }
+    fixedMock.src = ``
+    fixedMock.srcSet = ``
+    const emptyImageRef = createPictureRef({
+      fixed: fixedMock,
+      critical: true,
+    })
+    expect(emptyImageRef).toMatchInlineSnapshot(`
       <img
-        crossorigin="anonymous"
-        src="test_fluid_image.jpg"
-        srcset="some srcSet"
+        src=""
+        srcset=""
       />
     `)
   })
@@ -107,7 +162,7 @@ describe(`noscriptImg()`, () => {
     const dummyProps = {
       opacity: 0.99,
       transitionDelay: 100,
-      crossOrigin: `anonymous`
+      crossOrigin: `anonymous`,
     }
     const { container } = render(noscriptImg(dummyProps))
     expect(container).toMatchSnapshot()
