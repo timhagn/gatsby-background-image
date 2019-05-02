@@ -45,7 +45,7 @@ export const resetImageCache = () => {
 }
 
 /**
- * Creates an image reference.
+ * Creates an image reference to be activated on critical or visibility.
  *
  * @param props
  * @param onLoad
@@ -73,7 +73,6 @@ export const createPictureRef = (props, onLoad) => {
 
     // Only directly activate the image if critical (preload).
     if (convertedProps.critical) {
-      console.log(convertedProps.critical)
       return activatePictureRef(img, convertedProps)
     }
 
