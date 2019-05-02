@@ -91,3 +91,7 @@ integrated. Tests were refactored, mocks and setup moved to their own file.
 - SSR tests were added. 
 - Code Coverage was pushed to 100%.
 - codecov was added to CircleCI build and badge added to README.
+
+## [0.5.1](https://github.com/timhagn/gatsby-background-image) (2019-05-02)
+
+**fix:** Added activatePictureRef() to really only load critical or visible images.
