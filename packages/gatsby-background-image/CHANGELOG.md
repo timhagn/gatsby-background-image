@@ -95,3 +95,7 @@ integrated. Tests were refactored, mocks and setup moved to their own file.
 ## [0.5.1](https://github.com/timhagn/gatsby-background-image) (2019-05-02)
 
 **fix:** Added activatePictureRef() to really only load critical or visible images.
+
+## [0.5.2](https://github.com/timhagn/gatsby-background-image) (2019-05-02)
+
+**fix:** Added isVisible to activatePictureRef() props (page change / cached).
