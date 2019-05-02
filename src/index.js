@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import getBackgroundStyles from './BackgroundUtils'
 import { convertProps, stripRemainingProps } from './HelperUtils'
 import {
-  activateCacheForImage,
+  activateCacheForImage, activatePictureRef,
   createPictureRef,
   imagePropsChanged,
   inImageCache,
@@ -154,13 +154,14 @@ class BackgroundImage extends React.Component {
     // imgLoaded and imgCached are in a 2nd setState call to be changed together,
     // avoiding initiating unnecessary animation frames from style changes when
     // setting next imageState.
-    this.setState({ isVisible: true }, () =>
+    this.setState({ isVisible: true }, () => {
+      this.imageRef = activatePictureRef(this.imageRef, this.props)
       this.setState({
         imgLoaded: imageInCache,
         imgCached: !!this.imageRef.currentSrc,
         imageState: this.state.imageState + 1,
       })
-    )
+    })
   }
 
   handleRef(ref) {

@@ -45,7 +45,7 @@ export const resetImageCache = () => {
 }
 
 /**
- * Creates a picture element for the browser to decide which image to load.
+ * Creates an image reference.
  *
  * @param props
  * @param onLoad
@@ -58,18 +58,7 @@ export const createPictureRef = (props, onLoad) => {
     (typeof convertedProps.fluid !== `undefined` ||
       typeof convertedProps.fixed !== `undefined`)
   ) {
-    const imageData = props.fluid ? props.fluid : props.fixed
-
     const img = new Image()
-    const pic = document.createElement('picture')
-    if (imageData.srcSetWebp) {
-      const sourcesWebP = document.createElement('source')
-      sourcesWebP.type = `image/webp`
-      sourcesWebP.srcset = imageData.srcSetWebp
-      sourcesWebP.sizes = imageData.sizes
-      pic.appendChild(sourcesWebP)
-    }
-    pic.appendChild(img)
 
     img.onload = () => onLoad()
     if (!img.complete && typeof convertedProps.onLoad === `function`) {
@@ -81,10 +70,49 @@ export const createPictureRef = (props, onLoad) => {
     if (convertedProps.crossOrigin) {
       img.crossOrigin = convertedProps.crossOrigin
     }
-    img.srcset = imageData.srcSet ? imageData.srcSet : ``
-    img.src = imageData.src ? imageData.src : ``
+
+    // Only directly activate the image if critical (preload).
+    if (convertedProps.critical) {
+      console.log(convertedProps.critical)
+      return activatePictureRef(img, convertedProps)
+    }
 
     return img
+  }
+  return null
+}
+
+/**
+ * Creates a picture element for the browser to decide which image to load.
+ *
+ * @param imageRef
+ * @param props
+ */
+export const activatePictureRef = (imageRef, props) => {
+  const convertedProps = convertProps(props)
+  if (
+    typeof window !== `undefined` &&
+    (typeof convertedProps.fluid !== `undefined` ||
+      typeof convertedProps.fixed !== `undefined`)
+  ) {
+    const imageData = convertedProps.fluid
+      ? convertedProps.fluid
+      : convertedProps.fixed
+
+    const pic = document.createElement('picture')
+    if (imageData.srcSetWebp) {
+      const sourcesWebP = document.createElement('source')
+      sourcesWebP.type = `image/webp`
+      sourcesWebP.srcset = imageData.srcSetWebp
+      sourcesWebP.sizes = imageData.sizes
+      pic.appendChild(sourcesWebP)
+    }
+    pic.appendChild(imageRef)
+
+    imageRef.srcset = imageData.srcSet ? imageData.srcSet : ``
+    imageRef.src = imageData.src ? imageData.src : ``
+
+    return imageRef
   }
   return null
 }
