@@ -90,6 +90,18 @@ describe(`createPictureRef() with critical image`, () => {
                               />
                     `)
   })
+  it(`should preload image on isVisible state`, () => {
+    const imageRef = createPictureRef({
+      fixed: fixedShapeMock,
+      isVisible: true,
+    })
+    expect(imageRef).toMatchInlineSnapshot(`
+                              <img
+                                src="test_fixed_image.jpg"
+                                srcset="some srcSet"
+                              />
+                    `)
+  })
   it(`should set empty strings for image on critical without src & srcSet`, () => {
     const fixedMock = { ...fixedShapeMock }
     fixedMock.src = ``
