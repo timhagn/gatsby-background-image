@@ -26,6 +26,8 @@ import { listenToIntersections } from './IntersectionObserverUtils'
 class BackgroundImage extends React.Component {
   // IntersectionObserver listeners (if available).
   cleanUpListeners
+  // Fixed class Name (needed for multiple instances).
+  currentClassNames = ``
 
   constructor(props) {
     super(props)
@@ -217,7 +219,8 @@ class BackgroundImage extends React.Component {
       ...props
     } = fixOpacity(convertProps(this.props))
 
-    const currentClassNames = fixClassName(className, classId)
+    this.currentClassNames =
+      this.currentClassNames || fixClassName(className, classId)
 
     const remainingProps = stripRemainingProps(props)
 
@@ -273,7 +276,7 @@ class BackgroundImage extends React.Component {
 
     const pseudoStyles = createPseudoStyles({
       classId,
-      className: currentClassNames,
+      className: this.currentClassNames,
       transitionDelay,
       bgColor,
       backgroundStyles: this.backgroundStyles,
@@ -290,7 +293,7 @@ class BackgroundImage extends React.Component {
 
     return (
       <Tag
-        className={`${currentClassNames || ``}${classId &&
+        className={`${this.currentClassNames || ``}${classId &&
           ` gatsby-background-image-${classId}`} gatsby-image-wrapper`}
         style={{
           ...divStyle,

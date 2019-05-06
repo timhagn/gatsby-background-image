@@ -1,4 +1,5 @@
 import { isString, stringToArray, toKebabCase } from './HelperUtils'
+import { getStyle } from './BackgroundUtils'
 
 /**
  * Creates pseudo-element(s) for className(s).
@@ -43,6 +44,7 @@ export const fixClassName = (className = ``, classId = ``) => {
         exists || document.getElementsByClassName(currentClass).length > 0,
       false
     )
+    // TODO: generate fixed randomized class!
     // Should an element exist, add randomized class.
     const additionalClass = elementExists
       ? ` gbi-${Math.random()

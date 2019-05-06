@@ -3,15 +3,15 @@
 exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] = `
 <div>
   <div
-    class="imageClass  gbi-fwatluf gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline-block; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-fwatluf:before,
+          .imageClass:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-fwatluf:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -27,14 +27,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-fwatluf:before,
+          .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             background-image: url(string_of_base64);
             
             opacity: 1; 
           }
-          .imageClass..gbi-fwatluf:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -55,15 +55,15 @@ background-size: 'contain';
 exports[`<BackgroundImage /> with mock IO should not call onLoad without prop, fadeIn should stay falsy without seenBefore 1`] = `
 <div>
   <div
-    class="imageClass  gbi-fwatluf gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline-block; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-fwatluf:before,
+          .imageClass:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-fwatluf:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -80,14 +80,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-fwatluf:before,
+          .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             background-image: url(string_of_base64);
             
             opacity: 1; 
           }
-          .imageClass..gbi-fwatluf:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
