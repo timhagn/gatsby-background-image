@@ -22,6 +22,19 @@ export const fluidShapeMock = {
   base64: `string_of_base64`,
 }
 
+export const createStyleElement = () => {
+  // Create the style class.
+  const styleElement = document.createElement('style')
+  styleElement.textContent = `
+        .imageClass {
+          backgroundRepeat: 'repeat-y';
+          backgroundPosition: 'center';
+          backgroundSize: 'contain';
+        }
+      `
+  document.body.appendChild(styleElement)
+}
+
 /**
  * Sets up a (react-testing-library) rendered container.
  *
@@ -56,16 +69,7 @@ export const setupBackgroundImage = ({
                         props = {},
                       }) => {
   if (addClass) {
-    // Create the style class.
-    const styleElement = document.createElement('style')
-    styleElement.textContent = `
-      .imageClass {
-        backgroundRepeat: 'repeat-y';
-        backgroundPosition: 'center';
-        backgroundSize: 'contain';
-      }
-    `
-    document.body.appendChild(styleElement)
+    createStyleElement()
   }
   const classNames = fixedClass
     ? `imageClass ${additionalClass}`

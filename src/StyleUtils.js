@@ -15,7 +15,7 @@ export const createPseudoElement = (
 ) => {
   const classes = stringToArray(className)
   let pseudoClasses = ``
-  if (classes instanceof Array) {
+  if (classes instanceof Array && classes.length > 0 && classes[0] !== ``) {
     pseudoClasses = `.${classes.join('.')}${appendix}`
   }
   if (classId !== ``) {
@@ -23,6 +23,36 @@ export const createPseudoElement = (
       `,\n`}.gatsby-background-image-${classId}${appendix}`
   }
   return pseudoClasses
+}
+
+/**
+ * Checks if an element with given className(s) already exists.
+ * @param className   string    Given className(s) e.g. from styled-components.
+ * @param classId     string    (deprecated) Additional classId given.
+ * @return {string}
+ */
+export const fixClassName = (className = ``, classId = ``) => {
+  if (typeof window !== `undefined`) {
+    // First add a possible classId (until deprecation).
+    const currentClassId =
+      `${classId && ` gatsby-background-image-${classId}`}` || ``
+    // Now check classNames for existing element.
+    const classNames = stringToArray(`${className}${currentClassId}`.trim())
+    const elementExists = classNames.reduce(
+      (exists, currentClass) =>
+        exists || document.getElementsByClassName(currentClass).length > 0,
+      false
+    )
+    // Should an element exist, add randomized class.
+    const additionalClass = elementExists
+      ? ` gbi-${Math.random()
+          .toString(36)
+          .replace(/[^a-z]+/g, '')
+          .substr(0, 7)}`
+      : ``
+    return `${className || ``}${additionalClass || ``}`.trim()
+  }
+  return className
 }
 
 /**

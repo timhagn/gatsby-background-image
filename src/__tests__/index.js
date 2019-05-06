@@ -19,12 +19,18 @@ let elements = []
 describe(`<BackgroundImage />`, () => {
   const observe = jest.fn(callback => elements.push(callback))
   const unobserve = jest.fn(callback => elements.unshift(callback))
+  const tmpRnd = Math.random
   beforeEach(() => {
     global.IntersectionObserver = jest.fn(() => ({
       observe,
       unobserve,
     }))
     resetImageCache()
+    // Mock Math.random beforehand, lest another random classname is created.
+    Math.random = jest.fn(() => 0.424303425546642)
+  })
+  afterEach(() => {
+    Math.random = tmpRnd
   })
 
   it(`should render fixed size images`, () => {
@@ -60,8 +66,6 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should work without external class`, () => {
-    // Mock Math.random beforehand, lest another random classname is created.
-    Math.random = jest.fn(() => 0.424303425546642)
     const { container } = render(
       <BackgroundImage fluid={fluidShapeMock}>
         <h1>testempty</h1>
@@ -71,8 +75,6 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should change style.display from 'inherit' to 'inline-block'`, () => {
-    // Mock Math.random beforehand, lest another random classname is created.
-    Math.random = jest.fn(() => 0.424303425546642)
     const { container } = render(
       <BackgroundImage fixed={fixedShapeMock} style={{ display: `inherit` }}>
         <h1>testempty</h1>
