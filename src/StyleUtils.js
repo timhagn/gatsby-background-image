@@ -44,7 +44,6 @@ export const fixClassName = (className = ``, classId = ``) => {
         exists || document.getElementsByClassName(currentClass).length > 0,
       false
     )
-    // TODO: generate fixed randomized class!
     // Should an element exist, add randomized class.
     const additionalClass = elementExists
       ? ` gbi-${Math.random()
