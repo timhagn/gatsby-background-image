@@ -13,6 +13,7 @@ import {
 } from './ImageUtils'
 import {
   createPseudoStyles,
+  fixClassName,
   fixOpacity,
   presetBackgroundStyles,
 } from './StyleUtils'
@@ -216,6 +217,8 @@ class BackgroundImage extends React.Component {
       ...props
     } = fixOpacity(convertProps(this.props))
 
+    const currentClassNames = fixClassName(className, classId)
+
     const remainingProps = stripRemainingProps(props)
 
     const bgColor =
@@ -270,7 +273,7 @@ class BackgroundImage extends React.Component {
 
     const pseudoStyles = createPseudoStyles({
       classId,
-      className,
+      className: currentClassNames,
       transitionDelay,
       bgColor,
       backgroundStyles: this.backgroundStyles,
@@ -287,8 +290,8 @@ class BackgroundImage extends React.Component {
 
     return (
       <Tag
-        className={`${className || ``}${classId &&
-          `gatsby-background-image-${classId}`} gatsby-image-wrapper`}
+        className={`${currentClassNames || ``}${classId &&
+          ` gatsby-background-image-${classId}`} gatsby-image-wrapper`}
         style={{
           ...divStyle,
           ...this.backgroundStyles,

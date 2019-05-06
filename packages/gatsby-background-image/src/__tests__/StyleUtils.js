@@ -4,113 +4,80 @@ import {
   presetBackgroundStyles,
   vendorPrefixBackgroundStyles,
   kebabifyBackgroundStyles,
+  fixClassName,
 } from '../StyleUtils'
+import { createStyleElement } from './mocks/Various.mock'
 
 global.console.debug = jest.fn()
-
 
 describe(`fixOpacity()`, () => {
   it(`should return fixedOpacityProps for style prop with text content`, () => {
     const styledPropsWithText = {
       style: {
         opacity: `inherit`,
-      }
+      },
     }
     const fixedOpacityProps = fixOpacity(styledPropsWithText)
-    expect(fixedOpacityProps.style.opacity).toEqual(.99)
+    expect(fixedOpacityProps.style.opacity).toEqual(0.99)
   })
 
   it(`should return fixedOpacityProps for style prop with opacity of 1`, () => {
     const styledPropsOpaqueOpacity = {
       style: {
         opacity: 1,
-      }
+      },
     }
     const fixedOpacityProps = fixOpacity(styledPropsOpaqueOpacity)
-    expect(fixedOpacityProps.style.opacity).toEqual(.99)
+    expect(fixedOpacityProps.style.opacity).toEqual(0.99)
   })
 
   it(`shouldn't change opacityProps for style prop with opacity < .99`, () => {
     const styledPropsSmallOpacity = {
       style: {
-        opacity: .5,
-      }
+        opacity: 0.5,
+      },
     }
     const opacityProps = fixOpacity(styledPropsSmallOpacity)
-    expect(opacityProps.style.opacity).toEqual(.5)
+    expect(opacityProps.style.opacity).toEqual(0.5)
   })
 
   it(`should't change opacityProps for style prop without opacity`, () => {
     const styledPropsNoOpacity = {
-      style: {}
+      style: {},
     }
     const fixedOpacityProps = fixOpacity(styledPropsNoOpacity)
     expect(fixedOpacityProps.style.opacity).toBeUndefined()
   })
 })
 
-
 describe(`vendorPrefixBackgroundStyles()`, () => {
   it(`should return vendor prefixed backgroundStyles with defaults`, () => {
-    expect(vendorPrefixBackgroundStyles()).toMatchSnapshot()/*.toEqual(
-`-webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
--ms-background-size: cover;
-background-size: cover;
--webkit-transition-delay: 0.25s;
--moz-transition-delay: 0.25s;
--o-transition-delay: 0.25s;
--ms-transition-delay: 0.25s;
-transition-delay: 0.25s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-`)*/
+    expect(vendorPrefixBackgroundStyles()).toMatchSnapshot()
   })
 
   it(`should return vendor prefixed backgroundStyles with parameters`, () => {
-    expect(vendorPrefixBackgroundStyles(`contain`, `0.5s`)).toMatchSnapshot()/*.toEqual(
-`-webkit-background-size: contain;
--moz-background-size: contain;
--o-background-size: contain;
--ms-background-size: contain;
-background-size: contain;
--webkit-transition-delay: 0.5s;
--moz-transition-delay: 0.5s;
--o-transition-delay: 0.5s;
--ms-transition-delay: 0.5s;
-transition-delay: 0.5s;
--webkit-transition: opacity 0.5s;
--moz-transition: opacity 0.5s;
--o-transition: opacity 0.5s;
--ms-transition: opacity 0.5s;
-transition: opacity 0.5s;
-`)*/
+    expect(vendorPrefixBackgroundStyles(`contain`, `0.5s`)).toMatchSnapshot()
   })
 })
 
-
 describe(`createPseudoStyles()`, () => {
-let pseudoStyles = {}
-beforeEach(() => {
-  pseudoStyles = {
-    classId: `gbi`,
-    className: `test`,
-    backgroundSize: `cover`,
-    backgroundPosition: `center`,
-    backgroundRepeat: `repeat-y`,
-    transitionDelay: `0.25s`,
-    bgImage: `test.webp`,
-    nextImage: `test.webp`,
-    lastImage: `some_base64_string`,
-    afterOpacity: 1,
-    bgColor: `#000`,
-    fadeIn: true,
-  }
-})
+  let pseudoStyles = {}
+  beforeEach(() => {
+    pseudoStyles = {
+      classId: `gbi`,
+      className: `test`,
+      backgroundSize: `cover`,
+      backgroundPosition: `center`,
+      backgroundRepeat: `repeat-y`,
+      transitionDelay: `0.25s`,
+      bgImage: `test.webp`,
+      nextImage: `test.webp`,
+      lastImage: `some_base64_string`,
+      afterOpacity: 1,
+      bgColor: `#000`,
+      fadeIn: true,
+    }
+  })
   it(`should create styles from given pseudoStyles Object`, () => {
     const createdPseudoStyles = createPseudoStyles(pseudoStyles)
     expect(createdPseudoStyles).toMatchSnapshot()
@@ -196,7 +163,6 @@ beforeEach(() => {
   })
 })
 
-
 describe(`presetBackgroundStyles()`, () => {
   it(`should return defaultBackgroundStyles with empty backgroundStyles`, () => {
     const defaultBackgroundStyles = {
@@ -210,6 +176,30 @@ describe(`presetBackgroundStyles()`, () => {
   })
 })
 
+describe(`fixClassName()`, () => {
+  const tmpRnd = Math.random
+  beforeEach(() => {
+    // Mock Math.random beforehand, lest another random classname is created.
+    Math.random = jest.fn(() => 0.424303425546642)
+  })
+  afterEach(() => {
+    Math.random = tmpRnd
+  })
+  it(`should return empty generated className without className && classId`, () => {
+    const fixedClasses = fixClassName()
+    expect(fixedClasses).toMatchInlineSnapshot(`""`)
+  })
+
+  it(`should return generated className on existing class`, () => {
+    createStyleElement()
+    const dummyElement = document.createElement('div')
+    dummyElement.className = `imageClass`
+    document.body.appendChild(dummyElement)
+    const fixedClasses = fixClassName(`imageClass`)
+    expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-fwatluf"`)
+    document.body.removeChild(dummyElement)
+  })
+})
 
 describe(`kebabifyBackgroundStyles()`, () => {
   it(`should return string for style props with text content`, () => {

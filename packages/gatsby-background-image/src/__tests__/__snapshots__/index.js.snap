@@ -9,9 +9,9 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
   >
     <style>
       
-          .imageClass.:before,
+          .imageClass:before,
 .gatsby-background-image-test:before,
-          .imageClass.:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -28,14 +28,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass.:before,
+          .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             
             opacity: 0; 
           }
-          .imageClass.:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -62,9 +62,9 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
   >
     <style>
       
-          .imageClass.:before,
+          .imageClass:before,
 .gatsby-background-image-test:before,
-          .imageClass.:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -81,14 +81,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass.:before,
+          .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             
             opacity: 0; 
           }
-          .imageClass.:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -109,7 +109,7 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inline-block' 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
@@ -242,9 +242,9 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
   >
     <style>
       
-          .imageClass.:before,
+          .imageClass:before,
 .gatsby-background-image-test:before,
-          .imageClass.:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -261,14 +261,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .imageClass.:before,
+          .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             
             opacity: 0; 
           }
-          .imageClass.:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -295,9 +295,9 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
   >
     <style>
       
-          .imageClass.:before,
+          .imageClass:before,
 .gatsby-background-image-test:before,
-          .imageClass.:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -314,14 +314,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass.:before,
+          .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             
             opacity: 0; 
           }
-          .imageClass.:after,
+          .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -344,7 +344,7 @@ exports[`<BackgroundImage /> should return null without fluid / fixed 1`] = `<di
 exports[`<BackgroundImage /> should work with BackgroundColor 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -393,7 +393,7 @@ background-size: cover;
 exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
-    class="imageClass testgatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass test gatsby-background-image-test gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
     title="Title for the image"
   >
@@ -446,7 +446,7 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should work with fadeIn 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -495,7 +495,7 @@ background-size: cover;
 exports[`<BackgroundImage /> should work with only classId 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -593,7 +593,7 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
-    class="gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
