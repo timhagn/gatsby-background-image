@@ -116,3 +116,19 @@ export const stringToArray = (str, delimiter = ` `) => {
   }
   return false
 }
+
+/**
+ * Hashes a String to a 32bit integer with the simple Java 8 hashCode() func.
+ * @param str   string    String to hash.
+ * @return {number}
+ */
+export const hashString = str =>
+  isString(str) &&
+  [].reduce.call(
+    str,
+    (hash, item) => {
+      hash = (hash << 5) - hash + item.charCodeAt(0)
+      return hash | 0
+    },
+    0
+  )

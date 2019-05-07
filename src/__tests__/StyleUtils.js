@@ -7,6 +7,8 @@ import {
   fixClassName,
   activateCacheForComponentClass,
 } from '../StyleUtils'
+import { fluidShapeMock } from './mocks/Various.mock'
+import { hashString } from '../HelperUtils'
 
 global.console.debug = jest.fn()
 
@@ -177,23 +179,18 @@ describe(`presetBackgroundStyles()`, () => {
 })
 
 describe(`fixClassName()`, () => {
-  const tmpRnd = Math.random
-  beforeEach(() => {
-    // Mock Math.random beforehand, lest another random classname is created.
-    Math.random = jest.fn(() => 0.424303425546642)
-  })
-  afterEach(() => {
-    Math.random = tmpRnd
-  })
-  it(`should return empty generated className without className && classId`, () => {
-    const fixedClasses = fixClassName()
+  it(`should return empty generated className props`, () => {
+    const fixedClasses = fixClassName({})
     expect(fixedClasses).toMatchInlineSnapshot(`""`)
   })
 
   it(`should return generated className on existing class`, () => {
     activateCacheForComponentClass(`imageClass`)
-    const fixedClasses = fixClassName(`imageClass`)
-    expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-fwatluf"`)
+    const fixedClasses = fixClassName({
+      className: `imageClass`,
+      fluid: fluidShapeMock,
+    })
+    expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-1393017994"`)
   })
 })
 
