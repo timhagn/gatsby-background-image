@@ -5,6 +5,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 <a name="0.5.4"></a>
 
+## [0.5.5](https://github.com/timhagn/gatsby-background-image) (2019-05-07)
+
+**fix:** Replaced Math.random() "hash" generation with an implementation of 
+Java's hashCode() function on either current `srcSet` or given `className`.
+
 ## [0.5.4](https://github.com/timhagn/gatsby-background-image) (2019-05-07)
 
 **feat / fix:** Added a componentClassCache to prevent duplicate render with 
