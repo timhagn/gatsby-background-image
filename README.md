@@ -273,7 +273,7 @@ might jump around!**_
 
 Should you decide to use a single instance of a styled `<BackgroundImage />` for
 multiple different images, it will automatically add an additional `className`, 
-a 32bit hash integer of the current `srcSet` or `className` prefixed with `gbi-`, 
+a hashed 32bit integer of the current `srcSet` or `className` prefixed with `gbi-`, 
 to prevent erroneous styling of individual instances.  
 You wouldn't have added the same class for different CSS `background-image`
 styles on your own, or would you have ; )?
