@@ -38,6 +38,22 @@ All the glamour (and speed) of `gatsby-image` now for your Background Images!
 
 ___And it's even styleable with `styled-components` and the like!___   
 
+## Table of Contents
+- [Example Repo](#example-repo) 
+- [Procedure](#procedure) 
+- [Install](#install)
+    * [Important](#important)
+- [How to Use](#how-to-use)
+- [Configuration & props](#configuration--props)
+- [Styling & Passed Through Styles](#styling--passed-through-styles)
+    * [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
+    * [Deprecated Styling](#deprecated-styling)
+- [Changed props](#changed-props)
+- [props Not Available](#props-not-available)
+- [Handling of Remaining props](#handling-of-remaining-props) 
+- [Contributing](#contributing)
+- [TODO](#todo)
+
 ## Example Repo
 
 `gatsby-background-image` now has an example repository  
@@ -94,7 +110,10 @@ Then in your `gatsby-config.js`:
 plugins: [`gatsby-transformer-sharp`, `gatsby-plugin-sharp`]
 ```
 
-Also, make sure you have set up a source plugin, so your images are available in `graphql` queries. For example, if your images live in a project folder on the local filesystem, you would set up `gatsby-source-filesystem` in `gatsby-config.js` like so:
+Also, make sure you have set up a source plugin, so your images are available in 
+`graphql` queries. For example, if your images live in a project folder on the 
+local filesystem, you would set up `gatsby-source-filesystem` in 
+`gatsby-config.js` like so:
 
 ```js
 const path = require(`path`)
@@ -248,7 +267,20 @@ style={{
 
 _**¡But be sure to target the `:before` and `:after` pseudo-elements in your CSS,
 lest your "blurred-up", traced placeholder SVG or lazy loaded background images
-might jump around!**_  
+might jump around!**_
+
+#### Multiple Instances of Same Component
+
+Should you decide to use a single instance of a styled `<BackgroundImage />` for
+multiple different images, it will automatically add a random `className`, a 
+lower case string of seven chars, to prevent erroneous styling of individual 
+instances.  
+You wouldn't have added the same class for different CSS `background-image`
+styles on your own, or would you have ; )?
+
+**Be warned**: Styling the components `:before` & `:after` pseudo-elements 
+within the main classes then only is going to work again for all instances if 
+you use `!important` on its CSS-properties (cause of CSS-specifity).  
 
 #### Deprecated Styling
 
