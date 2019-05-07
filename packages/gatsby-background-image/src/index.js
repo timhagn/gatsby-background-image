@@ -26,8 +26,6 @@ import { listenToIntersections } from './IntersectionObserverUtils'
 class BackgroundImage extends React.Component {
   // IntersectionObserver listeners (if available).
   cleanUpListeners
-  // Fixed class Name (needed for multiple instances).
-  currentClassNames = ``
 
   constructor(props) {
     super(props)
@@ -69,6 +67,9 @@ class BackgroundImage extends React.Component {
     // Set initial image state for transitioning.
     const imageState = 0
 
+    // Fixed class Name (needed for multiple instances).
+    const currentClassNames = fixClassName(props)
+
     this.state = {
       isVisible,
       imgLoaded,
@@ -77,6 +78,7 @@ class BackgroundImage extends React.Component {
       hasNoScript,
       seenBefore,
       imageState,
+      currentClassNames,
     }
 
     // Preset backgroundStyles (e.g. during SSR or gatsby build).
@@ -87,6 +89,7 @@ class BackgroundImage extends React.Component {
     // Start with an empty background image.
     this.bgImage = ``
 
+    // Bind handlers to class.
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
     this.handleRef = this.handleRef.bind(this)
 
@@ -120,10 +123,14 @@ class BackgroundImage extends React.Component {
     // Check if we received a changed fluid / fixed image.
     if (imagePropsChanged(this.props, prevProps)) {
       const imageInCache = inImageCache(this.props)
+
       this.setState(
         {
           isVisible: imageInCache || this.props.critical,
           imgLoaded: imageInCache,
+          // currentClassNames:
+          //   this.state.currentClassNames ||
+          //   fixClassName(this.props.className, this.randomClass),
           // imageState: (this.state.imageState + 1) % 2,
         },
         () => {
@@ -219,10 +226,10 @@ class BackgroundImage extends React.Component {
       ...props
     } = fixOpacity(convertProps(this.props))
 
-    this.currentClassNames =
-      this.currentClassNames || fixClassName(className, classId)
-
     const remainingProps = stripRemainingProps(props)
+
+    // this.currentClassNames =
+    //   this.currentClassNames || fixClassName(className, this.randomClass)
 
     const bgColor =
       typeof backgroundColor === `boolean`
@@ -269,14 +276,12 @@ class BackgroundImage extends React.Component {
       imageRef: this.imageRef,
       state: this.state,
     })
-    // this.bgImage = newImageSettings.bgImage
-    //   ? newImageSettings.bgImage
-    //   : newImageSettings.lastImage
+
     this.bgImage = newImageSettings.nextImage || this.bgImage
 
     const pseudoStyles = createPseudoStyles({
       classId,
-      className: this.currentClassNames,
+      className: this.state.currentClassNames,
       transitionDelay,
       bgColor,
       backgroundStyles: this.backgroundStyles,
@@ -285,15 +290,13 @@ class BackgroundImage extends React.Component {
       ...newImageSettings,
     })
 
-    // className.indexOf(`StyledHeader`) !== -1 && console.log(newImageSettings)
-
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&
       `fixed`}-${JSON.stringify(image.srcSet)}`
 
     return (
       <Tag
-        className={`${this.currentClassNames || ``}${classId &&
+        className={`${this.state.currentClassNames || ``}${classId &&
           ` gatsby-background-image-${classId}`} gatsby-image-wrapper`}
         style={{
           ...divStyle,

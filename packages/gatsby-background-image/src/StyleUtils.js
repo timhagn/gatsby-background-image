@@ -1,4 +1,10 @@
-import { isString, stringToArray, toKebabCase } from './HelperUtils'
+import {
+  convertProps,
+  hashString,
+  isString,
+  stringToArray,
+  toKebabCase,
+} from './HelperUtils'
 
 const componentClassCache = Object.create({})
 /**
@@ -56,26 +62,29 @@ export const createPseudoElement = (
 /**
  * Checks if an element with given className(s) already exists.
  * @param className   string    Given className(s) e.g. from styled-components.
- * @param classId     string    (deprecated) Additional classId given.
+ * @param props
  * @return {string}
  */
-export const fixClassName = (className = ``, classId = ``) => {
-  if (typeof window !== `undefined`) {
-    const elementExists = inComponentClassCache(className)
+export const fixClassName = ({ className, ...props }) => {
+  const convertedProps = convertProps(props)
+  const elementExists = inComponentClassCache(className)
 
-    // Should an element exist, add randomized class.
-    const additionalClass = elementExists
-      ? ` gbi-${Math.random()
-          .toString(36)
-          .replace(/[^a-z]+/g, '')
-          .substr(0, 7)}`
-      : ``
-    const componentClassNames = `${className || ``}${additionalClass ||
-      ``}`.trim()
-    activateCacheForComponentClass(className)
-    return componentClassNames
-  }
-  return className
+  const imageData = convertedProps.fluid
+    ? convertedProps.fluid
+    : convertedProps.fixed
+
+  // Create random "uniquely hashed" additionalClass if needed.
+  const randomClass = ` gbi-${hashString(
+    (imageData && imageData.srcSet) || className
+  )}`
+
+  // Should an element exist, add randomized class.
+  const additionalClass = elementExists ? randomClass : ``
+  const componentClassNames = `${className || ``}${additionalClass ||
+    ``}`.trim()
+  // Add it to cache if it doesn't exist.
+  !elementExists && activateCacheForComponentClass(className)
+  return componentClassNames
 }
 
 /**
