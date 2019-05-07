@@ -273,8 +273,8 @@ might jump around!**_
 
 Should you decide to use a single instance of a styled `<BackgroundImage />` for
 multiple different images, it will automatically add a random `className`, a 
-lower case string of seven chars, to prevent erroneous styling of individual 
-instances.  
+lower case string of seven chars prefixed with `gbi-`, to prevent erroneous 
+styling of individual instances.  
 You wouldn't have added the same class for different CSS `background-image`
 styles on your own, or would you have ; )?
 
