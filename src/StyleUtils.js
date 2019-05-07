@@ -1,8 +1,4 @@
-import {
-  isString,
-  stringToArray,
-  toKebabCase,
-} from './HelperUtils'
+import { isString, stringToArray, toKebabCase } from './HelperUtils'
 
 const componentClassCache = Object.create({})
 /**
@@ -10,8 +6,8 @@ const componentClassCache = Object.create({})
  * @param className
  * @return {*|boolean}
  */
-export const inComponentClassCache = (className) => {
-    return componentClassCache[className] || false
+export const inComponentClassCache = className => {
+  return componentClassCache[className] || false
 }
 
 /**
@@ -28,7 +24,8 @@ export const activateCacheForComponentClass = className => {
  * Resets the componentClassCache (especially important for reliable tests).
  */
 export const resetComponentClassCache = () => {
-  for (const className in componentClassCache) delete componentClassCache[className]
+  for (const className in componentClassCache)
+    delete componentClassCache[className]
 }
 
 /**
@@ -73,7 +70,8 @@ export const fixClassName = (className = ``, classId = ``) => {
           .replace(/[^a-z]+/g, '')
           .substr(0, 7)}`
       : ``
-    const componentClassNames = `${className || ``}${additionalClass || ``}`.trim()
+    const componentClassNames = `${className || ``}${additionalClass ||
+      ``}`.trim()
     activateCacheForComponentClass(className)
     return componentClassNames
   }
