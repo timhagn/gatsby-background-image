@@ -9,6 +9,7 @@ import {
 } from './mocks/Various.mock'
 import BackgroundImage from '../'
 import { activateCacheForImage, resetImageCache } from '../ImageUtils'
+import { resetComponentClassCache } from '../StyleUtils'
 
 afterEach(resetImageCache)
 
@@ -31,6 +32,7 @@ describe(`<BackgroundImage />`, () => {
   })
   afterEach(() => {
     Math.random = tmpRnd
+    resetComponentClassCache()
   })
 
   it(`should render fixed size images`, () => {
