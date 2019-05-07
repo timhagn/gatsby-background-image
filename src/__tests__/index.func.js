@@ -15,6 +15,7 @@ import {
   createPictureRef,
   resetImageCache,
 } from '../ImageUtils'
+import { resetComponentClassCache } from '../StyleUtils'
 
 const LOAD_FAILURE_SRC = 'test_fluid_image.jpg'
 const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg'
@@ -53,6 +54,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
   })
   afterEach(() => {
     Object.setPrototypeOf(HTMLImageElement, tmpImagePrototype)
+    resetComponentClassCache()
   })
 
   it(`should render visible fluid image`, () => {

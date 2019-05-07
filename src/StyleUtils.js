@@ -1,5 +1,35 @@
-import { isString, stringToArray, toKebabCase } from './HelperUtils'
-import { getStyle } from './BackgroundUtils'
+import {
+  isString,
+  stringToArray,
+  toKebabCase,
+} from './HelperUtils'
+
+const componentClassCache = Object.create({})
+/**
+ * Cache component classes as we never know if a Component wasn't already set.
+ * @param className
+ * @return {*|boolean}
+ */
+export const inComponentClassCache = (className) => {
+    return componentClassCache[className] || false
+}
+
+/**
+ * Adds a component's classes to componentClassCache.
+ * @param className
+ */
+export const activateCacheForComponentClass = className => {
+  if (className) {
+    componentClassCache[className] = true
+  }
+}
+
+/**
+ * Resets the componentClassCache (especially important for reliable tests).
+ */
+export const resetComponentClassCache = () => {
+  for (const className in componentClassCache) delete componentClassCache[className]
+}
 
 /**
  * Creates pseudo-element(s) for className(s).
@@ -34,16 +64,8 @@ export const createPseudoElement = (
  */
 export const fixClassName = (className = ``, classId = ``) => {
   if (typeof window !== `undefined`) {
-    // First add a possible classId (until deprecation).
-    const currentClassId =
-      `${classId && ` gatsby-background-image-${classId}`}` || ``
-    // Now check classNames for existing element.
-    const classNames = stringToArray(`${className}${currentClassId}`.trim())
-    const elementExists = classNames.reduce(
-      (exists, currentClass) =>
-        exists || document.getElementsByClassName(currentClass).length > 0,
-      false
-    )
+    const elementExists = inComponentClassCache(className)
+
     // Should an element exist, add randomized class.
     const additionalClass = elementExists
       ? ` gbi-${Math.random()
@@ -51,7 +73,9 @@ export const fixClassName = (className = ``, classId = ``) => {
           .replace(/[^a-z]+/g, '')
           .substr(0, 7)}`
       : ``
-    return `${className || ``}${additionalClass || ``}`.trim()
+    const componentClassNames = `${className || ``}${additionalClass || ``}`.trim()
+    activateCacheForComponentClass(className)
+    return componentClassNames
   }
   return className
 }

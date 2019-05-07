@@ -5,8 +5,8 @@ import {
   vendorPrefixBackgroundStyles,
   kebabifyBackgroundStyles,
   fixClassName,
+  activateCacheForComponentClass,
 } from '../StyleUtils'
-import { createStyleElement } from './mocks/Various.mock'
 
 global.console.debug = jest.fn()
 
@@ -191,13 +191,9 @@ describe(`fixClassName()`, () => {
   })
 
   it(`should return generated className on existing class`, () => {
-    createStyleElement()
-    const dummyElement = document.createElement('div')
-    dummyElement.className = `imageClass`
-    document.body.appendChild(dummyElement)
+    activateCacheForComponentClass(`imageClass`)
     const fixedClasses = fixClassName(`imageClass`)
     expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-fwatluf"`)
-    document.body.removeChild(dummyElement)
   })
 })
 

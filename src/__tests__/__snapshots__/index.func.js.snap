@@ -108,16 +108,14 @@ background-size: 'contain';
 exports[`<BackgroundImage /> with mock IO should render visible fixed image and call onLoadFunction 1`] = `
 <div>
   <div
-    class="gbi-fwatluf gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
     <style>
       
-          .gbi-fwatluf:before,
-.gatsby-background-image-fwatluf_depr:before,
-          .gbi-fwatluf:after,
-.gatsby-background-image-fwatluf_depr:after {
+          .gatsby-background-image-fwatluf_depr:before,
+          .gatsby-background-image-fwatluf_depr:after {
             content: '';
             display: block;
             position: absolute;
@@ -133,15 +131,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gbi-fwatluf:before,
-.gatsby-background-image-fwatluf_depr:before {
+          .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
             
             opacity: 1; 
           }
-          .gbi-fwatluf:after,
-.gatsby-background-image-fwatluf_depr:after {
+          .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             
             
@@ -160,16 +156,14 @@ exports[`<BackgroundImage /> with mock IO should render visible fixed image and 
 exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] = `
 <div>
   <div
-    class="gbi-fwatluf gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; width: 100px; height: 100px; display: inline-block; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title=""
   >
     <style>
       
-          .gbi-fwatluf:before,
-.gatsby-background-image-fwatluf_depr:before,
-          .gbi-fwatluf:after,
-.gatsby-background-image-fwatluf_depr:after {
+          .gatsby-background-image-fwatluf_depr:before,
+          .gatsby-background-image-fwatluf_depr:after {
             content: '';
             display: block;
             position: absolute;
@@ -185,15 +179,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gbi-fwatluf:before,
-.gatsby-background-image-fwatluf_depr:before {
+          .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             background-image: url(string_of_base64);
             
             opacity: 1; 
           }
-          .gbi-fwatluf:after,
-.gatsby-background-image-fwatluf_depr:after {
+          .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
