@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11) activatePictureRef() should still create an imageRef 1`] = `
+<img
+  src="test_fluid_image.jpg"
+  srcset="some srcSet"
+/>
+`;
+
+exports[`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11) should return default noscriptImg without <picture /> on {} 1`] = `
+<div>
+  &lt;img src="" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;
+</div>
+`;
+
 exports[`noscriptImg() should return default noscriptImg on {} 1`] = `
 <div>
   &lt;picture&gt;&lt;img src="" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;

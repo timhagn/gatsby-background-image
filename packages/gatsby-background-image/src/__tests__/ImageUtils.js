@@ -9,7 +9,8 @@ import {
   resetImageCache,
   createPictureRef,
   switchImageSettings,
-  imagePropsChanged, activatePictureRef,
+  imagePropsChanged,
+  activatePictureRef,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
@@ -50,7 +51,7 @@ describe(`createPictureRef() with crossOrigin`, () => {
   })
 })
 
-describe(`createPictureRef() / activatePictureRef()`, () => {
+describe(`createPictureRef() / activatePictureRef() without window`, () => {
   const tmpWindow = global.window
   beforeEach(() => {
     delete global.window
@@ -178,6 +179,29 @@ describe(`noscriptImg()`, () => {
     }
     const { container } = render(noscriptImg(dummyProps))
     expect(container).toMatchSnapshot()
+  })
+})
+
+describe(`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11)`, () => {
+  const tmpPicture = HTMLPictureElement
+  beforeEach(() => {
+    delete global.HTMLPictureElement
+  })
+  afterEach(() => {
+    global.HTMLPictureElement = tmpPicture
+  })
+  it(`should return default noscriptImg without <picture /> on {}`, () => {
+    const { container } = render(noscriptImg({}))
+    expect(container).toMatchSnapshot()
+  })
+
+  it(`activatePictureRef() should still create an imageRef`, () => {
+    const testImg = new Image()
+    const dummyImageRef = activatePictureRef(testImg, {
+      fluid: fluidShapeMock,
+      critical: true,
+    })
+    expect(dummyImageRef).toMatchSnapshot()
   })
 })
 
