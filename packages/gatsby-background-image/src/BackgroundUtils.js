@@ -66,8 +66,15 @@ export const getStyleRules = cssStyleRules => {
     cssStyleRules.length > 0 &&
     typeof cssStyleRules[0].style !== 'undefined'
   ) {
-    switch (cssStyleRules[0].style.constructor.name) {
+    // Fallback for Browsers without constructor.name (IE11).
+    const constructorName =
+      cssStyleRules[0].style.constructor.name ||
+      Object.prototype.toString.call(cssStyleRules[0].style.constructor)
+
+    switch (constructorName) {
+      // For Firefox or IE11.
       case 'CSS2Properties':
+      case '[object MSStyleCSSProperties]':
         Object.values(cssStyleRules[0].style).forEach(prop => {
           styles[toCamelCase(prop)] = cssStyleRules[0].style[prop]
         })

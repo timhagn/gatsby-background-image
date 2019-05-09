@@ -182,10 +182,20 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   const lastImage = bgImage
   // Change opacity according to imageState.
   const afterOpacity = state.imageState % 2
-  // Fall back on lastImage (important for prop changes).
+  // Should we still have no nextImage it might be because currentSrc is missing.
+  if (
+    nextImage === `` &&
+    state.imgLoaded &&
+    state.isVisible &&
+    imageRef &&
+    !imageRef.currentSrc
+  ) {
+    nextImage = imageRef.src
+  }
+  // Fall back on lastImage (important for prop changes) if all else fails.
   if (nextImage === ``) nextImage = lastImage
+
   return {
-    // bgImage,
     lastImage,
     nextImage,
     afterOpacity,

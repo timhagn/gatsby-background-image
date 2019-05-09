@@ -30,7 +30,7 @@ background-size: 'contain';
           .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            background-image: url(http://localhost/test_fixed_image.jpg);
             
             opacity: 1; 
           }
@@ -83,7 +83,7 @@ background-size: 'contain';
           .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url(string_of_base64);
+            background-image: url(http://localhost/test_fixed_image.jpg);
             
             opacity: 1; 
           }
