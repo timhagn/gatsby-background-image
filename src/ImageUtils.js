@@ -173,14 +173,10 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   const noBase64 = !image.base64
   // Set the backgroundImage according to images available.
   let nextImage = ``
-  if (image.tracedSVG)
-    nextImage = `"${image.tracedSVG.replace(
-      `data:image/svg+xml,`,
-      `data:image/svg+xml;charset=utf8,`
-    )}"`
+  if (image.tracedSVG) nextImage = `"${image.tracedSVG}"`
   if (image.base64 && !image.tracedSVG) nextImage = image.base64
   if (state.imgLoaded && state.isVisible)
-    nextImage = (imageRef && imageRef.currentSrc) || `` //image.src
+    nextImage = (imageRef && imageRef.currentSrc) || ``
 
   // Switch bgImage & nextImage and opacity accordingly.
   const lastImage = bgImage
