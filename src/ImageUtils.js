@@ -98,15 +98,21 @@ export const activatePictureRef = (imageRef, props) => {
       ? convertedProps.fluid
       : convertedProps.fixed
 
-    const pic = document.createElement('picture')
-    if (imageData.srcSetWebp) {
-      const sourcesWebP = document.createElement('source')
-      sourcesWebP.type = `image/webp`
-      sourcesWebP.srcset = imageData.srcSetWebp
-      sourcesWebP.sizes = imageData.sizes
-      pic.appendChild(sourcesWebP)
+    // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
+    // but don't prevent it during SSR.
+    const hasPictureElement =
+      typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`
+    if (hasPictureElement) {
+      const pic = document.createElement('picture')
+      if (imageData.srcSetWebp) {
+        const sourcesWebP = document.createElement('source')
+        sourcesWebP.type = `image/webp`
+        sourcesWebP.srcset = imageData.srcSetWebp
+        sourcesWebP.sizes = imageData.sizes
+        pic.appendChild(sourcesWebP)
+      }
+      pic.appendChild(imageRef)
     }
-    pic.appendChild(imageRef)
 
     imageRef.srcset = imageData.srcSet ? imageData.srcSet : ``
     imageRef.src = imageData.src ? imageData.src : ``
@@ -140,7 +146,14 @@ export const noscriptImg = props => {
   const crossOrigin = props.crossOrigin
     ? `crossorigin="${props.crossOrigin}" `
     : ``
-  return `<picture>${srcSetWebp}<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}${crossOrigin}style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/></picture>`
+  // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
+  // but don't prevent it during SSR.
+  const hasPictureElement =
+    typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`
+  const innerImage = `<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}${crossOrigin}style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/>`
+  return hasPictureElement
+    ? `<picture>${srcSetWebp}${innerImage}</picture>`
+    : innerImage
 }
 
 /**
