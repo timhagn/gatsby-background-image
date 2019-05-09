@@ -351,4 +351,4 @@ Thanks in advance!
 - For the moment Internet Explorer 11 seems to have problems with `_tracedSVG`
 and parsing the `background-*` CSS props, gotta investigate further...
 
-For anything else tell me by opening an issue or a PR : )!
+*For anything else tell me by opening an issue or a PR : )!*
