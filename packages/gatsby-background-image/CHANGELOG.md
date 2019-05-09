@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.5.4"></a>
+<a name="0.5.6"></a>
+
+## [0.5.6](https://github.com/timhagn/gatsby-background-image) (2019-05-07)
+
+**fix:** Added some workarounds and `@babel-polyfill` for IE11 compatibility,
+reintroduced `imageRef.src` as fallback for browsers without `currentSrc`.  
 
 ## [0.5.5](https://github.com/timhagn/gatsby-background-image) (2019-05-07)
 
