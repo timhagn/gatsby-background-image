@@ -45,6 +45,13 @@ export const resetImageCache = () => {
 }
 
 /**
+ * Returns the availability of the HTMLPictureElement unless in SSR mode.
+ * @return {boolean}
+ */
+export const hasPictureElement = () =>
+  typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`
+
+/**
  * Creates an image reference to be activated on critical or visibility.
  *
  * @param props
@@ -100,9 +107,7 @@ export const activatePictureRef = (imageRef, props) => {
 
     // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
     // but don't prevent it during SSR.
-    const hasPictureElement =
-      typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`
-    if (hasPictureElement) {
+    if (hasPictureElement()) {
       const pic = document.createElement('picture')
       if (imageData.srcSetWebp) {
         const sourcesWebP = document.createElement('source')
@@ -148,10 +153,9 @@ export const noscriptImg = props => {
     : ``
   // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
   // but don't prevent it during SSR.
-  const hasPictureElement =
-    typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`
+
   const innerImage = `<img ${width}${height}${sizes}${srcSet}${src}${alt}${title}${crossOrigin}style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:${transitionDelay};opacity:${opacity};width:100%;height:100%;object-fit:cover;object-position:center"/>`
-  return hasPictureElement
+  return hasPictureElement()
     ? `<picture>${srcSetWebp}${innerImage}</picture>`
     : innerImage
 }
