@@ -69,7 +69,7 @@ export const getStyleRules = cssStyleRules => {
     // Fallback for Browsers without constructor.name (IE11).
     const constructorName =
       cssStyleRules[0].style.constructor.name ||
-      Object.prototype.toString.call(cssStyleRules[0].style.constructor)
+      cssStyleRules[0].style.constructor.toString()
 
     switch (constructorName) {
       // For Firefox or IE11.
