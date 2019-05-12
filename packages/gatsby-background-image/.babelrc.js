@@ -6,10 +6,30 @@ if (process.env.NODE_ENV !== `test`) {
   ignore.push(`**/__tests__`)
 }
 
-module.exports = {
+// module.exports = {
+//   sourceMaps: true,
+//   presets: [
+//     ['babel-preset-gatsby-package', { "browser": true }],
+//   ],
+//   ignore,
+// }
+
+const gatsbyPresets = require('babel-preset-gatsby-package')(null, { browser: true })
+gatsbyPresets.presets[0][1].corejs = 3
+gatsbyPresets.presets[0][1].useBuiltIns = `entry`
+gatsbyPresets.plugins = gatsbyPresets.plugins.map(item => {
+  if (item.indexOf('transform-runtime') !== -1) {
+    return ['@babel/plugin-transform-runtime', {
+      corejs: 3,
+    }]
+  }
+  return item
+})
+
+module.exports = Object.assign(gatsbyPresets, {
   sourceMaps: true,
-  presets: [
-    ['babel-preset-gatsby-package', { "browser": true }],
-  ],
+  // presets: [
+  //   ['babel-preset-gatsby-package', { "browser": true }],
+  // ],
   ignore,
-}
+})
