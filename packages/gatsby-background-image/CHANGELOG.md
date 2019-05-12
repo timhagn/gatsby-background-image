@@ -5,6 +5,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 <a name="0.5.6"></a>
 
+## [0.5.7](https://github.com/timhagn/gatsby-background-image) (2019-05-12)
+
+**fix:** Removed `@babel-polyfill` and went with `@babel/runtime-corejs3`.
+
 ## [0.5.6](https://github.com/timhagn/gatsby-background-image) (2019-05-07)
 
 **fix:** Added some workarounds and `@babel-polyfill` for IE11 compatibility,
