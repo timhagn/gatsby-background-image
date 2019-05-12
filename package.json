@@ -11,8 +11,7 @@
     "url": "https://github.com/timhagn/gatsby-background-image/issues"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
-    "@babel/runtime": "^7.4.4",
+    "@babel/runtime-corejs3": "^7.4.4",
     "global": "^4.3.2",
     "prop-types": "^15.7.2"
   },
