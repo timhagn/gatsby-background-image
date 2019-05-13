@@ -24,8 +24,10 @@ export const getStyle = className => {
       .call(classes)
       .reduce(
         (foundAcc, styleRule) =>
-          styleRule.selectorText === className ? styleRule : foundAcc,
-        ''
+          styleRule.selectorText === className && foundAcc === ``
+            ? styleRule
+            : foundAcc,
+        ``
       )
     if (foundClass) {
       const resultingStyleText = foundClass.cssText
