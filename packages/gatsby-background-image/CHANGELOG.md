@@ -9,7 +9,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **fix:** With `@babel/runtime-corejs3` package size exploded, so just targeted 
 specific function missing in IE 11 and exchanged `Array.from` with 
-`Array.prototype.slice.call` and `Array.find` with it's `Array.reduce` equivalent. 
+`Array.prototype.slice.call` and `Array.find` with its `Array.reduce` equivalent. 
 
 ## [0.5.7](https://github.com/timhagn/gatsby-background-image) (2019-05-12)
 
