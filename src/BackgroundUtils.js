@@ -20,9 +20,13 @@ export const getStyle = className => {
           : ''
     } catch (e) {}
     if (!classes) continue
-    const foundClass = Array.from(classes).find(
-      styleRule => styleRule.selectorText === className
-    )
+    const foundClass = Array.prototype.slice
+      .call(classes)
+      .reduce(
+        (foundAcc, styleRule) =>
+          styleRule.selectorText === className ? styleRule : foundAcc,
+        ''
+      )
     if (foundClass) {
       const resultingStyleText = foundClass.cssText
         ? foundClass.cssText
