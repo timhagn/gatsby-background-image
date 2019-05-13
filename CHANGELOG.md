@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.5.7"></a>
+<a name="0.5.8"></a>
+
+## [0.5.8](https://github.com/timhagn/gatsby-background-image) (2019-05-13)
+
+**fix:** With `@babel/runtime-corejs3` package size exploded, so just targeted 
+specific function missing in IE 11 and exchanged `Array.from` with 
+`Array.prototype.slice.call` and `Array.find` with it's `Array.reduce` equivalent. 
 
 ## [0.5.7](https://github.com/timhagn/gatsby-background-image) (2019-05-12)
 
