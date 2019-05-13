@@ -6,18 +6,11 @@ if (process.env.NODE_ENV !== `test`) {
   ignore.push(`**/__tests__`)
 }
 
-// Change babel-preset-gatsby-package's options to transpile to polyfilled ES5.
+// Change babel-preset-gatsby-package's options to prevent warnings.
 const gatsbyPresets = require('babel-preset-gatsby-package')(null, { browser: true })
-gatsbyPresets.presets[0][1].corejs = 3
-gatsbyPresets.presets[0][1].useBuiltIns = `entry`
-gatsbyPresets.plugins = gatsbyPresets.plugins.map(item => {
-  if (item.indexOf('transform-runtime') !== -1) {
-    return ['@babel/plugin-transform-runtime', {
-      corejs: 3,
-    }]
-  }
-  return item
-})
+if (gatsbyPresets.presets[0][1].useBuiltIns) {
+  gatsbyPresets.presets[0][1].corejs = 3
+}
 
 module.exports = Object.assign(gatsbyPresets, {
   sourceMaps: true,
