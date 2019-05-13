@@ -139,8 +139,7 @@ export const vendorPrefixBackgroundStyles = (
   // }
 
   const prefixed = fadeIn
-    ? `transition-delay: ${transitionDelay};
-            transition: opacity 0.5s;`
+    ? `transition: opacity 0.5s ease ${transitionDelay};`
     : `transition: none;`
   return prefixed
 }

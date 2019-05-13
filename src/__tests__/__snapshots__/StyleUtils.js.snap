@@ -14,8 +14,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -48,8 +47,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -82,8 +80,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage 1
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -116,8 +113,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage w
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -150,8 +146,7 @@ exports[`createPseudoStyles() should create different styles for empty lastImage
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -184,8 +179,7 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -218,8 +212,7 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -252,8 +245,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -286,8 +278,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before,
@@ -318,8 +309,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .test:before {
@@ -348,8 +338,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
            {
@@ -378,8 +367,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             top: 0;
             left: 0;
             background-color: #000;
-            transition-delay: 0.25s;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease 0.25s;
             
           }
           .gatsby-background-image-gbi:before {
@@ -429,12 +417,6 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
         "
 `;
 
-exports[`vendorPrefixBackgroundStyles() should return vendor prefixed backgroundStyles with defaults 1`] = `
-"transition-delay: 0.25s;
-            transition: opacity 0.5s;"
-`;
+exports[`vendorPrefixBackgroundStyles() should return vendor prefixed backgroundStyles with defaults 1`] = `"transition: opacity 0.5s ease 0.25s;"`;
 
-exports[`vendorPrefixBackgroundStyles() should return vendor prefixed backgroundStyles with parameters 1`] = `
-"transition-delay: contain;
-            transition: opacity 0.5s;"
-`;
+exports[`vendorPrefixBackgroundStyles() should return vendor prefixed backgroundStyles with parameters 1`] = `"transition: opacity 0.5s ease contain;"`;
