@@ -1,7 +1,7 @@
 {
   "name": "gatsby-background-image",
   "description": "Lazy-loading React background-image component with optional support for the blur-up effect.",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "author": "Tim Hagn <mail@timhagn.com>",
   "contributors": [
     "Tim Hagn <mail@timhagn.com>",
@@ -11,7 +11,7 @@
     "url": "https://github.com/timhagn/gatsby-background-image/issues"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
     "global": "^4.3.2",
     "prop-types": "^15.7.2"
   },
