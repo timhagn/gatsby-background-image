@@ -1,5 +1,5 @@
 <h1 align="center">
-  gatsby-background-image
+  gatsby-background-image @ 0.5.9
 </h1>
 <p align="center">
   <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
@@ -8,19 +8,9 @@
   <a href="https://github.com/timhagn/gatsby-background-image/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="gatsby-background-image is released under the MIT license." />
   </a>
-  <a href="https://circleci.com/gh/timhagn/gatsby-background-image">
-    <img src="https://circleci.com/gh/timhagn/gatsby-background-image.svg?style=shield" alt="Current CircleCI build status of gatsby-background-image." />
-  </a>
-  <a href="https://codecov.io/gh/timhagn/gatsby-background-image">
-    <img src="https://codecov.io/gh/timhagn/gatsby-background-image/branch/master/graph/badge.svg" />
-  </a>
-  <a href="https://www.npmjs.org/package/gatsby-background-image">
-    <img src="https://img.shields.io/npm/v/gatsby-background-image.svg" alt="Current npm package version." />
-  </a>
-  <a href="https://npmcharts.com/compare/gatsby-background-image?minimal=true">
-    <img src="https://img.shields.io/npm/dw/gatsby-background-image.svg" alt="Downloads per week on npm." />
-  </a>
 </p>
+
+## *This is the last branch of the classic singular repo version!* 
 
 `gatsby-background-image` is a React component which for background-images
 provides,  
