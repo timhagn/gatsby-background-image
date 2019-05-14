@@ -20,7 +20,7 @@
     "react": "16.x",
     "react-dom": "16.x"
   },
-  "homepage": "https://github.com/timhagn/gatsby-background-image#readme",
+  "homepage": "https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image#readme",
   "keywords": [
     "gatsby",
     "gatsby-component",
@@ -42,7 +42,7 @@
     "/StyleUtils.js",
     "/HelperUtils.js"
   ],
-  "repository": "https://github.com/timhagn/gatsby-background-image",
+  "repository": "https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image",
   "scripts": {
     "build": "npm run format && babel src --out-dir . --ignore **/__tests__",
     "format": "prettier --write \"src/*.js\"",

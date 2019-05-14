@@ -38,6 +38,15 @@ All the glamour (and speed) of `gatsby-image` now for your Background Images!
 
 ___And it's even styleable with `styled-components` and the like!___   
 
+## ES5 Version
+
+`gatsby-background-image` now has a companion package completely transpiled to
+ES5: [`gatsby-background-image-es5`](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image-es5).  
+Have a look at its [README](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image-es5/README.md), 
+it nearly works the same. But with all polyfills included to support legacy
+browsers it's nearly three times the size of this package.
+ 
+
 ## Table of Contents
 - [Example Repo](#example-repo) 
 - [Procedure](#procedure) 

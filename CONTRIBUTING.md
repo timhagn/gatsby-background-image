@@ -51,21 +51,25 @@ First of all fork [gatsby-background-image](https://github.com/timhagn/gatsby-ba
 and clone your fork of it. For textual changes (typos, documentation, addition)
 just write them and read below about creating a PR.
 
+From `v0.6.0` on `gatsby-background-image` is a monorepo managed with [`lerna`](https://lerna.js.org/),
+so this manual will slowly be updated accordingly!
  
-To change or add some code execute either `yarn` or `npm install` in your cloned 
+To change or add some code execute `yarn bootstrap` in your cloned 
 forks folder first, to get yourself up and running for development.
+A quick `yarn test` tells you if everything is working.
 
+**`yarn link` doesn't work with `lerna` at the moment, I'm gonna update this soon!**   
 To ease debugging, I'd recommend cloning [gbitest](https://github.com/timhagn/gbitest),
 or use your own project. But be sure to run `yarn link` or `npm link` in
 `gatsby-background-image`'s folder so you are then able to change back to your 
-project's or `gbitest`'s folder and execute `yarn link gatsby-background-image` 
-or `npm link gatsby-background-image` accordingly.
+project's or `gbitest`'s folder and execute `yarn link gatsby-background-image`
+accordingly.
 
 As Gatsby compiles your project with each change thanks to hot reloading,
 you rather might want to change the line `import BackgroundImage from 'gatsby-background-image'`
 to `import BackgroundImage from 'gatsby-background-image/src'` in your component,
 to prevent a "double-babelification" and this way some warnings when using
-`gatsby-background-image`'s `yarn watch` or `npm run watch` scripts in the background.
+`gatsby-background-image`'s `yarn watch` scripts in the background.
 
 *But now you are good to go and make some changes!*
 (Afterwards, to finalize them before you push em, you may want to run 
