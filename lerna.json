@@ -10,7 +10,7 @@
   },
   "loglevel": "success",
   "packages": ["packages/*"],
-  "version": "independent",
+  "version": "0.5.9",
   "npmClient": "yarn",
   "registry": "https://registry.npmjs.org/",
   "useWorkspaces": true,
