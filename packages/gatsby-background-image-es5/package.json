@@ -21,6 +21,13 @@
     "global": "^4.3.2",
     "prop-types": "^15.7.2"
   },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "babel-preset-gatsby-package": "^0.1.4",
+    "cross-env": "^5.2.0",
+    "react-testing-library": "^5.9.0"
+  },
   "peerDependencies": {
     "react": "16.x",
     "react-dom": "16.x"

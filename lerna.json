@@ -1,6 +1,22 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "0.0.0"
+  "command": {
+    "create": {
+      "license": "MIT"
+    },
+    "publish": {
+      "allowBranch": "master",
+      "message": "chore(release): publish"
+    }
+  },
+  "loglevel": "success",
+  "packages": ["packages/*"],
+  "version": "independent",
+  "npmClient": "yarn",
+  "registry": "https://registry.npmjs.org/",
+  "ignoreChanges": [
+    "CHANGELOG.md",
+    "**/__tests__/**",
+    "**/__mocks__/**",
+    "**/__testfixtures__/**"
+  ]
 }
