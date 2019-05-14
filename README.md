@@ -28,8 +28,8 @@
   </a>  
 </p>
 
-`gatsby-background-image` is a React component which for background-images
-provides,  
+`gatsby-background-image` & `gatsby-background-image-es5` are React components 
+which for background-images provide,  
 what Gatsby's own `gatsby-image` does for the rest of your images.  
 It started by pilfering their excellent work and adapting it - but slowly it's
 outgrowing those wee beginnings.  
@@ -44,7 +44,12 @@ All the glamour (and speed) of `gatsby-image` now for your Background Images!
 
 ___And it's even styleable with `styled-components` and the like!___ 
 
+## Preamble
 
+Since `gatsby-background-image@0.6.0`, this is a monorepo managed by
+[`lerna`](https://lerna.js.org/), so have a look at the individual READMEs of
+- [`gatsby-background-image`](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image#readme)
+- [`gatsby-background-image-es5`](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image-es5#readme)
 
 ## Contributing
 

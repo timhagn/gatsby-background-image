@@ -5,14 +5,14 @@
     },
     "publish": {
       "allowBranch": "master",
-      "message": "chore(release): publish"
+      "message": "chore(release): publish %s"
     }
   },
   "loglevel": "success",
   "packages": [
     "packages/*"
   ],
-  "version": "0.6.0",
+  "version": "0.5.9",
   "npmClient": "yarn",
   "registry": "https://registry.npmjs.org/",
   "useWorkspaces": true,
