@@ -1,4 +1,5 @@
 {
+  "name": "gbi",
   "private": true,
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -28,10 +29,21 @@
     "gatsby-background-image": "file:packages/gatsby-background-image",
     "gatsby-background-image-es5": "file:packages/gatsby-background-image-es5"
   },
-  "ignoreChanges": [
-    "CHANGELOG.md",
-    "**/__tests__/**",
-    "**/__mocks__/**",
-    "**/__testfixtures__/**"
+  "scripts": {
+    "bootstrap": "npm run lerna-prepare",
+    "jest": "jest",
+    "lerna-prepare": "lerna run prepare",
+    "postmarkdown": "prettier --write \"starters/**/*.md\"",
+    "prebootstrap": "yarn",
+    "prettier": "prettier \"**/*.{md,css,scss,yaml,yml,ts}\"",
+    "publish": "lerna publish",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:update": "jest --updateSnapshot",
+    "test:watch": "jest --watch",
+    "version": "prettier --write \"**/CHANGELOG.md\""
+  },
+  "workspaces": [
+    "packages/*"
   ]
 }

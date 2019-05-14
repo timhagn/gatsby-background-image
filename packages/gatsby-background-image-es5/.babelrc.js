@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== `test`) {
   ignore.push(`**/__tests__`)
 }
 
+// Change babel-preset-gatsby-package's options to transpile to polyfilled ES5.
 const gatsbyPresets = require('babel-preset-gatsby-package')(null, { browser: true })
 gatsbyPresets.presets[0][1].corejs = 3
 gatsbyPresets.presets[0][1].useBuiltIns = `entry`

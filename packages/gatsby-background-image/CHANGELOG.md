@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.5.9"></a>
+<a name="0.6.0"></a>
+
+## [0.6.0](https://github.com/timhagn/gatsby-background-image) (2019-05-14)
+
+**feat:** Split packages in `gatsby-background-image` & `gatsby-background-image-es5`.
 
 ## [0.5.9](https://github.com/timhagn/gatsby-background-image) (2019-05-13)
 
