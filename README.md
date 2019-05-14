@@ -20,7 +20,7 @@
   <a href="https://npmcharts.com/compare/gatsby-background-image?minimal=true">
     <img src="https://img.shields.io/npm/dw/gatsby-background-image.svg" alt="Downloads per week on npm." />
   </a>
-  <a href="https://gatsbyjs.org/contributing/how-to-contribute/">
+  <a href="https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
   </a>
   <a href="https://lerna.js.org/">
