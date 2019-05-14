@@ -1,5 +1,5 @@
 <h1 align="center">
-  gatsby-background-image & gatsby-background-image-es5
+  gatsby-background-image(-es5)
 </h1>
 <p align="center">
   <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
