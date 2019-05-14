@@ -36,7 +36,7 @@
     "postmarkdown": "prettier --write \"starters/**/*.md\"",
     "prebootstrap": "yarn",
     "prettier": "prettier \"**/*.{md,css,scss,yaml,yml,ts}\"",
-    "publish": "lerna publish",
+    "pub": "lerna publish",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:update": "jest --updateSnapshot",
