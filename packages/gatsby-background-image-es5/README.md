@@ -345,7 +345,7 @@ without having to use `gatsby-image`'s `itemProp` ; ).
 
 Everyone is more than welcome to contribute to this little package!   
 Docs, Reviews, Testing, Code - whatever you want to add, just go for it : ).
-So have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
+So have a look at our [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
 ## TODO
