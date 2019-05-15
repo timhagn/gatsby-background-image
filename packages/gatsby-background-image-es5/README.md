@@ -27,7 +27,7 @@ what Gatsby's own `gatsby-image` does for the rest of your images.
 
 **This version is completely transpiled to ES5 to target older browsers like IE11!**
 Most polyfills are already built in, though this nearly triples the package size
-compared to `gatsby-background-image`!
+compared to [`gatsby-background-image`](https://www.npmjs.com/package/gatsby-background-image)!
 
 Everything else just works the same as in `gatsby-background-image`, so this
 package has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
