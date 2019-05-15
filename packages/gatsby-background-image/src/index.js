@@ -171,13 +171,19 @@ class BackgroundImage extends React.Component {
     // avoiding initiating unnecessary animation frames from style changes when
     // setting next imageState.
     this.imageRef = activatePictureRef(this.imageRef, this.props)
-    this.setState({ isVisible: true }, () => {
-      this.setState({
-        imgLoaded: imageInCache,
-        imgCached: !!this.imageRef.currentSrc,
+    this.setState(
+      {
+        isVisible: true,
         imageState: this.state.imageState + 1,
-      })
-    })
+      },
+      () => {
+        this.setState({
+          imgLoaded: imageInCache,
+          imgCached: !!this.imageRef.currentSrc,
+          imageState: this.state.imageState + 1,
+        })
+      }
+    )
   }
 
   handleRef(ref) {

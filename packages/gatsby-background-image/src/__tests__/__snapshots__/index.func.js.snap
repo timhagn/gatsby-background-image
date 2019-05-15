@@ -133,7 +133,7 @@ background-size: cover;
             z-index: -100;
             
             
-            opacity: 1; 
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
@@ -178,14 +178,14 @@ background-size: cover;
           }
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
-            background-image: url(string_of_base64);
             
-            opacity: 1; 
+            background-image: url(string_of_base64);
+            opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
-            
             background-image: url(string_of_base64);
+            
           }
         
     </style>
