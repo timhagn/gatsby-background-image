@@ -7,5 +7,7 @@
     "gatsby-background-image-es5": "../packages/gatsby-background-image-es5/",
     "jest": "^24.8.0"
   },
-  "scripts": {}
+  "scripts": {
+    "prebootstrap": "yarn"
+  }
 }
