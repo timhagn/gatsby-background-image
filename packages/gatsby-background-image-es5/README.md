@@ -14,7 +14,7 @@
   <a href="https://codecov.io/gh/timhagn/gatsby-background-image">
     <img src="https://codecov.io/gh/timhagn/gatsby-background-image/branch/master/graph/badge.svg" />
   </a>
-  <a href="https://www.npmjs.org/package/gatsby-background-image">
+  <a href="https://www.npmjs.org/package/gatsby-background-image-es5">
     <img src="https://img.shields.io/npm/v/gatsby-background-image-es5.svg" alt="Current npm package version." />
   </a>
 </p>
