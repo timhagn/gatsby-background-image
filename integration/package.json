@@ -5,7 +5,9 @@
   "dependencies": {
     "gatsby-background-image": "../packages/gatsby-background-image",
     "gatsby-background-image-es5": "../packages/gatsby-background-image-es5/",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "scripts": {
     "prebootstrap": "yarn"

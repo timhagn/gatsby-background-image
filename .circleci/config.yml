@@ -28,7 +28,7 @@ jobs:
 
       - run: yarn install
 
-      - run: cd integration && yarn install && cd ..
+      - run: yarn preintegration
 
       - save_cache:
           paths:

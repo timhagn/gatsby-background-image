@@ -36,6 +36,7 @@
     "lerna-prepare": "lerna run prepare",
     "postmarkdown": "prettier --write \"starters/**/*.md\"",
     "prebootstrap": "yarn",
+    "preintegration": "cd integration && yarn install && cd ..",
     "prettier": "prettier \"**/*.{md,css,scss,yaml,yml,ts}\"",
     "pub": "lerna publish",
     "test": "jest",
