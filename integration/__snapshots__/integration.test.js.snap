@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BackgroundImage /> in gatsby-background-image should create new BackgroundImage instance 1`] = `
+BackgroundImage {
+  "backgroundStyles": Object {
+    "backgroundPosition": "center",
+    "backgroundRepeat": "no-repeat",
+    "backgroundSize": "cover",
+  },
+  "bgImage": "",
+  "cleanUpListeners": undefined,
+  "context": undefined,
+  "handleImageLoaded": [Function],
+  "handleRef": [Function],
+  "imageRef": null,
+  "intersectionListener": [Function],
+  "props": Object {
+    "fadeIn": true,
+  },
+  "refs": Object {},
+  "state": Object {
+    "IOSupported": false,
+    "currentClassNames": "",
+    "fadeIn": true,
+    "hasNoScript": true,
+    "imageState": 0,
+    "imgLoaded": false,
+    "isVisible": false,
+    "seenBefore": false,
+  },
+  "updater": Object {
+    "enqueueForceUpdate": [Function],
+    "enqueueReplaceState": [Function],
+    "enqueueSetState": [Function],
+    "isMounted": [Function],
+  },
+}
+`;
+
+exports[`<BackgroundImage /> in gatsby-background-image-es5 should create new BackgroundImage instance 1`] = `
+BackgroundImage {
+  "backgroundStyles": Object {
+    "backgroundPosition": "center",
+    "backgroundRepeat": "no-repeat",
+    "backgroundSize": "cover",
+  },
+  "bgImage": "",
+  "cleanUpListeners": undefined,
+  "context": undefined,
+  "handleImageLoaded": [Function],
+  "handleRef": [Function],
+  "imageRef": null,
+  "intersectionListener": [Function],
+  "props": Object {
+    "fadeIn": true,
+  },
+  "refs": Object {},
+  "state": Object {
+    "IOSupported": false,
+    "currentClassNames": "",
+    "fadeIn": true,
+    "hasNoScript": true,
+    "imageState": 0,
+    "imgLoaded": false,
+    "isVisible": false,
+    "seenBefore": false,
+  },
+  "updater": Object {
+    "enqueueForceUpdate": [Function],
+    "enqueueReplaceState": [Function],
+    "enqueueSetState": [Function],
+    "isMounted": [Function],
+  },
+}
+`;

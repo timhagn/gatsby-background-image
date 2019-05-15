@@ -1,0 +1,11 @@
+{
+  "name": "gbi-integration-test",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "gatsby-background-image": "../packages/gatsby-background-image",
+    "gatsby-background-image-es5": "../packages/gatsby-background-image-es5/",
+    "jest": "^24.8.0"
+  },
+  "scripts": {}
+}
