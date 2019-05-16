@@ -48,22 +48,45 @@ Haven't found one? Open a new issue and follow the template guidelines there!
 ### Pull Requests
 
 First of all fork [gatsby-background-image](https://github.com/timhagn/gatsby-background-image)
-and clone your fork of it. For textual changes (typos, documentation, addition)
-just write them and read below about creating a PR.
+and `git clone --depth=1` your fork of it. For textual changes (typos, 
+documentation, addition) just write them and read below about creating a PR.
 
 From `v0.6.0` on `gatsby-background-image` is a monorepo managed with [`lerna`](https://lerna.js.org/),
 so this manual will slowly be updated accordingly!
  
 To change or add some code execute `yarn bootstrap` in your cloned 
-forks folder first, to get yourself up and running for development.
+forks folder first, to get yourself up and running for development.  
 A quick `yarn test` tells you if everything is working.
 
-**`yarn link` doesn't work with `lerna` at the moment, I'm gonna update this soon!**   
 To ease debugging, I'd recommend cloning [gbitest](https://github.com/timhagn/gbitest),
-or use your own project. But be sure to run `yarn link` or `npm link` in
-`gatsby-background-image`'s folder so you are then able to change back to your 
-project's or `gbitest`'s folder and execute `yarn link gatsby-background-image`
-accordingly.
+or use your own project.   
+Though `yarn link` doesn't work with `lerna`, we can (ab)use Gatsby's own
+[`gatsby-dev-cli`](https://www.gatsbyjs.org/packages/gatsby-dev-cli/) to debug
+`gatsby-background-image` or `gatsby-background-image-es5`:
+
+First install `gatsby-dev-cli` globally like this:
+
+```
+npm install -g gatsby-dev-cli
+```
+
+Now go to to your projects or `gbitest`'s folder and instead of setting the path
+to a clone of the `gatsby` repo, set the link path to your own cloned fork:
+
+```
+gatsby-dev --set-path-to-repo /your/path/to/your/fork/of/gatsby-background-image
+```
+
+Afterwards, to copy both packages over into your `node_modules` run:
+
+```
+gatsby-dev (--copy-all)
+```
+
+**But be sure to have added one or both of them to your `package.json`, else 
+Gatsby won't find them!**  
+The `--copy-all` option tells `gatsby-dev` to include the `src`, which is
+important fot the next step.
 
 As Gatsby compiles your project with each change thanks to hot reloading,
 you rather might want to change the line `import BackgroundImage from 'gatsby-background-image'`
@@ -92,8 +115,8 @@ All tests are run with `jest` / `jest-dom` and `react-testing-library`
 at the moment, transformed through `babel-jest`.
   
 To get an overview of the tests already existing, run either `yarn test` or 
-`npm run test` and head over to the [test folder](src/__tests__) to see where
-you may help out with some changes : )!
+`npm run test` and head over to the [test folder](packages/gatsby-background-image/src/__tests__) 
+to see where you may help out with some changes : )!
 
 ### Final thoughts
 

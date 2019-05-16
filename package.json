@@ -1,6 +1,5 @@
 {
   "name": "gbi",
-  "version": "0.5.9",
   "private": true,
   "devDependencies": {
     "@babel/cli": "^7.4.4",
