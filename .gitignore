@@ -50,12 +50,9 @@ node_modules/
 .vscode/
 *.sw*
 
+/lerna-debug.log
+
 .serverless/
 yarn.lock
 package-lock.json
-/index.js
-/IntersectionObserverUtils.js
-/ImageUtils.js
-/BackgroundUtils.js
-/StyleUtils.js
-/HelperUtils.js
+
