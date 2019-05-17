@@ -1,6 +1,6 @@
-# Javascript Node CircleCI 2.0 configuration file
+# gatsby-background-image Javascript Node CircleCI 2.1 configuration file
 #
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+# Runs Jest & Integration tests, collects metadata and uploads to codecov.
 #
 version: 2.1
 
