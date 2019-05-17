@@ -48,9 +48,7 @@ jobs:
           path: reports/junit
 
       - store_artifacts:
-          paths:
-            - reports/junit
-            - coverage
+          path: coverage
 
       - codecov/upload:
           file: coverage/coverage-final.json
