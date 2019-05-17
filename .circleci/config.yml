@@ -37,10 +37,20 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # Run the tests and upload coverage data to codecov
-      - run: yarn test:update --collectCoverage=true
+      # Run the tests, store metadata and upload coverage data to codecov
+      - run:
+          name: "GBI Unit & Integration Tests"
+          command: yarn test:update --collectCoverage=true
+          environment:
+            JEST_JUNIT_OUTPUT: "coverage/junit/junit.xml"
+
+      - store_test_results:
+          path: reports/junit
+
       - store_artifacts:
-          path: coverage
+          paths:
+            - reports/junit
+            - coverage
 
       - codecov/upload:
           file: coverage/coverage-final.json

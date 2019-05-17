@@ -37,9 +37,17 @@ module.exports = {
     "json",
     "text",
     "lcov",
-    "clover"
+    "clover",
   ],
 
+  // Add JUnit as a coverage reporter for Circle-CI.
+  reporters: [
+    "default",
+    ["jest-junit", {
+      suiteName: "gbi Unit and Integration tests.",
+      outputDirectory: "./coverage/junit"
+    }],
+  ],
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: null,
 
