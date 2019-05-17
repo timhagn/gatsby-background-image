@@ -13,6 +13,7 @@ jobs:
     docker:
       # Node 11 Image
       - image: circleci/node:11
+    parallelism: 4
 
     working_directory: ~/gatsby-background-image
 
