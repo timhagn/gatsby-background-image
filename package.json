@@ -12,7 +12,7 @@
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^4.2.0",
+    "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.1.0",
@@ -20,7 +20,7 @@
     "jest": "^24.8.0",
     "jest-dom": "^3.2.2",
     "jest-junit": "^6.4.0",
-    "lerna": "^3.13.4",
+    "lerna": "^3.14.1",
     "prettier": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -43,7 +43,8 @@
     "test:coverage": "jest -i --coverage",
     "test:update": "jest -i --updateSnapshot",
     "test:watch": "jest --watch",
-    "version": "prettier --write \"**/CHANGELOG.md\""
+    "version": "prettier --write \"**/CHANGELOG.md\"",
+    "watch": "lerna run watch --no-sort --stream --concurrency 999"
   },
   "workspaces": [
     "packages/*"

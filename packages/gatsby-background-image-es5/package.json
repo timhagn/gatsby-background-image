@@ -43,8 +43,5 @@
   },
   "bugs": {
     "url": "https://github.com/timhagn/gatsby-background-image/issues"
-  },
-  "devDependencies": {
-    "jest-junit": "^6.4.0"
   }
 }
