@@ -373,10 +373,13 @@ const fluidObject = PropTypes.shape({
 })
 
 BackgroundImage.propTypes = {
-  resolutions: fixedObject,
-  sizes: fluidObject,
-  fixed: fixedObject,
-  fluid: fluidObject,
+  resolutions: PropTypes.oneOfType([
+    fluidObject,
+    PropTypes.arrayOf(fixedObject),
+  ]),
+  sizes: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
+  fixed: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fixedObject)]),
+  fluid: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
   fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   durationFadeIn: PropTypes.number,
   title: PropTypes.string,

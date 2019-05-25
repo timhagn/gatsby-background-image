@@ -88,6 +88,17 @@ export const createPictureRef = (props, onLoad) => {
   return null
 }
 
+export const createMultiplePictureRefs = (props, onLoad) => {
+  const convertedProps = convertProps(props)
+  if (
+    typeof window !== `undefined` &&
+    (typeof convertedProps.fluid !== `undefined` ||
+      typeof convertedProps.fixed !== `undefined`)
+  ) {
+
+  }
+}
+
 /**
  * Creates a picture element for the browser to decide which image to load.
  *

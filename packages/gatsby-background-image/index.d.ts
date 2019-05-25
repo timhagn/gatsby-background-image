@@ -24,10 +24,10 @@ declare module 'gatsby-background-image' {
   }
 
   interface IBackgroundImageProps {
-    resolutions?: IFixedObject,
-    sizes?: IFluidObject,
-    fixed?: IFixedObject,
-    fluid?: IFluidObject,
+    resolutions?: IFixedObject | [IFixedObject],
+    sizes?: IFluidObject | [IFluidObject],
+    fixed?: IFixedObject | [IFixedObject],
+    fluid?: IFluidObject | [IFluidObject],
     fadeIn?: string | boolean,
     durationFadeIn?: number,
     title?: string,
