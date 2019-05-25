@@ -12,7 +12,7 @@ export const inImageCache = props => {
   const convertedProps = convertProps(props)
   if (
     (convertedProps.fluid && Array.isArray(convertedProps.fluid)) ||
-    (convertedProps.fluid && Array.isArray(convertedProps.fluid))
+    (convertedProps.fixed && Array.isArray(convertedProps.fixed))
   ) {
     return allInImageCache(props)
   } else {
@@ -58,7 +58,7 @@ export const activateCacheForImage = props => {
   const convertedProps = convertProps(props)
   if (
     (convertedProps.fluid && Array.isArray(convertedProps.fluid)) ||
-    (convertedProps.fluid && Array.isArray(convertedProps.fluid))
+    (convertedProps.fixed && Array.isArray(convertedProps.fixed))
   ) {
     return activateCacheForMultipleImages(props)
   } else {
@@ -123,7 +123,7 @@ export const createPictureRef = (props, onLoad) => {
   ) {
     if (
       (convertedProps.fluid && Array.isArray(convertedProps.fluid)) ||
-      (convertedProps.fluid && Array.isArray(convertedProps.fluid))
+      (convertedProps.fixed && Array.isArray(convertedProps.fixed))
     ) {
       return createMultiplePictureRefs(props, onLoad)
     } else {
@@ -194,7 +194,7 @@ export const activatePictureRef = (imageRef, props) => {
   ) {
     if (
       (convertedProps.fluid && Array.isArray(convertedProps.fluid)) ||
-      (convertedProps.fluid && Array.isArray(convertedProps.fluid))
+      (convertedProps.fixed && Array.isArray(convertedProps.fixed))
     ) {
       return activateMultiplePictureRefs(imageRef, props)
     } else {
@@ -302,13 +302,16 @@ export const noscriptImg = props => {
  * @return {{noBase64: boolean, afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
  */
 export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
-  const noBase64 = !image.base64
+  const noBase64 = !getCurrentFromData(image, `base64`, false)
   // Set the backgroundImage according to images available.
   let nextImage = ``
-  if (image.tracedSVG) nextImage = `"${image.tracedSVG}"`
-  if (image.base64 && !image.tracedSVG) nextImage = image.base64
+  if (image.tracedSVG) nextImage = getCurrentFromData(image, `tracedSVG`)
+  if (image.base64 && !image.tracedSVG)
+    nextImage = getCurrentFromData(image, `base64`)
   if (state.imgLoaded && state.isVisible)
-    nextImage = (imageRef && imageRef.currentSrc) || ``
+    nextImage = getCurrentFromData(imageRef, `currentSrc`) || ``
+
+  // TODO: find out why base64 images are not loaded(?) with arrays (or only after hot reload oO)
 
   // Switch bgImage & nextImage and opacity accordingly.
   const lastImage = bgImage
@@ -320,9 +323,9 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     state.imgLoaded &&
     state.isVisible &&
     imageRef &&
-    !imageRef.currentSrc
+    ((Array.isArray(imageRef) && !imageRef[0].currentSrc) || !imageRef.currentSrc)
   ) {
-    nextImage = imageRef.src
+    nextImage = getCurrentFromData(imageRef, `src`)
   }
   // Fall back on lastImage (important for prop changes) if all else fails.
   if (nextImage === ``) nextImage = lastImage
@@ -332,6 +335,60 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     nextImage,
     afterOpacity,
     noBase64,
+  }
+}
+
+/**
+ * Extracts a value from an imageRef or image object or an array of them.
+ *
+ * @param data
+ * @param propName
+ * @param addUrl
+ * @return {string}
+ */
+export const getCurrentFromData = (data, propName, addUrl = true) => {
+  if (!data || !propName) return ``
+  // Handle tracedSVG with "special care".
+  const tracedSVG = propName === `tracedSVG`
+  if (Array.isArray(data)) {
+    // Filter out all elements not having the propName and return remaining.
+    const filteredDataStrings = data.filter(dataElement => {
+      return propName in dataElement && dataElement[propName]
+    }).map(dataElement => dataElement[propName])
+    // Encapsulate in URL string and return.
+    return getUrlString(filteredDataStrings, tracedSVG, addUrl)
+  } else {
+    return propName in data
+      ? getUrlString(data[propName], tracedSVG, addUrl)
+      : ``
+  }
+}
+
+/**
+ * Encapsulates an imageString with a url if needed.
+ *
+ * @param imageString   string    String to encapsulate.
+ * @param tracedSVG     boolean   Special care for SVGs.
+ * @param addUrl        boolean   If the string should be encapsulated or not.
+ * @return {string}
+ */
+export const getUrlString = (imageString, tracedSVG = false, addUrl = true) => {
+  if (Array.isArray(imageString)) {
+    return imageString
+      .map(currentString => {
+        const currentReturnString =
+          tracedSVG && currentString ? `"${currentString}"` : currentString
+        return currentString
+          ? addUrl
+            ? `url(${currentReturnString})`
+            : currentReturnString
+          : ``
+      })
+      .join(`,`)
+  } else {
+    const returnString =
+      tracedSVG && imageString ? `"${imageString}"` : imageString
+    return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``
   }
 }
 

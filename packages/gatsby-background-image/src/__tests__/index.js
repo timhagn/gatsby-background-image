@@ -40,6 +40,11 @@ describe(`<BackgroundImage />`, () => {
     expect(component).toMatchSnapshot()
   })
 
+  it(`should render stacked fixed size images`, () => {
+    const component = setupBackgroundImage({ multiImage: true })
+    expect(component).toMatchSnapshot()
+  })
+
   it(`should call critical fixed images`, () => {
     activateCacheForImage({ fixed: fixedShapeMock })
     const options = {
@@ -52,7 +57,12 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should render fluid images`, () => {
-    const component = setupBackgroundImage({fluid: true})
+    const component = setupBackgroundImage({ fluid: true })
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should render fluid images`, () => {
+    const component = setupBackgroundImage({ fluid: true, multiImage: true })
     expect(component).toMatchSnapshot()
   })
 
@@ -90,7 +100,7 @@ describe(`<BackgroundImage />`, () => {
     const options = {
       fluid: true,
       addClass: true,
-      additionalClass: `test`
+      additionalClass: `test`,
     }
     const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
@@ -157,7 +167,7 @@ describe(`<BackgroundImage />`, () => {
 
   it(`should create style tag with pseudo-elements`, () => {
     const options = {
-      additionalClass: `test`
+      additionalClass: `test`,
     }
     const component = setupBackgroundImage(options)
     const styleTag = component.querySelector(`style`)

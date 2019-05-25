@@ -5,7 +5,7 @@ import { convertProps, stripRemainingProps } from './HelperUtils'
 import {
   activateCacheForImage,
   activatePictureRef,
-  createPictureRef,
+  createPictureRef, getCurrentFromData,
   imagePropsChanged,
   inImageCache,
   noscriptImg,
@@ -134,11 +134,8 @@ class BackgroundImage extends React.Component {
           // imageState: (this.state.imageState + 1) % 2,
         },
         () => {
-          // Update bgImage & create new imageRef.
-          this.bgImage =
-            (this.imageRef && this.imageRef.currentSrc) ||
-            // (this.imageRef && this.imageRef.src) ||
-            ``
+          // Update bgImage & create new imageRef(s).
+          this.bgImage = getCurrentFromData(this.imageRef, `currentSrc`)
           this.imageRef = createPictureRef(
             { ...this.props, isVisible: this.state.isVisible },
             this.handleImageLoaded
@@ -149,9 +146,14 @@ class BackgroundImage extends React.Component {
   }
 
   componentWillUnmount() {
-    // Prevent calling handleImageLoaded from the imageRef after unmount.
+    // Prevent calling handleImageLoaded from the imageRef(s) after unmount.
     if (this.imageRef) {
-      this.imageRef.onload = null
+      if (Array.isArray(this.imageRef)) {
+        this.imageRef.forEach(currentImageRef => currentImageRef.onload = null)
+      }
+      else {
+        this.imageRef.onload = null
+      }
     }
     // Clean up all IntersectionObserver listeners.
     if (this.cleanUpListeners) {
@@ -300,9 +302,11 @@ class BackgroundImage extends React.Component {
 
     // TODO: Check switching again (fadeIn).
 
+    //console.log(pseudoStyles)
+
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&
-      `fixed`}-${JSON.stringify(image.srcSet)}`
+      `fixed`}-${JSON.stringify(noScriptImageData.srcSet)}`
 
     return (
       <Tag

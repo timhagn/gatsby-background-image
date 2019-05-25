@@ -29,7 +29,7 @@ exports[`switchImageSettings() should return settings from fixed with set bgImag
 Object {
   "afterOpacity": NaN,
   "lastImage": "string_of_base64",
-  "nextImage": "string_of_base64",
+  "nextImage": "url(string_of_base64)",
   "noBase64": false,
 }
 `;
@@ -38,7 +38,7 @@ exports[`switchImageSettings() should return settings from fixed with set bgImag
 Object {
   "afterOpacity": NaN,
   "lastImage": "string_of_base64",
-  "nextImage": "string_of_base64",
+  "nextImage": "url(string_of_base64)",
   "noBase64": false,
 }
 `;
@@ -47,7 +47,7 @@ exports[`switchImageSettings() should return settings from fluid with empty bgIm
 Object {
   "afterOpacity": NaN,
   "lastImage": "",
-  "nextImage": "string_of_base64",
+  "nextImage": "url(string_of_base64)",
   "noBase64": false,
 }
 `;
@@ -65,7 +65,7 @@ exports[`switchImageSettings() should return settings from fluid with set bgImag
 Object {
   "afterOpacity": NaN,
   "lastImage": "test_tracedSVG.svg",
-  "nextImage": "\\"test_tracedSVG.svg\\"",
+  "nextImage": "url(\\"test_tracedSVG.svg\\")",
   "noBase64": true,
 }
 `;

@@ -99,6 +99,19 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     expect(component).toMatchSnapshot()
   })
 
+  it(`should call stacked critical fixed images`, () => {
+    activateCacheForImage({ fixed: [fixedShapeMock, fixedShapeMock] })
+    const options = {
+      addClass: true,
+      critical: true,
+      fixed: true,
+      multiImage: true,
+    }
+    const component = setupBackgroundImage(options)
+    mockAllIsIntersecting(true)
+    expect(component).toMatchSnapshot()
+  })
+
   it(`should not call onLoad without prop, fadeIn should stay falsy without seenBefore`, () => {
     const options = {
       addClass: true,

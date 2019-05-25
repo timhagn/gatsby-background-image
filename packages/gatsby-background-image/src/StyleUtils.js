@@ -69,8 +69,13 @@ export const fixClassName = ({ className, ...props }) => {
   const convertedProps = convertProps(props)
   const elementExists = inComponentClassCache(className)
 
+  // Extract imageData.
   const imageData = convertedProps.fluid
-    ? convertedProps.fluid
+    ? Array.isArray(convertedProps.fluid)
+      ? convertedProps.fluid[0]
+      : convertedProps.fluid
+    : Array.isArray(convertedProps.fixed)
+    ? convertedProps.fixed[0]
     : convertedProps.fixed
 
   // Create random "uniquely hashed" additionalClass if needed.
@@ -232,12 +237,12 @@ export const createPseudoStyles = ({
             z-index: -100;
             ${
               afterOpacity && nextImage
-                ? `background-image: url(${nextImage});`
+                ? `background-image: ${nextImage};`
                 : ``
             }
             ${
               !afterOpacity && lastImage
-                ? `background-image: url(${lastImage});`
+                ? `background-image: ${lastImage};`
                 : ``
             }
             opacity: ${afterOpacity}; 
@@ -246,12 +251,12 @@ export const createPseudoStyles = ({
             z-index: -101;
             ${
               !afterOpacity && nextImage
-                ? `background-image: url(${nextImage});`
+                ? `background-image: ${nextImage};`
                 : ``
             }
             ${
               afterOpacity && lastImage
-                ? `background-image: url(${lastImage});`
+                ? `background-image: ${lastImage};`
                 : ``
             }
           }

@@ -51,6 +51,7 @@ export const createStyleElement = () => {
  * @param addBackgroundColor
  * @param fadeIn
  * @param props
+ * @param multiImage
  * @return {RenderResult.container}
  */
 export const setupBackgroundImage = ({
@@ -67,10 +68,13 @@ export const setupBackgroundImage = ({
                         addBackgroundColor = true,
                         fadeIn = false,
                         props = {},
+                        multiImage = false,
                       }) => {
   if (addClass) {
     createStyleElement()
   }
+  const currentFixedMock = multiImage ? { fixed: [fixedShapeMock, fixedShapeMock]} : { fixed: fixedShapeMock }
+  const currentFluidMock = multiImage ? { fluid: [fluidShapeMock, fluidShapeMock]} : { fluid: fluidShapeMock }
   const classNames = fixedClass
     ? `imageClass ${additionalClass}`
     : additionalClass.trim()
@@ -82,8 +86,8 @@ export const setupBackgroundImage = ({
       title={`Title for the image`}
       alt={`Alt text for the image`}
       id={`testid`}
-      {...fluid && { fluid: fluidShapeMock }}
-      {...!fluid && fixed && { fixed: fixedShapeMock }}
+      {...fluid && currentFluidMock}
+      {...!fluid && fixed && currentFixedMock}
       onLoad={onLoad}
       onError={onError}
       {...addClassId && { classId: `test` }}
