@@ -58,6 +58,15 @@ To change or add some code execute `yarn bootstrap` in your cloned
 forks folder first, to get yourself up and running for development.  
 A quick `yarn test` tells you if everything is working.
 
+To execute a local CircleCI run of configured [jobs](.circleci/config.yml), 
+install [docker](https://docs.docker.com/install/)
+as well as [circleci-cli](https://circleci.com/docs/2.0/local-cli/).
+Afterwards run the following:
+
+```
+yarn cci
+```
+
 To ease debugging, I'd recommend cloning [gbitest](https://github.com/timhagn/gbitest),
 or use your own project.   
 Though `yarn link` doesn't work with `lerna`, we can (ab)use Gatsby's own
@@ -77,7 +86,7 @@ to a clone of the `gatsby` repo, set the link path to your own cloned fork:
 gatsby-dev --set-path-to-repo /your/path/to/your/fork/of/gatsby-background-image
 ```
 
-Afterwards, to copy both packages over into your `node_modules` run:
+Afterwards, to copy both packages over into your `node_modules` folder, run:
 
 ```
 gatsby-dev (--copy-all)
