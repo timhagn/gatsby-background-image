@@ -259,9 +259,10 @@ class BackgroundImage extends React.Component {
     }
 
     // Choose image object of fluid or fixed, return null if not present.
-    let image
+    let image, noScriptImageData
     if (fluid) {
       image = fluid
+      noScriptImageData = Array.isArray(fluid) ? fluid[0] : fluid
     } else if (fixed) {
       image = fixed
       divStyle.width = image.width
@@ -271,6 +272,7 @@ class BackgroundImage extends React.Component {
       if (style.display === `inherit`) {
         delete divStyle.display
       }
+      noScriptImageData = Array.isArray(fixed) ? fixed[0] : fixed
     } else {
       return null
     }
@@ -330,7 +332,7 @@ class BackgroundImage extends React.Component {
                 title,
                 ...(divStyle.width && divStyle.width),
                 ...(divStyle.height && divStyle.height),
-                ...image,
+                ...noScriptImageData,
               }),
             }}
           />
@@ -374,11 +376,11 @@ const fluidObject = PropTypes.shape({
 
 BackgroundImage.propTypes = {
   resolutions: PropTypes.oneOfType([
-    fluidObject,
+    fixedObject,
     PropTypes.arrayOf(fixedObject),
   ]),
   sizes: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
-  fixed: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fixedObject)]),
+  fixed: PropTypes.oneOfType([fixedObject, PropTypes.arrayOf(fixedObject)]),
   fluid: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
   fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   durationFadeIn: PropTypes.number,
