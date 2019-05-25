@@ -32,6 +32,7 @@
   },
   "scripts": {
     "bootstrap": "npm run lerna-prepare",
+    "cci": "scripts/runcircleci.sh",
     "jest": "jest",
     "lerna-prepare": "lerna run prepare",
     "postmarkdown": "prettier --write \"starters/**/*.md\"",
