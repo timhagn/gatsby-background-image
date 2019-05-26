@@ -1,5 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`activatePictureRef() with image array should return imageRef array with fixed Array Mock 1`] = `
+Array [
+  <img
+    src="test_fixed_image.jpg"
+    srcset="some srcSet"
+  />,
+  <img
+    src="test_fixed_image.jpg"
+    srcset="some srcSet"
+  />,
+]
+`;
+
+exports[`activatePictureRef() with image array should return imageRef array with fluid Array Mock 1`] = `
+Array [
+  <img
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
+  />,
+  <img
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
+  />,
+]
+`;
+
 exports[`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11) activatePictureRef() should still create an imageRef 1`] = `
 <img
   src="test_fluid_image.jpg"
@@ -23,6 +49,15 @@ exports[`noscriptImg() should return noscriptImg with opacity & transitionDelay 
 <div>
   &lt;picture&gt;&lt;img src="" alt="" crossorigin="anonymous" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:100;opacity:0.99;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
 </div>
+`;
+
+exports[`switchImageSettings() should return settings from fixed array without currentSrc 1`] = `
+Object {
+  "afterOpacity": NaN,
+  "lastImage": undefined,
+  "nextImage": "url(test.jpg)",
+  "noBase64": true,
+}
 `;
 
 exports[`switchImageSettings() should return settings from fixed with set bgImage 1`] = `
@@ -56,7 +91,7 @@ exports[`switchImageSettings() should return settings from fluid with set bgImag
 Object {
   "afterOpacity": NaN,
   "lastImage": "string_of_base64",
-  "nextImage": "string_of_base64",
+  "nextImage": "url(test.webp)",
   "noBase64": true,
 }
 `;
@@ -65,7 +100,7 @@ exports[`switchImageSettings() should return settings from fluid with set bgImag
 Object {
   "afterOpacity": NaN,
   "lastImage": "test_tracedSVG.svg",
-  "nextImage": "url(\\"test_tracedSVG.svg\\")",
+  "nextImage": "url(test.webp)",
   "noBase64": true,
 }
 `;
@@ -74,7 +109,7 @@ exports[`switchImageSettings() should return settings from fluid with set bgImag
 Object {
   "afterOpacity": NaN,
   "lastImage": "",
-  "nextImage": "",
+  "nextImage": "url(test.webp)",
   "noBase64": true,
 }
 `;

@@ -30,22 +30,21 @@ export const inImageCache = props => {
 /**
  * Processes an array of cached images for inImageCache.
  *
- * @param props
+ * @param props  object    Component Props (with fluid or fixed as array).
  * @return {*|boolean}
  */
 export const allInImageCache = props => {
   const convertedProps = convertProps(props)
   // Extract Image Array.
-  const imageStack = convertedProps.fluid || convertedProps.fixed || []
+  const imageStack = convertedProps.fluid || convertedProps.fixed
   // Only return true if every image is in cache.
   return imageStack.every(imageData => {
     if (convertedProps.fluid) {
       return inImageCache({ fluid: imageData })
     }
-    if (convertedProps.fixed) {
+    else {
       return inImageCache({ fixed: imageData })
     }
-    return false
   })
 }
 
@@ -82,12 +81,12 @@ export const activateCacheForImage = props => {
 export const activateCacheForMultipleImages = props => {
   const convertedProps = convertProps(props)
   // Extract Image Array.
-  const imageStack = convertedProps.fluid || convertedProps.fixed || []
+  const imageStack = convertedProps.fluid || convertedProps.fixed
   imageStack.forEach(imageData => {
     if (convertedProps.fluid) {
       activateCacheForImage({ fluid: imageData })
     }
-    if (convertedProps.fixed) {
+    else {
       activateCacheForImage({ fixed: imageData })
     }
   })
@@ -152,30 +151,24 @@ export const createPictureRef = (props, onLoad) => {
 }
 
 /**
- * Creates multiple image references.
+ * Creates multiple image references. Internal function.
  *
- * @param props
- * @param onLoad
+ * @param props   object    Component Props (with fluid or fixed as array).
+ * @param onLoad  function  Callback for load handling.
  */
 export const createMultiplePictureRefs = (props, onLoad) => {
   const convertedProps = convertProps(props)
-  if (
-    typeof window !== `undefined` &&
-    (typeof convertedProps.fluid !== `undefined` ||
-      typeof convertedProps.fixed !== `undefined`) &&
-    (Array.isArray(convertedProps.fluid) || Array.isArray(convertedProps.fixed))
-  ) {
-    // Extract Image Array.
-    const imageStack = convertedProps.fluid || convertedProps.fixed || []
-    return imageStack.map(imageData => {
-      if (convertedProps.fluid) {
-        return createPictureRef({ ...convertedProps, fluid: imageData }, onLoad)
-      }
-      if (convertedProps.fixed) {
-        return createPictureRef({ ...convertedProps, fixed: imageData }, onLoad)
-      }
-    })
-  }
+
+  // Extract Image Array.
+  const imageStack = convertedProps.fluid || convertedProps.fixed
+  return imageStack.map(imageData => {
+    if (convertedProps.fluid) {
+      return createPictureRef({ ...convertedProps, fluid: imageData }, onLoad)
+    }
+    else {
+      return createPictureRef({ ...convertedProps, fixed: imageData }, onLoad)
+    }
+  })
 }
 
 /**
@@ -234,29 +227,22 @@ export const activatePictureRef = (imageRef, props) => {
  */
 export const activateMultiplePictureRefs = (imageRefs, props) => {
   const convertedProps = convertProps(props)
-  if (
-    typeof window !== `undefined` &&
-    (typeof convertedProps.fluid !== `undefined` ||
-      typeof convertedProps.fixed !== `undefined`) &&
-    (Array.isArray(convertedProps.fluid) || Array.isArray(convertedProps.fixed))
-  ) {
-    // Extract Image Array.
-    return imageRefs.map((imageRef, index) => {
-      if (convertedProps.fluid) {
-        return activatePictureRef(imageRef, {
-          ...convertedProps,
-          fluid: convertedProps.fluid[index],
-        })
-      }
-      if (convertedProps.fixed) {
-        return activatePictureRef(imageRef, {
-          ...convertedProps,
-          fixed: convertedProps.fixed[index],
-        })
-      }
-    })
-  }
-  return null
+
+  // Extract Image Array.
+  return imageRefs.map((imageRef, index) => {
+    if (convertedProps.fluid) {
+      return activatePictureRef(imageRef, {
+        ...convertedProps,
+        fluid: convertedProps.fluid[index],
+      })
+    }
+    else {
+      return activatePictureRef(imageRef, {
+        ...convertedProps,
+        fixed: convertedProps.fixed[index],
+      })
+    }
+  })
 }
 
 /**
@@ -323,7 +309,8 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     state.imgLoaded &&
     state.isVisible &&
     imageRef &&
-    ((Array.isArray(imageRef) && !imageRef[0].currentSrc) || !imageRef.currentSrc)
+    ((Array.isArray(imageRef) && !imageRef[0].currentSrc) ||
+      (!Array.isArray(imageRef) && !imageRef.currentSrc))
   ) {
     nextImage = getCurrentFromData(imageRef, `src`)
   }
@@ -352,9 +339,11 @@ export const getCurrentFromData = (data, propName, addUrl = true) => {
   const tracedSVG = propName === `tracedSVG`
   if (Array.isArray(data)) {
     // Filter out all elements not having the propName and return remaining.
-    const filteredDataStrings = data.filter(dataElement => {
-      return propName in dataElement && dataElement[propName]
-    }).map(dataElement => dataElement[propName])
+    const filteredDataStrings = data
+      .filter(dataElement => {
+        return propName in dataElement && dataElement[propName]
+      })
+      .map(dataElement => dataElement[propName])
     // Encapsulate in URL string and return.
     return getUrlString(filteredDataStrings, tracedSVG, addUrl)
   } else {
@@ -378,11 +367,7 @@ export const getUrlString = (imageString, tracedSVG = false, addUrl = true) => {
       .map(currentString => {
         const currentReturnString =
           tracedSVG && currentString ? `"${currentString}"` : currentString
-        return currentString
-          ? addUrl
-            ? `url(${currentReturnString})`
-            : currentReturnString
-          : ``
+        return addUrl ? `url(${currentReturnString})` : currentReturnString
       })
       .join(`,`)
   } else {
@@ -403,10 +388,10 @@ export const imagePropsChanged = (props, prevProps) =>
   // Do we have different image types?
   (props.fluid && !prevProps.fluid) ||
   (props.fixed && !prevProps.fixed) ||
-  // Did the props change to an Array?
+  // Did the props change to a single image?
   (Array.isArray(props.fluid) && !Array.isArray(prevProps.fluid)) ||
   (Array.isArray(props.fixed) && !Array.isArray(prevProps.fixed)) ||
-  // Did the props change to a single image?
+  // Did the props change to an Array?
   (!Array.isArray(props.fluid) && Array.isArray(prevProps.fluid)) ||
   (!Array.isArray(props.fixed) && Array.isArray(prevProps.fixed)) ||
   // Are the first sources in the Arrays different?

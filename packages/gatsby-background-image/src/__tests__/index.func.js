@@ -112,6 +112,20 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     expect(component).toMatchSnapshot()
   })
 
+  it(`should call stacked critical fluid images`, () => {
+    activateCacheForImage({ fluid: [fluidShapeMock, fluidShapeMock] })
+    const options = {
+      addClass: true,
+      critical: true,
+      fixed: false,
+      fluid: true,
+      multiImage: true,
+    }
+    const component = setupBackgroundImage(options)
+    mockAllIsIntersecting(true)
+    expect(component).toMatchSnapshot()
+  })
+
   it(`should not call onLoad without prop, fadeIn should stay falsy without seenBefore`, () => {
     const options = {
       addClass: true,
@@ -191,6 +205,3 @@ describe(`<BackgroundImage /> without IO`, () => {
     expect(onLoadFunctionMock).toHaveBeenCalled()
   })
 })
-
-
-

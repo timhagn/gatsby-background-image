@@ -11,6 +11,8 @@ import {
   switchImageSettings,
   imagePropsChanged,
   activatePictureRef,
+  getCurrentFromData,
+  getUrlString,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
@@ -23,6 +25,14 @@ const fixedMock = {
 
 const fluidMock = {
   fluid: fluidShapeMock,
+}
+
+const fixedArrayMock = {
+  fixed: [fixedShapeMock, fixedShapeMock],
+}
+
+const fluidArrayMock = {
+  fluid: [fluidShapeMock, fluidShapeMock],
 }
 
 describe(`createPictureRef()`, () => {
@@ -44,10 +54,10 @@ describe(`createPictureRef() with crossOrigin`, () => {
       crossOrigin: `anonymous`,
     })
     expect(emptyImageRef).toMatchInlineSnapshot(`
-            <img
-              crossorigin="anonymous"
-            />
-        `)
+                                                            <img
+                                                              crossorigin="anonymous"
+                                                            />
+                                        `)
   })
 })
 
@@ -85,11 +95,11 @@ describe(`createPictureRef() with critical image`, () => {
       critical: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                              <img
-                                src="test_fixed_image.jpg"
-                                srcset="some srcSet"
-                              />
-                    `)
+                                                                              <img
+                                                                                src="test_fixed_image.jpg"
+                                                                                srcset="some srcSet"
+                                                                              />
+                                                    `)
   })
   it(`should preload image on isVisible state`, () => {
     const imageRef = createPictureRef({
@@ -97,11 +107,11 @@ describe(`createPictureRef() with critical image`, () => {
       isVisible: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                              <img
-                                src="test_fixed_image.jpg"
-                                srcset="some srcSet"
-                              />
-                    `)
+                                                                              <img
+                                                                                src="test_fixed_image.jpg"
+                                                                                srcset="some srcSet"
+                                                                              />
+                                                    `)
   })
   it(`should set empty strings for image on critical without src & srcSet`, () => {
     const fixedMock = { ...fixedShapeMock }
@@ -112,11 +122,52 @@ describe(`createPictureRef() with critical image`, () => {
       critical: true,
     })
     expect(emptyImageRef).toMatchInlineSnapshot(`
-      <img
-        src=""
-        srcset=""
-      />
+                                                      <img
+                                                        src=""
+                                                        srcset=""
+                                                      />
+                                    `)
+  })
+})
+
+describe(`createPictureRef() with image array`, () => {
+  it(`should return imageRef array with fixed Array Mock`, () => {
+    const imageRef = createPictureRef({
+      ...fixedArrayMock,
+      critical: true,
+    })
+    expect(imageRef).toMatchInlineSnapshot(`
+      Array [
+        <img
+          src="test_fixed_image.jpg"
+          srcset="some srcSet"
+        />,
+        <img
+          src="test_fixed_image.jpg"
+          srcset="some srcSet"
+        />,
+      ]
     `)
+  })
+})
+
+describe(`activatePictureRef() with image array`, () => {
+  it(`should return imageRef array with fluid Array Mock`, () => {
+    const testImg = new Image()
+    const dummyImageRef = activatePictureRef([testImg, testImg], {
+      ...fluidArrayMock,
+      critical: true,
+    })
+    expect(dummyImageRef).toMatchSnapshot()
+  })
+
+  it(`should return imageRef array with fixed Array Mock`, () => {
+    const testImg = new Image()
+    const dummyImageRef = activatePictureRef([testImg, testImg], {
+      ...fixedArrayMock,
+      critical: true,
+    })
+    expect(dummyImageRef).toMatchSnapshot()
   })
 })
 
@@ -245,6 +296,19 @@ describe(`switchImageSettings()`, () => {
     expect(createdSettings).toMatchSnapshot()
   })
 
+  it(`should return settings from fixed array without currentSrc`, () => {
+    const mockImageRefNoCurrentSrc = [{ ...mockImageRef }]
+    delete mockImageRefNoCurrentSrc[0].currentSrc
+    state.isVisible = true
+    state.imgLoaded = true
+    const createdSettings = switchImageSettings({
+      image: {},
+      imageRef: mockImageRefNoCurrentSrc,
+      state,
+    })
+    expect(createdSettings).toMatchSnapshot()
+  })
+
   it(`should return settings from fluid with set bgImage without base64`, () => {
     const fluid = fluidShapeMock
     delete fluid.base64
@@ -293,8 +357,24 @@ describe(`imagePropsChanged()`, () => {
     expect(changedFixed).toBeFalsy()
   })
 
+  it(`should return false for same fixed array prop`, () => {
+    const changedFixed = imagePropsChanged(
+      [fixedMock, fixedMock],
+      [fixedMock, fixedMock]
+    )
+    expect(changedFixed).toBeFalsy()
+  })
+
   it(`should return false for same fluid prop`, () => {
     const changedFluid = imagePropsChanged(fluidMock, fluidMock)
+    expect(changedFluid).toBeFalsy()
+  })
+
+  it(`should return false for same fluid array prop`, () => {
+    const changedFluid = imagePropsChanged(
+      [fluidMock, fluidMock],
+      [fluidMock, fluidMock]
+    )
     expect(changedFluid).toBeFalsy()
   })
 
@@ -303,8 +383,78 @@ describe(`imagePropsChanged()`, () => {
     expect(changedFluidToFixed).toBeTruthy()
   })
 
+  it(`should return true from fluid to fluid array`, () => {
+    const changedFluidToFixed = imagePropsChanged(fluidMock, fluidArrayMock)
+    expect(changedFluidToFixed).toBeTruthy()
+  })
+
+  it(`should return true from fluid array to fluid`, () => {
+    const changedFluidToFixed = imagePropsChanged(fluidArrayMock, fluidMock)
+    expect(changedFluidToFixed).toBeTruthy()
+  })
+
   it(`should return true from fixed to fluid`, () => {
     const changedFixedToFluid = imagePropsChanged(fixedMock, fluidMock)
     expect(changedFixedToFluid).toBeTruthy()
+  })
+
+  it(`should return true from fixed to fixed array`, () => {
+    const changedFixedToFluid = imagePropsChanged(fixedMock, fixedArrayMock)
+    expect(changedFixedToFluid).toBeTruthy()
+  })
+
+  it(`should return true from fixed array to fixed`, () => {
+    const changedFixedToFluid = imagePropsChanged(fixedArrayMock, fixedMock)
+    expect(changedFixedToFluid).toBeTruthy()
+  })
+
+  it(`should return true for fixed arrays with different sources`, () => {
+    const secondFixedArrayMock = { ...fixedArrayMock }
+    secondFixedArrayMock.fixed = [{ src: `different` }, { src: `different` }]
+    const changedFixedToFluid = imagePropsChanged(
+      fixedArrayMock,
+      secondFixedArrayMock
+    )
+    expect(changedFixedToFluid).toBeTruthy()
+  })
+
+  it(`should return true for fluid arrays with different sources`, () => {
+    const secondFluidArrayMock = { ...fluidArrayMock }
+    secondFluidArrayMock.fluid = [{ src: `different` }, { src: `different` }]
+    const changedFixedToFluid = imagePropsChanged(
+      fluidArrayMock,
+      secondFluidArrayMock
+    )
+    expect(changedFixedToFluid).toBeTruthy()
+  })
+})
+
+describe(`getCurrentFromData() & getUrlString()`, () => {
+  it(`getCurrentFromData() should return false for empty data & propName`, () => {
+    const returnedString = getCurrentFromData(null, null)
+    expect(returnedString).toBeFalsy()
+  })
+
+  it(`getCurrentFromData() should return string for data & propName`, () => {
+    const returnedString = getCurrentFromData([{ blubb: `some_SVG` }], `blubb`)
+    expect(returnedString).toMatchInlineSnapshot(`"url(some_SVG)"`)
+  })
+
+  it(`getCurrentFromData() should return empty string for data & propName`, () => {
+    const returnedString = getCurrentFromData([{ blubb: null }], `blubb`)
+    expect(returnedString).toMatchInlineSnapshot(`""`)
+  })
+
+  it(`getCurrentFromData() should return string for data & propName tracedSVG`, () => {
+    const returnedString = getCurrentFromData(
+      [{ tracedSVG: `some_SVG` }],
+      `tracedSVG`
+    )
+    expect(returnedString).toMatchInlineSnapshot(`"url(\\"some_SVG\\")"`)
+  })
+
+  it(`getUrlString() should return empty string for data & propName`, () => {
+    const returnedString = getUrlString([`blubb`])
+    expect(returnedString).toMatchInlineSnapshot(`"url(blubb)"`)
   })
 })
