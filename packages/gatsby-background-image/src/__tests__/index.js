@@ -56,6 +56,18 @@ describe(`<BackgroundImage />`, () => {
     expect(component).toMatchSnapshot()
   })
 
+  it(`should call multiple critical fixed images`, () => {
+    activateCacheForImage({ fixed: [fixedShapeMock, fixedShapeMock] })
+    const options = {
+      addClass: true,
+      critical: true,
+      fixed: true,
+      multiImage: true,
+    }
+    const component = setupBackgroundImage(options)
+    expect(component).toMatchSnapshot()
+  })
+
   it(`should render fluid images`, () => {
     const component = setupBackgroundImage({ fluid: true })
     expect(component).toMatchSnapshot()
@@ -72,6 +84,18 @@ describe(`<BackgroundImage />`, () => {
       fluid: true,
       addClass: true,
       critical: true,
+    }
+    const component = setupBackgroundImage(options)
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should call multiple critical fluid images`, () => {
+    activateCacheForImage({ fluid: [fluidShapeMock, fluidShapeMock] })
+    const options = {
+      fluid: true,
+      addClass: true,
+      critical: true,
+      multiImage: true,
     }
     const component = setupBackgroundImage(options)
     expect(component).toMatchSnapshot()
