@@ -451,26 +451,57 @@ export const imagePropsChanged = (props, prevProps) =>
   // Do we have different image types?
   (props.fluid && !prevProps.fluid) ||
   (props.fixed && !prevProps.fixed) ||
-  // Did the props change to a single image?
-  (Array.isArray(props.fluid) && !Array.isArray(prevProps.fluid)) ||
-  (Array.isArray(props.fixed) && !Array.isArray(prevProps.fixed)) ||
-  // Did the props change to an Array?
-  (!Array.isArray(props.fluid) && Array.isArray(prevProps.fluid)) ||
-  (!Array.isArray(props.fixed) && Array.isArray(prevProps.fixed)) ||
-  // Are the first sources in the Arrays different?
-  // TODO: loop through array and check individually!
-  (Array.isArray(props.fluid) &&
-    Array.isArray(prevProps.fluid) &&
-    props.fluid[0].src !== prevProps.fluid[0].src) ||
-  (Array.isArray(props.fixed) &&
-    Array.isArray(prevProps.fixed) &&
-    props.fixed[0].src !== prevProps.fixed[0].src) ||
+  imageArrayPropsChanged(props, prevProps) ||
   // Are single image sources different?
   (props.fluid && prevProps.fluid && props.fluid.src !== prevProps.fluid.src) ||
   (props.fixed && prevProps.fixed && props.fixed.src !== prevProps.fixed.src)
 
 /**
+ * Decides if two given props with array images differ.
+ *
+ * @param props
+ * @param prevProps
+ * @return {boolean}
+ */
+export const imageArrayPropsChanged = (props, prevProps) => {
+  const isPropsFluidArray = Array.isArray(props.fluid)
+  const isPrevPropsFluidArray = Array.isArray(prevProps.fluid)
+  const isPropsFixedArray = Array.isArray(props.fixed)
+  const isPrevPropsFixedArray = Array.isArray(prevProps.fixed)
+
+  if (
+    // Did the props change to a single image?
+    (isPropsFluidArray && !isPrevPropsFluidArray) ||
+    (isPropsFixedArray && !isPrevPropsFixedArray) ||
+    // Did the props change to an Array?
+    (!isPropsFluidArray && isPrevPropsFluidArray) ||
+    (!isPropsFixedArray && isPrevPropsFixedArray)
+  ) {
+    return true
+  } else {
+    // Are the lengths or sources in the Arrays different?
+    if (isPropsFluidArray && isPrevPropsFluidArray) {
+      if (props.fluid.length === prevProps.fluid.length) {
+        return props.fluid.every(
+          (image, index) => image.src !== prevProps.fluid[index].src
+        )
+      }
+      return true
+    } else if (isPropsFixedArray && isPrevPropsFixedArray) {
+      if (props.fixed.length === prevProps.fixed.length) {
+        return props.fixed.every(
+          (image, index) => image.src !== prevProps.fixed[index].src
+        )
+      }
+      return true
+    }
+
+  }
+}
+
+/**
  * Checks if an image (array) reference is existing and tests for complete.
+ *
  * @param imageRef    HTMLImageElement||array   Image reference(s).
  * @return {boolean}
  */
@@ -480,4 +511,3 @@ export const imageReferenceCompleted = imageRef =>
       ? imageRef.every(singleImageRef => singleImageRef.complete)
       : imageRef.complete
     : false
-

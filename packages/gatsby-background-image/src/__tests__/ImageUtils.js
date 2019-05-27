@@ -12,7 +12,8 @@ import {
   imagePropsChanged,
   activatePictureRef,
   getCurrentFromData,
-  getUrlString, imageReferenceCompleted,
+  getUrlString,
+  imageReferenceCompleted,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
@@ -388,10 +389,7 @@ describe(`imagePropsChanged()`, () => {
   })
 
   it(`should return false for same fixed array prop`, () => {
-    const changedFixed = imagePropsChanged(
-      [fixedMock, fixedMock],
-      [fixedMock, fixedMock]
-    )
+    const changedFixed = imagePropsChanged(fixedArrayMock, fixedArrayMock)
     expect(changedFixed).toBeFalsy()
   })
 
@@ -401,10 +399,7 @@ describe(`imagePropsChanged()`, () => {
   })
 
   it(`should return false for same fluid array prop`, () => {
-    const changedFluid = imagePropsChanged(
-      [fluidMock, fluidMock],
-      [fluidMock, fluidMock]
-    )
+    const changedFluid = imagePropsChanged(fluidArrayMock, fluidArrayMock)
     expect(changedFluid).toBeFalsy()
   })
 
@@ -436,6 +431,28 @@ describe(`imagePropsChanged()`, () => {
   it(`should return true from fixed array to fixed`, () => {
     const changedFixedToFluid = imagePropsChanged(fixedArrayMock, fixedMock)
     expect(changedFixedToFluid).toBeTruthy()
+  })
+
+  it(`should return true for different length fluid array prop`, () => {
+    const fluidChangedArrayMock = {fluid: [ ...fluidArrayMock.fluid, fluidShapeMock ] }
+    // fluidChangedArrayMock.fluid.push(fluidShapeMock)
+
+    const changedFluid = imagePropsChanged(
+      fluidArrayMock,
+      fluidChangedArrayMock
+    )
+    expect(changedFluid).toBeTruthy()
+  })
+
+  it(`should return true for different length fluid array prop`, () => {
+    const fixedChangedArrayMock = {fixed: [ ...fixedArrayMock.fixed, fluidShapeMock ] }
+    // fluidChangedArrayMock.fluid.push(fluidShapeMock)
+
+    const changedFixed = imagePropsChanged(
+      fixedArrayMock,
+      fixedChangedArrayMock
+    )
+    expect(changedFixed).toBeTruthy()
   })
 
   it(`should return true for fixed arrays with different sources`, () => {
