@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.6.2](https://github.com/timhagn/gatsby-background-image) (2019-05-19)
 
-**merge:** Merged PR from @seangabe fixing TypeDefs. 
+**merge:** Merged PR from @seangabe fixing TypeDefs.
 
 ## [0.6.1](https://github.com/timhagn/gatsby-background-image) (2019-05-15)
 
