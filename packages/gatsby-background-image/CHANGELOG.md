@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.6.0"></a>
+<a name="0.6.2"></a>
+
+## [0.6.2](https://github.com/timhagn/gatsby-background-image) (2019-05-19)
+
+**merge:** Merged PR from @seangabe fixing TypeDefs. 
+
+## [0.6.1](https://github.com/timhagn/gatsby-background-image) (2019-05-15)
+
+**fix / feat:** Fixed some quirks with transitions, add integration tests.
 
 ## [0.6.0](https://github.com/timhagn/gatsby-background-image) (2019-05-14)
 
