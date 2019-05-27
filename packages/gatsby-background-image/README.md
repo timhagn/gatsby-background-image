@@ -63,6 +63,7 @@ this package.
 - [Handling of Remaining props](#handling-of-remaining-props) 
 - [Contributing](#contributing)
 - [TODO](#todo)
+- [Acknowledgements](#acknowledgements)
 
 ## Example Repo
 
