@@ -8,6 +8,7 @@ import {
   createPictureRef,
   getCurrentFromData,
   imagePropsChanged,
+  imageReferenceCompleted,
   inImageCache,
   noscriptImg,
   switchImageSettings,
@@ -114,8 +115,7 @@ class BackgroundImage extends React.Component {
     }
 
     if (this.props.critical) {
-      // TODO: arrayize this!
-      if (this.imageRef && this.imageRef.complete) {
+      if (imageReferenceCompleted(this.imageRef)) {
         this.handleImageLoaded()
       }
     }
@@ -138,8 +138,10 @@ class BackgroundImage extends React.Component {
         () => {
           // Update bgImage & create new imageRef(s).
           this.bgImage =
-            getCurrentFromData({data: this.imageRef, propName: `currentSrc`}) ||
-            getCurrentFromData({data: this.imageRef, propName: `src`})
+            getCurrentFromData({
+              data: this.imageRef,
+              propName: `currentSrc`,
+            }) || getCurrentFromData({ data: this.imageRef, propName: `src` })
           this.imageRef = createPictureRef(
             { ...this.props, isVisible: this.state.isVisible },
             this.handleImageLoaded

@@ -468,3 +468,23 @@ export const imagePropsChanged = (props, prevProps) =>
   // Are single image sources different?
   (props.fluid && prevProps.fluid && props.fluid.src !== prevProps.fluid.src) ||
   (props.fixed && prevProps.fixed && props.fixed.src !== prevProps.fixed.src)
+
+/**
+ * Checks if an image (array) reference is existing and tests for complete.
+ * @param imageRef    HTMLImageElement||array   Image reference(s).
+ */
+export const imageReferenceCompleted = imageRef =>
+  imageRef
+    ? Array.isArray(imageRef)
+      ? imageRef.every(singleImageRef => singleImageRef.complete)
+      : imageRef.complete
+    : false
+
+// {
+//   if (imageRef) {
+//     if (Array.isArray(imageRef)) {
+//       return imageRef.every(singleImageRef => singleImageRef.complete)
+//     }
+//     return imageRef.complete
+//   }
+// }
