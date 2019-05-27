@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.6.2"></a>
+<a name="0.7.0"></a>
+
+## [0.7.0](https://github.com/timhagn/gatsby-background-image) (2019-05-28)
+
+**feat:** Added possibility to work with multiple stacked background-images.
 
 ## [0.6.2](https://github.com/timhagn/gatsby-background-image) (2019-05-19)
 

@@ -2,7 +2,7 @@ import {
   createPseudoStyles,
   fixOpacity,
   presetBackgroundStyles,
-  vendorPrefixBackgroundStyles,
+  setTransitionStyles,
   kebabifyBackgroundStyles,
   fixClassName,
   activateCacheForComponentClass,
@@ -54,11 +54,11 @@ describe(`fixOpacity()`, () => {
 
 describe(`vendorPrefixBackgroundStyles()`, () => {
   it(`should return vendor prefixed backgroundStyles with defaults`, () => {
-    expect(vendorPrefixBackgroundStyles()).toMatchSnapshot()
+    expect(setTransitionStyles()).toMatchSnapshot()
   })
 
   it(`should return vendor prefixed backgroundStyles with parameters`, () => {
-    expect(vendorPrefixBackgroundStyles(`contain`, `0.5s`)).toMatchSnapshot()
+    expect(setTransitionStyles(`contain`, `0.5s`)).toMatchSnapshot()
   })
 })
 

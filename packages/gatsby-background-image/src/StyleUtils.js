@@ -121,33 +121,13 @@ export const kebabifyBackgroundStyles = styles => {
  * @param fadeIn
  * @return {string}
  */
-export const vendorPrefixBackgroundStyles = (
-  // backgroundSize = `cover`,
+export const setTransitionStyles = (
   transitionDelay = `0.25s`,
   fadeIn = true
-) => {
-  // TODO: Look into vendor-prefixes through autoprefix in Gatsby!
-  // const vendorPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-', '']
-  // let prefixed = ``
-  // if (fadeIn) {
-  //   prefixed +=
-  //     vendorPrefixes
-  //       .join(`transition-delay: ${transitionDelay};\n`)
-  //       .concat(`transition-delay: ${transitionDelay};\n`) +
-  //     vendorPrefixes
-  //       .join(`transition: opacity 0.5s;\n`)
-  //       .concat(`transition: opacity 0.5s;\n`)
-  // } else {
-  //   prefixed += vendorPrefixes
-  //     .join(`transition: none;\n`)
-  //     .concat(`transition: none;\n`)
-  // }
-
-  const prefixed = fadeIn
+) =>
+  fadeIn
     ? `transition: opacity 0.5s ease ${transitionDelay};`
     : `transition: none;`
-  return prefixed
-}
 
 /**
  * Prevent possible stacking order mismatch with opacity "hack".
@@ -230,15 +210,13 @@ export const createPseudoStyles = ({
             top: 0;
             left: 0;
             ${bgColor && `background-color: ${bgColor};`}
-            ${vendorPrefixBackgroundStyles(transitionDelay, fadeIn)}
+            ${setTransitionStyles(transitionDelay, fadeIn)}
             ${kebabifyBackgroundStyles({ ...backgroundStyles, ...style })}
           }
           ${pseudoBefore} {
             z-index: -100;
             ${
-              afterOpacity && nextImage
-                ? `background-image: ${nextImage};`
-                : ``
+              afterOpacity && nextImage ? `background-image: ${nextImage};` : ``
             }
             ${
               !afterOpacity && lastImage
@@ -255,9 +233,7 @@ export const createPseudoStyles = ({
                 : ``
             }
             ${
-              afterOpacity && lastImage
-                ? `background-image: ${lastImage};`
-                : ``
+              afterOpacity && lastImage ? `background-image: ${lastImage};` : ``
             }
           }
         `
