@@ -23,28 +23,28 @@
 </p>
 
 `gatsby-background-image` is a React component which for background-images
-provides,  
-what Gatsby's own `gatsby-image` does for the rest of your images.  
-It started by pilfering their excellent work and adapting it - but slowly it's
-outgrowing those wee beginnings.  
+provides, what Gatsby's own `gatsby-image` does for the rest of your images and 
+even more:  
+**Now it's possible to use multiple stacked Background Images!**  
 
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
-including the "blur-up" technique or  
-a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
-SVG to show a preview of the image while it loads,   
-*plus* being usable as a container (no more hacks with extra wrappers).
+including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
+SVG to show a preview of the image while it loads,  
+**plus** being usable as a container (no more hacks with extra wrappers),  
+**plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images). 
 
-All the glamour (and speed) of `gatsby-image` now for your Background Images!
+All the glamour (and speed) of `gatsby-image` for your Background Images!
 
-___And it's even styleable with `styled-components` and the like!___   
+___And it's of course styleable with `styled-components` and the like!___   
 
 ## ES5 Version
 
 `gatsby-background-image` now has a companion package completely transpiled to
 ES5: [`gatsby-background-image-es5`](https://www.npmjs.com/package/gatsby-background-image-es5).  
 Have a look at its [README](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image-es5/README.md), 
-it nearly works the same - though with all polyfills included to support legacy
-browsers it's nearly three times the size of this package.
+it nearly works the same - though with ([nearly](#important)) all polyfills 
+included to support legacy browsers it's nearly three times the size of 
+this package.
  
 
 ## Table of Contents
@@ -53,6 +53,7 @@ browsers it's nearly three times the size of this package.
 - [Install](#install)
     * [Important](#important)
 - [How to Use](#how-to-use)
+- [How to Use with Multiple Images](#how-to-use-with-multiple-images)
 - [Configuration & props](#configuration--props)
 - [Styling & Passed Through Styles](#styling--passed-through-styles)
     * [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
@@ -231,6 +232,94 @@ export default StyledBackgroundSection
 
 ```
 
+## How to Use with Multiple Images
+
+As `gatsby-background-image` may now be used with [multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds),
+this is what a component using it might look like:
+
+```jsx
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+import styled from 'styled-components'
+
+import BackgroundImage from 'gatsby-background-image'
+
+const MultiBackground = ({ children, className }) => {
+  const {
+    astronaut,
+    seamlessBackground,
+  } = useStaticQuery(
+    graphql`
+      query {
+        astronaut: file(relativePath: { eq: "astronaut.png" }) {
+          childImageSharp {
+            fluid(quality: 100) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        seamlessBackground: file(
+          relativePath: { eq: "seamless-background.jpg" }
+        ) {
+          childImageSharp {
+            fluid(quality: 100, maxWidth: 420) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    `
+  )
+
+  // Watch out for CSS's stacking order, especially when styling the individual
+  // positions! The lowermost image comes last!
+  const backgroundFluidImageStack = [
+    seamlessBackground.childImageSharp.fluid,
+    astronaut.childImageSharp.fluid,
+  ].reverse()
+
+  return (
+    <BackgroundImage
+      Tag={`section`}
+      id={`test`}
+      className={className}
+      fluid={backgroundFluidImageStack}
+    >
+      <StyledInnerWrapper>
+        <h1>
+          This is a test of multiple background images.
+        </h1>
+      </StyledInnerWrapper>
+    </BackgroundImage>
+  )
+}
+
+const StyledInnerWrapper = styled.div`
+  margin-top: 10%;
+  display: flex;  
+  flex-direction: column; 
+  align-items: center;
+`
+
+const StyledMultiBackground = styled(MultiBackground)`
+  width: 100%;
+  min-height: 100vh;
+  // You should set a background-size as the default value is "cover"!
+  background-size: auto;
+  // So we won't have the default "lightgray" background-color.
+  background-color: transparent;
+  // Now again, remember the stacking order of CSS: lowermost comes last!
+  background-repeat: no-repeat, repeat;
+  background-position: center 155%, center;
+  color: #fff;
+`
+
+export default StyledMultiBackground
+
+```
+
+
+
 ## Configuration & props
 
 `gatsby-background-image` nearly works the same as `gatsby-image` so have a look
@@ -320,15 +409,17 @@ don't count on it in production ; ).
 
 ## Changed props
 
-As `gatsby-image` now has a changed behavior for already loaded images
-(no soft fade in, even if prop `fadeIn` is set to `true` per default), 
-and this sometimes seemed a little hard for the eyes with background images, 
-the `fadeIn` prop may now be set to `soft` to ignore cached images and always
+The `fluid` or `fixed` (as well as the deprecated `resolutions` & `sizes`) props
+may be given as an array of images returned from `fluid` or `fixed` queries. 
+
+The `fadeIn` prop may be set to `soft` to ignore cached images and always
 try to fade in if `critical` isn't set.
 
 | Name                   | Type                  | Description                                                      |
 | ---------------------- | --------------------- | ---------------------------------------------------------------- |
-| `fadeIn`               | `boolean` / `string`  | Defaults to fading in the image on load, may be forced by `soft` |
+| `fixed`            	 | `object`/`array`      | Data returned from one or multiple fixed queries.                |
+| `fluid`            	 | `object`/`array`      | Data returned from one or multiple fixed queries.                |
+| `fadeIn`               | `boolean`/`string`    | Defaults to fading in the image on load, may be forced by `soft` |
 
 ## props Not Available
 
@@ -361,3 +452,9 @@ Thanks in advance!
 and parsing the `background-*` CSS props, gotta investigate further...
 
 *For anything else tell me by opening an issue or a PR : )!*
+
+## Acknowledgements
+
+This package started by by pilfering `gatsby-image`s excellent work and adapting 
+it - but it's definitely outgrowing those wee beginnings.   
+Thanks go to its creators & the @gatsbyjs Team, anyways : )!  
