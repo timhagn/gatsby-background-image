@@ -472,6 +472,7 @@ export const imagePropsChanged = (props, prevProps) =>
 /**
  * Checks if an image (array) reference is existing and tests for complete.
  * @param imageRef    HTMLImageElement||array   Image reference(s).
+ * @return {boolean}
  */
 export const imageReferenceCompleted = imageRef =>
   imageRef
@@ -480,11 +481,3 @@ export const imageReferenceCompleted = imageRef =>
       : imageRef.complete
     : false
 
-// {
-//   if (imageRef) {
-//     if (Array.isArray(imageRef)) {
-//       return imageRef.every(singleImageRef => singleImageRef.complete)
-//     }
-//     return imageRef.complete
-//   }
-// }

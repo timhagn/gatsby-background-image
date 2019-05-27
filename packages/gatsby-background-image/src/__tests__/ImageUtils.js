@@ -12,7 +12,7 @@ import {
   imagePropsChanged,
   activatePictureRef,
   getCurrentFromData,
-  getUrlString,
+  getUrlString, imageReferenceCompleted,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
@@ -518,5 +518,11 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
   it(`getUrlString() should return string without addUrl`, () => {
     const returnedString = getUrlString({ imageString: `blubb`, addUrl: false })
     expect(returnedString).toMatchInlineSnapshot(`"blubb"`)
+  })
+})
+
+describe(`imageReferenceCompleted()`, () => {
+  it(`should return false with undefined imageRef`, () => {
+    expect(imageReferenceCompleted()).toBeFalsy()
   })
 })
