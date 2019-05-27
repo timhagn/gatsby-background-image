@@ -121,10 +121,7 @@ export const kebabifyBackgroundStyles = styles => {
  * @param fadeIn
  * @return {string}
  */
-export const setTransitionStyles = (
-  transitionDelay = `0.25s`,
-  fadeIn = true
-) =>
+export const setTransitionStyles = (transitionDelay = `0.25s`, fadeIn = true) =>
   fadeIn
     ? `transition: opacity 0.5s ease ${transitionDelay};`
     : `transition: none;`

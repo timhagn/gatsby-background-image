@@ -495,7 +495,6 @@ export const imageArrayPropsChanged = (props, prevProps) => {
       }
       return true
     }
-
   }
 }
 
