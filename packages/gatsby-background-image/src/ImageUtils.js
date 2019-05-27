@@ -1,4 +1,6 @@
-import { convertProps } from './HelperUtils'
+import { combineArray, convertProps, filteredJoin } from './HelperUtils'
+
+const DUMMY_IMG = `data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==`
 
 const imageCache = Object.create({})
 /**
@@ -41,8 +43,7 @@ export const allInImageCache = props => {
   return imageStack.every(imageData => {
     if (convertedProps.fluid) {
       return inImageCache({ fluid: imageData })
-    }
-    else {
+    } else {
       return inImageCache({ fixed: imageData })
     }
   })
@@ -85,8 +86,7 @@ export const activateCacheForMultipleImages = props => {
   imageStack.forEach(imageData => {
     if (convertedProps.fluid) {
       activateCacheForImage({ fluid: imageData })
-    }
-    else {
+    } else {
       activateCacheForImage({ fixed: imageData })
     }
   })
@@ -164,8 +164,7 @@ export const createMultiplePictureRefs = (props, onLoad) => {
   return imageStack.map(imageData => {
     if (convertedProps.fluid) {
       return createPictureRef({ ...convertedProps, fluid: imageData }, onLoad)
-    }
-    else {
+    } else {
       return createPictureRef({ ...convertedProps, fixed: imageData }, onLoad)
     }
   })
@@ -235,8 +234,7 @@ export const activateMultiplePictureRefs = (imageRefs, props) => {
         ...convertedProps,
         fluid: convertedProps.fluid[index],
       })
-    }
-    else {
+    } else {
       return activatePictureRef(imageRef, {
         ...convertedProps,
         fixed: convertedProps.fixed[index],
@@ -281,47 +279,95 @@ export const noscriptImg = props => {
 /**
  * Compares the old states to the new and changes image settings accordingly.
  *
- * @param image
- * @param bgImage
- * @param imageRef
- * @param state
- * @return {{noBase64: boolean, afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
+ * @param image     string||array   Base data for one or multiple Images.
+ * @param bgImage   string          Last background-image string.
+ * @param imageRef  string||array   References to one or multiple Images.
+ * @param state     object          Component state.
+ * @return {{afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
  */
 export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
-  const noBase64 = !getCurrentFromData(image, `base64`, false)
-  // Set the backgroundImage according to images available.
-  let nextImage = ``
-  if (image.tracedSVG) nextImage = getCurrentFromData(image, `tracedSVG`)
-  if (image.base64 && !image.tracedSVG)
-    nextImage = getCurrentFromData(image, `base64`)
-  if (state.imgLoaded && state.isVisible)
-    nextImage = getCurrentFromData(imageRef, `currentSrc`) || ``
-
-  // TODO: find out why base64 images are not loaded(?) with arrays (or only after hot reload oO)
-
-  // Switch bgImage & nextImage and opacity accordingly.
+  // Read currentSrc from imageRef (if exists).
+  const currentSources = getCurrentFromData({
+    data: imageRef,
+    propName: `currentSrc`,
+  })
+  // Backup bgImage to lastImage.
   const lastImage = bgImage
+  const returnArray = Array.isArray(image)
+  // Set the backgroundImage according to images available.
+  let nextImage
+  if (!returnArray) {
+    nextImage = ``
+    if (image.tracedSVG)
+      nextImage = getCurrentFromData({ data: image, propName: `tracedSVG` })
+    if (image.base64 && !image.tracedSVG)
+      nextImage = getCurrentFromData({ data: image, propName: `base64` })
+    if (state.imgLoaded && state.isVisible) {
+      nextImage =
+        currentSources ||
+        getCurrentFromData({
+          data: imageRef,
+          propName: `src`,
+        }) ||
+        ``
+    }
+  } else {
+    // Check for tracedSVG first.
+    nextImage = getCurrentFromData({
+      data: image,
+      propName: `tracedSVG`,
+      returnArray,
+    })
+    // Now combine with base64 images.
+    nextImage = combineArray(
+      getCurrentFromData({
+        data: image,
+        propName: `base64`,
+        returnArray,
+      }),
+      nextImage
+    )
+    // Do we have at least one img loaded?
+    if (state.imgLoaded && state.isVisible) {
+      if (currentSources) {
+        nextImage = combineArray(
+          getCurrentFromData({
+            data: imageRef,
+            propName: `currentSrc`,
+            returnArray,
+          }),
+          nextImage
+        )
+      } else {
+        // Should we still have no nextImage it might be because currentSrc is missing.
+        nextImage = combineArray(
+          getCurrentFromData({
+            data: imageRef,
+            propName: `src`,
+            returnArray,
+          }),
+          nextImage
+        )
+      }
+    }
+    // Fill the rest of the background-images with a transparent dummy pixel,
+    // lest the other background-* properties can't target the correct image.
+    const dummyImageURI = getUrlString({imageString: DUMMY_IMG})
+    const dummyArray = Array(image.length).fill(dummyImageURI)
+
+    // Now combine the two arrays and join them.
+    nextImage = filteredJoin(combineArray(nextImage, dummyArray))
+  }
+
+  // Fall back on lastImage (important for prop changes) if all else fails.
+  if (!nextImage) nextImage = lastImage
   // Change opacity according to imageState.
   const afterOpacity = state.imageState % 2
-  // Should we still have no nextImage it might be because currentSrc is missing.
-  if (
-    nextImage === `` &&
-    state.imgLoaded &&
-    state.isVisible &&
-    imageRef &&
-    ((Array.isArray(imageRef) && !imageRef[0].currentSrc) ||
-      (!Array.isArray(imageRef) && !imageRef.currentSrc))
-  ) {
-    nextImage = getCurrentFromData(imageRef, `src`)
-  }
-  // Fall back on lastImage (important for prop changes) if all else fails.
-  if (nextImage === ``) nextImage = lastImage
 
   return {
     lastImage,
     nextImage,
     afterOpacity,
-    noBase64,
   }
 }
 
@@ -331,24 +377,35 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
  * @param data
  * @param propName
  * @param addUrl
- * @return {string}
+ * @param returnArray
+ * @return {string||array}
  */
-export const getCurrentFromData = (data, propName, addUrl = true) => {
+export const getCurrentFromData = ({
+  data,
+  propName,
+  addUrl = true,
+  returnArray = false,
+}) => {
   if (!data || !propName) return ``
   // Handle tracedSVG with "special care".
   const tracedSVG = propName === `tracedSVG`
   if (Array.isArray(data)) {
     // Filter out all elements not having the propName and return remaining.
-    const filteredDataStrings = data
-      .filter(dataElement => {
-        return propName in dataElement && dataElement[propName]
-      })
-      .map(dataElement => dataElement[propName])
+    const imageString = data
+      // .filter(dataElement => {
+      //   return propName in dataElement && dataElement[propName]
+      // })
+      .map(dataElement => dataElement[propName] || ``)
     // Encapsulate in URL string and return.
-    return getUrlString(filteredDataStrings, tracedSVG, addUrl)
+    return getUrlString({
+      imageString,
+      tracedSVG,
+      addUrl,
+      returnArray,
+    })
   } else {
     return propName in data
-      ? getUrlString(data[propName], tracedSVG, addUrl)
+      ? getUrlString({ imageString: data[propName], tracedSVG, addUrl })
       : ``
   }
 }
@@ -359,17 +416,24 @@ export const getCurrentFromData = (data, propName, addUrl = true) => {
  * @param imageString   string    String to encapsulate.
  * @param tracedSVG     boolean   Special care for SVGs.
  * @param addUrl        boolean   If the string should be encapsulated or not.
- * @return {string}
+ * @param returnArray   boolean   Return concatenated string or Array.
+ * @return {string||array}
  */
-export const getUrlString = (imageString, tracedSVG = false, addUrl = true) => {
+export const getUrlString = ({
+  imageString,
+  tracedSVG = false,
+  addUrl = true,
+  returnArray = false,
+}) => {
   if (Array.isArray(imageString)) {
-    return imageString
-      .map(currentString => {
-        const currentReturnString =
-          tracedSVG && currentString ? `"${currentString}"` : currentString
-        return addUrl ? `url(${currentReturnString})` : currentReturnString
-      })
-      .join(`,`)
+    const stringArray = imageString.map(currentString => {
+      const currentReturnString =
+        tracedSVG && currentString ? `"${currentString}"` : currentString
+      return addUrl && currentString
+        ? `url(${currentReturnString})`
+        : currentReturnString
+    })
+    return returnArray ? stringArray : filteredJoin(stringArray)
   } else {
     const returnString =
       tracedSVG && imageString ? `"${imageString}"` : imageString

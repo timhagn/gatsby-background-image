@@ -119,6 +119,7 @@ export const stringToArray = (str, delimiter = ` `) => {
 
 /**
  * Hashes a String to a 32bit integer with the simple Java 8 hashCode() func.
+ *
  * @param str   string    String to hash.
  * @return {number}
  */
@@ -132,3 +133,16 @@ export const hashString = str =>
     },
     0
   )
+
+export const filteredJoin = arrayToJoin =>
+  arrayToJoin.filter(item => item !== ``).join()
+
+/**
+ * Combines two arrays while keeping fromArrays indexes & values.
+ *
+ * @param fromArray   array   Array the values shall be taken from.
+ * @param toArray     array   Array to copy values into.
+ * @return {array}
+ */
+export const combineArray = (fromArray, toArray) =>
+  fromArray.map((item, index) => item || toArray[index])

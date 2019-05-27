@@ -5,7 +5,8 @@ import { convertProps, stripRemainingProps } from './HelperUtils'
 import {
   activateCacheForImage,
   activatePictureRef,
-  createPictureRef, getCurrentFromData,
+  createPictureRef,
+  getCurrentFromData,
   imagePropsChanged,
   inImageCache,
   noscriptImg,
@@ -93,7 +94,7 @@ class BackgroundImage extends React.Component {
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
     this.handleRef = this.handleRef.bind(this)
 
-    // "Fake" a reference to an Image loaded via picture element in background.
+    // Create reference(s) to an Image loaded via picture element in background.
     this.imageRef = createPictureRef(
       { ...this.props, isVisible },
       this.handleImageLoaded
@@ -113,6 +114,7 @@ class BackgroundImage extends React.Component {
     }
 
     if (this.props.critical) {
+      // TODO: arrayize this!
       if (this.imageRef && this.imageRef.complete) {
         this.handleImageLoaded()
       }
@@ -135,7 +137,9 @@ class BackgroundImage extends React.Component {
         },
         () => {
           // Update bgImage & create new imageRef(s).
-          this.bgImage = getCurrentFromData(this.imageRef, `currentSrc`)
+          this.bgImage =
+            getCurrentFromData({data: this.imageRef, propName: `currentSrc`}) ||
+            getCurrentFromData({data: this.imageRef, propName: `src`})
           this.imageRef = createPictureRef(
             { ...this.props, isVisible: this.state.isVisible },
             this.handleImageLoaded
@@ -149,9 +153,10 @@ class BackgroundImage extends React.Component {
     // Prevent calling handleImageLoaded from the imageRef(s) after unmount.
     if (this.imageRef) {
       if (Array.isArray(this.imageRef)) {
-        this.imageRef.forEach(currentImageRef => currentImageRef.onload = null)
-      }
-      else {
+        this.imageRef.forEach(
+          currentImageRef => (currentImageRef.onload = null)
+        )
+      } else {
         this.imageRef.onload = null
       }
     }

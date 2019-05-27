@@ -89,7 +89,7 @@ background-size: 'contain';
           .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
+            background-image: url(string_of_base64),url(string_of_base64);
             
           }
         
@@ -141,7 +141,7 @@ background-size: 'contain';
           .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            
+            background-image: url(string_of_base64),url(string_of_base64);
             
           }
         
