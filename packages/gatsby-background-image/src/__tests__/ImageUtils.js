@@ -54,10 +54,10 @@ describe(`createPictureRef() with crossOrigin`, () => {
       crossOrigin: `anonymous`,
     })
     expect(emptyImageRef).toMatchInlineSnapshot(`
-                                                                  <img
-                                                                    crossorigin="anonymous"
-                                                                  />
-                                            `)
+                                                                                    <img
+                                                                                      crossorigin="anonymous"
+                                                                                    />
+                                                        `)
   })
 })
 
@@ -95,11 +95,11 @@ describe(`createPictureRef() with critical image`, () => {
       critical: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                                                                                    <img
-                                                                                      src="test_fixed_image.jpg"
-                                                                                      srcset="some srcSet"
-                                                                                    />
-                                                        `)
+                                                                                                      <img
+                                                                                                        src="test_fixed_image.jpg"
+                                                                                                        srcset="some srcSet"
+                                                                                                      />
+                                                                    `)
   })
   it(`should preload image on isVisible state`, () => {
     const imageRef = createPictureRef({
@@ -107,11 +107,11 @@ describe(`createPictureRef() with critical image`, () => {
       isVisible: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                                                                                    <img
-                                                                                      src="test_fixed_image.jpg"
-                                                                                      srcset="some srcSet"
-                                                                                    />
-                                                        `)
+                                                                                                      <img
+                                                                                                        src="test_fixed_image.jpg"
+                                                                                                        srcset="some srcSet"
+                                                                                                      />
+                                                                    `)
   })
   it(`should set empty strings for image on critical without src & srcSet`, () => {
     const fixedMock = { ...fixedShapeMock }
@@ -122,11 +122,11 @@ describe(`createPictureRef() with critical image`, () => {
       critical: true,
     })
     expect(emptyImageRef).toMatchInlineSnapshot(`
-                                                            <img
-                                                              src=""
-                                                              srcset=""
-                                                            />
-                                        `)
+                                                                              <img
+                                                                                src=""
+                                                                                srcset=""
+                                                                              />
+                                                    `)
   })
 })
 
@@ -137,17 +137,17 @@ describe(`createPictureRef() with image array`, () => {
       critical: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-            Array [
-              <img
-                src="test_fixed_image.jpg"
-                srcset="some srcSet"
-              />,
-              <img
-                src="test_fixed_image.jpg"
-                srcset="some srcSet"
-              />,
-            ]
-        `)
+                              Array [
+                                <img
+                                  src="test_fixed_image.jpg"
+                                  srcset="some srcSet"
+                                />,
+                                <img
+                                  src="test_fixed_image.jpg"
+                                  srcset="some srcSet"
+                                />,
+                              ]
+                    `)
   })
 })
 
@@ -264,6 +264,7 @@ describe(`switchImageSettings()`, () => {
   const state = {
     isVisible: false,
     isLoaded: false,
+    imageState: 1,
   }
   it(`should return settings from fluid with empty bgImage`, () => {
     const createdSettings = switchImageSettings({
@@ -296,14 +297,43 @@ describe(`switchImageSettings()`, () => {
     expect(createdSettings).toMatchSnapshot()
   })
 
-  it(`should return settings from fixed array without currentSrc`, () => {
-    const mockImageRefNoCurrentSrc = [{ ...mockImageRef }]
-    delete mockImageRefNoCurrentSrc[0].currentSrc
+  it(`should return settings from fixed array`, () => {
     state.isVisible = true
     state.imgLoaded = true
     const createdSettings = switchImageSettings({
-      image: {},
+      image: fluidArrayMock.fluid,
+      bgImage: `string_of_base64`,
+      imageRef: [mockImageRef, mockImageRef],
+      state,
+    })
+    expect(createdSettings).toMatchSnapshot()
+  })
+
+  it(`should return settings from fixed array without currentSrc`, () => {
+    const mockImageRefNoCurrentSrc = [{ ...mockImageRef }, { ...mockImageRef }]
+    delete mockImageRefNoCurrentSrc[0].currentSrc
+    delete mockImageRefNoCurrentSrc[1].currentSrc
+    state.isVisible = true
+    state.imgLoaded = true
+    const createdSettings = switchImageSettings({
+      image: fluidArrayMock.fluid,
       imageRef: mockImageRefNoCurrentSrc,
+      state,
+    })
+    expect(createdSettings).toMatchSnapshot()
+  })
+
+  it(`should return settings from fluid without src`, () => {
+    const fluid = fluidShapeMock
+    delete fluid.src
+    const mockImageRefNoSrc = { ...mockImageRef }
+    delete mockImageRefNoSrc.src
+    state.isVisible = true
+    state.imgLoaded = true
+    const createdSettings = switchImageSettings({
+      image: fluid,
+      bgImage: ``,
+      imageRef: mockImageRefNoSrc,
       state,
     })
     expect(createdSettings).toMatchSnapshot()
@@ -437,15 +467,31 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
 
   it(`getCurrentFromData() should return string for data & propName`, () => {
     const returnedString = getCurrentFromData({
-      data: [{ blubb: `some_SVG` }],
+      data: [{ blubb: `some_image` }],
       propName: `blubb`,
     })
-    expect(returnedString).toMatchInlineSnapshot(`"url(some_SVG)"`)
+    expect(returnedString).toMatchInlineSnapshot(`"url(some_image)"`)
   })
 
-  it(`getCurrentFromData() should return empty string for data & propName`, () => {
+  it(`getCurrentFromData() should return string for data as object & propName`, () => {
+    const returnedString = getCurrentFromData({
+      data: { blubb: `some_image` },
+      propName: `blubb`,
+    })
+    expect(returnedString).toMatchInlineSnapshot(`"url(some_image)"`)
+  })
+
+  it(`getCurrentFromData() should return empty string for mismatched data as object  & propName`, () => {
     const returnedString = getCurrentFromData({
       data: [{ blubb: null }],
+      propName: `blubb`,
+    })
+    expect(returnedString).toMatchInlineSnapshot(`""`)
+  })
+
+  it(`getCurrentFromData() should return empty string for mismatched data & propName`, () => {
+    const returnedString = getCurrentFromData({
+      data: { test: null },
       propName: `blubb`,
     })
     expect(returnedString).toMatchInlineSnapshot(`""`)
@@ -459,8 +505,18 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
     expect(returnedString).toMatchInlineSnapshot(`"url(\\"some_SVG\\")"`)
   })
 
-  it(`getUrlString() should return empty string for data & propName`, () => {
-    const returnedString = getUrlString([`blubb`])
-    expect(returnedString).toMatchInlineSnapshot(`""`)
+  it(`getUrlString() should return  url encapsulated string`, () => {
+    const returnedString = getUrlString({ imageString: `blubb` })
+    expect(returnedString).toMatchInlineSnapshot(`"url(blubb)"`)
+  })
+
+  it(`getUrlString() should return url encapsulated string within array`, () => {
+    const returnedString = getUrlString({ imageString: [`blubb`] })
+    expect(returnedString).toMatchInlineSnapshot(`"url(blubb)"`)
+  })
+
+  it(`getUrlString() should return string without addUrl`, () => {
+    const returnedString = getUrlString({ imageString: `blubb`, addUrl: false })
+    expect(returnedString).toMatchInlineSnapshot(`"blubb"`)
   })
 })

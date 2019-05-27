@@ -51,17 +51,25 @@ exports[`noscriptImg() should return noscriptImg with opacity & transitionDelay 
 </div>
 `;
 
+exports[`switchImageSettings() should return settings from fixed array 1`] = `
+Object {
+  "afterOpacity": 1,
+  "lastImage": "string_of_base64",
+  "nextImage": "url(test.webp),url(test.webp)",
+}
+`;
+
 exports[`switchImageSettings() should return settings from fixed array without currentSrc 1`] = `
 Object {
-  "afterOpacity": NaN,
+  "afterOpacity": 1,
   "lastImage": undefined,
-  "nextImage": "url(test.jpg)",
+  "nextImage": "url(test.jpg),url(test.jpg)",
 }
 `;
 
 exports[`switchImageSettings() should return settings from fixed with set bgImage 1`] = `
 Object {
-  "afterOpacity": NaN,
+  "afterOpacity": 1,
   "lastImage": "string_of_base64",
   "nextImage": "url(string_of_base64)",
 }
@@ -69,7 +77,7 @@ Object {
 
 exports[`switchImageSettings() should return settings from fixed with set bgImage 2`] = `
 Object {
-  "afterOpacity": NaN,
+  "afterOpacity": 1,
   "lastImage": "string_of_base64",
   "nextImage": "url(string_of_base64)",
 }
@@ -77,7 +85,7 @@ Object {
 
 exports[`switchImageSettings() should return settings from fluid with empty bgImage 1`] = `
 Object {
-  "afterOpacity": NaN,
+  "afterOpacity": 1,
   "lastImage": "",
   "nextImage": "url(string_of_base64)",
 }
@@ -85,7 +93,7 @@ Object {
 
 exports[`switchImageSettings() should return settings from fluid with set bgImage and base64 1`] = `
 Object {
-  "afterOpacity": NaN,
+  "afterOpacity": 1,
   "lastImage": "string_of_base64",
   "nextImage": "url(test.webp)",
 }
@@ -93,7 +101,7 @@ Object {
 
 exports[`switchImageSettings() should return settings from fluid with set bgImage and tracedSVG 1`] = `
 Object {
-  "afterOpacity": NaN,
+  "afterOpacity": 1,
   "lastImage": "test_tracedSVG.svg",
   "nextImage": "url(test.webp)",
 }
@@ -101,7 +109,15 @@ Object {
 
 exports[`switchImageSettings() should return settings from fluid with set bgImage without base64 1`] = `
 Object {
-  "afterOpacity": NaN,
+  "afterOpacity": 1,
+  "lastImage": "",
+  "nextImage": "url(test.webp)",
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid without src 1`] = `
+Object {
+  "afterOpacity": 1,
   "lastImage": "",
   "nextImage": "url(test.webp)",
 }

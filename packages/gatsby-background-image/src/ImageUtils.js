@@ -296,22 +296,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   const returnArray = Array.isArray(image)
   // Set the backgroundImage according to images available.
   let nextImage
-  if (!returnArray) {
-    nextImage = ``
-    if (image.tracedSVG)
-      nextImage = getCurrentFromData({ data: image, propName: `tracedSVG` })
-    if (image.base64 && !image.tracedSVG)
-      nextImage = getCurrentFromData({ data: image, propName: `base64` })
-    if (state.imgLoaded && state.isVisible) {
-      nextImage =
-        currentSources ||
-        getCurrentFromData({
-          data: imageRef,
-          propName: `src`,
-        }) ||
-        ``
-    }
-  } else {
+  if (returnArray) {
     // Check for tracedSVG first.
     nextImage = getCurrentFromData({
       data: image,
@@ -352,11 +337,25 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     }
     // Fill the rest of the background-images with a transparent dummy pixel,
     // lest the other background-* properties can't target the correct image.
-    const dummyImageURI = getUrlString({imageString: DUMMY_IMG})
+    const dummyImageURI = getUrlString({ imageString: DUMMY_IMG })
     const dummyArray = Array(image.length).fill(dummyImageURI)
 
     // Now combine the two arrays and join them.
     nextImage = filteredJoin(combineArray(nextImage, dummyArray))
+  } else {
+    nextImage = ``
+    if (image.tracedSVG)
+      nextImage = getCurrentFromData({ data: image, propName: `tracedSVG` })
+    if (image.base64 && !image.tracedSVG)
+      nextImage = getCurrentFromData({ data: image, propName: `base64` })
+    if (state.imgLoaded && state.isVisible) {
+      nextImage =
+        currentSources ||
+        getCurrentFromData({
+          data: imageRef,
+          propName: `src`,
+        })
+    }
   }
 
   // Fall back on lastImage (important for prop changes) if all else fails.

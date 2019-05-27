@@ -307,7 +307,7 @@ class BackgroundImage extends React.Component {
 
     // TODO: Check switching again (fadeIn).
 
-    //console.log(pseudoStyles)
+    // console.log(newImageSettings)
 
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&
