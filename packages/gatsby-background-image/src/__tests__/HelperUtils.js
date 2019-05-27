@@ -3,6 +3,7 @@ import {
   toCamelCase,
   toKebabCase,
   stringToArray,
+  combineArray,
 } from '../HelperUtils'
 import { fixedShapeMock, fluidShapeMock } from './mocks/Various.mock'
 
@@ -72,10 +73,27 @@ describe(`toKebabCase()`, () => {
   })
 })
 
-
 describe(`stringToArray()`, () => {
   it(`should return array on array`, () => {
     const testConversion = stringToArray([])
     expect(testConversion instanceof Array).toBeTruthy()
+  })
+})
+
+describe(`combineArray()`, () => {
+  it(`should return combined Array`, () => {
+    const fromArray = [`test`, `test`, ``, ``]
+    const toArray = [``, ``, `test`, `test`]
+
+    const testCombination = combineArray(fromArray, toArray)
+    expect(testCombination instanceof Array).toBeTruthy()
+    expect(testCombination).toMatchInlineSnapshot(`
+      Array [
+        "test",
+        "test",
+        "test",
+        "test",
+      ]
+    `)
   })
 })
