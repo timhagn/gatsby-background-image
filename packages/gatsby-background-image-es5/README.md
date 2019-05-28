@@ -401,15 +401,17 @@ don't count on it in production ; ).
 
 ## Changed props
 
-As `gatsby-image` now has a changed behavior for already loaded images
-(no soft fade in, even if prop `fadeIn` is set to `true` per default), 
-and this sometimes seemed a little hard for the eyes with background images, 
-the `fadeIn` prop may now be set to `soft` to ignore cached images and always
+The `fluid` or `fixed` (as well as the deprecated `resolutions` & `sizes`) props
+may be given as an array of images returned from `fluid` or `fixed` queries. 
+
+The `fadeIn` prop may be set to `soft` to ignore cached images and always
 try to fade in if `critical` isn't set.
 
 | Name                   | Type                  | Description                                                      |
 | ---------------------- | --------------------- | ---------------------------------------------------------------- |
-| `fadeIn`               | `boolean` / `string`  | Defaults to fading in the image on load, may be forced by `soft` |
+| `fixed`            	 | `object`/`array`      | Data returned from one or multiple fixed queries.                |
+| `fluid`            	 | `object`/`array`      | Data returned from one or multiple fixed queries.                |
+| `fadeIn`               | `boolean`/`string`    | Defaults to fading in the image on load, may be forced by `soft` |
 
 ## props Not Available
 
