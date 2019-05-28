@@ -47,6 +47,7 @@ ___And it's even styleable with `styled-components` and the like!___
 - [Install](#install)
     * [Important](#important)
 - [How to Use](#how-to-use)
+- [How to Use with Multiple Images](#how-to-use-with-multiple-images)
 - [Configuration & props](#configuration--props)
 - [Styling & Passed Through Styles](#styling--passed-through-styles)
     * [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
@@ -223,6 +224,92 @@ const StyledBackgroundSection = styled(BackgroundSection)`
 `
 
 export default StyledBackgroundSection
+```
+
+## How to Use with Multiple Images
+
+As `gatsby-background-image` may now be used with [multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds),
+this is what a component using it might look like:
+
+```jsx
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+import styled from 'styled-components'
+
+import BackgroundImage from 'gatsby-background-image-es5'
+
+const MultiBackground = ({ children, className }) => {
+  const {
+    astronaut,
+    seamlessBackground,
+  } = useStaticQuery(
+    graphql`
+      query {
+        astronaut: file(relativePath: { eq: "astronaut.png" }) {
+          childImageSharp {
+            fluid(quality: 100) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        seamlessBackground: file(
+          relativePath: { eq: "seamless-background.jpg" }
+        ) {
+          childImageSharp {
+            fluid(quality: 100, maxWidth: 420) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    `
+  )
+
+  // Watch out for CSS's stacking order, especially when styling the individual
+  // positions! The lowermost image comes last!
+  const backgroundFluidImageStack = [
+    seamlessBackground.childImageSharp.fluid,
+    astronaut.childImageSharp.fluid,
+  ].reverse()
+
+  return (
+    <BackgroundImage
+      Tag={`section`}
+      id={`test`}
+      className={className}
+      fluid={backgroundFluidImageStack}
+    >
+      <StyledInnerWrapper>
+        <h1>
+          This is a test of multiple background images.
+        </h1>
+      </StyledInnerWrapper>
+    </BackgroundImage>
+  )
+}
+
+const StyledInnerWrapper = styled.div`
+  margin-top: 10%;
+  display: flex;  
+  flex-direction: column; 
+  align-items: center;
+`
+
+const StyledMultiBackground = styled(MultiBackground)`
+  width: 100%;
+  min-height: 100vh;
+  /* You should set a background-size as the default value is "cover"! */
+  background-size: auto;
+  /* So we won't have the default "lightgray" background-color. */
+  background-color: transparent;
+  /* Now again, remember the stacking order of CSS: lowermost comes last! */
+  background-repeat: no-repeat, repeat;
+  background-position: center 155%, center;
+  color: #fff;
+`
+
+export default StyledMultiBackground
+
 ```
 
 ## Configuration & props

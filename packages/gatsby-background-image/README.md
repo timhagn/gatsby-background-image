@@ -305,11 +305,11 @@ const StyledInnerWrapper = styled.div`
 const StyledMultiBackground = styled(MultiBackground)`
   width: 100%;
   min-height: 100vh;
-  // You should set a background-size as the default value is "cover"!
+  /* You should set a background-size as the default value is "cover"! */
   background-size: auto;
-  // So we won't have the default "lightgray" background-color.
+  /* So we won't have the default "lightgray" background-color. */
   background-color: transparent;
-  // Now again, remember the stacking order of CSS: lowermost comes last!
+  /* Now again, remember the stacking order of CSS: lowermost comes last! */
   background-repeat: no-repeat, repeat;
   background-position: center 155%, center;
   color: #fff;
@@ -318,8 +318,6 @@ const StyledMultiBackground = styled(MultiBackground)`
 export default StyledMultiBackground
 
 ```
-
-
 
 ## Configuration & props
 
