@@ -292,6 +292,10 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     propName: `currentSrc`,
   })
   // Backup bgImage to lastImage.
+  // TODO: perhaps use bgImage & lastImage as an array and introduce:
+  // TODO: - gbImageString & lastImageString
+  // TODO: might help with the suddenly "missing" astronaut ^^.
+  // TODO: use imageReferenceCompleted() for "src" & "currentSrc", else fill in from lastImage.
   const lastImage = bgImage
   const returnArray = Array.isArray(image)
   // Set the backgroundImage according to images available.
