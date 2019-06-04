@@ -341,6 +341,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     }
     // Fill the rest of the background-images with a transparent dummy pixel,
     // lest the other background-* properties can't target the correct image.
+    // TODO : cross reference with lastImage / bgImage array.
     const dummyImageURI = getUrlString({ imageString: DUMMY_IMG })
     const dummyArray = Array(image.length).fill(dummyImageURI)
 
