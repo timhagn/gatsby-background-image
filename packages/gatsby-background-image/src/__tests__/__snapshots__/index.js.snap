@@ -31,7 +31,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass:after,
@@ -83,7 +83,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass:after,
@@ -135,7 +135,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
           .imageClass:after,
@@ -187,7 +187,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
           .imageClass:after,
@@ -236,7 +236,7 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
@@ -281,7 +281,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass.test:after,
@@ -319,7 +319,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass.test:after,
@@ -363,7 +363,7 @@ background-size: cover;
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass:after,
@@ -415,7 +415,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass:after,
@@ -467,7 +467,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
           .imageClass:after,
@@ -519,7 +519,7 @@ background-size: cover;
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
           .imageClass:after,
@@ -570,7 +570,7 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
@@ -621,7 +621,7 @@ background-size: 'contain';
 .gatsby-background-image-test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass.test:after,
@@ -670,7 +670,7 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
@@ -718,7 +718,7 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {
@@ -766,7 +766,7 @@ background-size: 'contain';
           .imageClass.test:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass.test:after {
@@ -814,7 +814,7 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:before {
             z-index: -100;
             
-            
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .gatsby-background-image-fwatluf_depr:after {

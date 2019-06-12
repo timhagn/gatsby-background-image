@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import getBackgroundStyles from './BackgroundUtils'
-import { convertProps, stripRemainingProps } from './HelperUtils'
+import {
+  convertProps,
+  imageArrayLength,
+  stripRemainingProps,
+} from './HelperUtils'
 import {
   activateCacheForImage,
   activatePictureRef,
@@ -9,7 +13,7 @@ import {
   getCurrentFromData,
   imagePropsChanged,
   imageReferenceCompleted,
-  inImageCache,
+  inImageCache, initialBgImage,
   noscriptImg,
   switchImageSettings,
 } from './ImageUtils'
@@ -85,11 +89,8 @@ class BackgroundImage extends React.Component {
 
     // Preset backgroundStyles (e.g. during SSR or gatsby build).
     this.backgroundStyles = presetBackgroundStyles(
-      getBackgroundStyles(this.props.className)
+      getBackgroundStyles(props.className)
     )
-
-    // Start with an empty background image.
-    this.bgImage = ``
 
     // Bind handlers to class.
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
@@ -97,9 +98,15 @@ class BackgroundImage extends React.Component {
 
     // Create reference(s) to an Image loaded via picture element in background.
     this.imageRef = createPictureRef(
-      { ...this.props, isVisible },
+      { ...props, isVisible },
       this.handleImageLoaded
     )
+    console.log(`initial length`, imageArrayLength(props))
+    // Start with empty background image(s).
+    this.bgImage = initialBgImage(props)
+    // this.bgImage = hasImageArray(props)
+    //   ? createDummyImageArray(imageArrayLength(props))
+    //   : ``
 
     // console.log(`-------------------------------------------------------------`)
   }
@@ -141,7 +148,13 @@ class BackgroundImage extends React.Component {
             getCurrentFromData({
               data: this.imageRef,
               propName: `currentSrc`,
-            }) || getCurrentFromData({ data: this.imageRef, propName: `src` })
+              returnArray: true,
+            }) ||
+            getCurrentFromData({
+              data: this.imageRef,
+              propName: `src`,
+              returnArray: true,
+            })
           this.imageRef = createPictureRef(
             { ...this.props, isVisible: this.state.isVisible },
             this.handleImageLoaded
@@ -294,7 +307,11 @@ class BackgroundImage extends React.Component {
       state: this.state,
     })
 
-    this.bgImage = newImageSettings.nextImage || this.bgImage
+    // Set bgImage (the next lastImage) to available newImageSettings or fallback.
+    this.bgImage =
+      newImageSettings.nextImageArray ||
+      newImageSettings.nextImage ||
+      this.bgImage
 
     const pseudoStyles = createPseudoStyles({
       classId,
@@ -310,6 +327,8 @@ class BackgroundImage extends React.Component {
     // TODO: Check switching again (fadeIn).
 
     // console.log(newImageSettings)
+
+    console.log(pseudoStyles)
 
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&

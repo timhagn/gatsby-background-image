@@ -54,16 +54,24 @@ exports[`noscriptImg() should return noscriptImg with opacity & transitionDelay 
 exports[`switchImageSettings() should return settings from fixed array 1`] = `
 Object {
   "afterOpacity": 1,
-  "lastImage": "string_of_base64",
+  "lastImage": "string_of_base64,imageString",
   "nextImage": "url(test.webp),url(test.webp)",
+  "nextImageArray": Array [
+    "url(test.webp)",
+    "url(test.webp)",
+  ],
 }
 `;
 
 exports[`switchImageSettings() should return settings from fixed array without currentSrc 1`] = `
 Object {
   "afterOpacity": 1,
-  "lastImage": undefined,
+  "lastImage": "",
   "nextImage": "url(test.jpg),url(test.jpg)",
+  "nextImageArray": Array [
+    "url(test.jpg)",
+    "url(test.jpg)",
+  ],
 }
 `;
 

@@ -1,6 +1,9 @@
-import { combineArray, convertProps, filteredJoin } from './HelperUtils'
-
-const DUMMY_IMG = `data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==`
+import {
+  combineArray,
+  convertProps,
+  filteredJoin,
+  hasImageArray,
+} from './HelperUtils'
 
 const imageCache = Object.create({})
 /**
@@ -12,10 +15,7 @@ const imageCache = Object.create({})
  */
 export const inImageCache = props => {
   const convertedProps = convertProps(props)
-  if (
-    (convertedProps.fluid && Array.isArray(convertedProps.fluid)) ||
-    (convertedProps.fixed && Array.isArray(convertedProps.fixed))
-  ) {
+  if (hasImageArray(convertedProps)) {
     return allInImageCache(props)
   } else {
     // Find src
@@ -56,10 +56,7 @@ export const allInImageCache = props => {
  */
 export const activateCacheForImage = props => {
   const convertedProps = convertProps(props)
-  if (
-    (convertedProps.fluid && Array.isArray(convertedProps.fluid)) ||
-    (convertedProps.fixed && Array.isArray(convertedProps.fixed))
-  ) {
+  if (hasImageArray(convertedProps)) {
     return activateCacheForMultipleImages(props)
   } else {
     // Find src
@@ -120,15 +117,13 @@ export const createPictureRef = (props, onLoad) => {
     (typeof convertedProps.fluid !== `undefined` ||
       typeof convertedProps.fixed !== `undefined`)
   ) {
-    if (
-      (convertedProps.fluid && Array.isArray(convertedProps.fluid)) ||
-      (convertedProps.fixed && Array.isArray(convertedProps.fixed))
-    ) {
+    if (hasImageArray(convertedProps)) {
       return createMultiplePictureRefs(props, onLoad)
     } else {
       const img = new Image()
 
       img.onload = () => onLoad()
+
       if (!img.complete && typeof convertedProps.onLoad === `function`) {
         img.addEventListener('load', convertedProps.onLoad)
       }
@@ -184,10 +179,7 @@ export const activatePictureRef = (imageRef, props) => {
     (typeof convertedProps.fluid !== `undefined` ||
       typeof convertedProps.fixed !== `undefined`)
   ) {
-    if (
-      (convertedProps.fluid && Array.isArray(convertedProps.fluid)) ||
-      (convertedProps.fixed && Array.isArray(convertedProps.fixed))
-    ) {
+    if (hasImageArray(convertedProps)) {
       return activateMultiplePictureRefs(imageRef, props)
     } else {
       const imageData = convertedProps.fluid
@@ -280,7 +272,7 @@ export const noscriptImg = props => {
  * Compares the old states to the new and changes image settings accordingly.
  *
  * @param image     string||array   Base data for one or multiple Images.
- * @param bgImage   string          Last background-image string.
+ * @param bgImage   string||array   Last background image(s).
  * @param imageRef  string||array   References to one or multiple Images.
  * @param state     object          Component state.
  * @return {{afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
@@ -296,10 +288,11 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   // TODO: - gbImageString & lastImageString
   // TODO: might help with the suddenly "missing" astronaut ^^.
   // TODO: use imageReferenceCompleted() for "src" & "currentSrc", else fill in from lastImage.
-  const lastImage = bgImage
   const returnArray = Array.isArray(image)
+  const lastImage = Array.isArray(bgImage) ? filteredJoin(bgImage) : bgImage
   // Set the backgroundImage according to images available.
   let nextImage
+  let nextImageArray
   if (returnArray) {
     // Check for tracedSVG first.
     nextImage = getCurrentFromData({
@@ -339,14 +332,18 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
         )
       }
     }
-    // Fill the rest of the background-images with a transparent dummy pixel,
-    // lest the other background-* properties can't target the correct image.
     // TODO : cross reference with lastImage / bgImage array.
-    const dummyImageURI = getUrlString({ imageString: DUMMY_IMG })
-    const dummyArray = Array(image.length).fill(dummyImageURI)
-
+    // First fill last images from bgImage...
+    console.log(`before:`, nextImage)
+    nextImage = combineArray(nextImage, bgImage)
+    // ... then fill the rest of the background-images with a transparent dummy
+    // pixel, lest the background-* properties can't target the correct image.
+    const dummyArray = createDummyImageArray(image.length)
     // Now combine the two arrays and join them.
-    nextImage = filteredJoin(combineArray(nextImage, dummyArray))
+    nextImage = combineArray(nextImage, dummyArray)
+    nextImageArray = nextImage
+    console.log(`after:`, nextImage)
+    nextImage = filteredJoin(nextImage)
   } else {
     nextImage = ``
     if (image.tracedSVG)
@@ -368,11 +365,14 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   // Change opacity according to imageState.
   const afterOpacity = state.imageState % 2
 
-  return {
+  const newImageSettings = {
     lastImage,
     nextImage,
     afterOpacity,
   }
+  // Add nextImageArray for bgImage to newImageSettings if exists.
+  if (nextImageArray) newImageSettings.nextImageArray = nextImageArray
+  return newImageSettings
 }
 
 /**
@@ -399,7 +399,13 @@ export const getCurrentFromData = ({
       // .filter(dataElement => {
       //   return propName in dataElement && dataElement[propName]
       // })
-      .map(dataElement => dataElement[propName] || ``)
+      .map(dataElement => {
+        // If `currentSrc` is needed, check image load completion first.
+        if (propName === `currentSrc`) {
+          return (imageLoaded(dataElement) && dataElement[propName]) || ``
+        }
+        return dataElement[propName] || ``
+      })
     // Encapsulate in URL string and return.
     return getUrlString({
       imageString,
@@ -503,6 +509,55 @@ export const imageArrayPropsChanged = (props, prevProps) => {
   }
 }
 
+export const initialBgImage = (props, withDummies = true) => {
+  const convertedProps = convertProps(props)
+  const image = convertedProps.fluid || convertedProps.fixed
+  // TODO: Check if image exists!!
+  const returnArray = hasImageArray(convertedProps)
+  let initialImage
+  if (returnArray) {
+    // Check for tracedSVG first.
+    initialImage = getCurrentFromData({
+      data: image,
+      propName: `tracedSVG`,
+      returnArray,
+    })
+    // Now combine with base64 images.
+    initialImage = combineArray(
+      getCurrentFromData({
+        data: image,
+        propName: `base64`,
+        returnArray,
+      }),
+      initialImage
+    )
+    if (withDummies) {
+      const dummyArray = createDummyImageArray(image.length)
+      // Now combine the two arrays and join them.
+      initialImage = combineArray(initialImage, dummyArray)
+    }
+  } else {
+    initialImage = ``
+    if (image.tracedSVG)
+      initialImage = getCurrentFromData({ data: image, propName: `tracedSVG` })
+    if (image.base64 && !image.tracedSVG)
+      initialImage = getCurrentFromData({ data: image, propName: `base64` })
+  }
+  return initialImage
+}
+
+/**
+ * Creates an array with a transparent dummy pixel for background-* properties.
+ *
+ * @param length
+ * @return {any[]}
+ */
+export const createDummyImageArray = length => {
+  const DUMMY_IMG = `data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==`
+  const dummyImageURI = getUrlString({ imageString: DUMMY_IMG })
+  return Array(length).fill(dummyImageURI)
+}
+
 /**
  * Checks if an image (array) reference is existing and tests for complete.
  *
@@ -512,6 +567,9 @@ export const imageArrayPropsChanged = (props, prevProps) => {
 export const imageReferenceCompleted = imageRef =>
   imageRef
     ? Array.isArray(imageRef)
-      ? imageRef.every(singleImageRef => singleImageRef.complete)
-      : imageRef.complete
+      ? imageRef.every(singleImageRef => imageLoaded(singleImageRef))
+      : imageLoaded(imageRef)
     : false
+
+export const imageLoaded = imageRef =>
+  imageRef ? imageRef.complete && imageRef.naturalWidth !== 0 : false

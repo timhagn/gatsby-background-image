@@ -261,6 +261,7 @@ describe(`switchImageSettings()`, () => {
   const mockImageRef = {
     src: `test.jpg`,
     currentSrc: `test.webp`,
+    complete: true,
   }
   const state = {
     isVisible: false,
@@ -303,7 +304,7 @@ describe(`switchImageSettings()`, () => {
     state.imgLoaded = true
     const createdSettings = switchImageSettings({
       image: fluidArrayMock.fluid,
-      bgImage: `string_of_base64`,
+      bgImage: [`string_of_base64`, `imageString`],
       imageRef: [mockImageRef, mockImageRef],
       state,
     })
@@ -319,6 +320,7 @@ describe(`switchImageSettings()`, () => {
     const createdSettings = switchImageSettings({
       image: fluidArrayMock.fluid,
       imageRef: mockImageRefNoCurrentSrc,
+      bgImage: [``, ``],
       state,
     })
     expect(createdSettings).toMatchSnapshot()

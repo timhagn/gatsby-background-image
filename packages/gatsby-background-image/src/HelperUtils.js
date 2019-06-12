@@ -1,3 +1,5 @@
+import { getUrlString } from './ImageUtils'
+
 /**
  * Mirror of BackgroundImage.propTypes. Keep in SYNC!
  *
@@ -71,6 +73,35 @@ export const convertProps = props => {
 }
 
 /**
+ * Checks if fluid or fixed are image arrays.
+ *
+ * @param props
+ * @return {boolean}
+ */
+export const hasImageArray = props =>
+  (props.fluid && Array.isArray(props.fluid)) ||
+  (props.fixed && Array.isArray(props.fixed))
+
+/**
+ * Returns the length of an image array.
+ *
+ * @param props
+ * @return {Number}
+ */
+export const imageArrayLength = props => {
+  if (hasImageArray(props)) {
+    if (props.fluid) return props.fluid.length
+    if (props.fixed) return props.fixed.length
+  }
+  return 0
+}
+// hasImageArray(props)
+//   ? props.fluid
+//     ? props.fluid.length
+//     : props.fixed.length
+//   : 0
+
+/**
  * Converts CSS kebab-case strings to camel-cased js style rules.
  *
  * @param str   string    Rule to transform
@@ -134,6 +165,12 @@ export const hashString = str =>
     0
   )
 
+/**
+ * As the name says, it filters out empty strings from an array and joins it.
+ *
+ * @param arrayToJoin   array   Array to join after filtering.
+ * @return {string}
+ */
 export const filteredJoin = arrayToJoin =>
   arrayToJoin.filter(item => item !== ``).join()
 
