@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import getBackgroundStyles from './BackgroundUtils'
-import {
-  convertProps,
-  stripRemainingProps,
-} from './HelperUtils'
+import { convertProps, stripRemainingProps } from './HelperUtils'
 import {
   activateCacheForImage,
   activatePictureRef,
