@@ -334,7 +334,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     }
     // TODO : cross reference with lastImage / bgImage array.
     // First fill last images from bgImage...
-    console.log(`before:`, nextImage)
+    console.table(`before:`, nextImage)
     nextImage = combineArray(nextImage, bgImage)
     // ... then fill the rest of the background-images with a transparent dummy
     // pixel, lest the background-* properties can't target the correct image.
@@ -342,7 +342,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     // Now combine the two arrays and join them.
     nextImage = combineArray(nextImage, dummyArray)
     nextImageArray = nextImage
-    console.log(`after:`, nextImage)
+    console.table(`after:`, nextImage)
     nextImage = filteredJoin(nextImage)
   } else {
     nextImage = ``
@@ -376,12 +376,12 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
 }
 
 /**
- * Extracts a value from an imageRef or image object or an array of them.
+ * Extracts a value from an imageRef, image object or an array of them.
  *
- * @param data
- * @param propName
- * @param addUrl
- * @param returnArray
+ * @param data        HTMLImageElement||object||Array   Data to extract from.
+ * @param propName    string    Property to extract.
+ * @param addUrl      boolean   Should returned strings be encased in `url()`?
+ * @param returnArray boolean   Switches between returning an array and a string.
  * @return {string||array}
  */
 export const getCurrentFromData = ({

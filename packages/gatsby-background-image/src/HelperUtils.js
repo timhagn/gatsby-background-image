@@ -1,4 +1,5 @@
 import { getUrlString } from './ImageUtils'
+import PropTypes from 'prop-types'
 
 /**
  * Mirror of BackgroundImage.propTypes. Keep in SYNC!
@@ -11,11 +12,13 @@ const gbiPropTypes = [
   `fixed`,
   `fluid`,
   `fadeIn`,
+  `durationFadeIn`,
   `title`,
   `id`,
   `alt`,
   `className`,
   `critical`,
+  `crossOrigin`,
   `style`,
   `backgroundColor`,
   `onLoad`,
@@ -95,11 +98,6 @@ export const imageArrayLength = props => {
   }
   return 0
 }
-// hasImageArray(props)
-//   ? props.fluid
-//     ? props.fluid.length
-//     : props.fixed.length
-//   : 0
 
 /**
  * Converts CSS kebab-case strings to camel-cased js style rules.

@@ -102,12 +102,9 @@ class BackgroundImage extends React.Component {
       { ...props, isVisible },
       this.handleImageLoaded
     )
-    console.log(`initial length`, imageArrayLength(props))
-    // Start with empty background image(s).
+    // console.log(`initial length`, imageArrayLength(props))
+    // Start with base64, tracedSVG or empty background image(s).
     this.bgImage = initialBgImage(props)
-    // this.bgImage = hasImageArray(props)
-    //   ? createDummyImageArray(imageArrayLength(props))
-    //   : ``
 
     // console.log(`-------------------------------------------------------------`)
   }
