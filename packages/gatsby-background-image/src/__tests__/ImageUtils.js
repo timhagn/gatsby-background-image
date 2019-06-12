@@ -13,7 +13,7 @@ import {
   activatePictureRef,
   getCurrentFromData,
   getUrlString,
-  imageReferenceCompleted,
+  imageReferenceCompleted, imageLoaded, initialBgImage,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
@@ -540,8 +540,27 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
   })
 })
 
+describe(`initialBgImage()`, () => {
+  it(`should return initial array without dummies`, () => {
+    const initialWithoutDummies = initialBgImage(fluidArrayMock, false)
+    expect(initialWithoutDummies).toMatchSnapshot()
+  })
+
+  it(`should return initial single tracedSVG`, () => {
+    fluidMock.fluid.tracedSVG = `data:image/svg+xml,...`
+    const initialTracedSVG = initialBgImage(fluidMock)
+    expect(initialTracedSVG).toMatchSnapshot()
+  })
+})
+
 describe(`imageReferenceCompleted()`, () => {
   it(`should return false with undefined imageRef`, () => {
     expect(imageReferenceCompleted()).toBeFalsy()
+  })
+})
+
+describe(`imageLoaded()`, () => {
+  it(`should return false with undefined imageRef`, () => {
+    expect(imageLoaded()).toBeFalsy()
   })
 })

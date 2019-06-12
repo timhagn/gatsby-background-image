@@ -26,6 +26,15 @@ Array [
 ]
 `;
 
+exports[`initialBgImage() should return initial array without dummies 1`] = `
+Array [
+  "",
+  "",
+]
+`;
+
+exports[`initialBgImage() should return initial single tracedSVG 1`] = `"url(\\"data:image/svg+xml,...\\")"`;
+
 exports[`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11) activatePictureRef() should still create an imageRef 1`] = `
 <img
   src="test_fluid_image.jpg"
