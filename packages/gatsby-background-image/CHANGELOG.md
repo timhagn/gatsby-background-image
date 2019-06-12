@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.7.0"></a>
+<a name="0.7.1"></a>
+
+## [0.7.1](https://github.com/timhagn/gatsby-background-image) (2019-06-12)
+
+**fix:** Fixed jumping of multiple images (added dummy image array) as well as
+only showing images if really fully loaded.
 
 ## [0.7.0](https://github.com/timhagn/gatsby-background-image) (2019-05-28)
 
