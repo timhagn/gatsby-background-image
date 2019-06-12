@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import getBackgroundStyles from './BackgroundUtils'
 import {
   convertProps,
-  imageArrayLength,
   stripRemainingProps,
 } from './HelperUtils'
 import {
@@ -102,7 +101,6 @@ class BackgroundImage extends React.Component {
       { ...props, isVisible },
       this.handleImageLoaded
     )
-    // console.log(`initial length`, imageArrayLength(props))
     // Start with base64, tracedSVG or empty background image(s).
     this.bgImage = initialBgImage(props)
 
@@ -254,9 +252,6 @@ class BackgroundImage extends React.Component {
 
     const remainingProps = stripRemainingProps(props)
 
-    // this.currentClassNames =
-    //   this.currentClassNames || fixClassName(className, this.randomClass)
-
     const bgColor =
       typeof backgroundColor === `boolean`
         ? `lightgray`
@@ -322,11 +317,8 @@ class BackgroundImage extends React.Component {
       ...newImageSettings,
     })
 
-    // TODO: Check switching again (fadeIn).
-
-    // console.log(newImageSettings)
-
-    console.log(pseudoStyles)
+    // console.table(newImageSettings)
+    // console.log(pseudoStyles)
 
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&

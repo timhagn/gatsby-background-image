@@ -86,20 +86,6 @@ export const hasImageArray = props =>
   (props.fixed && Array.isArray(props.fixed))
 
 /**
- * Returns the length of an image array.
- *
- * @param props
- * @return {Number}
- */
-export const imageArrayLength = props => {
-  if (hasImageArray(props)) {
-    if (props.fluid) return props.fluid.length
-    if (props.fixed) return props.fixed.length
-  }
-  return 0
-}
-
-/**
  * Converts CSS kebab-case strings to camel-cased js style rules.
  *
  * @param str   string    Rule to transform

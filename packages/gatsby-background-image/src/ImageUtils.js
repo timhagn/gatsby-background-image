@@ -332,9 +332,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
         )
       }
     }
-    // TODO : cross reference with lastImage / bgImage array.
     // First fill last images from bgImage...
-    console.table(`before:`, nextImage)
     nextImage = combineArray(nextImage, bgImage)
     // ... then fill the rest of the background-images with a transparent dummy
     // pixel, lest the background-* properties can't target the correct image.
@@ -342,7 +340,6 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     // Now combine the two arrays and join them.
     nextImage = combineArray(nextImage, dummyArray)
     nextImageArray = nextImage
-    console.table(`after:`, nextImage)
     nextImage = filteredJoin(nextImage)
   } else {
     nextImage = ``
@@ -351,19 +348,29 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     if (image.base64 && !image.tracedSVG)
       nextImage = getCurrentFromData({ data: image, propName: `base64` })
     if (state.imgLoaded && state.isVisible) {
-      nextImage =
-        currentSources ||
-        getCurrentFromData({
-          data: imageRef,
-          propName: `src`,
-        })
+      nextImage = currentSources
     }
   }
 
-  // Fall back on lastImage (important for prop changes) if all else fails.
-  if (!nextImage) nextImage = lastImage
   // Change opacity according to imageState.
   const afterOpacity = state.imageState % 2
+
+  if (
+    !returnArray &&
+    nextImage === `` &&
+    state.imgLoaded &&
+    state.isVisible &&
+    imageRef &&
+    !imageRef.currentSrc
+  ) {
+    // Should we still have no nextImage it might be because currentSrc is missing.
+    nextImage = getCurrentFromData({
+      data: imageRef,
+      propName: `src`,
+    })
+  }
+  // Fall back on lastImage (important for prop changes) if all else fails.
+  if (!nextImage) nextImage = lastImage
 
   const newImageSettings = {
     lastImage,
@@ -414,6 +421,11 @@ export const getCurrentFromData = ({
       returnArray,
     })
   } else {
+    if (propName === `currentSrc` && propName in data) {
+      return getUrlString({
+        imageString: (imageLoaded(data) && data[propName]) || ``,
+      })
+    }
     return propName in data
       ? getUrlString({ imageString: data[propName], tracedSVG, addUrl })
       : ``
@@ -586,4 +598,8 @@ export const imageReferenceCompleted = imageRef =>
  * @return {boolean}
  */
 export const imageLoaded = imageRef =>
-  imageRef ? imageRef.complete && imageRef.naturalWidth !== 0 : false
+  imageRef
+    ? imageRef.complete &&
+      imageRef.naturalWidth !== 0 &&
+      imageRef.naturalHeight !== 0
+    : false
