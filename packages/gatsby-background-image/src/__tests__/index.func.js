@@ -49,6 +49,28 @@ describe(`<BackgroundImage /> with mock IO`, () => {
         }
       },
     })
+    Object.defineProperty(HTMLImageElement.prototype, 'naturalWidth', {
+      // Define the property setter
+      set(naturalWidth) {
+        this.naturalWidth = naturalWidth
+      },
+      get() {
+        if (this.getAttribute('src') === LOAD_SUCCESS_SRC) {
+          return 1
+        }
+      },
+    })
+    Object.defineProperty(HTMLImageElement.prototype, 'naturalHeight', {
+      // Define the property setter
+      set(naturalHeight) {
+        this.naturalHeight = naturalHeight
+      },
+      get() {
+        if (this.getAttribute('src') === LOAD_SUCCESS_SRC) {
+          return 1
+        }
+      },
+    })
 
     resetImageCache()
   })
