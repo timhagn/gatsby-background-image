@@ -512,7 +512,7 @@ export const imageArrayPropsChanged = (props, prevProps) => {
 export const initialBgImage = (props, withDummies = true) => {
   const convertedProps = convertProps(props)
   const image = convertedProps.fluid || convertedProps.fixed
-  // TODO: Check if image exists!!
+  if (!image) return ``
   const returnArray = hasImageArray(convertedProps)
   let initialImage
   if (returnArray) {
