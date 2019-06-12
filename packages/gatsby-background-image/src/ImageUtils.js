@@ -509,6 +509,13 @@ export const imageArrayPropsChanged = (props, prevProps) => {
   }
 }
 
+/**
+ * Prepares initial background image(s).
+ *
+ * @param props         object    Component properties.
+ * @param withDummies   boolean   If array preserving bg layering should be add.
+ * @return {string|(string|Array)}
+ */
 export const initialBgImage = (props, withDummies = true) => {
   const convertedProps = convertProps(props)
   const image = convertedProps.fluid || convertedProps.fixed

@@ -13,7 +13,8 @@ import {
   getCurrentFromData,
   imagePropsChanged,
   imageReferenceCompleted,
-  inImageCache, initialBgImage,
+  inImageCache,
+  initialBgImage,
   noscriptImg,
   switchImageSettings,
 } from './ImageUtils'
