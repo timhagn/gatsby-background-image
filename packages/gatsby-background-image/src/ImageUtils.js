@@ -519,6 +519,7 @@ export const imageArrayPropsChanged = (props, prevProps) => {
 export const initialBgImage = (props, withDummies = true) => {
   const convertedProps = convertProps(props)
   const image = convertedProps.fluid || convertedProps.fixed
+  // Prevent failing if neither fluid nor fixed are present.
   if (!image) return ``
   const returnArray = hasImageArray(convertedProps)
   let initialImage
@@ -578,5 +579,11 @@ export const imageReferenceCompleted = imageRef =>
       : imageLoaded(imageRef)
     : false
 
+/**
+ * Checks if an image really was fully loaded.
+ *
+ * @param imageRef  HTMLImageElement  Reference to an image.
+ * @return {boolean}
+ */
 export const imageLoaded = imageRef =>
   imageRef ? imageRef.complete && imageRef.naturalWidth !== 0 : false
