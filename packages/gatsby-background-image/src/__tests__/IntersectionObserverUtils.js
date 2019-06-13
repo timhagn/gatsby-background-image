@@ -1,5 +1,5 @@
 import React from 'react'
-import 'react-testing-library/cleanup-after-each'
+import '@testing-library/react/cleanup-after-each'
 import * as IOUtils from '../IntersectionObserverUtils'
 
 global.console.debug = jest.fn()

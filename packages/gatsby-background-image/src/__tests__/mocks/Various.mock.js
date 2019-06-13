@@ -1,5 +1,5 @@
-import { render } from 'react-testing-library'
-import 'react-testing-library/cleanup-after-each'
+import { render } from '@testing-library/react'
+import '@testing-library/react/cleanup-after-each'
 
 import React from 'react'
 import BackgroundImage from '../../index'
@@ -36,7 +36,7 @@ export const createStyleElement = () => {
 }
 
 /**
- * Sets up a (react-testing-library) rendered container.
+ * Sets up a (@testing-library/react) rendered container.
  *
  * @param fluid
  * @param addClass

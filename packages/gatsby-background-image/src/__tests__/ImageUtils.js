@@ -1,5 +1,5 @@
-import { render } from 'react-testing-library'
-import 'react-testing-library/cleanup-after-each'
+import { render } from '@testing-library/react'
+import '@testing-library/react/cleanup-after-each'
 import React from 'react'
 import { fixedShapeMock, fluidShapeMock } from './mocks/Various.mock'
 import {

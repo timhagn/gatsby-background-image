@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, fireEvent } from 'react-testing-library'
-import 'react-testing-library/cleanup-after-each'
+import { render, fireEvent } from '@testing-library/react'
+import '@testing-library/react/cleanup-after-each'
 import './mocks/IntersectionObserver.mock'
 import { mockAllIsIntersecting } from './mocks/IntersectionObserver.mock'
 
