@@ -265,8 +265,8 @@ const MultiBackground = ({ children, className }) => {
     `
   )
 
-  // Watch out for CSS's stacking order, especially when styling the individual
-  // positions! The lowermost image comes last!
+  // Watch out for CSS's stacking order, especially when styling the
+  // individual positions! The lowermost image comes last!
   const backgroundFluidImageStack = [
     seamlessBackground.childImageSharp.fluid,
     astronaut.childImageSharp.fluid,
