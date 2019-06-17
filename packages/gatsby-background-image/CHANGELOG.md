@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.7.2](https://github.com/timhagn/gatsby-background-image) (2019-06-18)
 
-**feat:** Added possibility to work with CSS Strings like `rgba()` or 
+**feat:** Added possibility to work with CSS Strings like `rgba()` or
 `linear-gradient` for multiple stacked background-images.
 
 ## [0.7.1](https://github.com/timhagn/gatsby-background-image) (2019-06-12)
