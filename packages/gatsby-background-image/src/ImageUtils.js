@@ -2,7 +2,8 @@ import {
   combineArray,
   convertProps,
   filteredJoin,
-  hasImageArray, isString,
+  hasImageArray,
+  isString,
 } from './HelperUtils'
 
 const imageCache = Object.create({})
@@ -284,10 +285,6 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     propName: `currentSrc`,
   })
   // Backup bgImage to lastImage.
-  // TODO: perhaps use bgImage & lastImage as an array and introduce:
-  // TODO: - gbImageString & lastImageString
-  // TODO: might help with the suddenly "missing" astronaut ^^.
-  // TODO: use imageReferenceCompleted() for "src" & "currentSrc", else fill in from lastImage.
   const returnArray = Array.isArray(image)
   const lastImage = Array.isArray(bgImage) ? filteredJoin(bgImage) : bgImage
   // Set the backgroundImage according to images available.
@@ -305,6 +302,16 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
       getCurrentFromData({
         data: image,
         propName: `base64`,
+        returnArray,
+      }),
+      nextImage
+    )
+    // Now add possible `rgba()` or similar CSS string props.
+    nextImage = combineArray(
+      getCurrentFromData({
+        data: image,
+        propName: `CSS_STRING`,
+        addUrl: false,
         returnArray,
       }),
       nextImage
@@ -411,7 +418,7 @@ export const getCurrentFromData = ({
         if (propName === `currentSrc`) {
           return (imageLoaded(dataElement) && dataElement[propName]) || ``
         }
-        if (propName === `STRING` && isString(dataElement)) {
+        if (propName === `CSS_STRING` && isString(dataElement)) {
           return dataElement || ``
         }
         return dataElement[propName] || ``
@@ -508,15 +515,23 @@ export const imageArrayPropsChanged = (props, prevProps) => {
     // Are the lengths or sources in the Arrays different?
     if (isPropsFluidArray && isPrevPropsFluidArray) {
       if (props.fluid.length === prevProps.fluid.length) {
+        // Check for individual image or CSS string changes.
         return props.fluid.every(
-          (image, index) => image.src !== prevProps.fluid[index].src
+          (image, index) =>
+            (isString(image) && !isString(prevProps.fluid[index])) ||
+            (!isString(image) && isString(prevProps.fluid[index])) ||
+            image.src !== prevProps.fluid[index].src
         )
       }
       return true
     } else if (isPropsFixedArray && isPrevPropsFixedArray) {
       if (props.fixed.length === prevProps.fixed.length) {
+        // Check for individual image or CSS string changes.
         return props.fixed.every(
-          (image, index) => image.src !== prevProps.fixed[index].src
+          (image, index) =>
+            (isString(image) && !isString(prevProps.fixed[index])) ||
+            (!isString(image) && isString(prevProps.fixed[index])) ||
+            image.src !== prevProps.fixed[index].src
         )
       }
       return true
@@ -554,7 +569,16 @@ export const initialBgImage = (props, withDummies = true) => {
       }),
       initialImage
     )
-    // Now add possible `rgba()`, `linear-gradient()` or similar string props.
+    // Now add possible `rgba()` or similar CSS string props.
+    initialImage = combineArray(
+      getCurrentFromData({
+        data: image,
+        propName: `CSS_STRING`,
+        addUrl: false,
+        returnArray,
+      }),
+      initialImage
+    )
 
     if (withDummies) {
       const dummyArray = createDummyImageArray(image.length)
