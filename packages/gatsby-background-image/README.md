@@ -236,7 +236,8 @@ export default StyledBackgroundSection
 ## How to Use with Multiple Images
 
 As `gatsby-background-image` may now be used with [multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds),
-this is what a component using it might look like:
+**including CSS strings** like `rgba()` or suchlike this is what a component 
+using it might look like:
 
 ```jsx
 import { graphql, useStaticQuery } from 'gatsby'
@@ -276,6 +277,7 @@ const MultiBackground = ({ children, className }) => {
   // positions! The lowermost image comes last!
   const backgroundFluidImageStack = [
     seamlessBackground.childImageSharp.fluid,
+    `linear-gradient(rgba(220, 15, 15, 0.73), rgba(4, 243, 67, 0.73))`
     astronaut.childImageSharp.fluid,
   ].reverse()
 
@@ -310,8 +312,8 @@ const StyledMultiBackground = styled(MultiBackground)`
   /* So we won't have the default "lightgray" background-color. */
   background-color: transparent;
   /* Now again, remember the stacking order of CSS: lowermost comes last! */
-  background-repeat: no-repeat, repeat;
-  background-position: center 155%, center;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-position: center 155%, center, center;
   color: #fff;
 `
 
@@ -409,16 +411,17 @@ don't count on it in production ; ).
 ## Changed props
 
 The `fluid` or `fixed` (as well as the deprecated `resolutions` & `sizes`) props
-may be given as an array of images returned from `fluid` or `fixed` queries. 
+may be given as an array of images returned from `fluid` or `fixed` queries or 
+CSS Strings like `rgba()` or such. 
 
 The `fadeIn` prop may be set to `soft` to ignore cached images and always
 try to fade in if `critical` isn't set.
 
-| Name                   | Type                  | Description                                                      |
-| ---------------------- | --------------------- | ---------------------------------------------------------------- |
-| `fixed`            	 | `object`/`array`      | Data returned from one or multiple fixed queries.                |
-| `fluid`            	 | `object`/`array`      | Data returned from one or multiple fixed queries.                |
-| `fadeIn`               | `boolean`/`string`    | Defaults to fading in the image on load, may be forced by `soft` |
+| Name                   | Type                  | Description                                                                     |
+| ---------------------- | --------------------- | ------------------------------------------------------------------------------- |
+| `fixed`            	 | `object`/`array`      | Data returned from one fixed query or an array of multiple ones or CSS string(s)|
+| `fluid`            	 | `object`/`array`      | Data returned from one fluid query or an array of multiple ones or CSS string(s)|
+| `fadeIn`               | `boolean`/`string`    | Defaults to fading in the image on load, may be forced by `soft`                |
 
 ## props Not Available
 
