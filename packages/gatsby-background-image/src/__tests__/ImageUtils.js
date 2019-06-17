@@ -580,13 +580,3 @@ describe(`imageLoaded()`, () => {
     expect(imageLoaded()).toBeFalsy()
   })
 })
-
-// describe(`imageArrayPropsChanged()`, () => {
-//   it(`should return true for changed fluid props array with CSS Strings`, () => {
-//     const prevProps = {
-//       fluid: [fluidShapeMock, `linear-gradient(rgba(220, 15, 15, 0.73), rgba(4, 243, 67, 0.73))`]
-//     }
-//     const propsChanged = imageArrayPropsChanged(prevProps, fluidArrayMock)
-//     expect(propsChanged).toBeTruthy()
-//   })
-// })
