@@ -13,7 +13,10 @@ import {
   activatePictureRef,
   getCurrentFromData,
   getUrlString,
-  imageReferenceCompleted, imageLoaded, initialBgImage,
+  imageReferenceCompleted,
+  imageLoaded,
+  initialBgImage,
+  imageArrayPropsChanged,
 } from '../ImageUtils'
 
 global.console.debug = jest.fn()
@@ -55,10 +58,10 @@ describe(`createPictureRef() with crossOrigin`, () => {
       crossOrigin: `anonymous`,
     })
     expect(emptyImageRef).toMatchInlineSnapshot(`
-                                                                                    <img
-                                                                                      crossorigin="anonymous"
-                                                                                    />
-                                                        `)
+                                                                                          <img
+                                                                                            crossorigin="anonymous"
+                                                                                          />
+                                                            `)
   })
 })
 
@@ -96,11 +99,11 @@ describe(`createPictureRef() with critical image`, () => {
       critical: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                                                                                                      <img
-                                                                                                        src="test_fixed_image.jpg"
-                                                                                                        srcset="some srcSet"
-                                                                                                      />
-                                                                    `)
+                                                                                                            <img
+                                                                                                              src="test_fixed_image.jpg"
+                                                                                                              srcset="some srcSet"
+                                                                                                            />
+                                                                        `)
   })
   it(`should preload image on isVisible state`, () => {
     const imageRef = createPictureRef({
@@ -108,11 +111,11 @@ describe(`createPictureRef() with critical image`, () => {
       isVisible: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                                                                                                      <img
-                                                                                                        src="test_fixed_image.jpg"
-                                                                                                        srcset="some srcSet"
-                                                                                                      />
-                                                                    `)
+                                                                                                            <img
+                                                                                                              src="test_fixed_image.jpg"
+                                                                                                              srcset="some srcSet"
+                                                                                                            />
+                                                                        `)
   })
   it(`should set empty strings for image on critical without src & srcSet`, () => {
     const fixedMock = { ...fixedShapeMock }
@@ -123,11 +126,11 @@ describe(`createPictureRef() with critical image`, () => {
       critical: true,
     })
     expect(emptyImageRef).toMatchInlineSnapshot(`
-                                                                              <img
-                                                                                src=""
-                                                                                srcset=""
-                                                                              />
-                                                    `)
+                                                                                    <img
+                                                                                      src=""
+                                                                                      srcset=""
+                                                                                    />
+                                                        `)
   })
 })
 
@@ -138,17 +141,17 @@ describe(`createPictureRef() with image array`, () => {
       critical: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                              Array [
-                                <img
-                                  src="test_fixed_image.jpg"
-                                  srcset="some srcSet"
-                                />,
-                                <img
-                                  src="test_fixed_image.jpg"
-                                  srcset="some srcSet"
-                                />,
-                              ]
-                    `)
+                                    Array [
+                                      <img
+                                        src="test_fixed_image.jpg"
+                                        srcset="some srcSet"
+                                      />,
+                                      <img
+                                        src="test_fixed_image.jpg"
+                                        srcset="some srcSet"
+                                      />,
+                                    ]
+                        `)
   })
 })
 
@@ -436,7 +439,9 @@ describe(`imagePropsChanged()`, () => {
   })
 
   it(`should return true for different length fluid array prop`, () => {
-    const fluidChangedArrayMock = {fluid: [ ...fluidArrayMock.fluid, fluidShapeMock ] }
+    const fluidChangedArrayMock = {
+      fluid: [...fluidArrayMock.fluid, fluidShapeMock],
+    }
     // fluidChangedArrayMock.fluid.push(fluidShapeMock)
 
     const changedFluid = imagePropsChanged(
@@ -447,7 +452,9 @@ describe(`imagePropsChanged()`, () => {
   })
 
   it(`should return true for different length fluid array prop`, () => {
-    const fixedChangedArrayMock = {fixed: [ ...fixedArrayMock.fixed, fluidShapeMock ] }
+    const fixedChangedArrayMock = {
+      fixed: [...fixedArrayMock.fixed, fluidShapeMock],
+    }
     // fluidChangedArrayMock.fluid.push(fluidShapeMock)
 
     const changedFixed = imagePropsChanged(
@@ -500,7 +507,7 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
     expect(returnedString).toMatchInlineSnapshot(`"url(some_image)"`)
   })
 
-  it(`getCurrentFromData() should return empty string for mismatched data as object  & propName`, () => {
+  it(`getCurrentFromData() should return empty string for mismatched data as object & propName`, () => {
     const returnedString = getCurrentFromData({
       data: [{ blubb: null }],
       propName: `blubb`,
@@ -522,6 +529,15 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
       propName: `tracedSVG`,
     })
     expect(returnedString).toMatchInlineSnapshot(`"url(\\"some_SVG\\")"`)
+  })
+
+  it(`getCurrentFromData() should return string for data & propName CSS_STRING`, () => {
+    const returnedString = getCurrentFromData({
+      data: [`rgba(0,0,0,0.5)`],
+      propName: `CSS_STRING`,
+      addUrl: false,
+    })
+    expect(returnedString).toMatchInlineSnapshot(`"rgba(0,0,0,0.5)"`)
   })
 
   it(`getUrlString() should return  url encapsulated string`, () => {
@@ -564,3 +580,13 @@ describe(`imageLoaded()`, () => {
     expect(imageLoaded()).toBeFalsy()
   })
 })
+
+// describe(`imageArrayPropsChanged()`, () => {
+//   it(`should return true for changed fluid props array with CSS Strings`, () => {
+//     const prevProps = {
+//       fluid: [fluidShapeMock, `linear-gradient(rgba(220, 15, 15, 0.73), rgba(4, 243, 67, 0.73))`]
+//     }
+//     const propsChanged = imageArrayPropsChanged(prevProps, fluidArrayMock)
+//     expect(propsChanged).toBeTruthy()
+//   })
+// })

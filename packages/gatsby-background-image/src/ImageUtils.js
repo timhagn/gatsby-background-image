@@ -418,8 +418,9 @@ export const getCurrentFromData = ({
         if (propName === `currentSrc`) {
           return (imageLoaded(dataElement) && dataElement[propName]) || ``
         }
+        // Check if CSS strings should be parsed.
         if (propName === `CSS_STRING` && isString(dataElement)) {
-          return dataElement || ``
+          return dataElement
         }
         return dataElement[propName] || ``
       })
@@ -518,8 +519,6 @@ export const imageArrayPropsChanged = (props, prevProps) => {
         // Check for individual image or CSS string changes.
         return props.fluid.every(
           (image, index) =>
-            (isString(image) && !isString(prevProps.fluid[index])) ||
-            (!isString(image) && isString(prevProps.fluid[index])) ||
             image.src !== prevProps.fluid[index].src
         )
       }
@@ -529,8 +528,6 @@ export const imageArrayPropsChanged = (props, prevProps) => {
         // Check for individual image or CSS string changes.
         return props.fixed.every(
           (image, index) =>
-            (isString(image) && !isString(prevProps.fixed[index])) ||
-            (!isString(image) && isString(prevProps.fixed[index])) ||
             image.src !== prevProps.fixed[index].src
         )
       }
