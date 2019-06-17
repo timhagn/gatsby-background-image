@@ -394,11 +394,20 @@ const fluidObject = PropTypes.shape({
 BackgroundImage.propTypes = {
   resolutions: PropTypes.oneOfType([
     fixedObject,
-    PropTypes.arrayOf(fixedObject),
+    PropTypes.arrayOf(PropTypes.oneOfType([fixedObject, PropTypes.string])),
   ]),
-  sizes: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
-  fixed: PropTypes.oneOfType([fixedObject, PropTypes.arrayOf(fixedObject)]),
-  fluid: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
+  sizes: PropTypes.oneOfType([
+    fluidObject,
+    PropTypes.arrayOf(PropTypes.oneOfType([fluidObject, PropTypes.string])),
+  ]),
+  fixed: PropTypes.oneOfType([
+    fixedObject,
+    PropTypes.arrayOf(PropTypes.oneOfType([fixedObject, PropTypes.string])),
+  ]),
+  fluid: PropTypes.oneOfType([
+    fluidObject,
+    PropTypes.arrayOf(PropTypes.oneOfType([fluidObject, PropTypes.string])),
+  ]),
   fadeIn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   durationFadeIn: PropTypes.number,
   title: PropTypes.string,
