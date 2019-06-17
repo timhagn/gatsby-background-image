@@ -2,7 +2,7 @@ import {
   combineArray,
   convertProps,
   filteredJoin,
-  hasImageArray,
+  hasImageArray, isString,
 } from './HelperUtils'
 
 const imageCache = Object.create({})
@@ -411,6 +411,9 @@ export const getCurrentFromData = ({
         if (propName === `currentSrc`) {
           return (imageLoaded(dataElement) && dataElement[propName]) || ``
         }
+        if (propName === `STRING` && isString(dataElement)) {
+          return dataElement || ``
+        }
         return dataElement[propName] || ``
       })
     // Encapsulate in URL string and return.
@@ -551,6 +554,8 @@ export const initialBgImage = (props, withDummies = true) => {
       }),
       initialImage
     )
+    // Now add possible `rgba()`, `linear-gradient()` or similar string props.
+
     if (withDummies) {
       const dummyArray = createDummyImageArray(image.length)
       // Now combine the two arrays and join them.

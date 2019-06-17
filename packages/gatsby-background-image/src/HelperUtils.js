@@ -1,5 +1,4 @@
 import { getUrlString } from './ImageUtils'
-import PropTypes from 'prop-types'
 
 /**
  * Mirror of BackgroundImage.propTypes. Keep in SYNC!
