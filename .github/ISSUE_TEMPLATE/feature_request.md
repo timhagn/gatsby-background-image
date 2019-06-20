@@ -1,5 +1,5 @@
 ---
-name: Feature Request
+name: Feature Request 💡
 about: Have an enhancement you'd want to see in the next version of this package?
 ---
 

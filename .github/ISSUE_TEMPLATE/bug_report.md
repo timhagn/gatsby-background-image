@@ -1,5 +1,5 @@
 ---
-name: Bug Report
+name: Bug Report 🐞
 about: Some real functional problem occurred? Here's the place to tell!
 ---
 
