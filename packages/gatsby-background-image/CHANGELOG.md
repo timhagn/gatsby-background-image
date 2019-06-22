@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.7.2"></a>
+<a name="0.7.3"></a>
+
+## [0.7.3](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
+
+**fix:** Merged PR #43 of @joshdcuneo fixing TS definitions.
+Also **never fixed**: R.I.P. Oma (granny / abuela / nonna)...
 
 ## [0.7.2](https://github.com/timhagn/gatsby-background-image) (2019-06-18)
 
