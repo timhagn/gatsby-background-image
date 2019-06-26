@@ -263,6 +263,11 @@ class BackgroundImage extends React.Component {
       ? `${durationFadeIn}ms`
       : `0.25s`
 
+    // TODO ############################################################################################
+    // TODO: test GBI with wrapper DIV without relative & opacity "Hack" on the main element...
+    // TODO: ... as (per spec) the opacity: 0.99 & the relative positioning breaks everything ...
+    // TODO: ... or perhaps absolute positioned inline elements... but how without new stacking order???
+    // TODO ############################################################################################
     const divStyle = {
       position: `relative`,
       overflow: `hidden`,
