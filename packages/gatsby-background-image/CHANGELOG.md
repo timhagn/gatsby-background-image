@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.7.3"></a>
+<a name="0.7.4"></a>
 
 ## [0.7.4](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
 

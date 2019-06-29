@@ -45,6 +45,14 @@ describe(`<BackgroundImage />`, () => {
     expect(component).toMatchSnapshot()
   })
 
+  it(`should countain stacking-context-reset inner wrapper`, () => {
+    const component = setupBackgroundImage({})
+    const stackingContextWrapper = component.querySelector(
+      `[id="${`stacking-context-reset`}"]`
+    )
+    expect(stackingContextWrapper).toBeTruthy()
+  })
+
   it(`should call critical fixed images`, () => {
     activateCacheForImage({ fixed: fixedShapeMock })
     const options = {
