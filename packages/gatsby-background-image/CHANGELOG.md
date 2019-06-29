@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.7.4](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
 
-**fix:** Added `stacking-context-reset` wrapper div around `children` to, as it 
+**fix:** Added `stacking-context-reset` wrapper div around `children` to, as it
 says, reset the stacking context to prevent issues like #41.
 
 ## [0.7.3](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
