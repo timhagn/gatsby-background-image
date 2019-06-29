@@ -359,7 +359,11 @@ class BackgroundImage extends React.Component {
             }}
           />
         )}
+        <div id={`stacking-context-reset`} style={{
+          zIndex: `auto`,
+        }}>
         {children}
+        </div>
       </Tag>
     )
   }

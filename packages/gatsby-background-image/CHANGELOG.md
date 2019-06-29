@@ -5,6 +5,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 <a name="0.7.3"></a>
 
+## [0.7.4](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
+
+**fix:** Added `stacking-context-reset` wrapper div around `children` to, as it 
+says, reset the stacking context to prevent issues like #41.
+
 ## [0.7.3](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
 
 **fix:** Merged PR #43 of @joshdcuneo fixing TS definitions.
