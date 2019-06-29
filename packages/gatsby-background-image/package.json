@@ -49,5 +49,6 @@
     "watch": "babel -w src --out-dir . --ignore **/__tests__",
     "test": "jest -i",
     "test:update": "jest -i -u --coverage"
-  }
+  },
+  "gitHead": "85371a66f60d697846da349eb1c745f0d33db78e"
 }
