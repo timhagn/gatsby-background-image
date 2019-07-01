@@ -4,7 +4,7 @@ exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] 
 <div>
   <div
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline-block; width: 100px; height: 100px; background-size: 'contain';"
+    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -56,7 +56,7 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fixed ima
 <div>
   <div
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline-block; background-size: 'contain';"
+    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -108,7 +108,7 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fluid ima
 <div>
   <div
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
+    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -160,7 +160,7 @@ exports[`<BackgroundImage /> with mock IO should not call onLoad without prop, f
 <div>
   <div
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline-block; width: 100px; height: 100px; background-size: 'contain';"
+    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -306,7 +306,7 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
 <div>
   <div
     class="imageClass test gatsby-background-image-test gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; display: inline; background-size: 'contain';"
+    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>

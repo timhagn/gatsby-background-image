@@ -245,7 +245,7 @@ class BackgroundImage extends React.Component {
             .substr(0, 7)}_depr`
         : ``,
       ...props
-    } = fixOpacity(convertProps(this.props))
+    } = fixOpacity(convertProps(this.props), this.props.preserveStackingContext)
 
     const remainingProps = stripRemainingProps(props)
 
@@ -271,9 +271,10 @@ class BackgroundImage extends React.Component {
     const divStyle = {
       position: `relative`,
       overflow: `hidden`,
-      opacity: 0.99,
       ...style,
     }
+
+    !this.props.preserveStackingContext && (divStyle.opacity = 0.99)
 
     // Choose image object of fluid or fixed, return null if not present.
     let image, noScriptImageData
@@ -372,6 +373,7 @@ BackgroundImage.defaultProps = {
   alt: ``,
   title: ``,
   Tag: `div`,
+  preserveStackingContext: false,
 }
 
 const fixedObject = PropTypes.shape({
@@ -427,6 +429,7 @@ BackgroundImage.propTypes = {
   onStartLoad: PropTypes.func,
   Tag: PropTypes.string,
   classId: PropTypes.string,
+  preserveStackingContext: PropTypes.bool,
 }
 
 export default BackgroundImage

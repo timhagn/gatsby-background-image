@@ -25,6 +25,7 @@ const gbiPropTypes = [
   `onStartLoad`,
   `Tag`,
   `classId`,
+  `preserveStackingContext`,
 ]
 
 /**

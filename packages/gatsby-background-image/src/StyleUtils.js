@@ -135,17 +135,20 @@ export const setTransitionStyles = (transitionDelay = `0.25s`, fadeIn = true) =>
 export const fixOpacity = props => {
   const styledProps = { ...props }
 
-  try {
-    if (styledProps.style && styledProps.style.opacity) {
-      if (
-        isNaN(styledProps.style.opacity) ||
-        styledProps.style.opacity > 0.99
-      ) {
-        styledProps.style.opacity = 0.99
+  if (!styledProps.preserveStackingContext) {
+    try {
+      if (styledProps.style && styledProps.style.opacity) {
+        if (
+          isNaN(styledProps.style.opacity) ||
+          styledProps.style.opacity > 0.99
+        ) {
+          styledProps.style.opacity = 0.99
+        }
       }
     }
-  } catch (e) {
-    // Continue regardless of error
+    catch (e) {
+      // Continue regardless of error
+    }
   }
 
   return styledProps

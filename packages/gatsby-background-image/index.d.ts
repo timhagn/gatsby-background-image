@@ -42,6 +42,7 @@ declare module 'gatsby-background-image' {
     onError?: (event: any) => void
     Tag?: string,
     classId?: string,
+    preserveStackingContext?: boolean,
   }
 
   export default class BackgroundImage extends React.Component<IBackgroundImageProps> {
