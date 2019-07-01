@@ -3,11 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.7.5"></a>
+<a name="0.7.6"></a>
 
-## [0.7.5](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
+## [0.7.6](https://github.com/timhagn/gatsby-background-image) (2019-07-01)
 
-**fix / feat:** Reverted the changes of 0.7.4 and added `preserveStackingContext` 
+**fix:** Fix handling of CSS styles in multiple images, checking for `http`
+after PR #46 broke it.
+
+## [0.7.5](https://github.com/timhagn/gatsby-background-image) (2019-07-01)
+
+**fix / feat:** Reverted the changes of 0.7.4 and added `preserveStackingContext`
 option to props to allow for children with stacking context changing elements.
 Prevent issues like #41.
 

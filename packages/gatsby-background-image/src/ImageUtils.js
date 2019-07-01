@@ -465,10 +465,7 @@ export const getUrlString = ({
       const currentReturnString =
         currentString && tracedSVG
           ? `"${currentString}"`
-          : currentString &&
-            !base64 &&
-            !tracedSVG &&
-            imageUrl
+          : currentString && !base64 && !tracedSVG && imageUrl
           ? `'${currentString}'`
           : currentString
       return addUrl && currentString
@@ -482,10 +479,7 @@ export const getUrlString = ({
     const returnString =
       imageString && tracedSVG
         ? `"${imageString}"`
-        : imageString &&
-          !base64 &&
-          !tracedSVG &&
-          imageUrl
+        : imageString && !base64 && !tracedSVG && imageUrl
         ? `'${imageString}'`
         : imageString
     return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``
