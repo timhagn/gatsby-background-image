@@ -463,14 +463,14 @@ export const getUrlString = ({
       const currentReturnString =
         tracedSVG && currentString ? `"${currentString}"` : currentString
       return addUrl && currentString
-        ? `url(${currentReturnString})`
+        ? `url('${currentReturnString}')`
         : currentReturnString
     })
     return returnArray ? stringArray : filteredJoin(stringArray)
   } else {
     const returnString =
       tracedSVG && imageString ? `"${imageString}"` : imageString
-    return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``
+    return imageString ? (addUrl ? `url('${returnString}')` : returnString) : ``
   }
 }
 
