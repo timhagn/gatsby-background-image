@@ -73,7 +73,12 @@ describe(`<BackgroundImage />`, () => {
     expect(component).toMatchSnapshot()
   })
 
-  it(`should render fluid images`, () => {
+  it(`should render without opacity hack with truthy preserveStackingContext`, () => {
+    const component = setupBackgroundImage({ fluid: true, props: {preserveStackingContext: true} })
+    expect(component).toMatchSnapshot()
+  })
+
+  it(`should render multiple fluid images`, () => {
     const component = setupBackgroundImage({ fluid: true, multiImage: true })
     expect(component).toMatchSnapshot()
   })
