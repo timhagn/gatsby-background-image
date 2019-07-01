@@ -1,6 +1,6 @@
 {
   "name": "gatsby-background-image-es5",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "Lazy-loading React background-image component with optional support for the blur-up effect. Transpiled to ES5.",
   "keywords": [
     "gatsby",
