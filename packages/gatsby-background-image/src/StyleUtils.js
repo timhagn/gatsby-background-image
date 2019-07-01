@@ -145,8 +145,7 @@ export const fixOpacity = props => {
           styledProps.style.opacity = 0.99
         }
       }
-    }
-    catch (e) {
+    } catch (e) {
       // Continue regardless of error
     }
   }
