@@ -58,6 +58,7 @@ this package.
 - [Styling & Passed Through Styles](#styling--passed-through-styles)
     * [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
     * [Deprecated Styling](#deprecated-styling)
+- [Additional props](#additional-props)
 - [Changed props](#changed-props)
 - [props Not Available](#props-not-available)
 - [Handling of Remaining props](#handling-of-remaining-props) 
