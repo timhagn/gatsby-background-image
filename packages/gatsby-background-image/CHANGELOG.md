@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.7.4"></a>
+<a name="0.7.5"></a>
+
+## [0.7.5](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
+
+**fix / feat:** Reverted the changes of 0.7.4 and added `preserveStackingContext` 
+option to props to allow for children with stacking context changing elements.
+Prevent issues like #41.
 
 ## [0.7.4](https://github.com/timhagn/gatsby-background-image) (2019-06-22)
 
