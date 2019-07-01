@@ -64,10 +64,10 @@ exports[`switchImageSettings() should return settings from fixed array 1`] = `
 Object {
   "afterOpacity": 1,
   "lastImage": "string_of_base64,imageString",
-  "nextImage": "url(test.webp),url(test.webp)",
+  "nextImage": "url('test.webp'),url('test.webp')",
   "nextImageArray": Array [
-    "url(test.webp)",
-    "url(test.webp)",
+    "url('test.webp')",
+    "url('test.webp')",
   ],
 }
 `;
@@ -76,10 +76,10 @@ exports[`switchImageSettings() should return settings from fixed array without c
 Object {
   "afterOpacity": 1,
   "lastImage": "",
-  "nextImage": "url(test.jpg),url(test.jpg)",
+  "nextImage": "url('test.jpg'),url('test.jpg')",
   "nextImageArray": Array [
-    "url(test.jpg)",
-    "url(test.jpg)",
+    "url('test.jpg')",
+    "url('test.jpg')",
   ],
 }
 `;
@@ -112,7 +112,7 @@ exports[`switchImageSettings() should return settings from fluid with set bgImag
 Object {
   "afterOpacity": 1,
   "lastImage": "string_of_base64",
-  "nextImage": "url(test.webp)",
+  "nextImage": "url('test.webp')",
 }
 `;
 
@@ -120,7 +120,7 @@ exports[`switchImageSettings() should return settings from fluid with set bgImag
 Object {
   "afterOpacity": 1,
   "lastImage": "test_tracedSVG.svg",
-  "nextImage": "url(test.webp)",
+  "nextImage": "url('test.webp')",
 }
 `;
 
@@ -128,7 +128,7 @@ exports[`switchImageSettings() should return settings from fluid with set bgImag
 Object {
   "afterOpacity": 1,
   "lastImage": "",
-  "nextImage": "url(test.webp)",
+  "nextImage": "url('test.webp')",
 }
 `;
 
@@ -136,6 +136,6 @@ exports[`switchImageSettings() should return settings from fluid without src 1`]
 Object {
   "afterOpacity": 1,
   "lastImage": "",
-  "nextImage": "url(test.webp)",
+  "nextImage": "url('test.webp')",
 }
 `;
