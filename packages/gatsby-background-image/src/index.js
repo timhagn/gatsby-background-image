@@ -21,6 +21,7 @@ import {
   presetBackgroundStyles,
 } from './StyleUtils'
 import { listenToIntersections } from './IntersectionObserverUtils'
+import ReactDOM from 'react-dom'
 
 /**
  * Main Lazy-loading React background-image component
@@ -29,6 +30,8 @@ import { listenToIntersections } from './IntersectionObserverUtils'
 class BackgroundImage extends React.Component {
   // IntersectionObserver listeners (if available).
   cleanUpListeners
+
+  parentStyles= {}
 
   constructor(props) {
     super(props)
@@ -105,6 +108,9 @@ class BackgroundImage extends React.Component {
   }
 
   componentDidMount() {
+    this.parentStyles = ReactDOM.findDOMNode(this).parentNode
+    console.log(this.parentStyles)
+
     // Update background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = presetBackgroundStyles(
       getBackgroundStyles(this.props.className)
@@ -271,7 +277,7 @@ class BackgroundImage extends React.Component {
     const divStyle = {
       position: `relative`,
       overflow: `hidden`,
-      opacity: 0.99,
+      // opacity: 0.99,
       ...style,
     }
 
@@ -359,14 +365,14 @@ class BackgroundImage extends React.Component {
             }}
           />
         )}
-        <div
-          id={`stacking-context-reset`}
-          style={{
-            zIndex: `auto`,
-          }}
-        >
+        {/*<div*/}
+        {/*  id={`stacking-context-reset`}*/}
+        {/*  style={{*/}
+        {/*    zIndex: `auto`,*/}
+        {/*  }}*/}
+        {/*>*/}
           {children}
-        </div>
+        {/*</div>*/}
       </Tag>
     )
   }

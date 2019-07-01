@@ -137,12 +137,12 @@ export const fixOpacity = props => {
 
   try {
     if (styledProps.style && styledProps.style.opacity) {
-      if (
-        isNaN(styledProps.style.opacity) ||
-        styledProps.style.opacity > 0.99
-      ) {
-        styledProps.style.opacity = 0.99
-      }
+      // if (
+      //   isNaN(styledProps.style.opacity) ||
+      //   styledProps.style.opacity > 0.99
+      // ) {
+      //   styledProps.style.opacity = 0.99
+      // }
     }
   } catch (e) {
     // Continue regardless of error
