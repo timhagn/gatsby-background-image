@@ -316,11 +316,11 @@ export default StyledMultiBackground
 
 ## Configuration & props
 
-`gatsby-background-image-es5` nearly works the same as `gatsby-image` so have a look
+`gatsby-background-image` nearly works the same as `gatsby-image` so have a look
 at their [options & props](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#two-types-of-responsive-images)
-to get started. But be sure to also throw a glance at [Changed props](#changed-props), 
-[props Not Available](#props-not-available) and [Handling of Remaining props](#handling-of-remaining-props) 
-as well ; )!
+to get started. But be sure to also throw a glance at [Additional props](#additional-props), 
+[Changed props](#changed-props), [props Not Available](#props-not-available) and 
+[Handling of Remaining props](#handling-of-remaining-props) as well ; )!
 
 ## Styling & Passed Through Styles
 
@@ -400,6 +400,21 @@ Now you are able to access it through CSS / CSS-in-JS with:
 
 But as the paragraph-title states: This behavior is considered deprecated, so
 don't count on it in production ; ).
+
+## Additional props
+
+Starting with `v0.7.5` an extra option is available preserving the 
+[CSS stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)
+by deactivating the "opacity hack (`opacity: 0.99;`)" used on `<BackgroundImage />` 
+to allow it's usage within stacking context changing element styled with e.g. 
+`grid` or `flex` per default.   
+Activating `preserveStackingContext` prevents this behavior - but allows you to
+use any stacking context changing elements (like elements styled with 
+`position: fixed;`) yourself as `children`.
+
+| Name                      | Type      | Description                                                                                |
+| ------------------------- | ----------| ------------------------------------------------------------------------------------------ |
+| `preserveStackingContext` | `boolean` | Deactivates the "opacity hack" on `<BackgroundImage />` when set to true (Default: `false`)|
 
 ## Changed props
 
