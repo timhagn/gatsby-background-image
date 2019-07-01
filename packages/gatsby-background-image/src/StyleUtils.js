@@ -5,6 +5,7 @@ import {
   stringToArray,
   toKebabCase,
 } from './HelperUtils'
+import { getCurrentFromData } from './ImageUtils'
 
 const componentClassCache = Object.create({})
 /**
@@ -236,4 +237,26 @@ export const createPseudoStyles = ({
             }
           }
         `
+}
+
+/**
+ * Creates styles for the noscript element.
+ *
+ * @param image     string||array   Base data for one or multiple Images.
+ * @param imageRef  string||array   References to one or multiple Images.
+ */
+const createNoScriptStyles = ({ image, imageRef }) => {
+  const returnArray = Array.isArray(image)
+  const srcSet = getCurrentFromData({
+    data: imageRef,
+    propName: `srcSet`,
+    returnArray,
+  })
+  const srcSetWebp = getCurrentFromData({
+    data: imageRef,
+    propName: `srcSetWebp`,
+    returnArray,
+  })
+
+
 }
