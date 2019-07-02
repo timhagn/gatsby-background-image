@@ -42,24 +42,6 @@ exports[`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11) 
 />
 `;
 
-exports[`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11) should return default noscriptImg without <picture /> on {} 1`] = `
-<div>
-  &lt;img src="" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;
-</div>
-`;
-
-exports[`noscriptImg() should return default noscriptImg on {} 1`] = `
-<div>
-  &lt;picture&gt;&lt;img src="" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-</div>
-`;
-
-exports[`noscriptImg() should return noscriptImg with opacity & transitionDelay & crossOrigin 1`] = `
-<div>
-  &lt;picture&gt;&lt;img src="" alt="" crossorigin="anonymous" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:100;opacity:0.99;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-</div>
-`;
-
 exports[`switchImageSettings() should return settings from fixed array 1`] = `
 Object {
   "afterOpacity": 1,

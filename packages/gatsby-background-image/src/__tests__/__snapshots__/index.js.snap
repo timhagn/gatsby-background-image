@@ -42,9 +42,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -94,9 +92,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -146,9 +142,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -198,9 +192,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -246,9 +238,7 @@ background-size: cover;
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       testempty
     </h1>
@@ -374,9 +364,7 @@ background-size: cover;
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -426,9 +414,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -478,9 +464,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -530,9 +514,7 @@ background-size: cover;
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" /&gt;&lt;img width="100" height="100" srcset="some srcSet" src="test_fixed_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -582,9 +564,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -632,9 +612,7 @@ background-size: cover;
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -684,9 +662,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -732,9 +708,7 @@ background-size: cover;
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -780,9 +754,7 @@ background-size: cover;
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -828,9 +800,7 @@ background-size: 'contain';
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="Alt text for the image" title="Title for the image" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       test
     </h1>
@@ -876,9 +846,7 @@ background-size: cover;
           }
         
     </style>
-    <noscript>
-      &lt;picture&gt;&lt;source type='image/webp' srcset="some srcSetWebp" sizes="(max-width: 600px) 100vw, 600px" /&gt;&lt;img sizes="(max-width: 600px) 100vw, 600px" srcset="some srcSet" src="test_fluid_image.jpg" alt="" style="position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-    </noscript>
+    <noscript />
     <h1>
       testempty
     </h1>

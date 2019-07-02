@@ -220,22 +220,22 @@ describe(`inImageCache() / activateCacheForImage() / resetImageCache()`, () => {
   })
 })
 
-describe(`noscriptImg()`, () => {
-  it(`should return default noscriptImg on {}`, () => {
-    const { container } = render(noscriptImg({}))
-    expect(container).toMatchSnapshot()
-  })
-
-  it(`should return noscriptImg with opacity & transitionDelay & crossOrigin`, () => {
-    const dummyProps = {
-      opacity: 0.99,
-      transitionDelay: 100,
-      crossOrigin: `anonymous`,
-    }
-    const { container } = render(noscriptImg(dummyProps))
-    expect(container).toMatchSnapshot()
-  })
-})
+// describe(`noscriptImg()`, () => {
+//   it(`should return default noscriptImg on {}`, () => {
+//     const { container } = render(noscriptImg({}))
+//     expect(container).toMatchSnapshot()
+//   })
+//
+//   it(`should return noscriptImg with opacity & transitionDelay & crossOrigin`, () => {
+//     const dummyProps = {
+//       opacity: 0.99,
+//       transitionDelay: 100,
+//       crossOrigin: `anonymous`,
+//     }
+//     const { container } = render(noscriptImg(dummyProps))
+//     expect(container).toMatchSnapshot()
+//   })
+// })
 
 describe(`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11)`, () => {
   const tmpPicture = HTMLPictureElement
@@ -245,10 +245,10 @@ describe(`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11)
   afterEach(() => {
     global.HTMLPictureElement = tmpPicture
   })
-  it(`should return default noscriptImg without <picture /> on {}`, () => {
-    const { container } = render(noscriptImg({}))
-    expect(container).toMatchSnapshot()
-  })
+  // it(`should return default noscriptImg without <picture /> on {}`, () => {
+  //   const { container } = render(noscriptImg({}))
+  //   expect(container).toMatchSnapshot()
+  // })
 
   it(`activatePictureRef() should still create an imageRef`, () => {
     const testImg = new Image()

@@ -29,7 +29,22 @@ background-size: cover;
             background-image: url(string_of_base64),url(string_of_base64);
             
           }
-        </style><noscript><picture><source type='image/webp' srcset=\\"some srcSetWebp\\" /><img width=\\"100\\" height=\\"100\\" srcset=\\"some srcSet\\" src=\\"test_fixed_image.jpg\\" alt=\\"\\" style=\\"position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture></noscript><h1>testempty</h1></div>"
+        </style><noscript><style>
+          .gatsby-background-image-fwatluf_depr:before {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: -100;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            
+            
+            background-image: url('test_fixed_image.jpg'),url('test_fixed_image.jpg');
+            background-image: ,;
+          }</style></noscript><h1>testempty</h1></div>"
 `;
 
 exports[`<BackgroundImage /> on SSR should work within SSR node environment 1`] = `
@@ -61,5 +76,20 @@ background-size: cover;
             background-image: url(string_of_base64);
             
           }
-        </style><noscript><picture><source type='image/webp' srcset=\\"some srcSetWebp\\" sizes=\\"(max-width: 600px) 100vw, 600px\\" /><img sizes=\\"(max-width: 600px) 100vw, 600px\\" srcset=\\"some srcSet\\" src=\\"test_fluid_image.jpg\\" alt=\\"\\" style=\\"position:absolute;top:0;left:0;z-index:-1;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture></noscript><h1>testempty</h1></div>"
+        </style><noscript><style>
+          .gatsby-background-image-fwatluf_depr:before {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: -100;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            
+            
+            background-image: url('test_fluid_image.jpg');
+            background-image: ;
+          }</style></noscript><h1>testempty</h1></div>"
 `;

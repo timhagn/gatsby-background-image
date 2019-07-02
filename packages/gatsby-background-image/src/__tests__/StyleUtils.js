@@ -5,7 +5,7 @@ import {
   setTransitionStyles,
   kebabifyBackgroundStyles,
   fixClassName,
-  activateCacheForComponentClass,
+  activateCacheForComponentClass, createNoScriptStyles,
 } from '../StyleUtils'
 import { fluidShapeMock } from './mocks/Various.mock'
 import { hashString } from '../HelperUtils'
@@ -162,6 +162,12 @@ describe(`createPseudoStyles()`, () => {
     pseudoStyles.afterOpacity = 0
     const createdPseudoStyles = createPseudoStyles(pseudoStyles)
     expect(createdPseudoStyles).toMatchSnapshot()
+  })
+})
+
+describe(`createNoScriptStyles()`, () => {
+  it(`should return empty string for empty config object`, () => {
+    expect(createNoScriptStyles({})).toEqual(``)
   })
 })
 

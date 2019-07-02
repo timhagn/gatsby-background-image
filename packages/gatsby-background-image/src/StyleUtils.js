@@ -259,58 +259,59 @@ export const createNoScriptStyles = ({
   backgroundStyles,
   style,
 }) => {
-  const returnArray = Array.isArray(image)
-  const addUrl = false
-  // const srcSet = getCurrentFromData({
-  //   data: image,
-  //   propName: `srcSet`,
-  //   addUrl,
-  //   returnArray,
-  // })
-  // const srcSetWebp = getCurrentFromData({
-  //   data: image,
-  //   propName: `srcSetWebp`,
-  //   addUrl,
-  //   returnArray,
-  // })
-  const allSources = getCurrentFromData({
-    data: image,
-    propName: `src`,
-    addUrl,
-    returnArray,
-  })
-  const allSourcesWebp = getCurrentFromData({
-    data: image,
-    propName: `srcWebp`,
-    addUrl,
-    returnArray,
-  })
-  const sourcesAsUrl = getUrlString({
-    imageString: allSources,
-    hasImageUrls: true,
-    returnArray,
-  })
-  const sourcesWebpAsUrl = getUrlString({
-    imageString: allSourcesWebp,
-    hasImageUrls: true,
-    returnArray,
-  })
-  let sourcesAsUrlWithCSS = ``
-  let sourcesWebpAsUrlWithCSS = ``
-  if (returnArray) {
-    const cssStrings = getCurrentFromData({
+  if (image) {
+    const returnArray = Array.isArray(image)
+    const addUrl = false
+    // const srcSet = getCurrentFromData({
+    //   data: image,
+    //   propName: `srcSet`,
+    //   addUrl,
+    //   returnArray,
+    // })
+    // const srcSetWebp = getCurrentFromData({
+    //   data: image,
+    //   propName: `srcSetWebp`,
+    //   addUrl,
+    //   returnArray,
+    // })
+    const allSources = getCurrentFromData({
       data: image,
-      propName: `CSS_STRING`,
-      addUrl: false,
+      propName: `src`,
+      addUrl,
       returnArray,
     })
-    sourcesAsUrlWithCSS = filteredJoin(combineArray(sourcesAsUrl, cssStrings))
-    sourcesWebpAsUrlWithCSS = filteredJoin(
-      combineArray(sourcesWebpAsUrl, cssStrings)
-    )
-  }
-  const pseudoBefore = createPseudoElement(className, classId)
-  return `
+    const allSourcesWebp = getCurrentFromData({
+      data: image,
+      propName: `srcWebp`,
+      addUrl,
+      returnArray,
+    })
+    const sourcesAsUrl = getUrlString({
+      imageString: allSources,
+      hasImageUrls: true,
+      returnArray,
+    })
+    const sourcesWebpAsUrl = getUrlString({
+      imageString: allSourcesWebp,
+      hasImageUrls: true,
+      returnArray,
+    })
+    let sourcesAsUrlWithCSS = ``
+    let sourcesWebpAsUrlWithCSS = ``
+    if (returnArray) {
+      const cssStrings = getCurrentFromData({
+        data: image,
+        propName: `CSS_STRING`,
+        addUrl: false,
+        returnArray,
+      })
+      sourcesAsUrlWithCSS = filteredJoin(combineArray(sourcesAsUrl, cssStrings))
+      sourcesWebpAsUrlWithCSS = filteredJoin(
+        combineArray(sourcesWebpAsUrl, cssStrings)
+      )
+    }
+    const pseudoBefore = createPseudoElement(className, classId)
+    return `
           ${pseudoBefore} {
             content: '';
             display: block;
@@ -326,4 +327,6 @@ export const createNoScriptStyles = ({
             background-image: ${sourcesAsUrlWithCSS || sourcesAsUrl};
             background-image: ${sourcesWebpAsUrlWithCSS || sourcesWebpAsUrl};
           }`
+  }
+  return ``
 }
