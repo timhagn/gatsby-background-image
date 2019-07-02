@@ -450,6 +450,7 @@ export const getCurrentFromData = ({
  * @param tracedSVG     boolean   Special care for SVGs.
  * @param addUrl        boolean   If the string should be encapsulated or not.
  * @param returnArray   boolean   Return concatenated string or Array.
+ * @param hasImageUrls  boolean   Force return of quoted string(s) for url().
  * @return {string||array}
  */
 export const getUrlString = ({
@@ -457,11 +458,12 @@ export const getUrlString = ({
   tracedSVG = false,
   addUrl = true,
   returnArray = false,
+  hasImageUrls = false,
 }) => {
   if (Array.isArray(imageString)) {
     const stringArray = imageString.map(currentString => {
       const base64 = currentString.indexOf(`base64`) !== -1
-      const imageUrl = currentString.substr(0, 4) === `http`
+      const imageUrl = hasImageUrls || currentString.substr(0, 4) === `http`
       const currentReturnString =
         currentString && tracedSVG
           ? `"${currentString}"`
@@ -475,7 +477,7 @@ export const getUrlString = ({
     return returnArray ? stringArray : filteredJoin(stringArray)
   } else {
     const base64 = imageString.indexOf(`base64`) !== -1
-    const imageUrl = imageString.substr(0, 4) === `http`
+    const imageUrl = hasImageUrls || imageString.substr(0, 4) === `http`
     const returnString =
       imageString && tracedSVG
         ? `"${imageString}"`

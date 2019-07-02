@@ -15,6 +15,7 @@ import {
   switchImageSettings,
 } from './ImageUtils'
 import {
+  createNoScriptStyles,
   createPseudoStyles,
   fixClassName,
   fixOpacity,
@@ -317,8 +318,18 @@ class BackgroundImage extends React.Component {
       ...newImageSettings,
     })
 
+    const noScriptPseudoStyles = createNoScriptStyles({
+      image,
+      bgColor,
+      classId,
+      className: this.state.currentClassNames,
+      backgroundStyles: this.backgroundStyles,
+      style,
+    })
+
     // console.table(newImageSettings)
     // console.log(pseudoStyles)
+    console.log(image, noScriptPseudoStyles)
 
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&
@@ -345,17 +356,13 @@ class BackgroundImage extends React.Component {
         />
         {/* Show the original image during server-side rendering if JavaScript is disabled */}
         {this.state.hasNoScript && (
-          <noscript
-            dangerouslySetInnerHTML={{
-              __html: noscriptImg({
-                alt,
-                title,
-                ...(divStyle.width && divStyle.width),
-                ...(divStyle.height && divStyle.height),
-                ...noScriptImageData,
-              }),
-            }}
-          />
+          <noscript>
+            <style
+              dangerouslySetInnerHTML={{
+                __html: noScriptPseudoStyles,
+              }}
+            />
+          </noscript>
         )}
         {children}
       </Tag>

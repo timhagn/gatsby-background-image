@@ -1,11 +1,13 @@
 import {
   convertProps,
+  filteredJoin,
   hashString,
   isString,
   stringToArray,
   toKebabCase,
 } from './HelperUtils'
-import { getCurrentFromData } from './ImageUtils'
+import { getCurrentFromData, getUrlString } from './ImageUtils'
+import { combineArray } from './HelperUtils'
 
 const componentClassCache = Object.create({})
 /**
@@ -242,21 +244,85 @@ export const createPseudoStyles = ({
 /**
  * Creates styles for the noscript element.
  *
- * @param image     string||array   Base data for one or multiple Images.
- * @param imageRef  string||array   References to one or multiple Images.
+ * @param classId     string          Pre 0.3.0 way to create pseudo-elements
+ * @param className   string          One or more className(s)
+ * @param image       string||array   Base data for one or multiple Images.
+ * @param bgColor
+ * @param backgroundStyles
+ * @param style
  */
-const createNoScriptStyles = ({ image, imageRef }) => {
+export const createNoScriptStyles = ({
+  classId,
+  className,
+  image,
+  bgColor,
+  backgroundStyles,
+  style,
+}) => {
   const returnArray = Array.isArray(image)
-  const srcSet = getCurrentFromData({
-    data: imageRef,
-    propName: `srcSet`,
+  const addUrl = false
+  // const srcSet = getCurrentFromData({
+  //   data: image,
+  //   propName: `srcSet`,
+  //   addUrl,
+  //   returnArray,
+  // })
+  // const srcSetWebp = getCurrentFromData({
+  //   data: image,
+  //   propName: `srcSetWebp`,
+  //   addUrl,
+  //   returnArray,
+  // })
+  const allSources = getCurrentFromData({
+    data: image,
+    propName: `src`,
+    addUrl,
     returnArray,
   })
-  const srcSetWebp = getCurrentFromData({
-    data: imageRef,
-    propName: `srcSetWebp`,
+  const allSourcesWebp = getCurrentFromData({
+    data: image,
+    propName: `srcWebp`,
+    addUrl,
     returnArray,
   })
-
-
+  const sourcesAsUrl = getUrlString({
+    imageString: allSources,
+    hasImageUrls: true,
+    returnArray,
+  })
+  const sourcesWebpAsUrl = getUrlString({
+    imageString: allSourcesWebp,
+    hasImageUrls: true,
+    returnArray,
+  })
+  let sourcesAsUrlWithCSS = ``
+  let sourcesWebpAsUrlWithCSS = ``
+  if (returnArray) {
+    const cssStrings = getCurrentFromData({
+      data: image,
+      propName: `CSS_STRING`,
+      addUrl: false,
+      returnArray,
+    })
+    sourcesAsUrlWithCSS = filteredJoin(combineArray(sourcesAsUrl, cssStrings))
+    sourcesWebpAsUrlWithCSS = filteredJoin(
+      combineArray(sourcesWebpAsUrl, cssStrings)
+    )
+  }
+  const pseudoBefore = createPseudoElement(className, classId)
+  return `
+          ${pseudoBefore} {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: -100;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            ${bgColor && `background-color: ${bgColor};`}
+            ${kebabifyBackgroundStyles({ ...backgroundStyles, ...style })}
+            background-image: ${sourcesAsUrlWithCSS || sourcesAsUrl};
+            background-image: ${sourcesWebpAsUrlWithCSS || sourcesWebpAsUrl};
+          }`
 }
