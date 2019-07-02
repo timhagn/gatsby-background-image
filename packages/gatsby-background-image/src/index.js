@@ -263,17 +263,13 @@ class BackgroundImage extends React.Component {
       ? `${durationFadeIn}ms`
       : `0.25s`
 
-    // TODO ############################################################################################
-    // TODO: test GBI with wrapper DIV without relative & opacity "Hack" on the main element...
-    // TODO: ... as (per spec) the opacity: 0.99 & the relative positioning breaks everything ...
-    // TODO: ... or perhaps absolute positioned inline elements... but how without new stacking order???
-    // TODO ############################################################################################
+    // Create base container style and only add opacity hack when
+    // preserveStackingContext is falsy.
     const divStyle = {
       position: `relative`,
       overflow: `hidden`,
       ...style,
     }
-
     !this.props.preserveStackingContext && (divStyle.opacity = 0.99)
 
     // Choose image object of fluid or fixed, return null if not present.
