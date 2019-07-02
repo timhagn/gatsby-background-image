@@ -320,8 +320,9 @@ export const createNoScriptStyles = ({
             height: 100%;
             top: 0;
             left: 0;
+            opacity: 1;
             ${bgColor && `background-color: ${bgColor};`}
-            ${kebabifyBackgroundStyles({ ...backgroundStyles, ...style })}
+            ${kebabifyBackgroundStyles(style)}
             background-image: ${sourcesAsUrlWithCSS || sourcesAsUrl};
             background-image: ${sourcesWebpAsUrlWithCSS || sourcesWebpAsUrl};
           }`

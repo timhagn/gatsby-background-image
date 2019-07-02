@@ -329,7 +329,7 @@ class BackgroundImage extends React.Component {
 
     // console.table(newImageSettings)
     // console.log(pseudoStyles)
-    console.log(image, noScriptPseudoStyles)
+    // console.log(image, noScriptPseudoStyles)
 
     // Switch key between fluid & fixed.
     const componentKey = `${fluid && `fluid`}${fixed &&
