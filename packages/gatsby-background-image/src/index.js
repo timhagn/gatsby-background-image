@@ -299,12 +299,13 @@ class BackgroundImage extends React.Component {
       state: this.state,
     })
 
-    // Set bgImage (the next lastImage) to available newImageSettings or fallback.
+    // Set bgImage to available newImageSettings or fallback.
     this.bgImage =
       newImageSettings.nextImageArray ||
       newImageSettings.nextImage ||
       this.bgImage
 
+    // Create styles for the next background image(s).
     const pseudoStyles = createPseudoStyles({
       classId,
       className: this.state.currentClassNames,
