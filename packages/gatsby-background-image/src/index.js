@@ -354,7 +354,7 @@ class BackgroundImage extends React.Component {
             __html: pseudoStyles,
           }}
         />
-        {/* Set the original image(s) during server-side rendering if JavaScript is disabled */}
+        {/* Set the original image(s) during SSR & if JS is disabled */}
         {this.state.hasNoScript && (
           <noscript>
             <style
