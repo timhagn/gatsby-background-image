@@ -31,19 +31,8 @@ background-size: cover;
           }
         </style><noscript><style>
           .gatsby-background-image-fwatluf_depr:before {
-            content: '';
-            display: block;
-            position: absolute;
-            z-index: -100;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
             opacity: 1;
-            
-            
             background-image: url('test_fixed_image.jpg'),url('test_fixed_image.jpg');
-            background-image: ,;
           }</style></noscript><h1>testempty</h1></div>"
 `;
 
@@ -78,18 +67,7 @@ background-size: cover;
           }
         </style><noscript><style>
           .gatsby-background-image-fwatluf_depr:before {
-            content: '';
-            display: block;
-            position: absolute;
-            z-index: -100;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
             opacity: 1;
-            
-            
             background-image: url('test_fluid_image.jpg');
-            background-image: ;
           }</style></noscript><h1>testempty</h1></div>"
 `;
