@@ -3,9 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.7.7"></a>
+<a name="0.8.0"></a>
 
-## [0.7.7](https://github.com/timhagn/gatsby-background-image) (2019-07-03)
+## [0.8.0](https://github.com/timhagn/gatsby-background-image) (2019-07-03)
 
 **fix / feat:** Fix handling of CSS styles in multiple images for `noscript`.
 

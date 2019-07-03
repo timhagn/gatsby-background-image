@@ -373,7 +373,7 @@ might jump around!**_
 
 #### Noscript Styling
 
-As using multiple background images broke with JavaScript disabled, with `v0.7.7`
+As using multiple background images broke with JavaScript disabled, with `v0.8.0`
 we switched to an added `<style />` element.  
 Sadly, in build mode or of course with JS disabled there's no `document` with
 which to parse the background-styles from given `className`s.
