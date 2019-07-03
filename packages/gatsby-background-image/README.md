@@ -56,6 +56,7 @@ this package.
 - [How to Use with Multiple Images](#how-to-use-with-multiple-images)
 - [Configuration & props](#configuration--props)
 - [Styling & Passed Through Styles](#styling--passed-through-styles)
+    * [Noscript styling](#noscript-styling)
     * [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
     * [Deprecated Styling](#deprecated-styling)
 - [Additional props](#additional-props)
@@ -326,7 +327,8 @@ export default StyledMultiBackground
 
 `gatsby-background-image` nearly works the same as `gatsby-image` so have a look
 at their [options & props](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#two-types-of-responsive-images)
-to get started. But be sure to also throw a glance at [Additional props](#additional-props), 
+to get started.   
+But be sure to also throw a glance at [Additional props](#additional-props), 
 [Changed props](#changed-props), [props Not Available](#props-not-available) and 
 [Handling of Remaining props](#handling-of-remaining-props) as well ; )!
 
@@ -368,6 +370,16 @@ style={{
 _**¡But be sure to target the `:before` and `:after` pseudo-elements in your CSS,
 lest your "blurred-up", traced placeholder SVG or lazy loaded background images
 might jump around!**_
+
+#### Noscript Styling
+
+As using multiple background images broke with JavaScript disabled, with `v0.7.7`
+we switched to an added `<style />` element.  
+Sadly, in build mode or of course with JS disabled there's no `document` with
+which to parse the background-styles from given `className`s.
+So, for the moment, to get your `<BackgroundImage />` to look the same with or
+without JS, you have to either set their styles with the `style={{}}` prop or
+explicitly target the `:before` and `:after` pseudo-elements in your CSS.  
 
 #### Multiple Instances of Same Component
 
@@ -468,6 +480,7 @@ Thanks in advance!
 
 - For the moment Internet Explorer 11 seems to have problems with `_tracedSVG`
 and parsing the `background-*` CSS props, gotta investigate further...
+- The latter applies to `noscript`, too, as well as having no WebP such a case...
 
 *For anything else tell me by opening an issue or a PR : )!*
 

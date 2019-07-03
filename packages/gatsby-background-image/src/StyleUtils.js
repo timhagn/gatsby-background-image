@@ -249,11 +249,7 @@ export const createPseudoStyles = ({
  * @param image       string||array   Base data for one or multiple Images.
  * @return {string}
  */
-export const createNoScriptStyles = ({
-  classId,
-  className,
-  image,
-}) => {
+export const createNoScriptStyles = ({ classId, className, image }) => {
   if (image) {
     const returnArray = Array.isArray(image)
     const addUrl = false
