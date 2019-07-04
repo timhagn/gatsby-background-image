@@ -142,41 +142,22 @@ module.exports = {
 
 #### Important:
 
-If you support *Safari* and/or *Internet Explorer*, you have to install the 
+If you support *Safari* and/or *Internet Explorer*, you have to use the 
 `IntersectionObserver` polyfill.   
 As - at the time of writing - neither fully implements the feature 
 (see [caniuse.com](https://caniuse.com/#search=IntersectionObserver)).
 
-A solution to this issue was mentioned in a comment over at [gatsby-image/issues](https://github.com/gatsbyjs/gatsby/issues/4021#issuecomment-445238511)  
-and you are able to apply it the following way:
-
-**1.** Install the [`intersection-observer`](https://www.npmjs.com/package/intersection-observer) 
-polyfill package by running:
-
- ```bash
- npm i --save intersection-observer
- ```
-
- or
-
- ```bash
- yarn add intersection-observer
- ```
-
-**2.** Dynamically load the polyfill in your `gatsby-browser.js`:
+This is already the ES5 version of `gatsby-background-image`, so nothing easier
+than that! Just add `gatsby-background-image-es5` as a plugin to your 
+`gatsby-config.js` like this:
 
 ```js
-// ES5 way
-// exports.onClientEntry = () => {
-// ES6 way
-export const onClientEntry = () => {  
-  // IntersectionObserver polyfill for gatsby-background-image-es5 (Safari, IE)
-  if (typeof window.IntersectionObserver === `undefined`) {
-    import(`intersection-observer`)
-    console.log(`# IntersectionObserver is polyfilled!`)
-  }
-}
+plugins: [
+  `gatsby-background-image-es5`,
+]
 ```
+
+And 
 
 ## How to Use
 
@@ -471,8 +452,7 @@ Thanks in advance!
 
 ## TODO
 
-- For the moment Internet Explorer 11 seems to have problems with `_tracedSVG`
-and parsing the `background-*` CSS props, gotta investigate further...
-- The latter applies to `noscript`, too, as well as having no WebP such a case...
+- Internet Explorer 11 seems to have problems with `_tracedSVG`...
+- `noscript` WebP support...
 
 *For anything else tell me by opening an issue or a PR : )!*
