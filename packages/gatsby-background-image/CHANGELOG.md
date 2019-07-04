@@ -7,7 +7,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.8.0](https://github.com/timhagn/gatsby-background-image) (2019-07-03)
 
-**fix / feat:** Fix handling of CSS styles in multiple images for `noscript`.
+**fix / feat:** Fix handling of CSS styles in multiple images for `noscript`, 
+IE 11 now seems to work : ).
 
 ## [0.7.6](https://github.com/timhagn/gatsby-background-image) (2019-07-01)
 
