@@ -368,10 +368,11 @@ might jump around!**_
 As using multiple background images broke with JavaScript disabled, with `v0.8.0`
 we switched to an added `<style />` element.  
 Sadly, in build mode or of course with JS disabled there's no `document` with
-which to parse the background-styles from given `className`s.  
+which to parse the background-styles from given `className`s and pass them down
+to the `:before` and `:after` pseudo-elements.  
 So, for the moment, to get your `<BackgroundImage />` to look the same with or
 without JS, you have to either set their styles with the `style={{}}` prop or
-explicitly target the `:before` and `:after` pseudo-elements in your CSS.
+explicitly target the `:before` and `:after` pseudo-elements in your CSS.  
 
 #### Multiple Instances of Same Component
 
