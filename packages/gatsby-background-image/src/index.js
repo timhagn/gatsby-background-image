@@ -5,6 +5,7 @@ import { convertProps, stripRemainingProps } from './HelperUtils'
 import {
   activateCacheForImage,
   activatePictureRef,
+  createNoScriptImages,
   createPictureRef,
   getCurrentFromData,
   imagePropsChanged,
