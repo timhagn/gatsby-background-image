@@ -19,5 +19,5 @@ markComment: >
   Thank you for your contributions : )!
 # Comment to post when closing a stale issue. Set to `false` to disable
 closeComment: >
-  This will now be closed as no further activity occurred for 23 consecutive days.
+  This will now be closed as no activity occurred for 23 consecutive days.
   Thanks anyway for your contributions!
