@@ -32,7 +32,7 @@ Be it fixing typos (which I think there may be many of ; ), enhancements to
 documentation (including this file), code changes or whatever you might have up 
 your sleeve: Here are some of the ways you may contribute. 
 
-### Questions / Issues / Bugs / Enhancements 
+### Questions / Issues / Bugs / Enhancements
 
 Have an issue or bug you want addressed? Have a feature request or another 
 enhancement you'd really want to see in the next version of this package?
