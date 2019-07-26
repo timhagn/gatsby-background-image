@@ -1,5 +1,3 @@
-import { getUrlString } from './ImageUtils'
-
 /**
  * Mirror of BackgroundImage.propTypes. Keep in SYNC!
  *
@@ -12,9 +10,6 @@ const gbiPropTypes = [
   `fluid`,
   `fadeIn`,
   `durationFadeIn`,
-  `title`,
-  `id`,
-  `alt`,
   `className`,
   `critical`,
   `crossOrigin`,
