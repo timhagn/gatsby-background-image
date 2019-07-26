@@ -5,7 +5,8 @@ import {
   setTransitionStyles,
   kebabifyBackgroundStyles,
   fixClassName,
-  activateCacheForComponentClass, createNoScriptStyles,
+  activateCacheForComponentClass,
+  createNoScriptStyles,
 } from '../StyleUtils'
 import { fluidShapeMock } from './mocks/Various.mock'
 import { hashString } from '../HelperUtils'
@@ -196,7 +197,7 @@ describe(`fixClassName()`, () => {
       className: `imageClass`,
       fluid: fluidShapeMock,
     })
-    expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-1393017994"`)
+    expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-1393017994-3"`)
   })
 })
 
