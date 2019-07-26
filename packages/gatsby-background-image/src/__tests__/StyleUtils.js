@@ -192,12 +192,14 @@ describe(`fixClassName()`, () => {
   })
 
   it(`should return generated className on existing class`, () => {
+    // Mock Math.random beforehand, lest another random classname is created.
+    Math.random = jest.fn(() => 0.424303425546642)
     activateCacheForComponentClass(`imageClass`)
     const fixedClasses = fixClassName({
       className: `imageClass`,
       fluid: fluidShapeMock,
     })
-    expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-1393017994-3"`)
+    expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-1393017994-18"`)
   })
 })
 
