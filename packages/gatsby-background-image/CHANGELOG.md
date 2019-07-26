@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.0"></a>
+<a name="0.8.1"></a>
+
+## [0.8.0](https://github.com/timhagn/gatsby-background-image) (2019-07-03)
+
+**fix:** Removed superfluous props, so id, title, etc. get properly handled.
 
 ## [0.8.0](https://github.com/timhagn/gatsby-background-image) (2019-07-03)
 
