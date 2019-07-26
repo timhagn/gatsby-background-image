@@ -3,7 +3,9 @@
 exports[`<BackgroundImage /> should call critical fixed images 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
@@ -53,7 +55,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -103,7 +107,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -153,7 +159,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should call multiple critical fluid images 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -205,7 +213,6 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
   <div
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
-    title=""
   >
     <style>
       
@@ -325,7 +332,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should render fixed size images 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -375,7 +384,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -425,7 +436,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should render multiple fluid images 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -475,7 +488,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should render stacked fixed size images 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -525,7 +540,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should render without opacity hack with truthy preserveStackingContext 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -577,7 +594,9 @@ exports[`<BackgroundImage /> should return null without fluid / fixed 1`] = `<di
 exports[`<BackgroundImage /> should work with BackgroundColor 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -623,7 +642,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass test gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -673,7 +694,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should work with fadeIn 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -719,7 +742,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should work with only classId 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
@@ -765,7 +790,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should work without classId but className 1`] = `
 <div>
   <div
+    alt="Alt text for the image"
     class="imageClass test gatsby-image-wrapper"
+    id="testid"
     style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
@@ -813,7 +840,6 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
   <div
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
-    title=""
   >
     <style>
       
