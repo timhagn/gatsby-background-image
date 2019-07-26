@@ -81,10 +81,15 @@ export const fixClassName = ({ className, ...props }) => {
     ? convertedProps.fixed[0]
     : convertedProps.fixed
 
+  // Really just the answer to issue #55 ; ).
+  const randomAnswerToLifeTheUniverseAndEverything = Math.round(
+    Math.random() * 42
+  )
+
   // Create random "uniquely hashed" additionalClass if needed.
   const randomClass = ` gbi-${hashString(
     (imageData && imageData.srcSet) || className
-  )}`
+  )}-${randomAnswerToLifeTheUniverseAndEverything}`
 
   // Should an element exist, add randomized class.
   const additionalClass = elementExists ? randomClass : ``
