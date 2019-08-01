@@ -5,7 +5,7 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@testing-library/jest-dom": "^4.0.0",
-    "@testing-library/react": "^8.0.6",
+    "@testing-library/react": "^8.0.7",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
@@ -50,5 +50,5 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.8.1"
+  "version": "0.8.3"
 }
