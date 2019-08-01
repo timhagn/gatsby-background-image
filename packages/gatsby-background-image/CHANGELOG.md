@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.8.3](https://github.com/timhagn/gatsby-background-image) (2019-07-26)
 
-**fix:** Removed `overflow: 'hidden'` from default styling, as it was a remnant 
+**fix:** Removed `overflow: 'hidden'` from default styling, as it was a remnant
 of `gbi`'s origins in `gatsby-image` and is now superfluous.
 
 ## [0.8.2](https://github.com/timhagn/gatsby-background-image) (2019-07-26)
