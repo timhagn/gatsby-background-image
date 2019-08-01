@@ -6,7 +6,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
+    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -23,7 +23,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -32,15 +32,15 @@ background-size: 'contain';
           .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url('http://localhost/test_fixed_image.jpg');
             
-            background-image: url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
           .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
           }
         
     </style>
@@ -58,7 +58,7 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -110,7 +110,7 @@ exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline-block; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -127,7 +127,7 @@ exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -136,15 +136,15 @@ background-size: 'contain';
           .imageClass:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url('http://localhost/test_fixed_image.jpg'),url('http://localhost/test_fixed_image.jpg');
             
-            background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
           .imageClass:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(string_of_base64),url(string_of_base64);
             
+            background-image: url(string_of_base64),url(string_of_base64);
           }
         
     </style>
@@ -162,7 +162,7 @@ exports[`<BackgroundImage /> should call multiple critical fluid images 1`] = `
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -212,7 +212,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
 <div>
   <div
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
@@ -335,7 +335,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
@@ -387,7 +387,7 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -439,7 +439,7 @@ exports[`<BackgroundImage /> should render multiple fluid images 1`] = `
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -491,7 +491,7 @@ exports[`<BackgroundImage /> should render stacked fixed size images 1`] = `
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; display: inline-block; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
@@ -543,7 +543,7 @@ exports[`<BackgroundImage /> should render without opacity hack with truthy pres
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -597,7 +597,7 @@ exports[`<BackgroundImage /> should work with BackgroundColor 1`] = `
     alt="Alt text for the image"
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
@@ -645,7 +645,7 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
     alt="Alt text for the image"
     class="imageClass test gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -697,7 +697,7 @@ exports[`<BackgroundImage /> should work with fadeIn 1`] = `
     alt="Alt text for the image"
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
@@ -745,7 +745,7 @@ exports[`<BackgroundImage /> should work with only classId 1`] = `
     alt="Alt text for the image"
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
@@ -793,7 +793,7 @@ exports[`<BackgroundImage /> should work without classId but className 1`] = `
     alt="Alt text for the image"
     class="imageClass test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -839,7 +839,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       

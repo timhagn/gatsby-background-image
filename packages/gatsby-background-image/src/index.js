@@ -5,14 +5,12 @@ import { convertProps, stripRemainingProps } from './HelperUtils'
 import {
   activateCacheForImage,
   activatePictureRef,
-  createNoScriptImages,
   createPictureRef,
   getCurrentFromData,
   imagePropsChanged,
   imageReferenceCompleted,
   inImageCache,
   initialBgImage,
-  noscriptImg,
   switchImageSettings,
 } from './ImageUtils'
 import {
@@ -267,7 +265,6 @@ class BackgroundImage extends React.Component {
     // preserveStackingContext is falsy.
     const divStyle = {
       position: `relative`,
-      overflow: `hidden`,
       ...style,
     }
     !this.props.preserveStackingContext && (divStyle.opacity = 0.99)

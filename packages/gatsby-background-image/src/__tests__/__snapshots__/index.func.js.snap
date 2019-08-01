@@ -6,7 +6,7 @@ exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] 
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
+    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -58,7 +58,7 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fixed ima
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline-block; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -110,7 +110,7 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fluid ima
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -162,7 +162,7 @@ exports[`<BackgroundImage /> with mock IO should not call onLoad without prop, f
     alt="Alt text for the image"
     class="imageClass gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
+    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -212,7 +212,7 @@ exports[`<BackgroundImage /> with mock IO should render visible fixed image and 
 <div>
   <div
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
@@ -256,7 +256,7 @@ exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] 
 <div>
   <div
     class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
-    style="position: relative; overflow: hidden; opacity: 0.99; width: 100px; height: 100px; display: inline-block; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="position: relative; opacity: 0.99; width: 100px; height: 100px; display: inline-block; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
@@ -302,7 +302,7 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
     alt="Alt text for the image"
     class="imageClass test gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
-    style="position: relative; overflow: hidden; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
