@@ -67,6 +67,8 @@ Afterwards run the following:
 yarn cci
 ```
 
+### Debugging
+
 To ease debugging, I'd recommend cloning [gbitest](https://github.com/timhagn/gbitest),
 or use your own project.   
 Though `yarn link` doesn't work with `lerna`, we can (ab)use Gatsby's own
