@@ -1,6 +1,9 @@
 /**
  * @jest-environment node
  */
+
+import '@testing-library/react/dont-cleanup-after-each'
+
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import BackgroundImage from '../index'

@@ -1,6 +1,5 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import '@testing-library/react/cleanup-after-each'
 import './mocks/IntersectionObserver.mock'
 import { mockAllIsIntersecting } from './mocks/IntersectionObserver.mock'
 
@@ -32,7 +31,9 @@ describe(`<BackgroundImage /> with mock IO`, () => {
         this.setAttribute('src', src)
         if (src === LOAD_FAILURE_SRC) {
           // Call with setTimeout to simulate async loading
-          setTimeout(() => this.onerror(new Error('mocked error')))
+          if (typeof this.onerror === `function`) {
+            setTimeout(() => this.onerror(new Error('mocked error')))
+          }
         } else if (src === LOAD_SUCCESS_SRC) {
           setTimeout(() => this.onload())
         }
@@ -83,11 +84,13 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     // Mock Math.random beforehand, lest another random classname is created.
     Math.random = jest.fn(() => 0.424303425546642)
     let { container, rerender } = render(
-      <BackgroundImage fixed={fixedShapeMock} />
+      <BackgroundImage fluid={fluidShapeMock} />
     )
     mockAllIsIntersecting(true)
     expect(container).toMatchSnapshot()
-    container = rerender(<BackgroundImage fluid={fluidShapeMock} />)
+    container = rerender(
+      <BackgroundImage fluid={fluidShapeMock} />
+    )
     expect(container).toMatchSnapshot()
   })
 

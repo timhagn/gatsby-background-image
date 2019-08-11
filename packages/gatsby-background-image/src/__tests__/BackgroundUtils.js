@@ -3,7 +3,6 @@ import getBackgroundStyles, {
   getStyleRules,
   rulesForCssText,
 } from '../BackgroundUtils'
-import '@testing-library/react/cleanup-after-each'
 
 global.console.error = jest.fn()
 global.console.debug = jest.fn()

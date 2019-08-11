@@ -1,9 +1,8 @@
 import { render } from '@testing-library/react'
-import '@testing-library/react/cleanup-after-each'
+
 import React from 'react'
 import { fixedShapeMock, fluidShapeMock } from './mocks/Various.mock'
 import {
-  noscriptImg,
   inImageCache,
   activateCacheForImage,
   resetImageCache,

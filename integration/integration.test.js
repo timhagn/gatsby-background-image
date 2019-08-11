@@ -1,6 +1,9 @@
 /**
  * @jest-environment node
  */
+
+import '@testing-library/react/dont-cleanup-after-each'
+
 const GBI = require('gatsby-background-image').default
 const GBIES5 = require('gatsby-background-image-es5').default
 
