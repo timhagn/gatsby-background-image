@@ -7,8 +7,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.8.4](https://github.com/timhagn/gatsby-background-image) (2019-08-16)
 
-**fix:** Added 'addedClassName' to `gbi`'s `state` to prevent regeneration of
+**fix / doc:** Added 'addedClassName' to `gbi`'s `state` to prevent regeneration of
 classNames on every render. Should fix #56.
+Added information on [Overflow setting](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image#overflow-setting)
+to prevent issues like #59.
 
 ## [0.8.3](https://github.com/timhagn/gatsby-background-image) (2019-08-01)
 
