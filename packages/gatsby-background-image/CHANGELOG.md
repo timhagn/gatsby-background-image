@@ -3,9 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.3"></a>
+<a name="0.8.4"></a>
 
-## [0.8.3](https://github.com/timhagn/gatsby-background-image) (2019-07-26)
+## [0.8.4](https://github.com/timhagn/gatsby-background-image) (2019-08-16)
+
+**fix:** Added 'addedClassName' to `gbi`'s `state` to prevent regeneration of
+classNames on every render. Should fix #56.
+
+## [0.8.3](https://github.com/timhagn/gatsby-background-image) (2019-08-01)
 
 **fix:** Removed `overflow: 'hidden'` from default styling, as it was a remnant
 of `gbi`'s origins in `gatsby-image` and is now superfluous.
