@@ -188,18 +188,27 @@ describe(`presetBackgroundStyles()`, () => {
 describe(`fixClassName()`, () => {
   it(`should return empty generated className props`, () => {
     const fixedClasses = fixClassName({})
-    expect(fixedClasses).toMatchInlineSnapshot(`""`)
+    expect(fixedClasses).toMatchInlineSnapshot(`
+                  Array [
+                    "",
+                    "",
+                  ]
+            `)
   })
 
   it(`should return generated className on existing class`, () => {
     // Mock Math.random beforehand, lest another random classname is created.
     Math.random = jest.fn(() => 0.424303425546642)
     activateCacheForComponentClass(`imageClass`)
-    const fixedClasses = fixClassName({
+    const [fixedClasses, addedClassName] = fixClassName({
       className: `imageClass`,
+      addedClassName: `imageClass`,
       fluid: fluidShapeMock,
     })
-    expect(fixedClasses).toMatchInlineSnapshot(`"imageClass gbi-1393017994-18"`)
+    expect(fixedClasses).toMatchInlineSnapshot(
+      `"imageClass gbi-1393017994-imageClass"`
+    )
+    expect(addedClassName).toMatchInlineSnapshot(`" gbi-1393017994-imageClass"`)
   })
 })
 
