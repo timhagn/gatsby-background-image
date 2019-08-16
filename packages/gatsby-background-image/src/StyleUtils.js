@@ -64,11 +64,12 @@ export const createPseudoElement = (
 
 /**
  * Checks if an element with given className(s) already exists.
- * @param className   string    Given className(s) e.g. from styled-components.
+ * @param className       string    Given className(s) e.g. from styled-components.
+ * @param addedClassName  string    A possible previously added className.
  * @param props
- * @return {string}
+ * @return {*[]}
  */
-export const fixClassName = ({ className, ...props }) => {
+export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
   const convertedProps = convertProps(props)
   const elementExists = inComponentClassCache(className)
 
@@ -82,9 +83,9 @@ export const fixClassName = ({ className, ...props }) => {
     : convertedProps.fixed
 
   // Really just the answer to issue #55 ; ).
-  const randomAnswerToLifeTheUniverseAndEverything = Math.round(
-    Math.random() * 42
-  )
+  const randomAnswerToLifeTheUniverseAndEverything = addedClassName
+    ? addedClassName
+    : Math.round(Math.random() * 42)
 
   // Create random "uniquely hashed" additionalClass if needed.
   const randomClass = ` gbi-${hashString(
@@ -97,7 +98,7 @@ export const fixClassName = ({ className, ...props }) => {
     ``}`.trim()
   // Add it to cache if it doesn't exist.
   !elementExists && activateCacheForComponentClass(className)
-  return componentClassNames
+  return [componentClassNames, additionalClass]
 }
 
 /**
