@@ -10,6 +10,7 @@ declare module 'gatsby-background-image' {
     tracedSVG?: string
     srcWebp?: string
     srcSetWebp?: string
+    media?: string
   }
 
   interface IFluidObject {
@@ -21,6 +22,7 @@ declare module 'gatsby-background-image' {
     tracedSVG?: string
     srcWebp?: string
     srcSetWebp?: string
+    media?: string
   }
 
   interface IBackgroundImageProps {
