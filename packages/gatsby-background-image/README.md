@@ -56,6 +56,7 @@ this package.
 - [How to Use with Multiple Images](#how-to-use-with-multiple-images)
 - [Configuration & props](#configuration--props)
 - [Styling & Passed Through Styles](#styling--passed-through-styles)
+    * [Overflow setting](#overflow-setting)
     * [Noscript styling](#noscript-styling)
     * [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
     * [Deprecated Styling](#deprecated-styling)
@@ -370,6 +371,15 @@ style={{
 _**¡But be sure to target the `:before` and `:after` pseudo-elements in your CSS,
 lest your "blurred-up", traced placeholder SVG or lazy loaded background images
 might jump around!**_
+
+#### Overflow setting
+
+As of `gatsby-background-image(-es5)` @ `v0.8.3` the superfluous default of 
+`overflow: hidden` was removed, as it was only a remnant from the initial 
+creation of `gbi` (see [Acknowledgements](#acknowledgements) for more on it's
+meagre beginnings ; ). As later seen through [issue #59](https://github.com/timhagn/gatsby-background-image/issues/59),
+this might break some CSS styling like `border-radius`, so be sure to include it 
+yourself, should you need such styles. Sorry for the inconvenience % )! 
 
 #### Noscript Styling
 
