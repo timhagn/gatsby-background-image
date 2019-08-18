@@ -23,7 +23,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -32,15 +32,15 @@ background-size: 'contain';
           .imageClass..gbi-1393017994-18:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url('http://localhost/test_fixed_image.jpg');
             
-            background-image: url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
           .imageClass..gbi-1393017994-18:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
           }
         
     </style>
@@ -127,7 +127,7 @@ exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -136,15 +136,15 @@ background-size: 'contain';
           .imageClass..gbi-1393017994-18:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url('http://localhost/test_fixed_image.jpg'),url('http://localhost/test_fixed_image.jpg');
             
-            background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
           .imageClass..gbi-1393017994-18:after,
 .gatsby-background-image-test:after {
             z-index: -101;
-            background-image: url(string_of_base64),url(string_of_base64);
             
+            background-image: url(string_of_base64),url(string_of_base64);
           }
         
     </style>

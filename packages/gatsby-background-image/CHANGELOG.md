@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.4"></a>
+<a name="0.8.5"></a>
+
+## [0.8.5](https://github.com/timhagn/gatsby-background-image) (2019-08-18)
+
+**fix / doc:** Forgot to check on completion for `src` images in 
+`getCurrentFromData()`, rectified it and solved issue #50.
 
 ## [0.8.4](https://github.com/timhagn/gatsby-background-image) (2019-08-16)
 

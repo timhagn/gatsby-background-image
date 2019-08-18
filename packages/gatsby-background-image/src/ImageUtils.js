@@ -381,8 +381,8 @@ export const getCurrentFromData = ({
       //   return propName in dataElement && dataElement[propName]
       // })
       .map(dataElement => {
-        // If `currentSrc` is needed, check image load completion first.
-        if (propName === `currentSrc`) {
+        // If `currentSrc` or `src` is needed, check image load completion first.
+        if (propName === `currentSrc` || propName === 'src') {
           return (imageLoaded(dataElement) && dataElement[propName]) || ``
         }
         // Check if CSS strings should be parsed.
@@ -399,7 +399,8 @@ export const getCurrentFromData = ({
       returnArray,
     })
   } else {
-    if (propName === `currentSrc` && propName in data) {
+    // If `currentSrc` or `src` is needed, check image load completion first.
+    if (propName === `currentSrc` || propName === 'src' && propName in data) {
       return getUrlString({
         imageString: (imageLoaded(data) && data[propName]) || ``,
       })
