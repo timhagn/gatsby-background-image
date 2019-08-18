@@ -400,7 +400,7 @@ export const getCurrentFromData = ({
     })
   } else {
     // If `currentSrc` or `src` is needed, check image load completion first.
-    if (propName === `currentSrc` || propName === 'src' && propName in data) {
+    if ((propName === `currentSrc` || propName === 'src') && propName in data) {
       return getUrlString({
         imageString: (imageLoaded(data) && data[propName]) || ``,
       })
