@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.8.5](https://github.com/timhagn/gatsby-background-image) (2019-08-18)
 
-**fix / doc:** Forgot to check on completion for `src` images in 
+**fix / doc:** Forgot to check on completion for `src` images in
 `getCurrentFromData()`, rectified it and solved issue #50.
 
 ## [0.8.4](https://github.com/timhagn/gatsby-background-image) (2019-08-16)
