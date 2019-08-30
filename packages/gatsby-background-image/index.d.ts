@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 declare module 'gatsby-background-image' {
   interface IFixedObject {
