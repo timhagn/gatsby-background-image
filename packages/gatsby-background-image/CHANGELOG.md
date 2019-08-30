@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.5"></a>
+<a name="0.8.6"></a>
+
+## [0.8.6](https://github.com/timhagn/gatsby-background-image) (2019-08-30)
+
+**fix / doc:** Fixed `index.type.d`, reduced `maxWidth` in example.
 
 ## [0.8.5](https://github.com/timhagn/gatsby-background-image) (2019-08-18)
 
