@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.6"></a>
+<a name="0.8.7"></a>
+
+## [0.8.7](https://github.com/timhagn/gatsby-background-image) (2019-08-31)
+
+**fix** Fixed `noscript` behavior by adding `checkLoaded`
+prop to `getCurrentFromData()`.
 
 ## [0.8.6](https://github.com/timhagn/gatsby-background-image) (2019-08-30)
 
