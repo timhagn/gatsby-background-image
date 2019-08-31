@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.7"></a>
+<a name="0.8.8"></a>
+
+## [0.8.8](https://github.com/timhagn/gatsby-background-image) (2019-08-31)
+
+**fix** Added `escapeClassNames()` & `specialChars` plugin option to finally 
+solve #49 and making it possible to style `BackgroundImage` with [Overflow setting](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image#tailwind-css-and-suchlike-frameworks).
 
 ## [0.8.7](https://github.com/timhagn/gatsby-background-image) (2019-08-31)
 

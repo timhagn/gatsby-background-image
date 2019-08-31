@@ -224,10 +224,19 @@ describe(`escapeClassNames()`, () => {
     expect(escapedClasses).toMatchInlineSnapshot(`"md\\\\:w-1\\\\/2"`)
   })
 
-  it(`should return escaped className for Tailwind Class with specialChars on window`, () => {
-    window._gbiSpecialChars = __GBI_SPECIAL_CHARS_
+  it(`should return default escaped className for Tailwind Class without __GBI_SPECIAL_CHARS__`, () => {
+    const backupSpecialChars = __GBI_SPECIAL_CHARS__
+    delete global.__GBI_SPECIAL_CHARS__
     const escapedClasses = escapeClassNames(`md:w-1/2`)
     expect(escapedClasses).toMatchInlineSnapshot(`"md\\\\:w-1\\\\/2"`)
+    global.__GBI_SPECIAL_CHARS__ = backupSpecialChars
+  })
+
+  it(`should return escaped className for Tailwind Class with specialChars on window`, () => {
+    window._gbiSpecialChars = __GBI_SPECIAL_CHARS__
+    const escapedClasses = escapeClassNames(`md:w-1/2`)
+    expect(escapedClasses).toMatchInlineSnapshot(`"md\\\\:w-1\\\\/2"`)
+    delete window._gbiSpecialChars
   })
 })
 

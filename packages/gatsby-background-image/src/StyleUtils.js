@@ -115,7 +115,9 @@ export const escapeClassNames = classNames => {
     const specialChars =
       typeof window !== `undefined` && window._gbiSpecialChars
         ? window._gbiSpecialChars
-        : __GBI_SPECIAL_CHARS__ || ':/'
+        : typeof __GBI_SPECIAL_CHARS__ !== `undefined`
+        ? __GBI_SPECIAL_CHARS__
+        : ':/'
     const specialCharRegEx = new RegExp(`[${specialChars}]`, 'g')
     return classNames.replace(specialCharRegEx, '\\$&')
   }
