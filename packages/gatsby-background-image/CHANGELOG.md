@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.8.7](https://github.com/timhagn/gatsby-background-image) (2019-08-31)
 
 **fix** Fixed `noscript` behavior by adding `checkLoaded`
-prop to `getCurrentFromData()`.
+prop to `getCurrentFromData()`. Fix `index.d.ts` in `gbi-es5`.
 
 ## [0.8.6](https://github.com/timhagn/gatsby-background-image) (2019-08-30)
 
