@@ -295,7 +295,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
           nextImage
         )
       } else {
-        // Should we still have no nextImage it might be because currentSrc is missing.
+        // No support for HTMLPictureElement or WebP present, get src.
         nextImage = combineArray(
           getCurrentFromData({
             data: imageRef,
@@ -341,7 +341,8 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     nextImage = getCurrentFromData({
       data: imageRef,
       propName: `src`,
-    })
+      checkLoaded: false,
+    },)
   }
   // Fall back on lastImage (important for prop changes) if all else fails.
   if (!nextImage) nextImage = lastImage
@@ -363,6 +364,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
  * @param propName    string    Property to extract.
  * @param addUrl      boolean   Should returned strings be encased in `url()`?
  * @param returnArray boolean   Switches between returning an array and a string.
+ * @param checkLoaded boolean   Turns checking for imageLoaded() on and off.
  * @return {string||array}
  */
 export const getCurrentFromData = ({
@@ -370,6 +372,7 @@ export const getCurrentFromData = ({
   propName,
   addUrl = true,
   returnArray = false,
+  checkLoaded = true,
 }) => {
   if (!data || !propName) return ``
   // Handle tracedSVG with "special care".
@@ -383,7 +386,9 @@ export const getCurrentFromData = ({
       .map(dataElement => {
         // If `currentSrc` or `src` is needed, check image load completion first.
         if (propName === `currentSrc` || propName === 'src') {
-          return (imageLoaded(dataElement) && dataElement[propName]) || ``
+          return checkLoaded
+            ? (imageLoaded(dataElement) && dataElement[propName]) || ``
+            : dataElement[propName]
         }
         // Check if CSS strings should be parsed.
         if (propName === `CSS_STRING` && isString(dataElement)) {
@@ -402,7 +407,10 @@ export const getCurrentFromData = ({
     // If `currentSrc` or `src` is needed, check image load completion first.
     if ((propName === `currentSrc` || propName === 'src') && propName in data) {
       return getUrlString({
-        imageString: (imageLoaded(data) && data[propName]) || ``,
+        imageString: checkLoaded
+          ? (imageLoaded(data) && data[propName]) || ``
+          : data[propName],
+        addUrl,
       })
     }
     return propName in data

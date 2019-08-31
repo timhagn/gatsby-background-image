@@ -262,6 +262,7 @@ export const createNoScriptStyles = ({ classId, className, image }) => {
     const allSources = getCurrentFromData({
       data: image,
       propName: `src`,
+      checkLoaded: false,
       addUrl,
       returnArray,
     })
