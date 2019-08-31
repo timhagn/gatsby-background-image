@@ -225,6 +225,7 @@ describe(`escapeClassNames()`, () => {
   })
 
   it(`should return escaped className for Tailwind Class with specialChars on window`, () => {
+    window._gbiSpecialChars = __GBI_SPECIAL_CHARS_
     const escapedClasses = escapeClassNames(`md:w-1/2`)
     expect(escapedClasses).toMatchInlineSnapshot(`"md\\\\:w-1\\\\/2"`)
   })
