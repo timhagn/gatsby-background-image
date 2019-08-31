@@ -438,17 +438,20 @@ export const getUrlString = ({
 }) => {
   if (Array.isArray(imageString)) {
     const stringArray = imageString.map(currentString => {
-      const base64 = currentString.indexOf(`base64`) !== -1
-      const imageUrl = hasImageUrls || currentString.substr(0, 4) === `http`
-      const currentReturnString =
-        currentString && tracedSVG
-          ? `"${currentString}"`
-          : currentString && !base64 && !tracedSVG && imageUrl
-          ? `'${currentString}'`
-          : currentString
-      return addUrl && currentString
-        ? `url(${currentReturnString})`
-        : currentReturnString
+      if (currentString) {
+        const base64 = currentString.indexOf(`base64`) !== -1
+        const imageUrl = hasImageUrls || currentString.substr(0, 4) === `http`
+        const currentReturnString =
+          currentString && tracedSVG
+            ? `"${currentString}"`
+            : currentString && !base64 && !tracedSVG && imageUrl
+            ? `'${currentString}'`
+            : currentString
+        return addUrl && currentString
+          ? `url(${currentReturnString})`
+          : currentReturnString
+      }
+      return currentString
     })
     return returnArray ? stringArray : filteredJoin(stringArray)
   } else {

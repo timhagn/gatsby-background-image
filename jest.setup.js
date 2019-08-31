@@ -9,3 +9,9 @@ import '@testing-library/jest-dom/extend-expect'
 // update from @babel/runtime with babel 7.4.4
 // https://babeljs.io/blog/2019/03/19/7.4.0.html
 import "core-js/stable";
+
+// Mock specialChars Option.
+beforeEach(() => {
+  global.__GBI_SPECIAL_CHARS__ = `:/`
+})
+

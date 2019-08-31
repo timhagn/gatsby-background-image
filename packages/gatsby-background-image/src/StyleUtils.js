@@ -50,7 +50,8 @@ export const createPseudoElement = (
   classId = ``,
   appendix = `:before`
 ) => {
-  const classes = stringToArray(className)
+  const escapedClassName = escapeClassNames(className)
+  const classes = stringToArray(escapedClassName)
   let pseudoClasses = ``
   if (classes instanceof Array && classes.length > 0 && classes[0] !== ``) {
     pseudoClasses = `.${classes.join('.')}${appendix}`
@@ -70,6 +71,7 @@ export const createPseudoElement = (
  * @return {*[]}
  */
 export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
+  // const escapedClassName = escapeClassNames(className)
   const convertedProps = convertProps(props)
   const elementExists = inComponentClassCache(className)
 
@@ -99,6 +101,25 @@ export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
   // Add it to cache if it doesn't exist.
   !elementExists && activateCacheForComponentClass(className)
   return [componentClassNames, additionalClass]
+}
+
+/**
+ * Escapes specialChars defined in gatsby-config.js in classNames to make
+ * Tailwind CSS or suchlike usable (defaults to: `:/`).
+ *
+ * @param classNames           classNames to escape.
+ * @return {void | string|*}
+ */
+export const escapeClassNames = classNames => {
+  if (classNames) {
+    const specialChars =
+      typeof window !== `undefined` && window._gbiSpecialChars
+        ? window._gbiSpecialChars
+        : __GBI_SPECIAL_CHARS__ || ':/'
+    const specialCharRegEx = new RegExp(`[${specialChars}]`, 'g')
+    return classNames.replace(specialCharRegEx, '\\$&')
+  }
+  return classNames
 }
 
 /**

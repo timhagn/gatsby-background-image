@@ -5,6 +5,7 @@ import {
   setTransitionStyles,
   kebabifyBackgroundStyles,
   fixClassName,
+  escapeClassNames,
   activateCacheForComponentClass,
   createNoScriptStyles,
 } from '../StyleUtils'
@@ -209,6 +210,23 @@ describe(`fixClassName()`, () => {
       `"imageClass gbi-1393017994-imageClass"`
     )
     expect(addedClassName).toMatchInlineSnapshot(`" gbi-1393017994-imageClass"`)
+  })
+})
+
+describe(`escapeClassNames()`, () => {
+  it(`should return undefined for empty className`, () => {
+    const escapedClasses = escapeClassNames()
+    expect(escapedClasses).toMatchInlineSnapshot(`undefined`)
+  })
+
+  it(`should return escaped className for Tailwind Class`, () => {
+    const escapedClasses = escapeClassNames(`md:w-1/2`)
+    expect(escapedClasses).toMatchInlineSnapshot(`"md\\\\:w-1\\\\/2"`)
+  })
+
+  it(`should return escaped className for Tailwind Class with specialChars on window`, () => {
+    const escapedClasses = escapeClassNames(`md:w-1/2`)
+    expect(escapedClasses).toMatchInlineSnapshot(`"md\\\\:w-1\\\\/2"`)
   })
 })
 
