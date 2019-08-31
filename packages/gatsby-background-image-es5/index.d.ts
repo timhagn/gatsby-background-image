@@ -1,6 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 
-declare module 'gatsby-background-image' {
+declare module 'gatsby-background-image-es5' {
   interface IFixedObject {
     width: number
     height: number
@@ -10,6 +10,7 @@ declare module 'gatsby-background-image' {
     tracedSVG?: string
     srcWebp?: string
     srcSetWebp?: string
+    media?: string
   }
 
   interface IFluidObject {
@@ -21,6 +22,7 @@ declare module 'gatsby-background-image' {
     tracedSVG?: string
     srcWebp?: string
     srcSetWebp?: string
+    media?: string
   }
 
   interface IBackgroundImageProps {
