@@ -342,7 +342,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
       data: imageRef,
       propName: `src`,
       checkLoaded: false,
-    },)
+    })
   }
   // Fall back on lastImage (important for prop changes) if all else fails.
   if (!nextImage) nextImage = lastImage
