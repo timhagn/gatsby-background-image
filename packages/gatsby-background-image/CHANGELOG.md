@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.8.9](https://github.com/timhagn/gatsby-background-image) (2019-09-01)
 
-**fix** Trying to fix #60 by adding a selfRef to the component and referencing 
+**fix** Trying to fix #60 by adding a selfRef to the component and referencing
 it in `activate(Mutliple)ImageRef(s)()` to get the components `offsetWith & -Height).
 
 ## [0.8.8](https://github.com/timhagn/gatsby-background-image) (2019-08-31)
