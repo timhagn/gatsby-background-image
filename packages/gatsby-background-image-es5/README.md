@@ -183,8 +183,9 @@ than that! Just add `gatsby-background-image-es5` as a plugin to your
 ```js
 module.exports = {
   plugins: [
-      ...
-  `gatsby-background-image-es5`,
+    ...
+    `gatsby-background-image-es5`,
+    ...
 ]
 ```
 
