@@ -155,7 +155,24 @@ describe(`createPictureRef() with image array`, () => {
 })
 
 describe(`activatePictureRef() with image array`, () => {
+  const dummySelfRef = {
+    offsetWidth: 500,
+    offsetHeight: 500,
+  }
   it(`should return imageRef array with fluid Array Mock`, () => {
+    const testImg = new Image()
+    const dummyImageRef = activatePictureRef(
+      [testImg, testImg],
+      {
+        ...fluidArrayMock,
+        critical: true,
+      },
+      dummySelfRef
+    )
+    expect(dummyImageRef).toMatchSnapshot()
+  })
+
+  it(`should return imageRef array with fluid Array Mock without selfRef`, () => {
     const testImg = new Image()
     const dummyImageRef = activatePictureRef([testImg, testImg], {
       ...fluidArrayMock,
@@ -166,10 +183,14 @@ describe(`activatePictureRef() with image array`, () => {
 
   it(`should return imageRef array with fixed Array Mock`, () => {
     const testImg = new Image()
-    const dummyImageRef = activatePictureRef([testImg, testImg], {
-      ...fixedArrayMock,
-      critical: true,
-    })
+    const dummyImageRef = activatePictureRef(
+      [testImg, testImg],
+      {
+        ...fixedArrayMock,
+        critical: true,
+      },
+      dummySelfRef
+    )
     expect(dummyImageRef).toMatchSnapshot()
   })
 })
@@ -219,37 +240,33 @@ describe(`inImageCache() / activateCacheForImage() / resetImageCache()`, () => {
   })
 })
 
-// describe(`noscriptImg()`, () => {
-//   it(`should return default noscriptImg on {}`, () => {
-//     const { container } = render(noscriptImg({}))
-//     expect(container).toMatchSnapshot()
-//   })
-//
-//   it(`should return noscriptImg with opacity & transitionDelay & crossOrigin`, () => {
-//     const dummyProps = {
-//       opacity: 0.99,
-//       transitionDelay: 100,
-//       crossOrigin: `anonymous`,
-//     }
-//     const { container } = render(noscriptImg(dummyProps))
-//     expect(container).toMatchSnapshot()
-//   })
-// })
-
 describe(`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11)`, () => {
   const tmpPicture = HTMLPictureElement
+  const dummySelfRef = {
+    offsetWidth: 500,
+    offsetHeight: 500,
+  }
   beforeEach(() => {
     delete global.HTMLPictureElement
   })
   afterEach(() => {
     global.HTMLPictureElement = tmpPicture
   })
-  // it(`should return default noscriptImg without <picture /> on {}`, () => {
-  //   const { container } = render(noscriptImg({}))
-  //   expect(container).toMatchSnapshot()
-  // })
 
-  it(`activatePictureRef() should still create an imageRef`, () => {
+  it(`activatePictureRef() should still create an imageRef with selfRef`, () => {
+    const testImg = new Image()
+    const dummyImageRef = activatePictureRef(
+      testImg,
+      {
+        fluid: fluidShapeMock,
+        critical: true,
+      },
+      dummySelfRef
+    )
+    expect(dummyImageRef).toMatchSnapshot()
+  })
+
+  it(`activatePictureRef() should still create an imageRef without selfRef`, () => {
     const testImg = new Image()
     const dummyImageRef = activatePictureRef(testImg, {
       fluid: fluidShapeMock,

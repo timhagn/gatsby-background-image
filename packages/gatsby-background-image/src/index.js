@@ -102,6 +102,8 @@ class BackgroundImage extends React.Component {
     // Start with base64, tracedSVG or empty background image(s).
     this.bgImage = initialBgImage(props)
 
+    this.selfRef = null;
+
     // console.log(`-------------------------------------------------------------`)
   }
 
@@ -191,7 +193,7 @@ class BackgroundImage extends React.Component {
     // imgLoaded and imgCached are in a 2nd setState call to be changed together,
     // avoiding initiating unnecessary animation frames from style changes when
     // setting next imageState.
-    this.imageRef = activatePictureRef(this.imageRef, this.props)
+    this.imageRef = activatePictureRef(this.imageRef, this.props, this.selfRef)
     this.setState(
       {
         isVisible: true,
@@ -208,6 +210,7 @@ class BackgroundImage extends React.Component {
   }
 
   handleRef(ref) {
+    this.selfRef = ref
     if (this.state.IOSupported && ref) {
       this.cleanUpListeners = listenToIntersections(
         ref,

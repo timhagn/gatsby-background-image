@@ -54,8 +54,9 @@ export const allInImageCache = props => {
  * Adds an Image to imageCache.
  *
  * @param props
+ * @param selfRef
  */
-export const activateCacheForImage = props => {
+export const activateCacheForImage = (props, selfRef) => {
   const convertedProps = convertProps(props)
   if (hasImageArray(convertedProps)) {
     return activateCacheForMultipleImages(props)
@@ -171,9 +172,10 @@ export const createMultiplePictureRefs = (props, onLoad) => {
  *
  * @param imageRef
  * @param props
+ * @param selfRef
  * @return {null|Array|*}
  */
-export const activatePictureRef = (imageRef, props) => {
+export const activatePictureRef = (imageRef, props, selfRef = null) => {
   const convertedProps = convertProps(props)
   if (
     typeof window !== `undefined` &&
@@ -181,7 +183,7 @@ export const activatePictureRef = (imageRef, props) => {
       typeof convertedProps.fixed !== `undefined`)
   ) {
     if (hasImageArray(convertedProps)) {
-      return activateMultiplePictureRefs(imageRef, props)
+      return activateMultiplePictureRefs(imageRef, props, selfRef)
     } else {
       const imageData = convertedProps.fluid
         ? convertedProps.fluid
@@ -189,20 +191,38 @@ export const activatePictureRef = (imageRef, props) => {
 
       // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
       // but don't prevent it during SSR.
+      let removableElement = null
       if (hasPictureElement()) {
         const pic = document.createElement('picture')
+        if (selfRef) {
+          pic.width = imageRef.width = selfRef.offsetWidth
+          pic.height = imageRef.height = selfRef.offsetHeight
+        }
         if (imageData.srcSetWebp) {
           const sourcesWebP = document.createElement('source')
+          // Set original component's style.
           sourcesWebP.type = `image/webp`
           sourcesWebP.srcset = imageData.srcSetWebp
           sourcesWebP.sizes = imageData.sizes
           pic.appendChild(sourcesWebP)
         }
         pic.appendChild(imageRef)
+        removableElement = pic
+        // document.body.appendChild(removableElement)
+      }
+      else {
+        if (selfRef) {
+          imageRef.width = selfRef.offsetWidth
+          imageRef.height = selfRef.offsetHeight
+        }
+        removableElement = imageRef
+        // document.body.appendChild(removableElement)
       }
 
       imageRef.srcset = imageData.srcSet ? imageData.srcSet : ``
       imageRef.src = imageData.src ? imageData.src : ``
+
+      // document.body.removeChild(removableElement)
 
       return imageRef
     }
@@ -215,23 +235,36 @@ export const activatePictureRef = (imageRef, props) => {
  *
  * @param imageRefs
  * @param props
+ * @param selfRef
  * @return {Array||null}
  */
-export const activateMultiplePictureRefs = (imageRefs, props) => {
+export const activateMultiplePictureRefs = (
+  imageRefs,
+  props,
+  selfRef
+) => {
   const convertedProps = convertProps(props)
 
   // Extract Image Array.
   return imageRefs.map((imageRef, index) => {
     if (convertedProps.fluid) {
-      return activatePictureRef(imageRef, {
-        ...convertedProps,
-        fluid: convertedProps.fluid[index],
-      })
+      return activatePictureRef(
+        imageRef,
+        {
+          ...convertedProps,
+          fluid: convertedProps.fluid[index],
+        },
+        selfRef
+      )
     } else {
-      return activatePictureRef(imageRef, {
-        ...convertedProps,
-        fixed: convertedProps.fixed[index],
-      })
+      return activatePictureRef(
+        imageRef,
+        {
+          ...convertedProps,
+          fixed: convertedProps.fixed[index],
+        },
+        selfRef
+      )
     }
   })
 }
