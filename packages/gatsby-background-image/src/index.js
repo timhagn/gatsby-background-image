@@ -102,7 +102,7 @@ class BackgroundImage extends React.Component {
     // Start with base64, tracedSVG or empty background image(s).
     this.bgImage = initialBgImage(props)
 
-    this.selfRef = null;
+    this.selfRef = null
 
     // console.log(`-------------------------------------------------------------`)
   }

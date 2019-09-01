@@ -209,8 +209,7 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
         pic.appendChild(imageRef)
         removableElement = pic
         // document.body.appendChild(removableElement)
-      }
-      else {
+      } else {
         if (selfRef) {
           imageRef.width = selfRef.offsetWidth
           imageRef.height = selfRef.offsetHeight
@@ -238,11 +237,7 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
  * @param selfRef
  * @return {Array||null}
  */
-export const activateMultiplePictureRefs = (
-  imageRefs,
-  props,
-  selfRef
-) => {
+export const activateMultiplePictureRefs = (imageRefs, props, selfRef) => {
   const convertedProps = convertProps(props)
 
   // Extract Image Array.
