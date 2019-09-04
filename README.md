@@ -37,13 +37,13 @@ It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/t
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,  
 **plus** being usable as a container (no more hacks with extra wrappers),  
-**plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images).
+**plus** being able to work with [multiple stacked background images](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image/README.md#how-to-use-with-multiple-images).
 
 All the glamour (and speed) of `gatsby-image` for your Background Images!
 
 *_Of course styleable with `styled-components` and the like!_*
 
-**_Now it's possible to style `BackgroundImage` with [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)!_**
+**_Now it's possible to style `BackgroundImage` with [Tailwind CSS and suchlike Frameworks](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image/README.md#how-to-use-with-multiple-images)!_**
 
 ## Preamble
 
