@@ -56,6 +56,7 @@ All the glamour (and speed) of `gatsby-image` now for your Background Images!
 - [Styling & Passed Through Styles](#styling--passed-through-styles)
   - [Overflow setting](#overflow-setting)
   - [Noscript styling](#noscript-styling)
+  - [Responsive styling](#responsive-styling)
   - [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
   - [Deprecated Styling](#deprecated-styling)
 - [Additional props](#additional-props)
@@ -397,6 +398,44 @@ to the `:before` and `:after` pseudo-elements.
 So, for the moment, to get your `<BackgroundImage />` to look the same with or
 without JS, you have to either set their styles with the `style={{}}` prop or
 explicitly target the `:before` and `:after` pseudo-elements in your CSS.
+
+#### Responsive Styling
+
+Using responsive styles on background images is supported in most cases, except when
+passthrough is required. This is typically encountered when trying to make
+`background-*` rules apply to the background image as in
+[issue #71.](https://github.com/timhagn/gatsby-background-image/issues/71)
+In this case, the background styling will not behave responsively. This is difficult
+to fix because it is impossible to determine the `@media` rules that apply to an element.
+However, a suitable workaround is available. For example, if your style looks like this:
+
+```css
+#mybg {
+  background-attachment: fixed;
+}
+@media screen and (max-width: 600px) {
+  #mybg {
+    background-attachment: scroll;
+  }
+}
+```
+The `::before` and `::after` pseudoelements can be targeted directly to make your
+style look like this:
+
+```css
+#mybg, #mybg::before, #mybg::after {
+  background-attachment: fixed;
+}
+
+@media screen and (max-width: 600px) {
+  #mybg, #mybg::before, #mybg::after {
+    background-attachment: scroll;
+  }
+}
+
+```
+
+For more information, refer to [issue #71.](https://github.com/timhagn/gatsby-background-image/issues/71)
 
 #### Multiple Instances of Same Component
 
