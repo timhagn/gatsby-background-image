@@ -43,7 +43,7 @@ All the glamour (and speed) of `gatsby-image` for your Background Images!
 
 *_Of course styleable with `styled-components` and the like!_*
 
-**_Now it's possible to style `BackgroundImage` with [Tailwind CSS and suchlike Frameworks](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image/README.md#how-to-use-with-multiple-images)!_**
+**_Now it's possible to style `BackgroundImage` with [Tailwind CSS and suchlike Frameworks](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image/README.md#tailwind-css-and-suchlike-frameworks)!_**
 
 ## Preamble
 
