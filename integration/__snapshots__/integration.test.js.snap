@@ -18,6 +18,7 @@ BackgroundImage {
     "fadeIn": true,
   },
   "refs": Object {},
+  "selfRef": null,
   "state": Object {
     "IOSupported": false,
     "addedClassName": "",
@@ -56,6 +57,7 @@ BackgroundImage {
     "fadeIn": true,
   },
   "refs": Object {},
+  "selfRef": null,
   "state": Object {
     "IOSupported": false,
     "addedClassName": "",
