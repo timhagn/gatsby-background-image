@@ -285,6 +285,9 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   // Set the backgroundImage according to images available.
   let nextImage
   let nextImageArray
+  // Signal to `createPseudoStyles()` when we have reached the final image,
+  // which is important for transparent background-image(s).
+  let finalImage = false
   if (returnArray) {
     // Check for tracedSVG first.
     nextImage = getCurrentFromData({
@@ -322,6 +325,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
           }),
           nextImage
         )
+        finalImage = true
       } else {
         // No support for HTMLPictureElement or WebP present, get src.
         nextImage = combineArray(
@@ -332,6 +336,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
           }),
           nextImage
         )
+        finalImage = true
       }
     }
     // First fill last images from bgImage...
@@ -351,6 +356,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
       nextImage = getCurrentFromData({ data: image, propName: `base64` })
     if (state.imgLoaded && state.isVisible) {
       nextImage = currentSources
+      finalImage = true
     }
   }
 
@@ -371,6 +377,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
       propName: `src`,
       checkLoaded: false,
     })
+    finalImage = true
   }
   // Fall back on lastImage (important for prop changes) if all else fails.
   if (!nextImage) nextImage = lastImage
@@ -379,6 +386,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     lastImage,
     nextImage,
     afterOpacity,
+    finalImage,
   }
   // Add nextImageArray for bgImage to newImageSettings if exists.
   if (nextImageArray) newImageSettings.nextImageArray = nextImageArray

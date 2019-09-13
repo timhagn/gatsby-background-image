@@ -12,7 +12,8 @@ import { combineArray } from './HelperUtils'
 const componentClassCache = Object.create({})
 /**
  * Cache component classes as we never know if a Component wasn't already set.
- * @param className
+ *
+ * @param className   string  className given by props
  * @return {*|boolean}
  */
 export const inComponentClassCache = className => {
@@ -21,7 +22,8 @@ export const inComponentClassCache = className => {
 
 /**
  * Adds a component's classes to componentClassCache.
- * @param className
+ *
+ * @param className   string  className given by props
  */
 export const activateCacheForComponentClass = className => {
   if (className) {
@@ -65,9 +67,10 @@ export const createPseudoElement = (
 
 /**
  * Checks if an element with given className(s) already exists.
- * @param className       string    Given className(s) e.g. from styled-components.
- * @param addedClassName  string    A possible previously added className.
- * @param props
+ *
+ * @param className       string    Given className(s) e.g. from styled-components
+ * @param addedClassName  string    A possible previously added className
+ * @param props           Object    Given props by component
  * @return {*[]}
  */
 export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
@@ -127,7 +130,7 @@ export const escapeClassNames = classNames => {
 /**
  * Converts a style object into CSS kebab-cased style rules.
  *
- * @param styles
+ * @param styles    Object  Style object to convert
  * @return {*}
  */
 export const kebabifyBackgroundStyles = styles => {
@@ -149,8 +152,8 @@ export const kebabifyBackgroundStyles = styles => {
 /**
  * Creates vendor prefixed background styles.
  *
- * @param transitionDelay
- * @param fadeIn
+ * @param transitionDelay   string    Time delay before transitioning
+ * @param fadeIn            boolean   Should we transition?
  * @return {string}
  */
 export const setTransitionStyles = (transitionDelay = `0.25s`, fadeIn = true) =>
@@ -161,7 +164,7 @@ export const setTransitionStyles = (transitionDelay = `0.25s`, fadeIn = true) =>
 /**
  * Prevent possible stacking order mismatch with opacity "hack".
  *
- * @param props
+ * @param props     Object    Given props by component
  * @return {Object}
  */
 export const fixOpacity = props => {
@@ -188,7 +191,7 @@ export const fixOpacity = props => {
 /**
  * Set some needed backgroundStyles.
  *
- * @param backgroundStyles
+ * @param backgroundStyles  object    Special background styles to be spread
  * @return {Object}
  */
 export const presetBackgroundStyles = backgroundStyles => {
@@ -206,14 +209,15 @@ export const presetBackgroundStyles = backgroundStyles => {
  *
  * @param classId           string    Pre 0.3.0 way to create pseudo-elements
  * @param className         string    One or more className(s)
- * @param transitionDelay   string
- * @param lastImage         string
- * @param nextImage         string
- * @param afterOpacity      number
- * @param bgColor           string
- * @param fadeIn            boolean
- * @param backgroundStyles  object
- * @param style             object
+ * @param transitionDelay   string    Time delay before transitioning
+ * @param lastImage         string    The last image given
+ * @param nextImage         string    The next image to show
+ * @param afterOpacity      number    The opacity of the pseudo-element upfront
+ * @param bgColor           string    A possible background-color to set
+ * @param fadeIn            boolean   Should we transition?
+ * @param backgroundStyles  object    Special background styles to be spread
+ * @param style             object    Default style to be spread
+ * @param finalImage        boolean   Have we reached the last image?
  * @return {string}
  */
 export const createPseudoStyles = ({
@@ -227,6 +231,7 @@ export const createPseudoStyles = ({
   fadeIn,
   backgroundStyles,
   style,
+  finalImage,
 }) => {
   const pseudoBefore = createPseudoElement(className, classId)
   const pseudoAfter = createPseudoElement(className, classId, `:after`)
@@ -266,6 +271,7 @@ export const createPseudoStyles = ({
             ${
               afterOpacity && lastImage ? `background-image: ${lastImage};` : ``
             }
+            ${finalImage && `opacity: ${Number(!afterOpacity)};`}
           }
         `
 }
@@ -275,7 +281,7 @@ export const createPseudoStyles = ({
  *
  * @param classId     string          Pre 0.3.0 way to create pseudo-elements
  * @param className   string          One or more className(s)
- * @param image       string||array   Base data for one or multiple Images.
+ * @param image       string||array   Base data for one or multiple Images
  * @return {string}
  */
 export const createNoScriptStyles = ({ classId, className, image }) => {
