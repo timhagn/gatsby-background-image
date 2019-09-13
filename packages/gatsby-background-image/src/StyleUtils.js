@@ -271,7 +271,7 @@ export const createPseudoStyles = ({
             ${
               afterOpacity && lastImage ? `background-image: ${lastImage};` : ``
             }
-            ${finalImage && `opacity: ${Number(!afterOpacity)};`}
+            ${finalImage ? `opacity: ${Number(!afterOpacity)};` : ``}
           }
         `
 }

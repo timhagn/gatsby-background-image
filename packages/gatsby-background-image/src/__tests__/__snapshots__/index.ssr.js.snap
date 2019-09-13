@@ -28,6 +28,7 @@ background-size: cover;
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
             
+            
           }
         </style><noscript><style>
           .gatsby-background-image-fwatluf_depr:before {
@@ -63,6 +64,7 @@ background-size: cover;
           .gatsby-background-image-fwatluf_depr:after {
             z-index: -101;
             background-image: url(string_of_base64);
+            
             
           }
         </style><noscript><style>

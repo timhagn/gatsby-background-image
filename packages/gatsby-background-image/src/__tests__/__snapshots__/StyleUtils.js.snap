@@ -29,6 +29,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             z-index: -101;
             
             background-image: some_base64_string;
+            
           }
         "
 `;
@@ -60,6 +61,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
+            
             
             
           }
@@ -95,6 +97,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage 1
             z-index: -101;
             
             background-image: some_base64_string;
+            
           }
         "
 `;
@@ -127,6 +130,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage w
 .gatsby-background-image-gbi:after {
             z-index: -101;
             background-image: test.webp;
+            
             
           }
         "
@@ -161,6 +165,7 @@ exports[`createPseudoStyles() should create different styles for empty lastImage
             z-index: -101;
             background-image: test.webp;
             
+            
           }
         "
 `;
@@ -194,6 +199,7 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
             z-index: -101;
             
             background-image: some_base64_string;
+            
           }
         "
 `;
@@ -225,6 +231,7 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
           .test:after,
 .gatsby-background-image-gbi:after {
             z-index: -101;
+            
             
             
           }
@@ -260,6 +267,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             z-index: -101;
             
             background-image: some_base64_string;
+            
           }
         "
 `;
@@ -293,6 +301,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             z-index: -101;
             background-image: test.webp;
             
+            
           }
         "
 `;
@@ -322,6 +331,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             z-index: -101;
             
             background-image: some_base64_string;
+            
           }
         "
 `;
@@ -351,6 +361,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             z-index: -101;
             
             background-image: some_base64_string;
+            
           }
         "
 `;
@@ -380,6 +391,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             z-index: -101;
             
             background-image: some_base64_string;
+            
           }
         "
 `;
@@ -413,6 +425,7 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             z-index: -101;
             
             background-image: some_base64_string;
+            
           }
         "
 `;
