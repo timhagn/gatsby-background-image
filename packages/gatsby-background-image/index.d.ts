@@ -34,6 +34,7 @@ declare module 'gatsby-background-image' {
     durationFadeIn?: number,
     title?: string,
     alt?: string
+    id?: string,
     className?: string | object, // Support Glamor's css prop?.
     critical?: boolean,
     crossOrigin?: string | boolean,
