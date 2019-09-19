@@ -20,7 +20,8 @@
     "@babel/runtime-corejs3": "^7.6.0",
     "global": "^4.4.0",
     "intersection-observer": "^0.7.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "uuid": "^3.3.3"
   },
   "peerDependencies": {
     "react": "16.x",

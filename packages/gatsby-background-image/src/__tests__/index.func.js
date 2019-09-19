@@ -19,10 +19,16 @@ import { resetComponentClassCache } from '../StyleUtils'
 const LOAD_FAILURE_SRC = 'test_fluid_image.jpg'
 const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg'
 
+jest.mock('uuid/v4')
+
 describe(`<BackgroundImage /> with mock IO`, () => {
   const tmpImagePrototype = Object.getPrototypeOf(HTMLImageElement)
 
   beforeEach(() => {
+    // Freeze StyleUtils#fixClassName.
+    const uuid = require('uuid/v4')
+    uuid.mockImplementation(() => '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000')
+
     // Mocking HTMLImageElement.prototype.src to call the onload or onerror
     // callbacks depending on the src passed to it
     Object.defineProperty(HTMLImageElement.prototype, 'src', {
