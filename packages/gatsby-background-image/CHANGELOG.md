@@ -12,8 +12,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.8.10](https://github.com/timhagn/gatsby-background-image) (2019-09-13)
 
 **fix** Fixed #76 by adding a `finalImage` boolean adding a `opacity: 0;` on the
-`after` pseudo-element, when the last image as loaded to prevent visibility of 
-background `base64` images for transparent bgImages. 
+`after` pseudo-element, when the last image as loaded to prevent visibility of
+background `base64` images for transparent bgImages.
 
 ## [0.8.9](https://github.com/timhagn/gatsby-background-image) (2019-09-01)
 
