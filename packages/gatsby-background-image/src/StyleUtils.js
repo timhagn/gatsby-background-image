@@ -88,15 +88,13 @@ export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
     ? convertedProps.fixed[0]
     : convertedProps.fixed
 
-  // Really just the answer to issue #55 ; ).
-  const randomAnswerToLifeTheUniverseAndEverything = addedClassName
-    ? addedClassName
-    : uuid.generate()
+  // Add an additional class for multiple <BackgroundImage>s.
+  const additionalClassname = addedClassName || uuid.generate()
 
   // Create random "uniquely hashed" additionalClass if needed.
   const randomClass = ` gbi-${hashString(
     (imageData && imageData.srcSet) || className
-  )}-${randomAnswerToLifeTheUniverseAndEverything}`
+  )}-${additionalClassname}`
 
   // Should an element exist, add randomized class.
   const additionalClass = elementExists ? randomClass : ``
