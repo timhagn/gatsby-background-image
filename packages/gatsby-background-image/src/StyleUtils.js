@@ -8,7 +8,7 @@ import {
 } from './HelperUtils'
 import { getCurrentFromData, getUrlString } from './ImageUtils'
 import { combineArray } from './HelperUtils'
-import uuid from 'uuid/v4'
+import uuid from 'short-uuid'
 
 const componentClassCache = Object.create({})
 /**
@@ -91,7 +91,7 @@ export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
   // Really just the answer to issue #55 ; ).
   const randomAnswerToLifeTheUniverseAndEverything = addedClassName
     ? addedClassName
-    : uuid().replace(/-/g, '')
+    : uuid.generate()
 
   // Create random "uniquely hashed" additionalClass if needed.
   const randomClass = ` gbi-${hashString(

@@ -16,7 +16,7 @@ global.console.debug = jest.fn()
 
 let elements = []
 
-jest.mock('uuid/v4')
+jest.mock('short-uuid')
 
 describe(`<BackgroundImage />`, () => {
   const observe = jest.fn(callback => elements.push(callback))
@@ -31,8 +31,8 @@ describe(`<BackgroundImage />`, () => {
     // Mock Math.random beforehand, lest another random classname is created.
     Math.random = jest.fn(() => 0.424303425546642)
     // Freeze StyleUtils#fixClassName.
-    const uuid = require('uuid/v4')
-    uuid.mockImplementation(() => '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000')
+    const uuid = require('short-uuid')
+    uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
   })
   afterEach(() => {
     Math.random = tmpRnd
