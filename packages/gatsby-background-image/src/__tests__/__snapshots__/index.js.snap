@@ -4,16 +4,16 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -29,14 +29,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -57,16 +57,16 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -82,14 +82,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -110,16 +110,16 @@ exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline-block; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -135,14 +135,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
@@ -163,16 +163,16 @@ exports[`<BackgroundImage /> should call multiple critical fluid images 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -188,14 +188,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
@@ -261,9 +261,9 @@ background-size: cover;
 exports[`<BackgroundImage /> should create style tag at fixed with pseudo-elements 1`] = `
 <style>
   
-          .imageClass.test.gbi-1393017994-18:before,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass.test.gbi-1393017994-18:after,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -279,14 +279,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass.test.gbi-1393017994-18:before,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass.test.gbi-1393017994-18:after,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -300,9 +300,9 @@ background-size: 'contain';
 exports[`<BackgroundImage /> should create style tag with pseudo-elements 1`] = `
 <style>
   
-          .imageClass.test.gbi-1393017994-18:before,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass.test.gbi-1393017994-18:after,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -318,14 +318,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass.test.gbi-1393017994-18:before,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass.test.gbi-1393017994-18:after,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -340,16 +340,16 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -365,14 +365,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -393,16 +393,16 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -418,14 +418,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -446,16 +446,16 @@ exports[`<BackgroundImage /> should render multiple fluid images 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -471,14 +471,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
@@ -499,16 +499,16 @@ exports[`<BackgroundImage /> should render stacked fixed size images 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline-block; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -524,14 +524,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
@@ -552,16 +552,16 @@ exports[`<BackgroundImage /> should render without opacity hack with truthy pres
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -577,14 +577,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-18:before,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-18:after,
+          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -656,16 +656,16 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass test gbi-1393017994-18 gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass test gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass.test.gbi-1393017994-18:before,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass.test.gbi-1393017994-18:after,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -681,14 +681,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass.test.gbi-1393017994-18:before,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass.test.gbi-1393017994-18:after,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -807,15 +807,15 @@ exports[`<BackgroundImage /> should work without classId but className 1`] = `
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass test gbi-1393017994-18 gatsby-image-wrapper"
+    class="imageClass test gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
       
-          .imageClass.test.gbi-1393017994-18:before,
-          .imageClass.test.gbi-1393017994-18:after {
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             content: '';
             display: block;
             position: absolute;
@@ -830,13 +830,13 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass.test.gbi-1393017994-18:before {
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass.test.gbi-1393017994-18:after {
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             background-image: url(string_of_base64);
             

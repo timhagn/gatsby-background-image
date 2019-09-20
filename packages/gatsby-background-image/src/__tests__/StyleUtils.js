@@ -186,7 +186,14 @@ describe(`presetBackgroundStyles()`, () => {
   })
 })
 
+jest.mock('short-uuid')
 describe(`fixClassName()`, () => {
+  beforeAll(() => {
+    // Freeze StyleUtils#fixClassName.
+    const uuid = require('short-uuid')
+    uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
+  })
+
   it(`should return empty generated className props`, () => {
     const fixedClasses = fixClassName({})
     expect(fixedClasses).toMatchInlineSnapshot(`
@@ -197,9 +204,21 @@ describe(`fixClassName()`, () => {
             `)
   })
 
+  it(`should return generated className on class with uuid`, () => {
+    activateCacheForComponentClass(`imageClass`)
+    const [fixedClasses, addedClassName] = fixClassName({
+      className: `imageClass`,
+      fluid: fluidShapeMock,
+    })
+    expect(fixedClasses).toMatchInlineSnapshot(
+      `"imageClass gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"`
+    )
+    expect(addedClassName).toMatchInlineSnapshot(
+      `" gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"`
+    )
+  })
+
   it(`should return generated className on existing class`, () => {
-    // Mock Math.random beforehand, lest another random classname is created.
-    Math.random = jest.fn(() => 0.424303425546642)
     activateCacheForComponentClass(`imageClass`)
     const [fixedClasses, addedClassName] = fixClassName({
       className: `imageClass`,
