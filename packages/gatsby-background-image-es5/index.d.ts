@@ -25,6 +25,17 @@ declare module 'gatsby-background-image-es5' {
     media?: string
   }
 
+  type IntrinsicTags = keyof JSX.IntrinsicElements;
+  type DefaultExtraProps = { Tag?: 'div' } & JSX.IntrinsicElements['div'];
+  type InferExtraProps<T extends IntrinsicTags | void> = T extends infer U
+    ? U extends IntrinsicTags
+    ? U extends 'div'
+    ? DefaultExtraProps
+    : { Tag: U } & JSX.IntrinsicElements[U]
+    : DefaultExtraProps
+    : DefaultExtraProps
+    ;
+
   interface IBackgroundImageProps {
     resolutions?: IFixedObject | (IFixedObject | string)[],
     sizes?: IFluidObject | (IFluidObject | string)[],
@@ -34,19 +45,16 @@ declare module 'gatsby-background-image-es5' {
     durationFadeIn?: number,
     title?: string,
     alt?: string
-    className?: string | object, // Support Glamor's css prop?.
     critical?: boolean,
     crossOrigin?: string | boolean,
-    style?: object | [], // Using PropTypes from RN. (not 100% sure of array type here)
     backgroundColor?: string | boolean,
     onLoad?: () => void
     onStartLoad?: (param: { wasCached: boolean }) => void
     onError?: (event: any) => void
-    Tag?: string,
     classId?: string,
     preserveStackingContext?: boolean,
   }
 
-  export default class BackgroundImage extends React.Component<IBackgroundImageProps> {
+  export default class BackgroundImage<T extends IntrinsicTags> extends React.Component<InferExtraProps<T> & IBackgroundImageProps> {
   }
 }
