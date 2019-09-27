@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.12"></a>
+<a name="0.8.13"></a>
+
+## [0.8.13](https://github.com/timhagn/gatsby-background-image) (2019-09-27)
+
+**merge / change** Merged #77, moved eslintrc to top level.
 
 ## [0.8.12](https://github.com/timhagn/gatsby-background-image) (2019-09-20)
 
