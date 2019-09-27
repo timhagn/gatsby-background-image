@@ -1,4 +1,6 @@
+import uuid from 'short-uuid'
 import {
+  combineArray,
   convertProps,
   filteredJoin,
   hashString,
@@ -7,8 +9,6 @@ import {
   toKebabCase,
 } from './HelperUtils'
 import { getCurrentFromData, getUrlString } from './ImageUtils'
-import { combineArray } from './HelperUtils'
-import uuid from 'short-uuid'
 
 const componentClassCache = Object.create({})
 /**
@@ -101,7 +101,7 @@ export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
   const componentClassNames = `${className || ``}${additionalClass ||
     ``}`.trim()
   // Add it to cache if it doesn't exist.
-  !elementExists && activateCacheForComponentClass(className)
+  if (!elementExists) activateCacheForComponentClass(className)
   return [componentClassNames, additionalClass]
 }
 

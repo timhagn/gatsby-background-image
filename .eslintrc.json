@@ -3,11 +3,18 @@
   "parser": "babel-eslint",
   "plugins": ["prettier"],
   "rules": {
+    "no-nested-ternary": [0],
+    "no-param-reassign": [0],
+    "no-return-assign": [0],
+    "no-restricted-globals": [0],
+    "one-var": [0],
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": [0],
     "react/jsx-one-expression-per-line": [0],
-    "react/destructuring-assignment": [0]
+    "react/jsx-props-no-spreading": [0],
+    "react/destructuring-assignment": [0],
+    "react/require-default-props": [0]
   },
   "env": {
     "browser": true,

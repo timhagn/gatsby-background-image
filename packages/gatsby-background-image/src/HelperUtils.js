@@ -1,3 +1,5 @@
+import filterInvalidDOMProps from 'filter-invalid-dom-props'
+
 /**
  * Mirror of BackgroundImage.propTypes. Keep in SYNC!
  *
@@ -38,17 +40,7 @@ export const isString = value =>
  * @param props
  * @return {Object}
  */
-export const stripRemainingProps = props => {
-  const remainingProps = { ...props }
-
-  gbiPropTypes.forEach(propTypesKey => {
-    if (Object.prototype.hasOwnProperty.call(remainingProps, propTypesKey)) {
-      delete remainingProps[propTypesKey]
-    }
-  })
-
-  return remainingProps
-}
+export const stripRemainingProps = props => filterInvalidDOMProps(props)
 
 /**
  * Handle legacy names for image queries

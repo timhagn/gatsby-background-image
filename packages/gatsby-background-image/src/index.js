@@ -195,16 +195,16 @@ class BackgroundImage extends React.Component {
     // setting next imageState.
     this.imageRef = activatePictureRef(this.imageRef, this.props, this.selfRef)
     this.setState(
-      {
+      state => ({
         isVisible: true,
-        imageState: this.state.imageState + 1,
-      },
+        imageState: state.imageState + 1,
+      }),
       () => {
-        this.setState({
+        this.setState(state => ({
           imgLoaded: imageInCache,
           imgCached: !!this.imageRef.currentSrc,
-          imageState: this.state.imageState + 1,
-        })
+          imageState: state.imageState + 1,
+        }))
       }
     )
   }
@@ -222,10 +222,10 @@ class BackgroundImage extends React.Component {
   handleImageLoaded() {
     activateCacheForImage(this.props)
 
-    this.setState({
+    this.setState(state => ({
       imgLoaded: true,
-      imageState: this.state.imageState + 1,
-    })
+      imageState: state.imageState + 1,
+    }))
     if (this.state.seenBefore) {
       this.setState({ fadeIn: false })
     }
@@ -276,7 +276,7 @@ class BackgroundImage extends React.Component {
       position: `relative`,
       ...style,
     }
-    !this.props.preserveStackingContext && (divStyle.opacity = 0.99)
+    if (!this.props.preserveStackingContext) divStyle.opacity = 0.99
 
     // Choose image object of fluid or fixed, return null if not present.
     let image, noScriptImageData
