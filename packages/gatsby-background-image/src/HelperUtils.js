@@ -1,31 +1,6 @@
 import filterInvalidDOMProps from 'filter-invalid-dom-props'
 
 /**
- * Mirror of BackgroundImage.propTypes. Keep in SYNC!
- *
- * @type {Object}
- */
-const gbiPropTypes = [
-  `resolutions`,
-  `sizes`,
-  `fixed`,
-  `fluid`,
-  `fadeIn`,
-  `durationFadeIn`,
-  `className`,
-  `critical`,
-  `crossOrigin`,
-  `style`,
-  `backgroundColor`,
-  `onLoad`,
-  `onError`,
-  `onStartLoad`,
-  `Tag`,
-  `classId`,
-  `preserveStackingContext`,
-]
-
-/**
  * Tests a given value on being a string.
  *
  * @param value *   Value to test

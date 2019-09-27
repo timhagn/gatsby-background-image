@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.13"></a>
+<a name="0.8.14"></a>
+
+## [0.8.14](https://github.com/timhagn/gatsby-background-image) (2019-09-27)
+
+**fix** Added `filter-invalid-dom-props` dependency to prevent #74's React Warning.
 
 ## [0.8.13](https://github.com/timhagn/gatsby-background-image) (2019-09-27)
 
