@@ -546,7 +546,7 @@ export const imageArrayPropsChanged = (props, prevProps) => {
     if (isPropsFluidArray && isPrevPropsFluidArray) {
       if (props.fluid.length === prevProps.fluid.length) {
         // Check for individual image or CSS string changes.
-        return props.fluid.every(
+        return props.fluid.some(
           (image, index) => image.src !== prevProps.fluid[index].src
         )
       }
@@ -554,7 +554,7 @@ export const imageArrayPropsChanged = (props, prevProps) => {
     } else if (isPropsFixedArray && isPrevPropsFixedArray) {
       if (props.fixed.length === prevProps.fixed.length) {
         // Check for individual image or CSS string changes.
-        return props.fixed.every(
+        return props.fixed.some(
           (image, index) => image.src !== prevProps.fixed[index].src
         )
       }
