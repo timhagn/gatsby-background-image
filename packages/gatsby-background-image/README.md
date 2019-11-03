@@ -563,6 +563,6 @@ _For anything else tell me by opening an issue or a PR : )!_
 
 ## Acknowledgements
 
-This package started by by pilfering `gatsby-image`s excellent work and adapting
+This package started by pilfering `gatsby-image`s excellent work and adapting
 it - but it's definitely outgrowing those wee beginnings.  
 Thanks go to its creators & the @gatsbyjs Team, anyways : )! 
