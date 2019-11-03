@@ -251,16 +251,15 @@ export const activateMultiplePictureRefs = (imageRefs, props, selfRef) => {
         },
         selfRef
       )
-    } else {
-      return activatePictureRef(
-        imageRef,
-        {
-          ...convertedProps,
-          fixed: convertedProps.fixed[index],
-        },
-        selfRef
-      )
     }
+    return activatePictureRef(
+      imageRef,
+      {
+        ...convertedProps,
+        fixed: convertedProps.fixed[index],
+      },
+      selfRef
+    )
   })
 }
 
@@ -279,8 +278,9 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     data: imageRef,
     propName: `currentSrc`,
   })
-  // Backup bgImage to lastImage.
+  // Check if image is Array.
   const returnArray = Array.isArray(image)
+  // Backup bgImage to lastImage.
   const lastImage = Array.isArray(bgImage) ? filteredJoin(bgImage) : bgImage
   // Set the backgroundImage according to images available.
   let nextImage

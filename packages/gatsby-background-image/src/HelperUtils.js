@@ -127,5 +127,10 @@ export const filteredJoin = arrayToJoin =>
  * @param toArray     array   Array to copy values into.
  * @return {array}
  */
-export const combineArray = (fromArray, toArray) =>
-  fromArray.map((item, index) => item || toArray[index])
+export const combineArray = (fromArray, toArray) => {
+  // Fallback for singular images.
+  if (!Array.isArray(fromArray)) {
+    return [fromArray]
+  }
+  return fromArray.map((item, index) => item || toArray[index])
+}

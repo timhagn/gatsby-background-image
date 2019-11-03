@@ -97,3 +97,18 @@ describe(`combineArray()`, () => {
     `)
   })
 })
+
+describe(`combineArray()`, () => {
+  it(`should return combined Array if fromArray isn't an Array`, () => {
+    const fromArray = `test`
+    const toArray = [``, ``, `test`, `test`]
+
+    const testCombination = combineArray(fromArray, toArray)
+    expect(testCombination instanceof Array).toBeTruthy()
+    expect(testCombination).toMatchInlineSnapshot(`
+      Array [
+        "test",
+      ]
+    `)
+  })
+})
