@@ -59,6 +59,7 @@ this package.
 - [How to Use with Multiple Images](#how-to-use-with-multiple-images)
 - [Configuration & props](#configuration--props)
 - [Styling & Passed Through Styles](#styling--passed-through-styles)
+  - [Passed Props for styled-components and suchlike](#passed-props-for-styled-components-and-suchlike)
   - [Overflow setting](#overflow-setting)
   - [Noscript styling](#noscript-styling)
   - [Responsive styling](#responsive-styling)
@@ -401,6 +402,37 @@ _**¡But be sure to target the `:before` and `:after` pseudo-elements in your CS
 lest your "blurred-up", traced placeholder SVG or lazy loaded background images
 might jump around!**_
 
+#### Passed Props for styled-components and suchlike
+
+Perhaps you want to change the style of a `BackgroundImage` by passing a prop to
+`styled-components` or suchlike CSS-in-JS libraries like e.g. the following:
+
+```js
+// isDarken gets changed in the parent component.
+const StyledBackground = styled(BackgroundImage)`
+  &::before,
+  &::after {
+    filter: invert(
+      ${({ isDarken }) => {
+        return isDarken ? '80%' : '0%'
+      }}
+    );
+  }
+`
+```
+
+But be aware that there happens no `state` change inside the `BackgroundImage`,
+so React won't rerender it. This can easily be achieved, by settings an 
+additional `key` prop, which changes as well as the prop like thus:
+
+```js
+return (
+<StyledBackgound
+  isDarken={isDarken}
+  key={isDarken ? `dark` : `light`}
+/>)
+```
+
 #### Overflow setting
 
 As of `gatsby-background-image(-es5)` @ `v0.8.3` the superfluous default of
@@ -441,7 +473,7 @@ However, a suitable workaround is available. For example, if your style looks li
   }
 }
 ```
-The `::before` and `::after` pseudoelements can be targeted directly to make your
+The `::before` and `::after` pseudo elements can be targeted directly to make your
 style look like this:
 
 ```css

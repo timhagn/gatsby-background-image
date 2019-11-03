@@ -3,11 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.15"></a>
+<a name="0.8.17"></a>
+
+## [0.8.17](https://github.com/timhagn/gatsby-background-image) (2019-11-03)
+
+**doc** Added a workaround explanation for #74 to the READMEs.
 
 ## [0.8.16](https://github.com/timhagn/gatsby-background-image) (2019-11-03)
 
-**merge** Added a fallback to combineArray() for #84.
+**fix** Added a fallback to combineArray() for #84.
 
 ## [0.8.15](https://github.com/timhagn/gatsby-background-image) (2019-10-01)
 
