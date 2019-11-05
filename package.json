@@ -2,10 +2,10 @@
   "name": "gbi",
   "private": true,
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.0",
     "@testing-library/jest-dom": "^4.2.3",
-    "@testing-library/react": "^9.3.1",
+    "@testing-library/react": "^9.3.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",

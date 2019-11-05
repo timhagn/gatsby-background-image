@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.17"></a>
+<a name="0.8.18"></a>
+
+## [0.8.18](https://github.com/timhagn/gatsby-background-image) (2019-11-05)
+
+**merge** Merged #85.
 
 ## [0.8.17](https://github.com/timhagn/gatsby-background-image) (2019-11-03)
 
