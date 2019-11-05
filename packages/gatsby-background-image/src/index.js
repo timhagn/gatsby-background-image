@@ -433,7 +433,7 @@ BackgroundImage.propTypes = {
   onLoad: PropTypes.func,
   onError: PropTypes.func,
   onStartLoad: PropTypes.func,
-  Tag: PropTypes.string,
+  Tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   classId: PropTypes.string,
   preserveStackingContext: PropTypes.bool,
 }
