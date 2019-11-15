@@ -70,11 +70,10 @@ export const createPseudoElement = (
  * Checks if an element with given className(s) already exists.
  *
  * @param className       string    Given className(s) e.g. from styled-components
- * @param addedClassName  string    A possible previously added className
  * @param props           Object    Given props by component
  * @return {*[]}
  */
-export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
+export const fixClassName = ({ className, ...props }) => {
   // const escapedClassName = escapeClassNames(className)
   const convertedProps = convertProps(props)
   const elementExists = inComponentClassCache(className)
@@ -88,8 +87,8 @@ export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
     ? convertedProps.fixed[0]
     : convertedProps.fixed
 
-  // Add an additional class for multiple <BackgroundImage>s.
-  const additionalClassname = addedClassName || uuid.generate()
+  // Add an additional unique class for multiple <BackgroundImage>s.
+  const additionalClassname = uuid.generate()
 
   // Create random "uniquely hashed" additionalClass if needed.
   const randomClass = ` gbi-${hashString(
@@ -102,7 +101,7 @@ export const fixClassName = ({ className, addedClassName = ``, ...props }) => {
     ``}`.trim()
   // Add it to cache if it doesn't exist.
   if (!elementExists) activateCacheForComponentClass(className)
-  return [componentClassNames, additionalClass]
+  return [componentClassNames]
 }
 
 /**

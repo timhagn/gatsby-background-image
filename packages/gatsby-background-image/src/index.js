@@ -71,7 +71,7 @@ class BackgroundImage extends React.Component {
     const imageState = 0
 
     // Fixed class Name & added one (needed for multiple instances).
-    const [currentClassNames, addedClassName] = fixClassName(props)
+    const [currentClassNames] = fixClassName(props)
 
     this.state = {
       isVisible,
@@ -82,7 +82,6 @@ class BackgroundImage extends React.Component {
       seenBefore,
       imageState,
       currentClassNames,
-      addedClassName,
     }
 
     // Preset backgroundStyles (e.g. during SSR or gatsby build).
@@ -123,22 +122,22 @@ class BackgroundImage extends React.Component {
       }
     }
 
-    const [currentClassNames, addedClassName] = fixClassName(this.props)
-    this.setState({ currentClassNames, addedClassName })
+    const [currentClassNames] = fixClassName(this.props)
+    this.setState({ currentClassNames })
   }
 
   componentDidUpdate(prevProps) {
     // Check if we received a changed fluid / fixed image.
     if (imagePropsChanged(this.props, prevProps)) {
       const imageInCache = inImageCache(this.props)
-      const [currentClassNames, addedClassName] = fixClassName(this.props)
+      const [currentClassNames] = fixClassName(this.props)
 
       this.setState(
         {
           isVisible: imageInCache || this.props.critical,
           imgLoaded: imageInCache,
           currentClassNames,
-          addedClassName,
+
           //   this.state.currentClassNames ||
           //   fixClassName(this.props.className, this.randomClass),
           // imageState: (this.state.imageState + 1) % 2,
