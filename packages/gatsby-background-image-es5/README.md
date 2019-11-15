@@ -520,9 +520,13 @@ Activating `preserveStackingContext` prevents this behavior - but allows you to
 use any stacking context changing elements (like elements styled with
 `position: fixed;`) yourself as `children`.
 
+Starting with `v0.8.19` it's possible to change the IntersectionObservers' 
+`rootMargin` with a prop of the same name.
+
 | Name                      | Type      | Description                                                                                 |
 | ------------------------- | --------- | ------------------------------------------------------------------------------------------- |
 | `preserveStackingContext` | `boolean` | Deactivates the "opacity hack" on `<BackgroundImage />` when set to true (Default: `false`) |
+| `rootMargin`              | `string`  | Changes the IntersectionObserver `rootMargin`. (Default: `200px`)                           |
 
 ## Changed props
 
