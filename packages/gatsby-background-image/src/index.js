@@ -214,7 +214,8 @@ class BackgroundImage extends React.Component {
     if (this.state.IOSupported && ref) {
       this.cleanUpListeners = listenToIntersections(
         ref,
-        this.intersectionListener
+        this.intersectionListener,
+        this.props.rootMargin
       )
     }
   }
@@ -380,6 +381,7 @@ BackgroundImage.defaultProps = {
   durationFadeIn: 500,
   Tag: `div`,
   preserveStackingContext: false,
+  rootMargin: `200px`,
 }
 
 const fixedObject = PropTypes.shape({
@@ -436,6 +438,7 @@ BackgroundImage.propTypes = {
   Tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   classId: PropTypes.string,
   preserveStackingContext: PropTypes.bool,
+  rootMargin: PropTypes.string,
 }
 
 export default BackgroundImage

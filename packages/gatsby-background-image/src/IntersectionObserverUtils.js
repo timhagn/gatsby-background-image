@@ -23,15 +23,18 @@ export const callbackIO = entries => {
 /**
  * Returns an IntersectionObserver instance if exists.
  *
+ * @param rootMargin    string    The current rootMargin, defaults to 200px.
  * @return {IntersectionObserver|undefined}
  */
-export const getIO = () => {
+export const getIO = rootMargin => {
   if (
     typeof io === `undefined` &&
     typeof window !== `undefined` &&
     window.IntersectionObserver
   ) {
-    io = new window.IntersectionObserver(callbackIO, { rootMargin: `200px` })
+    io = new window.IntersectionObserver(callbackIO, {
+      rootMargin,
+    })
   }
 
   return io
@@ -40,12 +43,17 @@ export const getIO = () => {
 /**
  * Registers IntersectionObserver callback on element.
  *
- * @param element
- * @param callback
+ * @param element     Element   The element to observe.
+ * @param callback    function  Callback to call when intersecting.
+ * @param rootMargin  string    The current rootMargin, defaults to 200px.
  * @return {Function}
  */
-export const listenToIntersections = (element, callback) => {
-  const observer = getIO()
+export const listenToIntersections = (
+  element,
+  callback,
+  rootMargin = `200px`
+) => {
+  const observer = getIO(rootMargin)
 
   if (observer) {
     observer.observe(element)
