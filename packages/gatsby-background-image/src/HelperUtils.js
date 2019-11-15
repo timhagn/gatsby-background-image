@@ -134,3 +134,39 @@ export const combineArray = (fromArray, toArray) => {
   }
   return fromArray.map((item, index) => item || toArray[index])
 }
+
+/**
+ * Find the source of an image to use as a key in the image cache.
+ * Use `the first image in either `fixed` or `fluid`
+ *
+ * @param {{fluid: {src: string}[], fixed: {src: string}[]}} args
+ * @return {string}
+ */
+export const getImageSrcKey = ({ fluid, fixed }) => {
+  const data = (fluid && fluid[0]) || (fixed && fixed[0])
+
+  return data.src
+}
+
+/**
+ * Logs a warning if deprecated props where used.
+ *
+ * @param prop
+ * @param replacement
+ */
+export const logDeprecationNotice = (prop, replacement) => {
+  if (process.env.NODE_ENV === `production`) {
+    return
+  }
+
+  console.log(
+    `
+    The "${prop}" prop is now deprecated and will be removed in the next major version
+    of "gatsby-image".
+    `
+  )
+
+  if (replacement) {
+    console.log(`Please use ${replacement} instead of "${prop}".`)
+  }
+}

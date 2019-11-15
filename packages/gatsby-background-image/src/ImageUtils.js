@@ -2,6 +2,7 @@ import {
   combineArray,
   convertProps,
   filteredJoin,
+  getImageSrcKey,
   hasImageArray,
   isString,
 } from './HelperUtils'
@@ -18,15 +19,11 @@ export const inImageCache = props => {
   const convertedProps = convertProps(props)
   if (hasImageArray(convertedProps)) {
     return allInImageCache(props)
-  } else {
-    // Find src
-    const src = convertedProps.fluid
-      ? convertedProps.fluid.src
-      : convertedProps.fixed
-      ? convertedProps.fixed.src
-      : null
-
-    return imageCache[src] || false
+  }
+  // Find src
+  const src = getImageSrcKey(convertedProps)
+  if (src) {
+    imageCache[src] = true
   }
 }
 
@@ -54,22 +51,16 @@ export const allInImageCache = props => {
  * Adds an Image to imageCache.
  *
  * @param props
- * @param selfRef
  */
-export const activateCacheForImage = (props, selfRef) => {
+export const activateCacheForImage = props => {
   const convertedProps = convertProps(props)
   if (hasImageArray(convertedProps)) {
     return activateCacheForMultipleImages(props)
-  } else {
-    // Find src
-    const src = convertedProps.fluid
-      ? convertedProps.fluid.src
-      : convertedProps.fixed
-      ? convertedProps.fixed.src
-      : null
-    if (src) {
-      imageCache[src] = true
-    }
+  }
+  // Find src
+  const src = getImageSrcKey(convertedProps)
+  if (src) {
+    imageCache[src] = true
   }
 }
 
@@ -656,3 +647,21 @@ export const imageLoaded = imageRef =>
       imageRef.naturalWidth !== 0 &&
       imageRef.naturalHeight !== 0
     : false
+
+// Return an array ordered by elements having a media prop, does not use
+// native sort, as a stable sort is not guaranteed by all browsers/versions
+export const groupByMedia = imageVariants => {
+  const withMedia = []
+  const without = []
+  imageVariants.forEach(variant =>
+    (variant.media ? withMedia : without).push(variant)
+  )
+
+  if (without.length > 1 && process.env.NODE_ENV !== `production`) {
+    console.warn(
+      `We've found ${without.length} sources without a media property. They might be ignored by the browser, see: https://www.gatsbyjs.org/packages/gatsby-image/#art-directing-multiple-images`
+    )
+  }
+
+  return [...withMedia, ...without]
+}
