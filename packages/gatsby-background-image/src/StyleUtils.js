@@ -3,7 +3,10 @@ import {
   combineArray,
   convertProps,
   filteredJoin,
+  getCurrentSrcData,
+  hasArtDirectionArray,
   hashString,
+  isBrowser,
   isString,
   stringToArray,
   toKebabCase,
@@ -79,13 +82,7 @@ export const fixClassName = ({ className, ...props }) => {
   const elementExists = inComponentClassCache(className)
 
   // Extract imageData.
-  const imageData = convertedProps.fluid
-    ? Array.isArray(convertedProps.fluid)
-      ? convertedProps.fluid[0]
-      : convertedProps.fluid
-    : Array.isArray(convertedProps.fixed)
-    ? convertedProps.fixed[0]
-    : convertedProps.fixed
+  const imageData = getCurrentSrcData(convertedProps)
 
   // Add an additional unique class for multiple <BackgroundImage>s.
   const additionalClassname = uuid.generate()
@@ -114,7 +111,7 @@ export const fixClassName = ({ className, ...props }) => {
 export const escapeClassNames = classNames => {
   if (classNames) {
     const specialChars =
-      typeof window !== `undefined` && window._gbiSpecialChars
+      isBrowser() && window._gbiSpecialChars
         ? window._gbiSpecialChars
         : typeof __GBI_SPECIAL_CHARS__ !== `undefined`
         ? __GBI_SPECIAL_CHARS__
@@ -284,7 +281,8 @@ export const createPseudoStyles = ({
  */
 export const createNoScriptStyles = ({ classId, className, image }) => {
   if (image) {
-    const returnArray = Array.isArray(image)
+    const returnArray =
+      Array.isArray(image) && !hasArtDirectionArray({ fluid: image })
     const addUrl = false
     const allSources = getCurrentFromData({
       data: image,

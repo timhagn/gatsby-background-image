@@ -197,11 +197,10 @@ describe(`fixClassName()`, () => {
   it(`should return empty generated className props`, () => {
     const fixedClasses = fixClassName({})
     expect(fixedClasses).toMatchInlineSnapshot(`
-                  Array [
-                    "",
-                    "",
-                  ]
-            `)
+      Array [
+        "",
+      ]
+    `)
   })
 
   it(`should return generated className on class with uuid`, () => {
@@ -213,9 +212,7 @@ describe(`fixClassName()`, () => {
     expect(fixedClasses).toMatchInlineSnapshot(
       `"imageClass gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"`
     )
-    expect(addedClassName).toMatchInlineSnapshot(
-      `" gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"`
-    )
+    expect(addedClassName).toMatchInlineSnapshot(`undefined`)
   })
 
   it(`should return generated className on existing class`, () => {
@@ -226,9 +223,9 @@ describe(`fixClassName()`, () => {
       fluid: fluidShapeMock,
     })
     expect(fixedClasses).toMatchInlineSnapshot(
-      `"imageClass gbi-1393017994-imageClass"`
+      `"imageClass gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"`
     )
-    expect(addedClassName).toMatchInlineSnapshot(`" gbi-1393017994-imageClass"`)
+    expect(addedClassName).toMatchInlineSnapshot(`undefined`)
   })
 })
 

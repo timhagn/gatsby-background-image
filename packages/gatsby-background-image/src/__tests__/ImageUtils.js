@@ -98,11 +98,11 @@ describe(`createPictureRef() with critical image`, () => {
       critical: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                                                                                                                        <img
-                                                                                                                          src="test_fixed_image.jpg"
-                                                                                                                          srcset="some srcSet"
-                                                                                                                        />
-                                                                                `)
+      <img
+        src=""
+        srcset=""
+      />
+    `)
   })
   it(`should preload image on isVisible state`, () => {
     const imageRef = createPictureRef({
@@ -110,11 +110,11 @@ describe(`createPictureRef() with critical image`, () => {
       isVisible: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                                                                                                                        <img
-                                                                                                                          src="test_fixed_image.jpg"
-                                                                                                                          srcset="some srcSet"
-                                                                                                                        />
-                                                                                `)
+      <img
+        src=""
+        srcset=""
+      />
+    `)
   })
   it(`should set empty strings for image on critical without src & srcSet`, () => {
     const fixedMock = { ...fixedShapeMock }
@@ -140,17 +140,17 @@ describe(`createPictureRef() with image array`, () => {
       critical: true,
     })
     expect(imageRef).toMatchInlineSnapshot(`
-                                                Array [
-                                                  <img
-                                                    src="test_fixed_image.jpg"
-                                                    srcset="some srcSet"
-                                                  />,
-                                                  <img
-                                                    src="test_fixed_image.jpg"
-                                                    srcset="some srcSet"
-                                                  />,
-                                                ]
-                                `)
+      Array [
+        <img
+          src=""
+          srcset=""
+        />,
+        <img
+          src=""
+          srcset=""
+        />,
+      ]
+    `)
   })
 })
 

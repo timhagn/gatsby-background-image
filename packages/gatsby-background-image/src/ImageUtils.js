@@ -3,8 +3,12 @@ import {
   convertProps,
   filteredJoin,
   getImageSrcKey,
+  hasArtDirectionArray,
   hasImageArray,
+  isBrowser,
   isString,
+  getCurrentSrcData,
+  hasArtDirectionFluidArray,
 } from './HelperUtils'
 
 const imageCache = Object.create({})
@@ -13,18 +17,17 @@ const imageCache = Object.create({})
  * lazy-loading & fading in on subsequent mounts.
  *
  * @param props
- * @return {*|boolean}
+ * @return {boolean}
  */
 export const inImageCache = props => {
   const convertedProps = convertProps(props)
-  if (hasImageArray(convertedProps)) {
+  if (hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps)) {
     return allInImageCache(props)
   }
+
   // Find src
   const src = getImageSrcKey(convertedProps)
-  if (src) {
-    imageCache[src] = true
-  }
+  return imageCache[src] || false
 }
 
 /**
@@ -41,9 +44,8 @@ export const allInImageCache = props => {
   return imageStack.every(imageData => {
     if (convertedProps.fluid) {
       return inImageCache({ fluid: imageData })
-    } else {
-      return inImageCache({ fixed: imageData })
     }
+    return inImageCache({ fixed: imageData })
   })
 }
 
@@ -105,35 +107,38 @@ export const hasPictureElement = () =>
  */
 export const createPictureRef = (props, onLoad) => {
   const convertedProps = convertProps(props)
+
   if (
-    typeof window !== `undefined` &&
+    isBrowser() &&
     (typeof convertedProps.fluid !== `undefined` ||
       typeof convertedProps.fixed !== `undefined`)
   ) {
-    if (hasImageArray(convertedProps)) {
+    if (
+      hasImageArray(convertedProps) &&
+      !hasArtDirectionArray(convertedProps)
+    ) {
       return createMultiplePictureRefs(props, onLoad)
-    } else {
-      const img = new Image()
-
-      img.onload = () => onLoad()
-
-      if (!img.complete && typeof convertedProps.onLoad === `function`) {
-        img.addEventListener('load', convertedProps.onLoad)
-      }
-      if (typeof convertedProps.onError === `function`) {
-        img.addEventListener('error', convertedProps.onError)
-      }
-      if (convertedProps.crossOrigin) {
-        img.crossOrigin = convertedProps.crossOrigin
-      }
-
-      // Only directly activate the image if critical (preload).
-      if (convertedProps.critical || convertedProps.isVisible) {
-        return activatePictureRef(img, convertedProps)
-      }
-
-      return img
     }
+    const img = new Image()
+
+    img.onload = () => onLoad()
+
+    if (!img.complete && typeof convertedProps.onLoad === `function`) {
+      img.addEventListener('load', convertedProps.onLoad)
+    }
+    if (typeof convertedProps.onError === `function`) {
+      img.addEventListener('error', convertedProps.onError)
+    }
+    if (convertedProps.crossOrigin) {
+      img.crossOrigin = convertedProps.crossOrigin
+    }
+
+    // Only directly activate the image if critical (preload).
+    if (convertedProps.critical || convertedProps.isVisible) {
+      return activatePictureRef(img, convertedProps)
+    }
+
+    return img
   }
   return null
 }
@@ -152,9 +157,8 @@ export const createMultiplePictureRefs = (props, onLoad) => {
   return imageStack.map(imageData => {
     if (convertedProps.fluid) {
       return createPictureRef({ ...convertedProps, fluid: imageData }, onLoad)
-    } else {
-      return createPictureRef({ ...convertedProps, fixed: imageData }, onLoad)
     }
+    return createPictureRef({ ...convertedProps, fixed: imageData }, onLoad)
   })
 }
 
@@ -169,16 +173,19 @@ export const createMultiplePictureRefs = (props, onLoad) => {
 export const activatePictureRef = (imageRef, props, selfRef = null) => {
   const convertedProps = convertProps(props)
   if (
-    typeof window !== `undefined` &&
+    isBrowser() &&
     (typeof convertedProps.fluid !== `undefined` ||
       typeof convertedProps.fixed !== `undefined`)
   ) {
-    if (hasImageArray(convertedProps)) {
+    if (
+      hasImageArray(convertedProps) &&
+      !hasArtDirectionArray(convertedProps)
+    ) {
       return activateMultiplePictureRefs(imageRef, props, selfRef)
     } else {
-      const imageData = convertedProps.fluid
-        ? convertedProps.fluid
-        : convertedProps.fixed
+      const imageData = hasArtDirectionArray(convertedProps)
+        ? getCurrentSrcData(convertedProps)
+        : getCurrentFromData(convertedProps)
 
       // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
       // but don't prevent it during SSR.
@@ -186,15 +193,22 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
       if (hasPictureElement()) {
         const pic = document.createElement('picture')
         if (selfRef) {
+          // Set original component's style.
           pic.width = imageRef.width = selfRef.offsetWidth
           pic.height = imageRef.height = selfRef.offsetHeight
         }
-        if (imageData.srcSetWebp) {
+        if (hasArtDirectionArray(convertedProps)) {
+          const sources = createArtDirectionSources(convertedProps)
+          sources.forEach(currentSource => pic.appendChild(currentSource))
+        } else if (imageData.srcSetWebp) {
+          // TODO: set media and test.
           const sourcesWebP = document.createElement('source')
-          // Set original component's style.
           sourcesWebP.type = `image/webp`
           sourcesWebP.srcset = imageData.srcSetWebp
           sourcesWebP.sizes = imageData.sizes
+          if (imageData.media) {
+            sourcesWebP.media = imageData.media
+          }
           pic.appendChild(sourcesWebP)
         }
         pic.appendChild(imageRef)
@@ -211,6 +225,9 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
 
       imageRef.srcset = imageData.srcSet ? imageData.srcSet : ``
       imageRef.src = imageData.src ? imageData.src : ``
+      if (imageData.media) {
+        imageRef.media = imageData.media
+      }
 
       // document.body.removeChild(removableElement)
 
@@ -221,6 +238,30 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
 }
 
 /**
+ * Creates a source Array from media objects.
+ *
+ * @param fluid
+ * @param fixed
+ * @return {*}
+ */
+export const createArtDirectionSources = ({ fluid, fixed }) => {
+  const currentSource = fluid || fixed
+  return currentSource.map(image => {
+    const source = document.createElement('source')
+    source.srcset = image.srcSet
+    source.sizes = image.sizes
+    if (image.srcSetWebp) {
+      source.type = `image/webp`
+      source.srcset = image.srcSetWebp
+    }
+    if (image.media) {
+      source.media = image.media
+    }
+    return source
+  })
+}
+
+/**
  * Creates multiple picture elements.
  *
  * @param imageRefs
@@ -228,7 +269,7 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
  * @param selfRef
  * @return {Array||null}
  */
-export const activateMultiplePictureRefs = (imageRefs, props, selfRef) => {
+export const activateMultiplePictureRefs = (imageRefs = [], props, selfRef) => {
   const convertedProps = convertProps(props)
 
   // Extract Image Array.
@@ -270,7 +311,8 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     propName: `currentSrc`,
   })
   // Check if image is Array.
-  const returnArray = Array.isArray(image)
+  const returnArray =
+    Array.isArray(image) && !hasArtDirectionArray({ fluid: image })
   // Backup bgImage to lastImage.
   const lastImage = Array.isArray(bgImage) ? filteredJoin(bgImage) : bgImage
   // Set the backgroundImage according to images available.
@@ -404,7 +446,7 @@ export const getCurrentFromData = ({
   if (!data || !propName) return ``
   // Handle tracedSVG with "special care".
   const tracedSVG = propName === `tracedSVG`
-  if (Array.isArray(data)) {
+  if (Array.isArray(data) && !hasArtDirectionArray({ fluid: data })) {
     // Filter out all elements not having the propName and return remaining.
     const imageString = data
       // .filter(dataElement => {
@@ -430,20 +472,28 @@ export const getCurrentFromData = ({
       addUrl,
       returnArray,
     })
-  } else {
-    // If `currentSrc` or `src` is needed, check image load completion first.
-    if ((propName === `currentSrc` || propName === 'src') && propName in data) {
-      return getUrlString({
-        imageString: checkLoaded
-          ? (imageLoaded(data) && data[propName]) || ``
-          : data[propName],
-        addUrl,
-      })
-    }
-    return propName in data
-      ? getUrlString({ imageString: data[propName], tracedSVG, addUrl })
+  }
+  if (
+    hasArtDirectionArray({ fluid: data }) &&
+    (propName === `currentSrc` || propName === 'src')
+  ) {
+    const currentData = getCurrentSrcData({ fluid: data })
+    return propName in currentData
+      ? getUrlString({ imageString: currentData[propName], tracedSVG, addUrl })
       : ``
   }
+  // If `currentSrc` or `src` is needed, check image load completion first.
+  if ((propName === `currentSrc` || propName === 'src') && propName in data) {
+    return getUrlString({
+      imageString: checkLoaded
+        ? (imageLoaded(data) && data[propName]) || ``
+        : data[propName],
+      addUrl,
+    })
+  }
+  return propName in data
+    ? getUrlString({ imageString: data[propName], tracedSVG, addUrl })
+    : ``
 }
 
 /**
@@ -481,17 +531,16 @@ export const getUrlString = ({
       return currentString
     })
     return returnArray ? stringArray : filteredJoin(stringArray)
-  } else {
-    const base64 = imageString.indexOf(`base64`) !== -1
-    const imageUrl = hasImageUrls || imageString.substr(0, 4) === `http`
-    const returnString =
-      imageString && tracedSVG
-        ? `"${imageString}"`
-        : imageString && !base64 && !tracedSVG && imageUrl
-        ? `'${imageString}'`
-        : imageString
-    return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``
   }
+  const base64 = imageString.indexOf(`base64`) !== -1
+  const imageUrl = hasImageUrls || imageString.substr(0, 4) === `http`
+  const returnString =
+    imageString && tracedSVG
+      ? `"${imageString}"`
+      : imageString && !base64 && !tracedSVG && imageUrl
+      ? `'${imageString}'`
+      : imageString
+  return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``
 }
 
 /**
@@ -532,25 +581,24 @@ export const imageArrayPropsChanged = (props, prevProps) => {
     (!isPropsFixedArray && isPrevPropsFixedArray)
   ) {
     return true
-  } else {
-    // Are the lengths or sources in the Arrays different?
-    if (isPropsFluidArray && isPrevPropsFluidArray) {
-      if (props.fluid.length === prevProps.fluid.length) {
-        // Check for individual image or CSS string changes.
-        return props.fluid.some(
-          (image, index) => image.src !== prevProps.fluid[index].src
-        )
-      }
-      return true
-    } else if (isPropsFixedArray && isPrevPropsFixedArray) {
-      if (props.fixed.length === prevProps.fixed.length) {
-        // Check for individual image or CSS string changes.
-        return props.fixed.some(
-          (image, index) => image.src !== prevProps.fixed[index].src
-        )
-      }
-      return true
+  }
+  // Are the lengths or sources in the Arrays different?
+  if (isPropsFluidArray && isPrevPropsFluidArray) {
+    if (props.fluid.length === prevProps.fluid.length) {
+      // Check for individual image or CSS string changes.
+      return props.fluid.some(
+        (image, index) => image.src !== prevProps.fluid[index].src
+      )
     }
+    return true
+  } else if (isPropsFixedArray && isPrevPropsFixedArray) {
+    if (props.fixed.length === prevProps.fixed.length) {
+      // Check for individual image or CSS string changes.
+      return props.fixed.some(
+        (image, index) => image.src !== prevProps.fixed[index].src
+      )
+    }
+    return true
   }
 }
 
@@ -647,21 +695,3 @@ export const imageLoaded = imageRef =>
       imageRef.naturalWidth !== 0 &&
       imageRef.naturalHeight !== 0
     : false
-
-// Return an array ordered by elements having a media prop, does not use
-// native sort, as a stable sort is not guaranteed by all browsers/versions
-export const groupByMedia = imageVariants => {
-  const withMedia = []
-  const without = []
-  imageVariants.forEach(variant =>
-    (variant.media ? withMedia : without).push(variant)
-  )
-
-  if (without.length > 1 && process.env.NODE_ENV !== `production`) {
-    console.warn(
-      `We've found ${without.length} sources without a media property. They might be ignored by the browser, see: https://www.gatsbyjs.org/packages/gatsby-image/#art-directing-multiple-images`
-    )
-  }
-
-  return [...withMedia, ...without]
-}
