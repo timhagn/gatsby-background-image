@@ -1,6 +1,6 @@
-<h1 align="center">
-# gatsby-background-image
-</h1>
+<h2 align="center">
+  gatsby-background-image
+</h2>
 <p align="center">
   <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
 </p>
@@ -36,8 +36,7 @@ SVG to show a preview of the image while it loads,
 
 All the glamour (and speed) of `gatsby-image` for your Background Images!
 
-*_Of course styleable with `styled-components` and the like!_*
-
+_*Of course styleable with `styled-components` and the like!*_
 
 ## ES5 Version
 
@@ -422,15 +421,11 @@ const StyledBackground = styled(BackgroundImage)`
 ```
 
 But be aware that there happens no `state` change inside the `BackgroundImage`,
-so React won't rerender it. This can easily be achieved, by settings an 
+so React won't rerender it. This can easily be achieved, by settings an
 additional `key` prop, which changes as well as the prop like thus:
 
 ```js
-return (
-<StyledBackgound
-  isDarken={isDarken}
-  key={isDarken ? `dark` : `light`}
-/>)
+return <StyledBackgound isDarken={isDarken} key={isDarken ? `dark` : `light`} />
 ```
 
 #### Overflow setting
@@ -473,20 +468,24 @@ However, a suitable workaround is available. For example, if your style looks li
   }
 }
 ```
+
 The `::before` and `::after` pseudo elements can be targeted directly to make your
 style look like this:
 
 ```css
-#mybg, #mybg::before, #mybg::after {
+#mybg,
+#mybg::before,
+#mybg::after {
   background-attachment: fixed;
 }
 
 @media screen and (max-width: 600px) {
-  #mybg, #mybg::before, #mybg::after {
+  #mybg,
+  #mybg::before,
+  #mybg::after {
     background-attachment: scroll;
   }
 }
-
 ```
 
 For more information, refer to [issue #71.](https://github.com/timhagn/gatsby-background-image/issues/71)
@@ -542,7 +541,7 @@ Activating `preserveStackingContext` prevents this behavior - but allows you to
 use any stacking context changing elements (like elements styled with
 `position: fixed;`) yourself as `children`.
 
-Starting with `v0.8.19` it's possible to change the IntersectionObservers' 
+Starting with `v0.8.19` it's possible to change the IntersectionObservers'
 `rootMargin` with a prop of the same name.
 
 | Name                      | Type      | Description                                                                                 |
@@ -601,4 +600,4 @@ _For anything else tell me by opening an issue or a PR : )!_
 
 This package started by pilfering `gatsby-image`s excellent work and adapting
 it - but it's definitely outgrowing those wee beginnings.  
-Thanks go to its creators & the @gatsbyjs Team, anyways : )! 
+Thanks go to its creators & the @gatsbyjs Team, anyways : )!
