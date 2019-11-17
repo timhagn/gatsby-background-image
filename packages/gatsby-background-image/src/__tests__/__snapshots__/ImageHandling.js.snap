@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`initialBgImage() should return initial array without dummies 1`] = `
+Array [
+  "",
+  "",
+]
+`;
+
+exports[`initialBgImage() should return initial single tracedSVG 1`] = `"url(\\"data:image/svg+xml,...\\")"`;
+
+exports[`switchImageSettings() should return settings from fixed array 1`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": true,
+  "lastImage": "string_of_base64,imageString",
+  "nextImage": "url('http://test.webp'),url('http://test.webp')",
+  "nextImageArray": Array [
+    "url('http://test.webp')",
+    "url('http://test.webp')",
+  ],
+}
+`;
+
+exports[`switchImageSettings() should return settings from fixed array without currentSrc 1`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": true,
+  "lastImage": "",
+  "nextImage": "url('http://test.jpg'),url('http://test.jpg')",
+  "nextImageArray": Array [
+    "url('http://test.jpg')",
+    "url('http://test.jpg')",
+  ],
+}
+`;
+
+exports[`switchImageSettings() should return settings from fixed with set bgImage 1`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": false,
+  "lastImage": "string_of_base64",
+  "nextImage": "url(string_of_base64)",
+}
+`;
+
+exports[`switchImageSettings() should return settings from fixed with set bgImage 2`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": false,
+  "lastImage": "string_of_base64",
+  "nextImage": "url(string_of_base64)",
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid with empty bgImage 1`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": false,
+  "lastImage": "",
+  "nextImage": "url(string_of_base64)",
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid with set bgImage and base64 1`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": true,
+  "lastImage": "string_of_base64",
+  "nextImage": "url('http://test.webp')",
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid with set bgImage and tracedSVG 1`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": true,
+  "lastImage": "test_tracedSVG.svg",
+  "nextImage": "url('http://test.webp')",
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid with set bgImage without base64 1`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": true,
+  "lastImage": "",
+  "nextImage": "url('http://test.webp')",
+}
+`;
+
+exports[`switchImageSettings() should return settings from fluid without src 1`] = `
+Object {
+  "afterOpacity": 1,
+  "finalImage": true,
+  "lastImage": "",
+  "nextImage": "url('http://test.webp')",
+}
+`;

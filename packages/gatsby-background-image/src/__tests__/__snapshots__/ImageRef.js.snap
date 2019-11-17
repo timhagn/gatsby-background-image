@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`activatePictureRef() with art-direction stack should return imageRef with fluid art-direction stack 1`] = `
+<img
+  height="500"
+  src="test_fluid_image.jpg"
+  srcset="some srcSet"
+  width="500"
+/>
+`;
+
+exports[`activatePictureRef() with image array should return imageRef array with fixed Array Mock 1`] = `
+Array [
+  <img
+    height="500"
+    src="test_fixed_image.jpg"
+    srcset="some srcSet"
+    width="500"
+  />,
+  <img
+    height="500"
+    src="test_fixed_image.jpg"
+    srcset="some srcSet"
+    width="500"
+  />,
+]
+`;
+
+exports[`activatePictureRef() with image array should return imageRef array with fluid Array Mock 1`] = `
+Array [
+  <img
+    height="500"
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
+    width="500"
+  />,
+  <img
+    height="500"
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
+    width="500"
+  />,
+]
+`;
+
+exports[`activatePictureRef() with image array should return imageRef array with fluid Array Mock without selfRef 1`] = `
+Array [
+  <img
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
+  />,
+  <img
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
+  />,
+]
+`;

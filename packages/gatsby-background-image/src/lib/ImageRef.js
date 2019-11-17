@@ -118,9 +118,6 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
         sourcesWebP.type = `image/webp`
         sourcesWebP.srcset = imageData.srcSetWebp
         sourcesWebP.sizes = imageData.sizes
-        if (imageData.media) {
-          sourcesWebP.media = imageData.media
-        }
         pic.appendChild(sourcesWebP)
       }
       pic.appendChild(imageRef)
@@ -146,7 +143,7 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
  * @param selfRef
  * @return {Array||null}
  */
-export const activateMultiplePictureRefs = (imageRefs = [], props, selfRef) => {
+export const activateMultiplePictureRefs = (imageRefs, props, selfRef) => {
   const convertedProps = convertProps(props)
 
   // Extract Image Array.
