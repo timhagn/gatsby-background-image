@@ -32,3 +32,6 @@ src
 flow-typed
 decls
 examples
+
+!gatsby-node.js
+!gatbsy-browser.js
