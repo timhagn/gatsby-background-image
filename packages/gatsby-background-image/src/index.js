@@ -8,8 +8,6 @@ import {
   imageReferenceCompleted,
 } from './lib/ImageUtils'
 import {
-  createNoScriptStyles,
-  createPseudoStyles,
   fixClassName,
   fixOpacity,
   presetBackgroundStyles,
@@ -18,6 +16,7 @@ import { listenToIntersections } from './lib/IntersectionObserverUtils'
 import { activateCacheForImage, inImageCache } from './lib/ImageCache'
 import { activatePictureRef, createPictureRef } from './lib/ImageRef'
 import { initialBgImage, switchImageSettings } from './lib/ImageHandling'
+import { createNoScriptStyles, createPseudoStyles } from './lib/StyleCreation'
 
 /**
  * Main Lazy-loading React background-image component

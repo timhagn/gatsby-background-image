@@ -1,16 +1,15 @@
 import {
-  createPseudoStyles,
   fixOpacity,
   presetBackgroundStyles,
   setTransitionStyles,
   kebabifyBackgroundStyles,
   fixClassName,
   escapeClassNames,
-  createNoScriptStyles,
 } from '../lib/StyleUtils'
 import { fluidShapeMock } from './mocks/Various.mock'
 import { hashString } from '../lib/HelperUtils'
 import { activateCacheForComponentClass } from '../lib/ClassCache'
+import { createNoScriptStyles, createPseudoStyles } from '../lib/StyleCreation'
 
 global.console.debug = jest.fn()
 
