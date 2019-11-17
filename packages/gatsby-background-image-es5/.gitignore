@@ -54,4 +54,4 @@ node_modules/
 yarn.lock
 package-lock.json
 /index.js
-./lib
+lib/*

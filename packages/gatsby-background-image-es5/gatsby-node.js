@@ -14,7 +14,7 @@ exports.onCreateWebpackConfig = function (_ref, _ref2) {
   if ((0, _SimpleUtils.isString)(specialChars)) {
     actions.setWebpackConfig({
       plugins: [plugins.define({
-        __GBI_SPECIAL_CHARS__: (0, _stringify.default)(specialChars)
+        __GBI_SPECIAL_CHARS__: (0, _stringify["default"])(specialChars)
       })]
     });
   }
