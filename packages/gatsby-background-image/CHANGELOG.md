@@ -3,9 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.5"></a>
+<a name="0.9.6"></a>
 
-## [0.9.0 - 0.9.5](https://github.com/timhagn/gatsby-background-image) (2019-11-17)
+## [0.9.0 - 0.9.6](https://github.com/timhagn/gatsby-background-image) (2019-11-17)
 
 **merge** Finally added art-direction support (single images) for #56.
 Removed superfluous `additionalClass` from `index.js`. Refactored function to
