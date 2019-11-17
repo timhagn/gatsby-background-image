@@ -13,8 +13,6 @@ var _some = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stabl
 
 var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/index-of"));
 
-var _reverse = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/reverse"));
-
 var _findIndex = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/find-index"));
 
 var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/map"));
@@ -168,13 +166,11 @@ var getCurrentSrcData = function getCurrentSrcData(_ref3) {
       fluid: fluid,
       fixed: fixed
     })) {
-      var _context;
-
       // Do we have an image for the current Viewport?
-      var foundMedia = (0, _findIndex.default)(_context = (0, _reverse.default)(currentData).call(currentData)).call(_context, _MediaUtils.matchesMedia);
+      var foundMedia = (0, _findIndex.default)(currentData).call(currentData, _MediaUtils.matchesMedia);
 
       if (foundMedia !== -1) {
-        return (0, _reverse.default)(currentData).call(currentData)[foundMedia];
+        return currentData[foundMedia];
       }
     } // Else return the first image.
 
@@ -273,10 +269,10 @@ var imageArrayPropsChanged = function imageArrayPropsChanged(props, prevProps) {
 
   if (isPropsFluidArray && isPrevPropsFluidArray) {
     if (props.fluid.length === prevProps.fluid.length) {
-      var _context2;
+      var _context;
 
       // Check for individual image or CSS string changes.
-      return (0, _some.default)(_context2 = props.fluid).call(_context2, function (image, index) {
+      return (0, _some.default)(_context = props.fluid).call(_context, function (image, index) {
         return image.src !== prevProps.fluid[index].src;
       });
     }
@@ -284,10 +280,10 @@ var imageArrayPropsChanged = function imageArrayPropsChanged(props, prevProps) {
     return true;
   } else if (isPropsFixedArray && isPrevPropsFixedArray) {
     if (props.fixed.length === prevProps.fixed.length) {
-      var _context3;
+      var _context2;
 
       // Check for individual image or CSS string changes.
-      return (0, _some.default)(_context3 = props.fixed).call(_context3, function (image, index) {
+      return (0, _some.default)(_context2 = props.fixed).call(_context2, function (image, index) {
         return image.src !== prevProps.fixed[index].src;
       });
     }
@@ -306,13 +302,13 @@ var imageArrayPropsChanged = function imageArrayPropsChanged(props, prevProps) {
 exports.imageArrayPropsChanged = imageArrayPropsChanged;
 
 var createDummyImageArray = function createDummyImageArray(length) {
-  var _context4;
+  var _context3;
 
   var DUMMY_IMG = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
   var dummyImageURI = getUrlString({
     imageString: DUMMY_IMG
   });
-  return (0, _fill.default)(_context4 = Array(length)).call(_context4, dummyImageURI);
+  return (0, _fill.default)(_context3 = Array(length)).call(_context3, dummyImageURI);
 };
 /**
  * Checks if an image (array) reference is existing and tests for complete.

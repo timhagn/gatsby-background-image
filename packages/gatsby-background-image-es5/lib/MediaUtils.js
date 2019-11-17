@@ -11,17 +11,16 @@ var _isArray = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-st
 
 var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/map"));
 
-var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/concat"));
-
 var _forEach = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/for-each"));
 
-var _HelperUtils = require("./HelperUtils");
+var _sortMediaQueries = _interopRequireDefault(require("sort-media-queries"));
+
+var _SimpleUtils = require("./SimpleUtils");
 
 var groupByMedia = function groupByMedia(imageVariants) {
-  var _context;
-
   var withMedia = [];
   var without = [];
+  var sortedVariants = (0, _sortMediaQueries.default)(imageVariants, 'media');
   (0, _forEach.default)(imageVariants).call(imageVariants, function (variant) {
     return (variant.media ? withMedia : without).push(variant);
   });
@@ -30,7 +29,7 @@ var groupByMedia = function groupByMedia(imageVariants) {
     console.warn("We've found " + without.length + " sources without a media property. They might be ignored by the browser, see: https://www.gatsbyjs.org/packages/gatsby-image/#art-directing-multiple-images");
   }
 
-  return (0, _concat.default)(_context = []).call(_context, withMedia, without);
+  return sortedVariants;
 };
 /**
  * Creates a source Array from media objects.
@@ -75,9 +74,9 @@ var createArtDirectionSources = function createArtDirectionSources(_ref) {
 exports.createArtDirectionSources = createArtDirectionSources;
 
 var hasArtDirectionFluidArray = function hasArtDirectionFluidArray(props) {
-  var _context2;
+  var _context;
 
-  return props.fluid && (0, _isArray.default)(props.fluid) && (0, _some.default)(_context2 = props.fluid).call(_context2, function (fluidImage) {
+  return props.fluid && (0, _isArray.default)(props.fluid) && (0, _some.default)(_context = props.fluid).call(_context, function (fluidImage) {
     return typeof fluidImage.media !== 'undefined';
   });
 };
@@ -92,9 +91,9 @@ var hasArtDirectionFluidArray = function hasArtDirectionFluidArray(props) {
 exports.hasArtDirectionFluidArray = hasArtDirectionFluidArray;
 
 var hasArtDirectionFixedArray = function hasArtDirectionFixedArray(props) {
-  var _context3;
+  var _context2;
 
-  return props.fixed && (0, _isArray.default)(props.fixed) && (0, _some.default)(_context3 = props.fixed).call(_context3, function (fixedImage) {
+  return props.fixed && (0, _isArray.default)(props.fixed) && (0, _some.default)(_context2 = props.fixed).call(_context2, function (fixedImage) {
     return typeof fixedImage.media !== 'undefined';
   });
 };
@@ -122,7 +121,7 @@ exports.hasArtDirectionArray = hasArtDirectionArray;
 
 var matchesMedia = function matchesMedia(_ref2) {
   var media = _ref2.media;
-  return media && (0, _HelperUtils.isBrowser)() && window.matchMedia(media).matches;
+  return media && (0, _SimpleUtils.isBrowser)() && window.matchMedia(media).matches;
 };
 
 exports.matchesMedia = matchesMedia;

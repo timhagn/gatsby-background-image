@@ -151,10 +151,10 @@ var getCurrentSrcData = function getCurrentSrcData(_ref3) {
       fixed: fixed
     })) {
       // Do we have an image for the current Viewport?
-      var foundMedia = currentData.reverse().findIndex(_MediaUtils.matchesMedia);
+      var foundMedia = currentData.findIndex(_MediaUtils.matchesMedia);
 
       if (foundMedia !== -1) {
-        return currentData.reverse()[foundMedia];
+        return currentData[foundMedia];
       }
     } // Else return the first image.
 

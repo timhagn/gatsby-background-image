@@ -1,4 +1,5 @@
-import { isBrowser } from './HelperUtils'
+import smq from 'sort-media-queries'
+import { isBrowser } from './SimpleUtils'
 
 /**
  * Return an array ordered by elements having a media prop, does not use
@@ -9,6 +10,8 @@ import { isBrowser } from './HelperUtils'
 export const groupByMedia = imageVariants => {
   const withMedia = []
   const without = []
+  const sortedVariants = smq(imageVariants, 'media')
+
   imageVariants.forEach(variant =>
     (variant.media ? withMedia : without).push(variant)
   )
@@ -19,7 +22,7 @@ export const groupByMedia = imageVariants => {
     )
   }
 
-  return [...withMedia, ...without]
+  return sortedVariants
 }
 
 /**

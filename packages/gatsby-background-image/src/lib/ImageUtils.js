@@ -114,9 +114,9 @@ export const getCurrentSrcData = ({ fluid, fixed }) => {
   if (hasImageArray({ fluid, fixed })) {
     if (isBrowser() && hasArtDirectionArray({ fluid, fixed })) {
       // Do we have an image for the current Viewport?
-      const foundMedia = currentData.reverse().findIndex(matchesMedia)
+      const foundMedia = currentData.findIndex(matchesMedia)
       if (foundMedia !== -1) {
-        return currentData.reverse()[foundMedia]
+        return currentData[foundMedia]
       }
     }
     // Else return the first image.

@@ -1,13 +1,18 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 exports.__esModule = true;
 exports.matchesMedia = exports.hasArtDirectionArray = exports.hasArtDirectionFixedArray = exports.hasArtDirectionFluidArray = exports.createArtDirectionSources = exports.groupByMedia = void 0;
 
-var _HelperUtils = require("./HelperUtils");
+var _sortMediaQueries = _interopRequireDefault(require("sort-media-queries"));
+
+var _SimpleUtils = require("./SimpleUtils");
 
 var groupByMedia = function groupByMedia(imageVariants) {
   var withMedia = [];
   var without = [];
+  var sortedVariants = (0, _sortMediaQueries.default)(imageVariants, 'media');
   imageVariants.forEach(function (variant) {
     return (variant.media ? withMedia : without).push(variant);
   });
@@ -16,7 +21,7 @@ var groupByMedia = function groupByMedia(imageVariants) {
     console.warn("We've found " + without.length + " sources without a media property. They might be ignored by the browser, see: https://www.gatsbyjs.org/packages/gatsby-image/#art-directing-multiple-images");
   }
 
-  return [].concat(withMedia, without);
+  return sortedVariants;
 };
 /**
  * Creates a source Array from media objects.
@@ -104,7 +109,7 @@ exports.hasArtDirectionArray = hasArtDirectionArray;
 
 var matchesMedia = function matchesMedia(_ref2) {
   var media = _ref2.media;
-  return media && (0, _HelperUtils.isBrowser)() && window.matchMedia(media).matches;
+  return media && (0, _SimpleUtils.isBrowser)() && window.matchMedia(media).matches;
 };
 
 exports.matchesMedia = matchesMedia;
