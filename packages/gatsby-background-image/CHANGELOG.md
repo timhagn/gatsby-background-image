@@ -3,12 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.8.19"></a>
+<a name="0.9.4"></a>
 
-## [0.9.0](https://github.com/timhagn/gatsby-background-image) (2019-11-17)
+## [0.9.0 - 0.9.4](https://github.com/timhagn/gatsby-background-image) (2019-11-17)
 
-**merge** Finally added art-direction support (single images) for #56. Removed
-superfluous `additionalClass` from `index.js`.
+**merge** Finally added art-direction support (single images) for #56. 
+Removed superfluous `additionalClass` from `index.js`. Refactored function to
+logical entities in `lib` folder.
+Had some problems publishing `gatsby-node.js` & `gatsby-browser.js` with it so 
+we're one minor and four patch version further % ).
 
 ## [0.8.19](https://github.com/timhagn/gatsby-background-image) (2019-11-15)
 
