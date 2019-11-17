@@ -199,7 +199,7 @@ And
 
 This is what a component using `gatsby-background-image-es5` might look like:
 
-```jsx
+```js
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import styled from 'styled-components'
@@ -252,7 +252,7 @@ As `gatsby-background-image` may now be used with [multiple backgrounds](https:/
 **including CSS strings** like `rgba()` or suchlike this is what a component
 using `gatsby-background-image-es5` might look like:
 
-```jsx
+```js
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
@@ -344,7 +344,7 @@ props. The `media` key that is set on an image can be any valid CSS media query.
 
 **_Attention:_ Currently you have to choose between Art-directed and Multiple-Images!** 
 
-```jsx
+```js
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
