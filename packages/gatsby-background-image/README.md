@@ -25,7 +25,7 @@
 `gatsby-background-image` is a React component which for background-images
 provides, what Gatsby's own `gatsby-image` does for the rest of your images and
 even more:  
-**Now with Art-Direction support!**
+**Now with [Art-Direction support](#how-to-use-with-art-direction-support)!**
 
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
@@ -40,7 +40,7 @@ _*Of course styleable with `styled-components` and the like!*_
 
 ## ES5 Version
 
-`gatsby-background-image` now has a companion package completely transpiled to
+`gatsby-background-image` has a companion package completely transpiled to
 ES5: [`gatsby-background-image-es5`](https://www.npmjs.com/package/gatsby-background-image-es5).  
 Have a look at its [README](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image-es5/README.md),
 it nearly works the same - though with ([nearly](#important)) all polyfills
@@ -56,6 +56,7 @@ this package.
   - [Important](#important)
 - [How to Use](#how-to-use)
 - [How to Use with Multiple Images](#how-to-use-with-multiple-images)
+- [How to Use with Art-Direction support](#how-to-use-with-art-direction-support)
 - [Configuration & props](#configuration--props)
 - [Styling & Passed Through Styles](#styling--passed-through-styles)
   - [Passed Props for styled-components and suchlike](#passed-props-for-styled-components-and-suchlike)
@@ -277,7 +278,7 @@ import styled from 'styled-components'
 
 import BackgroundImage from 'gatsby-background-image'
 
-const MultiBackground = ({ children, className }) => {
+const MultiBackground = ({ className }) => {
   const {
     astronaut,
     seamlessBackground,
@@ -351,6 +352,93 @@ const StyledMultiBackground = styled(MultiBackground)`
 export default StyledMultiBackground
 
 ```
+
+## How to Use with Art-Direction support
+
+`gatsby-background-image` now supports showing different images at different 
+breakpoints, which is known as [art direction](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction). 
+To do this, you can define your own array of `fixed` or `fluid` images, along 
+with a `media` key per image, and pass it to `gatsby-image`'s `fixed` or `fluid` 
+props. The `media` key that is set on an image can be any valid CSS media query.
+
+**_Attention:_ Currently you have to choose between Art-directed and Multiple-Images!** 
+
+```jsx
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+import styled from 'styled-components'
+
+import BackgroundImage from 'gatsby-background-image'
+
+const ArtDirectedBackground = ({ className }) => {
+  const { mobileImage, desktopImage } = useStaticQuery(
+    graphql`
+      query {
+        mobileImage: file(relativePath: { eq: "490x352.jpg" }) {
+          childImageSharp {
+            fluid(maxWidth: 490, quality: 100) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        desktopImage: file(relativePath: { eq: "tree.jpg" }) {
+          childImageSharp {
+            fluid(quality: 100, maxWidth: 4160) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }  
+    `
+  )
+  // Set up the array of image data and `media` keys.
+  // You can have as many entries as you'd like.
+  const sources = [
+    mobileImage.childImageSharp.fluid,
+    {
+      ...desktopImage.childImageSharp.fluid,
+      media: `(min-width: 491px)`,
+    },
+  ]
+
+  return (
+    <BackgroundImage
+      Tag={`section`}
+      id={`media-test`}
+      className={className}
+      fluid={sources}
+    >
+      <StyledInnerWrapper>
+        <h1>Hello art-directed gatsby-background-image.</h1>
+      </StyledInnerWrapper>
+    </BackgroundImage>
+  )
+}
+
+const StyledInnerWrapper = styled.div`
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const StyledArtDirectedBackground = styled(ArtDirectedBackground)`
+  width: 100%;
+  min-height: 100vh;
+  /* You should set a background-size as the default value is "cover"! */
+  background-size: auto;
+  /* So we won't have the default "lightgray" background-color. */
+  background-color: transparent;
+`
+
+export default StyledArtDirectedBackground
+```
+
+While you could achieve a similar effect with plain CSS media queries, 
+`gatsby-background-image` accomplishes this using an internal `HTMLPictureElement`, 
+as well as `window.matchMedia()`, which ensures that browsers only download 
+the image they need for a given breakpoint while preventing 
+[gatsby-image issue #15189](https://github.com/gatsbyjs/gatsby/issues/15189).
 
 ## Configuration & props
 
@@ -591,8 +679,8 @@ Thanks in advance!
 
 ## TODO
 
-- Internet Explorer 11 seems to have problems with `_tracedSVG`...
-- `noscript` WebP support...
+- Multiple Image with Art-Direction Support
+- `noscript` WebP (& Art-Direction) support...
 
 _For anything else tell me by opening an issue or a PR : )!_
 

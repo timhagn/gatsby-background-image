@@ -29,19 +29,21 @@ what Gatsby's own `gatsby-image` does for the rest of your images.
 Most polyfills are already built in, though this nearly triples the package size
 compared to [`gatsby-background-image`](https://www.npmjs.com/package/gatsby-background-image)!
 
-Everything else just works the same as in `gatsby-background-image`, so this
-package has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
-including the "blur-up" technique or  
-a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
+Everything else just works the same as in `gatsby-background-image`, so it
+provides for background-images, what Gatsby's own `gatsby-image` does for the 
+rest of your images and even more:  
+**Now with [Art-Direction support](#how-to-use-with-art-direction-support)!**
+
+It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
+including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,  
-**plus** being usable as a container (no more hacks with extra wrappers),  
-**plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images).
+**plus** being usable as a container (no more hacks with extra wrappers)  
+**plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images)  
+**plus** being able to style with [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)
 
-All the glamour (and speed) of `gatsby-image` now for your Background Images!
+All the glamour (and speed) of `gatsby-image` for your Background Images!
 
-*_Of course styleable with `styled-components` and the like!_*
-
-**_Now it's possible to style `BackgroundImage` with [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)!_**
+_*Of course styleable with `styled-components` and the like!*_
 
 ## Table of Contents
 
@@ -331,6 +333,93 @@ const StyledMultiBackground = styled(MultiBackground)`
 export default StyledMultiBackground
 
 ```
+
+## How to Use with Art-Direction support
+
+`gatsby-background-image-es5` now supports showing different images at different 
+breakpoints, which is known as [art direction](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction). 
+To do this, you can define your own array of `fixed` or `fluid` images, along 
+with a `media` key per image, and pass it to `gatsby-image`'s `fixed` or `fluid` 
+props. The `media` key that is set on an image can be any valid CSS media query.
+
+**_Attention:_ Currently you have to choose between Art-directed and Multiple-Images!** 
+
+```jsx
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+import styled from 'styled-components'
+
+import BackgroundImage from 'gatsby-background-image-es5'
+
+const ArtDirectedBackground = ({ className }) => {
+  const { mobileImage, desktopImage } = useStaticQuery(
+    graphql`
+      query {
+        mobileImage: file(relativePath: { eq: "490x352.jpg" }) {
+          childImageSharp {
+            fluid(maxWidth: 490, quality: 100) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        desktopImage: file(relativePath: { eq: "tree.jpg" }) {
+          childImageSharp {
+            fluid(quality: 100, maxWidth: 4160) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }  
+    `
+  )
+  // Set up the array of image data and `media` keys.
+  // You can have as many entries as you'd like.
+  const sources = [
+    mobileImage.childImageSharp.fluid,
+    {
+      ...desktopImage.childImageSharp.fluid,
+      media: `(min-width: 491px)`,
+    },
+  ]
+
+  return (
+    <BackgroundImage
+      Tag={`section`}
+      id={`media-test`}
+      className={className}
+      fluid={sources}
+    >
+      <StyledInnerWrapper>
+        <h1>Hello art-directed gatsby-background-image.</h1>
+      </StyledInnerWrapper>
+    </BackgroundImage>
+  )
+}
+
+const StyledInnerWrapper = styled.div`
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const StyledArtDirectedBackground = styled(ArtDirectedBackground)`
+  width: 100%;
+  min-height: 100vh;
+  /* You should set a background-size as the default value is "cover"! */
+  background-size: auto;
+  /* So we won't have the default "lightgray" background-color. */
+  background-color: transparent;
+`
+
+export default StyledArtDirectedBackground
+```
+
+While you could achieve a similar effect with plain CSS media queries, 
+`gatsby-background-image-es5` accomplishes this using an internal `HTMLPictureElement`, 
+as well as `window.matchMedia()`, which ensures that browsers only download 
+the image they need for a given breakpoint while preventing 
+[gatsby-image issue #15189](https://github.com/gatsbyjs/gatsby/issues/15189).
 
 ## Configuration & props
 
