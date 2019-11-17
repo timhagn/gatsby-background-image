@@ -3,15 +3,9 @@ import PropTypes from 'prop-types'
 import getBackgroundStyles from './lib/BackgroundUtils'
 import { convertProps, stripRemainingProps } from './lib/HelperUtils'
 import {
-  activateCacheForImage,
-  activatePictureRef,
-  createPictureRef,
   getCurrentFromData,
   imagePropsChanged,
   imageReferenceCompleted,
-  inImageCache,
-  initialBgImage,
-  switchImageSettings,
 } from './lib/ImageUtils'
 import {
   createNoScriptStyles,
@@ -21,6 +15,9 @@ import {
   presetBackgroundStyles,
 } from './lib/StyleUtils'
 import { listenToIntersections } from './lib/IntersectionObserverUtils'
+import { activateCacheForImage, inImageCache } from './lib/ImageCache'
+import { activatePictureRef, createPictureRef } from './lib/ImageRef'
+import { initialBgImage, switchImageSettings } from './lib/ImageHandling'
 
 /**
  * Main Lazy-loading React background-image component

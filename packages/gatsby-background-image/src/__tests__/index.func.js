@@ -9,12 +9,9 @@ import {
   setupBackgroundImage,
 } from './mocks/Various.mock'
 import BackgroundImage from '../'
-import {
-  activateCacheForImage,
-  createPictureRef,
-  resetImageCache,
-} from '../lib/ImageUtils'
-import { resetComponentClassCache } from '../lib/StyleUtils'
+import { activateCacheForImage, resetImageCache } from '../lib/ImageCache'
+import { resetComponentClassCache } from '../lib/ClassCache'
+import { createPictureRef } from '../lib/ImageRef'
 
 const LOAD_FAILURE_SRC = 'test_fluid_image.jpg'
 const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg'

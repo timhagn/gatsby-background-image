@@ -6,11 +6,11 @@ import {
   kebabifyBackgroundStyles,
   fixClassName,
   escapeClassNames,
-  activateCacheForComponentClass,
   createNoScriptStyles,
 } from '../lib/StyleUtils'
 import { fluidShapeMock } from './mocks/Various.mock'
 import { hashString } from '../lib/HelperUtils'
+import { activateCacheForComponentClass } from '../lib/ClassCache'
 
 global.console.debug = jest.fn()
 

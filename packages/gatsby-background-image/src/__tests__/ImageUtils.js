@@ -3,20 +3,19 @@ import { render } from '@testing-library/react'
 import React from 'react'
 import { fixedShapeMock, fluidShapeMock } from './mocks/Various.mock'
 import {
-  inImageCache,
-  activateCacheForImage,
-  resetImageCache,
-  createPictureRef,
-  switchImageSettings,
   imagePropsChanged,
-  activatePictureRef,
   getCurrentFromData,
   getUrlString,
   imageReferenceCompleted,
   imageLoaded,
-  initialBgImage,
-  imageArrayPropsChanged,
 } from '../lib/ImageUtils'
+import {
+  activateCacheForImage,
+  inImageCache,
+  resetImageCache,
+} from '../lib/ImageCache'
+import { activatePictureRef, createPictureRef } from '../lib/ImageRef'
+import { initialBgImage, switchImageSettings } from '../lib/ImageHandling'
 
 global.console.debug = jest.fn()
 
