@@ -236,7 +236,8 @@ export const imageArrayPropsChanged = (props, prevProps) => {
       )
     }
     return true
-  } else if (isPropsFixedArray && isPrevPropsFixedArray) {
+  }
+  if (isPropsFixedArray && isPrevPropsFixedArray) {
     if (props.fixed.length === prevProps.fixed.length) {
       // Check for individual image or CSS string changes.
       return props.fixed.some(

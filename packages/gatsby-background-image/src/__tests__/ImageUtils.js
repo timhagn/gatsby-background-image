@@ -1,16 +1,20 @@
 import {
   fixedArrayMock,
-  fixedMock, fixedShapeMock,
+  fixedMock,
+  fixedShapeMock,
   fluidArrayMock,
   fluidMock,
   fluidShapeMock,
+  mockArtDirectionStackFluid,
 } from './mocks/Various.mock'
 import {
   imagePropsChanged,
   getCurrentFromData,
   getUrlString,
   imageReferenceCompleted,
-  imageLoaded, getFirstImage,
+  imageLoaded,
+  getFirstImage,
+  getCurrentSrcData,
 } from '../lib/ImageUtils'
 import { resetImageCache } from '../lib/ImageCache'
 import { activatePictureRef } from '../lib/ImageRef'
@@ -221,6 +225,76 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
   it(`getUrlString() should return string without addUrl`, () => {
     const returnedString = getUrlString({ imageString: `blubb`, addUrl: false })
     expect(returnedString).toMatchInlineSnapshot(`"blubb"`)
+  })
+})
+
+describe(`getCurrentFromData() with art-direction stack`, () => {
+  const OLD_MATCH_MEDIA = window.matchMedia
+
+  beforeEach(() => {
+    window.matchMedia = jest.fn(media =>
+      media === '(min-width: 1401px)'
+        ? {
+            matches: true,
+          }
+        : {
+            matches: false,
+          }
+    )
+  })
+
+  afterEach(() => {
+    window.matchMedia = OLD_MATCH_MEDIA
+  })
+
+  it(`getCurrentData() should return string for fluid art-direction stack`, () => {
+    const returnedString = getCurrentFromData({
+      data: mockArtDirectionStackFluid,
+      propName: `src`,
+      addUrl: false,
+    })
+    expect(returnedString).toMatchInlineSnapshot(`"test_fluid_image.jpg"`)
+  })
+
+  it(`getCurrentData() should return empty string for (illegal) fixed art-direction stack`, () => {
+    const { src, ...testFixedMock } = fixedShapeMock
+    const mockArtDirectionStackFixedDepleted = [
+      testFixedMock,
+      {
+        ...testFixedMock,
+        media: `(min-width: 491px)`,
+      },
+      {
+        ...testFixedMock,
+        media: `(min-width: 1401px)`,
+      },
+    ]
+    const returnedString = getCurrentFromData({
+      data: mockArtDirectionStackFixedDepleted,
+      propName: `src`,
+      addUrl: false,
+    })
+    expect(returnedString).toEqual('')
+  })
+})
+
+describe(`getCurrentSrcData()`, () => {
+  it(`shall return first image if findIndex returns no match (e.g. illegal media queries)`, () => {
+    const mockArtDirectionStackFixedDepleted = [
+      fixedShapeMock,
+      {
+        ...fixedShapeMock,
+        media: ``,
+      },
+      {
+        ...fixedShapeMock,
+        media: ``,
+      },
+    ]
+    const currentSrcData = getCurrentSrcData({
+      fixed: mockArtDirectionStackFixedDepleted,
+    })
+    expect(currentSrcData).toEqual(fixedShapeMock)
   })
 })
 
