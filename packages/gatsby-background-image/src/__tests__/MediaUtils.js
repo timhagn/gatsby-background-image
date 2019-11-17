@@ -71,14 +71,14 @@ describe(`createArtDirectionStack()`, () => {
           media="(min-width: 491px)"
           sizes="(max-width: 600px) 100vw, 600px"
           src="test_fluid_image.jpg"
-          srcset="some srcSetWebp"
+          srcset="some srcSet"
           type="image/webp"
         />,
         <source
           media="(min-width: 1401px)"
           sizes="(max-width: 600px) 100vw, 600px"
           src="test_fluid_image.jpg"
-          srcset="some srcSetWebp"
+          srcset="some srcSet"
           type="image/webp"
         />,
       ]
@@ -87,22 +87,31 @@ describe(`createArtDirectionStack()`, () => {
 
   it(`should return an art-direction stack (fixed) also without srcSetWebp`, () => {
     const { srcSetWebp, ...testFixedMock } = fixedMock.fixed
+    const mockArtDirectionStackFixedDepleted = [
+      testFixedMock,
+      {
+        ...testFixedMock,
+        media: `(min-width: 491px)`,
+      },
+      {
+        ...testFixedMock,
+        media: `(min-width: 1401px)`,
+      },
+    ]
     const testArtDirectionStack = createArtDirectionSources({
-      fixed: [...mockArtDirectionStackFixed, testFixedMock],
+      fixed: mockArtDirectionStackFixedDepleted,
     })
     expect(testArtDirectionStack).toMatchInlineSnapshot(`
       Array [
         <source
           media="(min-width: 491px)"
           src="test_fixed_image.jpg"
-          srcset="some srcSetWebp"
-          type="image/webp"
+          srcset="some srcSet"
         />,
         <source
           media="(min-width: 1401px)"
           src="test_fixed_image.jpg"
-          srcset="some srcSetWebp"
-          type="image/webp"
+          srcset="some srcSet"
         />,
       ]
     `)
