@@ -38,7 +38,7 @@
   "files": [
     "/index.js",
     "/index.d.ts",
-    "/gatbsy-node.js",
+    "/gatsby-node.js",
     "/gatsby-browser.js",
     "lib"
   ],
