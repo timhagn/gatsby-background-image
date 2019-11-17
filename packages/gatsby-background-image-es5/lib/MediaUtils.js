@@ -18,11 +18,10 @@ var _sortMediaQueries = _interopRequireDefault(require("sort-media-queries"));
 var _SimpleUtils = require("./SimpleUtils");
 
 var groupByMedia = function groupByMedia(imageVariants) {
-  var withMedia = [];
   var without = [];
   var sortedVariants = (0, _sortMediaQueries.default)(imageVariants, 'media');
-  (0, _forEach.default)(imageVariants).call(imageVariants, function (variant) {
-    return (variant.media ? withMedia : without).push(variant);
+  (0, _forEach.default)(sortedVariants).call(sortedVariants, function (variant) {
+    return !variant.media && without.push(variant);
   });
 
   if (without.length > 1 && process.env.NODE_ENV !== "production") {
@@ -52,6 +51,7 @@ var createArtDirectionSources = function createArtDirectionSources(_ref) {
     }
 
     var source = document.createElement('source');
+    source.src = image.src;
     source.srcset = image.srcSet;
 
     if (image.sizes) {

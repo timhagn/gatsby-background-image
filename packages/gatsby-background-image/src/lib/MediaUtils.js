@@ -8,13 +8,10 @@ import { isBrowser } from './SimpleUtils'
  * @param imageVariants   array   The art-directed images.-
  */
 export const groupByMedia = imageVariants => {
-  const withMedia = []
   const without = []
   const sortedVariants = smq(imageVariants, 'media')
 
-  imageVariants.forEach(variant =>
-    (variant.media ? withMedia : without).push(variant)
-  )
+  sortedVariants.forEach(variant => !variant.media && without.push(variant))
 
   if (without.length > 1 && process.env.NODE_ENV !== `production`) {
     console.warn(
@@ -39,6 +36,7 @@ export const createArtDirectionSources = ({ fluid, fixed }) => {
       return sources
     }
     const source = document.createElement('source')
+    source.src = image.src
     source.srcset = image.srcSet
     if (image.sizes) {
       source.sizes = image.sizes

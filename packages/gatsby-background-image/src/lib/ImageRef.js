@@ -1,7 +1,7 @@
 import { convertProps } from './HelperUtils'
 import {
-  getCurrentFromData,
-  getCurrentSrcData, getFirstImage,
+  getCurrentSrcData,
+  getFirstImage,
   hasImageArray,
   hasPictureElement,
 } from './ImageUtils'
@@ -92,13 +92,15 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
     ) {
       return activateMultiplePictureRefs(imageRef, props, selfRef)
     }
+    // Clone body to get the correct sizes.
+    const bodyClone = document.body.cloneNode(true)
+    // Do we have an Art-direction array? Then get its first(smallest) image.
     const imageData = hasArtDirectionArray(convertedProps)
       ? getFirstImage(convertedProps)
       : getCurrentSrcData(convertedProps)
 
     // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
     // but don't prevent it during SSR.
-    let removableElement = null
     if (hasPictureElement()) {
       const pic = document.createElement('picture')
       if (selfRef) {
@@ -108,9 +110,10 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
       }
       // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
       if (hasArtDirectionArray(convertedProps)) {
-        const sources = createArtDirectionSources(convertedProps)
+        const sources = createArtDirectionSources(convertedProps).reverse()
         sources.forEach(currentSource => pic.appendChild(currentSource))
-      } else if (imageData.srcSetWebp) {
+      }
+      if (imageData.srcSetWebp) {
         const sourcesWebP = document.createElement('source')
         sourcesWebP.type = `image/webp`
         sourcesWebP.srcset = imageData.srcSetWebp
@@ -121,24 +124,14 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
         pic.appendChild(sourcesWebP)
       }
       pic.appendChild(imageRef)
-      removableElement = pic
-      // document.body.appendChild(removableElement)
-    } else {
-      if (selfRef) {
-        imageRef.width = selfRef.offsetWidth
-        imageRef.height = selfRef.offsetHeight
-      }
-      removableElement = imageRef
-      // document.body.appendChild(removableElement)
+      bodyClone.appendChild(pic)
+    } else if (selfRef) {
+      imageRef.width = selfRef.offsetWidth
+      imageRef.height = selfRef.offsetHeight
     }
 
     imageRef.srcset = imageData.srcSet ? imageData.srcSet : ``
     imageRef.src = imageData.src ? imageData.src : ``
-    // if (imageData.media) {
-    //   imageRef.media = imageData.media
-    // }
-
-    // document.body.removeChild(removableElement)
 
     return imageRef
   }

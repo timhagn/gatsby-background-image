@@ -7,6 +7,8 @@ exports.activateMultiplePictureRefs = exports.activatePictureRef = exports.creat
 
 var _forEach = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/for-each"));
 
+var _reverse = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/reverse"));
+
 var _assign = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/object/assign"));
 
 var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/map"));
@@ -103,12 +105,13 @@ var activatePictureRef = function activatePictureRef(imageRef, props, selfRef) {
   if ((0, _SimpleUtils.isBrowser)() && (typeof convertedProps.fluid !== "undefined" || typeof convertedProps.fixed !== "undefined")) {
     if ((0, _ImageUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
       return activateMultiplePictureRefs(imageRef, props, selfRef);
-    }
+    } // Clone body to get the correct sizes.
+
+
+    var bodyClone = document.body.cloneNode(true); // Do we have an Art-direction array? Then get its first(smallest) image.
 
     var imageData = (0, _MediaUtils.hasArtDirectionArray)(convertedProps) ? (0, _ImageUtils.getFirstImage)(convertedProps) : (0, _ImageUtils.getCurrentSrcData)(convertedProps); // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
     // but don't prevent it during SSR.
-
-    var removableElement = null;
 
     if ((0, _ImageUtils.hasPictureElement)()) {
       var pic = document.createElement('picture');
@@ -121,11 +124,15 @@ var activatePictureRef = function activatePictureRef(imageRef, props, selfRef) {
 
 
       if ((0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
-        var sources = (0, _MediaUtils.createArtDirectionSources)(convertedProps);
+        var _context;
+
+        var sources = (0, _reverse.default)(_context = (0, _MediaUtils.createArtDirectionSources)(convertedProps)).call(_context);
         (0, _forEach.default)(sources).call(sources, function (currentSource) {
           return pic.appendChild(currentSource);
         });
-      } else if (imageData.srcSetWebp) {
+      }
+
+      if (imageData.srcSetWebp) {
         var sourcesWebP = document.createElement('source');
         sourcesWebP.type = "image/webp";
         sourcesWebP.srcset = imageData.srcSetWebp;
@@ -139,22 +146,14 @@ var activatePictureRef = function activatePictureRef(imageRef, props, selfRef) {
       }
 
       pic.appendChild(imageRef);
-      removableElement = pic; // document.body.appendChild(removableElement)
-    } else {
-      if (selfRef) {
-        imageRef.width = selfRef.offsetWidth;
-        imageRef.height = selfRef.offsetHeight;
-      }
-
-      removableElement = imageRef; // document.body.appendChild(removableElement)
+      bodyClone.appendChild(pic);
+    } else if (selfRef) {
+      imageRef.width = selfRef.offsetWidth;
+      imageRef.height = selfRef.offsetHeight;
     }
 
     imageRef.srcset = imageData.srcSet ? imageData.srcSet : "";
-    imageRef.src = imageData.src ? imageData.src : ""; // if (imageData.media) {
-    //   imageRef.media = imageData.media
-    // }
-    // document.body.removeChild(removableElement)
-
+    imageRef.src = imageData.src ? imageData.src : "";
     return imageRef;
   }
 
