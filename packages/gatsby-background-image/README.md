@@ -1,4 +1,6 @@
-#<h1 align="center">gatsby-background-image</h1>
+<h1 align="center">
+# gatsby-background-image
+</h1>
 <p align="center">
   <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
 </p>
