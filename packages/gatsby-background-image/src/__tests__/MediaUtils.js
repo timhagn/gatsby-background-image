@@ -68,19 +68,16 @@ describe(`createArtDirectionStack()`, () => {
     expect(testArtDirectionStack).toMatchInlineSnapshot(`
       Array [
         <source
-          sizes="(max-width: 600px) 100vw, 600px"
-          srcset="some srcSetWebp"
-          type="image/webp"
-        />,
-        <source
           media="(min-width: 491px)"
           sizes="(max-width: 600px) 100vw, 600px"
+          src="test_fluid_image.jpg"
           srcset="some srcSetWebp"
           type="image/webp"
         />,
         <source
           media="(min-width: 1401px)"
           sizes="(max-width: 600px) 100vw, 600px"
+          src="test_fluid_image.jpg"
           srcset="some srcSetWebp"
           type="image/webp"
         />,
@@ -96,21 +93,16 @@ describe(`createArtDirectionStack()`, () => {
     expect(testArtDirectionStack).toMatchInlineSnapshot(`
       Array [
         <source
-          srcset="some srcSetWebp"
-          type="image/webp"
-        />,
-        <source
           media="(min-width: 491px)"
+          src="test_fixed_image.jpg"
           srcset="some srcSetWebp"
           type="image/webp"
         />,
         <source
           media="(min-width: 1401px)"
+          src="test_fixed_image.jpg"
           srcset="some srcSetWebp"
           type="image/webp"
-        />,
-        <source
-          srcset="some srcSet"
         />,
       ]
     `)

@@ -4,14 +4,14 @@ exports[`activatePictureRef() with image array should return imageRef array with
 Array [
   <img
     height="500"
-    src=""
-    srcset=""
+    src="test_fixed_image.jpg"
+    srcset="some srcSet"
     width="500"
   />,
   <img
     height="500"
-    src=""
-    srcset=""
+    src="test_fixed_image.jpg"
+    srcset="some srcSet"
     width="500"
   />,
 ]
@@ -21,14 +21,14 @@ exports[`activatePictureRef() with image array should return imageRef array with
 Array [
   <img
     height="500"
-    src=""
-    srcset=""
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
     width="500"
   />,
   <img
     height="500"
-    src=""
-    srcset=""
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
     width="500"
   />,
 ]
@@ -37,12 +37,12 @@ Array [
 exports[`activatePictureRef() with image array should return imageRef array with fluid Array Mock without selfRef 1`] = `
 Array [
   <img
-    src=""
-    srcset=""
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
   />,
   <img
-    src=""
-    srcset=""
+    src="test_fluid_image.jpg"
+    srcset="some srcSet"
   />,
 ]
 `;
@@ -59,16 +59,16 @@ exports[`initialBgImage() should return initial single tracedSVG 1`] = `"url(\\"
 exports[`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11) activatePictureRef() should still create an imageRef with selfRef 1`] = `
 <img
   height="500"
-  src=""
-  srcset=""
+  src="test_fluid_image.jpg"
+  srcset="some srcSet"
   width="500"
 />
 `;
 
 exports[`noscriptImg() / activatePictureRef() without HTMLPictureElement (IE11) activatePictureRef() should still create an imageRef without selfRef 1`] = `
 <img
-  src=""
-  srcset=""
+  src="test_fluid_image.jpg"
+  srcset="some srcSet"
 />
 `;
 

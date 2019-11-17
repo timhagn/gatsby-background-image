@@ -98,8 +98,8 @@ describe(`createPictureRef() with critical image`, () => {
     })
     expect(imageRef).toMatchInlineSnapshot(`
       <img
-        src=""
-        srcset=""
+        src="test_fixed_image.jpg"
+        srcset="some srcSet"
       />
     `)
   })
@@ -110,8 +110,8 @@ describe(`createPictureRef() with critical image`, () => {
     })
     expect(imageRef).toMatchInlineSnapshot(`
       <img
-        src=""
-        srcset=""
+        src="test_fixed_image.jpg"
+        srcset="some srcSet"
       />
     `)
   })
@@ -141,12 +141,12 @@ describe(`createPictureRef() with image array`, () => {
     expect(imageRef).toMatchInlineSnapshot(`
       Array [
         <img
-          src=""
-          srcset=""
+          src="test_fixed_image.jpg"
+          srcset="some srcSet"
         />,
         <img
-          src=""
-          srcset=""
+          src="test_fixed_image.jpg"
+          srcset="some srcSet"
         />,
       ]
     `)
