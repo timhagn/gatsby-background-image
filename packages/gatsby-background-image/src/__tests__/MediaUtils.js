@@ -1,43 +1,16 @@
-import { fixedShapeMock, fluidShapeMock } from './mocks/Various.mock'
+import {
+  fixedShapeMock,
+  fluidShapeMock,
+  mockArtDirectionStackFixed,
+  mockArtDirectionStackFluid,
+} from './mocks/Various.mock'
 import {
   createArtDirectionSources,
   groupByMedia,
   matchesMedia,
 } from '../lib/MediaUtils'
 
-const fixedMock = {
-  fixed: fixedShapeMock,
-}
-
-const fluidMock = {
-  fluid: fluidShapeMock,
-}
-
 global.console.warn = jest.fn()
-
-const mockArtDirectionStackFluid = [
-  fluidMock.fluid,
-  {
-    ...fluidMock.fluid,
-    media: `(min-width: 491px)`,
-  },
-  {
-    ...fluidMock.fluid,
-    media: `(min-width: 1401px)`,
-  },
-]
-
-const mockArtDirectionStackFixed = [
-  fixedMock.fixed,
-  {
-    ...fixedMock.fixed,
-    media: `(min-width: 491px)`,
-  },
-  {
-    ...fixedMock.fixed,
-    media: `(min-width: 1401px)`,
-  },
-]
 
 describe(`groupByMedia()`, () => {
   it(`should move the element without media to the end`, () => {
@@ -51,10 +24,7 @@ describe(`groupByMedia()`, () => {
   })
 
   it(`should warn if elements without media present`, () => {
-    const twoWithoutMediaStack = [
-      ...mockArtDirectionStackFluid,
-      fluidMock.fluid,
-    ]
+    const twoWithoutMediaStack = [...mockArtDirectionStackFluid, fluidShapeMock]
     groupByMedia(twoWithoutMediaStack)
     expect(global.console.warn).toHaveBeenCalled()
   })
@@ -85,8 +55,30 @@ describe(`createArtDirectionStack()`, () => {
     `)
   })
 
+  it(`should return an art-direction stack (fixed)`, () => {
+    const testArtDirectionStack = createArtDirectionSources({
+      fluid: mockArtDirectionStackFixed,
+    })
+    expect(testArtDirectionStack).toMatchInlineSnapshot(`
+      Array [
+        <source
+          media="(min-width: 491px)"
+          src="test_fixed_image.jpg"
+          srcset="some srcSet"
+          type="image/webp"
+        />,
+        <source
+          media="(min-width: 1401px)"
+          src="test_fixed_image.jpg"
+          srcset="some srcSet"
+          type="image/webp"
+        />,
+      ]
+    `)
+  })
+
   it(`should return an art-direction stack (fixed) also without srcSetWebp`, () => {
-    const { srcSetWebp, ...testFixedMock } = fixedMock.fixed
+    const { srcSetWebp, ...testFixedMock } = fixedShapeMock
     const mockArtDirectionStackFixedDepleted = [
       testFixedMock,
       {

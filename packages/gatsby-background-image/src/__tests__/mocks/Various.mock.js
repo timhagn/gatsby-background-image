@@ -21,6 +21,30 @@ export const fluidShapeMock = {
   base64: `string_of_base64`,
 }
 
+export const mockArtDirectionStackFluid = [
+  fluidShapeMock,
+  {
+    ...fluidShapeMock,
+    media: `(min-width: 491px)`,
+  },
+  {
+    ...fluidShapeMock,
+    media: `(min-width: 1401px)`,
+  },
+]
+
+export const mockArtDirectionStackFixed = [
+  fixedShapeMock,
+  {
+    ...fixedShapeMock,
+    media: `(min-width: 491px)`,
+  },
+  {
+    ...fixedShapeMock,
+    media: `(min-width: 1401px)`,
+  },
+]
+
 export const createStyleElement = () => {
   // Create the style class.
   const styleElement = document.createElement('style')
