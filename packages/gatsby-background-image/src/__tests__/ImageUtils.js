@@ -1,6 +1,6 @@
 import {
   fixedArrayMock,
-  fixedMock,
+  fixedMock, fixedShapeMock,
   fluidArrayMock,
   fluidMock,
   fluidShapeMock,
@@ -10,7 +10,7 @@ import {
   getCurrentFromData,
   getUrlString,
   imageReferenceCompleted,
-  imageLoaded,
+  imageLoaded, getFirstImage,
 } from '../lib/ImageUtils'
 import { resetImageCache } from '../lib/ImageCache'
 import { activatePictureRef } from '../lib/ImageRef'
@@ -233,5 +233,15 @@ describe(`imageReferenceCompleted()`, () => {
 describe(`imageLoaded()`, () => {
   it(`should return false with undefined imageRef`, () => {
     expect(imageLoaded()).toBeFalsy()
+  })
+})
+
+describe(`getFirstImage()`, () => {
+  it(`should return same image with singular fluid image`, () => {
+    expect(getFirstImage(fluidMock)).toEqual(fluidShapeMock)
+  })
+
+  it(`should return same image with singular fixed image`, () => {
+    expect(getFirstImage(fixedMock)).toEqual(fixedShapeMock)
   })
 })
