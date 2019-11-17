@@ -1,16 +1,13 @@
 import uuid from 'short-uuid'
 import {
   convertProps,
-  hashString,
-  isBrowser,
-  isString,
-  toKebabCase,
 } from './HelperUtils'
 import {
   activateCacheForComponentClass,
   inComponentClassCache,
 } from './ClassCache'
 import { getCurrentSrcData } from './ImageUtils'
+import { hashString, isBrowser, isString, toKebabCase } from './SimpleUtils'
 
 /**
  * Checks if an element with given className(s) already exists.

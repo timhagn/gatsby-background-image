@@ -1,15 +1,11 @@
 import {
-  combineArray,
-  filteredJoin,
-  stringToArray,
-} from './HelperUtils'
-import {
   escapeClassNames,
   kebabifyBackgroundStyles,
   setTransitionStyles,
 } from './StyleUtils'
 import { getCurrentFromData, getUrlString } from './ImageUtils'
 import { hasArtDirectionArray } from './MediaUtils'
+import { combineArray, filteredJoin, stringToArray } from './SimpleUtils'
 
 /**
  * Creates pseudo-element(s) for className(s).

@@ -9,13 +9,13 @@ var _isArray = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-st
 
 var _assign = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/object/assign"));
 
-var _HelperUtils = require("./HelperUtils");
-
 var _StyleUtils = require("./StyleUtils");
 
 var _ImageUtils = require("./ImageUtils");
 
 var _MediaUtils = require("./MediaUtils");
+
+var _SimpleUtils = require("./SimpleUtils");
 
 var createPseudoElement = function createPseudoElement(className, classId, appendix) {
   if (classId === void 0) {
@@ -27,7 +27,7 @@ var createPseudoElement = function createPseudoElement(className, classId, appen
   }
 
   var escapedClassName = (0, _StyleUtils.escapeClassNames)(className);
-  var classes = (0, _HelperUtils.stringToArray)(escapedClassName);
+  var classes = (0, _SimpleUtils.stringToArray)(escapedClassName);
   var pseudoClasses = "";
 
   if (classes instanceof Array && classes.length > 0 && classes[0] !== "") {
@@ -119,7 +119,7 @@ var createNoScriptStyles = function createNoScriptStyles(_ref2) {
         addUrl: false,
         returnArray: returnArray
       });
-      sourcesAsUrlWithCSS = (0, _HelperUtils.filteredJoin)((0, _HelperUtils.combineArray)(sourcesAsUrl, cssStrings));
+      sourcesAsUrlWithCSS = (0, _SimpleUtils.filteredJoin)((0, _SimpleUtils.combineArray)(sourcesAsUrl, cssStrings));
     }
 
     var pseudoBefore = createPseudoElement(className, classId);

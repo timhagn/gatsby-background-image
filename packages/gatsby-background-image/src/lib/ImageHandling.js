@@ -1,11 +1,11 @@
+import { convertProps } from './HelperUtils'
 import {
-  combineArray,
-  convertProps,
-  filteredJoin,
+  createDummyImageArray,
+  getCurrentFromData,
   hasImageArray,
-} from './HelperUtils'
-import { createDummyImageArray, getCurrentFromData } from './ImageUtils'
+} from './ImageUtils'
 import { hasArtDirectionArray } from './MediaUtils'
+import { combineArray, filteredJoin } from './SimpleUtils'
 
 /**
  * Compares the old states to the new and changes image settings accordingly.

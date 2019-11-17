@@ -3,8 +3,14 @@
 exports.__esModule = true;
 exports.default = exports.getBackgroundStylesForSingleClass = exports.getStyleRules = exports.rulesForCssText = exports.getStyle = void 0;
 
-var _HelperUtils = require("./HelperUtils");
+var _SimpleUtils = require("./SimpleUtils");
 
+/**
+ * Gets styles by a class name.
+ *
+ * @notice The className has to exactly match the CSS class
+ * @param className string
+ */
 var getStyle = function getStyle(className) {
   var styleSheets = typeof window !== "undefined" ? window.document.styleSheets : [];
 
@@ -70,7 +76,7 @@ var getStyleRules = function getStyleRules(cssStyleRules) {
       case 'CSS2Properties':
       case '[object MSStyleCSSProperties]':
         Object.values(cssStyleRules[0].style).forEach(function (prop) {
-          styles[(0, _HelperUtils.toCamelCase)(prop)] = cssStyleRules[0].style[prop];
+          styles[(0, _SimpleUtils.toCamelCase)(prop)] = cssStyleRules[0].style[prop];
         });
         break;
 
@@ -97,7 +103,7 @@ var getStyleRules = function getStyleRules(cssStyleRules) {
 exports.getStyleRules = getStyleRules;
 
 var getBackgroundStylesForSingleClass = function getBackgroundStylesForSingleClass(className) {
-  if ((0, _HelperUtils.isString)(className)) {
+  if ((0, _SimpleUtils.isString)(className)) {
     var style = getStyle("." + className);
     var cssStyleRules = rulesForCssText(style);
 
@@ -126,7 +132,7 @@ exports.getBackgroundStylesForSingleClass = getBackgroundStylesForSingleClass;
 
 var getBackgroundStyles = function getBackgroundStyles(className) {
   if (typeof window !== "undefined") {
-    var classes = (0, _HelperUtils.stringToArray)(className);
+    var classes = (0, _SimpleUtils.stringToArray)(className);
 
     if (classes instanceof Array) {
       var classObjects = [];

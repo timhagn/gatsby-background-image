@@ -1,10 +1,5 @@
-import {
-  filteredJoin,
-  isString,
-  hasImageArray,
-  isBrowser,
-} from './HelperUtils'
 import { hasArtDirectionArray, matchesMedia } from './MediaUtils'
+import { filteredJoin, isBrowser, isString } from './SimpleUtils'
 
 /**
  * Returns the availability of the HTMLPictureElement unless in SSR mode.
@@ -13,6 +8,16 @@ import { hasArtDirectionArray, matchesMedia } from './MediaUtils'
  */
 export const hasPictureElement = () =>
   typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`
+
+/**
+ * Checks if fluid or fixed are image arrays.
+ *
+ * @param props   object   The props to check for images.
+ * @return {boolean}
+ */
+export const hasImageArray = props =>
+  (props.fluid && Array.isArray(props.fluid)) ||
+  (props.fixed && Array.isArray(props.fixed))
 
 /**
  * Extracts a value from an imageRef, image object or an array of them.

@@ -21,8 +21,14 @@ var _slice = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stab
 
 var _reduce = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/reduce"));
 
-var _HelperUtils = require("./HelperUtils");
+var _SimpleUtils = require("./SimpleUtils");
 
+/**
+ * Gets styles by a class name.
+ *
+ * @notice The className has to exactly match the CSS class
+ * @param className string
+ */
 var getStyle = function getStyle(className) {
   var styleSheets = typeof window !== "undefined" ? window.document.styleSheets : [];
 
@@ -92,7 +98,7 @@ var getStyleRules = function getStyleRules(cssStyleRules) {
       case 'CSS2Properties':
       case '[object MSStyleCSSProperties]':
         (0, _forEach.default)(_context2 = (0, _values.default)(cssStyleRules[0].style)).call(_context2, function (prop) {
-          styles[(0, _HelperUtils.toCamelCase)(prop)] = cssStyleRules[0].style[prop];
+          styles[(0, _SimpleUtils.toCamelCase)(prop)] = cssStyleRules[0].style[prop];
         });
         break;
 
@@ -119,7 +125,7 @@ var getStyleRules = function getStyleRules(cssStyleRules) {
 exports.getStyleRules = getStyleRules;
 
 var getBackgroundStylesForSingleClass = function getBackgroundStylesForSingleClass(className) {
-  if ((0, _HelperUtils.isString)(className)) {
+  if ((0, _SimpleUtils.isString)(className)) {
     var style = getStyle("." + className);
     var cssStyleRules = rulesForCssText(style);
 
@@ -150,7 +156,7 @@ exports.getBackgroundStylesForSingleClass = getBackgroundStylesForSingleClass;
 
 var getBackgroundStyles = function getBackgroundStyles(className) {
   if (typeof window !== "undefined") {
-    var classes = (0, _HelperUtils.stringToArray)(className);
+    var classes = (0, _SimpleUtils.stringToArray)(className);
 
     if (classes instanceof Array) {
       var classObjects = [];

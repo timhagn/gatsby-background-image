@@ -21,7 +21,7 @@ var imageCache = Object.create({});
 var inImageCache = function inImageCache(props) {
   var convertedProps = (0, _HelperUtils.convertProps)(props);
 
-  if ((0, _HelperUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
+  if ((0, _ImageUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
     return allInImageCache(props);
   } // Find src
 
@@ -68,7 +68,7 @@ exports.allInImageCache = allInImageCache;
 var activateCacheForImage = function activateCacheForImage(props) {
   var convertedProps = (0, _HelperUtils.convertProps)(props);
 
-  if ((0, _HelperUtils.hasImageArray)(convertedProps)) {
+  if ((0, _ImageUtils.hasImageArray)(convertedProps)) {
     return activateCacheForMultipleImages(props);
   } // Find src
 

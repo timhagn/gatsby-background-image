@@ -1,11 +1,11 @@
-import { isString, stringToArray, toCamelCase } from './HelperUtils'
-
 /**
  * Gets styles by a class name.
  *
  * @notice The className has to exactly match the CSS class
  * @param className string
  */
+import { isString, stringToArray, toCamelCase } from './SimpleUtils'
+
 export const getStyle = className => {
   const styleSheets =
     typeof window !== `undefined` ? window.document.styleSheets : []

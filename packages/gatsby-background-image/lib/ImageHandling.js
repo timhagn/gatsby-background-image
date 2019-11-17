@@ -9,6 +9,8 @@ var _ImageUtils = require("./ImageUtils");
 
 var _MediaUtils = require("./MediaUtils");
 
+var _SimpleUtils = require("./SimpleUtils");
+
 var switchImageSettings = function switchImageSettings(_ref) {
   var image = _ref.image,
       bgImage = _ref.bgImage,
@@ -24,7 +26,7 @@ var switchImageSettings = function switchImageSettings(_ref) {
     fluid: image
   }); // Backup bgImage to lastImage.
 
-  var lastImage = Array.isArray(bgImage) ? (0, _HelperUtils.filteredJoin)(bgImage) : bgImage; // Set the backgroundImage according to images available.
+  var lastImage = Array.isArray(bgImage) ? (0, _SimpleUtils.filteredJoin)(bgImage) : bgImage; // Set the backgroundImage according to images available.
 
   var nextImage;
   var nextImageArray; // Signal to `createPseudoStyles()` when we have reached the final image,
@@ -40,13 +42,13 @@ var switchImageSettings = function switchImageSettings(_ref) {
       returnArray: returnArray
     }); // Now combine with base64 images.
 
-    nextImage = (0, _HelperUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+    nextImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
       data: image,
       propName: "base64",
       returnArray: returnArray
     }), nextImage); // Now add possible `rgba()` or similar CSS string props.
 
-    nextImage = (0, _HelperUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+    nextImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
       data: image,
       propName: "CSS_STRING",
       addUrl: false,
@@ -55,7 +57,7 @@ var switchImageSettings = function switchImageSettings(_ref) {
 
     if (state.imgLoaded && state.isVisible) {
       if (currentSources) {
-        nextImage = (0, _HelperUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+        nextImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
           data: imageRef,
           propName: "currentSrc",
           returnArray: returnArray
@@ -63,7 +65,7 @@ var switchImageSettings = function switchImageSettings(_ref) {
         finalImage = true;
       } else {
         // No support for HTMLPictureElement or WebP present, get src.
-        nextImage = (0, _HelperUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+        nextImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
           data: imageRef,
           propName: "src",
           returnArray: returnArray
@@ -73,14 +75,14 @@ var switchImageSettings = function switchImageSettings(_ref) {
     } // First fill last images from bgImage...
 
 
-    nextImage = (0, _HelperUtils.combineArray)(nextImage, bgImage); // ... then fill the rest of the background-images with a transparent dummy
+    nextImage = (0, _SimpleUtils.combineArray)(nextImage, bgImage); // ... then fill the rest of the background-images with a transparent dummy
     // pixel, lest the background-* properties can't target the correct image.
 
     var dummyArray = (0, _ImageUtils.createDummyImageArray)(image.length); // Now combine the two arrays and join them.
 
-    nextImage = (0, _HelperUtils.combineArray)(nextImage, dummyArray);
+    nextImage = (0, _SimpleUtils.combineArray)(nextImage, dummyArray);
     nextImageArray = nextImage;
-    nextImage = (0, _HelperUtils.filteredJoin)(nextImage);
+    nextImage = (0, _SimpleUtils.filteredJoin)(nextImage);
   } else {
     nextImage = "";
     if (image.tracedSVG) nextImage = (0, _ImageUtils.getCurrentFromData)({
@@ -143,7 +145,7 @@ var initialBgImage = function initialBgImage(props, withDummies) {
   var image = convertedProps.fluid || convertedProps.fixed; // Prevent failing if neither fluid nor fixed are present.
 
   if (!image) return "";
-  var returnArray = (0, _HelperUtils.hasImageArray)(convertedProps);
+  var returnArray = (0, _ImageUtils.hasImageArray)(convertedProps);
   var initialImage;
 
   if (returnArray) {
@@ -154,13 +156,13 @@ var initialBgImage = function initialBgImage(props, withDummies) {
       returnArray: returnArray
     }); // Now combine with base64 images.
 
-    initialImage = (0, _HelperUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+    initialImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
       data: image,
       propName: "base64",
       returnArray: returnArray
     }), initialImage); // Now add possible `rgba()` or similar CSS string props.
 
-    initialImage = (0, _HelperUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+    initialImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
       data: image,
       propName: "CSS_STRING",
       addUrl: false,
@@ -170,7 +172,7 @@ var initialBgImage = function initialBgImage(props, withDummies) {
     if (withDummies) {
       var dummyArray = (0, _ImageUtils.createDummyImageArray)(image.length); // Now combine the two arrays and join them.
 
-      initialImage = (0, _HelperUtils.combineArray)(initialImage, dummyArray);
+      initialImage = (0, _SimpleUtils.combineArray)(initialImage, dummyArray);
     }
   } else {
     initialImage = "";

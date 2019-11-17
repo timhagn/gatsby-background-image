@@ -1,10 +1,12 @@
-import { convertProps, hasImageArray, isBrowser } from './HelperUtils'
+import { convertProps } from './HelperUtils'
 import {
   getCurrentFromData,
   getCurrentSrcData,
+  hasImageArray,
   hasPictureElement,
 } from './ImageUtils'
 import { createArtDirectionSources, hasArtDirectionArray } from './MediaUtils'
+import { isBrowser } from './SimpleUtils'
 
 /**
  * Creates an image reference to be activated on critical or visibility.

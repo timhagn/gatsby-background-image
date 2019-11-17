@@ -3,7 +3,7 @@
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.imageLoaded = exports.imageReferenceCompleted = exports.createDummyImageArray = exports.imageArrayPropsChanged = exports.imagePropsChanged = exports.getUrlString = exports.getCurrentSrcData = exports.getImageSrcKey = exports.getCurrentFromData = exports.hasPictureElement = void 0;
+exports.imageLoaded = exports.imageReferenceCompleted = exports.createDummyImageArray = exports.imageArrayPropsChanged = exports.imagePropsChanged = exports.getUrlString = exports.getCurrentSrcData = exports.getImageSrcKey = exports.getCurrentFromData = exports.hasImageArray = exports.hasPictureElement = void 0;
 
 var _every = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/every"));
 
@@ -21,12 +21,25 @@ var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable
 
 var _isArray = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/array/is-array"));
 
-var _HelperUtils = require("./HelperUtils");
-
 var _MediaUtils = require("./MediaUtils");
+
+var _SimpleUtils = require("./SimpleUtils");
 
 var hasPictureElement = function hasPictureElement() {
   return typeof HTMLPictureElement !== "undefined" || typeof window === "undefined";
+};
+/**
+ * Checks if fluid or fixed are image arrays.
+ *
+ * @param props   object   The props to check for images.
+ * @return {boolean}
+ */
+
+
+exports.hasPictureElement = hasPictureElement;
+
+var hasImageArray = function hasImageArray(props) {
+  return props.fluid && (0, _isArray.default)(props.fluid) || props.fixed && (0, _isArray.default)(props.fixed);
 };
 /**
  * Extracts a value from an imageRef, image object or an array of them.
@@ -40,7 +53,7 @@ var hasPictureElement = function hasPictureElement() {
  */
 
 
-exports.hasPictureElement = hasPictureElement;
+exports.hasImageArray = hasImageArray;
 
 var getCurrentFromData = function getCurrentFromData(_ref) {
   var data = _ref.data,
@@ -69,7 +82,7 @@ var getCurrentFromData = function getCurrentFromData(_ref) {
       } // Check if CSS strings should be parsed.
 
 
-      if (propName === "CSS_STRING" && (0, _HelperUtils.isString)(dataElement)) {
+      if (propName === "CSS_STRING" && (0, _SimpleUtils.isString)(dataElement)) {
         return dataElement;
       }
 
@@ -147,11 +160,11 @@ var getCurrentSrcData = function getCurrentSrcData(_ref3) {
       fixed = _ref3.fixed;
   var currentData = fluid || fixed;
 
-  if ((0, _HelperUtils.hasImageArray)({
+  if (hasImageArray({
     fluid: fluid,
     fixed: fixed
   })) {
-    if ((0, _HelperUtils.isBrowser)() && (0, _MediaUtils.hasArtDirectionArray)({
+    if ((0, _SimpleUtils.isBrowser)() && (0, _MediaUtils.hasArtDirectionArray)({
       fluid: fluid,
       fixed: fixed
     })) {
@@ -209,7 +222,7 @@ var getUrlString = function getUrlString(_ref4) {
 
       return currentString;
     });
-    return returnArray ? stringArray : (0, _HelperUtils.filteredJoin)(stringArray);
+    return returnArray ? stringArray : (0, _SimpleUtils.filteredJoin)(stringArray);
   }
 
   var base64 = (0, _indexOf.default)(imageString).call(imageString, "base64") !== -1;

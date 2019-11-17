@@ -27,6 +27,8 @@ var _ClassCache = require("./ClassCache");
 
 var _ImageUtils = require("./ImageUtils");
 
+var _SimpleUtils = require("./SimpleUtils");
+
 var fixClassName = function fixClassName(_ref) {
   var _context;
 
@@ -41,7 +43,7 @@ var fixClassName = function fixClassName(_ref) {
   var additionalClassname = _shortUuid.default.generate(); // Create random "uniquely hashed" additionalClass if needed.
 
 
-  var randomClass = " gbi-" + (0, _HelperUtils.hashString)(imageData && imageData.srcSet || className) + "-" + additionalClassname; // Should an element exist, add randomized class.
+  var randomClass = " gbi-" + (0, _SimpleUtils.hashString)(imageData && imageData.srcSet || className) + "-" + additionalClassname; // Should an element exist, add randomized class.
 
   var additionalClass = elementExists ? randomClass : "";
   var componentClassNames = (0, _trim.default)(_context = "" + (className || "") + (additionalClass || "")).call(_context); // Add it to cache if it doesn't exist.
@@ -62,7 +64,7 @@ exports.fixClassName = fixClassName;
 
 var escapeClassNames = function escapeClassNames(classNames) {
   if (classNames) {
-    var specialChars = (0, _HelperUtils.isBrowser)() && window._gbiSpecialChars ? window._gbiSpecialChars : typeof __GBI_SPECIAL_CHARS__ !== "undefined" ? __GBI_SPECIAL_CHARS__ : ':/';
+    var specialChars = (0, _SimpleUtils.isBrowser)() && window._gbiSpecialChars ? window._gbiSpecialChars : typeof __GBI_SPECIAL_CHARS__ !== "undefined" ? __GBI_SPECIAL_CHARS__ : ':/';
     var specialCharRegEx = new RegExp("[" + specialChars + "]", 'g');
     return classNames.replace(specialCharRegEx, '\\$&');
   }
@@ -80,7 +82,7 @@ var escapeClassNames = function escapeClassNames(classNames) {
 exports.escapeClassNames = escapeClassNames;
 
 var kebabifyBackgroundStyles = function kebabifyBackgroundStyles(styles) {
-  if ((0, _HelperUtils.isString)(styles)) {
+  if ((0, _SimpleUtils.isString)(styles)) {
     return styles;
   }
 
@@ -90,7 +92,7 @@ var kebabifyBackgroundStyles = function kebabifyBackgroundStyles(styles) {
     return (0, _reduce.default)(_context2 = (0, _filter.default)(_context3 = (0, _keys.default)(styles)).call(_context3, function (key) {
       return (0, _indexOf.default)(key).call(key, 'background') === 0 && styles[key] !== '';
     })).call(_context2, function (resultingStyles, key) {
-      return "" + resultingStyles + (0, _HelperUtils.toKebabCase)(key) + ": " + styles[key] + ";\n";
+      return "" + resultingStyles + (0, _SimpleUtils.toKebabCase)(key) + ": " + styles[key] + ";\n";
     }, "");
   }
 

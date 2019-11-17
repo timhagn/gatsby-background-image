@@ -17,6 +17,8 @@ var _ClassCache = require("./ClassCache");
 
 var _ImageUtils = require("./ImageUtils");
 
+var _SimpleUtils = require("./SimpleUtils");
+
 var fixClassName = function fixClassName(_ref) {
   var className = _ref.className,
       props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["className"]);
@@ -29,7 +31,7 @@ var fixClassName = function fixClassName(_ref) {
   var additionalClassname = _shortUuid.default.generate(); // Create random "uniquely hashed" additionalClass if needed.
 
 
-  var randomClass = " gbi-" + (0, _HelperUtils.hashString)(imageData && imageData.srcSet || className) + "-" + additionalClassname; // Should an element exist, add randomized class.
+  var randomClass = " gbi-" + (0, _SimpleUtils.hashString)(imageData && imageData.srcSet || className) + "-" + additionalClassname; // Should an element exist, add randomized class.
 
   var additionalClass = elementExists ? randomClass : "";
   var componentClassNames = ("" + (className || "") + (additionalClass || "")).trim(); // Add it to cache if it doesn't exist.
@@ -50,7 +52,7 @@ exports.fixClassName = fixClassName;
 
 var escapeClassNames = function escapeClassNames(classNames) {
   if (classNames) {
-    var specialChars = (0, _HelperUtils.isBrowser)() && window._gbiSpecialChars ? window._gbiSpecialChars : typeof __GBI_SPECIAL_CHARS__ !== "undefined" ? __GBI_SPECIAL_CHARS__ : ':/';
+    var specialChars = (0, _SimpleUtils.isBrowser)() && window._gbiSpecialChars ? window._gbiSpecialChars : typeof __GBI_SPECIAL_CHARS__ !== "undefined" ? __GBI_SPECIAL_CHARS__ : ':/';
     var specialCharRegEx = new RegExp("[" + specialChars + "]", 'g');
     return classNames.replace(specialCharRegEx, '\\$&');
   }
@@ -68,7 +70,7 @@ var escapeClassNames = function escapeClassNames(classNames) {
 exports.escapeClassNames = escapeClassNames;
 
 var kebabifyBackgroundStyles = function kebabifyBackgroundStyles(styles) {
-  if ((0, _HelperUtils.isString)(styles)) {
+  if ((0, _SimpleUtils.isString)(styles)) {
     return styles;
   }
 
@@ -76,7 +78,7 @@ var kebabifyBackgroundStyles = function kebabifyBackgroundStyles(styles) {
     return Object.keys(styles).filter(function (key) {
       return key.indexOf('background') === 0 && styles[key] !== '';
     }).reduce(function (resultingStyles, key) {
-      return "" + resultingStyles + (0, _HelperUtils.toKebabCase)(key) + ": " + styles[key] + ";\n";
+      return "" + resultingStyles + (0, _SimpleUtils.toKebabCase)(key) + ": " + styles[key] + ";\n";
     }, "");
   }
 
