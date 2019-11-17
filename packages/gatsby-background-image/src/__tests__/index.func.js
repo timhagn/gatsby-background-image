@@ -13,8 +13,8 @@ import {
   activateCacheForImage,
   createPictureRef,
   resetImageCache,
-} from '../ImageUtils'
-import { resetComponentClassCache } from '../StyleUtils'
+} from '../lib/ImageUtils'
+import { resetComponentClassCache } from '../lib/StyleUtils'
 
 const LOAD_FAILURE_SRC = 'test_fluid_image.jpg'
 const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg'

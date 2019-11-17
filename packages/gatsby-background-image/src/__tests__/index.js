@@ -7,8 +7,8 @@ import {
   setupBackgroundImage,
 } from './mocks/Various.mock'
 import BackgroundImage from '../'
-import { activateCacheForImage, resetImageCache } from '../ImageUtils'
-import { resetComponentClassCache } from '../StyleUtils'
+import { activateCacheForImage, resetImageCache } from '../lib/ImageUtils'
+import { resetComponentClassCache } from '../lib/StyleUtils'
 
 afterEach(resetImageCache)
 

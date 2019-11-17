@@ -15,7 +15,8 @@
     "filter-invalid-dom-props": "^2.0.0",
     "global": "^4.4.0",
     "prop-types": "^15.7.2",
-    "short-uuid": "^3.1.1"
+    "short-uuid": "^3.1.1",
+    "sort-media-queries": "^0.2.2"
   },
   "peerDependencies": {
     "react": "16.x",
@@ -37,11 +38,7 @@
   "files": [
     "/index.js",
     "/index.d.ts",
-    "/IntersectionObserverUtils.js",
-    "/ImageUtils.js",
-    "/BackgroundUtils.js",
-    "/StyleUtils.js",
-    "/HelperUtils.js"
+    "lib"
   ],
   "repository": "https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image",
   "scripts": {

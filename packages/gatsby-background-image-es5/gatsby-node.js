@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequ
 
 var _stringify = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/json/stringify"));
 
-var _HelperUtils = require("./HelperUtils");
+var _HelperUtils = require("./lib/HelperUtils");
 
 exports.onCreateWebpackConfig = function (_ref, _ref2) {
   var plugins = _ref.plugins,

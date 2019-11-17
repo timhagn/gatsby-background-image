@@ -197,11 +197,11 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
           pic.width = imageRef.width = selfRef.offsetWidth
           pic.height = imageRef.height = selfRef.offsetHeight
         }
+        // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
         if (hasArtDirectionArray(convertedProps)) {
           const sources = createArtDirectionSources(convertedProps)
           sources.forEach(currentSource => pic.appendChild(currentSource))
         } else if (imageData.srcSetWebp) {
-          // TODO: set media and test.
           const sourcesWebP = document.createElement('source')
           sourcesWebP.type = `image/webp`
           sourcesWebP.srcset = imageData.srcSetWebp

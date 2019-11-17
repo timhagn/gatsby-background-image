@@ -2,7 +2,7 @@ import getBackgroundStyles, {
   getStyle,
   getStyleRules,
   rulesForCssText,
-} from '../BackgroundUtils'
+} from '../lib/BackgroundUtils'
 
 global.console.error = jest.fn()
 global.console.debug = jest.fn()

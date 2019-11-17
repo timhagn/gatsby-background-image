@@ -8,9 +8,9 @@ import {
   escapeClassNames,
   activateCacheForComponentClass,
   createNoScriptStyles,
-} from '../StyleUtils'
+} from '../lib/StyleUtils'
 import { fluidShapeMock } from './mocks/Various.mock'
-import { hashString } from '../HelperUtils'
+import { hashString } from '../lib/HelperUtils'
 
 global.console.debug = jest.fn()
 

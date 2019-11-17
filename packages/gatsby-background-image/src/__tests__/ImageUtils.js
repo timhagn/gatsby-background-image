@@ -16,7 +16,7 @@ import {
   imageLoaded,
   initialBgImage,
   imageArrayPropsChanged,
-} from '../ImageUtils'
+} from '../lib/ImageUtils'
 
 global.console.debug = jest.fn()
 

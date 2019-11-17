@@ -1,6 +1,6 @@
 "use strict";
 
-var _HelperUtils = require("./HelperUtils");
+var _HelperUtils = require("./lib/HelperUtils");
 
 exports.onCreateWebpackConfig = function (_ref, _ref2) {
   var plugins = _ref.plugins,

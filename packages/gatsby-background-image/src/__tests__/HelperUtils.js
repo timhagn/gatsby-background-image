@@ -4,7 +4,7 @@ import {
   toKebabCase,
   stringToArray,
   combineArray,
-} from '../HelperUtils'
+} from '../lib/HelperUtils'
 import { fixedShapeMock, fluidShapeMock } from './mocks/Various.mock'
 
 const legacySizesFixedMock = {

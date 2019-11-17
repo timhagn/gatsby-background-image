@@ -1,5 +1,5 @@
 import React from 'react'
-import * as IOUtils from '../IntersectionObserverUtils'
+import * as IOUtils from '../lib/IntersectionObserverUtils'
 
 global.console.debug = jest.fn()
 
