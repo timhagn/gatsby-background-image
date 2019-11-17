@@ -33,6 +33,8 @@
   "files": [
     "/index.js",
     "/index.d.ts",
+    "gatbsy-node.js",
+    "gatsby-browser.js",
     "lib"
   ],
   "repository": "https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image-es5",
