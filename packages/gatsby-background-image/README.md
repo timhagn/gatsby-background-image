@@ -1,6 +1,4 @@
-<h1 align="center">
-  gatsby-background-image
-</h1>
+#<h1 align="center">gatsby-background-image</h1>
 <p align="center">
   <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
 </p>
@@ -25,19 +23,19 @@
 `gatsby-background-image` is a React component which for background-images
 provides, what Gatsby's own `gatsby-image` does for the rest of your images and
 even more:  
-**Now it's possible to use multiple stacked Background Images!**
+**Now with Art-Direction support!**
 
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,  
-**plus** being usable as a container (no more hacks with extra wrappers),  
-**plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images).
+**plus** being usable as a container (no more hacks with extra wrappers)  
+**plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images)  
+**plus** being able to style with [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)
 
 All the glamour (and speed) of `gatsby-image` for your Background Images!
 
 *_Of course styleable with `styled-components` and the like!_*
 
-**_Now it's possible to style `BackgroundImage` with [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)!_**
 
 ## ES5 Version
 

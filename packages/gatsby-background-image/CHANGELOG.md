@@ -5,6 +5,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 <a name="0.8.19"></a>
 
+## [0.9.0](https://github.com/timhagn/gatsby-background-image) (2019-11-17)
+
+**merge** Finally added art-direction support (single images) for #56. Removed
+superfluous `additionalClass` from `index.js`.
+
 ## [0.8.19](https://github.com/timhagn/gatsby-background-image) (2019-11-15)
 
 **merge** Added a `rootMargin` for #86.
