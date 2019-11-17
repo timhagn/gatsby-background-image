@@ -3,7 +3,7 @@
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.createNoScriptStyles = exports.createPseudoStyles = exports.presetBackgroundStyles = exports.fixOpacity = exports.setTransitionStyles = exports.kebabifyBackgroundStyles = exports.escapeClassNames = exports.fixClassName = exports.createPseudoElement = exports.resetComponentClassCache = exports.activateCacheForComponentClass = exports.inComponentClassCache = void 0;
+exports.createNoScriptStyles = exports.createPseudoStyles = exports.presetBackgroundStyles = exports.fixOpacity = exports.setTransitionStyles = exports.kebabifyBackgroundStyles = exports.escapeClassNames = exports.fixClassName = exports.createPseudoElement = void 0;
 
 var _isArray = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/array/is-array"));
 
@@ -21,62 +21,13 @@ var _trim = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stabl
 
 var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/objectWithoutPropertiesLoose"));
 
-var _create = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/object/create"));
-
 var _shortUuid = _interopRequireDefault(require("short-uuid"));
 
 var _HelperUtils = require("./HelperUtils");
 
 var _ImageUtils = require("./ImageUtils");
 
-var componentClassCache = (0, _create.default)({});
-/**
- * Cache component classes as we never know if a Component wasn't already set.
- *
- * @param className   string  className given by props
- * @return {*|boolean}
- */
-
-var inComponentClassCache = function inComponentClassCache(className) {
-  return componentClassCache[className] || false;
-};
-/**
- * Adds a component's classes to componentClassCache.
- *
- * @param className   string  className given by props
- */
-
-
-exports.inComponentClassCache = inComponentClassCache;
-
-var activateCacheForComponentClass = function activateCacheForComponentClass(className) {
-  if (className) {
-    componentClassCache[className] = true;
-  }
-};
-/**
- * Resets the componentClassCache (especially important for reliable tests).
- */
-
-
-exports.activateCacheForComponentClass = activateCacheForComponentClass;
-
-var resetComponentClassCache = function resetComponentClassCache() {
-  for (var className in componentClassCache) {
-    delete componentClassCache[className];
-  }
-};
-/**
- * Creates pseudo-element(s) for className(s).
- *
- * @param className string  className given by props
- * @param classId   string  Deprecated classId
- * @param appendix  string  Pseudo-element to create, defaults to `:before`
- * @return {string}
- */
-
-
-exports.resetComponentClassCache = resetComponentClassCache;
+var _ClassCache = require("./ClassCache");
 
 var createPseudoElement = function createPseudoElement(className, classId, appendix) {
   if (classId === void 0) {
@@ -119,7 +70,7 @@ var fixClassName = function fixClassName(_ref) {
       props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["className"]);
   // const escapedClassName = escapeClassNames(className)
   var convertedProps = (0, _HelperUtils.convertProps)(props);
-  var elementExists = inComponentClassCache(className); // Extract imageData.
+  var elementExists = (0, _ClassCache.inComponentClassCache)(className); // Extract imageData.
 
   var imageData = (0, _HelperUtils.getCurrentSrcData)(convertedProps); // Add an additional unique class for multiple <BackgroundImage>s.
 
@@ -131,7 +82,7 @@ var fixClassName = function fixClassName(_ref) {
   var additionalClass = elementExists ? randomClass : "";
   var componentClassNames = (0, _trim.default)(_context = "" + (className || "") + (additionalClass || "")).call(_context); // Add it to cache if it doesn't exist.
 
-  if (!elementExists) activateCacheForComponentClass(className);
+  if (!elementExists) (0, _ClassCache.activateCacheForComponentClass)(className);
   return [componentClassNames];
 };
 /**
