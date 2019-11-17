@@ -47,7 +47,7 @@ export const allInImageCache = props => {
  */
 export const activateCacheForImage = props => {
   const convertedProps = convertProps(props)
-  if (hasImageArray(convertedProps)) {
+  if (hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps)) {
     return activateCacheForMultipleImages(props)
   }
   // Find src

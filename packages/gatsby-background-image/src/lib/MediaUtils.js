@@ -34,10 +34,15 @@ export const groupByMedia = imageVariants => {
  */
 export const createArtDirectionSources = ({ fluid, fixed }) => {
   const currentSource = fluid || fixed
-  return currentSource.map(image => {
+  return currentSource.reduce((sources, image) => {
+    if (!image.media) {
+      return sources
+    }
     const source = document.createElement('source')
     source.srcset = image.srcSet
-    source.sizes = image.sizes
+    if (image.sizes) {
+      source.sizes = image.sizes
+    }
     if (image.srcSetWebp) {
       source.type = `image/webp`
       source.srcset = image.srcSetWebp
@@ -45,8 +50,9 @@ export const createArtDirectionSources = ({ fluid, fixed }) => {
     if (image.media) {
       source.media = image.media
     }
-    return source
-  })
+    sources.push(source)
+    return sources
+  }, [])
 }
 
 /**
@@ -85,5 +91,6 @@ export const hasArtDirectionArray = props =>
  * @param media   string  A media query string.
  * @return {*|boolean}
  */
-export const matchesMedia = ({ media }) =>
-  media && isBrowser() && window.matchMedia(media).matches
+export const matchesMedia = ({ media }) => {
+  return media ? isBrowser() && window.matchMedia(media).matches : false
+}

@@ -9,7 +9,7 @@ var _some = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stabl
 
 var _isArray = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/array/is-array"));
 
-var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/map"));
+var _reduce = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/reduce"));
 
 var _forEach = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/for-each"));
 
@@ -46,10 +46,17 @@ var createArtDirectionSources = function createArtDirectionSources(_ref) {
   var fluid = _ref.fluid,
       fixed = _ref.fixed;
   var currentSource = fluid || fixed;
-  return (0, _map.default)(currentSource).call(currentSource, function (image) {
+  return (0, _reduce.default)(currentSource).call(currentSource, function (sources, image) {
+    if (!image.media) {
+      return sources;
+    }
+
     var source = document.createElement('source');
     source.srcset = image.srcSet;
-    source.sizes = image.sizes;
+
+    if (image.sizes) {
+      source.sizes = image.sizes;
+    }
 
     if (image.srcSetWebp) {
       source.type = "image/webp";
@@ -60,8 +67,9 @@ var createArtDirectionSources = function createArtDirectionSources(_ref) {
       source.media = image.media;
     }
 
-    return source;
-  });
+    sources.push(source);
+    return sources;
+  }, []);
 };
 /**
  * Checks if fluid or fixed are art-direction arrays.
@@ -121,7 +129,7 @@ exports.hasArtDirectionArray = hasArtDirectionArray;
 
 var matchesMedia = function matchesMedia(_ref2) {
   var media = _ref2.media;
-  return media && (0, _SimpleUtils.isBrowser)() && window.matchMedia(media).matches;
+  return media ? (0, _SimpleUtils.isBrowser)() && window.matchMedia(media).matches : false;
 };
 
 exports.matchesMedia = matchesMedia;

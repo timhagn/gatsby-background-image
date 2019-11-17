@@ -54,8 +54,4 @@ node_modules/
 yarn.lock
 package-lock.json
 /index.js
-/IntersectionObserverUtils.js
-/ImageUtils.js
-/BackgroundUtils.js
-/StyleUtils.js
-/HelperUtils.js
+./lib

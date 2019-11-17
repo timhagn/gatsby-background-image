@@ -106,7 +106,7 @@ export const getImageSrcKey = ({ fluid, fixed }) => {
  * Returns the current src if possible with art-direction support.
  *
  * @param fluid   object    Fluid Image (Array) if existent.
- * @param fixed   object    Fixed Image (Array) if existent.v
+ * @param fixed   object    Fixed Image (Array) if existent.
  * @return {*}
  */
 export const getCurrentSrcData = ({ fluid, fixed }) => {
@@ -114,12 +114,28 @@ export const getCurrentSrcData = ({ fluid, fixed }) => {
   if (hasImageArray({ fluid, fixed })) {
     if (isBrowser() && hasArtDirectionArray({ fluid, fixed })) {
       // Do we have an image for the current Viewport?
-      const foundMedia = currentData.findIndex(matchesMedia)
+      const mediaData = currentData.slice().reverse()
+      const foundMedia = mediaData.findIndex(matchesMedia)
       if (foundMedia !== -1) {
-        return currentData[foundMedia]
+        return mediaData[foundMedia]
       }
     }
     // Else return the first image.
+    return currentData[0]
+  }
+  return currentData
+}
+
+/**
+ * Return the first image of an imageStack
+ *
+ * @param fluid   object    Fluid Image (Array) if existent.
+ * @param fixed   object    Fixed Image (Array) if existent.
+ * @return {*}
+ */
+export const getFirstImage = ({ fluid, fixed }) => {
+  const currentData = fluid || fixed
+  if (hasImageArray({ fluid, fixed })) {
     return currentData[0]
   }
   return currentData

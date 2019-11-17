@@ -96,24 +96,20 @@ describe(`createArtDirectionStack()`, () => {
     expect(testArtDirectionStack).toMatchInlineSnapshot(`
       Array [
         <source
-          sizes="undefined"
           srcset="some srcSetWebp"
           type="image/webp"
         />,
         <source
           media="(min-width: 491px)"
-          sizes="undefined"
           srcset="some srcSetWebp"
           type="image/webp"
         />,
         <source
           media="(min-width: 1401px)"
-          sizes="undefined"
           srcset="some srcSetWebp"
           type="image/webp"
         />,
         <source
-          sizes="undefined"
           srcset="some srcSet"
         />,
       ]
@@ -147,6 +143,11 @@ describe(`matchesMedia()`, () => {
 
   it(`should not match media (min-width: 491px)`, () => {
     const matched = matchesMedia({ media: '(min-width: 491px)' })
+    expect(matched).toBeFalsy()
+  })
+
+  it(`should not match empty media`, () => {
+    const matched = matchesMedia({})
     expect(matched).toBeFalsy()
   })
 })

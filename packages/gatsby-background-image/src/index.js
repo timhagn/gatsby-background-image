@@ -29,15 +29,17 @@ class BackgroundImage extends React.Component {
   constructor(props) {
     super(props)
 
+    const convertedProps = convertProps(props)
+
     // Default settings for browser without Intersection Observer available.
     let isVisible = true
     const imgLoaded = false
     let IOSupported = false
-    const { fadeIn } = props
+    const { fadeIn } = convertedProps
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
-    const seenBefore = inImageCache(props)
+    const seenBefore = inImageCache(convertedProps)
 
     // Browser with Intersection Observer available
     if (
@@ -55,19 +57,19 @@ class BackgroundImage extends React.Component {
     }
 
     // Force render for critical images.
-    if (props.critical) {
+    if (convertedProps.critical) {
       isVisible = true
       IOSupported = false
     }
 
     // Check if a noscript element should be included.
-    const hasNoScript = !(props.critical && !fadeIn)
+    const hasNoScript = !(convertedProps.critical && !fadeIn)
 
     // Set initial image state for transitioning.
     const imageState = 0
 
     // Fixed class Name & added one (needed for multiple instances).
-    const [currentClassNames] = fixClassName(props)
+    const [currentClassNames] = fixClassName(convertedProps)
 
     this.state = {
       isVisible,
@@ -82,7 +84,7 @@ class BackgroundImage extends React.Component {
 
     // Preset backgroundStyles (e.g. during SSR or gatsby build).
     this.backgroundStyles = presetBackgroundStyles(
-      getBackgroundStyles(props.className)
+      getBackgroundStyles(convertedProps.className)
     )
 
     // Bind handlers to class.
@@ -91,11 +93,11 @@ class BackgroundImage extends React.Component {
 
     // Create reference(s) to an Image loaded via picture element in background.
     this.imageRef = createPictureRef(
-      { ...props, isVisible },
+      { ...convertedProps, isVisible },
       this.handleImageLoaded
     )
     // Start with base64, tracedSVG or empty background image(s).
-    this.bgImage = initialBgImage(props)
+    this.bgImage = initialBgImage(convertedProps)
 
     this.selfRef = null
 

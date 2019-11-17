@@ -38,10 +38,17 @@ var createArtDirectionSources = function createArtDirectionSources(_ref) {
   var fluid = _ref.fluid,
       fixed = _ref.fixed;
   var currentSource = fluid || fixed;
-  return currentSource.map(function (image) {
+  return currentSource.reduce(function (sources, image) {
+    if (!image.media) {
+      return sources;
+    }
+
     var source = document.createElement('source');
     source.srcset = image.srcSet;
-    source.sizes = image.sizes;
+
+    if (image.sizes) {
+      source.sizes = image.sizes;
+    }
 
     if (image.srcSetWebp) {
       source.type = "image/webp";
@@ -52,8 +59,9 @@ var createArtDirectionSources = function createArtDirectionSources(_ref) {
       source.media = image.media;
     }
 
-    return source;
-  });
+    sources.push(source);
+    return sources;
+  }, []);
 };
 /**
  * Checks if fluid or fixed are art-direction arrays.
@@ -109,7 +117,7 @@ exports.hasArtDirectionArray = hasArtDirectionArray;
 
 var matchesMedia = function matchesMedia(_ref2) {
   var media = _ref2.media;
-  return media && (0, _SimpleUtils.isBrowser)() && window.matchMedia(media).matches;
+  return media ? (0, _SimpleUtils.isBrowser)() && window.matchMedia(media).matches : false;
 };
 
 exports.matchesMedia = matchesMedia;

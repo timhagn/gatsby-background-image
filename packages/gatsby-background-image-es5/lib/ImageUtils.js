@@ -3,7 +3,7 @@
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.imageLoaded = exports.imageReferenceCompleted = exports.createDummyImageArray = exports.imageArrayPropsChanged = exports.imagePropsChanged = exports.getUrlString = exports.getCurrentSrcData = exports.getImageSrcKey = exports.getCurrentFromData = exports.hasImageArray = exports.hasPictureElement = void 0;
+exports.imageLoaded = exports.imageReferenceCompleted = exports.createDummyImageArray = exports.imageArrayPropsChanged = exports.imagePropsChanged = exports.getUrlString = exports.getFirstImage = exports.getCurrentSrcData = exports.getImageSrcKey = exports.getCurrentFromData = exports.hasImageArray = exports.hasPictureElement = void 0;
 
 var _every = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/every"));
 
@@ -14,6 +14,10 @@ var _some = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stabl
 var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/index-of"));
 
 var _findIndex = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/find-index"));
+
+var _slice = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/slice"));
+
+var _reverse = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/reverse"));
 
 var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/map"));
 
@@ -146,7 +150,7 @@ var getImageSrcKey = function getImageSrcKey(_ref2) {
  * Returns the current src if possible with art-direction support.
  *
  * @param fluid   object    Fluid Image (Array) if existent.
- * @param fixed   object    Fixed Image (Array) if existent.v
+ * @param fixed   object    Fixed Image (Array) if existent.
  * @return {*}
  */
 
@@ -166,15 +170,43 @@ var getCurrentSrcData = function getCurrentSrcData(_ref3) {
       fluid: fluid,
       fixed: fixed
     })) {
+      var _context;
+
       // Do we have an image for the current Viewport?
-      var foundMedia = (0, _findIndex.default)(currentData).call(currentData, _MediaUtils.matchesMedia);
+      var mediaData = (0, _reverse.default)(_context = (0, _slice.default)(currentData).call(currentData)).call(_context);
+      var foundMedia = (0, _findIndex.default)(mediaData).call(mediaData, _MediaUtils.matchesMedia);
 
       if (foundMedia !== -1) {
-        return currentData[foundMedia];
+        return mediaData[foundMedia];
       }
     } // Else return the first image.
 
 
+    return currentData[0];
+  }
+
+  return currentData;
+};
+/**
+ * Return the first image of an imageStack
+ *
+ * @param fluid   object    Fluid Image (Array) if existent.
+ * @param fixed   object    Fixed Image (Array) if existent.
+ * @return {*}
+ */
+
+
+exports.getCurrentSrcData = getCurrentSrcData;
+
+var getFirstImage = function getFirstImage(_ref4) {
+  var fluid = _ref4.fluid,
+      fixed = _ref4.fixed;
+  var currentData = fluid || fixed;
+
+  if (hasImageArray({
+    fluid: fluid,
+    fixed: fixed
+  })) {
     return currentData[0];
   }
 
@@ -192,18 +224,18 @@ var getCurrentSrcData = function getCurrentSrcData(_ref3) {
  */
 
 
-exports.getCurrentSrcData = getCurrentSrcData;
+exports.getFirstImage = getFirstImage;
 
-var getUrlString = function getUrlString(_ref4) {
-  var imageString = _ref4.imageString,
-      _ref4$tracedSVG = _ref4.tracedSVG,
-      tracedSVG = _ref4$tracedSVG === void 0 ? false : _ref4$tracedSVG,
-      _ref4$addUrl = _ref4.addUrl,
-      addUrl = _ref4$addUrl === void 0 ? true : _ref4$addUrl,
-      _ref4$returnArray = _ref4.returnArray,
-      returnArray = _ref4$returnArray === void 0 ? false : _ref4$returnArray,
-      _ref4$hasImageUrls = _ref4.hasImageUrls,
-      hasImageUrls = _ref4$hasImageUrls === void 0 ? false : _ref4$hasImageUrls;
+var getUrlString = function getUrlString(_ref5) {
+  var imageString = _ref5.imageString,
+      _ref5$tracedSVG = _ref5.tracedSVG,
+      tracedSVG = _ref5$tracedSVG === void 0 ? false : _ref5$tracedSVG,
+      _ref5$addUrl = _ref5.addUrl,
+      addUrl = _ref5$addUrl === void 0 ? true : _ref5$addUrl,
+      _ref5$returnArray = _ref5.returnArray,
+      returnArray = _ref5$returnArray === void 0 ? false : _ref5$returnArray,
+      _ref5$hasImageUrls = _ref5.hasImageUrls,
+      hasImageUrls = _ref5$hasImageUrls === void 0 ? false : _ref5$hasImageUrls;
 
   if ((0, _isArray.default)(imageString)) {
     var stringArray = (0, _map.default)(imageString).call(imageString, function (currentString) {
@@ -269,10 +301,10 @@ var imageArrayPropsChanged = function imageArrayPropsChanged(props, prevProps) {
 
   if (isPropsFluidArray && isPrevPropsFluidArray) {
     if (props.fluid.length === prevProps.fluid.length) {
-      var _context;
+      var _context2;
 
       // Check for individual image or CSS string changes.
-      return (0, _some.default)(_context = props.fluid).call(_context, function (image, index) {
+      return (0, _some.default)(_context2 = props.fluid).call(_context2, function (image, index) {
         return image.src !== prevProps.fluid[index].src;
       });
     }
@@ -280,10 +312,10 @@ var imageArrayPropsChanged = function imageArrayPropsChanged(props, prevProps) {
     return true;
   } else if (isPropsFixedArray && isPrevPropsFixedArray) {
     if (props.fixed.length === prevProps.fixed.length) {
-      var _context2;
+      var _context3;
 
       // Check for individual image or CSS string changes.
-      return (0, _some.default)(_context2 = props.fixed).call(_context2, function (image, index) {
+      return (0, _some.default)(_context3 = props.fixed).call(_context3, function (image, index) {
         return image.src !== prevProps.fixed[index].src;
       });
     }
@@ -302,13 +334,13 @@ var imageArrayPropsChanged = function imageArrayPropsChanged(props, prevProps) {
 exports.imageArrayPropsChanged = imageArrayPropsChanged;
 
 var createDummyImageArray = function createDummyImageArray(length) {
-  var _context3;
+  var _context4;
 
   var DUMMY_IMG = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
   var dummyImageURI = getUrlString({
     imageString: DUMMY_IMG
   });
-  return (0, _fill.default)(_context3 = Array(length)).call(_context3, dummyImageURI);
+  return (0, _fill.default)(_context4 = Array(length)).call(_context4, dummyImageURI);
 };
 /**
  * Checks if an image (array) reference is existing and tests for complete.

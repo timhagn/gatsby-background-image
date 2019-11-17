@@ -1,7 +1,7 @@
 import { convertProps } from './HelperUtils'
 import {
   getCurrentFromData,
-  getCurrentSrcData,
+  getCurrentSrcData, getFirstImage,
   hasImageArray,
   hasPictureElement,
 } from './ImageUtils'
@@ -91,57 +91,56 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
       !hasArtDirectionArray(convertedProps)
     ) {
       return activateMultiplePictureRefs(imageRef, props, selfRef)
-    } else {
-      const imageData = hasArtDirectionArray(convertedProps)
-        ? getCurrentSrcData(convertedProps)
-        : getCurrentFromData(convertedProps)
-
-      // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
-      // but don't prevent it during SSR.
-      let removableElement = null
-      if (hasPictureElement()) {
-        const pic = document.createElement('picture')
-        if (selfRef) {
-          // Set original component's style.
-          pic.width = imageRef.width = selfRef.offsetWidth
-          pic.height = imageRef.height = selfRef.offsetHeight
-        }
-        // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
-        if (hasArtDirectionArray(convertedProps)) {
-          const sources = createArtDirectionSources(convertedProps)
-          sources.forEach(currentSource => pic.appendChild(currentSource))
-        } else if (imageData.srcSetWebp) {
-          const sourcesWebP = document.createElement('source')
-          sourcesWebP.type = `image/webp`
-          sourcesWebP.srcset = imageData.srcSetWebp
-          sourcesWebP.sizes = imageData.sizes
-          if (imageData.media) {
-            sourcesWebP.media = imageData.media
-          }
-          pic.appendChild(sourcesWebP)
-        }
-        pic.appendChild(imageRef)
-        removableElement = pic
-        // document.body.appendChild(removableElement)
-      } else {
-        if (selfRef) {
-          imageRef.width = selfRef.offsetWidth
-          imageRef.height = selfRef.offsetHeight
-        }
-        removableElement = imageRef
-        // document.body.appendChild(removableElement)
-      }
-
-      imageRef.srcset = imageData.srcSet ? imageData.srcSet : ``
-      imageRef.src = imageData.src ? imageData.src : ``
-      if (imageData.media) {
-        imageRef.media = imageData.media
-      }
-
-      // document.body.removeChild(removableElement)
-
-      return imageRef
     }
+    const imageData = hasArtDirectionArray(convertedProps)
+      ? getFirstImage(convertedProps)
+      : getCurrentSrcData(convertedProps)
+
+    // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
+    // but don't prevent it during SSR.
+    let removableElement = null
+    if (hasPictureElement()) {
+      const pic = document.createElement('picture')
+      if (selfRef) {
+        // Set original component's style.
+        pic.width = imageRef.width = selfRef.offsetWidth
+        pic.height = imageRef.height = selfRef.offsetHeight
+      }
+      // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
+      if (hasArtDirectionArray(convertedProps)) {
+        const sources = createArtDirectionSources(convertedProps)
+        sources.forEach(currentSource => pic.appendChild(currentSource))
+      } else if (imageData.srcSetWebp) {
+        const sourcesWebP = document.createElement('source')
+        sourcesWebP.type = `image/webp`
+        sourcesWebP.srcset = imageData.srcSetWebp
+        sourcesWebP.sizes = imageData.sizes
+        if (imageData.media) {
+          sourcesWebP.media = imageData.media
+        }
+        pic.appendChild(sourcesWebP)
+      }
+      pic.appendChild(imageRef)
+      removableElement = pic
+      // document.body.appendChild(removableElement)
+    } else {
+      if (selfRef) {
+        imageRef.width = selfRef.offsetWidth
+        imageRef.height = selfRef.offsetHeight
+      }
+      removableElement = imageRef
+      // document.body.appendChild(removableElement)
+    }
+
+    imageRef.srcset = imageData.srcSet ? imageData.srcSet : ``
+    imageRef.src = imageData.src ? imageData.src : ``
+    // if (imageData.media) {
+    //   imageRef.media = imageData.media
+    // }
+
+    // document.body.removeChild(removableElement)
+
+    return imageRef
   }
   return null
 }

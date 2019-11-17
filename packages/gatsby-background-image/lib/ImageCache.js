@@ -68,7 +68,7 @@ exports.allInImageCache = allInImageCache;
 var activateCacheForImage = function activateCacheForImage(props) {
   var convertedProps = (0, _HelperUtils.convertProps)(props);
 
-  if ((0, _ImageUtils.hasImageArray)(convertedProps)) {
+  if ((0, _ImageUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
     return activateCacheForMultipleImages(props);
   } // Find src
 

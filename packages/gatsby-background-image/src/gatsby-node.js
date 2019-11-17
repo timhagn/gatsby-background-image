@@ -1,4 +1,4 @@
-import { isString } from './lib/HelperUtils'
+import { isString } from './lib/SimpleUtils'
 
 exports.onCreateWebpackConfig = ({ plugins, actions }, { specialChars }) => {
   if (isString(specialChars)) {

@@ -99,61 +99,59 @@ var activatePictureRef = function activatePictureRef(imageRef, props, selfRef) {
   if ((0, _SimpleUtils.isBrowser)() && (typeof convertedProps.fluid !== "undefined" || typeof convertedProps.fixed !== "undefined")) {
     if ((0, _ImageUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
       return activateMultiplePictureRefs(imageRef, props, selfRef);
-    } else {
-      var imageData = (0, _MediaUtils.hasArtDirectionArray)(convertedProps) ? (0, _ImageUtils.getCurrentSrcData)(convertedProps) : (0, _ImageUtils.getCurrentFromData)(convertedProps); // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
-      // but don't prevent it during SSR.
+    }
 
-      var removableElement = null;
+    var imageData = (0, _MediaUtils.hasArtDirectionArray)(convertedProps) ? (0, _ImageUtils.getFirstImage)(convertedProps) : (0, _ImageUtils.getCurrentSrcData)(convertedProps); // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
+    // but don't prevent it during SSR.
 
-      if ((0, _ImageUtils.hasPictureElement)()) {
-        var pic = document.createElement('picture');
+    var removableElement = null;
 
-        if (selfRef) {
-          // Set original component's style.
-          pic.width = imageRef.width = selfRef.offsetWidth;
-          pic.height = imageRef.height = selfRef.offsetHeight;
-        } // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
+    if ((0, _ImageUtils.hasPictureElement)()) {
+      var pic = document.createElement('picture');
+
+      if (selfRef) {
+        // Set original component's style.
+        pic.width = imageRef.width = selfRef.offsetWidth;
+        pic.height = imageRef.height = selfRef.offsetHeight;
+      } // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
 
 
-        if ((0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
-          var sources = (0, _MediaUtils.createArtDirectionSources)(convertedProps);
-          sources.forEach(function (currentSource) {
-            return pic.appendChild(currentSource);
-          });
-        } else if (imageData.srcSetWebp) {
-          var sourcesWebP = document.createElement('source');
-          sourcesWebP.type = "image/webp";
-          sourcesWebP.srcset = imageData.srcSetWebp;
-          sourcesWebP.sizes = imageData.sizes;
+      if ((0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
+        var sources = (0, _MediaUtils.createArtDirectionSources)(convertedProps);
+        sources.forEach(function (currentSource) {
+          return pic.appendChild(currentSource);
+        });
+      } else if (imageData.srcSetWebp) {
+        var sourcesWebP = document.createElement('source');
+        sourcesWebP.type = "image/webp";
+        sourcesWebP.srcset = imageData.srcSetWebp;
+        sourcesWebP.sizes = imageData.sizes;
 
-          if (imageData.media) {
-            sourcesWebP.media = imageData.media;
-          }
-
-          pic.appendChild(sourcesWebP);
+        if (imageData.media) {
+          sourcesWebP.media = imageData.media;
         }
 
-        pic.appendChild(imageRef);
-        removableElement = pic; // document.body.appendChild(removableElement)
-      } else {
-        if (selfRef) {
-          imageRef.width = selfRef.offsetWidth;
-          imageRef.height = selfRef.offsetHeight;
-        }
-
-        removableElement = imageRef; // document.body.appendChild(removableElement)
+        pic.appendChild(sourcesWebP);
       }
 
-      imageRef.srcset = imageData.srcSet ? imageData.srcSet : "";
-      imageRef.src = imageData.src ? imageData.src : "";
+      pic.appendChild(imageRef);
+      removableElement = pic; // document.body.appendChild(removableElement)
+    } else {
+      if (selfRef) {
+        imageRef.width = selfRef.offsetWidth;
+        imageRef.height = selfRef.offsetHeight;
+      }
 
-      if (imageData.media) {
-        imageRef.media = imageData.media;
-      } // document.body.removeChild(removableElement)
-
-
-      return imageRef;
+      removableElement = imageRef; // document.body.appendChild(removableElement)
     }
+
+    imageRef.srcset = imageData.srcSet ? imageData.srcSet : "";
+    imageRef.src = imageData.src ? imageData.src : ""; // if (imageData.media) {
+    //   imageRef.media = imageData.media
+    // }
+    // document.body.removeChild(removableElement)
+
+    return imageRef;
   }
 
   return null;
