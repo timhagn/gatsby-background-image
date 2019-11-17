@@ -7,16 +7,16 @@ import {
   imagePropsChanged,
   imageReferenceCompleted,
 } from './lib/ImageUtils'
+import { activateCacheForImage, inImageCache } from './lib/ImageCache'
+import { activatePictureRef, createPictureRef } from './lib/ImageRef'
+import { initialBgImage, switchImageSettings } from './lib/ImageHandling'
 import {
   fixClassName,
   fixOpacity,
   presetBackgroundStyles,
 } from './lib/StyleUtils'
-import { listenToIntersections } from './lib/IntersectionObserverUtils'
-import { activateCacheForImage, inImageCache } from './lib/ImageCache'
-import { activatePictureRef, createPictureRef } from './lib/ImageRef'
-import { initialBgImage, switchImageSettings } from './lib/ImageHandling'
 import { createNoScriptStyles, createPseudoStyles } from './lib/StyleCreation'
+import { listenToIntersections } from './lib/IntersectionObserverUtils'
 
 /**
  * Main Lazy-loading React background-image component

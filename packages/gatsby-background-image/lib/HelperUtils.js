@@ -3,17 +3,14 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.logDeprecationNotice = exports.getCurrentSrcData = exports.matchesMedia = exports.getImageSrcKey = exports.combineArray = exports.filteredJoin = exports.hashString = exports.stringToArray = exports.toKebabCase = exports.toCamelCase = exports.hasArtDirectionArray = exports.hasArtDirectionFixedArray = exports.hasArtDirectionFluidArray = exports.hasImageArray = exports.groupByMedia = exports.convertProps = exports.stripRemainingProps = exports.isString = exports.isBrowser = void 0;
+exports.logDeprecationNotice = exports.combineArray = exports.filteredJoin = exports.hashString = exports.stringToArray = exports.toKebabCase = exports.toCamelCase = exports.hasImageArray = exports.convertProps = exports.stripRemainingProps = exports.isString = exports.isBrowser = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
 var _filterInvalidDomProps = _interopRequireDefault(require("filter-invalid-dom-props"));
 
-/**
- * Are we in the browser?
- *
- * @return {boolean}
- */
+var _MediaUtils = require("./MediaUtils");
+
 var isBrowser = function isBrowser() {
   return typeof window !== 'undefined';
 };
@@ -83,38 +80,15 @@ var convertProps = function convertProps(props) {
   // convert fluid & fixed to arrays so we only have to work with arrays
 
 
-  if (fluid && hasArtDirectionFluidArray(props)) {
-    convertedProps.fluid = groupByMedia(convertedProps.fluid);
+  if (fluid && (0, _MediaUtils.hasArtDirectionFluidArray)(props)) {
+    convertedProps.fluid = (0, _MediaUtils.groupByMedia)(convertedProps.fluid);
   }
 
-  if (fixed && hasArtDirectionFixedArray(props)) {
-    convertedProps.fixed = groupByMedia(convertedProps.fixed);
+  if (fixed && (0, _MediaUtils.hasArtDirectionFixedArray)(props)) {
+    convertedProps.fixed = (0, _MediaUtils.groupByMedia)(convertedProps.fixed);
   }
 
   return convertedProps;
-};
-/**
- * Return an array ordered by elements having a media prop, does not use
- * native sort, as a stable sort is not guaranteed by all browsers/versions
- *
- * @param imageVariants   array   The art-directed images.-
- */
-
-
-exports.convertProps = convertProps;
-
-var groupByMedia = function groupByMedia(imageVariants) {
-  var withMedia = [];
-  var without = [];
-  imageVariants.forEach(function (variant) {
-    return (variant.media ? withMedia : without).push(variant);
-  });
-
-  if (without.length > 1 && process.env.NODE_ENV !== "production") {
-    console.warn("We've found " + without.length + " sources without a media property. They might be ignored by the browser, see: https://www.gatsbyjs.org/packages/gatsby-image/#art-directing-multiple-images");
-  }
-
-  return [].concat(withMedia, without);
 };
 /**
  * Checks if fluid or fixed are image arrays.
@@ -124,52 +98,10 @@ var groupByMedia = function groupByMedia(imageVariants) {
  */
 
 
-exports.groupByMedia = groupByMedia;
+exports.convertProps = convertProps;
 
 var hasImageArray = function hasImageArray(props) {
   return props.fluid && Array.isArray(props.fluid) || props.fixed && Array.isArray(props.fixed);
-};
-/**
- * Checks if fluid or fixed are art-direction arrays.
- *
- * @param props   object   The props to check for images.
- * @return {boolean}
- */
-
-
-exports.hasImageArray = hasImageArray;
-
-var hasArtDirectionFluidArray = function hasArtDirectionFluidArray(props) {
-  return props.fluid && Array.isArray(props.fluid) && props.fluid.some(function (fluidImage) {
-    return typeof fluidImage.media !== 'undefined';
-  });
-};
-/**
- * Checks if fluid or fixed are art-direction arrays.
- *
- * @param props   object   The props to check for images.
- * @return {boolean}
- */
-
-
-exports.hasArtDirectionFluidArray = hasArtDirectionFluidArray;
-
-var hasArtDirectionFixedArray = function hasArtDirectionFixedArray(props) {
-  return props.fixed && Array.isArray(props.fixed) && props.fixed.some(function (fixedImage) {
-    return typeof fixedImage.media !== 'undefined';
-  });
-};
-/**
- * Checks for fluid or fixed Art direction support.
- * @param props
- * @return {boolean}
- */
-
-
-exports.hasArtDirectionFixedArray = hasArtDirectionFixedArray;
-
-var hasArtDirectionArray = function hasArtDirectionArray(props) {
-  return hasArtDirectionFluidArray(props) || hasArtDirectionFixedArray(props);
 };
 /**
  * Converts CSS kebab-case strings to camel-cased js style rules.
@@ -179,7 +111,7 @@ var hasArtDirectionArray = function hasArtDirectionArray(props) {
  */
 
 
-exports.hasArtDirectionArray = hasArtDirectionArray;
+exports.hasImageArray = hasImageArray;
 
 var toCamelCase = function toCamelCase(str) {
   return isString(str) && str.toLowerCase().replace(/(?:^\w|-|[A-Z]|\b\w)/g, function (letter, index) {
@@ -284,78 +216,6 @@ var combineArray = function combineArray(fromArray, toArray) {
   });
 };
 /**
- * Find the source of an image to use as a key in the image cache.
- * Use `the first matching image in either `fixed` or `fluid`
- *
- * @param {{fluid: {src: string}[], fixed: {src: string}[]}} args
- * @return {string|null}
- */
-
-
-exports.combineArray = combineArray;
-
-var getImageSrcKey = function getImageSrcKey(_ref) {
-  var fluid = _ref.fluid,
-      fixed = _ref.fixed;
-  var data = getCurrentSrcData({
-    fluid: fluid,
-    fixed: fixed
-  });
-  return data ? data.src || null : null;
-};
-/**
- * Tries to detect if a media query matches the current viewport.
- *
- * @param media   string  A media query string.
- * @return {*|boolean}
- */
-
-
-exports.getImageSrcKey = getImageSrcKey;
-
-var matchesMedia = function matchesMedia(_ref2) {
-  var media = _ref2.media;
-  return media && isBrowser() && window.matchMedia(media).matches;
-};
-/**
- * Returns the current src if possible with art-direction support.
- *
- * @param fluid   object    Fluid Image (Array) if existent.
- * @param fixed   object    Fixed Image (Array) if existent.v
- * @return {*}
- */
-
-
-exports.matchesMedia = matchesMedia;
-
-var getCurrentSrcData = function getCurrentSrcData(_ref3) {
-  var fluid = _ref3.fluid,
-      fixed = _ref3.fixed;
-  var currentData = fluid || fixed;
-
-  if (hasImageArray({
-    fluid: fluid,
-    fixed: fixed
-  })) {
-    if (isBrowser() && hasArtDirectionArray({
-      fluid: fluid,
-      fixed: fixed
-    })) {
-      // Do we have an image for the current Viewport?
-      var foundMedia = currentData.reverse().findIndex(matchesMedia);
-
-      if (foundMedia !== -1) {
-        return currentData.reverse()[foundMedia];
-      }
-    } // Else return the first image.
-
-
-    return currentData[0];
-  }
-
-  return currentData;
-};
-/**
  * Logs a warning if deprecated props where used.
  *
  * @param prop
@@ -363,7 +223,7 @@ var getCurrentSrcData = function getCurrentSrcData(_ref3) {
  */
 
 
-exports.getCurrentSrcData = getCurrentSrcData;
+exports.combineArray = combineArray;
 
 var logDeprecationNotice = function logDeprecationNotice(prop, notice) {
   if (process.env.NODE_ENV === "production") {

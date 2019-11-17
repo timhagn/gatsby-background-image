@@ -5,6 +5,10 @@ exports.resetImageCache = exports.activateCacheForMultipleImages = exports.activ
 
 var _HelperUtils = require("./HelperUtils");
 
+var _MediaUtils = require("./MediaUtils");
+
+var _ImageUtils = require("./ImageUtils");
+
 var imageCache = Object.create({});
 /**
  * Cache if we've seen an image before so we don't both with
@@ -17,12 +21,12 @@ var imageCache = Object.create({});
 var inImageCache = function inImageCache(props) {
   var convertedProps = (0, _HelperUtils.convertProps)(props);
 
-  if ((0, _HelperUtils.hasImageArray)(convertedProps) && !(0, _HelperUtils.hasArtDirectionArray)(convertedProps)) {
+  if ((0, _HelperUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
     return allInImageCache(props);
   } // Find src
 
 
-  var src = (0, _HelperUtils.getImageSrcKey)(convertedProps);
+  var src = (0, _ImageUtils.getImageSrcKey)(convertedProps);
   return imageCache[src] || false;
 };
 /**
@@ -69,7 +73,7 @@ var activateCacheForImage = function activateCacheForImage(props) {
   } // Find src
 
 
-  var src = (0, _HelperUtils.getImageSrcKey)(convertedProps);
+  var src = (0, _ImageUtils.getImageSrcKey)(convertedProps);
 
   if (src) {
     imageCache[src] = true;

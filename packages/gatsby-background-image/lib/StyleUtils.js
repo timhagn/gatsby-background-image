@@ -13,9 +13,9 @@ var _shortUuid = _interopRequireDefault(require("short-uuid"));
 
 var _HelperUtils = require("./HelperUtils");
 
-var _ImageUtils = require("./ImageUtils");
-
 var _ClassCache = require("./ClassCache");
+
+var _ImageUtils = require("./ImageUtils");
 
 var fixClassName = function fixClassName(_ref) {
   var className = _ref.className,
@@ -24,7 +24,7 @@ var fixClassName = function fixClassName(_ref) {
   var convertedProps = (0, _HelperUtils.convertProps)(props);
   var elementExists = (0, _ClassCache.inComponentClassCache)(className); // Extract imageData.
 
-  var imageData = (0, _HelperUtils.getCurrentSrcData)(convertedProps); // Add an additional unique class for multiple <BackgroundImage>s.
+  var imageData = (0, _ImageUtils.getCurrentSrcData)(convertedProps); // Add an additional unique class for multiple <BackgroundImage>s.
 
   var additionalClassname = _shortUuid.default.generate(); // Create random "uniquely hashed" additionalClass if needed.
 

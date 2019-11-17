@@ -1,9 +1,9 @@
 import {
   convertProps,
-  getImageSrcKey,
-  hasArtDirectionArray,
   hasImageArray,
 } from './HelperUtils'
+import { hasArtDirectionArray } from './MediaUtils'
+import { getImageSrcKey } from './ImageUtils'
 
 const imageCache = Object.create({})
 /**

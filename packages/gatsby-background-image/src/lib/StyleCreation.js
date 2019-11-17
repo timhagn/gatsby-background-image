@@ -1,7 +1,6 @@
 import {
   combineArray,
   filteredJoin,
-  hasArtDirectionArray,
   stringToArray,
 } from './HelperUtils'
 import {
@@ -10,6 +9,7 @@ import {
   setTransitionStyles,
 } from './StyleUtils'
 import { getCurrentFromData, getUrlString } from './ImageUtils'
+import { hasArtDirectionArray } from './MediaUtils'
 
 /**
  * Creates pseudo-element(s) for className(s).

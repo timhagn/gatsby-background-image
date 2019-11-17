@@ -1,44 +1,14 @@
 "use strict";
 
 exports.__esModule = true;
-exports.imageLoaded = exports.imageReferenceCompleted = exports.createDummyImageArray = exports.imageArrayPropsChanged = exports.imagePropsChanged = exports.getUrlString = exports.getCurrentFromData = exports.createArtDirectionSources = exports.hasPictureElement = void 0;
+exports.imageLoaded = exports.imageReferenceCompleted = exports.createDummyImageArray = exports.imageArrayPropsChanged = exports.imagePropsChanged = exports.getUrlString = exports.getCurrentSrcData = exports.getImageSrcKey = exports.getCurrentFromData = exports.hasPictureElement = void 0;
 
 var _HelperUtils = require("./HelperUtils");
 
+var _MediaUtils = require("./MediaUtils");
+
 var hasPictureElement = function hasPictureElement() {
   return typeof HTMLPictureElement !== "undefined" || typeof window === "undefined";
-};
-/**
- * Creates a source Array from media objects.
- *
- * @param fluid
- * @param fixed
- * @return {*}
- */
-
-
-exports.hasPictureElement = hasPictureElement;
-
-var createArtDirectionSources = function createArtDirectionSources(_ref) {
-  var fluid = _ref.fluid,
-      fixed = _ref.fixed;
-  var currentSource = fluid || fixed;
-  return currentSource.map(function (image) {
-    var source = document.createElement('source');
-    source.srcset = image.srcSet;
-    source.sizes = image.sizes;
-
-    if (image.srcSetWebp) {
-      source.type = "image/webp";
-      source.srcset = image.srcSetWebp;
-    }
-
-    if (image.media) {
-      source.media = image.media;
-    }
-
-    return source;
-  });
 };
 /**
  * Extracts a value from an imageRef, image object or an array of them.
@@ -52,22 +22,22 @@ var createArtDirectionSources = function createArtDirectionSources(_ref) {
  */
 
 
-exports.createArtDirectionSources = createArtDirectionSources;
+exports.hasPictureElement = hasPictureElement;
 
-var getCurrentFromData = function getCurrentFromData(_ref2) {
-  var data = _ref2.data,
-      propName = _ref2.propName,
-      _ref2$addUrl = _ref2.addUrl,
-      addUrl = _ref2$addUrl === void 0 ? true : _ref2$addUrl,
-      _ref2$returnArray = _ref2.returnArray,
-      returnArray = _ref2$returnArray === void 0 ? false : _ref2$returnArray,
-      _ref2$checkLoaded = _ref2.checkLoaded,
-      checkLoaded = _ref2$checkLoaded === void 0 ? true : _ref2$checkLoaded;
+var getCurrentFromData = function getCurrentFromData(_ref) {
+  var data = _ref.data,
+      propName = _ref.propName,
+      _ref$addUrl = _ref.addUrl,
+      addUrl = _ref$addUrl === void 0 ? true : _ref$addUrl,
+      _ref$returnArray = _ref.returnArray,
+      returnArray = _ref$returnArray === void 0 ? false : _ref$returnArray,
+      _ref$checkLoaded = _ref.checkLoaded,
+      checkLoaded = _ref$checkLoaded === void 0 ? true : _ref$checkLoaded;
   if (!data || !propName) return ""; // Handle tracedSVG with "special care".
 
   var tracedSVG = propName === "tracedSVG";
 
-  if (Array.isArray(data) && !(0, _HelperUtils.hasArtDirectionArray)({
+  if (Array.isArray(data) && !(0, _MediaUtils.hasArtDirectionArray)({
     fluid: data
   })) {
     // Filter out all elements not having the propName and return remaining.
@@ -96,10 +66,10 @@ var getCurrentFromData = function getCurrentFromData(_ref2) {
     });
   }
 
-  if ((0, _HelperUtils.hasArtDirectionArray)({
+  if ((0, _MediaUtils.hasArtDirectionArray)({
     fluid: data
   }) && (propName === "currentSrc" || propName === 'src')) {
-    var currentData = (0, _HelperUtils.getCurrentSrcData)({
+    var currentData = getCurrentSrcData({
       fluid: data
     });
     return propName in currentData ? getUrlString({
@@ -124,6 +94,64 @@ var getCurrentFromData = function getCurrentFromData(_ref2) {
   }) : "";
 };
 /**
+ * Find the source of an image to use as a key in the image cache.
+ * Use `the first matching image in either `fixed` or `fluid`
+ *
+ * @param {{fluid: {src: string}[], fixed: {src: string}[]}} args
+ * @return {string|null}
+ */
+
+
+exports.getCurrentFromData = getCurrentFromData;
+
+var getImageSrcKey = function getImageSrcKey(_ref2) {
+  var fluid = _ref2.fluid,
+      fixed = _ref2.fixed;
+  var data = getCurrentSrcData({
+    fluid: fluid,
+    fixed: fixed
+  });
+  return data ? data.src || null : null;
+};
+/**
+ * Returns the current src if possible with art-direction support.
+ *
+ * @param fluid   object    Fluid Image (Array) if existent.
+ * @param fixed   object    Fixed Image (Array) if existent.v
+ * @return {*}
+ */
+
+
+exports.getImageSrcKey = getImageSrcKey;
+
+var getCurrentSrcData = function getCurrentSrcData(_ref3) {
+  var fluid = _ref3.fluid,
+      fixed = _ref3.fixed;
+  var currentData = fluid || fixed;
+
+  if ((0, _HelperUtils.hasImageArray)({
+    fluid: fluid,
+    fixed: fixed
+  })) {
+    if ((0, _HelperUtils.isBrowser)() && (0, _MediaUtils.hasArtDirectionArray)({
+      fluid: fluid,
+      fixed: fixed
+    })) {
+      // Do we have an image for the current Viewport?
+      var foundMedia = currentData.reverse().findIndex(_MediaUtils.matchesMedia);
+
+      if (foundMedia !== -1) {
+        return currentData.reverse()[foundMedia];
+      }
+    } // Else return the first image.
+
+
+    return currentData[0];
+  }
+
+  return currentData;
+};
+/**
  * Encapsulates an imageString with a url if needed.
  *
  * @param imageString   string    String to encapsulate.
@@ -135,18 +163,18 @@ var getCurrentFromData = function getCurrentFromData(_ref2) {
  */
 
 
-exports.getCurrentFromData = getCurrentFromData;
+exports.getCurrentSrcData = getCurrentSrcData;
 
-var getUrlString = function getUrlString(_ref3) {
-  var imageString = _ref3.imageString,
-      _ref3$tracedSVG = _ref3.tracedSVG,
-      tracedSVG = _ref3$tracedSVG === void 0 ? false : _ref3$tracedSVG,
-      _ref3$addUrl = _ref3.addUrl,
-      addUrl = _ref3$addUrl === void 0 ? true : _ref3$addUrl,
-      _ref3$returnArray = _ref3.returnArray,
-      returnArray = _ref3$returnArray === void 0 ? false : _ref3$returnArray,
-      _ref3$hasImageUrls = _ref3.hasImageUrls,
-      hasImageUrls = _ref3$hasImageUrls === void 0 ? false : _ref3$hasImageUrls;
+var getUrlString = function getUrlString(_ref4) {
+  var imageString = _ref4.imageString,
+      _ref4$tracedSVG = _ref4.tracedSVG,
+      tracedSVG = _ref4$tracedSVG === void 0 ? false : _ref4$tracedSVG,
+      _ref4$addUrl = _ref4.addUrl,
+      addUrl = _ref4$addUrl === void 0 ? true : _ref4$addUrl,
+      _ref4$returnArray = _ref4.returnArray,
+      returnArray = _ref4$returnArray === void 0 ? false : _ref4$returnArray,
+      _ref4$hasImageUrls = _ref4.hasImageUrls,
+      hasImageUrls = _ref4$hasImageUrls === void 0 ? false : _ref4$hasImageUrls;
 
   if (Array.isArray(imageString)) {
     var stringArray = imageString.map(function (currentString) {

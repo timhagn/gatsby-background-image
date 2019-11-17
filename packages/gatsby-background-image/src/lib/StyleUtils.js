@@ -1,21 +1,16 @@
 import uuid from 'short-uuid'
 import {
-  combineArray,
   convertProps,
-  filteredJoin,
-  getCurrentSrcData,
-  hasArtDirectionArray,
   hashString,
   isBrowser,
   isString,
-  stringToArray,
   toKebabCase,
 } from './HelperUtils'
-import { getCurrentFromData, getUrlString } from './ImageUtils'
 import {
   activateCacheForComponentClass,
   inComponentClassCache,
 } from './ClassCache'
+import { getCurrentSrcData } from './ImageUtils'
 
 /**
  * Checks if an element with given className(s) already exists.

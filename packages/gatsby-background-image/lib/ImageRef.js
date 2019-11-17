@@ -11,11 +11,13 @@ var _HelperUtils = require("./HelperUtils");
 
 var _ImageUtils = require("./ImageUtils");
 
+var _MediaUtils = require("./MediaUtils");
+
 var createPictureRef = function createPictureRef(props, onLoad) {
   var convertedProps = (0, _HelperUtils.convertProps)(props);
 
   if ((0, _HelperUtils.isBrowser)() && (typeof convertedProps.fluid !== "undefined" || typeof convertedProps.fixed !== "undefined")) {
-    if ((0, _HelperUtils.hasImageArray)(convertedProps) && !(0, _HelperUtils.hasArtDirectionArray)(convertedProps)) {
+    if ((0, _HelperUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
       return createMultiplePictureRefs(props, onLoad);
     }
 
@@ -93,10 +95,10 @@ var activatePictureRef = function activatePictureRef(imageRef, props, selfRef) {
   var convertedProps = (0, _HelperUtils.convertProps)(props);
 
   if ((0, _HelperUtils.isBrowser)() && (typeof convertedProps.fluid !== "undefined" || typeof convertedProps.fixed !== "undefined")) {
-    if ((0, _HelperUtils.hasImageArray)(convertedProps) && !(0, _HelperUtils.hasArtDirectionArray)(convertedProps)) {
+    if ((0, _HelperUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
       return activateMultiplePictureRefs(imageRef, props, selfRef);
     } else {
-      var imageData = (0, _HelperUtils.hasArtDirectionArray)(convertedProps) ? (0, _HelperUtils.getCurrentSrcData)(convertedProps) : (0, _ImageUtils.getCurrentFromData)(convertedProps); // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
+      var imageData = (0, _MediaUtils.hasArtDirectionArray)(convertedProps) ? (0, _ImageUtils.getCurrentSrcData)(convertedProps) : (0, _ImageUtils.getCurrentFromData)(convertedProps); // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
       // but don't prevent it during SSR.
 
       var removableElement = null;
@@ -111,8 +113,8 @@ var activatePictureRef = function activatePictureRef(imageRef, props, selfRef) {
         } // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
 
 
-        if ((0, _HelperUtils.hasArtDirectionArray)(convertedProps)) {
-          var sources = (0, _ImageUtils.createArtDirectionSources)(convertedProps);
+        if ((0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
+          var sources = (0, _MediaUtils.createArtDirectionSources)(convertedProps);
           sources.forEach(function (currentSource) {
             return pic.appendChild(currentSource);
           });

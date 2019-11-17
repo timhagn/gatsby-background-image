@@ -1,4 +1,9 @@
 import filterInvalidDOMProps from 'filter-invalid-dom-props'
+import {
+  groupByMedia,
+  hasArtDirectionFixedArray,
+  hasArtDirectionFluidArray,
+} from './MediaUtils'
 
 /**
  * Are we in the browser?
@@ -70,28 +75,6 @@ export const convertProps = props => {
 }
 
 /**
- * Return an array ordered by elements having a media prop, does not use
- * native sort, as a stable sort is not guaranteed by all browsers/versions
- *
- * @param imageVariants   array   The art-directed images.-
- */
-export const groupByMedia = imageVariants => {
-  const withMedia = []
-  const without = []
-  imageVariants.forEach(variant =>
-    (variant.media ? withMedia : without).push(variant)
-  )
-
-  if (without.length > 1 && process.env.NODE_ENV !== `production`) {
-    console.warn(
-      `We've found ${without.length} sources without a media property. They might be ignored by the browser, see: https://www.gatsbyjs.org/packages/gatsby-image/#art-directing-multiple-images`
-    )
-  }
-
-  return [...withMedia, ...without]
-}
-
-/**
  * Checks if fluid or fixed are image arrays.
  *
  * @param props   object   The props to check for images.
@@ -100,36 +83,6 @@ export const groupByMedia = imageVariants => {
 export const hasImageArray = props =>
   (props.fluid && Array.isArray(props.fluid)) ||
   (props.fixed && Array.isArray(props.fixed))
-
-/**
- * Checks if fluid or fixed are art-direction arrays.
- *
- * @param props   object   The props to check for images.
- * @return {boolean}
- */
-export const hasArtDirectionFluidArray = props =>
-  props.fluid &&
-  Array.isArray(props.fluid) &&
-  props.fluid.some(fluidImage => typeof fluidImage.media !== 'undefined')
-
-/**
- * Checks if fluid or fixed are art-direction arrays.
- *
- * @param props   object   The props to check for images.
- * @return {boolean}
- */
-export const hasArtDirectionFixedArray = props =>
-  props.fixed &&
-  Array.isArray(props.fixed) &&
-  props.fixed.some(fixedImage => typeof fixedImage.media !== 'undefined')
-
-/**
- * Checks for fluid or fixed Art direction support.
- * @param props
- * @return {boolean}
- */
-export const hasArtDirectionArray = props =>
-  hasArtDirectionFluidArray(props) || hasArtDirectionFixedArray(props)
 
 /**
  * Converts CSS kebab-case strings to camel-cased js style rules.
@@ -217,51 +170,6 @@ export const combineArray = (fromArray, toArray) => {
     return [fromArray]
   }
   return fromArray.map((item, index) => item || toArray[index])
-}
-
-/**
- * Find the source of an image to use as a key in the image cache.
- * Use `the first matching image in either `fixed` or `fluid`
- *
- * @param {{fluid: {src: string}[], fixed: {src: string}[]}} args
- * @return {string|null}
- */
-export const getImageSrcKey = ({ fluid, fixed }) => {
-  const data = getCurrentSrcData({ fluid, fixed })
-
-  return data ? data.src || null : null
-}
-
-/**
- * Tries to detect if a media query matches the current viewport.
- *
- * @param media   string  A media query string.
- * @return {*|boolean}
- */
-export const matchesMedia = ({ media }) =>
-  media && isBrowser() && window.matchMedia(media).matches
-
-/**
- * Returns the current src if possible with art-direction support.
- *
- * @param fluid   object    Fluid Image (Array) if existent.
- * @param fixed   object    Fixed Image (Array) if existent.v
- * @return {*}
- */
-export const getCurrentSrcData = ({ fluid, fixed }) => {
-  const currentData = fluid || fixed
-  if (hasImageArray({ fluid, fixed })) {
-    if (isBrowser() && hasArtDirectionArray({ fluid, fixed })) {
-      // Do we have an image for the current Viewport?
-      const foundMedia = currentData.reverse().findIndex(matchesMedia)
-      if (foundMedia !== -1) {
-        return currentData.reverse()[foundMedia]
-      }
-    }
-    // Else return the first image.
-    return currentData[0]
-  }
-  return currentData
 }
 
 /**

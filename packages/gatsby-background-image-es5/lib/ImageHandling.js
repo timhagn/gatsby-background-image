@@ -11,6 +11,8 @@ var _HelperUtils = require("./HelperUtils");
 
 var _ImageUtils = require("./ImageUtils");
 
+var _MediaUtils = require("./MediaUtils");
+
 var switchImageSettings = function switchImageSettings(_ref) {
   var image = _ref.image,
       bgImage = _ref.bgImage,
@@ -22,7 +24,7 @@ var switchImageSettings = function switchImageSettings(_ref) {
     propName: "currentSrc"
   }); // Check if image is Array.
 
-  var returnArray = (0, _isArray.default)(image) && !(0, _HelperUtils.hasArtDirectionArray)({
+  var returnArray = (0, _isArray.default)(image) && !(0, _MediaUtils.hasArtDirectionArray)({
     fluid: image
   }); // Backup bgImage to lastImage.
 

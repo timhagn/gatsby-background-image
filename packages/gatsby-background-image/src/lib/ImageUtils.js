@@ -1,9 +1,10 @@
 import {
   filteredJoin,
-  hasArtDirectionArray,
   isString,
-  getCurrentSrcData,
+  hasImageArray,
+  isBrowser,
 } from './HelperUtils'
+import { hasArtDirectionArray, matchesMedia } from './MediaUtils'
 
 /**
  * Returns the availability of the HTMLPictureElement unless in SSR mode.
@@ -12,30 +13,6 @@ import {
  */
 export const hasPictureElement = () =>
   typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`
-
-/**
- * Creates a source Array from media objects.
- *
- * @param fluid
- * @param fixed
- * @return {*}
- */
-export const createArtDirectionSources = ({ fluid, fixed }) => {
-  const currentSource = fluid || fixed
-  return currentSource.map(image => {
-    const source = document.createElement('source')
-    source.srcset = image.srcSet
-    source.sizes = image.sizes
-    if (image.srcSetWebp) {
-      source.type = `image/webp`
-      source.srcset = image.srcSetWebp
-    }
-    if (image.media) {
-      source.media = image.media
-    }
-    return source
-  })
-}
 
 /**
  * Extracts a value from an imageRef, image object or an array of them.
@@ -105,6 +82,42 @@ export const getCurrentFromData = ({
   return propName in data
     ? getUrlString({ imageString: data[propName], tracedSVG, addUrl })
     : ``
+}
+
+/**
+ * Find the source of an image to use as a key in the image cache.
+ * Use `the first matching image in either `fixed` or `fluid`
+ *
+ * @param {{fluid: {src: string}[], fixed: {src: string}[]}} args
+ * @return {string|null}
+ */
+export const getImageSrcKey = ({ fluid, fixed }) => {
+  const data = getCurrentSrcData({ fluid, fixed })
+
+  return data ? data.src || null : null
+}
+
+/**
+ * Returns the current src if possible with art-direction support.
+ *
+ * @param fluid   object    Fluid Image (Array) if existent.
+ * @param fixed   object    Fixed Image (Array) if existent.v
+ * @return {*}
+ */
+export const getCurrentSrcData = ({ fluid, fixed }) => {
+  const currentData = fluid || fixed
+  if (hasImageArray({ fluid, fixed })) {
+    if (isBrowser() && hasArtDirectionArray({ fluid, fixed })) {
+      // Do we have an image for the current Viewport?
+      const foundMedia = currentData.reverse().findIndex(matchesMedia)
+      if (foundMedia !== -1) {
+        return currentData.reverse()[foundMedia]
+      }
+    }
+    // Else return the first image.
+    return currentData[0]
+  }
+  return currentData
 }
 
 /**
