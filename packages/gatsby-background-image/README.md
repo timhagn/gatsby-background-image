@@ -1,6 +1,6 @@
-<h2 align="center">
+<h1 align="center">
   gatsby-background-image
-</h2>
+</h1>
 <p align="center">
   <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
 </p>
@@ -248,7 +248,7 @@ const BackgroundSection = ({ className }) => (
           fluid={imageData}
           backgroundColor={`#040e18`}
         >
-          <h1>Hello gatsby-background-image</h1>
+          <h2>Hello gatsby-background-image</h2>
         </BackgroundImage>
       )
     }}
@@ -321,9 +321,9 @@ const MultiBackground = ({ className }) => {
       fluid={backgroundFluidImageStack}
     >
       <StyledInnerWrapper>
-        <h1>
+        <h2>
           This is a test of multiple background images.
-        </h1>
+        </h2>
       </StyledInnerWrapper>
     </BackgroundImage>
   )
@@ -409,7 +409,7 @@ const ArtDirectedBackground = ({ className }) => {
       fluid={sources}
     >
       <StyledInnerWrapper>
-        <h1>Hello art-directed gatsby-background-image.</h1>
+        <h2>Hello art-directed gatsby-background-image.</h2>
       </StyledInnerWrapper>
     </BackgroundImage>
   )

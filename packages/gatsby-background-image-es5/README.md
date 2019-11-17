@@ -229,7 +229,7 @@ const BackgroundSection = ({ className }) => (
           fluid={imageData}
           backgroundColor={`#040e18`}
         >
-          <h1>Hello gatsby-background-image-es5</h1>
+          <h2>Hello gatsby-background-image-es5</h2>
         </BackgroundImage>
       )
     }}
@@ -302,9 +302,9 @@ const MultiBackground = ({ children, className }) => {
       fluid={backgroundFluidImageStack}
     >
       <StyledInnerWrapper>
-        <h1>
+        <h2>
           This is a test of multiple background images.
-        </h1>
+        </h2>
       </StyledInnerWrapper>
     </BackgroundImage>
   )
@@ -390,7 +390,7 @@ const ArtDirectedBackground = ({ className }) => {
       fluid={sources}
     >
       <StyledInnerWrapper>
-        <h1>Hello art-directed gatsby-background-image.</h1>
+        <h2>Hello art-directed gatsby-background-image.</h2>
       </StyledInnerWrapper>
     </BackgroundImage>
   )
