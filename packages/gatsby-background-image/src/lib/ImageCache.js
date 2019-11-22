@@ -24,7 +24,6 @@ export const inImageCache = (props, index = 0, isLoop = false) => {
   const src = isImageStack
     ? getSelectedImage(convertedProps, index)
     : getImageSrcKey(convertedProps)
-  console.log(isImageStack, src, index)
   return imageCache[src] || false
 }
 
@@ -40,7 +39,6 @@ export const allInImageCache = props => {
   const imageStack = convertedProps.fluid || convertedProps.fixed
   // Only return true if every image is in cache.
   return imageStack.every((imageData, index) => {
-    console.log('caching', imageData.src, index)
     return inImageCache(convertedProps, index, true)
   })
 }

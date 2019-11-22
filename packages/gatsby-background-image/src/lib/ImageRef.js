@@ -99,7 +99,6 @@ export const activatePictureRef = (
   ) {
     const isImageStack =
       hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps)
-    console.log('why?', imageRef, isImageStack, isLoop, imageRef.length)
     if (isImageStack && !isLoop) {
       return activateMultiplePictureRefs(imageRef, props, selfRef)
     }
@@ -110,8 +109,6 @@ export const activatePictureRef = (
     const imageData = isImageStack
       ? getSelectedImage(convertedProps, index)
       : getCurrentSrcData(convertedProps)
-
-    console.log('activating', isImageStack, isLoop, convertedProps, index)
 
     // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
     // but don't prevent it during SSR.
