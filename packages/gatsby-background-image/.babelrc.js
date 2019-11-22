@@ -14,5 +14,6 @@ if (gatsbyPresets.presets[0][1].useBuiltIns) {
 
 module.exports = Object.assign(gatsbyPresets, {
   sourceMaps: true,
+  comments: false,
   ignore,
 })
