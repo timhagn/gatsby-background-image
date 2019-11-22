@@ -34,6 +34,24 @@ export const createPseudoElement = (
 }
 
 /**
+ * Creates a single pseudo-element with image content.
+ *
+ * @param pseudoElementString   string    The current pseudo-element name.
+ * @param imageSource           string    The current image source.
+ * @return {string}
+ */
+export const createPseudoElementWithContent = (
+  pseudoElementString,
+  imageSource
+) => {
+  return `
+    ${pseudoElementString} {
+      opacity: 1;
+      background-image: ${imageSource};
+    }`
+}
+
+/**
  * Creates styles for the changing pseudo-elements' backgrounds.
  *
  * @param classId           string    Pre 0.3.0 way to create pseudo-elements
@@ -141,11 +159,24 @@ export const createNoScriptStyles = ({ classId, className, image }) => {
       sourcesAsUrlWithCSS = filteredJoin(combineArray(sourcesAsUrl, cssStrings))
     }
     const pseudoBefore = createPseudoElement(className, classId)
-    return `
-          ${pseudoBefore} {
-            opacity: 1;
-            background-image: ${sourcesAsUrlWithCSS || sourcesAsUrl};
-          }`
+    if (hasArtDirectionArray({ fluid: image })) {
+      return image
+        .map(currentMedia => {
+          if (currentMedia.media) {
+            return `
+            @media ${currentMedia.media} {
+              ${createPseudoElementWithContent(pseudoBefore, currentMedia.src)}
+            }
+          `
+          }
+          return createPseudoElementWithContent(pseudoBefore, currentMedia.src)
+        })
+        .join('')
+    }
+    return createPseudoElementWithContent(
+      pseudoBefore,
+      sourcesAsUrlWithCSS || sourcesAsUrl
+    )
   }
   return ``
 }

@@ -31,10 +31,10 @@ background-size: cover;
             
           }
         </style><noscript><style>
-          .gatsby-background-image-fwatluf_depr:before {
-            opacity: 1;
-            background-image: url('test_fixed_image.jpg'),url('test_fixed_image.jpg');
-          }</style></noscript><h1>testempty</h1></div>"
+    .gatsby-background-image-fwatluf_depr:before {
+      opacity: 1;
+      background-image: url('test_fixed_image.jpg'),url('test_fixed_image.jpg');
+    }</style></noscript><h1>testempty</h1></div>"
 `;
 
 exports[`<BackgroundImage /> on SSR should work within SSR node environment 1`] = `
@@ -68,8 +68,8 @@ background-size: cover;
             
           }
         </style><noscript><style>
-          .gatsby-background-image-fwatluf_depr:before {
-            opacity: 1;
-            background-image: url('test_fluid_image.jpg');
-          }</style></noscript><h1>testempty</h1></div>"
+    .gatsby-background-image-fwatluf_depr:before {
+      opacity: 1;
+      background-image: url('test_fluid_image.jpg');
+    }</style></noscript><h1>testempty</h1></div>"
 `;

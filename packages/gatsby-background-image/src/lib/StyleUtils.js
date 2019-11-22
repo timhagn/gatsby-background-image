@@ -1,7 +1,5 @@
 import uuid from 'short-uuid'
-import {
-  convertProps,
-} from './HelperUtils'
+import { convertProps } from './HelperUtils'
 import {
   activateCacheForComponentClass,
   inComponentClassCache,

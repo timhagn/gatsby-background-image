@@ -279,7 +279,7 @@ export const imageReferenceCompleted = imageRef =>
     ? Array.isArray(imageRef)
       ? imageRef.every(singleImageRef => imageLoaded(singleImageRef))
       : imageLoaded(imageRef)
-    : false
+    : isString(imageRef)
 
 /**
  * Checks if an image really was fully loaded.
