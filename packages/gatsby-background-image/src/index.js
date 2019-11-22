@@ -4,6 +4,7 @@ import getBackgroundStyles from './lib/BackgroundUtils'
 import { convertProps, stripRemainingProps } from './lib/HelperUtils'
 import {
   getCurrentFromData,
+  getCurrentSrcData,
   imagePropsChanged,
   imageReferenceCompleted,
 } from './lib/ImageUtils'
@@ -127,12 +128,14 @@ class BackgroundImage extends React.Component {
   componentDidUpdate(prevProps) {
     // Check if we received a changed fluid / fixed image.
     if (imagePropsChanged(this.props, prevProps)) {
-      const imageInCache = inImageCache(this.props)
-      const [currentClassNames] = fixClassName(this.props)
+      const convertedProps = convertProps(this.props)
+      console.log('changed')
+      const imageInCache = inImageCache(convertedProps)
+      const [currentClassNames] = fixClassName(convertedProps)
 
       this.setState(
         {
-          isVisible: imageInCache || this.props.critical,
+          isVisible: imageInCache || convertedProps.critical,
           imgLoaded: imageInCache,
           currentClassNames,
 
@@ -154,7 +157,7 @@ class BackgroundImage extends React.Component {
               returnArray: true,
             })
           this.imageRef = createPictureRef(
-            { ...this.props, isVisible: this.state.isVisible },
+            { ...convertedProps, isVisible: this.state.isVisible },
             this.handleImageLoaded
           )
         }
@@ -277,20 +280,18 @@ class BackgroundImage extends React.Component {
     if (!this.props.preserveStackingContext) divStyle.opacity = 0.99
 
     // Choose image object of fluid or fixed, return null if not present.
-    let image, noScriptImageData
-    if (fluid) {
-      image = fluid
-      noScriptImageData = Array.isArray(fluid) ? fluid[0] : fluid
-    } else if (fixed) {
-      image = fixed
-      divStyle.width = image.width
-      divStyle.height = image.height
-      divStyle.display = `inline-block`
+    const image = getCurrentSrcData({ fluid, fixed, returnArray: true })
+    const noScriptImageData = getCurrentSrcData({ fluid, fixed })
+    if (fluid || fixed) {
+      if (fixed) {
+        divStyle.width = image.width
+        divStyle.height = image.height
+        divStyle.display = `inline-block`
 
-      if (style.display === `inherit`) {
-        delete divStyle.display
+        if (style.display === `inherit`) {
+          delete divStyle.display
+        }
       }
-      noScriptImageData = Array.isArray(fixed) ? fixed[0] : fixed
     } else {
       return null
     }

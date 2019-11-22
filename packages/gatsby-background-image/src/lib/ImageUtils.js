@@ -16,8 +16,10 @@ export const hasPictureElement = () =>
  * @return {boolean}
  */
 export const hasImageArray = props =>
-  (props.fluid && Array.isArray(props.fluid)) ||
-  (props.fixed && Array.isArray(props.fixed))
+  Boolean(
+    (props.fluid && Array.isArray(props.fluid)) ||
+      (props.fixed && Array.isArray(props.fixed))
+  )
 
 /**
  * Extracts a value from an imageRef, image object or an array of them.
@@ -105,13 +107,18 @@ export const getImageSrcKey = ({ fluid, fixed }) => {
 /**
  * Returns the current src if possible with art-direction support.
  *
- * @param fluid   object    Fluid Image (Array) if existent.
- * @param fixed   object    Fixed Image (Array) if existent.
+ * @param fluid         object    Fluid Image (Array) if existent.
+ * @param fixed         object    Fixed Image (Array) if existent.
+ * @param returnArray   boolean   Return original image stack.
+ * @param index         boolean   The image to return for image stacks.
  * @return {*}
  */
-export const getCurrentSrcData = ({ fluid, fixed }) => {
+export const getCurrentSrcData = ({ fluid, fixed, returnArray }, index = 0) => {
   const currentData = fluid || fixed
   if (hasImageArray({ fluid, fixed })) {
+    if (returnArray) {
+      return currentData
+    }
     if (isBrowser() && hasArtDirectionArray({ fluid, fixed })) {
       // Do we have an image for the current Viewport?
       const mediaData = currentData.slice().reverse()
@@ -120,8 +127,8 @@ export const getCurrentSrcData = ({ fluid, fixed }) => {
         return mediaData[foundMedia]
       }
     }
-    // Else return the first image.
-    return currentData[0]
+    // Else return the selected image.
+    return currentData[index]
   }
   return currentData
 }
@@ -131,12 +138,13 @@ export const getCurrentSrcData = ({ fluid, fixed }) => {
  *
  * @param fluid   object    Fluid Image (Array) if existent.
  * @param fixed   object    Fixed Image (Array) if existent.
+ * @param index
  * @return {*}
  */
-export const getFirstImage = ({ fluid, fixed }) => {
+export const getSelectedImage = ({ fluid, fixed }, index = 0) => {
   const currentData = fluid || fixed
   if (hasImageArray({ fluid, fixed })) {
-    return currentData[0]
+    return currentData[index]
   }
   return currentData
 }

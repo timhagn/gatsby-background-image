@@ -40,14 +40,12 @@ describe(`createArtDirectionStack()`, () => {
         <source
           media="(min-width: 491px)"
           sizes="(max-width: 600px) 100vw, 600px"
-          src="test_fluid_image.jpg"
           srcset="some srcSet"
           type="image/webp"
         />,
         <source
           media="(min-width: 1401px)"
           sizes="(max-width: 600px) 100vw, 600px"
-          src="test_fluid_image.jpg"
           srcset="some srcSet"
           type="image/webp"
         />,
@@ -63,13 +61,11 @@ describe(`createArtDirectionStack()`, () => {
       Array [
         <source
           media="(min-width: 491px)"
-          src="test_fixed_image.jpg"
           srcset="some srcSet"
           type="image/webp"
         />,
         <source
           media="(min-width: 1401px)"
-          src="test_fixed_image.jpg"
           srcset="some srcSet"
           type="image/webp"
         />,
@@ -97,12 +93,10 @@ describe(`createArtDirectionStack()`, () => {
       Array [
         <source
           media="(min-width: 491px)"
-          src="test_fixed_image.jpg"
           srcset="some srcSet"
         />,
         <source
           media="(min-width: 1401px)"
-          src="test_fixed_image.jpg"
           srcset="some srcSet"
         />,
       ]

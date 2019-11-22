@@ -165,10 +165,28 @@ describe(`activatePictureRef() with image array`, () => {
 })
 
 describe(`activatePictureRef() with art-direction stack`, () => {
+  const OLD_MATCH_MEDIA = window.matchMedia
   const dummySelfRef = {
     offsetWidth: 500,
     offsetHeight: 500,
   }
+
+  beforeEach(() => {
+    window.matchMedia = jest.fn(media =>
+      media === '(min-width: 1401px)'
+        ? {
+            matches: true,
+          }
+        : {
+            matches: false,
+          }
+    )
+  })
+
+  afterEach(() => {
+    window.matchMedia = OLD_MATCH_MEDIA
+  })
+
   it(`should return imageRef with fluid art-direction stack`, () => {
     const testImg = new Image()
     const dummyImageRef = activatePictureRef(

@@ -13,7 +13,7 @@ import {
   getUrlString,
   imageReferenceCompleted,
   imageLoaded,
-  getFirstImage,
+  getSelectedImage,
   getCurrentSrcData,
 } from '../lib/ImageUtils'
 import { resetImageCache } from '../lib/ImageCache'
@@ -312,10 +312,10 @@ describe(`imageLoaded()`, () => {
 
 describe(`getFirstImage()`, () => {
   it(`should return same image with singular fluid image`, () => {
-    expect(getFirstImage(fluidMock)).toEqual(fluidShapeMock)
+    expect(getSelectedImage(fluidMock)).toEqual(fluidShapeMock)
   })
 
   it(`should return same image with singular fixed image`, () => {
-    expect(getFirstImage(fixedMock)).toEqual(fixedShapeMock)
+    expect(getSelectedImage(fixedMock)).toEqual(fixedShapeMock)
   })
 })

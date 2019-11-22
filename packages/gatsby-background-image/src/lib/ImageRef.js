@@ -1,7 +1,7 @@
 import { convertProps } from './HelperUtils'
 import {
   getCurrentSrcData,
-  getFirstImage,
+  getSelectedImage,
   hasImageArray,
   hasPictureElement,
 } from './ImageUtils'
@@ -12,9 +12,11 @@ import { isBrowser } from './SimpleUtils'
  * Creates an image reference to be activated on critical or visibility.
  * @param props
  * @param onLoad
+ * @param index
+ * @param isLoop
  * @return {HTMLImageElement|null|Array}
  */
-export const createPictureRef = (props, onLoad) => {
+export const createPictureRef = (props, onLoad, index, isLoop = false) => {
   const convertedProps = convertProps(props)
 
   if (
@@ -22,10 +24,9 @@ export const createPictureRef = (props, onLoad) => {
     (typeof convertedProps.fluid !== `undefined` ||
       typeof convertedProps.fixed !== `undefined`)
   ) {
-    if (
-      hasImageArray(convertedProps) &&
-      !hasArtDirectionArray(convertedProps)
-    ) {
+    const isImageStack =
+      hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps)
+    if (isImageStack && !isLoop) {
       return createMultiplePictureRefs(props, onLoad)
     }
     const img = new Image()
@@ -43,8 +44,8 @@ export const createPictureRef = (props, onLoad) => {
     }
 
     // Only directly activate the image if critical (preload).
-    if (convertedProps.critical || convertedProps.isVisible) {
-      return activatePictureRef(img, convertedProps)
+    if ((convertedProps.critical || convertedProps.isVisible) && !isLoop) {
+      return activatePictureRef(img, convertedProps, index, isLoop)
     }
 
     return img
@@ -63,12 +64,14 @@ export const createMultiplePictureRefs = (props, onLoad) => {
 
   // Extract Image Array.
   const imageStack = convertedProps.fluid || convertedProps.fixed
-  return imageStack.map(imageData => {
-    if (convertedProps.fluid) {
-      return createPictureRef({ ...convertedProps, fluid: imageData }, onLoad)
-    }
-    return createPictureRef({ ...convertedProps, fixed: imageData }, onLoad)
-  })
+  const imageRefs = imageStack.map((imageData, index) =>
+    createPictureRef(convertedProps, onLoad, index, true)
+  )
+  // Only directly activate the image if critical (preload).
+  if (convertedProps.critical || convertedProps.isVisible) {
+    return activatePictureRef(imageRefs, convertedProps)
+  }
+  return imageRefs
 }
 
 /**
@@ -77,27 +80,38 @@ export const createMultiplePictureRefs = (props, onLoad) => {
  * @param imageRef
  * @param props
  * @param selfRef
+ * @param index
+ * @param isLoop
  * @return {null|Array|*}
  */
-export const activatePictureRef = (imageRef, props, selfRef = null) => {
+export const activatePictureRef = (
+  imageRef,
+  props,
+  selfRef = null,
+  index = 0,
+  isLoop = false
+) => {
   const convertedProps = convertProps(props)
   if (
     isBrowser() &&
     (typeof convertedProps.fluid !== `undefined` ||
       typeof convertedProps.fixed !== `undefined`)
   ) {
-    if (
-      hasImageArray(convertedProps) &&
-      !hasArtDirectionArray(convertedProps)
-    ) {
+    const isImageStack =
+      hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps)
+    console.log('why?', imageRef, isImageStack, isLoop, imageRef.length)
+    if (isImageStack && !isLoop) {
       return activateMultiplePictureRefs(imageRef, props, selfRef)
     }
     // Clone body to get the correct sizes.
     const bodyClone = document.body.cloneNode(true)
-    // Do we have an Art-direction array? Then get its first(smallest) image.
-    const imageData = hasArtDirectionArray(convertedProps)
-      ? getFirstImage(convertedProps)
+    // Do we have an image stack or Art-direction array?
+    // Then get its current or first(smallest) image respectively.
+    const imageData = isImageStack
+      ? getSelectedImage(convertedProps, index)
       : getCurrentSrcData(convertedProps)
+
+    console.log('activating', isImageStack, isLoop, convertedProps, index)
 
     // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
     // but don't prevent it during SSR.
@@ -144,27 +158,8 @@ export const activatePictureRef = (imageRef, props, selfRef = null) => {
  * @return {Array||null}
  */
 export const activateMultiplePictureRefs = (imageRefs, props, selfRef) => {
-  const convertedProps = convertProps(props)
-
   // Extract Image Array.
-  return imageRefs.map((imageRef, index) => {
-    if (convertedProps.fluid) {
-      return activatePictureRef(
-        imageRef,
-        {
-          ...convertedProps,
-          fluid: convertedProps.fluid[index],
-        },
-        selfRef
-      )
-    }
-    return activatePictureRef(
-      imageRef,
-      {
-        ...convertedProps,
-        fixed: convertedProps.fixed[index],
-      },
-      selfRef
-    )
-  })
+  return imageRefs.map((imageRef, index) =>
+    activatePictureRef(imageRef, props, selfRef, index, true)
+  )
 }

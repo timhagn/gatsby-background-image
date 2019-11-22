@@ -36,7 +36,6 @@ export const createArtDirectionSources = ({ fluid, fixed }) => {
       return sources
     }
     const source = document.createElement('source')
-    source.src = image.src
     source.srcset = image.srcSet
     source.media = image.media
     if (image.sizes) {
