@@ -129,7 +129,6 @@ class BackgroundImage extends React.Component {
     // Check if we received a changed fluid / fixed image.
     if (imagePropsChanged(this.props, prevProps)) {
       const convertedProps = convertProps(this.props)
-      console.log('changed')
       const imageInCache = inImageCache(convertedProps)
       const [currentClassNames] = fixClassName(convertedProps)
 
@@ -138,10 +137,6 @@ class BackgroundImage extends React.Component {
           isVisible: imageInCache || convertedProps.critical,
           imgLoaded: imageInCache,
           currentClassNames,
-
-          //   this.state.currentClassNames ||
-          //   fixClassName(this.props.className, this.randomClass),
-          // imageState: (this.state.imageState + 1) % 2,
         },
         () => {
           // Update bgImage & create new imageRef(s).

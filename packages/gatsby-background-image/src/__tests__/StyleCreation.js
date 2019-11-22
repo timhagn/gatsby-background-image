@@ -1,10 +1,14 @@
 import {
   createNoScriptStyles,
   createPseudoElement,
+  createPseudoElementMediaQuery,
   createPseudoElementWithContent,
   createPseudoStyles,
 } from '../lib/StyleCreation'
-import { mockArtDirectionStackFluid } from './mocks/Various.mock'
+import {
+  fluidShapeMock,
+  mockArtDirectionStackFluid,
+} from './mocks/Various.mock'
 
 describe(`createPseudoStyles()`, () => {
   let pseudoStyles = {}
@@ -126,6 +130,36 @@ describe(`createPseudoElementWithContent()`, () => {
   })
 })
 
+describe(`createPseudoElementMediaQuery()`, () => {
+  it(`should return media queries with WebP`, () => {
+    const pseudoName = createPseudoElement('myclass')
+    const mediaQuery = createPseudoElementMediaQuery(
+      pseudoName,
+      `(mind-width: 500px)`,
+      `url('testimage.jpg')`,
+      `url('testimage.webp')`
+    )
+    expect(mediaQuery).toMatchInlineSnapshot(`
+      "
+            @media (mind-width: 500px) {
+              
+          .myclass:before {
+            opacity: 1;
+            background-image: url('testimage.jpg');
+          }
+            }
+            @media (mind-width: 500px) {
+                
+          .myclass:before {
+            opacity: 1;
+            background-image: url('testimage.webp');
+          }
+              }
+          "
+    `)
+  })
+})
+
 describe(`createNoScriptStyles()`, () => {
   const OLD_MATCH_MEDIA = window.matchMedia
 
@@ -156,26 +190,82 @@ describe(`createNoScriptStyles()`, () => {
     })
     expect(noScriptStyled).toMatchInlineSnapshot(`
       "
+                  
           .myclass:before {
             opacity: 1;
-            background-image: test_fluid_image.jpg;
+            background-image: url(test_fluid_image.jpg);
           }
-                  @media (min-width: 491px) {
-                    
+                  undefined
+            @media (min-width: 491px) {
+              
           .myclass:before {
             opacity: 1;
-            background-image: test_fluid_image.jpg;
+            background-image: url(test_fluid_image.jpg);
           }
-                  }
-                
-                  @media (min-width: 1401px) {
-                    
+            }
+            
+          
+            @media (min-width: 1401px) {
+              
           .myclass:before {
             opacity: 1;
-            background-image: test_fluid_image.jpg;
+            background-image: url(test_fluid_image.jpg);
           }
-                  }
-                "
+            }
+            
+          "
+    `)
+  })
+  it(`should return media queries for art-directed images with WebP`, () => {
+    const artDirectionMockWithWebP = [
+      ...mockArtDirectionStackFluid,
+      {
+        ...fluidShapeMock,
+        srcWebp: `testimage.webp`,
+      },
+    ]
+    const noScriptStyled = createNoScriptStyles({
+      className: 'myclass',
+      image: artDirectionMockWithWebP,
+    })
+    expect(noScriptStyled).toMatchInlineSnapshot(`
+      "
+                  
+          .myclass:before {
+            opacity: 1;
+            background-image: url(test_fluid_image.jpg);
+          }
+                  undefined
+            @media (min-width: 491px) {
+              
+          .myclass:before {
+            opacity: 1;
+            background-image: url(test_fluid_image.jpg);
+          }
+            }
+            
+          
+            @media (min-width: 1401px) {
+              
+          .myclass:before {
+            opacity: 1;
+            background-image: url(test_fluid_image.jpg);
+          }
+            }
+            
+          
+                  
+          .myclass:before {
+            opacity: 1;
+            background-image: url(test_fluid_image.jpg);
+          }
+                  @media screen {
+                  
+          .myclass:before {
+            opacity: 1;
+            background-image: url(testimage.webp);
+          }
+                }"
     `)
   })
 })

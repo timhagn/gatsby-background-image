@@ -51,6 +51,24 @@ export const createPseudoElementWithContent = (
     }`
 }
 
+export const createPseudoElementMediaQuery = (
+  pseudoElementString,
+  media,
+  imageSource,
+  imageSourceWebP
+) => `
+      @media ${media} {
+        ${createPseudoElementWithContent(pseudoElementString, imageSource)}
+      }
+      ${imageSourceWebP &&
+        `@media ${media} {
+          ${createPseudoElementWithContent(
+            pseudoElementString,
+            imageSourceWebP
+          )}
+        }`}
+    `
+
 /**
  * Creates styles for the changing pseudo-elements' backgrounds.
  *
@@ -162,14 +180,24 @@ export const createNoScriptStyles = ({ classId, className, image }) => {
     if (hasArtDirectionArray({ fluid: image })) {
       return image
         .map(currentMedia => {
+          const sourceString = getUrlString({ imageString: currentMedia.src })
+          const webPString = getUrlString({
+            imageString: currentMedia.srcWebp || ``,
+          })
           if (currentMedia.media) {
-            return `
-            @media ${currentMedia.media} {
-              ${createPseudoElementWithContent(pseudoBefore, currentMedia.src)}
-            }
-          `
+            return createPseudoElementMediaQuery(
+              pseudoBefore,
+              currentMedia.media,
+              sourceString,
+              webPString
+            )
           }
-          return createPseudoElementWithContent(pseudoBefore, currentMedia.src)
+          return `
+            ${createPseudoElementWithContent(pseudoBefore, sourceString)}
+            ${currentMedia.srcWebp &&
+              `@media screen {
+            ${createPseudoElementWithContent(pseudoBefore, webPString)}
+          }`}`
         })
         .join('')
     }

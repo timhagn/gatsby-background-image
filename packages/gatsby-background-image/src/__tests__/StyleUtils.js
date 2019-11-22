@@ -8,7 +8,6 @@ import {
 } from '../lib/StyleUtils'
 import { fluidShapeMock } from './mocks/Various.mock'
 import { activateCacheForComponentClass } from '../lib/ClassCache'
-import { createPseudoElement } from '../lib/StyleCreation'
 
 global.console.debug = jest.fn()
 
