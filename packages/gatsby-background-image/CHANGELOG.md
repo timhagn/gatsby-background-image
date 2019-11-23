@@ -7,8 +7,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.9.7](https://github.com/timhagn/gatsby-background-image) (2019-11-23)
 
-**fest / fix** Added art-direction support for `noscript`. Fixed a bug with 
-`ImageCache` & multiple stacked or art-directed images. 
+**fest / fix** Added art-direction support for `noscript`. Fixed a bug with
+`ImageCache` & multiple stacked or art-directed images.
 
 ## [0.9.0 - 0.9.6](https://github.com/timhagn/gatsby-background-image) (2019-11-17)
 
