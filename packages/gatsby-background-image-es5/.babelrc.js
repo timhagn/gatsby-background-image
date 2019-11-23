@@ -21,5 +21,6 @@ gatsbyPresets.plugins = gatsbyPresets.plugins.map(item => {
 
 module.exports = Object.assign(gatsbyPresets, {
   sourceMaps: true,
+  comments: false,
   ignore,
 })
