@@ -2,26 +2,26 @@
   "name": "gbi",
   "private": true,
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-preset-gatsby-package": "^0.2.11",
-    "core-js": "^3.4.1",
+    "core-js": "^3.4.2",
     "cross-env": "^5.2.1",
-    "eslint": "^6.6.0",
+    "eslint": "^6.7.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.6.0",
+    "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "jest": "^24.9.0",
     "jest-junit": "^7.0.0",
-    "lerna": "^3.18.4",
+    "lerna": "^3.19.0",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
@@ -50,5 +50,5 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.9.6"
+  "version": "0.9.7"
 }
