@@ -679,10 +679,7 @@ Thanks in advance!
 
 ## TODO
 
-- Multiple Image with Art-Direction Support
-- `noscript` WebP (& Art-Direction) support...
-
-_For anything else tell me by opening an issue or a PR : )!_
+_For anything you may think necessary tell me by opening an issue or a PR : )!_
 
 ## Acknowledgements
 

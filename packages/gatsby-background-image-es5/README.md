@@ -30,7 +30,7 @@ Most polyfills are already built in, though this nearly triples the package size
 compared to [`gatsby-background-image`](https://www.npmjs.com/package/gatsby-background-image)!
 
 Everything else just works the same as in `gatsby-background-image`, so it
-provides for background-images, what Gatsby's own `gatsby-image` does for the 
+provides for background-images, what Gatsby's own `gatsby-image` does for the
 rest of your images and even more:  
 **Now with [Art-Direction support](#how-to-use-with-art-direction-support)!**
 
@@ -68,6 +68,7 @@ _*Of course styleable with `styled-components` and the like!*_
 - [Handling of Remaining props](#handling-of-remaining-props)
 - [Contributing](#contributing)
 - [TODO](#todo)
+- [Acknowledgements](#acknowledgements)
 
 ## Example Repo
 
@@ -336,13 +337,13 @@ export default StyledMultiBackground
 
 ## How to Use with Art-Direction support
 
-`gatsby-background-image-es5` now supports showing different images at different 
-breakpoints, which is known as [art direction](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction). 
-To do this, you can define your own array of `fixed` or `fluid` images, along 
-with a `media` key per image, and pass it to `gatsby-image`'s `fixed` or `fluid` 
+`gatsby-background-image-es5` now supports showing different images at different
+breakpoints, which is known as [art direction](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction).
+To do this, you can define your own array of `fixed` or `fluid` images, along
+with a `media` key per image, and pass it to `gatsby-image`'s `fixed` or `fluid`
 props. The `media` key that is set on an image can be any valid CSS media query.
 
-**_Attention:_ Currently you have to choose between Art-directed and Multiple-Images!** 
+**_Attention:_ Currently you have to choose between Art-directed and Multiple-Images!**
 
 ```js
 import { graphql, useStaticQuery } from 'gatsby'
@@ -369,7 +370,7 @@ const ArtDirectedBackground = ({ className }) => {
             }
           }
         }
-      }  
+      }
     `
   )
   // Set up the array of image data and `media` keys.
@@ -415,10 +416,10 @@ const StyledArtDirectedBackground = styled(ArtDirectedBackground)`
 export default StyledArtDirectedBackground
 ```
 
-While you could achieve a similar effect with plain CSS media queries, 
-`gatsby-background-image-es5` accomplishes this using an internal `HTMLPictureElement`, 
-as well as `window.matchMedia()`, which ensures that browsers only download 
-the image they need for a given breakpoint while preventing 
+While you could achieve a similar effect with plain CSS media queries,
+`gatsby-background-image-es5` accomplishes this using an internal `HTMLPictureElement`,
+as well as `window.matchMedia()`, which ensures that browsers only download
+the image they need for a given breakpoint while preventing
 [gatsby-image issue #15189](https://github.com/gatsbyjs/gatsby/issues/15189).
 
 ## Configuration & props
@@ -489,15 +490,11 @@ const StyledBackground = styled(BackgroundImage)`
 ```
 
 But be aware that there happens no `state` change inside the `BackgroundImage`,
-so React won't rerender it. This can easily be achieved, by settings an 
+so React won't rerender it. This can easily be achieved, by settings an
 additional `key` prop, which changes as well as the prop like thus:
 
 ```js
-return (
-<StyledBackgound
-  isDarken={isDarken}
-  key={isDarken ? `dark` : `light`}
-/>)
+return <StyledBackgound isDarken={isDarken} key={isDarken ? `dark` : `light`} />
 ```
 
 #### Overflow setting
@@ -540,20 +537,24 @@ However, a suitable workaround is available. For example, if your style looks li
   }
 }
 ```
+
 The `::before` and `::after` pseudoelements can be targeted directly to make your
 style look like this:
 
 ```css
-#mybg, #mybg::before, #mybg::after {
+#mybg,
+#mybg::before,
+#mybg::after {
   background-attachment: fixed;
 }
 
 @media screen and (max-width: 600px) {
-  #mybg, #mybg::before, #mybg::after {
+  #mybg,
+  #mybg::before,
+  #mybg::after {
     background-attachment: scroll;
   }
 }
-
 ```
 
 For more information, refer to [issue #71.](https://github.com/timhagn/gatsby-background-image/issues/71)
@@ -609,7 +610,7 @@ Activating `preserveStackingContext` prevents this behavior - but allows you to
 use any stacking context changing elements (like elements styled with
 `position: fixed;`) yourself as `children`.
 
-Starting with `v0.8.19` it's possible to change the IntersectionObservers' 
+Starting with `v0.8.19` it's possible to change the IntersectionObservers'
 `rootMargin` with a prop of the same name.
 
 | Name                      | Type      | Description                                                                                 |
@@ -659,7 +660,10 @@ Thanks in advance!
 
 ## TODO
 
-- Internet Explorer 11 seems to have problems with `_tracedSVG`...
-- `noscript` WebP support...
+_For anything you may think necessary tell me by opening an issue or a PR : )!_
 
-_For anything else tell me by opening an issue or a PR : )!_
+## Acknowledgements
+
+This package started by pilfering `gatsby-image`s excellent work and adapting
+it - but it's definitely outgrowing those wee beginnings.  
+Thanks go to its creators & the @gatsbyjs Team, anyways : )!
