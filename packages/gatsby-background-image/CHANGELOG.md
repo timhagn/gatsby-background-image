@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.6"></a>
+<a name="0.9.7"></a>
+
+## [0.9.7](https://github.com/timhagn/gatsby-background-image) (2019-11-23)
+
+**fest / fix** Added art-direction support for `noscript`. Fixed a bug with 
+`ImageCache` & multiple stacked or art-directed images. 
 
 ## [0.9.0 - 0.9.6](https://github.com/timhagn/gatsby-background-image) (2019-11-17)
 

@@ -28,40 +28,40 @@
   </a>  
 </p>
 
-`gatsby-background-image` & `gatsby-background-image-es5` are React components 
-which for background-images provide, what Gatsby's own `gatsby-image` does for 
+`gatsby-background-image` & `gatsby-background-image-es5` are React components
+which for background-images provide, what Gatsby's own `gatsby-image` does for
 the rest of your images and even more:  
-**Now it's possible to use multiple stacked Background Images!**
+**Now with [Art-Direction support](#how-to-use-with-art-direction-support)!**
 
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,  
-**plus** being usable as a container (no more hacks with extra wrappers),  
-**plus** being able to work with [multiple stacked background images](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image/README.md#how-to-use-with-multiple-images).
+**plus** being usable as a container (no more hacks with extra wrappers)  
+**plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images)  
+**plus** being able to style with [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)
 
 All the glamour (and speed) of `gatsby-image` for your Background Images!
 
-*_Of course styleable with `styled-components` and the like!_*
-
-**_Now it's possible to style `BackgroundImage` with [Tailwind CSS and suchlike Frameworks](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image/README.md#tailwind-css-and-suchlike-frameworks)!_**
+_*Of course styleable with `styled-components` and the like!*_
 
 ## Preamble
 
 Since `gatsby-background-image@0.6.0`, this is a monorepo managed by
 [`lerna`](https://lerna.js.org/), so have a look at the individual READMEs of
+
 - [`gatsby-background-image`](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image#readme)
 - [`gatsby-background-image-es5`](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image-es5#readme)
 
 ## Contributing
 
-Everyone is more than welcome to contribute to this little package!   
+Everyone is more than welcome to contribute to this little package!  
 Docs, Reviews, Testing, Code - whatever you want to add, just go for it : ).
 So have a look at our [CONTRIBUTING](CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
 ## TODO
 
-- Internet Explorer 11 seems to have problems with `_tracedSVG`... 
+- Internet Explorer 11 seems to have problems with `_tracedSVG`...
 - `noscript` WebP support...
 
-*For anything else tell me by opening an issue or a PR : )!*
+_For anything else tell me by opening an issue or a PR : )!_
