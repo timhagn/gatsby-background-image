@@ -75,8 +75,8 @@ this package.
 
 ## Example Repo
 
-`gatsby-background-image` now has an example repository  
-to see it's similarities & differences to `gatsby-image` side by side.  
+`gatsby-background-image` has an example repository to see it's similarities & 
+differences to `gatsby-image` side by side.  
 It's located at: [gbitest](https://github.com/timhagn/gbitest)
 
 ## Procedure

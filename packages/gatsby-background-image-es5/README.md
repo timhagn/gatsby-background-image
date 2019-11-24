@@ -72,8 +72,8 @@ _*Of course styleable with `styled-components` and the like!*_
 
 ## Example Repo
 
-`gatsby-background-image` has an example repository to see it's similarities
-& differences to `gatsby-image` side by side.  
+`gatsby-background-image` has an example repository to see it's similarities & 
+differences to `gatsby-image` side by side.  
 It's located at: [gbitest](https://github.com/timhagn/gbitest)
 To use it with `gatsby-background-image-es5` change the dependency there.
 
