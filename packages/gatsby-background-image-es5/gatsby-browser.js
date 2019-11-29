@@ -6,7 +6,7 @@ exports.onClientEntry = function (a, pluginOptions) {
     window._gbiSpecialChars = pluginOptions.specialChars
   }
   // IntersectionObserver polyfill for gatsby-background-image-es5 (Safari, IE)
-  if (typeof window.IntersectionObserver === `undefined`) {
+  if (!`IntersectionObserver` in window) {
     import(`intersection-observer`)
     console.log(`# IntersectionObserver is polyfilled!`)
   }
