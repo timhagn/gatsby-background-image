@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.7"></a>
+<a name="0.9.8"></a>
+
+## [0.9.8](https://github.com/timhagn/gatsby-background-image) (2019-11-29)
+
+**fix** Added `sizes` prop to `imageRef` so that the correct image sizes (as it
+says ; ) are going to be loaded. Fixes #88.
 
 ## [0.9.7](https://github.com/timhagn/gatsby-background-image) (2019-11-23)
 
