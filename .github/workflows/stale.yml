@@ -12,8 +12,8 @@ jobs:
         uses: actions/stale@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DAYS_BEFORE_STALE: 20
-          DAYS_BEFORE_CLOSE: 10
+          DAYS_BEFORE_STALE: 16
+          DAYS_BEFORE_CLOSE: 7
           STALE_ISSUE_MESSAGE: |
             Hi there!
             As @timhagn momentarily is the main contributor to this package, this issue
