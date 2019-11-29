@@ -116,8 +116,10 @@ export const activatePictureRef = (
       const pic = document.createElement('picture')
       if (selfRef) {
         // Set original component's style.
-        pic.width = imageRef.width = selfRef.offsetWidth
-        pic.height = imageRef.height = selfRef.offsetHeight
+        imageRef.width = selfRef.offsetWidth
+        imageRef.height = selfRef.offsetHeight
+        pic.width = imageRef.width
+        pic.height = imageRef.height
       }
       // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
       if (hasArtDirectionArray(convertedProps)) {
@@ -138,8 +140,9 @@ export const activatePictureRef = (
       imageRef.height = selfRef.offsetHeight
     }
 
-    imageRef.srcset = imageData.srcSet ? imageData.srcSet : ``
-    imageRef.src = imageData.src ? imageData.src : ``
+    imageRef.sizes = imageData.sizes || ``
+    imageRef.srcset = imageData.srcSet || ``
+    imageRef.src = imageData.src || ``
 
     return imageRef
   }
