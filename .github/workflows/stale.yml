@@ -1,0 +1,30 @@
+on:
+  schedule:
+    - cron: "0 0 * * *"
+name: Stale Bot workflow
+jobs:
+  build:
+    name: stale
+    runs-on: ubuntu-latest
+    steps:
+      - name: stale
+        id: stale
+        uses: actions/stale@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DAYS_BEFORE_STALE: 20
+          DAYS_BEFORE_CLOSE: 10
+          STALE_ISSUE_MESSAGE: |
+            Hi there!
+            As @timhagn momentarily is the main contributor to this package, this issue
+            has been automatically marked as stale because it has not had
+            any recent activity.
+            It will be closed if no further activity occurs, though we're open to
+            suggestions on how to get more maintainers!
+            Thank you for your contributions : )!
+          CLOSE_MESSAGE: |
+            Hi there, again!
+            This will now be closed as no activity occurred for 23 consecutive days.
+            Thanks anyway for your contributions!
+          EXEMPT_ISSUE_LABELS: |
+            not stale
