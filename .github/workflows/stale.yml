@@ -3,7 +3,7 @@ on:
     - cron: "0 0 * * *"
 name: Stale Bot workflow
 jobs:
-  build:
+  stale:
     name: stale
     runs-on: ubuntu-latest
     steps:
@@ -11,10 +11,12 @@ jobs:
         id: stale
         uses: actions/stale@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DAYS_BEFORE_STALE: 16
-          DAYS_BEFORE_CLOSE: 7
-          STALE_ISSUE_MESSAGE: |
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          days-before-stale: 16
+          days-before-close: 7
+          stale-issue-label: 'stale?'
+          exempt-issue-label: 'not stale'
+          stale-issue-message: |
             Hi there!
             As @timhagn momentarily is the main contributor to this package, this issue
             has been automatically marked as stale because it has not had
@@ -26,5 +28,3 @@ jobs:
             Hi there, again!
             This will now be closed as no activity occurred for 23 consecutive days.
             Thanks anyway for your contributions!
-          EXEMPT_ISSUE_LABELS: |
-            not stale
