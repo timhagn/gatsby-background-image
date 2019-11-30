@@ -3,6 +3,7 @@
 exports[`activatePictureRef() with art-direction stack should return imageRef with fluid art-direction stack 1`] = `
 <img
   height="500"
+  sizes="(max-width: 600px) 100vw, 600px"
   src="test_fluid_image.jpg"
   srcset="some srcSet"
   width="500"
@@ -13,12 +14,14 @@ exports[`activatePictureRef() with image array should return imageRef array with
 Array [
   <img
     height="500"
+    sizes=""
     src="test_fixed_image.jpg"
     srcset="some srcSet"
     width="500"
   />,
   <img
     height="500"
+    sizes=""
     src="test_fixed_image.jpg"
     srcset="some srcSet"
     width="500"
@@ -30,12 +33,14 @@ exports[`activatePictureRef() with image array should return imageRef array with
 Array [
   <img
     height="500"
+    sizes="(max-width: 600px) 100vw, 600px"
     src="test_fluid_image.jpg"
     srcset="some srcSet"
     width="500"
   />,
   <img
     height="500"
+    sizes="(max-width: 600px) 100vw, 600px"
     src="test_fluid_image.jpg"
     srcset="some srcSet"
     width="500"
@@ -46,10 +51,12 @@ Array [
 exports[`activatePictureRef() with image array should return imageRef array with fluid Array Mock without selfRef 1`] = `
 Array [
   <img
+    sizes="(max-width: 600px) 100vw, 600px"
     src="test_fluid_image.jpg"
     srcset="some srcSet"
   />,
   <img
+    sizes="(max-width: 600px) 100vw, 600px"
     src="test_fluid_image.jpg"
     srcset="some srcSet"
   />,

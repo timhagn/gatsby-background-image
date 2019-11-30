@@ -248,7 +248,7 @@ const BackgroundSection = ({ className }) => (
           fluid={imageData}
           backgroundColor={`#040e18`}
         >
-          <h2>Hello gatsby-background-image</h2>
+          <h2>gatsby-background-image</h2>
         </BackgroundImage>
       )
     }}

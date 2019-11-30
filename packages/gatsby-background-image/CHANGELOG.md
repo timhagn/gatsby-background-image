@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.9"></a>
+<a name="0.9.10"></a>
+
+## [0.9.10](https://github.com/timhagn/gatsby-background-image) (2019-11-30)
+
+**refactor** Simplified `hasArtDirectionSupport()` in prep of a PR to `gatsby-image`.
 
 ## [0.9.9](https://github.com/timhagn/gatsby-background-image) (2019-11-29)
 
@@ -16,7 +20,7 @@ says ; ) are going to be loaded. Fixes #88.
 
 ## [0.9.7](https://github.com/timhagn/gatsby-background-image) (2019-11-23)
 
-**fest / fix** Added art-direction support for `noscript`. Fixed a bug with
+**feat / fix** Added art-direction support for `noscript`. Fixed a bug with
 `ImageCache` & multiple stacked or art-directed images.
 
 ## [0.9.0 - 0.9.6](https://github.com/timhagn/gatsby-background-image) (2019-11-17)

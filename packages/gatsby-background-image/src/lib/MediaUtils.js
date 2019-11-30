@@ -55,23 +55,13 @@ export const createArtDirectionSources = ({ fluid, fixed }) => {
  * Checks if fluid or fixed are art-direction arrays.
  *
  * @param props   object   The props to check for images.
+ * @param prop    string   Check for fluid or fixed.
  * @return {boolean}
  */
-export const hasArtDirectionFluidArray = props =>
-  props.fluid &&
-  Array.isArray(props.fluid) &&
-  props.fluid.some(fluidImage => typeof fluidImage.media !== 'undefined')
-
-/**
- * Checks if fluid or fixed are art-direction arrays.
- *
- * @param props   object   The props to check for images.
- * @return {boolean}
- */
-export const hasArtDirectionFixedArray = props =>
-  props.fixed &&
-  Array.isArray(props.fixed) &&
-  props.fixed.some(fixedImage => typeof fixedImage.media !== 'undefined')
+export const hasArtDirectionSupport = (props, prop) =>
+  props[prop] &&
+  Array.isArray(props[prop]) &&
+  props[prop].some(image => typeof image.media !== 'undefined')
 
 /**
  * Checks for fluid or fixed Art direction support.
@@ -79,7 +69,8 @@ export const hasArtDirectionFixedArray = props =>
  * @return {boolean}
  */
 export const hasArtDirectionArray = props =>
-  hasArtDirectionFluidArray(props) || hasArtDirectionFixedArray(props)
+  hasArtDirectionSupport(props, 'fluid') ||
+  hasArtDirectionSupport(props, 'fixed')
 
 /**
  * Tries to detect if a media query matches the current viewport.
