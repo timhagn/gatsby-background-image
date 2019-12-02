@@ -7,7 +7,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.9.11](https://github.com/timhagn/gatsby-background-image) (2019-12-02)
 
-**tweak** Tweak IO detection and now force boolean on `matchesMedia`.
+**tweak** Tweak IO detection and now force boolean on `matchesMedia`. Removed
+`prop-types` as a normal dependency and added it to `devDependencies`.
 
 ## [0.9.10](https://github.com/timhagn/gatsby-background-image) (2019-11-30)
 
