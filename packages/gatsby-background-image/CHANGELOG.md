@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.10"></a>
+<a name="0.9.11"></a>
+
+## [0.9.11](https://github.com/timhagn/gatsby-background-image) (2019-12-02)
+
+**tweak** Tweak IO detection and now force boolean on `matchesMedia`.
 
 ## [0.9.10](https://github.com/timhagn/gatsby-background-image) (2019-11-30)
 
