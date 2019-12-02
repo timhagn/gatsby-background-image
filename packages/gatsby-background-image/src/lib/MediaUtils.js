@@ -76,8 +76,8 @@ export const hasArtDirectionArray = props =>
  * Tries to detect if a media query matches the current viewport.
  *
  * @param media   string  A media query string.
- * @return {*|boolean}
+ * @return {boolean}
  */
 export const matchesMedia = ({ media }) => {
-  return media ? isBrowser() && window.matchMedia(media).matches : false
+  return media ? isBrowser() && !!window.matchMedia(media).matches : false
 }
