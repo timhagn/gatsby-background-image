@@ -11,9 +11,9 @@ exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] 
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -29,14 +29,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             background-image: url('http://localhost/test_fixed_image.jpg');
             
             opacity: 1; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -64,9 +64,9 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fixed ima
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -82,14 +82,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             background-image: url('http://localhost/test_fixed_image.jpg'),url('http://localhost/test_fixed_image.jpg');
             
             opacity: 1; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             
@@ -117,9 +117,9 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fluid ima
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -135,14 +135,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
@@ -170,9 +170,9 @@ exports[`<BackgroundImage /> with mock IO should not call onLoad without prop, f
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -188,14 +188,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             background-image: url('http://localhost/test_fixed_image.jpg');
             
             opacity: 1; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             

@@ -11,9 +11,9 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -23,25 +23,25 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url('http://localhost/test_fixed_image.jpg');
             
-            background-image: url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            
             background-image: url(string_of_base64);
-            
-            
+            opacity: 0;
           }
         
     </style>
@@ -64,9 +64,9 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -82,14 +82,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -117,9 +117,9 @@ exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -129,25 +129,25 @@ exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url('http://localhost/test_fixed_image.jpg'),url('http://localhost/test_fixed_image.jpg');
             
-            background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            
             background-image: url(string_of_base64),url(string_of_base64);
-            
-            
+            opacity: 0;
           }
         
     </style>
@@ -170,9 +170,9 @@ exports[`<BackgroundImage /> should call multiple critical fluid images 1`] = `
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -188,14 +188,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
@@ -347,9 +347,9 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -365,14 +365,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -400,9 +400,9 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -418,14 +418,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
@@ -453,9 +453,9 @@ exports[`<BackgroundImage /> should render multiple fluid images 1`] = `
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -471,14 +471,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
@@ -506,9 +506,9 @@ exports[`<BackgroundImage /> should render stacked fixed size images 1`] = `
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -524,14 +524,14 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
@@ -559,9 +559,9 @@ exports[`<BackgroundImage /> should render without opacity hack with truthy pres
   >
     <style>
       
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before,
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             content: '';
             display: block;
@@ -577,14 +577,14 @@ background-repeat: 'repeat-y';
 background-size: 'contain';
 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .imageClass..gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
             background-image: url(string_of_base64);
