@@ -21,10 +21,13 @@ export const createPseudoElement = (
   appendix = `:before`
 ) => {
   const escapedClassName = escapeClassNames(className)
-  const classes = stringToArray(escapedClassName)
+  let classes = stringToArray(escapedClassName)
   let pseudoClasses = ``
-  if (classes instanceof Array && classes.length > 0 && classes[0] !== ``) {
-    pseudoClasses = `.${classes.join('.')}${appendix}`
+  if (Array.isArray(classes)) {
+    classes = classes.filter(c => c !== '')
+    if (classes.length > 0) {
+      pseudoClasses = `.${classes.join('.')}${appendix}`
+    }
   }
   if (classId !== ``) {
     pseudoClasses += `${pseudoClasses &&
