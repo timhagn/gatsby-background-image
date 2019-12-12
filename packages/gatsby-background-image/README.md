@@ -593,7 +593,7 @@ you use `!important` on its CSS-properties (cause of CSS-specifity).
 
 #### Deprecated Styling
 
-Though now considered deprecated and to be removed in `1.0.0` at the latest
+Though considered deprecated and to be removed in `1.0.0` at the latest
 (feel free to open an issue, should you really need them : ),
 `gatsby-background-image` has an added classId (as we had to name
 pseudo-elements and introduce a className for the returned container

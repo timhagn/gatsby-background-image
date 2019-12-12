@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.11"></a>
+<a name="0.9.12"></a>
+
+## [0.9.12](https://github.com/timhagn/gatsby-background-image) (2019-12-12)
+
+**merge** Merged in #91 to prevent duplicate dots in class names.
 
 ## [0.9.11](https://github.com/timhagn/gatsby-background-image) (2019-12-02)
 
