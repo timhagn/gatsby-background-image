@@ -11,7 +11,7 @@
     "url": "https://github.com/timhagn/gatsby-background-image/issues"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.6",
+    "@babel/runtime": "^7.8.3",
     "filter-invalid-dom-props": "^2.0.0",
     "global": "^4.4.0",
     "short-uuid": "^3.1.1",
