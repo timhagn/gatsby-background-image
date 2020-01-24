@@ -3,11 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.12"></a>
+<a name="0.9.13"></a>
 
 ## [0.9.13](https://github.com/timhagn/gatsby-background-image) (2019-01-24)
 
-**fix** Adapted IFluidObject interface for #97 (`sizes` optional)
+**fix** Adapted IFluidObject interface for #97 (`sizes` optional).
 
 ## [0.9.12](https://github.com/timhagn/gatsby-background-image) (2019-12-12)
 
