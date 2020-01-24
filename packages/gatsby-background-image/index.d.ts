@@ -17,7 +17,7 @@ declare module 'gatsby-background-image' {
     aspectRatio: number
     src: string
     srcSet: string
-    sizes: string
+    sizes?: string
     base64?: string
     tracedSVG?: string
     srcWebp?: string
