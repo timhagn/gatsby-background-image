@@ -35,14 +35,6 @@ export const convertProps = props => {
     )
   }
 
-  // if (fluid && !hasImageArray(props)) {
-  //   convertedProps.fluid = [].concat(fluid)
-  // }
-  //
-  // if (fixed && !hasImageArray(props)) {
-  //   convertedProps.fixed = [].concat(fixed)
-  // }
-
   // convert fluid & fixed to arrays so we only have to work with arrays
   if (fluid && hasArtDirectionSupport(props, 'fluid')) {
     convertedProps.fluid = groupByMedia(convertedProps.fluid)

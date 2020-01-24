@@ -2,6 +2,7 @@ const cacheVersion = 1
 
 // Try to get data from the cache, but fall back to fetching it live.
 export async function getData(url) {
+  if (caches)
   const cacheName = `myapp-${cacheVersion}`
   const cachedData = await getCachedData(cacheName, url)
 
