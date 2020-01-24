@@ -5,6 +5,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 <a name="0.9.12"></a>
 
+## [0.9.13](https://github.com/timhagn/gatsby-background-image) (2019-01-24)
+
+**fix** Adapted IFluidObject interface for #97 (`sizes` optional)
+
 ## [0.9.12](https://github.com/timhagn/gatsby-background-image) (2019-12-12)
 
 **merge** Merged in #91 to prevent duplicate dots in class names.
