@@ -1,6 +1,7 @@
 import { convertProps } from './HelperUtils'
 import { hasArtDirectionArray } from './MediaUtils'
 import { getImageSrcKey, getSelectedImage, hasImageArray } from './ImageUtils'
+import { getData, setData } from './CacheStorage'
 
 const imageCache = Object.create({})
 /**
@@ -24,7 +25,8 @@ export const inImageCache = (props, index = 0, isLoop = false) => {
   const src = isImageStack
     ? getSelectedImage(convertedProps, index)
     : getImageSrcKey(convertedProps)
-  return imageCache[src] || false
+  const cachedSrc = getData(src)
+  return cachedSrc || imageCache[src] || false
 }
 
 /**
@@ -62,6 +64,7 @@ export const activateCacheForImage = (props, index = 0, isLoop = false) => {
     ? getSelectedImage(convertedProps, index)
     : getImageSrcKey(convertedProps)
   if (src) {
+    setData(src)
     imageCache[src] = true
   }
 }
