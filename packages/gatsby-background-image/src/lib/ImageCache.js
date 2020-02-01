@@ -24,7 +24,19 @@ export const inImageCache = (props, index = 0, isLoop = false) => {
   const src = isImageStack
     ? getSelectedImage(convertedProps, index)
     : getImageSrcKey(convertedProps)
-  return imageCache[src] || false
+  return inCacheStorage(src) || imageCache[src] || false
+}
+
+export const inCacheStorage = url => {
+  if (caches) {
+    console.log('given url:', url)
+    const defaultRequest = new Request(url)
+    return caches.match(defaultRequest.clone()).then(response => {
+      console.log('cache response:', response)
+      return !!response
+    })
+  }
+  return false
 }
 
 /**
@@ -62,8 +74,16 @@ export const activateCacheForImage = (props, index = 0, isLoop = false) => {
     ? getSelectedImage(convertedProps, index)
     : getImageSrcKey(convertedProps)
   if (src) {
+    activateCacheStorageForImage(src)
     imageCache[src] = true
   }
+}
+
+export const activateCacheStorageForImage = url => {
+  const CACHE_NAME = `gbi-cache`
+  caches.open(CACHE_NAME).then(async cacheStorage => {
+    await cacheStorage.add(url)
+  })
 }
 
 /**

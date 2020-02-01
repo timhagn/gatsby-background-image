@@ -1,5 +1,6 @@
 import { hasArtDirectionArray, matchesMedia } from './MediaUtils'
 import { filteredJoin, isBrowser, isString } from './SimpleUtils'
+import { inCacheStorage } from './ImageCache'
 
 /**
  * Returns the availability of the HTMLPictureElement unless in SSR mode.
@@ -289,7 +290,8 @@ export const imageReferenceCompleted = imageRef =>
  */
 export const imageLoaded = imageRef =>
   imageRef
-    ? imageRef.complete &&
-      imageRef.naturalWidth !== 0 &&
-      imageRef.naturalHeight !== 0
+    ? (imageRef.complete &&
+        imageRef.naturalWidth !== 0 &&
+        imageRef.naturalHeight !== 0) ||
+      inCacheStorage(imageRef.currentSrc || imageRef.src)
     : false
