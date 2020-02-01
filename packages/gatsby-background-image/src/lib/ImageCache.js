@@ -1,6 +1,7 @@
 import { convertProps } from './HelperUtils'
 import { hasArtDirectionArray } from './MediaUtils'
 import { getImageSrcKey, getSelectedImage, hasImageArray } from './ImageUtils'
+import { isBrowser } from './SimpleUtils'
 
 const imageCache = Object.create({})
 /**
@@ -28,7 +29,7 @@ export const inImageCache = (props, index = 0, isLoop = false) => {
 }
 
 export const inCacheStorage = url => {
-  if (caches) {
+  if (isBrowser() && window.caches) {
     console.log('given url:', url)
     const defaultRequest = new Request(url)
     return caches.match(defaultRequest.clone()).then(response => {
@@ -80,10 +81,12 @@ export const activateCacheForImage = (props, index = 0, isLoop = false) => {
 }
 
 export const activateCacheStorageForImage = url => {
-  const CACHE_NAME = `gbi-cache`
-  caches.open(CACHE_NAME).then(async cacheStorage => {
-    await cacheStorage.add(url)
-  })
+  if (isBrowser() && window.caches) {
+    const CACHE_NAME = `gbi-cache`
+    caches.open(CACHE_NAME).then(async cacheStorage => {
+      await cacheStorage.add(url)
+    })
+  }
 }
 
 /**
