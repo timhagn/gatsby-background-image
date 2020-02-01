@@ -40,7 +40,10 @@ class BackgroundImage extends React.Component {
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
-    const seenBefore = inImageCache(convertedProps)
+    let seenBefore
+    inImageCache(convertedProps).then(seen => {
+      seenBefore = seen
+    })
 
     // Browser with Intersection Observer available
     if (
@@ -112,7 +115,9 @@ class BackgroundImage extends React.Component {
     )
 
     if (this.state.isVisible && typeof this.props.onStartLoad === `function`) {
-      this.props.onStartLoad({ wasCached: inImageCache(this.props) })
+      inImageCache(this.props).then(wasCached =>
+        this.props.onStartLoad({ wasCached })
+      )
     }
 
     if (this.props.critical) {
@@ -125,11 +130,11 @@ class BackgroundImage extends React.Component {
     this.setState({ currentClassNames })
   }
 
-  componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps) {
     // Check if we received a changed fluid / fixed image.
     if (imagePropsChanged(this.props, prevProps)) {
       const convertedProps = convertProps(this.props)
-      const imageInCache = inImageCache(convertedProps)
+      const imageInCache = await inImageCache(convertedProps)
       const [currentClassNames] = fixClassName(convertedProps)
 
       this.setState(
@@ -177,8 +182,8 @@ class BackgroundImage extends React.Component {
     }
   }
 
-  intersectionListener = () => {
-    const imageInCache = inImageCache(this.props)
+  intersectionListener = async () => {
+    const imageInCache = await inImageCache(this.props)
     if (!this.state.isVisible && typeof this.props.onStartLoad === `function`) {
       this.props.onStartLoad({ wasCached: imageInCache })
     }

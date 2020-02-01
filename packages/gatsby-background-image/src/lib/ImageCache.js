@@ -1,7 +1,7 @@
 import { convertProps } from './HelperUtils'
 import { hasArtDirectionArray } from './MediaUtils'
 import { getImageSrcKey, getSelectedImage, hasImageArray } from './ImageUtils'
-import { getData, setData } from './CacheStorage'
+import { deleteOldCaches, getData, setData } from './CacheStorage'
 
 const imageCache = Object.create({})
 /**
@@ -13,7 +13,7 @@ const imageCache = Object.create({})
  * @param isLoop
  * @return {boolean}
  */
-export const inImageCache = (props, index = 0, isLoop = false) => {
+export const inImageCache = async (props, index = 0, isLoop = false) => {
   const convertedProps = convertProps(props)
   const isImageStack =
     hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps)
@@ -25,8 +25,9 @@ export const inImageCache = (props, index = 0, isLoop = false) => {
   const src = isImageStack
     ? getSelectedImage(convertedProps, index)
     : getImageSrcKey(convertedProps)
-  const cachedSrc = getData(src)
-  return cachedSrc || imageCache[src] || false
+  const cachedSrc = await getData(src)
+  console.log('cachedSrc', cachedSrc)
+  return !!cachedSrc || imageCache[src] || false
 }
 
 /**
@@ -40,9 +41,9 @@ export const allInImageCache = props => {
   // Extract Image Array.
   const imageStack = convertedProps.fluid || convertedProps.fixed
   // Only return true if every image is in cache.
-  return imageStack.every((imageData, index) => {
-    return inImageCache(convertedProps, index, true)
-  })
+  return imageStack.every(
+    async (imageData, index) => await inImageCache(convertedProps, index, true)
+  )
 }
 
 /**
@@ -87,5 +88,6 @@ export const activateCacheForMultipleImages = props => {
  * Resets the image cache (especially important for reliable tests).
  */
 export const resetImageCache = () => {
+  deleteOldCaches()
   for (const prop in imageCache) delete imageCache[prop]
 }

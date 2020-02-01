@@ -1,6 +1,5 @@
 import { hasArtDirectionArray, matchesMedia } from './MediaUtils'
-import { filteredJoin, isBrowser, isString } from './SimpleUtils'
-import { getData } from './CacheStorage'
+import { filteredJoin, isBrowser, isString, isObject } from './SimpleUtils'
 
 /**
  * Returns the availability of the HTMLPictureElement unless in SSR mode.
@@ -48,12 +47,15 @@ export const getCurrentFromData = ({
       // .filter(dataElement => {
       //   return propName in dataElement && dataElement[propName]
       // })
-      .map(dataElement => {
+      .map(async dataElement => {
         // If `currentSrc` or `src` is needed, check image load completion first.
-        if (propName === `currentSrc` || propName === 'src') {
-          return checkLoaded
-            ? (imageLoaded(dataElement) && dataElement[propName]) || ``
-            : dataElement[propName]
+        if (propName === `currentSrc` || propName === `src`) {
+          if (checkLoaded) {
+            const loaded = await imageLoaded(dataElement)
+            console.log('is loaded:', loaded, dataElement[propName])
+            return loaded ? dataElement[propName] : ``
+          }
+          return dataElement[propName]
         }
         // Check if CSS strings should be parsed.
         if (propName === `CSS_STRING` && isString(dataElement)) {
@@ -80,10 +82,18 @@ export const getCurrentFromData = ({
   }
   // If `currentSrc` or `src` is needed, check image load completion first.
   if ((propName === `currentSrc` || propName === 'src') && propName in data) {
+    console.log(data)
+    let imageString = data[propName]
+    if (checkLoaded) {
+      let loaded = false
+      imageLoaded(data).then(isLoaded => {
+        loaded = isLoaded
+      })
+      console.log('is loaded:', loaded, data[propName])
+      imageString = loaded ? data[propName] : ``
+    }
     return getUrlString({
-      imageString: checkLoaded
-        ? (imageLoaded(data) && data[propName]) || ``
-        : data[propName],
+      imageString,
       addUrl,
     })
   }
@@ -186,15 +196,21 @@ export const getUrlString = ({
     })
     return returnArray ? stringArray : filteredJoin(stringArray)
   }
-  const base64 = imageString.indexOf(`base64`) !== -1
-  const imageUrl = hasImageUrls || imageString.substr(0, 4) === `http`
+  let imageRealString = imageString
+  if (isObject(imageString)) {
+    console.log('isObject', imageString)
+    imageRealString = imageString.url || ''
+  }
+  console.log('irs', imageRealString)
+  const base64 = imageRealString?.indexOf(`base64`) !== -1
+  const imageUrl = hasImageUrls || imageRealString?.substr(0, 4) === `http`
   const returnString =
-    imageString && tracedSVG
-      ? `"${imageString}"`
-      : imageString && !base64 && !tracedSVG && imageUrl
-      ? `'${imageString}'`
-      : imageString
-  return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``
+    imageRealString && tracedSVG
+      ? `"${imageRealString}"`
+      : imageRealString && !base64 && !tracedSVG && imageUrl
+      ? `'${imageRealString}'`
+      : imageRealString
+  return imageRealString ? (addUrl ? `url(${returnString})` : returnString) : ``
 }
 
 /**
@@ -275,11 +291,13 @@ export const createDummyImageArray = length => {
  * @param imageRef    HTMLImageElement||array   Image reference(s).
  * @return {boolean}
  */
-export const imageReferenceCompleted = imageRef =>
+export const imageReferenceCompleted = async imageRef =>
   imageRef
     ? Array.isArray(imageRef)
-      ? imageRef.every(singleImageRef => imageLoaded(singleImageRef))
-      : imageLoaded(imageRef)
+      ? imageRef.every(
+          async singleImageRef => await imageLoaded(singleImageRef)
+        )
+      : !!(await imageLoaded(imageRef))
     : isString(imageRef)
 
 /**
@@ -288,9 +306,9 @@ export const imageReferenceCompleted = imageRef =>
  * @param imageRef  HTMLImageElement  Reference to an image.
  * @return {boolean}
  */
-export const imageLoaded = imageRef =>
+export const imageLoaded = async imageRef =>
   imageRef
     ? imageRef.complete &&
       imageRef.naturalWidth !== 0 &&
       imageRef.naturalHeight !== 0
-    : !!getData()
+    : false

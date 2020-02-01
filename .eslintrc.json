@@ -26,7 +26,8 @@
     "react/jsx-props-no-spreading": [0],
     "react/destructuring-assignment": [0],
     "react/require-default-props": [0],
-    "react/no-danger": [0]
+    "react/no-danger": [0],
+    "react/no-did-update-set-state": [0]
   },
   "env": {
     "browser": true,
