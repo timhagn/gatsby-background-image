@@ -15,15 +15,6 @@ export const isString = value =>
   Object.prototype.toString.call(value) === '[object String]'
 
 /**
- * Tests a given value on being an object.
- *
- * @param value *   Value to test
- * @return {boolean}
- */
-export const isObject = value =>
-  value !== null && !isString(value) && typeof value === 'object'
-
-/**
  * Converts CSS kebab-case strings to camel-cased js style rules.
  *
  * @param str   string    Rule to transform
