@@ -310,12 +310,16 @@ describe(`imageLoaded()`, () => {
   })
 })
 
-describe(`getFirstImage()`, () => {
+describe(`getSelectedImage()`, () => {
   it(`should return same image with singular fluid image`, () => {
     expect(getSelectedImage(fluidMock)).toEqual(fluidShapeMock)
   })
 
   it(`should return same image with singular fixed image`, () => {
     expect(getSelectedImage(fixedMock)).toEqual(fixedShapeMock)
+  })
+
+  it(`should return same image with singular fixed image`, () => {
+    expect(getSelectedImage(fixedArrayMock, 2)).toEqual(fixedShapeMock)
   })
 })

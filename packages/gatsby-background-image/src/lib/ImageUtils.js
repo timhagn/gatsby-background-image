@@ -144,7 +144,8 @@ export const getCurrentSrcData = ({ fluid, fixed, returnArray }, index = 0) => {
 export const getSelectedImage = ({ fluid, fixed }, index = 0) => {
   const currentData = fluid || fixed
   if (hasImageArray({ fluid, fixed })) {
-    return currentData[index]
+    // Fall back on first image if `index` has no entry.
+    return currentData[index] || currentData[0]
   }
   return currentData
 }

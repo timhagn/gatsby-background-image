@@ -79,5 +79,9 @@ export const hasArtDirectionArray = props =>
  * @return {boolean}
  */
 export const matchesMedia = ({ media }) => {
-  return media ? isBrowser() && !!window.matchMedia(media).matches : false
+  return media
+    ? isBrowser() &&
+        typeof window.matchMedia !== `undefined` &&
+        !!window.matchMedia(media).matches
+    : false
 }
