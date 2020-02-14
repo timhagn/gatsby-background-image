@@ -110,6 +110,11 @@ export const activatePictureRef = (
       ? getSelectedImage(convertedProps, index)
       : getCurrentSrcData(convertedProps)
 
+    // TODO: Check back on #94.
+    if (!imageData || isString(imageData)) {
+      return null
+    }
+
     // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
     // but don't prevent it during SSR.
     if (hasPictureElement()) {

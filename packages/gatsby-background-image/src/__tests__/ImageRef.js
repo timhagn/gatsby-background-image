@@ -132,6 +132,14 @@ describe(`createPictureRef() with image array`, () => {
   })
 })
 
+describe(`activatePictureRef()`, () => {
+  it(`should fail without imageData`, () => {
+    const testImg = new Image()
+    const dummyImageRef = activatePictureRef(testImg, { ...fluidShapeMock })
+    expect(dummyImageRef).toMatchInlineSnapshot(`null`)
+  })
+})
+
 describe(`activatePictureRef() with image array`, () => {
   const dummySelfRef = {
     offsetWidth: 500,
