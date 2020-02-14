@@ -6,7 +6,7 @@ import {
   hasPictureElement,
 } from './ImageUtils'
 import { createArtDirectionSources, hasArtDirectionArray } from './MediaUtils'
-import { isBrowser } from './SimpleUtils'
+import { isBrowser, isString } from './SimpleUtils'
 
 /**
  * Creates an image reference to be activated on critical or visibility.
@@ -162,4 +162,26 @@ export const activateMultiplePictureRefs = (imageRefs, props, selfRef) => {
   return imageRefs.map((imageRef, index) =>
     activatePictureRef(imageRef, props, selfRef, index, true)
   )
+}
+
+/**
+ * Checks imageRefs on being active.
+ *
+ * @param imageRefs
+ * @return {*}
+ */
+export const hasActivatedPictureRefs = imageRefs => {
+  return Array.isArray(imageRefs)
+    ? imageRefs.every(imageRef => hasPictureRef(imageRef))
+    : hasPictureRef(imageRefs)
+}
+
+/**
+ * Checks imageRef for on being a string or has a currentSrc.
+ *
+ * @param imageRef
+ * @return {boolean}
+ */
+export const hasPictureRef = imageRef => {
+  return isString(imageRef) || !!imageRef.currentSrc
 }

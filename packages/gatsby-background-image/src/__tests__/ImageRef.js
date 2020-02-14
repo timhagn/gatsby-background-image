@@ -5,7 +5,11 @@ import {
   fluidShapeMock,
   mockArtDirectionStackFluid,
 } from './mocks/Various.mock'
-import { activatePictureRef, createPictureRef } from '../lib/ImageRef'
+import {
+  activatePictureRef,
+  createPictureRef,
+  hasActivatedPictureRefs,
+} from '../lib/ImageRef'
 
 describe(`createPictureRef()`, () => {
   it(`should return null on ssr or empty fluid / fixed prop`, () => {
@@ -202,5 +206,15 @@ describe(`activatePictureRef() with art-direction stack`, () => {
       dummySelfRef
     )
     expect(dummyImageRef).toMatchSnapshot()
+  })
+})
+
+describe(`hasActivatedPictureRefs()`, () => {
+  it(`should return true for activate imageRef Arrays`, () => {
+    const dummyImageRefs = [
+      { currentSrc: `test.webp` },
+      { currentSrc: `test.webp` },
+    ]
+    expect(hasActivatedPictureRefs(dummyImageRefs)).toBeTruthy()
   })
 })

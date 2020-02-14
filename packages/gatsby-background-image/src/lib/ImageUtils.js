@@ -1,5 +1,6 @@
 import { hasArtDirectionArray, matchesMedia } from './MediaUtils'
 import { filteredJoin, isBrowser, isString } from './SimpleUtils'
+import { inImageCache } from './ImageCache'
 
 /**
  * Returns the availability of the HTMLPictureElement unless in SSR mode.
@@ -273,13 +274,15 @@ export const createDummyImageArray = length => {
  * Checks if an image (array) reference is existing and tests for complete.
  *
  * @param imageRef    HTMLImageElement||array   Image reference(s).
+ * @param props
  * @return {boolean}
  */
-export const imageReferenceCompleted = imageRef =>
+export const imageReferenceCompleted = (imageRef, props) =>
   imageRef
     ? Array.isArray(imageRef)
-      ? imageRef.every(singleImageRef => imageLoaded(singleImageRef))
-      : imageLoaded(imageRef)
+      ? imageRef.every(singleImageRef => imageLoaded(singleImageRef)) ||
+        inImageCache(props)
+      : imageLoaded(imageRef) || inImageCache(props)
     : isString(imageRef)
 
 /**

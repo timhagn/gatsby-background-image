@@ -9,7 +9,11 @@ import {
   imageReferenceCompleted,
 } from './lib/ImageUtils'
 import { activateCacheForImage, inImageCache } from './lib/ImageCache'
-import { activatePictureRef, createPictureRef } from './lib/ImageRef'
+import {
+  activatePictureRef,
+  createPictureRef,
+  hasActivatedPictureRefs,
+} from './lib/ImageRef'
 import { initialBgImage, switchImageSettings } from './lib/ImageHandling'
 import {
   fixClassName,
@@ -115,7 +119,7 @@ class BackgroundImage extends React.Component {
       this.props.onStartLoad({ wasCached: inImageCache(this.props) })
     }
 
-    if (this.props.critical) {
+    if (this.props.critical || this.state.seenBefore) {
       if (imageReferenceCompleted(this.imageRef)) {
         this.handleImageLoaded()
       }
@@ -124,6 +128,11 @@ class BackgroundImage extends React.Component {
     const [currentClassNames] = fixClassName(this.props)
     this.setState({ currentClassNames })
   }
+
+  // shouldComponentUpdate(nextProps) {
+  //   console.table(this.state, imagePropsChanged(this.props, nextProps))
+  //   return !imagePropsChanged(this.props, nextProps)
+  // }
 
   componentDidUpdate(prevProps) {
     // Check if we received a changed fluid / fixed image.
@@ -136,6 +145,7 @@ class BackgroundImage extends React.Component {
         {
           isVisible: imageInCache || convertedProps.critical,
           imgLoaded: imageInCache,
+          seenBefore: imageInCache,
           currentClassNames,
         },
         () => {
@@ -197,7 +207,7 @@ class BackgroundImage extends React.Component {
       () => {
         this.setState(state => ({
           imgLoaded: imageInCache,
-          imgCached: !!this.imageRef.currentSrc,
+          imgCached: hasActivatedPictureRefs(this.imageRef),
           imageState: state.imageState + 1,
         }))
       }
