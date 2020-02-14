@@ -216,6 +216,10 @@ export const onClientEntry = () => {
 
 ## How to Use
 
+Be sure to play around with the [Example Repo](#example-repo), as it shows
+a few more flavors of using `BackgroundImage`, e.g. encapsulating it in a 
+component : )!
+
 This is what a component using `gatsby-background-image` might look like:
 
 ```js
