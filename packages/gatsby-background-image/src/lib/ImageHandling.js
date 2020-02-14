@@ -95,10 +95,16 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
     nextImage = filteredJoin(nextImage)
   } else {
     nextImage = ``
-    if (image.tracedSVG)
-      nextImage = getCurrentFromData({ data: image, propName: `tracedSVG` })
-    if (image.base64 && !image.tracedSVG)
-      nextImage = getCurrentFromData({ data: image, propName: `base64` })
+    if (hasArtDirectionArray({ fluid: image })) {
+      nextImage =
+        getCurrentFromData({ data: image, propName: `tracedSVG` }) ||
+        getCurrentFromData({ data: image, propName: `base64` })
+    } else {
+      if (image.tracedSVG)
+        nextImage = getCurrentFromData({ data: image, propName: `tracedSVG` })
+      if (image.base64 && !image.tracedSVG)
+        nextImage = getCurrentFromData({ data: image, propName: `base64` })
+    }
     if (state.imgLoaded && state.isVisible) {
       nextImage = currentSources
       finalImage = true

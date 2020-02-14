@@ -4,9 +4,11 @@ import {
   getSelectedImage,
   hasImageArray,
   hasPictureElement,
+  imageLoaded,
 } from './ImageUtils'
 import { createArtDirectionSources, hasArtDirectionArray } from './MediaUtils'
 import { isBrowser, isString } from './SimpleUtils'
+import { inImageCache } from './ImageCache'
 
 /**
  * Creates an image reference to be activated on critical or visibility.
@@ -126,7 +128,7 @@ export const activatePictureRef = (
         pic.width = imageRef.width
         pic.height = imageRef.height
       }
-      // TODO: check why only the 1400 image gets loaded & single / stacked images don't!
+      // TODO: check why only the 1400 image gets loaded as jpg & single / stacked images don't!
       if (hasArtDirectionArray(convertedProps)) {
         const sources = createArtDirectionSources(convertedProps).reverse()
         sources.forEach(currentSource => pic.appendChild(currentSource))
@@ -190,3 +192,18 @@ export const hasActivatedPictureRefs = imageRefs => {
 export const hasPictureRef = imageRef => {
   return isString(imageRef) || (!!imageRef && !!imageRef.currentSrc)
 }
+
+/**
+ * Checks if an image (array) reference is existing and tests for complete.
+ *
+ * @param imageRef    HTMLImageElement||array   Image reference(s).
+ * @param props
+ * @return {boolean}
+ */
+export const imageReferenceCompleted = (imageRef, props) =>
+  imageRef
+    ? Array.isArray(imageRef)
+      ? imageRef.every(singleImageRef => imageLoaded(singleImageRef)) ||
+        inImageCache(props)
+      : imageLoaded(imageRef) || inImageCache(props)
+    : isString(imageRef)

@@ -36,14 +36,12 @@ export const createArtDirectionSources = ({ fluid, fixed }) => {
       return sources
     }
     const source = document.createElement('source')
-    source.srcset = image.srcSet
-    source.media = image.media
-    if (image.sizes) {
-      source.sizes = image.sizes
-    }
     if (image.srcSetWebp) {
       source.type = `image/webp`
-      source.srcSetWebp = image.srcSetWebp
+      source.srcset = image.srcSetWebp
+    }
+    if (image.sizes) {
+      source.sizes = image.sizes
     }
     source.media = image.media
     sources.push(source)

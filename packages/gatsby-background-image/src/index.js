@@ -6,13 +6,12 @@ import {
   getCurrentFromData,
   getCurrentSrcData,
   imagePropsChanged,
-  imageReferenceCompleted,
 } from './lib/ImageUtils'
 import { activateCacheForImage, inImageCache } from './lib/ImageCache'
 import {
   activatePictureRef,
   createPictureRef,
-  hasActivatedPictureRefs,
+  hasActivatedPictureRefs, imageReferenceCompleted,
 } from './lib/ImageRef'
 import { initialBgImage, switchImageSettings } from './lib/ImageHandling'
 import {

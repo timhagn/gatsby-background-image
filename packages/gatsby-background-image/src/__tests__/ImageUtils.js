@@ -11,13 +11,12 @@ import {
   imagePropsChanged,
   getCurrentFromData,
   getUrlString,
-  imageReferenceCompleted,
   imageLoaded,
   getSelectedImage,
   getCurrentSrcData,
 } from '../lib/ImageUtils'
 import { resetImageCache } from '../lib/ImageCache'
-import { activatePictureRef } from '../lib/ImageRef'
+import { activatePictureRef, imageReferenceCompleted } from '../lib/ImageRef'
 
 global.console.debug = jest.fn()
 
@@ -254,6 +253,24 @@ describe(`getCurrentFromData() with art-direction stack`, () => {
       addUrl: false,
     })
     expect(returnedString).toMatchInlineSnapshot(`"test_fluid_image.jpg"`)
+  })
+
+  it(`getCurrentData() should return tracedSVG for fluid art-direction stack`, () => {
+    const returnedString = getCurrentFromData({
+      data: mockArtDirectionStackFluid,
+      propName: `tracedSVG`,
+      addUrl: false,
+    })
+    expect(returnedString).toMatchInlineSnapshot(`""`)
+  })
+
+  it(`getCurrentData() should return base64 for fluid art-direction stack`, () => {
+    const returnedString = getCurrentFromData({
+      data: mockArtDirectionStackFluid,
+      propName: `base64`,
+      addUrl: false,
+    })
+    expect(returnedString).toMatchInlineSnapshot(`"string_of_base64"`)
   })
 
   it(`getCurrentData() should return empty string for (illegal) fixed art-direction stack`, () => {

@@ -1,6 +1,5 @@
 import { hasArtDirectionArray, matchesMedia } from './MediaUtils'
 import { filteredJoin, isBrowser, isString } from './SimpleUtils'
-import { inImageCache } from './ImageCache'
 
 /**
  * Returns the availability of the HTMLPictureElement unless in SSR mode.
@@ -71,7 +70,10 @@ export const getCurrentFromData = ({
   }
   if (
     hasArtDirectionArray({ fluid: data }) &&
-    (propName === `currentSrc` || propName === 'src')
+    (propName === `currentSrc` ||
+      propName === `src` ||
+      propName === `base64` ||
+      tracedSVG)
   ) {
     const currentData = getCurrentSrcData({ fluid: data })
     return propName in currentData
@@ -269,21 +271,6 @@ export const createDummyImageArray = length => {
   const dummyImageURI = getUrlString({ imageString: DUMMY_IMG })
   return Array(length).fill(dummyImageURI)
 }
-
-/**
- * Checks if an image (array) reference is existing and tests for complete.
- *
- * @param imageRef    HTMLImageElement||array   Image reference(s).
- * @param props
- * @return {boolean}
- */
-export const imageReferenceCompleted = (imageRef, props) =>
-  imageRef
-    ? Array.isArray(imageRef)
-      ? imageRef.every(singleImageRef => imageLoaded(singleImageRef)) ||
-        inImageCache(props)
-      : imageLoaded(imageRef) || inImageCache(props)
-    : isString(imageRef)
 
 /**
  * Checks if an image really was fully loaded.
