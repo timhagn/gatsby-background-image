@@ -8,6 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.9.15](https://github.com/timhagn/gatsby-background-image) (2020-02-14)
 
 **fix** Tackling #92 & #93. Fixed Flashing for default and art-directed images.
+Add fallback for `imageData` for #94.
 
 ## [0.9.14](https://github.com/timhagn/gatsby-background-image) (2020-02-02)
 
