@@ -11,7 +11,8 @@ import { activateCacheForImage, inImageCache } from './lib/ImageCache'
 import {
   activatePictureRef,
   createPictureRef,
-  hasActivatedPictureRefs, imageReferenceCompleted,
+  hasActivatedPictureRefs,
+  imageReferenceCompleted,
 } from './lib/ImageRef'
 import { initialBgImage, switchImageSettings } from './lib/ImageHandling'
 import {
