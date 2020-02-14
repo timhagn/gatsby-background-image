@@ -71,10 +71,7 @@ export const getCurrentFromData = ({
   }
   if (
     hasArtDirectionArray({ fluid: data }) &&
-    (propName === `currentSrc` ||
-      propName === `src` ||
-      propName === `base64` ||
-      propName === `tracedSVG`)
+    (propName === `currentSrc` || propName === 'src')
   ) {
     const currentData = getCurrentSrcData({ fluid: data })
     return propName in currentData
