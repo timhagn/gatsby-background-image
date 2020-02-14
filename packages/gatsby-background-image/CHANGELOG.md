@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.15"></a>
+<a name="0.9.16"></a>
+
+## [0.9.16](https://github.com/timhagn/gatsby-background-image) (2020-02-14)
+
+**fix** Added error handling for new cases on build.
 
 ## [0.9.15](https://github.com/timhagn/gatsby-background-image) (2020-02-14)
 
