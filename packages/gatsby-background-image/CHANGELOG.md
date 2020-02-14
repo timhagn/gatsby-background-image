@@ -3,13 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.14"></a>
+<a name="0.9.15"></a>
 
-## [0.9.14](https://github.com/timhagn/gatsby-background-image) (2019-02-02)
+## [0.9.15](https://github.com/timhagn/gatsby-background-image) (2020-02-14)
+
+**fix** Tackling #92 & #93. Fixed Flashing for default and art-directed images.
+
+## [0.9.14](https://github.com/timhagn/gatsby-background-image) (2020-02-02)
 
 **fix** Added fallbacks to prevent 'undefined is not an object' errors for #94.
 
-## [0.9.13](https://github.com/timhagn/gatsby-background-image) (2019-01-24)
+## [0.9.13](https://github.com/timhagn/gatsby-background-image) (2020-01-24)
 
 **fix** Adapted IFluidObject interface for #97 (`sizes` optional).
 
