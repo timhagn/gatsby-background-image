@@ -175,7 +175,8 @@ class BackgroundImage extends React.Component {
     if (this.imageRef) {
       if (Array.isArray(this.imageRef)) {
         this.imageRef.forEach(
-          currentImageRef => (currentImageRef.onload = null)
+          currentImageRef =>
+            !!currentImageRef && (currentImageRef.onload = null)
         )
       } else {
         this.imageRef.onload = null

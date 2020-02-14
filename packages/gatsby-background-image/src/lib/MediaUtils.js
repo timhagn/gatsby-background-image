@@ -61,7 +61,7 @@ export const createArtDirectionSources = ({ fluid, fixed }) => {
 export const hasArtDirectionSupport = (props, prop) =>
   props[prop] &&
   Array.isArray(props[prop]) &&
-  props[prop].some(image => typeof image.media !== 'undefined')
+  props[prop].some(image => !!image && typeof image.media !== 'undefined')
 
 /**
  * Checks for fluid or fixed Art direction support.

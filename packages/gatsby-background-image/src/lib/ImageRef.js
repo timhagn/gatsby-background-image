@@ -188,5 +188,5 @@ export const hasActivatedPictureRefs = imageRefs => {
  * @return {boolean}
  */
 export const hasPictureRef = imageRef => {
-  return isString(imageRef) || !!imageRef.currentSrc
+  return isString(imageRef) || (!!imageRef && !!imageRef.currentSrc)
 }
