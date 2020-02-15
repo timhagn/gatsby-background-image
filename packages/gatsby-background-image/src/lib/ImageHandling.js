@@ -185,10 +185,9 @@ export const initialBgImage = (props, withDummies = true) => {
     }
   } else {
     initialImage = ``
-    if (image.tracedSVG)
-      initialImage = getCurrentFromData({ data: image, propName: `tracedSVG` })
-    if (image.base64 && !image.tracedSVG)
-      initialImage = getCurrentFromData({ data: image, propName: `base64` })
+    initialImage =
+      getCurrentFromData({ data: image, propName: `tracedSVG` }) ||
+      getCurrentFromData({ data: image, propName: `base64` })
   }
   return initialImage
 }

@@ -5,7 +5,12 @@ import {
 } from './StyleUtils'
 import { getCurrentFromData, getUrlString } from './ImageUtils'
 import { hasArtDirectionArray } from './MediaUtils'
-import { combineArray, filteredJoin, stringToArray } from './SimpleUtils'
+import {
+  combineArray,
+  filteredJoin,
+  isBrowser,
+  stringToArray,
+} from './SimpleUtils'
 
 /**
  * Creates pseudo-element(s) for className(s).
@@ -54,6 +59,15 @@ export const createPseudoElementWithContent = (
     }`
 }
 
+/**
+ * Creates a single pseudo-element media-query.
+ *
+ * @param pseudoElementString
+ * @param media
+ * @param imageSource
+ * @param imageSourceWebP
+ * @return {string}
+ */
 export const createPseudoElementMediaQuery = (
   pseudoElementString,
   media,
@@ -119,29 +133,35 @@ export const createPseudoStyles = ({
           }
           ${pseudoBefore} {
             z-index: -100;
-            ${
-              afterOpacity && nextImage ? `background-image: ${nextImage};` : ``
-            }
-            ${
-              !afterOpacity && lastImage
-                ? `background-image: ${lastImage};`
-                : ``
-            }
+            ${createStyleImage(afterOpacity, nextImage)}
+            ${createStyleImage(afterOpacity, lastImage, false)}
             opacity: ${afterOpacity}; 
           }
           ${pseudoAfter} {
             z-index: -101;
-            ${
-              !afterOpacity && nextImage
-                ? `background-image: ${nextImage};`
-                : ``
-            }
-            ${
-              afterOpacity && lastImage ? `background-image: ${lastImage};` : ``
-            }
+            ${createStyleImage(afterOpacity, nextImage, false)}
+            ${createStyleImage(afterOpacity, lastImage)}            
             ${finalImage ? `opacity: ${Number(!afterOpacity)};` : ``}
           }
         `
+}
+
+/**
+ * Creates a background-image string when certain conditions are met.
+ *
+ * @param afterOpacity            {number}  The current opacity switched before.
+ * @param image                   {string}  The current image.
+ * @param shouldBeActiveWhenShown {boolean} If the current opacity should count (default: false).
+ * @return {string}
+ */
+export const createStyleImage = (
+  afterOpacity,
+  image,
+  shouldBeActiveWhenShown = true
+) => {
+  const activityResult =
+    !!afterOpacity && shouldBeActiveWhenShown && isBrowser()
+  return activityResult && image ? `background-image: ${image};` : ``
 }
 
 /**
@@ -195,12 +215,7 @@ export const createNoScriptStyles = ({ classId, className, image }) => {
               webPString
             )
           }
-          return `
-            ${createPseudoElementWithContent(pseudoBefore, sourceString)}
-            ${currentMedia.srcWebp &&
-              `@media screen {
-            ${createPseudoElementWithContent(pseudoBefore, webPString)}
-          }`}`
+          return ``
         })
         .join('')
     }
