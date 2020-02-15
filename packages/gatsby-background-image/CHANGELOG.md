@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.17"></a>
+<a name="0.9.18"></a>
+
+## [0.9.18](https://github.com/timhagn/gatsby-background-image) (2020-02-15)
+
+**fix** Fix initial Image of Art-Directed Images for #99 ("blur up").
 
 ## [0.9.17](https://github.com/timhagn/gatsby-background-image) (2020-02-14)
 
