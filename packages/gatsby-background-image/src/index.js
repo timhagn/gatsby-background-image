@@ -326,6 +326,7 @@ class BackgroundImage extends React.Component {
       style,
       fadeIn: shouldFadeIn,
       ...newImageSettings,
+      originalData: fluid || fixed,
     })
 
     const noScriptPseudoStyles = createNoScriptStyles({

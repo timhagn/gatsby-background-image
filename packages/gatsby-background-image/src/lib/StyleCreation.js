@@ -3,7 +3,7 @@ import {
   kebabifyBackgroundStyles,
   setTransitionStyles,
 } from './StyleUtils'
-import { getCurrentFromData, getUrlString } from './ImageUtils'
+import { getCurrentFromData, getUrlString, hasImageArray } from './ImageUtils'
 import { hasArtDirectionArray } from './MediaUtils'
 import {
   combineArray,
@@ -100,6 +100,7 @@ export const createPseudoElementMediaQuery = (
  * @param backgroundStyles  object    Special background styles to be spread
  * @param style             object    Default style to be spread
  * @param finalImage        boolean   Have we reached the last image?
+ * @param originalData
  * @return {string}
  */
 export const createPseudoStyles = ({
@@ -114,6 +115,7 @@ export const createPseudoStyles = ({
   backgroundStyles,
   style,
   finalImage,
+  originalData,
 }) => {
   const pseudoBefore = createPseudoElement(className, classId)
   const pseudoAfter = createPseudoElement(className, classId, `:after`)
@@ -133,14 +135,16 @@ export const createPseudoStyles = ({
           }
           ${pseudoBefore} {
             z-index: -100;
-            ${createStyleImage(afterOpacity, nextImage)}
-            ${createStyleImage(afterOpacity, lastImage, false)}
+            ${(afterOpacity && createStyleImage(nextImage, originalData)) || ``}
+            ${(!afterOpacity && createStyleImage(lastImage, originalData)) ||
+              ``}
             opacity: ${afterOpacity}; 
           }
           ${pseudoAfter} {
             z-index: -101;
-            ${createStyleImage(afterOpacity, nextImage, false)}
-            ${createStyleImage(afterOpacity, lastImage)}            
+            ${(!afterOpacity && createStyleImage(nextImage, originalData)) ||
+              ``}
+            ${(afterOpacity && createStyleImage(lastImage, originalData)) || ``}
             ${finalImage ? `opacity: ${Number(!afterOpacity)};` : ``}
           }
         `
@@ -149,19 +153,18 @@ export const createPseudoStyles = ({
 /**
  * Creates a background-image string when certain conditions are met.
  *
- * @param afterOpacity            {number}  The current opacity switched before.
  * @param image                   {string}  The current image.
- * @param shouldBeActiveWhenShown {boolean} If the current opacity should count (default: false).
+ * @param originalData            {Object}  The original fluid or fixed image.
  * @return {string}
  */
-export const createStyleImage = (
-  afterOpacity,
-  image,
-  shouldBeActiveWhenShown = true
-) => {
-  const activityResult =
-    !!afterOpacity && shouldBeActiveWhenShown && isBrowser()
-  return activityResult && image ? `background-image: ${image};` : ``
+export const createStyleImage = (image, originalData) => {
+  const hasStackedImages =
+    hasImageArray({ fluid: originalData }) &&
+    !hasArtDirectionArray({ fluid: originalData })
+  if (isBrowser() || hasStackedImages) {
+    return image ? `background-image: ${image};` : ``
+  }
+  return ``
 }
 
 /**
