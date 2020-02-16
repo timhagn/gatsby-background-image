@@ -4,7 +4,7 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
-    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/jest-dom": "^.2.4",
     "@testing-library/react": "^9.4.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
@@ -51,5 +51,5 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.9.18"
+  "version": "0.9.19"
 }
