@@ -85,7 +85,7 @@ background-size: 'contain';
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
-            background-image: url('http://localhost/test_fixed_image.jpg'),url('http://localhost/test_fixed_image.jpg');
+            background-image: url(http://localhost/test_fixed_image.jpg),url(http://localhost/test_fixed_image.jpg);
             
             opacity: 1; 
           }

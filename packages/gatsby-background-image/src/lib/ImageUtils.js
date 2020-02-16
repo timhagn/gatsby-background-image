@@ -173,8 +173,8 @@ export const getUrlString = ({
   if (Array.isArray(imageString)) {
     const stringArray = imageString.map(currentString => {
       if (currentString) {
-        const base64 = currentString.indexOf(`base64`) !== -1
-        const imageUrl = hasImageUrls || currentString.substr(0, 4) === `http`
+        const base64 = isBase64(currentString)
+        const imageUrl = hasImageUrls || hasImageUrl(imageString)
         const currentReturnString =
           currentString && tracedSVG
             ? `"${currentString}"`
@@ -189,8 +189,8 @@ export const getUrlString = ({
     })
     return returnArray ? stringArray : filteredJoin(stringArray)
   }
-  const base64 = imageString.indexOf(`base64`) !== -1
-  const imageUrl = hasImageUrls || imageString.substr(0, 4) === `http`
+  const base64 = isBase64(imageString)
+  const imageUrl = hasImageUrls || hasImageUrl(imageString)
   const returnString =
     imageString && tracedSVG
       ? `"${imageString}"`
@@ -199,6 +199,24 @@ export const getUrlString = ({
       : imageString
   return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``
 }
+
+/**
+ * Checks a (possible) string on having `base64` in it.
+ *
+ * @param base64String        {string|*}    The string to check.
+ * @return {boolean|boolean}
+ */
+export const isBase64 = base64String =>
+  isString(base64String) && base64String.indexOf(`base64`) !== -1
+
+/**
+ * Checks a (possible) string on having `http` in it.
+ *
+ * @param imageString         {string|*}    The string to check.
+ * @return {boolean|boolean}
+ */
+export const hasImageUrl = imageString =>
+  isString(imageString) && imageString.substr(0, 4) === `http`
 
 /**
  * Checks if any image props have changed.

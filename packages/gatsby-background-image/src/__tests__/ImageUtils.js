@@ -167,7 +167,7 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
       data: [{ blubb: `http://some_image` }],
       propName: `blubb`,
     })
-    expect(returnedString).toMatchInlineSnapshot(`"url('http://some_image')"`)
+    expect(returnedString).toMatchInlineSnapshot(`"url(http://some_image)"`)
   })
 
   it(`getCurrentFromData() should return string for data as object & propName`, () => {
