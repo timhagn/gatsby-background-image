@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.19"></a>
+<a name="0.10.0"></a>
+
+## [0.10.0](https://github.com/timhagn/gatsby-background-image) (2020-02-16)
+
+**fix** Fix usage of `imageReferenceCompleted()` in `index.js` to prevent 
+flashes in Firefox as well (Chromium was already working % ).
 
 ## [0.9.19](https://github.com/timhagn/gatsby-background-image) (2020-02-16)
 

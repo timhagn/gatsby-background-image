@@ -218,7 +218,12 @@ export const createNoScriptStyles = ({ classId, className, image }) => {
               webPString
             )
           }
-          return ``
+          return createPseudoElementMediaQuery(
+            pseudoBefore,
+            'screen',
+            sourceString,
+            webPString
+          )
         })
         .join('')
     }

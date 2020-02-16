@@ -1,9 +1,4 @@
-import { convertProps } from './HelperUtils'
-import {
-  createDummyImageArray,
-  getCurrentFromData,
-  hasImageArray,
-} from './ImageUtils'
+import { createDummyImageArray, getCurrentFromData } from './ImageUtils'
 import { hasArtDirectionArray } from './MediaUtils'
 import { combineArray, filteredJoin } from './SimpleUtils'
 
@@ -40,6 +35,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
       propName: `tracedSVG`,
       returnArray,
     })
+    console.log(nextImage)
     // Now combine with base64 images.
     nextImage = combineArray(
       getCurrentFromData({
@@ -135,59 +131,4 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   // Add nextImageArray for bgImage to newImageSettings if exists.
   if (nextImageArray) newImageSettings.nextImageArray = nextImageArray
   return newImageSettings
-}
-
-/**
- * Prepares initial background image(s).
- *
- * @param props         object    Component properties.
- * @param withDummies   boolean   If array preserving bg layering should be add.
- * @return {string|(string|Array)}
- */
-export const initialBgImage = (props, withDummies = true) => {
-  const convertedProps = convertProps(props)
-  const image = convertedProps.fluid || convertedProps.fixed
-  // Prevent failing if neither fluid nor fixed are present.
-  if (!image) return ``
-  const returnArray = hasImageArray(convertedProps)
-  let initialImage
-  if (returnArray) {
-    // Check for tracedSVG first.
-    initialImage = getCurrentFromData({
-      data: image,
-      propName: `tracedSVG`,
-      returnArray,
-    })
-    // Now combine with base64 images.
-    initialImage = combineArray(
-      getCurrentFromData({
-        data: image,
-        propName: `base64`,
-        returnArray,
-      }),
-      initialImage
-    )
-    // Now add possible `rgba()` or similar CSS string props.
-    initialImage = combineArray(
-      getCurrentFromData({
-        data: image,
-        propName: `CSS_STRING`,
-        addUrl: false,
-        returnArray,
-      }),
-      initialImage
-    )
-
-    if (withDummies) {
-      const dummyArray = createDummyImageArray(image.length)
-      // Now combine the two arrays and join them.
-      initialImage = combineArray(initialImage, dummyArray)
-    }
-  } else {
-    initialImage = ``
-    initialImage =
-      getCurrentFromData({ data: image, propName: `tracedSVG` }) ||
-      getCurrentFromData({ data: image, propName: `base64` })
-  }
-  return initialImage
 }

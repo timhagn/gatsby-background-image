@@ -14,7 +14,7 @@ import {
   hasActivatedPictureRefs,
   imageReferenceCompleted,
 } from './lib/ImageRef'
-import { initialBgImage, switchImageSettings } from './lib/ImageHandling'
+import { switchImageSettings } from './lib/ImageHandling'
 import {
   fixClassName,
   fixOpacity,
@@ -101,8 +101,6 @@ class BackgroundImage extends React.Component {
       { ...convertedProps, isVisible },
       this.handleImageLoaded
     )
-    // Start with base64, tracedSVG or empty background image(s).
-    this.bgImage = initialBgImage(convertedProps)
 
     this.selfRef = null
 

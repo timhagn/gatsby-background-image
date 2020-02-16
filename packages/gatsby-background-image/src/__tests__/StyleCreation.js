@@ -190,6 +190,15 @@ describe(`createNoScriptStyles()`, () => {
     })
     expect(noScriptStyled).toMatchInlineSnapshot(`
       "
+            @media screen {
+              
+          .myclass:before {
+            opacity: 1;
+            background-image: url(test_fluid_image.jpg);
+          }
+            }
+            
+          
             @media (min-width: 491px) {
               
           .myclass:before {
@@ -224,6 +233,15 @@ describe(`createNoScriptStyles()`, () => {
     })
     expect(noScriptStyled).toMatchInlineSnapshot(`
       "
+            @media screen {
+              
+          .myclass:before {
+            opacity: 1;
+            background-image: url(test_fluid_image.jpg);
+          }
+            }
+            
+          
             @media (min-width: 491px) {
               
           .myclass:before {
@@ -241,6 +259,21 @@ describe(`createNoScriptStyles()`, () => {
           }
             }
             
+          
+            @media screen {
+              
+          .myclass:before {
+            opacity: 1;
+            background-image: url(test_fluid_image.jpg);
+          }
+            }
+            @media screen {
+                
+          .myclass:before {
+            opacity: 1;
+            background-image: url(testimage.webp);
+          }
+              }
           "
     `)
   })

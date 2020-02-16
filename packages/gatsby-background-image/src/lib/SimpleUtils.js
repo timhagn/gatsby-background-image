@@ -99,5 +99,5 @@ export const combineArray = (fromArray, toArray) => {
   if (!Array.isArray(fromArray)) {
     return [fromArray]
   }
-  return fromArray.map((item, index) => item || toArray[index])
+  return fromArray.map((item, index) => item || (toArray && toArray[index]))
 }

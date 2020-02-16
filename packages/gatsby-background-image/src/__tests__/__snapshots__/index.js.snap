@@ -23,7 +23,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -32,16 +32,16 @@ background-size: 'contain';
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url('http://localhost/test_fixed_image.jpg');
             
-            background-image: url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            
             background-image: url(string_of_base64);
-            
-            
+            opacity: 0;
           }
         
     </style>
@@ -60,6 +60,59 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
+    title="Title for the image"
+  >
+    <style>
+      
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+.gatsby-background-image-test:before,
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+.gatsby-background-image-test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: lightgray;
+            transition: none;
+            background-position: 'center';
+background-repeat: 'repeat-y';
+background-size: 'contain';
+
+          }
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+.gatsby-background-image-test:before {
+            z-index: -100;
+            background-image: url('http://localhost/test_fluid_image.jpg');
+            
+            opacity: 1; 
+          }
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
+.gatsby-background-image-test:after {
+            z-index: -101;
+            
+            background-image: url(string_of_base64);
+            opacity: 0;
+          }
+        
+    </style>
+    <noscript />
+    <h1>
+      test
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`<BackgroundImage /> should call critical images 1`] = `
+<div>
+  <div
+    alt="Alt text for the image"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
+    id="testid"
+    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
     title="Title for the image"
   >
     <style>
@@ -129,7 +182,7 @@ exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -138,16 +191,16 @@ background-size: 'contain';
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
-            
             background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            
             background-image: url(string_of_base64),url(string_of_base64);
-            
-            
+            opacity: 0;
           }
         
     </style>
@@ -182,7 +235,7 @@ exports[`<BackgroundImage /> should call multiple critical fluid images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -191,16 +244,16 @@ background-size: 'contain';
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
-            
             background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            
             background-image: url(string_of_base64),url(string_of_base64);
-            
-            
+            opacity: 0;
           }
         
     </style>
@@ -675,7 +728,7 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: none;
             background-position: 'center';
 background-repeat: 'repeat-y';
 background-size: 'contain';
@@ -684,16 +737,16 @@ background-size: 'contain';
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
 .gatsby-background-image-test:before {
             z-index: -100;
+            background-image: url('http://localhost/test_fluid_image.jpg');
             
-            background-image: url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
 .gatsby-background-image-test:after {
             z-index: -101;
+            
             background-image: url(string_of_base64);
-            
-            
+            opacity: 0;
           }
         
     </style>

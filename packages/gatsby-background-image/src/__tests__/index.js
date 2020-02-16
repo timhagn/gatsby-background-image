@@ -60,6 +60,16 @@ describe(`<BackgroundImage />`, () => {
     expect(component).toMatchSnapshot()
   })
 
+  it(`should call critical images`, () => {
+    resetImageCache()
+    const options = {
+      addClass: true,
+      critical: true,
+    }
+    const component = setupBackgroundImage(options)
+    expect(component).toMatchSnapshot()
+  })
+
   it(`should call multiple critical fixed images`, () => {
     activateCacheForImage({ fixed: [fixedShapeMock, fixedShapeMock] })
     const options = {
@@ -78,7 +88,10 @@ describe(`<BackgroundImage />`, () => {
   })
 
   it(`should render without opacity hack with truthy preserveStackingContext`, () => {
-    const component = setupBackgroundImage({ fluid: true, props: {preserveStackingContext: true} })
+    const component = setupBackgroundImage({
+      fluid: true,
+      props: { preserveStackingContext: true },
+    })
     expect(component).toMatchSnapshot()
   })
 

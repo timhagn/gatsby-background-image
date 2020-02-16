@@ -1,14 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`initialBgImage() should return initial array without dummies 1`] = `
-Array [
-  "",
-  "",
-]
-`;
-
-exports[`initialBgImage() should return initial single tracedSVG 1`] = `"url(\\"data:image/svg+xml,...\\")"`;
-
 exports[`switchImageSettings() should return settings from fixed array 1`] = `
 Object {
   "afterOpacity": 1,
