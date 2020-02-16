@@ -178,8 +178,8 @@ module.exports = {
 
 #### Important:
 
-If you support _Safari_ and/or _Internet Explorer_, you have to install the
-`IntersectionObserver` polyfill.  
+If you support _Safari_ (older versions) and/or _Internet Explorer_, you have to
+install the `IntersectionObserver` polyfill.  
 As - at the time of writing - neither fully implements the feature
 (see [caniuse.com](https://caniuse.com/#search=IntersectionObserver)).
 
@@ -271,7 +271,7 @@ export default StyledBackgroundSection
 
 ## How to Use with Multiple Images
 
-As `gatsby-background-image` may now be used with [multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds),
+As `gatsby-background-image` may be used with [multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds),
 **including CSS strings** like `rgba()` or suchlike this is what a component
 using it might look like:
 
@@ -359,7 +359,7 @@ export default StyledMultiBackground
 
 ## How to Use with Art-Direction support
 
-`gatsby-background-image` now supports showing different images at different 
+`gatsby-background-image` supports showing different images at different 
 breakpoints, which is known as [art direction](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction). 
 To do this, you can define your own array of `fixed` or `fluid` images, along 
 with a `media` key per image, and pass it to `gatsby-image`'s `fixed` or `fluid` 
