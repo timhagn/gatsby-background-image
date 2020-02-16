@@ -3,15 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.9.18"></a>
+<a name="0.9.19"></a>
+
+## [0.9.19](https://github.com/timhagn/gatsby-background-image) (2020-02-16)
+
+**patch** Added check functions for `base64` & image strings to prevent #100.
 
 ## [0.9.18](https://github.com/timhagn/gatsby-background-image) (2020-02-15)
 
-**fix** Fix initial Image of Art-Directed Images for #99 ("blur up").
+**fix** Fixed initial Image of Art-Directed Images for #99 ("blur up").
 
 ## [0.9.17](https://github.com/timhagn/gatsby-background-image) (2020-02-14)
 
-**fix** Fix Art-Directed Images for #99 ("blur up") & WebP now working.
+**fix** Fixed Art-Directed Images for #99 ("blur up") & WebP now working.
 
 ## [0.9.16](https://github.com/timhagn/gatsby-background-image) (2020-02-14)
 
