@@ -7,8 +7,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.10.0](https://github.com/timhagn/gatsby-background-image) (2020-02-16)
 
-**fix** Fix usage of `imageReferenceCompleted()` in `index.js` to prevent 
-flashes in Firefox as well (Chromium was already working % ).
+**fix** Fixed usage of `imageReferenceCompleted()` in `index.js` to prevent 
+flashes in Firefox as well (Chromium was already working % ). Fixed `noscript`
+styles for art-directed images.
 
 ## [0.9.19](https://github.com/timhagn/gatsby-background-image) (2020-02-16)
 
