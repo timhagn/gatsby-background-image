@@ -127,6 +127,7 @@ export const getCurrentSrcData = ({ fluid, fixed, returnArray }, index = 0) => {
       const mediaData = currentData.slice().reverse()
       const foundMedia = mediaData.findIndex(matchesMedia)
       if (foundMedia !== -1) {
+        console.log('foundMedia', mediaData[foundMedia])
         return mediaData[foundMedia]
       }
     }

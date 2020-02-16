@@ -120,7 +120,7 @@ class BackgroundImage extends React.Component {
     }
 
     if (this.props.critical || this.state.seenBefore) {
-      if (imageReferenceCompleted(this.imageRef)) {
+      if (imageReferenceCompleted(this.imageRef, this.props)) {
         this.handleImageLoaded()
       }
     }
