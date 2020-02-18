@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.10.0"></a>
+<a name="0.10.1"></a>
+
+## [0.10.1](https://github.com/timhagn/gatsby-background-image) (2020-02-18)
+
+**fix** Added a check to `getCurrentFromData` to prevent `TypeError`s for #101.
+Removed all remnant `console.log()` calls for #102.
 
 ## [0.10.0](https://github.com/timhagn/gatsby-background-image) (2020-02-16)
 
