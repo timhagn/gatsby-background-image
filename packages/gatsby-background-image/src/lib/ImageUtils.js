@@ -58,7 +58,9 @@ export const getCurrentFromData = ({
         if (propName === `CSS_STRING` && isString(dataElement)) {
           return dataElement
         }
-        return dataElement[propName] || ``
+        return dataElement && propName in dataElement
+          ? dataElement[propName]
+          : ``
       })
     // Encapsulate in URL string and return.
     return getUrlString({
