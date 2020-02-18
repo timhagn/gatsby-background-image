@@ -35,7 +35,6 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
       propName: `tracedSVG`,
       returnArray,
     })
-    console.log(nextImage)
     // Now combine with base64 images.
     nextImage = combineArray(
       getCurrentFromData({
