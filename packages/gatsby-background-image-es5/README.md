@@ -664,7 +664,7 @@ Thanks in advance!
 
 ## TODO
 
-_For anything you may think necessary tell me by opening an issue or a PR : )!_
+_For anything you may think necessary tell me by opening an issue or a PR : )!_ 
 
 ## Acknowledgements
 
