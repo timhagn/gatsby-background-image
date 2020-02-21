@@ -211,6 +211,15 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
     expect(returnedString).toMatchInlineSnapshot(`"rgba(0,0,0,0.5)"`)
   })
 
+  it(`getCurrentFromData() should return string for data`, () => {
+    const returnedString = getCurrentFromData({
+      data: [`rgba(0,0,0,0.5)`],
+      propName: `tracedSVG`,
+      addUrl: false,
+    })
+    expect(returnedString).toMatchInlineSnapshot(`"\\"rgba(0,0,0,0.5)\\""`)
+  })
+
   it(`getUrlString() should return  url encapsulated string`, () => {
     const returnedString = getUrlString({ imageString: `blubb` })
     expect(returnedString).toMatchInlineSnapshot(`"url(blubb)"`)
@@ -246,7 +255,7 @@ describe(`getCurrentFromData() with art-direction stack`, () => {
     window.matchMedia = OLD_MATCH_MEDIA
   })
 
-  it(`getCurrentData() should return string for fluid art-direction stack`, () => {
+  it(`should return string for fluid art-direction stack`, () => {
     const returnedString = getCurrentFromData({
       data: mockArtDirectionStackFluid,
       propName: `src`,
@@ -255,7 +264,7 @@ describe(`getCurrentFromData() with art-direction stack`, () => {
     expect(returnedString).toMatchInlineSnapshot(`"test_fluid_image.jpg"`)
   })
 
-  it(`getCurrentData() should return tracedSVG for fluid art-direction stack`, () => {
+  it(`should return tracedSVG for fluid art-direction stack`, () => {
     const returnedString = getCurrentFromData({
       data: mockArtDirectionStackFluid,
       propName: `tracedSVG`,
@@ -264,7 +273,7 @@ describe(`getCurrentFromData() with art-direction stack`, () => {
     expect(returnedString).toMatchInlineSnapshot(`""`)
   })
 
-  it(`getCurrentData() should return base64 for fluid art-direction stack`, () => {
+  it(`should return base64 for fluid art-direction stack`, () => {
     const returnedString = getCurrentFromData({
       data: mockArtDirectionStackFluid,
       propName: `base64`,
@@ -273,7 +282,7 @@ describe(`getCurrentFromData() with art-direction stack`, () => {
     expect(returnedString).toMatchInlineSnapshot(`"string_of_base64"`)
   })
 
-  it(`getCurrentData() should return empty string for (illegal) fixed art-direction stack`, () => {
+  it(`should return empty string for (illegal) fixed art-direction stack`, () => {
     const { src, ...testFixedMock } = fixedShapeMock
     const mockArtDirectionStackFixedDepleted = [
       testFixedMock,

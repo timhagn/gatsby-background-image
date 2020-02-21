@@ -58,7 +58,9 @@ export const getCurrentFromData = ({
         if (propName === `CSS_STRING` && isString(dataElement)) {
           return dataElement
         }
-        return dataElement && propName in dataElement
+        return isString(dataElement)
+          ? dataElement
+          : dataElement && propName in dataElement
           ? dataElement[propName]
           : ``
       })
