@@ -8,7 +8,7 @@
     "@testing-library/react": "^9.4.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^25.1.0",
     "babel-preset-gatsby-package": "^0.2.16",
     "core-js": "^3.6.4",
     "cross-env": "^7.0.0",
@@ -51,5 +51,5 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.10.1"
+  "version": "0.10.2"
 }

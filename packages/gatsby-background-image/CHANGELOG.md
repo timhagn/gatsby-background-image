@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.10.1"></a>
+<a name="0.10.2"></a>
+
+## [0.10.2](https://github.com/timhagn/gatsby-background-image) (2020-02-21)
+
+**fix** Fixed string return problem for #101 in `getCurrentFromData()`.
 
 ## [0.10.1](https://github.com/timhagn/gatsby-background-image) (2020-02-18)
 

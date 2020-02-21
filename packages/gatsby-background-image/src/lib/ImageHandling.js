@@ -11,6 +11,7 @@ import { combineArray, filteredJoin } from './SimpleUtils'
  * @param state     object          Component state.
  * @return {{afterOpacity: number, bgColor: *, bgImage: *, nextImage: string}}
  */
+// eslint-disable-next-line import/prefer-default-export
 export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   // Read currentSrc from imageRef (if exists).
   const currentSources = getCurrentFromData({
