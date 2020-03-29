@@ -250,12 +250,6 @@ class BackgroundImage extends React.Component {
       durationFadeIn,
       Tag,
       children,
-      classId = !className
-        ? `${Math.random()
-            .toString(36)
-            .replace(/[^a-z]+/g, '')
-            .substr(0, 7)}_depr`
-        : ``,
       ...props
     } = fixOpacity(convertProps(this.props), this.props.preserveStackingContext)
 
@@ -316,7 +310,6 @@ class BackgroundImage extends React.Component {
 
     // Create styles for the next background image(s).
     const pseudoStyles = createPseudoStyles({
-      classId,
       className: this.state.currentClassNames,
       transitionDelay,
       bgColor,
@@ -330,7 +323,6 @@ class BackgroundImage extends React.Component {
     const noScriptPseudoStyles = createNoScriptStyles({
       image,
       bgColor,
-      classId,
       className: this.state.currentClassNames,
       backgroundStyles: this.backgroundStyles,
       style,
@@ -341,13 +333,13 @@ class BackgroundImage extends React.Component {
     // console.log(image, noScriptPseudoStyles)
 
     // Switch key between fluid & fixed.
-    const componentKey = `${fluid && `fluid`}${fixed &&
-      `fixed`}-${JSON.stringify(noScriptImageData.srcSet)}`
+    const componentKey = `${fluid && `fluid`}${
+      fixed && `fixed`
+    }-${JSON.stringify(noScriptImageData.srcSet)}`
 
     return (
       <Tag
-        className={`${this.state.currentClassNames || ``}${classId &&
-          ` gatsby-background-image-${classId}`} gatsby-image-wrapper`}
+        className={`${this.state.currentClassNames || ``} gatsby-image-wrapper`}
         style={{
           ...divStyle,
           ...this.backgroundStyles,
@@ -443,7 +435,6 @@ BackgroundImage.propTypes = {
   onError: PropTypes.func,
   onStartLoad: PropTypes.func,
   Tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  classId: PropTypes.string,
   preserveStackingContext: PropTypes.bool,
   rootMargin: PropTypes.string,
 }

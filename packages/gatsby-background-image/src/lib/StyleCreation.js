@@ -16,15 +16,10 @@ import {
  * Creates pseudo-element(s) for className(s).
  *
  * @param className string  className given by props
- * @param classId   string  Deprecated classId
  * @param appendix  string  Pseudo-element to create, defaults to `:before`
  * @return {string}
  */
-export const createPseudoElement = (
-  className,
-  classId = ``,
-  appendix = `:before`
-) => {
+export const createPseudoElement = (className, appendix = `:before`) => {
   const escapedClassName = escapeClassNames(className)
   let classes = stringToArray(escapedClassName)
   let pseudoClasses = ``
@@ -33,10 +28,6 @@ export const createPseudoElement = (
     if (classes.length > 0) {
       pseudoClasses = `.${classes.join('.')}${appendix}`
     }
-  }
-  if (classId !== ``) {
-    pseudoClasses += `${pseudoClasses &&
-      `,\n`}.gatsby-background-image-${classId}${appendix}`
   }
   return pseudoClasses
 }
@@ -77,19 +68,20 @@ export const createPseudoElementMediaQuery = (
       @media ${media} {
         ${createPseudoElementWithContent(pseudoElementString, imageSource)}
       }
-      ${imageSourceWebP &&
+      ${
+        imageSourceWebP &&
         `@media ${media} {
           ${createPseudoElementWithContent(
             pseudoElementString,
             imageSourceWebP
           )}
-        }`}
+        }`
+      }
     `
 
 /**
  * Creates styles for the changing pseudo-elements' backgrounds.
  *
- * @param classId           string    Pre 0.3.0 way to create pseudo-elements
  * @param className         string    One or more className(s)
  * @param transitionDelay   string    Time delay before transitioning
  * @param lastImage         string    The last image given
@@ -104,7 +96,6 @@ export const createPseudoElementMediaQuery = (
  * @return {string}
  */
 export const createPseudoStyles = ({
-  classId,
   className,
   transitionDelay,
   lastImage,
@@ -117,8 +108,8 @@ export const createPseudoStyles = ({
   finalImage,
   originalData,
 }) => {
-  const pseudoBefore = createPseudoElement(className, classId)
-  const pseudoAfter = createPseudoElement(className, classId, `:after`)
+  const pseudoBefore = createPseudoElement(className)
+  const pseudoAfter = createPseudoElement(className, `:after`)
   return `
           ${pseudoBefore},
           ${pseudoAfter} {
@@ -136,14 +127,16 @@ export const createPseudoStyles = ({
           ${pseudoBefore} {
             z-index: -100;
             ${(afterOpacity && createStyleImage(nextImage, originalData)) || ``}
-            ${(!afterOpacity && createStyleImage(lastImage, originalData)) ||
-              ``}
+            ${
+              (!afterOpacity && createStyleImage(lastImage, originalData)) || ``
+            }
             opacity: ${afterOpacity}; 
           }
           ${pseudoAfter} {
             z-index: -101;
-            ${(!afterOpacity && createStyleImage(nextImage, originalData)) ||
-              ``}
+            ${
+              (!afterOpacity && createStyleImage(nextImage, originalData)) || ``
+            }
             ${(afterOpacity && createStyleImage(lastImage, originalData)) || ``}
             ${finalImage ? `opacity: ${Number(!afterOpacity)};` : ``}
           }
@@ -170,12 +163,11 @@ export const createStyleImage = (image, originalData) => {
 /**
  * Creates styles for the noscript element.
  *
- * @param classId     string          Pre 0.3.0 way to create pseudo-elements
  * @param className   string          One or more className(s)
  * @param image       string||array   Base data for one or multiple Images
  * @return {string}
  */
-export const createNoScriptStyles = ({ classId, className, image }) => {
+export const createNoScriptStyles = ({ className, image }) => {
   if (image) {
     const returnArray =
       Array.isArray(image) && !hasArtDirectionArray({ fluid: image })
@@ -202,7 +194,7 @@ export const createNoScriptStyles = ({ classId, className, image }) => {
       })
       sourcesAsUrlWithCSS = filteredJoin(combineArray(sourcesAsUrl, cssStrings))
     }
-    const pseudoBefore = createPseudoElement(className, classId)
+    const pseudoBefore = createPseudoElement(className)
     if (hasArtDirectionArray({ fluid: image })) {
       return image
         .map(currentMedia => {

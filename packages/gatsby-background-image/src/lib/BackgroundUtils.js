@@ -40,6 +40,32 @@ export const getStyle = className => {
   }
 }
 
+export const getStyleRulesForClassName = className => {
+  const styleSheets =
+    typeof window !== `undefined` ? window.document.styleSheets : []
+  for (let i = 0; i < styleSheets.length; i++) {
+    let classes
+    try {
+      classes =
+        typeof styleSheets[i].rules !== 'undefined'
+          ? styleSheets[i].rules
+          : typeof styleSheets[i].cssRules !== 'undefined'
+          ? styleSheets[i].cssRules
+          : ''
+    } catch (e) {}
+    if (!classes) continue
+    const foundClass = Array.prototype.slice
+      .call(classes)
+      .reduce((foundAcc, styleRule) => {
+        if (styleRule.selectorText === className && !foundAcc.length) {
+          foundAcc.push(styleRule)
+        }
+        return foundAcc
+      }, [])
+    return foundClass || []
+  }
+}
+
 /**
  * Creates a temporary style element to read rules from.
  *
@@ -55,7 +81,7 @@ export const rulesForCssText = styleContent => {
     // The style element will only be parsed once it is added to a document.
     doc.body.appendChild(styleElement)
 
-    return styleElement.sheet.cssRules
+    return doc.styleSheets?.[0]?.cssRules || styleElement.sheet?.cssRules || {}
   }
   return {}
 }
@@ -103,12 +129,12 @@ export const getStyleRules = cssStyleRules => {
  * @return {{}}
  */
 export const getBackgroundStylesForSingleClass = className => {
-  if (isString(className)) {
-    const style = getStyle(`.${className}`)
-    const cssStyleRules = rulesForCssText(style)
+  if (className && isString(className)) {
+    const cssStyleRules = getStyleRulesForClassName(`.${className}`)
+    // const cssStyleRules = rulesForCssText(style)
 
     if (
-      cssStyleRules.length > 0 &&
+      cssStyleRules?.length > 0 &&
       typeof cssStyleRules[0].style !== 'undefined'
     ) {
       // Filter out background(-*) rules that contain a definition.

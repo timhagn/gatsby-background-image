@@ -61,11 +61,11 @@ _*Of course styleable with `styled-components` and the like!*_
   - [Noscript styling](#noscript-styling)
   - [Responsive styling](#responsive-styling)
   - [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
-  - [Deprecated Styling](#deprecated-styling)
 - [Additional props](#additional-props)
 - [Changed props](#changed-props)
 - [props Not Available](#props-not-available)
 - [Handling of Remaining props](#handling-of-remaining-props)
+- [Testing `gatsby-background-image`](#testing-gatsby-background-image)
 - [Contributing](#contributing)
 - [TODO](#todo)
 - [Acknowledgements](#acknowledgements)
@@ -624,18 +624,17 @@ Starting with `v0.8.19` it's possible to change the IntersectionObservers'
 
 ## Changed props
 
-The `fluid` or `fixed` (as well as the deprecated `resolutions` & `sizes`) props
-may be given as an array of images returned from `fluid` or `fixed` queries or
-CSS Strings like `rgba()` or such.
+As `gatsby-background-image` doesn't use placeholder-images, the following
+props from `gatsby-image` are not available, of course.
 
-The `fadeIn` prop may be set to `soft` to ignore cached images and always
-try to fade in if `critical` isn't set.
+| Name                   | Type     | Old Usage                                                     |
+| ---------------------- | -------- | ------------------------------------------------------------- |
+| `placeholderStyle`     | `object` | Spread into the default styles of the placeholder img element |
+| `placeholderClassName` | `string` | A class that is passed to the placeholder img element         |
+| `imgStyle`             | `object` | Spread into the default styles of the actual img element      |
 
-| Name     | Type               | Description                                                                      |
-| -------- | ------------------ | -------------------------------------------------------------------------------- |
-| `fixed`  | `object`/`array`   | Data returned from one fixed query or an array of multiple ones or CSS string(s) |
-| `fluid`  | `object`/`array`   | Data returned from one fluid query or an array of multiple ones or CSS string(s) |
-| `fadeIn` | `boolean`/`string` | Defaults to fading in the image on load, may be forced by `soft`                 |
+From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed 
+as well.
 
 ## props Not Available
 
@@ -654,6 +653,28 @@ After every available prop is handled, the remaining ones get cleaned up and
 spread into the `<BackgroundImage />`'s container element.
 This way you can "safely" add every ARIA or `data-*` attribute you might need
 without having to use `gatsby-image`'s `itemProp` ; ).
+
+## Testing `gatsby-background-image`
+
+As `gbi` uses `short-uuid` to create its unique classes, you only have to mock 
+`short-uuid`'s `generate()` function like explained below.
+
+Either in your `jest.setup.js` or the top of your individual test file(s) mock 
+the complete package:
+`jest.mock('short-uuid')`
+
+Then for each `gbi` component you want to test, add a `beforeEach()`:
+
+```js
+beforeEach(() => {
+    // Freeze the generated className.
+    const uuid = require('short-uuid')
+    uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
+});
+```
+
+Now the class name will always be the same and your snapshot tests should 
+work : ).
 
 ## Contributing
 

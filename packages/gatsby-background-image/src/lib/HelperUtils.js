@@ -17,7 +17,7 @@ export const stripRemainingProps = props => filterInvalidDOMProps(props)
  */
 export const convertProps = props => {
   const convertedProps = { ...props }
-  const { resolutions, sizes, classId, fixed, fluid } = convertedProps
+  const { resolutions, sizes, fixed, fluid } = convertedProps
 
   if (resolutions) {
     convertedProps.fixed = resolutions
@@ -26,13 +26,6 @@ export const convertProps = props => {
   if (sizes) {
     convertedProps.fluid = sizes
     delete convertedProps.sizes
-  }
-
-  if (classId) {
-    logDeprecationNotice(
-      `classId`,
-      `gatsby-background-image should provide unique classes automatically. Open an Issue should you still need this property.`
-    )
   }
 
   // if (fluid && !hasImageArray(props)) {

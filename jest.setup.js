@@ -10,8 +10,9 @@ import '@testing-library/jest-dom/extend-expect'
 // https://babeljs.io/blog/2019/03/19/7.4.0.html
 import "core-js/stable";
 
+jest.mock('short-uuid')
+
 // Mock WebPack specialChars Option.
 beforeEach(() => {
   global.__GBI_SPECIAL_CHARS__ = `:/`
 })
-

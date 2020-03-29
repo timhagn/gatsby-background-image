@@ -51,7 +51,6 @@ declare module 'gatsby-background-image' {
     onLoad?: () => void
     onStartLoad?: (param: { wasCached: boolean }) => void
     onError?: (event: any) => void
-    classId?: string,
     preserveStackingContext?: boolean,
     rootMargin?: string,
   }

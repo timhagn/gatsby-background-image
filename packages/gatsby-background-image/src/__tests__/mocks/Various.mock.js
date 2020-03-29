@@ -64,11 +64,11 @@ export const fluidArrayMock = {
 export const createStyleElement = () => {
   // Create the style class.
   const styleElement = document.createElement('style')
-  styleElement.textContent = `
+  styleElement.innerHTML = `
         .imageClass {
-          backgroundRepeat: 'repeat-y';
-          backgroundPosition: 'center';
-          backgroundSize: 'contain';
+          backgroundRepeat: repeat-y;
+          backgroundPosition: center;
+          backgroundSize: contain;
         }
       `
   document.body.appendChild(styleElement)
@@ -86,7 +86,6 @@ export const createStyleElement = () => {
  * @param critical
  * @param onStartLoad
  * @param fixed
- * @param addClassId
  * @param addBackgroundColor
  * @param fadeIn
  * @param props
@@ -103,7 +102,6 @@ export const setupBackgroundImage = ({
   critical = false,
   onStartLoad = null,
   fixed = true,
-  addClassId = true,
   addBackgroundColor = true,
   fadeIn = false,
   props = {},
@@ -133,7 +131,6 @@ export const setupBackgroundImage = ({
       {...(!fluid && fixed && currentFixedMock)}
       onLoad={onLoad}
       onError={onError}
-      {...(addClassId && { classId: `test` })}
       critical={critical}
       onStartLoad={onStartLoad}
       {...(fadeIn && { fadeIn: `soft` })}

@@ -16,7 +16,7 @@ global.console.debug = jest.fn()
 
 let elements = []
 
-jest.mock('short-uuid')
+// jest.mock('short-uuid')
 
 describe(`<BackgroundImage />`, () => {
   const observe = jest.fn(callback => elements.push(callback))
@@ -164,23 +164,11 @@ describe(`<BackgroundImage />`, () => {
     expect(component).toMatchSnapshot()
   })
 
-  it(`should work with only classId`, () => {
-    const options = {
-      fluid: true,
-      fixedClass: false,
-      addClassId: false,
-      addBackgroundColor: false,
-    }
-    const component = setupBackgroundImage(options)
-    expect(component).toMatchSnapshot()
-  })
-
-  it(`should work without classId but className`, () => {
+  it(`should work with className`, () => {
     const options = {
       fluid: true,
       additionalClass: `test`,
       fixed: false,
-      addClassId: false,
       addBackgroundColor: false,
     }
     const component = setupBackgroundImage(options)
@@ -192,7 +180,6 @@ describe(`<BackgroundImage />`, () => {
       fluid: true,
       fixedClass: false,
       fixed: false,
-      addClassId: false,
       addBackgroundColor: `#fff`,
     }
     const component = setupBackgroundImage(options)
@@ -204,7 +191,6 @@ describe(`<BackgroundImage />`, () => {
       fluid: true,
       fixedClass: false,
       fixed: false,
-      addClassId: false,
       fadeIn: true,
     }
     const component = setupBackgroundImage(options)
@@ -240,9 +226,8 @@ describe(`<BackgroundImage />`, () => {
     }
     const component = setupBackgroundImage(options)
     const styleTag = component.querySelector(`style`)
-    expect(styleTag).toHaveTextContent(`.gatsby-background-image-test:before`)
-    expect(styleTag).toHaveTextContent(`background-repeat: 'repeat-y';`)
-    expect(styleTag).toHaveTextContent(`background-position: 'center';`)
-    expect(styleTag).toHaveTextContent(`background-size: 'contain';`)
+    expect(styleTag).toHaveTextContent(/background-repeat: repeat-y/g)
+    expect(styleTag).toHaveTextContent(/background-position: center/g)
+    expect(styleTag).toHaveTextContent(/background-size: contain/g)
   })
 })

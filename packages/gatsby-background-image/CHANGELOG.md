@@ -5,6 +5,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 <a name="0.10.2"></a>
 
+## [1.0.0](https://github.com/timhagn/gatsby-background-image) (2020-03-29)
+
+**feat** Added "Testing `gbi` paragraph to explain testing possibilities without
+the now removed `classId`.
+
+**BREAKING CHANGE:** Removed the deprecated `classId`, `resolutions` & `sizes` props.
+
 ## [0.10.2](https://github.com/timhagn/gatsby-background-image) (2020-02-21)
 
 **fix** Fixed string return problem for #101 in `getCurrentFromData()`.

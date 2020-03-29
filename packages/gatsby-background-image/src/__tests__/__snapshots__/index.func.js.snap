@@ -4,17 +4,15 @@ exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] 
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
     id="testid"
-    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
+    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
   >
     <style>
       
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before,
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             content: '';
             display: block;
             position: absolute;
@@ -24,20 +22,18 @@ exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] 
             left: 0;
             background-color: lightgray;
             transition: none;
-            background-position: 'center';
-background-repeat: 'repeat-y';
-background-size: 'contain';
+            background-position: center;
+background-repeat: repeat-y;
+background-size: contain;
 
           }
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url('http://localhost/test_fixed_image.jpg');
             
             opacity: 1; 
           }
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
@@ -57,17 +53,15 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fixed ima
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
     id="testid"
-    style="position: relative; display: inline-block; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline-block; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
   >
     <style>
       
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before,
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             content: '';
             display: block;
             position: absolute;
@@ -77,20 +71,18 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fixed ima
             left: 0;
             background-color: lightgray;
             transition: none;
-            background-position: 'center';
-background-repeat: 'repeat-y';
-background-size: 'contain';
+            background-position: center;
+background-repeat: repeat-y;
+background-size: contain;
 
           }
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url(http://localhost/test_fixed_image.jpg),url(http://localhost/test_fixed_image.jpg);
             
             opacity: 1; 
           }
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             
             background-image: url(string_of_base64),url(string_of_base64);
@@ -110,17 +102,15 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fluid ima
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
   >
     <style>
       
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before,
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             content: '';
             display: block;
             position: absolute;
@@ -130,20 +120,18 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fluid ima
             left: 0;
             background-color: lightgray;
             transition: none;
-            background-position: 'center';
-background-repeat: 'repeat-y';
-background-size: 'contain';
+            background-position: center;
+background-repeat: repeat-y;
+background-size: contain;
 
           }
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url(string_of_base64),url(string_of_base64);
             
             opacity: 1; 
           }
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             
             background-image: url(string_of_base64),url(string_of_base64);
@@ -163,17 +151,15 @@ exports[`<BackgroundImage /> with mock IO should not call onLoad without prop, f
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
     id="testid"
-    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-size: 'contain';"
+    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
   >
     <style>
       
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before,
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             content: '';
             display: block;
             position: absolute;
@@ -183,20 +169,18 @@ exports[`<BackgroundImage /> with mock IO should not call onLoad without prop, f
             left: 0;
             background-color: lightgray;
             transition: opacity 0.5s ease 500ms;
-            background-position: 'center';
-background-repeat: 'repeat-y';
-background-size: 'contain';
+            background-position: center;
+background-repeat: repeat-y;
+background-size: contain;
 
           }
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url('http://localhost/test_fixed_image.jpg');
             
             opacity: 1; 
           }
-          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             
             background-image: url(string_of_base64);
@@ -215,13 +199,13 @@ background-size: 'contain';
 exports[`<BackgroundImage /> with mock IO should render visible fixed image and call onLoadFunction 1`] = `
 <div>
   <div
-    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-image-wrapper"
     style="position: relative; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
-          .gatsby-background-image-fwatluf_depr:before,
-          .gatsby-background-image-fwatluf_depr:after {
+          ,
+           {
             content: '';
             display: block;
             position: absolute;
@@ -236,13 +220,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-fwatluf_depr:before {
+           {
             z-index: -100;
             
             
             opacity: 0; 
           }
-          .gatsby-background-image-fwatluf_depr:after {
+           {
             z-index: -101;
             
             
@@ -260,13 +244,13 @@ exports[`<BackgroundImage /> with mock IO should render visible fixed image and 
 exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] = `
 <div>
   <div
-    class=" gatsby-background-image-fwatluf_depr gatsby-image-wrapper"
+    class=" gatsby-image-wrapper"
     style="position: relative; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
-          .gatsby-background-image-fwatluf_depr:before,
-          .gatsby-background-image-fwatluf_depr:after {
+          ,
+           {
             content: '';
             display: block;
             position: absolute;
@@ -281,13 +265,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-fwatluf_depr:before {
+           {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .gatsby-background-image-fwatluf_depr:after {
+           {
             z-index: -101;
             background-image: url(string_of_base64);
             
@@ -306,17 +290,15 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass test gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-background-image-test gatsby-image-wrapper"
+    class="imageClass test gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-size: 'contain';"
+    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
   >
     <style>
       
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before,
-          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             content: '';
             display: block;
             position: absolute;
@@ -326,20 +308,18 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
             left: 0;
             background-color: lightgray;
             transition: none;
-            background-position: 'center';
-background-repeat: 'repeat-y';
-background-size: 'contain';
+            background-position: center;
+background-repeat: repeat-y;
+background-size: contain;
 
           }
-          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
-.gatsby-background-image-test:before {
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url('http://localhost/test_fluid_image.jpg');
             
             opacity: 1; 
           }
-          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after,
-.gatsby-background-image-test:after {
+          .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             
             background-image: url(string_of_base64);

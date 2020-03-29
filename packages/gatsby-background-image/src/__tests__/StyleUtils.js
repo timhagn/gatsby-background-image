@@ -74,7 +74,7 @@ describe(`presetBackgroundStyles()`, () => {
   })
 })
 
-jest.mock('short-uuid')
+// jest.mock('short-uuid')
 describe(`fixClassName()`, () => {
   beforeAll(() => {
     // Freeze StyleUtils#fixClassName.

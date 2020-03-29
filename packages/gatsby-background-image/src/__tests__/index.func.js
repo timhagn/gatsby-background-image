@@ -16,8 +16,6 @@ import { createPictureRef } from '../lib/ImageRef'
 const LOAD_FAILURE_SRC = 'test_fluid_image.jpg'
 const LOAD_SUCCESS_SRC = 'test_fixed_image.jpg'
 
-jest.mock('short-uuid')
-
 describe(`<BackgroundImage /> with mock IO`, () => {
   const tmpImagePrototype = Object.getPrototypeOf(HTMLImageElement)
 

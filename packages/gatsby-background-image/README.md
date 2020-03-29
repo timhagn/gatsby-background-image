@@ -64,11 +64,11 @@ this package.
   - [Noscript styling](#noscript-styling)
   - [Responsive styling](#responsive-styling)
   - [Multiple Instances Of Same Component](#multiple-instances-of-same-component)
-  - [Deprecated Styling](#deprecated-styling)
 - [Additional props](#additional-props)
 - [Changed props](#changed-props)
 - [props Not Available](#props-not-available)
 - [Handling of Remaining props](#handling-of-remaining-props)
+- [Testing `gatsby-background-image`](#testing-gatsby-background-image)
 - [Contributing](#contributing)
 - [TODO](#todo)
 - [Acknowledgements](#acknowledgements)
@@ -595,33 +595,6 @@ styles on your own, or would you have ; )?
 within the main classes then only is going to work again for all instances if
 you use `!important` on its CSS-properties (cause of CSS-specifity).
 
-#### Deprecated Styling
-
-Though considered deprecated and to be removed in `1.0.0` at the latest
-(feel free to open an issue, should you really need them : ),
-`gatsby-background-image` has an added classId (as we had to name
-pseudo-elements and introduce a className for the returned container
-in the beginning):
-
-| Name      | Type     | Description                                                                                                  |
-| --------- | -------- | ------------------------------------------------------------------------------------------------------------ |
-| `classId` | `string` | classID of the container element, defaults to a random lower case string of seven chars, followed by `_depr` |
-
-Only if present now, pseudo-elements are created on a class by the name of
-`.gatsby-background-image-[YOUR_ID]` and the class is added to `BackgroundImage`.
-Now you are able to access it through CSS / CSS-in-JS with:
-
-```css
-.gatsby-background-image-[YOUR_ID]/*(:before, :after)*/ {
-  background-repeat: repeat-y;
-  background-position: bottom center;
-  background-size: cover;
-}
-```
-
-But as the paragraph-title states: This behavior is considered deprecated, so
-don't count on it in production ; ).
-
 ## Additional props
 
 Starting with `v0.7.5` an extra option is available preserving the
@@ -643,9 +616,8 @@ Starting with `v0.8.19` it's possible to change the IntersectionObservers'
 
 ## Changed props
 
-The `fluid` or `fixed` (as well as the deprecated `resolutions` & `sizes`) props
-may be given as an array of images returned from `fluid` or `fixed` queries or
-CSS Strings like `rgba()` or such.
+The `fluid` or `fixed` props may be given as an array of images returned from 
+`fluid` or `fixed` queries or CSS Strings like `rgba()` or such.
 
 The `fadeIn` prop may be set to `soft` to ignore cached images and always
 try to fade in if `critical` isn't set.
@@ -667,12 +639,37 @@ props from `gatsby-image` are not available, of course.
 | `placeholderClassName` | `string` | A class that is passed to the placeholder img element         |
 | `imgStyle`             | `object` | Spread into the default styles of the actual img element      |
 
+From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed 
+as well.
+
 ## Handling of Remaining props
 
 After every available prop is handled, the remaining ones get cleaned up and
 spread into the `<BackgroundImage />`'s container element.
 This way you can "safely" add every ARIA or `data-*` attribute you might need
 without having to use `gatsby-image`'s `itemProp` ; ).
+
+## Testing `gatsby-background-image`
+
+As `gbi` uses `short-uuid` to create its unique classes, you only have to mock 
+`short-uuid`'s `generate()` function like explained below.
+
+Either in your `jest.setup.js` or the top of your individual test file(s) mock 
+the complete package:
+`jest.mock('short-uuid')`
+
+Then for each `gbi` component you want to test, add a `beforeEach()`:
+
+```js
+beforeEach(() => {
+    // Freeze the generated className.
+    const uuid = require('short-uuid')
+    uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
+});
+```
+
+Now the class name will always be the same and your snapshot tests should 
+work : ).
 
 ## Contributing
 

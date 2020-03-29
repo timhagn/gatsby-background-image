@@ -3,9 +3,7 @@
 exports[`createPseudoStyles() should create different styles for empty bgImage & nextImage 1`] = `
 "
           .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
+          .test:after {
             content: '';
             display: block;
             position: absolute;
@@ -17,15 +15,13 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             transition: opacity 0.5s ease 0.25s;
             
           }
-          .test:before,
-.gatsby-background-image-gbi:before {
+          .test:before {
             z-index: -100;
             
             
             opacity: 1; 
           }
-          .test:after,
-.gatsby-background-image-gbi:after {
+          .test:after {
             z-index: -101;
             
             background-image: some_base64_string;
@@ -37,9 +33,7 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
 exports[`createPseudoStyles() should create different styles for empty bgImage & nextImage with opacity 0 1`] = `
 "
           .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
+          .test:after {
             content: '';
             display: block;
             position: absolute;
@@ -51,15 +45,13 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
             transition: opacity 0.5s ease 0.25s;
             
           }
-          .test:before,
-.gatsby-background-image-gbi:before {
+          .test:before {
             z-index: -100;
             
             background-image: some_base64_string;
             opacity: 0; 
           }
-          .test:after,
-.gatsby-background-image-gbi:after {
+          .test:after {
             z-index: -101;
             
             
@@ -69,244 +61,6 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
 `;
 
 exports[`createPseudoStyles() should create different styles for empty bgImage 1`] = `
-"
-          .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .test:before,
-.gatsby-background-image-gbi:before {
-            z-index: -100;
-            background-image: test.webp;
-            
-            opacity: 1; 
-          }
-          .test:after,
-.gatsby-background-image-gbi:after {
-            z-index: -101;
-            
-            background-image: some_base64_string;
-            
-          }
-        "
-`;
-
-exports[`createPseudoStyles() should create different styles for empty bgImage with opacity 0 1`] = `
-"
-          .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .test:before,
-.gatsby-background-image-gbi:before {
-            z-index: -100;
-            
-            background-image: some_base64_string;
-            opacity: 0; 
-          }
-          .test:after,
-.gatsby-background-image-gbi:after {
-            z-index: -101;
-            background-image: test.webp;
-            
-            
-          }
-        "
-`;
-
-exports[`createPseudoStyles() should create different styles for empty lastImage with opacity 0 1`] = `
-"
-          .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .test:before,
-.gatsby-background-image-gbi:before {
-            z-index: -100;
-            
-            
-            opacity: 0; 
-          }
-          .test:after,
-.gatsby-background-image-gbi:after {
-            z-index: -101;
-            background-image: test.webp;
-            
-            
-          }
-        "
-`;
-
-exports[`createPseudoStyles() should create different styles for empty nextImage 1`] = `
-"
-          .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .test:before,
-.gatsby-background-image-gbi:before {
-            z-index: -100;
-            
-            
-            opacity: 1; 
-          }
-          .test:after,
-.gatsby-background-image-gbi:after {
-            z-index: -101;
-            
-            background-image: some_base64_string;
-            
-          }
-        "
-`;
-
-exports[`createPseudoStyles() should create different styles for empty nextImage with opacity 0 1`] = `
-"
-          .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .test:before,
-.gatsby-background-image-gbi:before {
-            z-index: -100;
-            
-            background-image: some_base64_string;
-            opacity: 0; 
-          }
-          .test:after,
-.gatsby-background-image-gbi:after {
-            z-index: -101;
-            
-            
-            
-          }
-        "
-`;
-
-exports[`createPseudoStyles() should create styles from given pseudoStyles Object 1`] = `
-"
-          .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .test:before,
-.gatsby-background-image-gbi:before {
-            z-index: -100;
-            background-image: test.webp;
-            
-            opacity: 1; 
-          }
-          .test:after,
-.gatsby-background-image-gbi:after {
-            z-index: -101;
-            
-            background-image: some_base64_string;
-            
-          }
-        "
-`;
-
-exports[`createPseudoStyles() should create styles from given pseudoStyles Object with opacity 0 1`] = `
-"
-          .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .test:before,
-.gatsby-background-image-gbi:before {
-            z-index: -100;
-            
-            background-image: some_base64_string;
-            opacity: 0; 
-          }
-          .test:after,
-.gatsby-background-image-gbi:after {
-            z-index: -101;
-            background-image: test.webp;
-            
-            
-          }
-        "
-`;
-
-exports[`createPseudoStyles() should create styles from given pseudoStyles Object without classId 1`] = `
 "
           .test:before,
           .test:after {
@@ -336,7 +90,187 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
         "
 `;
 
-exports[`createPseudoStyles() should create styles from given pseudoStyles Object without classId or className 1`] = `
+exports[`createPseudoStyles() should create different styles for empty bgImage with opacity 0 1`] = `
+"
+          .test:before,
+          .test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            transition: opacity 0.5s ease 0.25s;
+            
+          }
+          .test:before {
+            z-index: -100;
+            
+            background-image: some_base64_string;
+            opacity: 0; 
+          }
+          .test:after {
+            z-index: -101;
+            background-image: test.webp;
+            
+            
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty lastImage with opacity 0 1`] = `
+"
+          .test:before,
+          .test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            transition: opacity 0.5s ease 0.25s;
+            
+          }
+          .test:before {
+            z-index: -100;
+            
+            
+            opacity: 0; 
+          }
+          .test:after {
+            z-index: -101;
+            background-image: test.webp;
+            
+            
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty nextImage 1`] = `
+"
+          .test:before,
+          .test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            transition: opacity 0.5s ease 0.25s;
+            
+          }
+          .test:before {
+            z-index: -100;
+            
+            
+            opacity: 1; 
+          }
+          .test:after {
+            z-index: -101;
+            
+            background-image: some_base64_string;
+            
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty nextImage with opacity 0 1`] = `
+"
+          .test:before,
+          .test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            transition: opacity 0.5s ease 0.25s;
+            
+          }
+          .test:before {
+            z-index: -100;
+            
+            background-image: some_base64_string;
+            opacity: 0; 
+          }
+          .test:after {
+            z-index: -101;
+            
+            
+            
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create styles from given pseudoStyles Object 1`] = `
+"
+          .test:before,
+          .test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            transition: opacity 0.5s ease 0.25s;
+            
+          }
+          .test:before {
+            z-index: -100;
+            background-image: test.webp;
+            
+            opacity: 1; 
+          }
+          .test:after {
+            z-index: -101;
+            
+            background-image: some_base64_string;
+            
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create styles from given pseudoStyles Object with opacity 0 1`] = `
+"
+          .test:before,
+          .test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            transition: opacity 0.5s ease 0.25s;
+            
+          }
+          .test:before {
+            z-index: -100;
+            
+            background-image: some_base64_string;
+            opacity: 0; 
+          }
+          .test:after {
+            z-index: -101;
+            background-image: test.webp;
+            
+            
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create styles from given pseudoStyles Object without className 1`] = `
 "
           ,
            {
@@ -366,42 +300,10 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
         "
 `;
 
-exports[`createPseudoStyles() should create styles from given pseudoStyles Object without className 1`] = `
-"
-          .gatsby-background-image-gbi:before,
-          .gatsby-background-image-gbi:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .gatsby-background-image-gbi:before {
-            z-index: -100;
-            background-image: test.webp;
-            
-            opacity: 1; 
-          }
-          .gatsby-background-image-gbi:after {
-            z-index: -101;
-            
-            background-image: some_base64_string;
-            
-          }
-        "
-`;
-
 exports[`createPseudoStyles() should create styles from given pseudoStyles Object without fadeIn 1`] = `
 "
           .test:before,
-.gatsby-background-image-gbi:before,
-          .test:after,
-.gatsby-background-image-gbi:after {
+          .test:after {
             content: '';
             display: block;
             position: absolute;
@@ -413,15 +315,13 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
             transition: none;
             
           }
-          .test:before,
-.gatsby-background-image-gbi:before {
+          .test:before {
             z-index: -100;
             background-image: test.webp;
             
             opacity: 1; 
           }
-          .test:after,
-.gatsby-background-image-gbi:after {
+          .test:after {
             z-index: -101;
             
             background-image: some_base64_string;
