@@ -115,8 +115,18 @@ describe(`getStyleRulesForClassName()`, () => {
     ]
     const styleRulesForClassName = getStyleRulesForClassName(`.fixedImage`)
     expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`)
-    expect(styleRulesForClassName[0].style['background-repeat']).toEqual(
-      `'repeat-y'`
+    expect(styleRulesForClassName[0].style.cssText).toEqual(
+      `.fixedImage {background-repeat: repeat-y;}`
+    )
+  })
+
+  it(`should return class for known classname via .rules`, () => {
+    global.document.styleSheets[0].cssRules = undefined
+    global.document.styleSheets[0].rules = undefined
+    const styleRulesForClassName = getStyleRulesForClassName(`.fixedImage`)
+    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`)
+    expect(styleRulesForClassName[0].style.cssText).toEqual(
+      `background-repeat: 'repeat-y';`
     )
   })
 })

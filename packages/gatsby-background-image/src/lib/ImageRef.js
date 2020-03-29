@@ -112,7 +112,6 @@ export const activatePictureRef = (
       ? getSelectedImage(convertedProps, index)
       : getCurrentSrcData(convertedProps)
 
-    // TODO: Check back on #94.
     if (!imageData || isString(imageData)) {
       return null
     }

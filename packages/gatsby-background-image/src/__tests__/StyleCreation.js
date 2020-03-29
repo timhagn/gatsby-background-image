@@ -99,6 +99,13 @@ describe(`createPseudoStyles()`, () => {
   })
 })
 
+describe(`createPseudoElement()`, () => {
+  it(`should return empty pseudoName if called with empty className`, () => {
+    const pseudoName = createPseudoElement('')
+    expect(pseudoName).toMatchInlineSnapshot(`""`)
+  })
+})
+
 describe(`createPseudoElementWithContent()`, () => {
   it(`should return string for style props with text content`, () => {
     const pseudoName = createPseudoElement('myclass')

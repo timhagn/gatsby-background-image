@@ -30,10 +30,10 @@ describe(`createPictureRef() with crossOrigin`, () => {
       crossOrigin: `anonymous`,
     })
     expect(emptyImageRef).toMatchInlineSnapshot(`
-                                                                                                      <img
-                                                                                                        crossorigin="anonymous"
-                                                                                                      />
-                                                                    `)
+      <img
+        crossorigin="anonymous"
+      />
+    `)
   })
 })
 
@@ -136,6 +136,12 @@ describe(`activatePictureRef()`, () => {
   it(`should fail without imageData`, () => {
     const testImg = new Image()
     const dummyImageRef = activatePictureRef(testImg, { ...fluidShapeMock })
+    expect(dummyImageRef).toMatchInlineSnapshot(`null`)
+  })
+
+  it(`should fail with faulty imageData`, () => {
+    const testFaultyImg = document.createElement('div')
+    const dummyImageRef = activatePictureRef(testFaultyImg, { fluid: 'test' })
     expect(dummyImageRef).toMatchInlineSnapshot(`null`)
   })
 })
