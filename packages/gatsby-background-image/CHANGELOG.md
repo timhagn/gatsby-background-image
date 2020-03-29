@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.10.2"></a>
+<a name="1.0.1"></a>
+
+## [1.0.1](https://github.com/timhagn/gatsby-background-image) (2020-03-29)
+
+**fix**: Removed the superfluous `jest-environment-jsdom-sixteen` breaking the build.
+**feat**: Updated README.
 
 ## [1.0.0](https://github.com/timhagn/gatsby-background-image) (2020-03-29)
 

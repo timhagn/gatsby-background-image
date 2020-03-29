@@ -32,7 +32,8 @@ compared to [`gatsby-background-image`](https://www.npmjs.com/package/gatsby-bac
 Everything else just works the same as in `gatsby-background-image`, so it
 provides for background-images, what Gatsby's own `gatsby-image` does for the
 rest of your images and even more:  
-**Now with [Art-Direction support](#how-to-use-with-art-direction-support)!**
+**[Testing explained](#testing-gatsby-background-image) in its own section.**
+**[Art-Direction support](#how-to-use-with-art-direction-support) built in.**
 
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
