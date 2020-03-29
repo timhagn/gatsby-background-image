@@ -1,4 +1,7 @@
-import getBackgroundStyles, { getStyleRules } from '../lib/BackgroundUtils'
+import getBackgroundStyles, {
+  getStyleRules,
+  getStyleRulesForClassName,
+} from '../lib/BackgroundUtils'
 
 global.console.error = jest.fn()
 global.console.debug = jest.fn()
@@ -87,10 +90,51 @@ describe(`getStyleRules()`, () => {
   })
 })
 
-// describe(`getStyle()`, () => {
-//   beforeEach(() => {
-//     createClass()
-//   })
+describe(`getStyleRulesForClassName()`, () => {
+  beforeEach(() => {
+    createClass()
+  })
+
+  it(`should return class for known classname via .cssRules`, () => {
+    global.document.styleSheets[0].rules = undefined
+    const styleRulesForClassName = getStyleRulesForClassName('.fixedImage')
+    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`)
+    expect(styleRulesForClassName[0].style['background-repeat']).toEqual(
+      `'repeat-y'`
+    )
+  })
+
+  it(`should return class for known classname via self built .rules`, () => {
+    global.document.styleSheets[0].rules = [
+      {
+        style: {
+          cssText: `.fixedImage {background-repeat: repeat-y;}`,
+        },
+        selectorText: `.fixedImage`,
+      },
+    ]
+    const styleRulesForClassName = getStyleRulesForClassName(`.fixedImage`)
+    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`)
+    expect(styleRulesForClassName[0].style['background-repeat']).toEqual(
+      `'repeat-y'`
+    )
+  })
+})
+
+describe(`getStyleRulesForClassName() without window`, () => {
+  const tmpWindow = global.window
+  beforeEach(() => {
+    delete global.window
+  })
+  afterEach(() => {
+    global.window = tmpWindow
+  })
+
+  it(`should fail for window = undefined`, () => {
+    const style = getStyleRulesForClassName('')
+    expect(style).toEqual([])
+  })
+})
 //
 //   it(`should return class for known classname via .cssRules`, () => {
 //     global.document.styleSheets[0].rules = undefined
