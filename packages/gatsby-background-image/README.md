@@ -640,7 +640,8 @@ props from `gatsby-image` are not available, of course.
 | `imgStyle`             | `object` | Spread into the default styles of the actual img element      |
 
 From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed 
-as well.
+as well - but don't confuse the latter with the possible `sizes` image prop in a 
+`fluid` image, which of course is still handled. 
 
 ## Handling of Remaining props
 

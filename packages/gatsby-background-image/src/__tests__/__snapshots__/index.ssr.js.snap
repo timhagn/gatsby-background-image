@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<BackgroundImage /> on SSR should work with multiple images in SSR node environment 1`] = `
-"<div class=\\" gatsby-image-wrapper\\" style=\\"position:relative;opacity:0.99;display:inline-block;background-position:center;background-repeat:no-repeat;background-size:cover\\" data-reactroot=\\"\\"><style>
-          ,
-           {
+"<div class=\\"gatsby-background-image-wrapper\\" style=\\"position:relative;opacity:0.99;display:inline-block;background-position:center;background-repeat:no-repeat;background-size:cover\\" data-reactroot=\\"\\"><style>
+          .gatsby-background-image-wrapper:before,
+          .gatsby-background-image-wrapper:after {
             content: '';
             display: block;
             position: absolute;
@@ -18,29 +18,29 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-           {
+          .gatsby-background-image-wrapper:before {
             z-index: -100;
             
             
             opacity: 0; 
           }
-           {
+          .gatsby-background-image-wrapper:after {
             z-index: -101;
             background-image: url(string_of_base64),url(string_of_base64);
             
             
           }
         </style><noscript><style>
-     {
+    .gatsby-background-image-wrapper:before {
       opacity: 1;
       background-image: url('test_fixed_image.jpg'),url('test_fixed_image.jpg');
     }</style></noscript><h1>testempty</h1></div>"
 `;
 
 exports[`<BackgroundImage /> on SSR should work within SSR node environment 1`] = `
-"<div class=\\" gatsby-image-wrapper\\" style=\\"position:relative;opacity:0.99;background-position:center;background-repeat:no-repeat;background-size:cover\\" data-reactroot=\\"\\"><style>
-          ,
-           {
+"<div class=\\"gatsby-background-image-wrapper\\" style=\\"position:relative;opacity:0.99;background-position:center;background-repeat:no-repeat;background-size:cover\\" data-reactroot=\\"\\"><style>
+          .gatsby-background-image-wrapper:before,
+          .gatsby-background-image-wrapper:after {
             content: '';
             display: block;
             position: absolute;
@@ -55,20 +55,20 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-           {
+          .gatsby-background-image-wrapper:before {
             z-index: -100;
             
             
             opacity: 0; 
           }
-           {
+          .gatsby-background-image-wrapper:after {
             z-index: -101;
             
             
             
           }
         </style><noscript><style>
-     {
+    .gatsby-background-image-wrapper:before {
       opacity: 1;
       background-image: url('test_fluid_image.jpg');
     }</style></noscript><h1>testempty</h1></div>"

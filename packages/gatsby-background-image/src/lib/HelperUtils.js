@@ -10,23 +10,14 @@ import { groupByMedia, hasArtDirectionSupport } from './MediaUtils'
 export const stripRemainingProps = props => filterInvalidDOMProps(props)
 
 /**
- * Handle legacy names for image queries
+ * Preprocess art directed images.
  *
  * @param props
  * @return {Object}
  */
 export const convertProps = props => {
   const convertedProps = { ...props }
-  const { resolutions, sizes, fixed, fluid } = convertedProps
-
-  if (resolutions) {
-    convertedProps.fixed = resolutions
-    delete convertedProps.resolutions
-  }
-  if (sizes) {
-    convertedProps.fluid = sizes
-    delete convertedProps.sizes
-  }
+  const { fixed, fluid } = convertedProps
 
   // if (fluid && !hasImageArray(props)) {
   //   convertedProps.fluid = [].concat(fluid)
@@ -45,27 +36,4 @@ export const convertProps = props => {
   }
 
   return convertedProps
-}
-
-/**
- * Logs a warning if deprecated props where used.
- *
- * @param prop
- * @param notice
- */
-export const logDeprecationNotice = (prop, notice) => {
-  if (process.env.NODE_ENV === `production`) {
-    return
-  }
-
-  console.log(
-    `
-    The "${prop}" prop is now deprecated and will be removed in the next major version
-    of "gatsby-background-image".
-    `
-  )
-
-  if (notice) {
-    console.log(notice)
-  }
 }

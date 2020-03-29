@@ -339,7 +339,7 @@ class BackgroundImage extends React.Component {
 
     return (
       <Tag
-        className={`${this.state.currentClassNames || ``} gatsby-image-wrapper`}
+        className={`${this.state.currentClassNames || ``}`}
         style={{
           ...divStyle,
           ...this.backgroundStyles,
@@ -404,16 +404,6 @@ const fluidObject = PropTypes.shape({
 })
 
 BackgroundImage.propTypes = {
-  resolutions: PropTypes.oneOfType([
-    fixedObject,
-    PropTypes.arrayOf(fixedObject),
-    PropTypes.arrayOf(PropTypes.oneOfType([fixedObject, PropTypes.string])),
-  ]),
-  sizes: PropTypes.oneOfType([
-    fluidObject,
-    PropTypes.arrayOf(fluidObject),
-    PropTypes.arrayOf(PropTypes.oneOfType([fluidObject, PropTypes.string])),
-  ]),
   fixed: PropTypes.oneOfType([
     fixedObject,
     PropTypes.arrayOf(fixedObject),

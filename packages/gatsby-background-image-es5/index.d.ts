@@ -37,8 +37,6 @@ declare module 'gatsby-background-image-es5' {
     ;
 
   interface IBackgroundImageProps {
-    resolutions?: IFixedObject | IFixedObject[] | (IFixedObject | string)[],
-    sizes?: IFluidObject | IFluidObject[] | (IFluidObject | string)[],
     fixed?: IFixedObject | IFixedObject[] | (IFixedObject | string)[],
     fluid?: IFluidObject | IFluidObject[] | (IFluidObject | string)[],
     fadeIn?: string | boolean,

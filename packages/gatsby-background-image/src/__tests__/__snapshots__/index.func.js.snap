@@ -4,7 +4,7 @@ exports[`<BackgroundImage /> with mock IO should call critical fixed images 1`] 
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
     style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
@@ -53,7 +53,7 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fixed ima
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
     style="position: relative; display: inline-block; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
@@ -102,7 +102,7 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fluid ima
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
@@ -151,7 +151,7 @@ exports[`<BackgroundImage /> with mock IO should not call onLoad without prop, f
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
+    class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
     style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"
@@ -199,13 +199,13 @@ background-size: contain;
 exports[`<BackgroundImage /> with mock IO should render visible fixed image and call onLoadFunction 1`] = `
 <div>
   <div
-    class=" gatsby-image-wrapper"
+    class="gatsby-background-image-wrapper"
     style="position: relative; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
-          ,
-           {
+          .gatsby-background-image-wrapper:before,
+          .gatsby-background-image-wrapper:after {
             content: '';
             display: block;
             position: absolute;
@@ -220,13 +220,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-           {
+          .gatsby-background-image-wrapper:before {
             z-index: -100;
             
             
             opacity: 0; 
           }
-           {
+          .gatsby-background-image-wrapper:after {
             z-index: -101;
             
             
@@ -244,13 +244,13 @@ exports[`<BackgroundImage /> with mock IO should render visible fixed image and 
 exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] = `
 <div>
   <div
-    class=" gatsby-image-wrapper"
+    class="gatsby-background-image-wrapper"
     style="position: relative; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
   >
     <style>
       
-          ,
-           {
+          .gatsby-background-image-wrapper:before,
+          .gatsby-background-image-wrapper:after {
             content: '';
             display: block;
             position: absolute;
@@ -265,13 +265,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-           {
+          .gatsby-background-image-wrapper:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-           {
+          .gatsby-background-image-wrapper:after {
             z-index: -101;
             background-image: url(string_of_base64);
             
@@ -290,7 +290,7 @@ exports[`<BackgroundImage /> without IO should call onLoadFunction without IO 1`
 <div>
   <div
     alt="Alt text for the image"
-    class="imageClass test gbi-1393017994-73WakrfVbNJBaAmhQtEeDv gatsby-image-wrapper"
+    class="imageClass test gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
     style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
     title="Title for the image"

@@ -32,8 +32,9 @@ export const fixClassName = ({ className, ...props }) => {
 
   // Should an element exist, add randomized class.
   const additionalClass = elementExists ? randomClass : ``
-  const componentClassNames = `${className || ``}${additionalClass ||
-    ``}`.trim()
+  const componentClassNames =
+    `${className || ``}${additionalClass || ``}`.trim() ||
+    `gatsby-background-image-wrapper`
   // Add it to cache if it doesn't exist.
   if (!elementExists) activateCacheForComponentClass(className)
   return [componentClassNames]

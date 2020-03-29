@@ -64,7 +64,7 @@ export const fluidArrayMock = {
 export const createStyleElement = () => {
   // Create the style class.
   const styleElement = document.createElement('style')
-  styleElement.innerHTML = `
+  styleElement.textContent = `
         .imageClass {
           backgroundRepeat: repeat-y;
           backgroundPosition: center;

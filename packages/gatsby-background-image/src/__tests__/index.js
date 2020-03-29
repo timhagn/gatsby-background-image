@@ -6,7 +6,7 @@ import {
   fluidShapeMock,
   setupBackgroundImage,
 } from './mocks/Various.mock'
-import BackgroundImage from '../'
+import BackgroundImage from '..'
 import { activateCacheForImage, resetImageCache } from '../lib/ImageCache'
 import { resetComponentClassCache } from '../lib/ClassCache'
 

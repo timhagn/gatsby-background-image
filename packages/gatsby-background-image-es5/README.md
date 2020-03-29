@@ -624,6 +624,20 @@ Starting with `v0.8.19` it's possible to change the IntersectionObservers'
 
 ## Changed props
 
+The `fluid` or `fixed` props may be given as an array of images returned from 
+`fluid` or `fixed` queries or CSS Strings like `rgba()` or such.
+
+The `fadeIn` prop may be set to `soft` to ignore cached images and always
+try to fade in if `critical` isn't set.
+
+| Name     | Type               | Description                                                                      |
+| -------- | ------------------ | -------------------------------------------------------------------------------- |
+| `fixed`  | `object`/`array`   | Data returned from one fixed query or an array of multiple ones or CSS string(s) |
+| `fluid`  | `object`/`array`   | Data returned from one fluid query or an array of multiple ones or CSS string(s) |
+| `fadeIn` | `boolean`/`string` | Defaults to fading in the image on load, may be forced by `soft`                 |
+
+## props Not Available
+
 As `gatsby-background-image` doesn't use placeholder-images, the following
 props from `gatsby-image` are not available, of course.
 
@@ -634,18 +648,8 @@ props from `gatsby-image` are not available, of course.
 | `imgStyle`             | `object` | Spread into the default styles of the actual img element      |
 
 From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed 
-as well.
-
-## props Not Available
-
-As `gatsby-background-image-es5` doesn't use placeholder-images, the following
-props from `gatsby-image` are not available, of course.
-
-| Name                   | Type     | Old Usage                                                     |
-| ---------------------- | -------- | ------------------------------------------------------------- |
-| `placeholderStyle`     | `object` | Spread into the default styles of the placeholder img element |
-| `placeholderClassName` | `string` | A class that is passed to the placeholder img element         |
-| `imgStyle`             | `object` | Spread into the default styles of the actual img element      |
+as well - but don't confuse the latter with the possible `sizes` image prop in a 
+`fluid` image, which of course is still handled. 
 
 ## Handling of Remaining props
 

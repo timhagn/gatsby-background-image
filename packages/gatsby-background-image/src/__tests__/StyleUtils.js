@@ -86,7 +86,7 @@ describe(`fixClassName()`, () => {
     const fixedClasses = fixClassName({})
     expect(fixedClasses).toMatchInlineSnapshot(`
       Array [
-        "",
+        "gatsby-background-image-wrapper",
       ]
     `)
   })
