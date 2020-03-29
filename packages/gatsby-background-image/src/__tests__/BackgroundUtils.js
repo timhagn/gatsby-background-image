@@ -1,8 +1,4 @@
-import getBackgroundStyles, {
-  getStyle,
-  getStyleRules,
-  rulesForCssText,
-} from '../lib/BackgroundUtils'
+import getBackgroundStyles, { getStyleRules } from '../lib/BackgroundUtils'
 
 global.console.error = jest.fn()
 global.console.debug = jest.fn()
@@ -34,22 +30,6 @@ describe(`getBackgroundStyles()`, () => {
     expect(backgroundStyles).toEqual({})
   })
 })
-
-// describe(`rulesForCssText()`, () => {
-//   it(`should get correct style from rule`, () => {
-//     const styleContent = `.fixedImage {
-//                               background-repeat: 'repeat-y';
-//                             }`
-//     const rules = rulesForCssText(styleContent)
-//     expect(rules).toHaveLength(1)
-//     expect(rules[0]).toBeInstanceOf(CSSStyleRule)
-//   })
-//
-//   it(`should return empty object for empty style rules`, () => {
-//     const emptyRules = rulesForCssText()
-//     expect(emptyRules).toEqual({})
-//   })
-// })
 
 describe(`getStyleRules()`, () => {
   it(`should work with "CSSStyleDeclaration"`, () => {

@@ -6,7 +6,7 @@ exports[`<BackgroundImage /> should call critical fixed images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px;"
     title="Title for the image"
   >
     <style>
@@ -55,7 +55,7 @@ exports[`<BackgroundImage /> should call critical fluid images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -104,7 +104,7 @@ exports[`<BackgroundImage /> should call critical images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px;"
     title="Title for the image"
   >
     <style>
@@ -153,7 +153,7 @@ exports[`<BackgroundImage /> should call multiple critical fixed images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline-block; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline-block; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -202,7 +202,7 @@ exports[`<BackgroundImage /> should call multiple critical fluid images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -249,7 +249,7 @@ exports[`<BackgroundImage /> should change style.display from 'inherit' to 'inli
 <div>
   <div
     class="gatsby-background-image-wrapper"
-    style="position: relative; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99; width: 100px; height: 100px;"
   >
     <style>
       
@@ -367,7 +367,7 @@ exports[`<BackgroundImage /> should render fixed size images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; display: inline-block; opacity: 0.99; width: 100px; height: 100px;"
     title="Title for the image"
   >
     <style>
@@ -416,7 +416,7 @@ exports[`<BackgroundImage /> should render fluid images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -465,7 +465,7 @@ exports[`<BackgroundImage /> should render multiple fluid images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -514,7 +514,7 @@ exports[`<BackgroundImage /> should render stacked fixed size images 1`] = `
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline-block; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; display: inline-block; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -563,7 +563,7 @@ exports[`<BackgroundImage /> should render without opacity hack with truthy pres
     alt="Alt text for the image"
     class="imageClass  gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -614,7 +614,7 @@ exports[`<BackgroundImage /> should work with BackgroundColor 1`] = `
     alt="Alt text for the image"
     class="gatsby-background-image-wrapper"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -663,7 +663,7 @@ exports[`<BackgroundImage /> should work with another external class 1`] = `
     alt="Alt text for the image"
     class="imageClass test gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -712,7 +712,7 @@ exports[`<BackgroundImage /> should work with className 1`] = `
     alt="Alt text for the image"
     class="imageClass test gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: repeat-y; background-size: contain;"
+    style="background-position: center; background-repeat: repeat-y; background-size: contain; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -761,7 +761,7 @@ exports[`<BackgroundImage /> should work with fadeIn 1`] = `
     alt="Alt text for the image"
     class="gatsby-background-image-wrapper"
     id="testid"
-    style="position: relative; display: inline; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; display: inline; opacity: 0.99;"
     title="Title for the image"
   >
     <style>
@@ -808,7 +808,7 @@ exports[`<BackgroundImage /> should work without external class 1`] = `
 <div>
   <div
     class="gatsby-background-image-wrapper"
-    style="position: relative; opacity: 0.99; background-position: center; background-repeat: no-repeat; background-size: cover;"
+    style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99;"
   >
     <style>
       

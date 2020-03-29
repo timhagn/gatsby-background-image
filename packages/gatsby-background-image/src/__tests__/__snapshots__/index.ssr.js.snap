@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<BackgroundImage /> on SSR should work with multiple images in SSR node environment 1`] = `
-"<div class=\\"gatsby-background-image-wrapper\\" style=\\"position:relative;opacity:0.99;display:inline-block;background-position:center;background-repeat:no-repeat;background-size:cover\\" data-reactroot=\\"\\"><style>
+"<div class=\\"gatsby-background-image-wrapper\\" style=\\"background-position:center;background-repeat:no-repeat;background-size:cover;position:relative;opacity:0.99;display:inline-block\\" data-reactroot=\\"\\"><style>
           .gatsby-background-image-wrapper:before,
           .gatsby-background-image-wrapper:after {
             content: '';
@@ -38,7 +38,7 @@ background-size: cover;
 `;
 
 exports[`<BackgroundImage /> on SSR should work within SSR node environment 1`] = `
-"<div class=\\"gatsby-background-image-wrapper\\" style=\\"position:relative;opacity:0.99;background-position:center;background-repeat:no-repeat;background-size:cover\\" data-reactroot=\\"\\"><style>
+"<div class=\\"gatsby-background-image-wrapper\\" style=\\"background-position:center;background-repeat:no-repeat;background-size:cover;position:relative;opacity:0.99\\" data-reactroot=\\"\\"><style>
           .gatsby-background-image-wrapper:before,
           .gatsby-background-image-wrapper:after {
             content: '';

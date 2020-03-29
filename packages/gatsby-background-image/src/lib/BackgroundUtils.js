@@ -6,40 +6,46 @@
  */
 import { isString, stringToArray, toCamelCase } from './SimpleUtils'
 
-export const getStyle = className => {
-  const styleSheets =
-    typeof window !== `undefined` ? window.document.styleSheets : []
-  for (let i = 0; i < styleSheets.length; i++) {
-    let classes
-    try {
-      classes =
-        typeof styleSheets[i].rules !== 'undefined'
-          ? styleSheets[i].rules
-          : typeof styleSheets[i].cssRules !== 'undefined'
-          ? styleSheets[i].cssRules
-          : ''
-    } catch (e) {}
-    if (!classes) continue
-    const foundClass = Array.prototype.slice
-      .call(classes)
-      .reduce(
-        (foundAcc, styleRule) =>
-          styleRule.selectorText === className && foundAcc === ``
-            ? styleRule
-            : foundAcc,
-        ``
-      )
-    if (foundClass) {
-      const resultingStyleText = foundClass.cssText
-        ? foundClass.cssText
-        : foundClass.style.cssText
-      return resultingStyleText.indexOf(foundClass.selectorText) === -1
-        ? `${foundClass.selectorText}{${resultingStyleText}}`
-        : resultingStyleText
-    }
-  }
-}
+// export const getStyle = className => {
+//   const styleSheets =
+//     typeof window !== `undefined` ? window.document.styleSheets : []
+//   for (let i = 0; i < styleSheets.length; i++) {
+//     let classes
+//     try {
+//       classes =
+//         typeof styleSheets[i].rules !== 'undefined'
+//           ? styleSheets[i].rules
+//           : typeof styleSheets[i].cssRules !== 'undefined'
+//           ? styleSheets[i].cssRules
+//           : ''
+//     } catch (e) {}
+//     if (!classes) continue
+//     const foundClass = Array.prototype.slice
+//       .call(classes)
+//       .reduce(
+//         (foundAcc, styleRule) =>
+//           styleRule.selectorText === className && foundAcc === ``
+//             ? styleRule
+//             : foundAcc,
+//         ``
+//       )
+//     if (foundClass) {
+//       const resultingStyleText = foundClass.cssText
+//         ? foundClass.cssText
+//         : foundClass.style.cssText
+//       return resultingStyleText.indexOf(foundClass.selectorText) === -1
+//         ? `${foundClass.selectorText}{${resultingStyleText}}`
+//         : resultingStyleText
+//     }
+//   }
+// }
 
+/**
+ * Gets styles rules by a class name.
+ *
+ * @notice The className has to exactly match the CSS class
+ * @param className string
+ */
 export const getStyleRulesForClassName = className => {
   const styleSheets =
     typeof window !== `undefined` ? window.document.styleSheets : []
@@ -53,17 +59,21 @@ export const getStyleRulesForClassName = className => {
           ? styleSheets[i].cssRules
           : ''
     } catch (e) {}
-    if (!classes) continue
-    const foundClass = Array.prototype.slice
-      .call(classes)
-      .reduce((foundAcc, styleRule) => {
-        if (styleRule.selectorText === className && !foundAcc.length) {
-          foundAcc.push(styleRule)
-        }
-        return foundAcc
-      }, [])
-    return foundClass || []
+    if (classes) {
+      const foundClass = Array.prototype.slice
+        .call(classes)
+        .reduce((foundAcc, styleRule) => {
+          if (styleRule.selectorText === className) {
+            foundAcc.push(styleRule)
+          }
+          return foundAcc
+        }, [])
+      if (foundClass.length) {
+        return foundClass
+      }
+    }
   }
+  return []
 }
 
 /**
@@ -72,19 +82,19 @@ export const getStyleRulesForClassName = className => {
  * @param styleContent  string    CSS-Styles to apply
  * @return {*}
  */
-export const rulesForCssText = styleContent => {
-  if (typeof document !== `undefined` && styleContent) {
-    const doc = document.implementation.createHTMLDocument('')
-    const styleElement = document.createElement('style')
-
-    styleElement.textContent = styleContent
-    // The style element will only be parsed once it is added to a document.
-    doc.body.appendChild(styleElement)
-
-    return doc.styleSheets?.[0]?.cssRules || styleElement.sheet?.cssRules || {}
-  }
-  return {}
-}
+// export const rulesForCssText = styleContent => {
+//   if (typeof document !== `undefined` && styleContent) {
+//     const doc = document.implementation.createHTMLDocument('')
+//     const styleElement = document.createElement('style')
+//
+//     styleElement.textContent = styleContent
+//     // The style element will only be parsed once it is added to a document.
+//     doc.body.appendChild(styleElement)
+//
+//     return doc.styleSheets?.[0]?.cssRules || styleElement.sheet?.cssRules || {}
+//   }
+//   return {}
+// }
 
 /**
  * Fixes non-enumerable style rules in Firefox.

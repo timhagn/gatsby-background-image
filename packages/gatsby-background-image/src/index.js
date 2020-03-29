@@ -282,8 +282,8 @@ class BackgroundImage extends React.Component {
     const noScriptImageData = getCurrentSrcData({ fluid, fixed })
     if (fluid || fixed) {
       if (fixed) {
-        divStyle.width = image.width
-        divStyle.height = image.height
+        divStyle.width = style.width || image.width
+        divStyle.height = style.height || image.height
         divStyle.display = `inline-block`
 
         if (style.display === `inherit`) {
@@ -337,13 +337,16 @@ class BackgroundImage extends React.Component {
       fixed && `fixed`
     }-${JSON.stringify(noScriptImageData.srcSet)}`
 
+    // Combine currentStyles according to specificity.
+    const currentStyles = {
+      ...this.backgroundStyles,
+      ...divStyle,
+    }
+
     return (
       <Tag
-        className={`${this.state.currentClassNames || ``}`}
-        style={{
-          ...divStyle,
-          ...this.backgroundStyles,
-        }}
+        className={this.state.currentClassNames}
+        style={currentStyles}
         ref={this.handleRef}
         key={componentKey}
         {...remainingProps}
