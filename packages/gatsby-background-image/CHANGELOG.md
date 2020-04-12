@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.1.0](https://github.com/timhagn/gatsby-background-image) (2020-04-12)
 
-**fix**: Removed the superfluous `gatsby-background-iamge-wrapper` breaking 
+**fix**: Removed the superfluous `gatsby-background-iamge-wrapper` breaking
 images with no `className` set.
 
 ## [1.0.1](https://github.com/timhagn/gatsby-background-image) (2020-03-29)
