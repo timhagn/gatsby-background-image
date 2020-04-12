@@ -105,7 +105,8 @@ export const activatePictureRef = (
       return activateMultiplePictureRefs(imageRef, props, selfRef)
     }
     // Clone body to get the correct sizes.
-    const bodyClone = document.body.cloneNode(true)
+    // const bodyClone = document.body.cloneNode(true)
+    const bodyClone = document.createElement('body')
     // Do we have an image stack or Art-direction array?
     // Then get its current or first(smallest) image respectively.
     const imageData = isImageStack
