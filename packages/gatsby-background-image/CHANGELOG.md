@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.0.1"></a>
+<a name="1.1.0"></a>
+
+## [1.1.0](https://github.com/timhagn/gatsby-background-image) (2020-03-29)
+
+**fix**: Removed the superfluous `gatsby-background-iamge-wrapper` breaking multiple images.
+**feat**: Updated README.
 
 ## [1.0.1](https://github.com/timhagn/gatsby-background-image) (2020-03-29)
 

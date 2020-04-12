@@ -27,14 +27,14 @@ export const fixClassName = ({ className, ...props }) => {
 
   // Create random "uniquely hashed" additionalClass if needed.
   const randomClass = ` gbi-${hashString(
-    (imageData && imageData.srcSet) || className
+    (imageData && imageData.srcSet) || className || `noclass`
   )}-${additionalClassname}`
 
-  // Should an element exist, add randomized class.
-  const additionalClass = elementExists ? randomClass : ``
-  const componentClassNames =
-    `${className || ``}${additionalClass || ``}`.trim() ||
-    `gatsby-background-image-wrapper`
+  // Should an element already exist or have no className, add randomized class.
+  const additionalClass = elementExists || !className ? randomClass : ``
+  const componentClassNames = `${className || ``}${
+    additionalClass || ``
+  }`.trim()
   // Add it to cache if it doesn't exist.
   if (!elementExists) activateCacheForComponentClass(className)
   return [componentClassNames]

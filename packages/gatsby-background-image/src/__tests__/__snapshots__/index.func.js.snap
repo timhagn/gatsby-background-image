@@ -199,13 +199,13 @@ background-size: contain;
 exports[`<BackgroundImage /> with mock IO should render visible fixed image and call onLoadFunction 1`] = `
 <div>
   <div
-    class="gatsby-background-image-wrapper"
+    class="gbi-2113735767-73WakrfVbNJBaAmhQtEeDv"
     style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99;"
   >
     <style>
       
-          .gatsby-background-image-wrapper:before,
-          .gatsby-background-image-wrapper:after {
+          .gbi-2113735767-73WakrfVbNJBaAmhQtEeDv:before,
+          .gbi-2113735767-73WakrfVbNJBaAmhQtEeDv:after {
             content: '';
             display: block;
             position: absolute;
@@ -220,13 +220,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-wrapper:before {
+          .gbi-2113735767-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             
             
             opacity: 0; 
           }
-          .gatsby-background-image-wrapper:after {
+          .gbi-2113735767-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             
             
@@ -244,13 +244,13 @@ exports[`<BackgroundImage /> with mock IO should render visible fixed image and 
 exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] = `
 <div>
   <div
-    class="gatsby-background-image-wrapper"
+    class="gbi-1393017994-73WakrfVbNJBaAmhQtEeDv"
     style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99;"
   >
     <style>
       
-          .gatsby-background-image-wrapper:before,
-          .gatsby-background-image-wrapper:after {
+          .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before,
+          .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             content: '';
             display: block;
             position: absolute;
@@ -265,13 +265,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .gatsby-background-image-wrapper:before {
+          .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             
             background-image: url(string_of_base64);
             opacity: 0; 
           }
-          .gatsby-background-image-wrapper:after {
+          .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             background-image: url(string_of_base64);
             
