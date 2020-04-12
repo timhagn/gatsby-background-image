@@ -89,26 +89,30 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     )
     mockAllIsIntersecting(true)
     expect(container).toMatchSnapshot()
-    container = rerender(
-      <BackgroundImage fluid={fluidShapeMock} />
-    )
+    container = rerender(<BackgroundImage fluid={fluidShapeMock} />)
     expect(container).toMatchSnapshot()
   })
 
   it(`should render visible fixed image and call onLoadFunction`, () => {
+    const currentFluidMock = {
+      src: ``,
+      aspectRatio: 1,
+      srcSet: ``,
+      sizes: ``,
+    }
     // Mock Math.random beforehand, lest another random classname is created.
     Math.random = jest.fn(() => 0.424303425546642)
     // Mock onStartLoad().
-    const onLoadFunctionMock = jest.fn()
+    const onStartLoadFunctionMock = jest.fn()
     let { container, rerender } = render(
       <BackgroundImage
-        fluid={{ src: ``, aspectRatio: 1, srcSet: ``, sizes: `` }}
-        onStartLoad={onLoadFunctionMock}
+        fluid={currentFluidMock}
+        onStartLoad={onStartLoadFunctionMock}
       />
     )
     mockAllIsIntersecting(true)
     expect(container).toMatchSnapshot()
-    expect(onLoadFunctionMock).toHaveBeenCalled()
+    expect(onStartLoadFunctionMock).toHaveBeenCalled()
     container = rerender(<BackgroundImage fixed={fixedShapeMock} />)
     expect(container).toMatchSnapshot()
   })
