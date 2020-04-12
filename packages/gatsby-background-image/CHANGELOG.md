@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.1.1](https://github.com/timhagn/gatsby-background-image) (2020-04-12)
 
-**fix**: Switched from `document.body.cloneNode(true)` to 
+**fix**: Switched from `document.body.cloneNode(true)` to
 `document.createElement('body')` in `activatePictureRef()` as `cloneNode(true)`
 copied Listeners as well.
 
