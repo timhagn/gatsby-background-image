@@ -73,7 +73,7 @@ _*Of course styleable with `styled-components` and the like!*_
 
 ## Example Repo
 
-`gatsby-background-image` has an example repository to see it's similarities & 
+`gatsby-background-image` has an example repository to see it's similarities &
 differences to `gatsby-image` side by side.  
 It's located at: [gbitest](https://github.com/timhagn/gbitest)
 To use it with `gatsby-background-image-es5` change the dependency there.
@@ -200,7 +200,7 @@ And
 ## How to Use
 
 Be sure to play around with the [Example Repo](#example-repo), as it shows
-a few more flavors of using `BackgroundImage`, e.g. encapsulating it in a 
+a few more flavors of using `BackgroundImage`, e.g. encapsulating it in a
 component : )!
 
 This is what a component using `gatsby-background-image-es5` might look like:
@@ -625,7 +625,7 @@ Starting with `v0.8.19` it's possible to change the IntersectionObservers'
 
 ## Changed props
 
-The `fluid` or `fixed` props may be given as an array of images returned from 
+The `fluid` or `fixed` props may be given as an array of images returned from
 `fluid` or `fixed` queries or CSS Strings like `rgba()` or such.
 
 The `fadeIn` prop may be set to `soft` to ignore cached images and always
@@ -648,9 +648,51 @@ props from `gatsby-image` are not available, of course.
 | `placeholderClassName` | `string` | A class that is passed to the placeholder img element         |
 | `imgStyle`             | `object` | Spread into the default styles of the actual img element      |
 
-From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed 
-as well - but don't confuse the latter with the possible `sizes` image prop in a 
-`fluid` image, which of course is still handled. 
+In the absence of the `placeholderStyle` prop, additional styling while the image is loading can be accomplished using the `onLoad` or `onStartLoad` props. Use either method's callback to toggle a className on the component with your loading styles.
+
+An example of "softening" the blur up using vanilla CSS.
+
+```
+/* MyBackgroundImage.css */
+
+.loading,
+.loading::before,
+.loading::after {
+  filter: blur(15px);
+}
+
+/* ...other styles */
+```
+
+```
+// MyBackroundImage.js
+
+import React, { useRef } from "react"
+import BackgroundImage from "gatsby-background-image-es5"
+import "./MyBackgroundImage.css"
+
+const MyBackgroundImage = ({ children, ...props }) => {
+  const bgRef = useRef()
+  return (
+    <BackgroundImage
+      ref={bgRef}
+      onStartLoad={() => bgRef.current.selfRef.classList.toggle("loading")}
+      onLoad={() => bgRef.current.selfRef.classList.toggle("loading")}
+      {...props}
+    >
+      {children}
+    </BackgroundImage>
+  )
+}
+
+export default MyBackgroundImage
+```
+
+For the same implementation with styled components, refer to [#110](https://github.com/timhagn/gatsby-background-image/issues/110).
+
+From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed
+as well - but don't confuse the latter with the possible `sizes` image prop in a
+`fluid` image, which of course is still handled.
 
 ## Handling of Remaining props
 
@@ -661,10 +703,10 @@ without having to use `gatsby-image`'s `itemProp` ; ).
 
 ## Testing `gatsby-background-image`
 
-As `gbi` uses `short-uuid` to create its unique classes, you only have to mock 
+As `gbi` uses `short-uuid` to create its unique classes, you only have to mock
 `short-uuid`'s `generate()` function like explained below.
 
-Either in your `jest.setup.js` or the top of your individual test file(s) mock 
+Either in your `jest.setup.js` or the top of your individual test file(s) mock
 the complete package:
 `jest.mock('short-uuid')`
 
@@ -672,13 +714,13 @@ Then for each `gbi` component you want to test, add a `beforeEach()`:
 
 ```js
 beforeEach(() => {
-    // Freeze the generated className.
-    const uuid = require('short-uuid')
-    uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
+  // Freeze the generated className.
+  const uuid = require('short-uuid')
+  uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
 });
 ```
 
-Now the class name will always be the same and your snapshot tests should 
+Now the class name will always be the same and your snapshot tests should
 work : ).
 
 ## Contributing
@@ -690,7 +732,7 @@ Thanks in advance!
 
 ## TODO
 
-_For anything you may think necessary tell me by opening an issue or a PR : )!_ 
+_For anything you may think necessary tell me by opening an issue or a PR : )!_
 
 ## Acknowledgements
 
