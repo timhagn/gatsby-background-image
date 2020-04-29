@@ -641,6 +641,48 @@ props from `gatsby-image` are not available, of course.
 | `placeholderClassName` | `string` | A class that is passed to the placeholder img element         |
 | `imgStyle`             | `object` | Spread into the default styles of the actual img element      |
 
+In the absence of the `placeholderStyle` prop, additional styling while the image is loading can be accomplished using the `onLoad` or `onStartLoad` props. Use either method's callback to toggle a className on the component with your loading styles.
+
+An example of "softening" the blur up using vanilla CSS.
+
+```
+/* MyBackgroundImage.css */
+
+.loading,
+.loading::before,
+.loading::after {
+  filter: blur(15px);
+}
+
+/* ...other styles */
+```
+
+```
+// MyBackroundImage.js
+
+import React, { useRef } from "react"
+import BackgroundImage from "gatsby-background-image-es5"
+import "./MyBackgroundImage.css"
+
+const MyBackgroundImage = ({ children, ...props }) => {
+  const bgRef = useRef()
+  return (
+    <BackgroundImage
+      ref={bgRef}
+      onStartLoad={() => bgRef.current.selfRef.classList.toggle("loading")}
+      onLoad={() => bgRef.current.selfRef.classList.toggle("loading")}
+      {...props}
+    >
+      {children}
+    </BackgroundImage>
+  )
+}
+
+export default MyBackgroundImage
+```
+
+For the same implementation with styled components, refer to [#110](https://github.com/timhagn/gatsby-background-image/issues/110).
+
 From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed 
 as well - but don't confuse the latter with the possible `sizes` image prop in a 
 `fluid` image, which of course is still handled. 
