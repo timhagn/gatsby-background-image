@@ -28,7 +28,6 @@ even more:
 **[Testing explained](#testing-gatsby-background-image) in its own section.**
 **[Art-Direction support](#how-to-use-with-art-direction-support) built in.**
 
-
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,  
@@ -77,7 +76,7 @@ this package.
 
 ## Example Repo
 
-`gatsby-background-image` has an example repository to see it's similarities & 
+`gatsby-background-image` has an example repository to see it's similarities &
 differences to `gatsby-image` side by side.  
 It's located at: [gbitest](https://github.com/timhagn/gbitest)
 
@@ -219,7 +218,7 @@ export const onClientEntry = () => {
 ## How to Use
 
 Be sure to play around with the [Example Repo](#example-repo), as it shows
-a few more flavors of using `BackgroundImage`, e.g. encapsulating it in a 
+a few more flavors of using `BackgroundImage`, e.g. encapsulating it in a
 component : )!
 
 This is what a component using `gatsby-background-image` might look like:
@@ -361,13 +360,13 @@ export default StyledMultiBackground
 
 ## How to Use with Art-Direction support
 
-`gatsby-background-image` supports showing different images at different 
-breakpoints, which is known as [art direction](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction). 
-To do this, you can define your own array of `fixed` or `fluid` images, along 
-with a `media` key per image, and pass it to `gatsby-image`'s `fixed` or `fluid` 
+`gatsby-background-image` supports showing different images at different
+breakpoints, which is known as [art direction](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Art_direction).
+To do this, you can define your own array of `fixed` or `fluid` images, along
+with a `media` key per image, and pass it to `gatsby-image`'s `fixed` or `fluid`
 props. The `media` key that is set on an image can be any valid CSS media query.
 
-**_Attention:_ Currently you have to choose between Art-directed and Multiple-Images!** 
+**_Attention:_ Currently you have to choose between Art-directed and Multiple-Images!**
 
 ```js
 import { graphql, useStaticQuery } from 'gatsby'
@@ -394,7 +393,7 @@ const ArtDirectedBackground = ({ className }) => {
             }
           }
         }
-      }  
+      }
     `
   )
   // Set up the array of image data and `media` keys.
@@ -440,10 +439,10 @@ const StyledArtDirectedBackground = styled(ArtDirectedBackground)`
 export default StyledArtDirectedBackground
 ```
 
-While you could achieve a similar effect with plain CSS media queries, 
-`gatsby-background-image` accomplishes this using an internal `HTMLPictureElement`, 
-as well as `window.matchMedia()`, which ensures that browsers only download 
-the image they need for a given breakpoint while preventing 
+While you could achieve a similar effect with plain CSS media queries,
+`gatsby-background-image` accomplishes this using an internal `HTMLPictureElement`,
+as well as `window.matchMedia()`, which ensures that browsers only download
+the image they need for a given breakpoint while preventing
 [gatsby-image issue #15189](https://github.com/gatsbyjs/gatsby/issues/15189).
 
 ## Configuration & props
@@ -618,7 +617,7 @@ Starting with `v0.8.19` it's possible to change the IntersectionObservers'
 
 ## Changed props
 
-The `fluid` or `fixed` props may be given as an array of images returned from 
+The `fluid` or `fixed` props may be given as an array of images returned from
 `fluid` or `fixed` queries or CSS Strings like `rgba()` or such.
 
 The `fadeIn` prop may be set to `soft` to ignore cached images and always
@@ -641,9 +640,51 @@ props from `gatsby-image` are not available, of course.
 | `placeholderClassName` | `string` | A class that is passed to the placeholder img element         |
 | `imgStyle`             | `object` | Spread into the default styles of the actual img element      |
 
-From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed 
-as well - but don't confuse the latter with the possible `sizes` image prop in a 
-`fluid` image, which of course is still handled. 
+In the absence of the `placeholderStyle` prop, additional styling while the image is loading can be accomplished using the `onLoad` or `onStartLoad` props. Use either method's callback to toggle a className on the component with your loading styles.
+
+An example of "softening" the blur up using vanilla CSS.
+
+```
+/* MyBackgroundImage.css */
+
+.loading,
+.loading::before,
+.loading::after {
+  filter: blur(15px);
+}
+
+/* ...other styles */
+```
+
+```
+// MyBackroundImage.js
+
+import React, { useRef } from "react"
+import BackgroundImage from "gatsby-background-image"
+import "./MyBackgroundImage.css"
+
+const MyBackgroundImage = ({ children, ...props }) => {
+  const bgRef = useRef()
+  return (
+    <BackgroundImage
+      ref={bgRef}
+      onStartLoad={() => bgRef.current.selfRef.classList.toggle("loading")}
+      onLoad={() => bgRef.current.selfRef.classList.toggle("loading")}
+      {...props}
+    >
+      {children}
+    </BackgroundImage>
+  )
+}
+
+export default MyBackgroundImage
+```
+
+For the same implementation with styled components, refer to [#110](https://github.com/timhagn/gatsby-background-image/issues/110).
+
+From `gbi v1.0.0` on the even older `resolutions` & `sizes` props are removed
+as well - but don't confuse the latter with the possible `sizes` image prop in a
+`fluid` image, which of course is still handled.
 
 ## Handling of Remaining props
 
@@ -654,10 +695,10 @@ without having to use `gatsby-image`'s `itemProp` ; ).
 
 ## Testing `gatsby-background-image`
 
-As `gbi` uses `short-uuid` to create its unique classes, you only have to mock 
+As `gbi` uses `short-uuid` to create its unique classes, you only have to mock
 `short-uuid`'s `generate()` function like explained below.
 
-Either in your `jest.setup.js` or the top of your individual test file(s) mock 
+Either in your `jest.setup.js` or the top of your individual test file(s) mock
 the complete package:
 `jest.mock('short-uuid')`
 
@@ -665,13 +706,13 @@ Then for each `gbi` component you want to test, add a `beforeEach()`:
 
 ```js
 beforeEach(() => {
-    // Freeze the generated className.
-    const uuid = require('short-uuid')
-    uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
-});
+  // Freeze the generated className.
+  const uuid = require('short-uuid')
+  uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
+})
 ```
 
-Now the class name will always be the same and your snapshot tests should 
+Now the class name will always be the same and your snapshot tests should
 work : ).
 
 ## Contributing
