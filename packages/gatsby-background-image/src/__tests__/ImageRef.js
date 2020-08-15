@@ -144,6 +144,12 @@ describe(`activatePictureRef()`, () => {
     const dummyImageRef = activatePictureRef(testFaultyImg, { fluid: 'test' })
     expect(dummyImageRef).toMatchInlineSnapshot(`null`)
   })
+
+  it(`should fail with nullish imageData`, () => {
+    const testFaultyImg = document.createElement('div')
+    const dummyImageRef = activatePictureRef(testFaultyImg, { fluid: null })
+    expect(dummyImageRef).toMatchInlineSnapshot(`null`)
+  })
 })
 
 describe(`activatePictureRef() with image array`, () => {

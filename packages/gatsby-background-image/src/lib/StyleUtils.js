@@ -48,8 +48,10 @@ export const fixClassName = ({ className, ...props }) => {
  * @return {void | string|*}
  */
 export const escapeClassNames = classNames => {
+  /* eslint-disable no-undef */
   if (classNames) {
     const specialChars =
+      // eslint-disable-next-line no-undef
       isBrowser() && window._gbiSpecialChars
         ? window._gbiSpecialChars
         : typeof __GBI_SPECIAL_CHARS__ !== `undefined`
@@ -59,6 +61,7 @@ export const escapeClassNames = classNames => {
     return classNames.replace(specialCharRegEx, '\\$&')
   }
   return classNames
+  /* eslint-enable no-undef */
 }
 
 /**

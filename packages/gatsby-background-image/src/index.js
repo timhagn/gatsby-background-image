@@ -22,6 +22,8 @@ import {
 } from './lib/StyleUtils'
 import { createNoScriptStyles, createPseudoStyles } from './lib/StyleCreation'
 import { listenToIntersections } from './lib/IntersectionObserverUtils'
+import { isString } from './lib/SimpleUtils'
+import PureBackgroundImage from './lib/PureBackgroundImage'
 
 /**
  * Main Lazy-loading React background-image component
@@ -76,17 +78,6 @@ class BackgroundImage extends React.Component {
     // Fixed class Name & added one (needed for multiple instances).
     const [currentClassNames] = fixClassName(convertedProps)
 
-    this.state = {
-      isVisible,
-      imgLoaded,
-      IOSupported,
-      fadeIn,
-      hasNoScript,
-      seenBefore,
-      imageState,
-      currentClassNames,
-    }
-
     // Preset backgroundStyles (e.g. during SSR or gatsby build).
     this.backgroundStyles = presetBackgroundStyles(
       getBackgroundStyles(convertedProps.className)
@@ -104,7 +95,31 @@ class BackgroundImage extends React.Component {
 
     this.selfRef = null
 
+    this.state = {
+      isVisible,
+      imgLoaded,
+      IOSupported,
+      fadeIn,
+      hasNoScript,
+      seenBefore,
+      imageState,
+      currentClassNames,
+      initialImageRef: this.imageRef,
+    }
+
     // console.log(`-------------------------------------------------------------`)
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { seenBefore, initialImageRef } = state
+    if (initialImageRef && seenBefore) {
+      activateCacheForImage(props)
+      return {
+        imgLoaded: true,
+        initialImageRef: false,
+      }
+    }
+    return null
   }
 
   componentDidMount() {
@@ -127,9 +142,14 @@ class BackgroundImage extends React.Component {
     this.setState({ currentClassNames })
   }
 
-  // shouldComponentUpdate(nextProps) {
+  // shouldComponentUpdate(nextProps, nextState) {
   //   console.table(this.state, imagePropsChanged(this.props, nextProps))
-  //   return !imagePropsChanged(this.props, nextProps)
+  //   return (
+  //     !this.state.initialImageRef &&
+  //     !this.state.seenBefore &&
+  //     !this.state.imageLoaded
+  //     // !imagePropsChanged(this.props, nextProps)
+  //   )
   // }
 
   componentDidUpdate(prevProps) {
@@ -172,10 +192,11 @@ class BackgroundImage extends React.Component {
     // Prevent calling handleImageLoaded from the imageRef(s) after unmount.
     if (this.imageRef) {
       if (Array.isArray(this.imageRef)) {
-        this.imageRef.forEach(
-          currentImageRef =>
-            !!currentImageRef && (currentImageRef.onload = null)
-        )
+        this.imageRef.forEach(currentImageRef => {
+          if (!!currentImageRef && !isString(currentImageRef)) {
+            currentImageRef.onload = null
+          }
+        })
       } else {
         this.imageRef.onload = null
       }
@@ -230,10 +251,8 @@ class BackgroundImage extends React.Component {
     this.setState(state => ({
       imgLoaded: true,
       imageState: state.imageState + 1,
+      fadeIn: !state.seenBefore,
     }))
-    if (this.state.seenBefore) {
-      this.setState({ fadeIn: false })
-    }
 
     if (this.props.onLoad) {
       this.props.onLoad()
@@ -333,8 +352,8 @@ class BackgroundImage extends React.Component {
     // console.log(image, noScriptPseudoStyles)
 
     // Switch key between fluid & fixed.
-    const componentKey = `${fluid && `fluid`}${
-      fixed && `fixed`
+    const componentKey = `${fluid ? `fluid` : ``}${
+      fixed ? `fixed` : ``
     }-${JSON.stringify(noScriptImageData.srcSet)}`
 
     // Combine currentStyles according to specificity.
@@ -344,31 +363,19 @@ class BackgroundImage extends React.Component {
     }
 
     return (
-      <Tag
-        className={this.state.currentClassNames}
-        style={currentStyles}
-        ref={this.handleRef}
-        key={componentKey}
-        {...remainingProps}
+      <PureBackgroundImage
+        Tag={Tag}
+        currentClassNames={this.state.currentClassNames}
+        currentStyles={currentStyles}
+        handleRef={this.handleRef}
+        componentKey={componentKey}
+        remainingProps={remainingProps}
+        pseudoStyles={pseudoStyles}
+        hasNoScript={this.state.hasNoScript}
+        noScriptPseudoStyles={noScriptPseudoStyles}
       >
-        {/* Create style element to transition between pseudo-elements. */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: pseudoStyles,
-          }}
-        />
-        {/* Set the original image(s) during SSR & if JS is disabled */}
-        {this.state.hasNoScript && (
-          <noscript>
-            <style
-              dangerouslySetInnerHTML={{
-                __html: noScriptPseudoStyles,
-              }}
-            />
-          </noscript>
-        )}
         {children}
-      </Tag>
+      </PureBackgroundImage>
     )
   }
 }

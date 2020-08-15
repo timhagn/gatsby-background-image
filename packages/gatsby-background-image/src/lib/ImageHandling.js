@@ -28,23 +28,25 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   let nextImageArray
   // Signal to `createPseudoStyles()` when we have reached the final image,
   // which is important for transparent background-image(s).
-  let finalImage = false
+  let finalImage = returnArray && state.seenBefore && !!currentSources
   if (returnArray) {
-    // Check for tracedSVG first.
-    nextImage = getCurrentFromData({
-      data: image,
-      propName: `tracedSVG`,
-      returnArray,
-    })
-    // Now combine with base64 images.
-    nextImage = combineArray(
-      getCurrentFromData({
+    if (!currentSources) {
+      // Check for tracedSVG first.
+      nextImage = getCurrentFromData({
         data: image,
-        propName: `base64`,
+        propName: `tracedSVG`,
         returnArray,
-      }),
-      nextImage
-    )
+      })
+      // Now combine with base64 images.
+      nextImage = combineArray(
+        getCurrentFromData({
+          data: image,
+          propName: `base64`,
+          returnArray,
+        }),
+        nextImage
+      )
+    }
     // Now add possible `rgba()` or similar CSS string props.
     nextImage = combineArray(
       getCurrentFromData({
@@ -56,7 +58,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
       nextImage
     )
     // Do we have at least one img loaded?
-    if (state.imgLoaded && state.isVisible) {
+    if ((state.imgLoaded || !!currentSources) && state.isVisible) {
       if (currentSources) {
         nextImage = combineArray(
           getCurrentFromData({

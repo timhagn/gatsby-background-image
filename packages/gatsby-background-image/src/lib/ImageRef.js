@@ -113,8 +113,11 @@ export const activatePictureRef = (
       ? getSelectedImage(convertedProps, index)
       : getCurrentSrcData(convertedProps)
 
-    if (!imageData || isString(imageData)) {
+    if (!imageData) {
       return null
+    }
+    if (isString(imageData)) {
+      return imageData
     }
 
     // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
