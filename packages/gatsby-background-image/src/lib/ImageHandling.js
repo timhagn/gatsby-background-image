@@ -1,6 +1,6 @@
-import { createDummyImageArray, getCurrentFromData } from './ImageUtils'
-import { hasArtDirectionArray } from './MediaUtils'
-import { combineArray, filteredJoin } from './SimpleUtils'
+import { createDummyImageArray, getCurrentFromData } from './ImageUtils';
+import { hasArtDirectionArray } from './MediaUtils';
+import { combineArray, filteredJoin } from './SimpleUtils';
 
 /**
  * Compares the old states to the new and changes image settings accordingly.
@@ -17,25 +17,25 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   const currentSources = getCurrentFromData({
     data: imageRef,
     propName: `currentSrc`,
-  })
+  });
   // Check if image is Array.
   const returnArray =
-    Array.isArray(image) && !hasArtDirectionArray({ fluid: image })
+    Array.isArray(image) && !hasArtDirectionArray({ fluid: image });
   // Backup bgImage to lastImage.
-  const lastImage = Array.isArray(bgImage) ? filteredJoin(bgImage) : bgImage
+  const lastImage = Array.isArray(bgImage) ? filteredJoin(bgImage) : bgImage;
   // Set the backgroundImage according to images available.
-  let nextImage
-  let nextImageArray
+  let nextImage;
+  let nextImageArray;
   // Signal to `createPseudoStyles()` when we have reached the final image,
   // which is important for transparent background-image(s).
-  let finalImage = false
+  let finalImage = returnArray && state.seenBefore && !!currentSources;
   if (returnArray) {
     // Check for tracedSVG first.
     nextImage = getCurrentFromData({
       data: image,
       propName: `tracedSVG`,
       returnArray,
-    })
+    });
     // Now combine with base64 images.
     nextImage = combineArray(
       getCurrentFromData({
@@ -44,7 +44,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
         returnArray,
       }),
       nextImage
-    )
+    );
     // Now add possible `rgba()` or similar CSS string props.
     nextImage = combineArray(
       getCurrentFromData({
@@ -54,7 +54,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
         returnArray,
       }),
       nextImage
-    )
+    );
     // Do we have at least one img loaded?
     if (state.imgLoaded && state.isVisible) {
       if (currentSources) {
@@ -65,8 +65,8 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
             returnArray,
           }),
           nextImage
-        )
-        finalImage = true
+        );
+        finalImage = true;
       } else {
         // No support for HTMLPictureElement or WebP present, get src.
         nextImage = combineArray(
@@ -76,32 +76,32 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
             returnArray,
           }),
           nextImage
-        )
-        finalImage = true
+        );
+        finalImage = true;
       }
     }
     // First fill last images from bgImage...
-    nextImage = combineArray(nextImage, bgImage)
+    nextImage = combineArray(nextImage, bgImage);
     // ... then fill the rest of the background-images with a transparent dummy
     // pixel, lest the background-* properties can't target the correct image.
-    const dummyArray = createDummyImageArray(image.length)
+    const dummyArray = createDummyImageArray(image.length);
     // Now combine the two arrays and join them.
-    nextImage = combineArray(nextImage, dummyArray)
-    nextImageArray = nextImage
-    nextImage = filteredJoin(nextImage)
+    nextImage = combineArray(nextImage, dummyArray);
+    nextImageArray = nextImage;
+    nextImage = filteredJoin(nextImage);
   } else {
-    nextImage = ``
+    nextImage = ``;
     nextImage =
       getCurrentFromData({ data: image, propName: `tracedSVG` }) ||
-      getCurrentFromData({ data: image, propName: `base64` })
+      getCurrentFromData({ data: image, propName: `base64` });
     if (state.imgLoaded && state.isVisible) {
-      nextImage = currentSources
-      finalImage = true
+      nextImage = currentSources;
+      finalImage = true;
     }
   }
 
   // Change opacity according to imageState.
-  const afterOpacity = state.imageState % 2
+  const afterOpacity = state.imageState % 2;
 
   if (
     !returnArray &&
@@ -116,19 +116,19 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
       data: imageRef,
       propName: `src`,
       checkLoaded: false,
-    })
-    finalImage = true
+    });
+    finalImage = true;
   }
   // Fall back on lastImage (important for prop changes) if all else fails.
-  if (!nextImage) nextImage = lastImage
+  if (!nextImage) nextImage = lastImage;
 
   const newImageSettings = {
     lastImage,
     nextImage,
     afterOpacity,
     finalImage,
-  }
+  };
   // Add nextImageArray for bgImage to newImageSettings if exists.
-  if (nextImageArray) newImageSettings.nextImageArray = nextImageArray
-  return newImageSettings
-}
+  if (nextImageArray) newImageSettings.nextImageArray = nextImageArray;
+  return newImageSettings;
+};

@@ -1,14 +1,14 @@
-import { convertProps } from './HelperUtils'
+import { convertProps } from './HelperUtils';
 import {
   getCurrentSrcData,
   getSelectedImage,
   hasImageArray,
   hasPictureElement,
   imageLoaded,
-} from './ImageUtils'
-import { createArtDirectionSources, hasArtDirectionArray } from './MediaUtils'
-import { isBrowser, isString } from './SimpleUtils'
-import { inImageCache } from './ImageCache'
+} from './ImageUtils';
+import { createArtDirectionSources, hasArtDirectionArray } from './MediaUtils';
+import { isBrowser, isString } from './SimpleUtils';
+import { inImageCache } from './ImageCache';
 
 /**
  * Creates an image reference to be activated on critical or visibility.
@@ -19,7 +19,7 @@ import { inImageCache } from './ImageCache'
  * @return {HTMLImageElement|null|Array}
  */
 export const createPictureRef = (props, onLoad, index, isLoop = false) => {
-  const convertedProps = convertProps(props)
+  const convertedProps = convertProps(props);
 
   if (
     isBrowser() &&
@@ -27,33 +27,33 @@ export const createPictureRef = (props, onLoad, index, isLoop = false) => {
       typeof convertedProps.fixed !== `undefined`)
   ) {
     const isImageStack =
-      hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps)
+      hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps);
     if (isImageStack && !isLoop) {
-      return createMultiplePictureRefs(props, onLoad)
+      return createMultiplePictureRefs(props, onLoad);
     }
-    const img = new Image()
+    const img = new Image();
 
-    img.onload = () => onLoad()
+    img.onload = () => onLoad();
 
     if (!img.complete && typeof convertedProps.onLoad === `function`) {
-      img.addEventListener('load', convertedProps.onLoad)
+      img.addEventListener('load', convertedProps.onLoad);
     }
     if (typeof convertedProps.onError === `function`) {
-      img.addEventListener('error', convertedProps.onError)
+      img.addEventListener('error', convertedProps.onError);
     }
     if (convertedProps.crossOrigin) {
-      img.crossOrigin = convertedProps.crossOrigin
+      img.crossOrigin = convertedProps.crossOrigin;
     }
 
     // Only directly activate the image if critical (preload).
     if ((convertedProps.critical || convertedProps.isVisible) && !isLoop) {
-      return activatePictureRef(img, convertedProps, index, isLoop)
+      return activatePictureRef(img, convertedProps, index, isLoop);
     }
 
-    return img
+    return img;
   }
-  return null
-}
+  return null;
+};
 
 /**
  * Creates multiple image references. Internal function.
@@ -62,19 +62,19 @@ export const createPictureRef = (props, onLoad, index, isLoop = false) => {
  * @param onLoad  function  Callback for load handling.
  */
 export const createMultiplePictureRefs = (props, onLoad) => {
-  const convertedProps = convertProps(props)
+  const convertedProps = convertProps(props);
 
   // Extract Image Array.
-  const imageStack = convertedProps.fluid || convertedProps.fixed
+  const imageStack = convertedProps.fluid || convertedProps.fixed;
   const imageRefs = imageStack.map((imageData, index) =>
     createPictureRef(convertedProps, onLoad, index, true)
-  )
+  );
   // Only directly activate the image if critical (preload).
   if (convertedProps.critical || convertedProps.isVisible) {
-    return activatePictureRef(imageRefs, convertedProps)
+    return activatePictureRef(imageRefs, convertedProps);
   }
-  return imageRefs
-}
+  return imageRefs;
+};
 
 /**
  * Creates a picture element for the browser to decide which image to load.
@@ -93,68 +93,68 @@ export const activatePictureRef = (
   index = 0,
   isLoop = false
 ) => {
-  const convertedProps = convertProps(props)
+  const convertedProps = convertProps(props);
   if (
     isBrowser() &&
     (typeof convertedProps.fluid !== `undefined` ||
       typeof convertedProps.fixed !== `undefined`)
   ) {
     const isImageStack =
-      hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps)
+      hasImageArray(convertedProps) && !hasArtDirectionArray(convertedProps);
     if (isImageStack && !isLoop) {
-      return activateMultiplePictureRefs(imageRef, props, selfRef)
+      return activateMultiplePictureRefs(imageRef, props, selfRef);
     }
     // Clone body to get the correct sizes.
     // const bodyClone = document.body.cloneNode(true)
-    const bodyClone = document.createElement('body')
+    const bodyClone = document.createElement('body');
     // Do we have an image stack or Art-direction array?
     // Then get its current or first(smallest) image respectively.
     const imageData = isImageStack
       ? getSelectedImage(convertedProps, index)
-      : getCurrentSrcData(convertedProps)
+      : getCurrentSrcData(convertedProps);
 
     if (!imageData || isString(imageData)) {
-      return null
+      return null;
     }
 
     // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
     // but don't prevent it during SSR.
     if (hasPictureElement()) {
-      const pic = document.createElement('picture')
+      const pic = document.createElement('picture');
       if (selfRef) {
         // Set original component's style.
-        imageRef.width = selfRef.offsetWidth
-        imageRef.height = selfRef.offsetHeight
-        pic.width = imageRef.width
-        pic.height = imageRef.height
+        imageRef.width = selfRef.offsetWidth;
+        imageRef.height = selfRef.offsetHeight;
+        pic.width = imageRef.width;
+        pic.height = imageRef.height;
       }
       // TODO: check why only the 1400 image gets loaded as jpg & single / stacked images don't!
       if (hasArtDirectionArray(convertedProps)) {
-        const sources = createArtDirectionSources(convertedProps).reverse()
-        sources.forEach(currentSource => pic.appendChild(currentSource))
+        const sources = createArtDirectionSources(convertedProps).reverse();
+        sources.forEach(currentSource => pic.appendChild(currentSource));
       }
       if (imageData.srcSetWebp) {
-        const sourcesWebP = document.createElement('source')
-        sourcesWebP.type = `image/webp`
-        sourcesWebP.srcset = imageData.srcSetWebp
-        sourcesWebP.sizes = imageData.sizes
-        pic.appendChild(sourcesWebP)
+        const sourcesWebP = document.createElement('source');
+        sourcesWebP.type = `image/webp`;
+        sourcesWebP.srcset = imageData.srcSetWebp;
+        sourcesWebP.sizes = imageData.sizes;
+        pic.appendChild(sourcesWebP);
       }
-      pic.appendChild(imageRef)
-      bodyClone.appendChild(pic)
+      pic.appendChild(imageRef);
+      bodyClone.appendChild(pic);
     } else if (selfRef) {
-      imageRef.width = selfRef.offsetWidth
-      imageRef.height = selfRef.offsetHeight
+      imageRef.width = selfRef.offsetWidth;
+      imageRef.height = selfRef.offsetHeight;
     }
 
-    imageRef.sizes = imageData.sizes || ``
-    imageRef.srcset = imageData.srcSet || ``
-    imageRef.src = imageData.src || ``
+    imageRef.sizes = imageData.sizes || ``;
+    imageRef.srcset = imageData.srcSet || ``;
+    imageRef.src = imageData.src || ``;
 
-    return imageRef
+    return imageRef;
   }
-  return null
-}
+  return null;
+};
 
 /**
  * Creates multiple picture elements.
@@ -168,8 +168,8 @@ export const activateMultiplePictureRefs = (imageRefs, props, selfRef) => {
   // Extract Image Array.
   return imageRefs.map((imageRef, index) =>
     activatePictureRef(imageRef, props, selfRef, index, true)
-  )
-}
+  );
+};
 
 /**
  * Checks imageRefs on being active.
@@ -180,8 +180,8 @@ export const activateMultiplePictureRefs = (imageRefs, props, selfRef) => {
 export const hasActivatedPictureRefs = imageRefs => {
   return Array.isArray(imageRefs)
     ? imageRefs.every(imageRef => hasPictureRef(imageRef))
-    : hasPictureRef(imageRefs)
-}
+    : hasPictureRef(imageRefs);
+};
 
 /**
  * Checks imageRef for on being a string or has a currentSrc.
@@ -190,8 +190,8 @@ export const hasActivatedPictureRefs = imageRefs => {
  * @return {boolean}
  */
 export const hasPictureRef = imageRef => {
-  return isString(imageRef) || (!!imageRef && !!imageRef.currentSrc)
-}
+  return isString(imageRef) || (!!imageRef && !!imageRef.currentSrc);
+};
 
 /**
  * Checks if an image (array) reference is existing and tests for complete.
@@ -206,4 +206,4 @@ export const imageReferenceCompleted = (imageRef, props) =>
       ? imageRef.every(singleImageRef => imageLoaded(singleImageRef)) ||
         inImageCache(props)
       : imageLoaded(imageRef) || inImageCache(props)
-    : isString(imageRef)
+    : isString(imageRef);

@@ -1,5 +1,5 @@
-import { hasArtDirectionArray, matchesMedia } from './MediaUtils'
-import { filteredJoin, isBrowser, isString } from './SimpleUtils'
+import { hasArtDirectionArray, matchesMedia } from './MediaUtils';
+import { filteredJoin, isBrowser, isString } from './SimpleUtils';
 
 /**
  * Returns the availability of the HTMLPictureElement unless in SSR mode.
@@ -7,7 +7,7 @@ import { filteredJoin, isBrowser, isString } from './SimpleUtils'
  * @return {boolean}
  */
 export const hasPictureElement = () =>
-  typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`
+  typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`;
 
 /**
  * Checks if fluid or fixed are image arrays.
@@ -19,7 +19,7 @@ export const hasImageArray = props =>
   Boolean(
     (props.fluid && Array.isArray(props.fluid)) ||
       (props.fixed && Array.isArray(props.fixed))
-  )
+  );
 
 /**
  * Extracts a value from an imageRef, image object or an array of them.
@@ -38,9 +38,9 @@ export const getCurrentFromData = ({
   returnArray = false,
   checkLoaded = true,
 }) => {
-  if (!data || !propName) return ``
+  if (!data || !propName) return ``;
   // Handle tracedSVG with "special care".
-  const tracedSVG = propName === `tracedSVG`
+  const tracedSVG = propName === `tracedSVG`;
   if (Array.isArray(data) && !hasArtDirectionArray({ fluid: data })) {
     // Filter out all elements not having the propName and return remaining.
     const imageString = data
@@ -52,25 +52,25 @@ export const getCurrentFromData = ({
         if (propName === `currentSrc` || propName === 'src') {
           return checkLoaded
             ? (imageLoaded(dataElement) && dataElement[propName]) || ``
-            : dataElement[propName]
+            : dataElement[propName];
         }
         // Check if CSS strings should be parsed.
         if (propName === `CSS_STRING` && isString(dataElement)) {
-          return dataElement
+          return dataElement;
         }
         return isString(dataElement)
           ? dataElement
           : dataElement && propName in dataElement
           ? dataElement[propName]
-          : ``
-      })
+          : ``;
+      });
     // Encapsulate in URL string and return.
     return getUrlString({
       imageString,
       tracedSVG,
       addUrl,
       returnArray,
-    })
+    });
   }
   if (
     hasArtDirectionArray({ fluid: data }) &&
@@ -79,10 +79,10 @@ export const getCurrentFromData = ({
       propName === `base64` ||
       tracedSVG)
   ) {
-    const currentData = getCurrentSrcData({ fluid: data })
+    const currentData = getCurrentSrcData({ fluid: data });
     return propName in currentData
       ? getUrlString({ imageString: currentData[propName], tracedSVG, addUrl })
-      : ``
+      : ``;
   }
   // If `currentSrc` or `src` is needed, check image load completion first.
   if ((propName === `currentSrc` || propName === 'src') && propName in data) {
@@ -91,12 +91,12 @@ export const getCurrentFromData = ({
         ? (imageLoaded(data) && data[propName]) || ``
         : data[propName],
       addUrl,
-    })
+    });
   }
   return propName in data
     ? getUrlString({ imageString: data[propName], tracedSVG, addUrl })
-    : ``
-}
+    : ``;
+};
 
 /**
  * Find the source of an image to use as a key in the image cache.
@@ -106,10 +106,10 @@ export const getCurrentFromData = ({
  * @return {string|null}
  */
 export const getImageSrcKey = ({ fluid, fixed }) => {
-  const data = getCurrentSrcData({ fluid, fixed })
+  const data = getCurrentSrcData({ fluid, fixed });
 
-  return data ? data.src || null : null
-}
+  return data ? data.src || null : null;
+};
 
 /**
  * Returns the current src if possible with art-direction support.
@@ -121,24 +121,24 @@ export const getImageSrcKey = ({ fluid, fixed }) => {
  * @return {*}
  */
 export const getCurrentSrcData = ({ fluid, fixed, returnArray }, index = 0) => {
-  const currentData = fluid || fixed
+  const currentData = fluid || fixed;
   if (hasImageArray({ fluid, fixed })) {
     if (returnArray) {
-      return currentData
+      return currentData;
     }
     if (isBrowser() && hasArtDirectionArray({ fluid, fixed })) {
       // Do we have an image for the current Viewport?
-      const mediaData = currentData.slice().reverse()
-      const foundMedia = mediaData.findIndex(matchesMedia)
+      const mediaData = currentData.slice().reverse();
+      const foundMedia = mediaData.findIndex(matchesMedia);
       if (foundMedia !== -1) {
-        return mediaData[foundMedia]
+        return mediaData[foundMedia];
       }
     }
     // Else return the selected image.
-    return currentData[index]
+    return currentData[index];
   }
-  return currentData
-}
+  return currentData;
+};
 
 /**
  * Return the first image of an imageStack
@@ -149,13 +149,13 @@ export const getCurrentSrcData = ({ fluid, fixed, returnArray }, index = 0) => {
  * @return {*}
  */
 export const getSelectedImage = ({ fluid, fixed }, index = 0) => {
-  const currentData = fluid || fixed
+  const currentData = fluid || fixed;
   if (hasImageArray({ fluid, fixed })) {
     // Fall back on first image if `index` has no entry.
-    return currentData[index] || currentData[0]
+    return currentData[index] || currentData[0];
   }
-  return currentData
-}
+  return currentData;
+};
 
 /**
  * Encapsulates an imageString with a url if needed.
@@ -177,32 +177,32 @@ export const getUrlString = ({
   if (Array.isArray(imageString)) {
     const stringArray = imageString.map(currentString => {
       if (currentString) {
-        const base64 = isBase64(currentString)
-        const imageUrl = hasImageUrls || hasImageUrl(imageString)
+        const base64 = isBase64(currentString);
+        const imageUrl = hasImageUrls || hasImageUrl(imageString);
         const currentReturnString =
           currentString && tracedSVG
             ? `"${currentString}"`
             : currentString && !base64 && !tracedSVG && imageUrl
             ? `'${currentString}'`
-            : currentString
+            : currentString;
         return addUrl && currentString
           ? `url(${currentReturnString})`
-          : currentReturnString
+          : currentReturnString;
       }
-      return currentString
-    })
-    return returnArray ? stringArray : filteredJoin(stringArray)
+      return currentString;
+    });
+    return returnArray ? stringArray : filteredJoin(stringArray);
   }
-  const base64 = isBase64(imageString)
-  const imageUrl = hasImageUrls || hasImageUrl(imageString)
+  const base64 = isBase64(imageString);
+  const imageUrl = hasImageUrls || hasImageUrl(imageString);
   const returnString =
     imageString && tracedSVG
       ? `"${imageString}"`
       : imageString && !base64 && !tracedSVG && imageUrl
       ? `'${imageString}'`
-      : imageString
-  return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``
-}
+      : imageString;
+  return imageString ? (addUrl ? `url(${returnString})` : returnString) : ``;
+};
 
 /**
  * Checks a (possible) string on having `base64` in it.
@@ -211,7 +211,7 @@ export const getUrlString = ({
  * @return {boolean|boolean}
  */
 export const isBase64 = base64String =>
-  isString(base64String) && base64String.indexOf(`base64`) !== -1
+  isString(base64String) && base64String.indexOf(`base64`) !== -1;
 
 /**
  * Checks a (possible) string on having `http` in it.
@@ -220,7 +220,7 @@ export const isBase64 = base64String =>
  * @return {boolean|boolean}
  */
 export const hasImageUrl = imageString =>
-  isString(imageString) && imageString.substr(0, 4) === `http`
+  isString(imageString) && imageString.substr(0, 4) === `http`;
 
 /**
  * Checks if any image props have changed.
@@ -236,7 +236,7 @@ export const imagePropsChanged = (props, prevProps) =>
   imageArrayPropsChanged(props, prevProps) ||
   // Are single image sources different?
   (props.fluid && prevProps.fluid && props.fluid.src !== prevProps.fluid.src) ||
-  (props.fixed && prevProps.fixed && props.fixed.src !== prevProps.fixed.src)
+  (props.fixed && prevProps.fixed && props.fixed.src !== prevProps.fixed.src);
 
 /**
  * Decides if two given props with array images differ.
@@ -246,10 +246,10 @@ export const imagePropsChanged = (props, prevProps) =>
  * @return {boolean}
  */
 export const imageArrayPropsChanged = (props, prevProps) => {
-  const isPropsFluidArray = Array.isArray(props.fluid)
-  const isPrevPropsFluidArray = Array.isArray(prevProps.fluid)
-  const isPropsFixedArray = Array.isArray(props.fixed)
-  const isPrevPropsFixedArray = Array.isArray(prevProps.fixed)
+  const isPropsFluidArray = Array.isArray(props.fluid);
+  const isPrevPropsFluidArray = Array.isArray(prevProps.fluid);
+  const isPropsFixedArray = Array.isArray(props.fixed);
+  const isPrevPropsFixedArray = Array.isArray(prevProps.fixed);
 
   if (
     // Did the props change to a single image?
@@ -259,7 +259,7 @@ export const imageArrayPropsChanged = (props, prevProps) => {
     (!isPropsFluidArray && isPrevPropsFluidArray) ||
     (!isPropsFixedArray && isPrevPropsFixedArray)
   ) {
-    return true
+    return true;
   }
   // Are the lengths or sources in the Arrays different?
   if (isPropsFluidArray && isPrevPropsFluidArray) {
@@ -267,20 +267,20 @@ export const imageArrayPropsChanged = (props, prevProps) => {
       // Check for individual image or CSS string changes.
       return props.fluid.some(
         (image, index) => image.src !== prevProps.fluid[index].src
-      )
+      );
     }
-    return true
+    return true;
   }
   if (isPropsFixedArray && isPrevPropsFixedArray) {
     if (props.fixed.length === prevProps.fixed.length) {
       // Check for individual image or CSS string changes.
       return props.fixed.some(
         (image, index) => image.src !== prevProps.fixed[index].src
-      )
+      );
     }
-    return true
+    return true;
   }
-}
+};
 
 /**
  * Creates an array with a transparent dummy pixel for background-* properties.
@@ -289,10 +289,10 @@ export const imageArrayPropsChanged = (props, prevProps) => {
  * @return {any[]}
  */
 export const createDummyImageArray = length => {
-  const DUMMY_IMG = `data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==`
-  const dummyImageURI = getUrlString({ imageString: DUMMY_IMG })
-  return Array(length).fill(dummyImageURI)
-}
+  const DUMMY_IMG = `data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==`;
+  const dummyImageURI = getUrlString({ imageString: DUMMY_IMG });
+  return Array(length).fill(dummyImageURI);
+};
 
 /**
  * Checks if an image really was fully loaded.
@@ -305,4 +305,4 @@ export const imageLoaded = imageRef =>
     ? imageRef.complete &&
       imageRef.naturalWidth !== 0 &&
       imageRef.naturalHeight !== 0
-    : false
+    : false;
