@@ -15,19 +15,30 @@ export const isString = value =>
   Object.prototype.toString.call(value) === '[object String]';
 
 /**
+ * Tests a given value on being a string.
+ *
+ * @param value *   Value to test
+ * @return {boolean}
+ */
+export const isObject = value =>
+  Object.prototype.toString.call(value) === '[object Object]';
+
+/**
  * Converts CSS kebab-case strings to camel-cased js style rules.
  *
  * @param str   string    Rule to transform
  * @return {boolean|string}
  */
 export const toCamelCase = str =>
-  isString(str) &&
-  str
-    .toLowerCase()
-    .replace(/(?:^\w|-|[A-Z]|\b\w)/g, (letter, index) =>
-      index === 0 ? letter.toLowerCase() : letter.toUpperCase()
-    )
-    .replace(/\s|\W+/g, '');
+  (isString(str) &&
+    str.indexOf('-') !== -1 &&
+    str
+      .toLowerCase()
+      .replace(/(?:^\w|-|[A-Z]|\b\w)/g, (letter, index) =>
+        index === 0 ? letter.toLowerCase() : letter.toUpperCase()
+      )
+      .replace(/\s|\W+/g, '')) ||
+  str;
 
 /**
  * Converts camel-cased js style rules to CSS kebab-case strings.

@@ -114,7 +114,13 @@ export const setupBackgroundImage = ({
     ? { fixed: [fixedShapeMock, fixedShapeMock] }
     : { fixed: fixedShapeMock };
   const currentFluidMock = multiImage
-    ? { fluid: [fluidShapeMock, fluidShapeMock] }
+    ? {
+        fluid: [
+          fluidShapeMock,
+          fluidShapeMock,
+          'linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0))',
+        ],
+      }
     : { fluid: fluidShapeMock };
   const classNames = fixedClass
     ? `imageClass ${additionalClass}`

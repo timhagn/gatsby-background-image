@@ -20,13 +20,13 @@ background-size: cover;
           }
           .gbi-1393017994-undefined:before {
             z-index: -100;
+            background-image: url(string_of_base64),url(string_of_base64);
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .gbi-1393017994-undefined:after {
             z-index: -101;
-            background-image: url(string_of_base64),url(string_of_base64);
+            
             
             
           }
@@ -59,7 +59,7 @@ background-size: cover;
             z-index: -100;
             
             
-            opacity: 0; 
+            opacity: 1; 
           }
           .gbi-1393017994-undefined:after {
             z-index: -101;

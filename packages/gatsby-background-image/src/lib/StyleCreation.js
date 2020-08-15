@@ -110,6 +110,7 @@ export const createPseudoStyles = ({
 }) => {
   const pseudoBefore = createPseudoElement(className);
   const pseudoAfter = createPseudoElement(className, `:after`);
+  const currentBackgroundStyles = { ...backgroundStyles, ...style };
   return `
           ${pseudoBefore},
           ${pseudoAfter} {
@@ -122,23 +123,37 @@ export const createPseudoStyles = ({
             left: 0;
             ${bgColor && `background-color: ${bgColor};`}
             ${setTransitionStyles(transitionDelay, fadeIn)}
-            ${kebabifyBackgroundStyles({ ...backgroundStyles, ...style })}
+            ${kebabifyBackgroundStyles(currentBackgroundStyles)}
           }
           ${pseudoBefore} {
             z-index: -100;
-            ${(afterOpacity && createStyleImage(nextImage, originalData)) || ``}
             ${
-              (!afterOpacity && createStyleImage(lastImage, originalData)) || ``
+              ((!afterOpacity || finalImage) &&
+                createStyleImage(nextImage, originalData)) ||
+              ``
             }
-            opacity: ${afterOpacity}; 
+            ${
+              (afterOpacity &&
+                lastImage &&
+                createStyleImage(lastImage, originalData)) ||
+              ``
+            }
+            opacity: ${Number(!afterOpacity)}; 
           }
           ${pseudoAfter} {
             z-index: -101;
             ${
-              (!afterOpacity && createStyleImage(nextImage, originalData)) || ``
+              ((afterOpacity || finalImage) &&
+                createStyleImage(nextImage, originalData)) ||
+              ``
             }
-            ${(afterOpacity && createStyleImage(lastImage, originalData)) || ``}
-            ${finalImage ? `opacity: ${Number(!afterOpacity)};` : ``}
+            ${
+              (!afterOpacity &&
+                lastImage &&
+                createStyleImage(lastImage, originalData)) ||
+              ``
+            }
+            ${finalImage ? `opacity: ${Number(afterOpacity)};` : ``}
           }
         `;
 };

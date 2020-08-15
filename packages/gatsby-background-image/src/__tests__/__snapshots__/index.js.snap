@@ -30,14 +30,14 @@ background-size: contain;
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url('http://localhost/test_fixed_image.jpg');
-            
-            opacity: 1; 
+            background-image: url(string_of_base64);
+            opacity: 0; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
+            background-image: url('http://localhost/test_fixed_image.jpg');
             
-            background-image: url(string_of_base64);
-            opacity: 0;
+            opacity: 1;
           }
         
     </style>
@@ -79,14 +79,14 @@ background-size: contain;
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url('http://localhost/test_fluid_image.jpg');
-            
-            opacity: 1; 
+            background-image: url(string_of_base64);
+            opacity: 0; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
+            background-image: url('http://localhost/test_fluid_image.jpg');
             
-            background-image: url(string_of_base64);
-            opacity: 0;
+            opacity: 1;
           }
         
     </style>
@@ -127,14 +127,14 @@ background-size: contain;
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -177,14 +177,14 @@ background-size: contain;
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url(string_of_base64),url(string_of_base64);
-            
-            opacity: 1; 
+            background-image: url(string_of_base64),url(string_of_base64);
+            opacity: 0; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            
             background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0;
+            
+            opacity: 1;
           }
         
     </style>
@@ -217,7 +217,7 @@ exports[`<BackgroundImage /> should call multiple critical fluid images 1`] = `
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: none;
+            transition: opacity 0.5s ease 0.25s;
             background-position: center;
 background-repeat: repeat-y;
 background-size: contain;
@@ -225,15 +225,15 @@ background-size: contain;
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            background-image: url(string_of_base64),url(string_of_base64);
+            background-image: url(string_of_base64),url(string_of_base64),linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
             
             opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
             
-            background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0;
+            background-image: url(string_of_base64),url(string_of_base64),linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
+            
           }
         
     </style>
@@ -271,14 +271,14 @@ background-size: cover;
           }
           .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -312,14 +312,14 @@ background-size: contain;
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -347,14 +347,14 @@ background-size: contain;
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -390,14 +390,14 @@ background-size: cover;
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -439,14 +439,14 @@ background-size: contain;
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -488,14 +488,14 @@ background-size: contain;
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
+            background-image: url(string_of_base64),url(string_of_base64),linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
             
-            background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0; 
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64),url(string_of_base64);
             
+            background-image: url(string_of_base64),url(string_of_base64),linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
             
           }
         
@@ -537,14 +537,14 @@ background-size: cover;
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64),url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64),url(string_of_base64);
             
+            background-image: url(string_of_base64),url(string_of_base64);
             
           }
         
@@ -586,14 +586,14 @@ background-size: contain;
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -637,14 +637,14 @@ background-size: cover;
           }
           .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -687,14 +687,14 @@ background-size: contain;
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url('http://localhost/test_fluid_image.jpg');
-            
-            opacity: 1; 
+            background-image: url(string_of_base64);
+            opacity: 0; 
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
+            background-image: url('http://localhost/test_fluid_image.jpg');
             
-            background-image: url(string_of_base64);
-            opacity: 0;
+            opacity: 1;
           }
         
     </style>
@@ -735,14 +735,14 @@ background-size: contain;
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -784,14 +784,14 @@ background-size: cover;
           }
           .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         
@@ -830,14 +830,14 @@ background-size: cover;
           }
           .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
-            
             background-image: url(string_of_base64);
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
             z-index: -101;
-            background-image: url(string_of_base64);
             
+            background-image: url(string_of_base64);
             
           }
         

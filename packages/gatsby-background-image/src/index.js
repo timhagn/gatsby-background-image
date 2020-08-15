@@ -22,6 +22,7 @@ import {
 } from './lib/StyleUtils';
 import { createNoScriptStyles, createPseudoStyles } from './lib/StyleCreation';
 import { listenToIntersections } from './lib/IntersectionObserverUtils';
+import { isString } from './lib/SimpleUtils';
 
 /**
  * Main Lazy-loading React background-image component
@@ -76,17 +77,6 @@ class BackgroundImage extends React.Component {
     // Fixed class Name & added one (needed for multiple instances).
     const [currentClassNames] = fixClassName(convertedProps);
 
-    this.state = {
-      isVisible,
-      imgLoaded,
-      IOSupported,
-      fadeIn,
-      hasNoScript,
-      seenBefore,
-      imageState,
-      currentClassNames,
-    };
-
     // Preset backgroundStyles (e.g. during SSR or gatsby build).
     this.backgroundStyles = presetBackgroundStyles(
       getBackgroundStyles(convertedProps.className)
@@ -104,8 +94,31 @@ class BackgroundImage extends React.Component {
 
     this.selfRef = null;
 
+    this.state = {
+      isVisible,
+      imgLoaded,
+      IOSupported,
+      fadeIn,
+      hasNoScript,
+      seenBefore,
+      imageState,
+      currentClassNames,
+    };
+
     // console.log(`-------------------------------------------------------------`)
   }
+
+  // static getDerivedStateFromProps(props, state) {
+  //   const { seenBefore, initialImageRef } = state;
+  //   if (initialImageRef && seenBefore) {
+  //     activateCacheForImage(props);
+  //     return {
+  //       imgLoaded: true,
+  //       initialImageRef: false,
+  //     };
+  //   }
+  //   return null;
+  // }
 
   componentDidMount() {
     // Update background(-*) styles from CSS (e.g. Styled Components).
@@ -127,9 +140,14 @@ class BackgroundImage extends React.Component {
     this.setState({ currentClassNames });
   }
 
-  // shouldComponentUpdate(nextProps) {
+  // shouldComponentUpdate(nextProps, nextState) {
   //   console.table(this.state, imagePropsChanged(this.props, nextProps))
-  //   return !imagePropsChanged(this.props, nextProps)
+  //   return (
+  //     !this.state.initialImageRef &&
+  //     !this.state.seenBefore &&
+  //     !this.state.imageLoaded
+  //     // !imagePropsChanged(this.props, nextProps)
+  //   )
   // }
 
   componentDidUpdate(prevProps) {
@@ -172,10 +190,11 @@ class BackgroundImage extends React.Component {
     // Prevent calling handleImageLoaded from the imageRef(s) after unmount.
     if (this.imageRef) {
       if (Array.isArray(this.imageRef)) {
-        this.imageRef.forEach(
-          currentImageRef =>
-            !!currentImageRef && (currentImageRef.onload = null)
-        );
+        this.imageRef.forEach(currentImageRef => {
+          if (!!currentImageRef && !isString(currentImageRef)) {
+            currentImageRef.onload = null;
+          }
+        });
       } else {
         this.imageRef.onload = null;
       }
@@ -268,9 +287,8 @@ class BackgroundImage extends React.Component {
     const shouldFadeIn =
       (this.state.fadeIn === true && !this.state.imgCached) ||
       this.props.fadeIn === `soft`;
-    const transitionDelay = this.state.imgLoaded
-      ? `${durationFadeIn}ms`
-      : `0.25s`;
+    // With least one switch in the pseudo-elements, use half the durationFadeIn.
+    const transitionDelay = shouldFadeIn ? `${durationFadeIn / 2}ms` : `none`;
 
     // Create base container style and only add opacity hack when
     // preserveStackingContext is falsy.
@@ -336,8 +354,8 @@ class BackgroundImage extends React.Component {
     // console.log(image, noScriptPseudoStyles)
 
     // Switch key between fluid & fixed.
-    const componentKey = `${fluid && `fluid`}${
-      fixed && `fixed`
+    const componentKey = `${fluid ? `fluid` : ``}${
+      fixed ? `fixed` : ``
     }-${JSON.stringify(noScriptImageData.srcSet)}`;
 
     // Combine currentStyles according to specificity.

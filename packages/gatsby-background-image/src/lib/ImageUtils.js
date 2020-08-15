@@ -302,7 +302,8 @@ export const createDummyImageArray = length => {
  */
 export const imageLoaded = imageRef =>
   imageRef
-    ? imageRef.complete &&
-      imageRef.naturalWidth !== 0 &&
-      imageRef.naturalHeight !== 0
+    ? isString(imageRef) ||
+      (imageRef.complete &&
+        imageRef.naturalWidth !== 0 &&
+        imageRef.naturalHeight !== 0)
     : false;

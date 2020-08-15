@@ -101,7 +101,7 @@ export const getBackgroundStylesForSingleClass = className => {
             cssStyleRules[0].style[key] !== ''
         )
         .reduce((newData, key) => {
-          newData[key] = cssStyleRules[0].style[key];
+          newData[toCamelCase(key)] = cssStyleRules[0].style[key];
           return newData;
         }, {});
     }

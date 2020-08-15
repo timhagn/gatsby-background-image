@@ -8,7 +8,7 @@ import {
   fluidShapeMock,
   setupBackgroundImage,
 } from './mocks/Various.mock';
-import BackgroundImage from '../';
+import BackgroundImage from '..';
 import { activateCacheForImage, resetImageCache } from '../lib/ImageCache';
 import { resetComponentClassCache } from '../lib/ClassCache';
 import { createPictureRef } from '../lib/ImageRef';
@@ -32,11 +32,20 @@ describe(`<BackgroundImage /> with mock IO`, () => {
         this.setAttribute('src', src);
         if (src === LOAD_FAILURE_SRC) {
           // Call with setTimeout to simulate async loading
-          if (typeof this.onerror === `function`) {
-            setTimeout(() => this.onerror(new Error('mocked error')));
+          try {
+            const errorEvent = new Event('error');
+            setTimeout(() => this.dispatchEvent(errorEvent));
+          } catch (e) {
+            console.log(src, e);
           }
         } else if (src === LOAD_SUCCESS_SRC) {
-          setTimeout(() => this.onload());
+          // Call with setTimeout to simulate async loading
+          try {
+            const errorEvent = new Event('load');
+            setTimeout(() => this.dispatchEvent(errorEvent));
+          } catch (e) {
+            console.log(src, e);
+          }
         }
       },
     });
