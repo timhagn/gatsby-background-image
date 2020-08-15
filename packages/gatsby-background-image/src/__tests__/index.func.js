@@ -32,21 +32,19 @@ describe(`<BackgroundImage /> with mock IO`, () => {
         this.setAttribute('src', src);
         if (src === LOAD_FAILURE_SRC) {
           // Call with setTimeout to simulate async loading
-          if (typeof this.onerror === `function`) {
-            try {
-              setTimeout(() => this.onerror(new Error('mocked error')));
-            } catch (e) {
-              console.log(src, e);
-            }
+          try {
+            const errorEvent = new Event('error');
+            setTimeout(() => this.dispatchEvent(errorEvent));
+          } catch (e) {
+            console.log(src, e);
           }
         } else if (src === LOAD_SUCCESS_SRC) {
           // Call with setTimeout to simulate async loading
-          if (typeof this.onload === `function`) {
-            try {
-              setTimeout(() => this.onload());
-            } catch (e) {
-              console.log(src, e);
-            }
+          try {
+            const errorEvent = new Event('load');
+            setTimeout(() => this.dispatchEvent(errorEvent));
+          } catch (e) {
+            console.log(src, e);
           }
         }
       },
@@ -134,7 +132,6 @@ describe(`<BackgroundImage /> with mock IO`, () => {
       addClass: true,
       critical: true,
       fixed: true,
-      onLoad: () => jest.fn(),
     };
     const component = setupBackgroundImage(options);
     mockAllIsIntersecting(true);
@@ -196,7 +193,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     fireEvent.load(image);
     fireEvent.error(image);
 
-    expect(onLoadMock).toHaveBeenCalledTimes(2);
+    expect(onLoadMock).toHaveBeenCalledTimes(1);
     expect(onErrorMock).toHaveBeenCalledTimes(1);
   });
 
@@ -216,7 +213,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     fireEvent.load(image);
     fireEvent.error(image);
 
-    expect(onLoadMock).toHaveBeenCalledTimes(2);
+    expect(onLoadMock).toHaveBeenCalledTimes(1);
     expect(onErrorMock).toHaveBeenCalledTimes(1);
   });
 });

@@ -33,9 +33,9 @@ export const createPictureRef = (props, onLoad, index, isLoop = false) => {
     }
     const img = new Image();
 
-    if (typeof convertedProps.onLoad === `function`) {
-      img.onload = () => onLoad();
-    }
+    // if (typeof convertedProps.onLoad === `function`) {
+    //   img.onload = () => onLoad();
+    // }
 
     if (!img.complete && typeof convertedProps.onLoad === `function`) {
       img.addEventListener('load', convertedProps.onLoad);
