@@ -23,7 +23,6 @@ import {
 import { createNoScriptStyles, createPseudoStyles } from './lib/StyleCreation';
 import { listenToIntersections } from './lib/IntersectionObserverUtils';
 import { isString } from './lib/SimpleUtils';
-import PureBackgroundImage from './lib/PureBackgroundImage';
 
 /**
  * Main Lazy-loading React background-image component
@@ -191,10 +190,11 @@ class BackgroundImage extends React.Component {
     // Prevent calling handleImageLoaded from the imageRef(s) after unmount.
     if (this.imageRef) {
       if (Array.isArray(this.imageRef)) {
-        this.imageRef.forEach(
-          currentImageRef =>
-            !!currentImageRef && (currentImageRef.onload = null)
-        );
+        this.imageRef.forEach(currentImageRef => {
+          if (!!currentImageRef && !isString(currentImageRef)) {
+            currentImageRef.onload = null;
+          }
+        });
       } else {
         this.imageRef.onload = null;
       }

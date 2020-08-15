@@ -30,7 +30,7 @@ background-size: contain;
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url('http://localhost/test_fixed_image.jpg');
-            background-image: url('http://localhost/test_fixed_image.jpg');
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
@@ -79,7 +79,7 @@ background-size: contain;
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url(http://localhost/test_fixed_image.jpg),url(http://localhost/test_fixed_image.jpg);
-            background-image: url(http://localhost/test_fixed_image.jpg),url(http://localhost/test_fixed_image.jpg);
+            background-image: url(string_of_base64),url(string_of_base64);
             opacity: 0; 
           }
           .imageClass.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
@@ -316,7 +316,7 @@ background-size: contain;
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:before {
             z-index: -100;
             background-image: url('http://localhost/test_fluid_image.jpg');
-            background-image: url('http://localhost/test_fluid_image.jpg');
+            background-image: url(string_of_base64);
             opacity: 0; 
           }
           .imageClass.test.gbi-1393017994-73WakrfVbNJBaAmhQtEeDv:after {
