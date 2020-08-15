@@ -12,16 +12,7 @@ export const isBrowser = () => typeof window !== 'undefined';
  * @return {boolean}
  */
 export const isString = value =>
-  Object.prototype.toString.call(value) === '[object String]';
-
-/**
- * Tests a given value on being a string.
- *
- * @param value *   Value to test
- * @return {boolean}
- */
-export const isObject = value =>
-  Object.prototype.toString.call(value) === '[object Object]';
+  Object.prototype.toString.call(value) === '[object String]'
 
 /**
  * Converts CSS kebab-case strings to camel-cased js style rules.

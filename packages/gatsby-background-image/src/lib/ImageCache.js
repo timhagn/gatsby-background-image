@@ -25,10 +25,6 @@ export const inImageCache = (props, index = 0, isLoop = false) => {
   const src = isImageStack
     ? getSelectedImage(convertedProps, index)
     : getImageSrcKey(convertedProps);
-  if (isObject(src)) {
-    const objectSrc = getImageSrcKey({ fluid: src, fixed: src });
-    return imageCache[objectSrc] || false;
-  }
   return imageCache[src] || false;
 };
 
@@ -67,12 +63,7 @@ export const activateCacheForImage = (props, index = 0, isLoop = false) => {
     ? getSelectedImage(convertedProps, index)
     : getImageSrcKey(convertedProps);
   if (src) {
-    if (isObject(src)) {
-      const objectSrc = getImageSrcKey({ fluid: src, fixed: src });
-      imageCache[objectSrc] = true;
-    } else {
-      imageCache[src] = true;
-    }
+    imageCache[src] = true;
   }
 };
 

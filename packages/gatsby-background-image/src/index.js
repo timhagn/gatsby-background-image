@@ -104,23 +104,22 @@ class BackgroundImage extends React.Component {
       seenBefore,
       imageState,
       currentClassNames,
-      initialImageRef: this.imageRef,
     };
 
     // console.log(`-------------------------------------------------------------`)
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const { seenBefore, initialImageRef } = state;
-    if (initialImageRef && seenBefore) {
-      activateCacheForImage(props);
-      return {
-        imgLoaded: true,
-        initialImageRef: false,
-      };
-    }
-    return null;
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   const { seenBefore, initialImageRef } = state;
+  //   if (initialImageRef && seenBefore) {
+  //     activateCacheForImage(props);
+  //     return {
+  //       imgLoaded: true,
+  //       initialImageRef: false,
+  //     };
+  //   }
+  //   return null;
+  // }
 
   componentDidMount() {
     // Update background(-*) styles from CSS (e.g. Styled Components).
@@ -251,8 +250,10 @@ class BackgroundImage extends React.Component {
     this.setState(state => ({
       imgLoaded: true,
       imageState: state.imageState + 1,
-      fadeIn: !state.seenBefore,
-    }));
+    }))
+    if (this.state.seenBefore) {
+      this.setState({ fadeIn: false })
+    }
 
     if (this.props.onLoad) {
       this.props.onLoad();
@@ -366,19 +367,31 @@ class BackgroundImage extends React.Component {
     };
 
     return (
-      <PureBackgroundImage
-        Tag={Tag}
-        currentClassNames={this.state.currentClassNames}
-        currentStyles={currentStyles}
-        handleRef={this.handleRef}
-        componentKey={componentKey}
-        remainingProps={remainingProps}
-        pseudoStyles={pseudoStyles}
-        hasNoScript={this.state.hasNoScript}
-        noScriptPseudoStyles={noScriptPseudoStyles}
+      <Tag
+        className={this.state.currentClassNames}
+        style={currentStyles}
+        ref={this.handleRef}
+        key={componentKey}
+        {...remainingProps}
       >
+        {/* Create style element to transition between pseudo-elements. */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: pseudoStyles,
+          }}
+        />
+        {/* Set the original image(s) during SSR & if JS is disabled */}
+        {this.state.hasNoScript && (
+          <noscript>
+            <style
+              dangerouslySetInnerHTML={{
+                __html: noScriptPseudoStyles,
+              }}
+            />
+          </noscript>
+        )}
         {children}
-      </PureBackgroundImage>
+      </Tag>
     );
   }
 }

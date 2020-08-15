@@ -127,33 +127,19 @@ export const createPseudoStyles = ({
           }
           ${pseudoBefore} {
             z-index: -100;
+            ${(afterOpacity && createStyleImage(nextImage, originalData)) || ``}
             ${
-              ((!afterOpacity || finalImage) &&
-                createStyleImage(nextImage, originalData)) ||
-              ``
+              (!afterOpacity && createStyleImage(lastImage, originalData)) || ``
             }
-            ${
-              (afterOpacity &&
-                lastImage &&
-                createStyleImage(lastImage, originalData)) ||
-              ``
-            }
-            opacity: ${Number(!afterOpacity)}; 
+            opacity: ${afterOpacity}; 
           }
           ${pseudoAfter} {
             z-index: -101;
             ${
-              ((afterOpacity || finalImage) &&
-                createStyleImage(nextImage, originalData)) ||
-              ``
+              (!afterOpacity && createStyleImage(nextImage, originalData)) || ``
             }
-            ${
-              (!afterOpacity &&
-                lastImage &&
-                createStyleImage(lastImage, originalData)) ||
-              ``
-            }
-            ${finalImage ? `opacity: ${Number(afterOpacity)};` : ``}
+            ${(afterOpacity && createStyleImage(lastImage, originalData)) || ``}
+            ${finalImage ? `opacity: ${Number(!afterOpacity)};` : ``}
           }
         `;
 };
