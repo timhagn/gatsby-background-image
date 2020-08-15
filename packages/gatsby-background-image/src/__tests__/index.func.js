@@ -193,7 +193,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     fireEvent.load(image);
     fireEvent.error(image);
 
-    expect(onLoadMock).toHaveBeenCalledTimes(1);
+    expect(onLoadMock).toHaveBeenCalledTimes(2);
     expect(onErrorMock).toHaveBeenCalledTimes(1);
   });
 
@@ -213,7 +213,7 @@ describe(`<BackgroundImage /> with mock IO`, () => {
     fireEvent.load(image);
     fireEvent.error(image);
 
-    expect(onLoadMock).toHaveBeenCalledTimes(1);
+    expect(onLoadMock).toHaveBeenCalledTimes(2);
     expect(onErrorMock).toHaveBeenCalledTimes(1);
   });
 });
