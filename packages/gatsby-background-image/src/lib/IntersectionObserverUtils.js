@@ -1,5 +1,5 @@
-let io
-const listeners = new WeakMap()
+let io;
+const listeners = new WeakMap();
 
 /**
  * Executes each IntersectionObserver entries' callback.
@@ -9,16 +9,16 @@ const listeners = new WeakMap()
 export const callbackIO = entries => {
   entries.forEach(entry => {
     if (listeners.has(entry.target)) {
-      const callback = listeners.get(entry.target)
+      const callback = listeners.get(entry.target);
       // Edge doesn't currently support isIntersecting, so also test for an intersectionRatio > 0
       if (entry.isIntersecting || entry.intersectionRatio > 0) {
-        io.unobserve(entry.target)
-        listeners.delete(entry.target)
-        callback()
+        io.unobserve(entry.target);
+        listeners.delete(entry.target);
+        callback();
       }
     }
-  })
-}
+  });
+};
 
 /**
  * Returns an IntersectionObserver instance if exists.
@@ -34,11 +34,11 @@ export const getIO = rootMargin => {
   ) {
     io = new window.IntersectionObserver(callbackIO, {
       rootMargin,
-    })
+    });
   }
 
-  return io
-}
+  return io;
+};
 
 /**
  * Registers IntersectionObserver callback on element.
@@ -53,15 +53,15 @@ export const listenToIntersections = (
   callback,
   rootMargin = `200px`
 ) => {
-  const observer = getIO(rootMargin)
+  const observer = getIO(rootMargin);
 
   if (observer) {
-    observer.observe(element)
-    listeners.set(element, callback)
+    observer.observe(element);
+    listeners.set(element, callback);
     return () => {
-      observer.unobserve(element)
-      listeners.delete(element)
-    }
+      observer.unobserve(element);
+      listeners.delete(element);
+    };
   }
-  return () => {}
-}
+  return () => {};
+};

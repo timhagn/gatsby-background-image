@@ -1,4 +1,4 @@
-import { isString } from './lib/SimpleUtils'
+import { isString } from './lib/SimpleUtils';
 
 exports.onCreateWebpackConfig = ({ plugins, actions }, { specialChars }) => {
   if (isString(specialChars)) {
@@ -8,6 +8,6 @@ exports.onCreateWebpackConfig = ({ plugins, actions }, { specialChars }) => {
           __GBI_SPECIAL_CHARS__: JSON.stringify(specialChars),
         }),
       ],
-    })
+    });
   }
-}
+};

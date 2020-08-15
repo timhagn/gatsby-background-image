@@ -5,10 +5,10 @@
  * Kudos to @thebuilder for figuring this out!
  */
 
-import { act } from 'react-dom/test-utils'
+import { act } from 'react-dom/test-utils';
 
-const observerMap = new Map()
-const instanceMap = new Map()
+const observerMap = new Map();
+const instanceMap = new Map();
 
 beforeEach(() => {
   global.IntersectionObserver = jest.fn((cb, options) => {
@@ -19,25 +19,28 @@ beforeEach(() => {
       root: options.root,
       rootMargin: options.rootMargin,
       observe: jest.fn(element => {
-        instanceMap.set(element, instance)
-        observerMap.set(element, cb)
+        instanceMap.set(element, instance);
+        observerMap.set(element, cb);
       }),
       unobserve: jest.fn(element => {
-        instanceMap.delete(element)
-        observerMap.delete(element)
+        instanceMap.delete(element);
+        observerMap.delete(element);
       }),
       disconnect: jest.fn(),
-    }
-    return instance
-  })
-})
+    };
+    return instance;
+  });
+});
 
 afterEach(() => {
-  if (global.IntersectionObserver && global.IntersectionObserver.hasOwnProperty(`mockClear`))
-    global.IntersectionObserver.mockClear()
-  instanceMap.clear()
-  observerMap.clear()
-})
+  if (
+    global.IntersectionObserver &&
+    global.IntersectionObserver.hasOwnProperty(`mockClear`)
+  )
+    global.IntersectionObserver.mockClear();
+  instanceMap.clear();
+  observerMap.clear();
+});
 
 /**
  * Set the `isIntersecting` on all current IntersectionObserver instances
@@ -45,8 +48,8 @@ afterEach(() => {
  */
 export function mockAllIsIntersecting(isIntersecting) {
   observerMap.forEach((onChange, element) => {
-    mockIsIntersecting(element, isIntersecting)
-  })
+    mockIsIntersecting(element, isIntersecting);
+  });
 }
 
 /**
@@ -55,7 +58,7 @@ export function mockAllIsIntersecting(isIntersecting) {
  * @param isIntersecting {boolean}
  */
 export function mockIsIntersecting(element, isIntersecting) {
-  const cb = observerMap.get(element)
+  const cb = observerMap.get(element);
   if (cb) {
     const entry = [
       {
@@ -63,13 +66,13 @@ export function mockIsIntersecting(element, isIntersecting) {
         target: element,
         intersectionRatio: isIntersecting ? 1 : 0,
       },
-    ]
-    if (act) act(() => cb(entry))
-    else cb(entry)
+    ];
+    if (act) act(() => cb(entry));
+    else cb(entry);
   } else {
     throw new Error(
       'No IntersectionObserver instance found for element. Is it still mounted in the DOM?'
-    )
+    );
   }
 }
 
@@ -81,5 +84,5 @@ export function mockIsIntersecting(element, isIntersecting) {
  * @return IntersectionObserver
  */
 export function intersectionMockInstance(element) {
-  return instanceMap.get(element)
+  return instanceMap.get(element);
 }

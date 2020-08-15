@@ -1,7 +1,7 @@
-import { render } from '@testing-library/react'
+import { render } from '@testing-library/react';
 
-import React from 'react'
-import BackgroundImage from '../../index'
+import React from 'react';
+import BackgroundImage from '../../index';
 
 export const fixedShapeMock = {
   width: 100,
@@ -10,7 +10,7 @@ export const fixedShapeMock = {
   srcSet: `some srcSet`,
   srcSetWebp: `some srcSetWebp`,
   base64: `string_of_base64`,
-}
+};
 
 export const fluidShapeMock = {
   aspectRatio: 1.5,
@@ -19,15 +19,15 @@ export const fluidShapeMock = {
   srcSetWebp: `some srcSetWebp`,
   sizes: `(max-width: 600px) 100vw, 600px`,
   base64: `string_of_base64`,
-}
+};
 
 export const fixedMock = {
   fixed: fixedShapeMock,
-}
+};
 
 export const fluidMock = {
   fluid: fluidShapeMock,
-}
+};
 
 export const mockArtDirectionStackFluid = [
   fluidShapeMock,
@@ -39,7 +39,7 @@ export const mockArtDirectionStackFluid = [
     ...fluidShapeMock,
     media: `(min-width: 1401px)`,
   },
-]
+];
 
 export const mockArtDirectionStackFixed = [
   fixedShapeMock,
@@ -51,28 +51,28 @@ export const mockArtDirectionStackFixed = [
     ...fixedShapeMock,
     media: `(min-width: 1401px)`,
   },
-]
+];
 
 export const fixedArrayMock = {
   fixed: [fixedShapeMock, fixedShapeMock],
-}
+};
 
 export const fluidArrayMock = {
   fluid: [fluidShapeMock, fluidShapeMock],
-}
+};
 
 export const createStyleElement = () => {
   // Create the style class.
-  const styleElement = document.createElement('style')
+  const styleElement = document.createElement('style');
   styleElement.textContent = `
         .imageClass {
           backgroundRepeat: repeat-y;
           backgroundPosition: center;
           backgroundSize: contain;
         }
-      `
-  document.body.appendChild(styleElement)
-}
+      `;
+  document.body.appendChild(styleElement);
+};
 
 /**
  * Sets up a (@testing-library/react) rendered container.
@@ -108,17 +108,17 @@ export const setupBackgroundImage = ({
   multiImage = false,
 }) => {
   if (addClass) {
-    createStyleElement()
+    createStyleElement();
   }
   const currentFixedMock = multiImage
     ? { fixed: [fixedShapeMock, fixedShapeMock] }
-    : { fixed: fixedShapeMock }
+    : { fixed: fixedShapeMock };
   const currentFluidMock = multiImage
     ? { fluid: [fluidShapeMock, fluidShapeMock] }
-    : { fluid: fluidShapeMock }
+    : { fluid: fluidShapeMock };
   const classNames = fixedClass
     ? `imageClass ${additionalClass}`
-    : additionalClass.trim()
+    : additionalClass.trim();
   const { container } = render(
     <BackgroundImage
       {...(addBackgroundColor && { backgroundColor: addBackgroundColor })}
@@ -138,7 +138,7 @@ export const setupBackgroundImage = ({
     >
       <h1>test</h1>
     </BackgroundImage>
-  )
+  );
 
-  return container
-}
+  return container;
+};
