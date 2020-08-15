@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.1.1"></a>
+<a name="1.1.2"></a>
+
+## [1.1.2](https://github.com/timhagn/gatsby-background-image) (2020-08-15)
+
+**fix:** Fixed getBackgroundStylesForSingleClass() as sometimes the keys were
+camelCase & sometimes kebap-case.
 
 ## [1.1.1](https://github.com/timhagn/gatsby-background-image) (2020-04-12)
 
