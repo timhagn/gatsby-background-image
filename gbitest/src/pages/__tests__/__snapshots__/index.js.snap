@@ -60,7 +60,7 @@ exports[`IndexPage renders correctly 1`] = `
     >
       <section
         aria-label="gbitest"
-        class="sc-fzoLsD jVfest gbi--802263448-undefined"
+        class="sc-fzoLsD jVfest gbi--802263448-eDEqTfx3iXZ5JmgxBcp2z7"
         id="gbitest"
         role="img"
         style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99;"
@@ -68,8 +68,8 @@ exports[`IndexPage renders correctly 1`] = `
       >
         <style>
           
-          .sc-fzoLsD.jVfest.gbi--802263448-undefined:before,
-          .sc-fzoLsD.jVfest.gbi--802263448-undefined:after {
+          .sc-fzoLsD.jVfest.gbi--802263448-eDEqTfx3iXZ5JmgxBcp2z7:before,
+          .sc-fzoLsD.jVfest.gbi--802263448-eDEqTfx3iXZ5JmgxBcp2z7:after {
             content: '';
             display: block;
             position: absolute;
@@ -78,19 +78,19 @@ exports[`IndexPage renders correctly 1`] = `
             top: 0;
             left: 0;
             background-color: #040e18;
-            transition: opacity 0.5s ease 0.25s;
+            transition: opacity 0.5s ease 250ms;
             background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .sc-fzoLsD.jVfest.gbi--802263448-undefined:before {
+          .sc-fzoLsD.jVfest.gbi--802263448-eDEqTfx3iXZ5JmgxBcp2z7:before {
             z-index: -100;
             
             
             opacity: 1; 
           }
-          .sc-fzoLsD.jVfest.gbi--802263448-undefined:after {
+          .sc-fzoLsD.jVfest.gbi--802263448-eDEqTfx3iXZ5JmgxBcp2z7:after {
             z-index: -101;
             
             

@@ -287,9 +287,8 @@ class BackgroundImage extends React.Component {
     const shouldFadeIn =
       (this.state.fadeIn === true && !this.state.imgCached) ||
       this.props.fadeIn === `soft`;
-    const transitionDelay = this.state.imgLoaded
-      ? `${durationFadeIn}ms`
-      : `0.25s`;
+    // With least one switch in the pseudo-elements, use half the durationFadeIn.
+    const transitionDelay = shouldFadeIn ? `${durationFadeIn / 2}ms` : `none`;
 
     // Create base container style and only add opacity hack when
     // preserveStackingContext is falsy.
