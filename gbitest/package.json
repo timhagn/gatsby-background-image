@@ -1,0 +1,56 @@
+{
+  "name": "gbitest",
+  "private": true,
+  "description": "A simple starter to show what gatsby-background-image can do.",
+  "version": "1.1.1",
+  "author": "Tim Hagn <mail@timhagn.com>",
+  "dependencies": {
+    "gatsby": "^2.24.15",
+    "gatsby-background-image": "^1.1.1",
+    "gatsby-image": "^2.4.14",
+    "gatsby-plugin-manifest": "^2.4.21",
+    "gatsby-plugin-offline": "^3.2.21",
+    "gatsby-plugin-react-helmet": "3.3.10",
+    "gatsby-plugin-sharp": "^2.6.24",
+    "gatsby-plugin-styled-components": "^3.3.10",
+    "gatsby-source-filesystem": "^2.3.23",
+    "gatsby-transformer-sharp": "^2.5.12",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "styled-components": "^5.1.1",
+    "styled-media-query": "^2.1.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.2",
+    "@testing-library/react": "^10.4.7",
+    "babel-jest": "^25.5.1",
+    "babel-preset-gatsby": "^0.5.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.5.4",
+    "prettier": "^2.0.5"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-background-image",
+    "example"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve -p9001",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timhagn/gbitest"
+  },
+  "bugs": {
+    "url": "https://github.com/timhagn/gbitest/issues"
+  }
+}
