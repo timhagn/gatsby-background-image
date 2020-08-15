@@ -30,13 +30,15 @@ export const isObject = value =>
  * @return {boolean|string}
  */
 export const toCamelCase = str =>
-  isString(str) &&
-  str
-    .toLowerCase()
-    .replace(/(?:^\w|-|[A-Z]|\b\w)/g, (letter, index) =>
-      index === 0 ? letter.toLowerCase() : letter.toUpperCase()
-    )
-    .replace(/\s|\W+/g, '');
+  (isString(str) &&
+    str.indexOf('-') !== -1 &&
+    str
+      .toLowerCase()
+      .replace(/(?:^\w|-|[A-Z]|\b\w)/g, (letter, index) =>
+        index === 0 ? letter.toLowerCase() : letter.toUpperCase()
+      )
+      .replace(/\s|\W+/g, '')) ||
+  str;
 
 /**
  * Converts camel-cased js style rules to CSS kebab-case strings.

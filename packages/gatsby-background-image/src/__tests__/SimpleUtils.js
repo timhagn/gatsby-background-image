@@ -18,8 +18,8 @@ describe(`toCamelCase()`, () => {
       `background`,
       `backgroundImage`,
       `objectPosition`,
-      `garblDigog`,
-      `garblDigogGig`,
+      `GaRbL DIGOG`,
+      `GaRbL    DIGOG    GIG`,
     ];
     testWords.forEach((wordToConvert, index) =>
       expect(toCamelCase(wordToConvert)).toEqual(expected[index])
