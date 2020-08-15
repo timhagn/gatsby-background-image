@@ -43,7 +43,7 @@
     "postmarkdown": "prettier --write \"starters/**/*.md\"",
     "prebootstrap": "yarn",
     "preintegration": "cd integration && yarn install && cd ../gbitest && yarn install && cd ..",
-    "prettier": "prettier \"**/*.{md,css,scss,yaml,yml,ts}\"",
+    "prettier": "prettier \"**/**/*.{md,css,scss,yaml,yml,ts}\"",
     "pub": "lerna publish",
     "test": "jest -i",
     "test:coverage": "jest -i --coverage",

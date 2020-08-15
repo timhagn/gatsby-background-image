@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class PureBackgroundImage extends React.PureComponent {
   render() {
@@ -14,7 +14,7 @@ class PureBackgroundImage extends React.PureComponent {
       hasNoScript,
       noScriptPseudoStyles,
       children,
-    } = this.props
+    } = this.props;
     return (
       <Tag
         className={currentClassNames}
@@ -42,7 +42,7 @@ class PureBackgroundImage extends React.PureComponent {
         )}
         {children}
       </Tag>
-    )
+    );
   }
 }
 
@@ -58,6 +58,6 @@ PureBackgroundImage.propTypes = {
   noScriptPseudoStyles: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   remainingProps: PropTypes.any,
-}
+};
 
-export default PureBackgroundImage
+export default PureBackgroundImage;

@@ -1,38 +1,38 @@
 import getBackgroundStyles, {
   getStyleRules,
   getStyleRulesForClassName,
-} from '../lib/BackgroundUtils'
+} from '../lib/BackgroundUtils';
 
-global.console.error = jest.fn()
-global.console.debug = jest.fn()
+global.console.error = jest.fn();
+global.console.debug = jest.fn();
 
 /**
  * Creates a dummy class for getBackgroundStyles() to fetch.
  */
 const createClass = () => {
   // Create the style class.
-  const styleElement = document.createElement('style')
+  const styleElement = document.createElement('style');
   styleElement.textContent = `
       .fixedImage {
         background-repeat: 'repeat-y';
       }
-    `
-  document.body.appendChild(styleElement)
-  return styleElement
-}
+    `;
+  document.body.appendChild(styleElement);
+  return styleElement;
+};
 
 describe(`getBackgroundStyles()`, () => {
   it(`should parse background styles`, () => {
-    createClass()
-    const backgroundStyles = getBackgroundStyles(`fixedImage`)
-    expect(backgroundStyles).toEqual({ 'background-repeat': "'repeat-y'" })
-  })
+    createClass();
+    const backgroundStyles = getBackgroundStyles(`fixedImage`);
+    expect(backgroundStyles).toEqual({ 'background-repeat': "'repeat-y'" });
+  });
 
   it(`should parse empty background styles`, () => {
-    const backgroundStyles = getBackgroundStyles(``)
-    expect(backgroundStyles).toEqual({})
-  })
-})
+    const backgroundStyles = getBackgroundStyles(``);
+    expect(backgroundStyles).toEqual({});
+  });
+});
 
 describe(`getStyleRules()`, () => {
   it(`should work with "CSSStyleDeclaration"`, () => {
@@ -44,10 +44,10 @@ describe(`getStyleRules()`, () => {
           },
         },
       },
-    ]
-    const styles = getStyleRules(mockStyleRules)
-    expect(styles).toEqual(mockStyleRules[0].style)
-  })
+    ];
+    const styles = getStyleRules(mockStyleRules);
+    expect(styles).toEqual(mockStyleRules[0].style);
+  });
 
   it(`should work with "CSS2Properties"`, () => {
     const mockStyleRules = [
@@ -61,10 +61,10 @@ describe(`getStyleRules()`, () => {
           },
         },
       },
-    ]
-    const styles = getStyleRules(mockStyleRules)
-    expect(styles).toEqual({})
-  })
+    ];
+    const styles = getStyleRules(mockStyleRules);
+    expect(styles).toEqual({});
+  });
 
   it(`should fail for unknown style object prototype`, () => {
     const mockStyleRules = [
@@ -75,34 +75,34 @@ describe(`getStyleRules()`, () => {
           },
         },
       },
-    ]
-    getStyleRules(mockStyleRules)
+    ];
+    getStyleRules(mockStyleRules);
     expect(global.console.error).toHaveBeenCalledWith(
       `Unknown style object prototype`
-    )
-  })
+    );
+  });
 
   it(`should fail for empty style object prototype`, () => {
-    getStyleRules([])
+    getStyleRules([]);
     expect(global.console.error).toHaveBeenCalledWith(
       `Unknown style object prototype`
-    )
-  })
-})
+    );
+  });
+});
 
 describe(`getStyleRulesForClassName()`, () => {
   beforeEach(() => {
-    createClass()
-  })
+    createClass();
+  });
 
   it(`should return class for known classname via .cssRules`, () => {
-    global.document.styleSheets[0].rules = undefined
-    const styleRulesForClassName = getStyleRulesForClassName('.fixedImage')
-    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`)
+    global.document.styleSheets[0].rules = undefined;
+    const styleRulesForClassName = getStyleRulesForClassName('.fixedImage');
+    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`);
     expect(styleRulesForClassName[0].style['background-repeat']).toEqual(
       `'repeat-y'`
-    )
-  })
+    );
+  });
 
   it(`should return class for known classname via self built .rules`, () => {
     global.document.styleSheets[0].rules = [
@@ -112,39 +112,39 @@ describe(`getStyleRulesForClassName()`, () => {
         },
         selectorText: `.fixedImage`,
       },
-    ]
-    const styleRulesForClassName = getStyleRulesForClassName(`.fixedImage`)
-    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`)
+    ];
+    const styleRulesForClassName = getStyleRulesForClassName(`.fixedImage`);
+    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`);
     expect(styleRulesForClassName[0].style.cssText).toEqual(
       `.fixedImage {background-repeat: repeat-y;}`
-    )
-  })
+    );
+  });
 
   it(`should return class for known classname via .rules`, () => {
-    global.document.styleSheets[0].cssRules = undefined
-    global.document.styleSheets[0].rules = undefined
-    const styleRulesForClassName = getStyleRulesForClassName(`.fixedImage`)
-    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`)
+    global.document.styleSheets[0].cssRules = undefined;
+    global.document.styleSheets[0].rules = undefined;
+    const styleRulesForClassName = getStyleRulesForClassName(`.fixedImage`);
+    expect(styleRulesForClassName[0].selectorText).toEqual(`.fixedImage`);
     expect(styleRulesForClassName[0].style.cssText).toEqual(
       `background-repeat: 'repeat-y';`
-    )
-  })
-})
+    );
+  });
+});
 
 describe(`getStyleRulesForClassName() without window`, () => {
-  const tmpWindow = global.window
+  const tmpWindow = global.window;
   beforeEach(() => {
-    delete global.window
-  })
+    delete global.window;
+  });
   afterEach(() => {
-    global.window = tmpWindow
-  })
+    global.window = tmpWindow;
+  });
 
   it(`should fail for window = undefined`, () => {
-    const style = getStyleRulesForClassName('')
-    expect(style).toEqual([])
-  })
-})
+    const style = getStyleRulesForClassName('');
+    expect(style).toEqual([]);
+  });
+});
 //
 //   it(`should return class for known classname via .cssRules`, () => {
 //     global.document.styleSheets[0].rules = undefined
@@ -200,15 +200,15 @@ describe(`getStyleRulesForClassName() without window`, () => {
 // })
 
 describe(`getBackgroundStyles() without window`, () => {
-  const tmpWindow = global.window
+  const tmpWindow = global.window;
   beforeEach(() => {
-    delete global.window
-  })
+    delete global.window;
+  });
   afterEach(() => {
-    global.window = tmpWindow
-  })
+    global.window = tmpWindow;
+  });
   it(`should return empty object for window === 'undefined'`, () => {
-    const backgroundStyles = getBackgroundStyles(``)
-    expect(backgroundStyles).toEqual({})
-  })
-})
+    const backgroundStyles = getBackgroundStyles(``);
+    expect(backgroundStyles).toEqual({});
+  });
+});

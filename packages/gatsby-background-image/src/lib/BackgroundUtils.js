@@ -4,7 +4,7 @@
  * @notice The className has to exactly match the CSS class
  * @param className string
  */
-import { isString, stringToArray, toCamelCase } from './SimpleUtils'
+import { isString, stringToArray, toCamelCase } from './SimpleUtils';
 
 /**
  * Gets styles rules by a class name.
@@ -14,33 +14,33 @@ import { isString, stringToArray, toCamelCase } from './SimpleUtils'
  */
 export const getStyleRulesForClassName = className => {
   const styleSheets =
-    typeof window !== `undefined` ? window.document.styleSheets : []
+    typeof window !== `undefined` ? window.document.styleSheets : [];
   for (let i = 0; i < styleSheets.length; i++) {
-    let classes
+    let classes;
     try {
       classes =
         typeof styleSheets[i].rules !== 'undefined'
           ? styleSheets[i].rules
           : typeof styleSheets[i].cssRules !== 'undefined'
           ? styleSheets[i].cssRules
-          : ''
+          : '';
     } catch (e) {}
     if (classes) {
       const foundClass = Array.prototype.slice
         .call(classes)
         .reduce((foundAcc, styleRule) => {
           if (styleRule.selectorText === className) {
-            foundAcc.push(styleRule)
+            foundAcc.push(styleRule);
           }
-          return foundAcc
-        }, [])
+          return foundAcc;
+        }, []);
       if (foundClass.length) {
-        return foundClass
+        return foundClass;
       }
     }
   }
-  return []
-}
+  return [];
+};
 
 /**
  * Fixes non-enumerable style rules in Firefox.
@@ -49,7 +49,7 @@ export const getStyleRulesForClassName = className => {
  * @return {*}
  */
 export const getStyleRules = cssStyleRules => {
-  let styles = {}
+  let styles = {};
   if (
     cssStyleRules.length > 0 &&
     typeof cssStyleRules[0].style !== 'undefined'
@@ -57,26 +57,26 @@ export const getStyleRules = cssStyleRules => {
     // Fallback for Browsers without constructor.name (IE11).
     const constructorName =
       cssStyleRules[0].style.constructor.name ||
-      cssStyleRules[0].style.constructor.toString()
+      cssStyleRules[0].style.constructor.toString();
 
     switch (constructorName) {
       // For Firefox or IE11.
       case 'CSS2Properties':
       case '[object MSStyleCSSProperties]':
         Object.values(cssStyleRules[0].style).forEach(prop => {
-          styles[toCamelCase(prop)] = cssStyleRules[0].style[prop]
-        })
-        break
+          styles[toCamelCase(prop)] = cssStyleRules[0].style[prop];
+        });
+        break;
       case 'CSSStyleDeclaration':
-        styles = cssStyleRules[0].style
-        break
+        styles = cssStyleRules[0].style;
+        break;
       default:
-        console.error('Unknown style object prototype')
-        break
+        console.error('Unknown style object prototype');
+        break;
     }
   }
-  return styles
-}
+  return styles;
+};
 
 /**
  * Filters out Background Rules for a given class Name.
@@ -86,7 +86,7 @@ export const getStyleRules = cssStyleRules => {
  */
 export const getBackgroundStylesForSingleClass = className => {
   if (className && isString(className)) {
-    const cssStyleRules = getStyleRulesForClassName(`.${className}`)
+    const cssStyleRules = getStyleRulesForClassName(`.${className}`);
     // const cssStyleRules = rulesForCssText(style)
 
     if (
@@ -101,13 +101,13 @@ export const getBackgroundStylesForSingleClass = className => {
             cssStyleRules[0].style[key] !== ''
         )
         .reduce((newData, key) => {
-          newData[key] = cssStyleRules[0].style[key]
-          return newData
-        }, {})
+          newData[key] = cssStyleRules[0].style[key];
+          return newData;
+        }, {});
     }
   }
-  return {}
-}
+  return {};
+};
 
 /**
  * Uses the above to get all background(-*) rules from given class(es).
@@ -117,17 +117,17 @@ export const getBackgroundStylesForSingleClass = className => {
  */
 const getBackgroundStyles = className => {
   if (typeof window !== `undefined`) {
-    const classes = stringToArray(className)
+    const classes = stringToArray(className);
     if (classes instanceof Array) {
-      const classObjects = []
+      const classObjects = [];
       classes.forEach(item =>
         classObjects.push(getBackgroundStylesForSingleClass(item))
-      )
-      return Object.assign(...classObjects)
+      );
+      return Object.assign(...classObjects);
     }
-    return getBackgroundStylesForSingleClass(className)
+    return getBackgroundStylesForSingleClass(className);
   }
-  return {}
-}
+  return {};
+};
 
-export default getBackgroundStyles
+export default getBackgroundStyles;

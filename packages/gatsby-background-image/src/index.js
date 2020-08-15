@@ -1,29 +1,29 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import getBackgroundStyles from './lib/BackgroundUtils'
-import { convertProps, stripRemainingProps } from './lib/HelperUtils'
+import React from 'react';
+import PropTypes from 'prop-types';
+import getBackgroundStyles from './lib/BackgroundUtils';
+import { convertProps, stripRemainingProps } from './lib/HelperUtils';
 import {
   getCurrentFromData,
   getCurrentSrcData,
   imagePropsChanged,
-} from './lib/ImageUtils'
-import { activateCacheForImage, inImageCache } from './lib/ImageCache'
+} from './lib/ImageUtils';
+import { activateCacheForImage, inImageCache } from './lib/ImageCache';
 import {
   activatePictureRef,
   createPictureRef,
   hasActivatedPictureRefs,
   imageReferenceCompleted,
-} from './lib/ImageRef'
-import { switchImageSettings } from './lib/ImageHandling'
+} from './lib/ImageRef';
+import { switchImageSettings } from './lib/ImageHandling';
 import {
   fixClassName,
   fixOpacity,
   presetBackgroundStyles,
-} from './lib/StyleUtils'
-import { createNoScriptStyles, createPseudoStyles } from './lib/StyleCreation'
-import { listenToIntersections } from './lib/IntersectionObserverUtils'
-import { isString } from './lib/SimpleUtils'
-import PureBackgroundImage from './lib/PureBackgroundImage'
+} from './lib/StyleUtils';
+import { createNoScriptStyles, createPseudoStyles } from './lib/StyleCreation';
+import { listenToIntersections } from './lib/IntersectionObserverUtils';
+import { isString } from './lib/SimpleUtils';
+import PureBackgroundImage from './lib/PureBackgroundImage';
 
 /**
  * Main Lazy-loading React background-image component
@@ -31,22 +31,22 @@ import PureBackgroundImage from './lib/PureBackgroundImage'
  */
 class BackgroundImage extends React.Component {
   // IntersectionObserver listeners (if available).
-  cleanUpListeners
+  cleanUpListeners;
 
   constructor(props) {
-    super(props)
+    super(props);
 
-    const convertedProps = convertProps(props)
+    const convertedProps = convertProps(props);
 
     // Default settings for browser without Intersection Observer available.
-    let isVisible = true
-    const imgLoaded = false
-    let IOSupported = false
-    const { fadeIn } = convertedProps
+    let isVisible = true;
+    const imgLoaded = false;
+    let IOSupported = false;
+    const { fadeIn } = convertedProps;
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
-    const seenBefore = inImageCache(convertedProps)
+    const seenBefore = inImageCache(convertedProps);
 
     // Browser with Intersection Observer available
     if (
@@ -54,46 +54,46 @@ class BackgroundImage extends React.Component {
       typeof window !== `undefined` &&
       window.IntersectionObserver
     ) {
-      isVisible = false
-      IOSupported = true
+      isVisible = false;
+      IOSupported = true;
     }
 
     // Never render image during SSR
     if (typeof window === `undefined`) {
-      isVisible = false
+      isVisible = false;
     }
 
     // Force render for critical images.
     if (convertedProps.critical) {
-      isVisible = true
-      IOSupported = false
+      isVisible = true;
+      IOSupported = false;
     }
 
     // Check if a noscript element should be included.
-    const hasNoScript = !(convertedProps.critical && !fadeIn)
+    const hasNoScript = !(convertedProps.critical && !fadeIn);
 
     // Set initial image state for transitioning.
-    const imageState = 0
+    const imageState = 0;
 
     // Fixed class Name & added one (needed for multiple instances).
-    const [currentClassNames] = fixClassName(convertedProps)
+    const [currentClassNames] = fixClassName(convertedProps);
 
     // Preset backgroundStyles (e.g. during SSR or gatsby build).
     this.backgroundStyles = presetBackgroundStyles(
       getBackgroundStyles(convertedProps.className)
-    )
+    );
 
     // Bind handlers to class.
-    this.handleImageLoaded = this.handleImageLoaded.bind(this)
-    this.handleRef = this.handleRef.bind(this)
+    this.handleImageLoaded = this.handleImageLoaded.bind(this);
+    this.handleRef = this.handleRef.bind(this);
 
     // Create reference(s) to an Image loaded via picture element in background.
     this.imageRef = createPictureRef(
       { ...convertedProps, isVisible },
       this.handleImageLoaded
-    )
+    );
 
-    this.selfRef = null
+    this.selfRef = null;
 
     this.state = {
       isVisible,
@@ -105,41 +105,41 @@ class BackgroundImage extends React.Component {
       imageState,
       currentClassNames,
       initialImageRef: this.imageRef,
-    }
+    };
 
     // console.log(`-------------------------------------------------------------`)
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { seenBefore, initialImageRef } = state
+    const { seenBefore, initialImageRef } = state;
     if (initialImageRef && seenBefore) {
-      activateCacheForImage(props)
+      activateCacheForImage(props);
       return {
         imgLoaded: true,
         initialImageRef: false,
-      }
+      };
     }
-    return null
+    return null;
   }
 
   componentDidMount() {
     // Update background(-*) styles from CSS (e.g. Styled Components).
     this.backgroundStyles = presetBackgroundStyles(
       getBackgroundStyles(this.props.className)
-    )
+    );
 
     if (this.state.isVisible && typeof this.props.onStartLoad === `function`) {
-      this.props.onStartLoad({ wasCached: inImageCache(this.props) })
+      this.props.onStartLoad({ wasCached: inImageCache(this.props) });
     }
 
     if (this.props.critical || this.state.seenBefore) {
       if (imageReferenceCompleted(this.imageRef, this.props)) {
-        this.handleImageLoaded()
+        this.handleImageLoaded();
       }
     }
 
-    const [currentClassNames] = fixClassName(this.props)
-    this.setState({ currentClassNames })
+    const [currentClassNames] = fixClassName(this.props);
+    this.setState({ currentClassNames });
   }
 
   // shouldComponentUpdate(nextProps, nextState) {
@@ -155,9 +155,9 @@ class BackgroundImage extends React.Component {
   componentDidUpdate(prevProps) {
     // Check if we received a changed fluid / fixed image.
     if (imagePropsChanged(this.props, prevProps)) {
-      const convertedProps = convertProps(this.props)
-      const imageInCache = inImageCache(convertedProps)
-      const [currentClassNames] = fixClassName(convertedProps)
+      const convertedProps = convertProps(this.props);
+      const imageInCache = inImageCache(convertedProps);
+      const [currentClassNames] = fixClassName(convertedProps);
 
       this.setState(
         {
@@ -178,13 +178,13 @@ class BackgroundImage extends React.Component {
               data: this.imageRef,
               propName: `src`,
               returnArray: true,
-            })
+            });
           this.imageRef = createPictureRef(
             { ...convertedProps, isVisible: this.state.isVisible },
             this.handleImageLoaded
-          )
+          );
         }
-      )
+      );
     }
   }
 
@@ -194,23 +194,23 @@ class BackgroundImage extends React.Component {
       if (Array.isArray(this.imageRef)) {
         this.imageRef.forEach(currentImageRef => {
           if (!!currentImageRef && !isString(currentImageRef)) {
-            currentImageRef.onload = null
+            currentImageRef.onload = null;
           }
-        })
+        });
       } else {
-        this.imageRef.onload = null
+        this.imageRef.onload = null;
       }
     }
     // Clean up all IntersectionObserver listeners.
     if (this.cleanUpListeners) {
-      this.cleanUpListeners()
+      this.cleanUpListeners();
     }
   }
 
   intersectionListener = () => {
-    const imageInCache = inImageCache(this.props)
+    const imageInCache = inImageCache(this.props);
     if (!this.state.isVisible && typeof this.props.onStartLoad === `function`) {
-      this.props.onStartLoad({ wasCached: imageInCache })
+      this.props.onStartLoad({ wasCached: imageInCache });
     }
 
     // imgCached and imgLoaded must update after the image is activated and
@@ -218,7 +218,7 @@ class BackgroundImage extends React.Component {
     // imgLoaded and imgCached are in a 2nd setState call to be changed together,
     // avoiding initiating unnecessary animation frames from style changes when
     // setting next imageState.
-    this.imageRef = activatePictureRef(this.imageRef, this.props, this.selfRef)
+    this.imageRef = activatePictureRef(this.imageRef, this.props, this.selfRef);
     this.setState(
       state => ({
         isVisible: true,
@@ -229,33 +229,33 @@ class BackgroundImage extends React.Component {
           imgLoaded: imageInCache,
           imgCached: hasActivatedPictureRefs(this.imageRef),
           imageState: state.imageState + 1,
-        }))
+        }));
       }
-    )
-  }
+    );
+  };
 
   handleRef(ref) {
-    this.selfRef = ref
+    this.selfRef = ref;
     if (this.state.IOSupported && ref) {
       this.cleanUpListeners = listenToIntersections(
         ref,
         this.intersectionListener,
         this.props.rootMargin
-      )
+      );
     }
   }
 
   handleImageLoaded() {
-    activateCacheForImage(this.props)
+    activateCacheForImage(this.props);
 
     this.setState(state => ({
       imgLoaded: true,
       imageState: state.imageState + 1,
       fadeIn: !state.seenBefore,
-    }))
+    }));
 
     if (this.props.onLoad) {
-      this.props.onLoad()
+      this.props.onLoad();
     }
   }
 
@@ -270,47 +270,50 @@ class BackgroundImage extends React.Component {
       Tag,
       children,
       ...props
-    } = fixOpacity(convertProps(this.props), this.props.preserveStackingContext)
+    } = fixOpacity(
+      convertProps(this.props),
+      this.props.preserveStackingContext
+    );
 
-    const remainingProps = stripRemainingProps(props)
+    const remainingProps = stripRemainingProps(props);
 
     const bgColor =
       typeof backgroundColor === `boolean`
         ? `lightgray`
         : typeof backgroundColor !== `undefined`
         ? backgroundColor
-        : ``
+        : ``;
 
     const shouldFadeIn =
       (this.state.fadeIn === true && !this.state.imgCached) ||
-      this.props.fadeIn === `soft`
+      this.props.fadeIn === `soft`;
     const transitionDelay = this.state.imgLoaded
       ? `${durationFadeIn}ms`
-      : `0.25s`
+      : `0.25s`;
 
     // Create base container style and only add opacity hack when
     // preserveStackingContext is falsy.
     const divStyle = {
       position: `relative`,
       ...style,
-    }
-    if (!this.props.preserveStackingContext) divStyle.opacity = 0.99
+    };
+    if (!this.props.preserveStackingContext) divStyle.opacity = 0.99;
 
     // Choose image object of fluid or fixed, return null if not present.
-    const image = getCurrentSrcData({ fluid, fixed, returnArray: true })
-    const noScriptImageData = getCurrentSrcData({ fluid, fixed })
+    const image = getCurrentSrcData({ fluid, fixed, returnArray: true });
+    const noScriptImageData = getCurrentSrcData({ fluid, fixed });
     if (fluid || fixed) {
       if (fixed) {
-        divStyle.width = style.width || image.width
-        divStyle.height = style.height || image.height
-        divStyle.display = `inline-block`
+        divStyle.width = style.width || image.width;
+        divStyle.height = style.height || image.height;
+        divStyle.display = `inline-block`;
 
         if (style.display === `inherit`) {
-          delete divStyle.display
+          delete divStyle.display;
         }
       }
     } else {
-      return null
+      return null;
     }
 
     // Set background-images and visibility according to images available.
@@ -319,13 +322,13 @@ class BackgroundImage extends React.Component {
       bgImage: this.bgImage,
       imageRef: this.imageRef,
       state: this.state,
-    })
+    });
 
     // Set bgImage to available newImageSettings or fallback.
     this.bgImage =
       newImageSettings.nextImageArray ||
       newImageSettings.nextImage ||
-      this.bgImage
+      this.bgImage;
 
     // Create styles for the next background image(s).
     const pseudoStyles = createPseudoStyles({
@@ -337,7 +340,7 @@ class BackgroundImage extends React.Component {
       fadeIn: shouldFadeIn,
       ...newImageSettings,
       originalData: fluid || fixed,
-    })
+    });
 
     const noScriptPseudoStyles = createNoScriptStyles({
       image,
@@ -345,7 +348,7 @@ class BackgroundImage extends React.Component {
       className: this.state.currentClassNames,
       backgroundStyles: this.backgroundStyles,
       style,
-    })
+    });
 
     // console.table(newImageSettings)
     // console.log(pseudoStyles)
@@ -354,13 +357,13 @@ class BackgroundImage extends React.Component {
     // Switch key between fluid & fixed.
     const componentKey = `${fluid ? `fluid` : ``}${
       fixed ? `fixed` : ``
-    }-${JSON.stringify(noScriptImageData.srcSet)}`
+    }-${JSON.stringify(noScriptImageData.srcSet)}`;
 
     // Combine currentStyles according to specificity.
     const currentStyles = {
       ...this.backgroundStyles,
       ...divStyle,
-    }
+    };
 
     return (
       <PureBackgroundImage
@@ -376,7 +379,7 @@ class BackgroundImage extends React.Component {
       >
         {children}
       </PureBackgroundImage>
-    )
+    );
   }
 }
 
@@ -387,7 +390,7 @@ BackgroundImage.defaultProps = {
   Tag: `div`,
   preserveStackingContext: false,
   rootMargin: `200px`,
-}
+};
 
 const fixedObject = PropTypes.shape({
   width: PropTypes.number.isRequired,
@@ -399,7 +402,7 @@ const fixedObject = PropTypes.shape({
   srcWebp: PropTypes.string,
   srcSetWebp: PropTypes.string,
   media: PropTypes.string,
-})
+});
 
 const fluidObject = PropTypes.shape({
   aspectRatio: PropTypes.number.isRequired,
@@ -411,7 +414,7 @@ const fluidObject = PropTypes.shape({
   srcWebp: PropTypes.string,
   srcSetWebp: PropTypes.string,
   media: PropTypes.string,
-})
+});
 
 BackgroundImage.propTypes = {
   fixed: PropTypes.oneOfType([
@@ -437,6 +440,6 @@ BackgroundImage.propTypes = {
   Tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   preserveStackingContext: PropTypes.bool,
   rootMargin: PropTypes.string,
-}
+};
 
-export default BackgroundImage
+export default BackgroundImage;

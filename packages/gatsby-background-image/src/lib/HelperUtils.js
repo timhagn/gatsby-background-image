@@ -1,5 +1,5 @@
-import filterInvalidDOMProps from 'filter-invalid-dom-props'
-import { groupByMedia, hasArtDirectionSupport } from './MediaUtils'
+import filterInvalidDOMProps from 'filter-invalid-dom-props';
+import { groupByMedia, hasArtDirectionSupport } from './MediaUtils';
 
 /**
  * Strip BackgroundImage propTypes from remaining props to be passed to <Tag />
@@ -7,7 +7,7 @@ import { groupByMedia, hasArtDirectionSupport } from './MediaUtils'
  * @param props
  * @return {Object}
  */
-export const stripRemainingProps = props => filterInvalidDOMProps(props)
+export const stripRemainingProps = props => filterInvalidDOMProps(props);
 
 /**
  * Preprocess art directed images.
@@ -16,8 +16,8 @@ export const stripRemainingProps = props => filterInvalidDOMProps(props)
  * @return {Object}
  */
 export const convertProps = props => {
-  const convertedProps = { ...props }
-  const { fixed, fluid } = convertedProps
+  const convertedProps = { ...props };
+  const { fixed, fluid } = convertedProps;
 
   // if (fluid && !hasImageArray(props)) {
   //   convertedProps.fluid = [].concat(fluid)
@@ -29,11 +29,11 @@ export const convertProps = props => {
 
   // convert fluid & fixed to arrays so we only have to work with arrays
   if (fluid && hasArtDirectionSupport(props, 'fluid')) {
-    convertedProps.fluid = groupByMedia(convertedProps.fluid)
+    convertedProps.fluid = groupByMedia(convertedProps.fluid);
   }
   if (fixed && hasArtDirectionSupport(props, 'fixed')) {
-    convertedProps.fixed = groupByMedia(convertedProps.fixed)
+    convertedProps.fixed = groupByMedia(convertedProps.fixed);
   }
 
-  return convertedProps
-}
+  return convertedProps;
+};

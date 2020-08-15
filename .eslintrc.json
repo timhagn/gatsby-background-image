@@ -6,6 +6,18 @@
     "consistent-return": [0],
     "func-names": [0],
     "guard-for-in": [0],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*test.js",
+          "**/__test__/**/*.*",
+          "test-util/**/*.*",
+          "**/mocks/**/*.*",
+          "**/__tests__/**/*.js?(x)"
+        ]
+      }
+    ],
     "no-bitwise": [0],
     "no-console": [0],
     "no-continue": [0],

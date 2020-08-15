@@ -18,13 +18,13 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
           .test:before {
             z-index: -100;
             
-            
-            opacity: 1; 
+            background-image: some_base64_string;
+            opacity: 0; 
           }
           .test:after {
             z-index: -101;
             
-            background-image: some_base64_string;
+            
             
           }
         "
@@ -48,19 +48,49 @@ exports[`createPseudoStyles() should create different styles for empty bgImage &
           .test:before {
             z-index: -100;
             
-            background-image: some_base64_string;
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .test:after {
             z-index: -101;
             
-            
+            background-image: some_base64_string;
             
           }
         "
 `;
 
 exports[`createPseudoStyles() should create different styles for empty bgImage 1`] = `
+"
+          .test:before,
+          .test:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            transition: opacity 0.5s ease 0.25s;
+            
+          }
+          .test:before {
+            z-index: -100;
+            
+            background-image: some_base64_string;
+            opacity: 0; 
+          }
+          .test:after {
+            z-index: -101;
+            background-image: test.webp;
+            
+            
+          }
+        "
+`;
+
+exports[`createPseudoStyles() should create different styles for empty bgImage with opacity 0 1`] = `
 "
           .test:before,
           .test:after {
@@ -90,36 +120,6 @@ exports[`createPseudoStyles() should create different styles for empty bgImage 1
         "
 `;
 
-exports[`createPseudoStyles() should create different styles for empty bgImage with opacity 0 1`] = `
-"
-          .test:before,
-          .test:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000;
-            transition: opacity 0.5s ease 0.25s;
-            
-          }
-          .test:before {
-            z-index: -100;
-            
-            background-image: some_base64_string;
-            opacity: 0; 
-          }
-          .test:after {
-            z-index: -101;
-            background-image: test.webp;
-            
-            
-          }
-        "
-`;
-
 exports[`createPseudoStyles() should create different styles for empty lastImage with opacity 0 1`] = `
 "
           .test:before,
@@ -137,13 +137,13 @@ exports[`createPseudoStyles() should create different styles for empty lastImage
           }
           .test:before {
             z-index: -100;
+            background-image: test.webp;
             
-            
-            opacity: 0; 
+            opacity: 1; 
           }
           .test:after {
             z-index: -101;
-            background-image: test.webp;
+            
             
             
           }
@@ -168,13 +168,13 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
           .test:before {
             z-index: -100;
             
-            
-            opacity: 1; 
+            background-image: some_base64_string;
+            opacity: 0; 
           }
           .test:after {
             z-index: -101;
             
-            background-image: some_base64_string;
+            
             
           }
         "
@@ -198,13 +198,13 @@ exports[`createPseudoStyles() should create different styles for empty nextImage
           .test:before {
             z-index: -100;
             
-            background-image: some_base64_string;
-            opacity: 0; 
+            
+            opacity: 1; 
           }
           .test:after {
             z-index: -101;
             
-            
+            background-image: some_base64_string;
             
           }
         "
@@ -227,14 +227,14 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
           }
           .test:before {
             z-index: -100;
-            background-image: test.webp;
             
-            opacity: 1; 
+            background-image: some_base64_string;
+            opacity: 0; 
           }
           .test:after {
             z-index: -101;
+            background-image: test.webp;
             
-            background-image: some_base64_string;
             
           }
         "
@@ -257,14 +257,14 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
           }
           .test:before {
             z-index: -100;
+            background-image: test.webp;
             
-            background-image: some_base64_string;
-            opacity: 0; 
+            opacity: 1; 
           }
           .test:after {
             z-index: -101;
-            background-image: test.webp;
             
+            background-image: some_base64_string;
             
           }
         "
@@ -287,14 +287,14 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
           }
            {
             z-index: -100;
-            background-image: test.webp;
             
-            opacity: 1; 
+            background-image: some_base64_string;
+            opacity: 0; 
           }
            {
             z-index: -101;
+            background-image: test.webp;
             
-            background-image: some_base64_string;
             
           }
         "
@@ -317,14 +317,14 @@ exports[`createPseudoStyles() should create styles from given pseudoStyles Objec
           }
           .test:before {
             z-index: -100;
-            background-image: test.webp;
             
-            opacity: 1; 
+            background-image: some_base64_string;
+            opacity: 0; 
           }
           .test:after {
             z-index: -101;
+            background-image: test.webp;
             
-            background-image: some_base64_string;
             
           }
         "

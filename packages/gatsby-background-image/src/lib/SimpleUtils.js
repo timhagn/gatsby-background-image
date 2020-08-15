@@ -3,7 +3,7 @@
  *
  * @return {boolean}
  */
-export const isBrowser = () => typeof window !== 'undefined'
+export const isBrowser = () => typeof window !== 'undefined';
 
 /**
  * Tests a given value on being a string.
@@ -12,7 +12,7 @@ export const isBrowser = () => typeof window !== 'undefined'
  * @return {boolean}
  */
 export const isString = value =>
-  Object.prototype.toString.call(value) === '[object String]'
+  Object.prototype.toString.call(value) === '[object String]';
 
 /**
  * Tests a given value on being a string.
@@ -21,7 +21,7 @@ export const isString = value =>
  * @return {boolean}
  */
 export const isObject = value =>
-  Object.prototype.toString.call(value) === '[object Object]'
+  Object.prototype.toString.call(value) === '[object Object]';
 
 /**
  * Converts CSS kebab-case strings to camel-cased js style rules.
@@ -36,7 +36,7 @@ export const toCamelCase = str =>
     .replace(/(?:^\w|-|[A-Z]|\b\w)/g, (letter, index) =>
       index === 0 ? letter.toLowerCase() : letter.toUpperCase()
     )
-    .replace(/\s|\W+/g, '')
+    .replace(/\s|\W+/g, '');
 
 /**
  * Converts camel-cased js style rules to CSS kebab-case strings.
@@ -48,7 +48,7 @@ export const toKebabCase = str =>
   isString(str) &&
   str
     .replace(/\s|\W+/g, '')
-    .replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+    .replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
 
 /**
  * Splits a given string (e.g. from classname) to an array.
@@ -59,16 +59,16 @@ export const toKebabCase = str =>
  */
 export const stringToArray = (str, delimiter = ` `) => {
   if (str instanceof Array) {
-    return str
+    return str;
   }
   if (isString(str)) {
     if (str.includes(delimiter)) {
-      return str.split(delimiter)
+      return str.split(delimiter);
     }
-    return [str]
+    return [str];
   }
-  return false
-}
+  return false;
+};
 
 /**
  * Hashes a String to a 32bit integer with the simple Java 8 hashCode() func.
@@ -81,11 +81,11 @@ export const hashString = str =>
   [].reduce.call(
     str,
     (hash, item) => {
-      hash = (hash << 5) - hash + item.charCodeAt(0)
-      return hash | 0
+      hash = (hash << 5) - hash + item.charCodeAt(0);
+      return hash | 0;
     },
     0
-  )
+  );
 
 /**
  * As the name says, it filters out empty strings from an array and joins it.
@@ -94,7 +94,7 @@ export const hashString = str =>
  * @return {string}
  */
 export const filteredJoin = arrayToJoin =>
-  arrayToJoin.filter(item => item !== ``).join()
+  arrayToJoin.filter(item => item !== ``).join();
 
 /**
  * Combines two arrays while keeping fromArrays indexes & values.
@@ -106,7 +106,7 @@ export const filteredJoin = arrayToJoin =>
 export const combineArray = (fromArray, toArray) => {
   // Fallback for singular images.
   if (!Array.isArray(fromArray)) {
-    return [fromArray]
+    return [fromArray];
   }
-  return fromArray.map((item, index) => item || (toArray && toArray[index]))
-}
+  return fromArray.map((item, index) => item || (toArray && toArray[index]));
+};

@@ -2,15 +2,15 @@ import {
   escapeClassNames,
   kebabifyBackgroundStyles,
   setTransitionStyles,
-} from './StyleUtils'
-import { getCurrentFromData, getUrlString, hasImageArray } from './ImageUtils'
-import { hasArtDirectionArray } from './MediaUtils'
+} from './StyleUtils';
+import { getCurrentFromData, getUrlString, hasImageArray } from './ImageUtils';
+import { hasArtDirectionArray } from './MediaUtils';
 import {
   combineArray,
   filteredJoin,
   isBrowser,
   stringToArray,
-} from './SimpleUtils'
+} from './SimpleUtils';
 
 /**
  * Creates pseudo-element(s) for className(s).
@@ -20,17 +20,17 @@ import {
  * @return {string}
  */
 export const createPseudoElement = (className, appendix = `:before`) => {
-  const escapedClassName = escapeClassNames(className)
-  let classes = stringToArray(escapedClassName)
-  let pseudoClasses = ``
+  const escapedClassName = escapeClassNames(className);
+  let classes = stringToArray(escapedClassName);
+  let pseudoClasses = ``;
   if (Array.isArray(classes)) {
-    classes = classes.filter(c => c !== '')
+    classes = classes.filter(c => c !== '');
     if (classes.length > 0) {
-      pseudoClasses = `.${classes.join('.')}${appendix}`
+      pseudoClasses = `.${classes.join('.')}${appendix}`;
     }
   }
-  return pseudoClasses
-}
+  return pseudoClasses;
+};
 
 /**
  * Creates a single pseudo-element with image content.
@@ -47,8 +47,8 @@ export const createPseudoElementWithContent = (
     ${pseudoElementString} {
       opacity: 1;
       background-image: ${imageSource};
-    }`
-}
+    }`;
+};
 
 /**
  * Creates a single pseudo-element media-query.
@@ -77,7 +77,7 @@ export const createPseudoElementMediaQuery = (
           )}
         }`
       }
-    `
+    `;
 
 /**
  * Creates styles for the changing pseudo-elements' backgrounds.
@@ -108,9 +108,9 @@ export const createPseudoStyles = ({
   finalImage,
   originalData,
 }) => {
-  const pseudoBefore = createPseudoElement(className)
-  const pseudoAfter = createPseudoElement(className, `:after`)
-  const currentBackgroundStyles = { ...backgroundStyles, ...style }
+  const pseudoBefore = createPseudoElement(className);
+  const pseudoAfter = createPseudoElement(className, `:after`);
+  const currentBackgroundStyles = { ...backgroundStyles, ...style };
   return `
           ${pseudoBefore},
           ${pseudoAfter} {
@@ -155,8 +155,8 @@ export const createPseudoStyles = ({
             }
             ${finalImage ? `opacity: ${Number(afterOpacity)};` : ``}
           }
-        `
-}
+        `;
+};
 
 /**
  * Creates a background-image string when certain conditions are met.
@@ -168,12 +168,12 @@ export const createPseudoStyles = ({
 export const createStyleImage = (image, originalData) => {
   const hasStackedImages =
     hasImageArray({ fluid: originalData }) &&
-    !hasArtDirectionArray({ fluid: originalData })
+    !hasArtDirectionArray({ fluid: originalData });
   if (isBrowser() || hasStackedImages) {
-    return image ? `background-image: ${image};` : ``
+    return image ? `background-image: ${image};` : ``;
   }
-  return ``
-}
+  return ``;
+};
 
 /**
  * Creates styles for the noscript element.
@@ -185,59 +185,61 @@ export const createStyleImage = (image, originalData) => {
 export const createNoScriptStyles = ({ className, image }) => {
   if (image) {
     const returnArray =
-      Array.isArray(image) && !hasArtDirectionArray({ fluid: image })
-    const addUrl = false
+      Array.isArray(image) && !hasArtDirectionArray({ fluid: image });
+    const addUrl = false;
     const allSources = getCurrentFromData({
       data: image,
       propName: `src`,
       checkLoaded: false,
       addUrl,
       returnArray,
-    })
+    });
     const sourcesAsUrl = getUrlString({
       imageString: allSources,
       hasImageUrls: true,
       returnArray,
-    })
-    let sourcesAsUrlWithCSS = ``
+    });
+    let sourcesAsUrlWithCSS = ``;
     if (returnArray) {
       const cssStrings = getCurrentFromData({
         data: image,
         propName: `CSS_STRING`,
         addUrl: false,
         returnArray,
-      })
-      sourcesAsUrlWithCSS = filteredJoin(combineArray(sourcesAsUrl, cssStrings))
+      });
+      sourcesAsUrlWithCSS = filteredJoin(
+        combineArray(sourcesAsUrl, cssStrings)
+      );
     }
-    const pseudoBefore = createPseudoElement(className)
+    const pseudoBefore = createPseudoElement(className);
     if (hasArtDirectionArray({ fluid: image })) {
       return image
         .map(currentMedia => {
-          const sourceString = getUrlString({ imageString: currentMedia.src })
+          const sourceString = getUrlString({ imageString: currentMedia.src });
           const webPString = getUrlString({
             imageString: currentMedia.srcWebp || ``,
-          })
+          });
           if (currentMedia.media) {
             return createPseudoElementMediaQuery(
               pseudoBefore,
               currentMedia.media,
               sourceString,
               webPString
-            )
+            );
           }
           return createPseudoElementMediaQuery(
             pseudoBefore,
             'screen',
             sourceString,
             webPString
-          )
+          );
         })
-        .join('')
+        .join('');
     }
     return createPseudoElementWithContent(
       pseudoBefore,
       sourcesAsUrlWithCSS || sourcesAsUrl
-    )
+    );
   }
-  return ``
-}
+  return ``;
+};

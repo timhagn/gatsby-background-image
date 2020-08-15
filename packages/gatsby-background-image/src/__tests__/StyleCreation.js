@@ -4,14 +4,14 @@ import {
   createPseudoElementMediaQuery,
   createPseudoElementWithContent,
   createPseudoStyles,
-} from '../lib/StyleCreation'
+} from '../lib/StyleCreation';
 import {
   fluidShapeMock,
   mockArtDirectionStackFluid,
-} from './mocks/Various.mock'
+} from './mocks/Various.mock';
 
 describe(`createPseudoStyles()`, () => {
-  let pseudoStyles = {}
+  let pseudoStyles = {};
   beforeEach(() => {
     pseudoStyles = {
       className: `test`,
@@ -25,113 +25,113 @@ describe(`createPseudoStyles()`, () => {
       afterOpacity: 1,
       bgColor: `#000`,
       fadeIn: true,
-    }
-  })
+    };
+  });
   it(`should create styles from given pseudoStyles Object`, () => {
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create styles from given pseudoStyles Object without className`, () => {
-    delete pseudoStyles.className
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    delete pseudoStyles.className;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create styles from given pseudoStyles Object with opacity 0`, () => {
-    pseudoStyles.afterOpacity = 0
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    pseudoStyles.afterOpacity = 0;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create styles from given pseudoStyles Object without fadeIn`, () => {
-    pseudoStyles.fadeIn = false
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    pseudoStyles.fadeIn = false;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create different styles for empty nextImage`, () => {
-    delete pseudoStyles.nextImage
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    delete pseudoStyles.nextImage;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create different styles for empty bgImage`, () => {
-    delete pseudoStyles.bgImage
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    delete pseudoStyles.bgImage;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create different styles for empty nextImage with opacity 0`, () => {
-    delete pseudoStyles.nextImage
-    pseudoStyles.afterOpacity = 0
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    delete pseudoStyles.nextImage;
+    pseudoStyles.afterOpacity = 0;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create different styles for empty bgImage with opacity 0`, () => {
-    delete pseudoStyles.bgImage
-    pseudoStyles.afterOpacity = 0
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    delete pseudoStyles.bgImage;
+    pseudoStyles.afterOpacity = 0;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create different styles for empty lastImage with opacity 0`, () => {
-    pseudoStyles.lastImage = ``
-    pseudoStyles.afterOpacity = 0
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    pseudoStyles.lastImage = ``;
+    pseudoStyles.afterOpacity = 0;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create different styles for empty bgImage & nextImage`, () => {
-    delete pseudoStyles.bgImage
-    delete pseudoStyles.nextImage
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
+    delete pseudoStyles.bgImage;
+    delete pseudoStyles.nextImage;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
 
   it(`should create different styles for empty bgImage & nextImage with opacity 0`, () => {
-    delete pseudoStyles.bgImage
-    delete pseudoStyles.nextImage
-    pseudoStyles.afterOpacity = 0
-    const createdPseudoStyles = createPseudoStyles(pseudoStyles)
-    expect(createdPseudoStyles).toMatchSnapshot()
-  })
-})
+    delete pseudoStyles.bgImage;
+    delete pseudoStyles.nextImage;
+    pseudoStyles.afterOpacity = 0;
+    const createdPseudoStyles = createPseudoStyles(pseudoStyles);
+    expect(createdPseudoStyles).toMatchSnapshot();
+  });
+});
 
 describe(`createPseudoElement()`, () => {
   it(`should return empty pseudoName if called with empty className`, () => {
-    const pseudoName = createPseudoElement('')
-    expect(pseudoName).toMatchInlineSnapshot(`""`)
-  })
-})
+    const pseudoName = createPseudoElement('');
+    expect(pseudoName).toMatchInlineSnapshot(`""`);
+  });
+});
 
 describe(`createPseudoElementWithContent()`, () => {
   it(`should return string for style props with text content`, () => {
-    const pseudoName = createPseudoElement('myclass')
+    const pseudoName = createPseudoElement('myclass');
     const pseudoElement = createPseudoElementWithContent(
       pseudoName,
       `url('testimage.jpg')`
-    )
+    );
     expect(pseudoElement).toMatchInlineSnapshot(`
       "
           .myclass:before {
             opacity: 1;
             background-image: url('testimage.jpg');
           }"
-    `)
-  })
-})
+    `);
+  });
+});
 
 describe(`createPseudoElementMediaQuery()`, () => {
   it(`should return media queries with WebP`, () => {
-    const pseudoName = createPseudoElement('myclass')
+    const pseudoName = createPseudoElement('myclass');
     const mediaQuery = createPseudoElementMediaQuery(
       pseudoName,
       `(mind-width: 500px)`,
       `url('testimage.jpg')`,
       `url('testimage.webp')`
-    )
+    );
     expect(mediaQuery).toMatchInlineSnapshot(`
       "
             @media (mind-width: 500px) {
@@ -149,12 +149,12 @@ describe(`createPseudoElementMediaQuery()`, () => {
           }
               }
           "
-    `)
-  })
-})
+    `);
+  });
+});
 
 describe(`createNoScriptStyles()`, () => {
-  const OLD_MATCH_MEDIA = window.matchMedia
+  const OLD_MATCH_MEDIA = window.matchMedia;
 
   beforeEach(() => {
     window.matchMedia = jest.fn(media =>
@@ -165,22 +165,22 @@ describe(`createNoScriptStyles()`, () => {
         : {
             matches: false,
           }
-    )
-  })
+    );
+  });
 
   afterEach(() => {
-    window.matchMedia = OLD_MATCH_MEDIA
-  })
+    window.matchMedia = OLD_MATCH_MEDIA;
+  });
 
   it(`should return empty string for empty config object`, () => {
-    expect(createNoScriptStyles({})).toEqual(``)
-  })
+    expect(createNoScriptStyles({})).toEqual(``);
+  });
 
   it(`should return media queries for art-directed images`, () => {
     const noScriptStyled = createNoScriptStyles({
       className: 'myclass',
       image: mockArtDirectionStackFluid,
-    })
+    });
     expect(noScriptStyled).toMatchInlineSnapshot(`
       "
             @media screen {
@@ -210,8 +210,8 @@ describe(`createNoScriptStyles()`, () => {
             }
             
           "
-    `)
-  })
+    `);
+  });
   it(`should return media queries for art-directed images with WebP`, () => {
     const artDirectionMockWithWebP = [
       ...mockArtDirectionStackFluid,
@@ -219,11 +219,11 @@ describe(`createNoScriptStyles()`, () => {
         ...fluidShapeMock,
         srcWebp: `testimage.webp`,
       },
-    ]
+    ];
     const noScriptStyled = createNoScriptStyles({
       className: 'myclass',
       image: artDirectionMockWithWebP,
-    })
+    });
     expect(noScriptStyled).toMatchInlineSnapshot(`
       "
             @media screen {
@@ -268,6 +268,6 @@ describe(`createNoScriptStyles()`, () => {
           }
               }
           "
-    `)
-  })
-})
+    `);
+  });
+});

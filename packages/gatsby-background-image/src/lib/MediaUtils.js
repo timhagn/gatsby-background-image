@@ -1,5 +1,5 @@
-import smq from 'sort-media-queries'
-import { isBrowser } from './SimpleUtils'
+import smq from 'sort-media-queries';
+import { isBrowser } from './SimpleUtils';
 
 /**
  * Return an array ordered by elements having a media prop, does not use
@@ -8,19 +8,19 @@ import { isBrowser } from './SimpleUtils'
  * @param imageVariants   array   The art-directed images.-
  */
 export const groupByMedia = imageVariants => {
-  const without = []
-  const sortedVariants = smq(imageVariants, 'media')
+  const without = [];
+  const sortedVariants = smq(imageVariants, 'media');
 
-  sortedVariants.forEach(variant => !variant.media && without.push(variant))
+  sortedVariants.forEach(variant => !variant.media && without.push(variant));
 
   if (without.length > 1 && process.env.NODE_ENV !== `production`) {
     console.warn(
       `We've found ${without.length} sources without a media property. They might be ignored by the browser, see: https://www.gatsbyjs.org/packages/gatsby-image/#art-directing-multiple-images`
-    )
+    );
   }
 
-  return sortedVariants
-}
+  return sortedVariants;
+};
 
 /**
  * Creates a source Array from media objects.
@@ -30,24 +30,24 @@ export const groupByMedia = imageVariants => {
  * @return {*}
  */
 export const createArtDirectionSources = ({ fluid, fixed }) => {
-  const currentSource = fluid || fixed
+  const currentSource = fluid || fixed;
   return currentSource.reduce((sources, image) => {
     if (!image.media) {
-      return sources
+      return sources;
     }
-    const source = document.createElement('source')
+    const source = document.createElement('source');
     if (image.srcSetWebp) {
-      source.type = `image/webp`
-      source.srcset = image.srcSetWebp
+      source.type = `image/webp`;
+      source.srcset = image.srcSetWebp;
     }
     if (image.sizes) {
-      source.sizes = image.sizes
+      source.sizes = image.sizes;
     }
-    source.media = image.media
-    sources.push(source)
-    return sources
-  }, [])
-}
+    source.media = image.media;
+    sources.push(source);
+    return sources;
+  }, []);
+};
 
 /**
  * Checks if fluid or fixed are art-direction arrays.
@@ -59,7 +59,7 @@ export const createArtDirectionSources = ({ fluid, fixed }) => {
 export const hasArtDirectionSupport = (props, prop) =>
   props[prop] &&
   Array.isArray(props[prop]) &&
-  props[prop].some(image => !!image && typeof image.media !== 'undefined')
+  props[prop].some(image => !!image && typeof image.media !== 'undefined');
 
 /**
  * Checks for fluid or fixed Art direction support.
@@ -68,7 +68,7 @@ export const hasArtDirectionSupport = (props, prop) =>
  */
 export const hasArtDirectionArray = props =>
   hasArtDirectionSupport(props, 'fluid') ||
-  hasArtDirectionSupport(props, 'fixed')
+  hasArtDirectionSupport(props, 'fixed');
 
 /**
  * Tries to detect if a media query matches the current viewport.
@@ -81,5 +81,5 @@ export const matchesMedia = ({ media }) => {
     ? isBrowser() &&
         typeof window.matchMedia !== `undefined` &&
         !!window.matchMedia(media).matches
-    : false
-}
+    : false;
+};

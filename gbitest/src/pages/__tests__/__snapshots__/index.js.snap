@@ -88,7 +88,7 @@ background-size: cover;
             z-index: -100;
             
             
-            opacity: 0; 
+            opacity: 1; 
           }
           .sc-fzoLsD.jVfest.gbi--802263448-undefined:after {
             z-index: -101;
