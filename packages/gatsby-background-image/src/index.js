@@ -191,11 +191,10 @@ class BackgroundImage extends React.Component {
     // Prevent calling handleImageLoaded from the imageRef(s) after unmount.
     if (this.imageRef) {
       if (Array.isArray(this.imageRef)) {
-        this.imageRef.forEach(currentImageRef => {
-          if (!!currentImageRef && !isString(currentImageRef)) {
-            currentImageRef.onload = null;
-          }
-        });
+        this.imageRef.forEach(
+          currentImageRef =>
+            !!currentImageRef && (currentImageRef.onload = null)
+        );
       } else {
         this.imageRef.onload = null;
       }
@@ -250,9 +249,9 @@ class BackgroundImage extends React.Component {
     this.setState(state => ({
       imgLoaded: true,
       imageState: state.imageState + 1,
-    }))
+    }));
     if (this.state.seenBefore) {
-      this.setState({ fadeIn: false })
+      this.setState({ fadeIn: false });
     }
 
     if (this.props.onLoad) {

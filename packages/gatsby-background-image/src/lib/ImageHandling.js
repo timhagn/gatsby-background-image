@@ -28,7 +28,7 @@ export const switchImageSettings = ({ image, bgImage, imageRef, state }) => {
   let nextImageArray;
   // Signal to `createPseudoStyles()` when we have reached the final image,
   // which is important for transparent background-image(s).
-  let finalImage = false;
+  let finalImage = returnArray && state.seenBefore && !!currentSources;
   if (returnArray) {
     // Check for tracedSVG first.
     nextImage = getCurrentFromData({
