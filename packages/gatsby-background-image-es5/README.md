@@ -207,14 +207,14 @@ This is what a component using `gatsby-background-image-es5` might look like:
 
 ```js
 import React from 'react'
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 
 import BackgroundImage from 'gatsby-background-image-es5'
 
-const BackgroundSection = ({ className }) => (
-  <StaticQuery
-    query={graphql`
+const BackgroundSection = ({ className }) => {
+  const data = useStaticQuery(
+    graphql`
       query {
         desktop: file(relativePath: { eq: "seamless-bg-desktop.jpg" }) {
           childImageSharp {
@@ -224,23 +224,23 @@ const BackgroundSection = ({ className }) => (
           }
         }
       }
-    `}
-    render={data => {
-      // Set ImageData.
-      const imageData = data.desktop.childImageSharp.fluid
-      return (
-        <BackgroundImage
-          Tag="section"
-          className={className}
-          fluid={imageData}
-          backgroundColor={`#040e18`}
-        >
-          <h2>gatsby-background-image-es5</h2>
-        </BackgroundImage>
-      )
-    }}
-  />
-)
+    `
+  )
+
+  // Set ImageData.
+  const imageData = data.desktop.childImageSharp.fluid
+
+  return (
+    <BackgroundImage
+      Tag="section"
+      className={className}
+      fluid={imageData}
+      backgroundColor={`#040e18`}
+    >
+      <h2>gatsby-background-image</h2>
+    </BackgroundImage>
+  )
+}
 
 const StyledBackgroundSection = styled(BackgroundSection)`
   width: 100%;
