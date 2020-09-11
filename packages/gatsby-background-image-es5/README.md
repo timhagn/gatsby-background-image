@@ -73,7 +73,7 @@ _*Of course styleable with `styled-components` and the like!*_
 
 ## Example Repo
 
-`gatsby-background-image` has an example repository to see it's similarities &
+`gatsby-background-image` has an example repository to see its similarities &
 differences to `gatsby-image` side by side.  
 It's located at: [gbitest](https://github.com/timhagn/gbitest)
 To use it with `gatsby-background-image-es5` change the dependency there.
@@ -241,6 +241,55 @@ const BackgroundSection = ({ className }) => {
     </BackgroundImage>
   )
 }
+
+const StyledBackgroundSection = styled(BackgroundSection)`
+  width: 100%;
+  background-position: bottom center;
+  background-repeat: repeat-y;
+  background-size: cover;
+`
+
+export default StyledBackgroundSection
+```
+
+And here is the same component with the data retrieved the old way with the StaticQuery component:
+
+```js
+import React from 'react'
+import { graphql, StaticQuery } from 'gatsby'
+import styled from 'styled-components'
+
+import BackgroundImage from 'gatsby-background-image-es5'
+
+const BackgroundSection = ({ className }) => (
+  <StaticQuery
+    query={graphql`
+      query {
+        desktop: file(relativePath: { eq: "seamless-bg-desktop.jpg" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+      // Set ImageData.
+      const imageData = data.desktop.childImageSharp.fluid
+      return (
+        <BackgroundImage
+          Tag="section"
+          className={className}
+          fluid={imageData}
+          backgroundColor={`#040e18`}
+        >
+          <h2>gatsby-background-image-es5</h2>
+        </BackgroundImage>
+      )
+    }}
+  />
+)
 
 const StyledBackgroundSection = styled(BackgroundSection)`
   width: 100%;
@@ -506,7 +555,7 @@ return <StyledBackgound isDarken={isDarken} key={isDarken ? `dark` : `light`} />
 
 As of `gatsby-background-image(-es5)` @ `v0.8.3` the superfluous default of
 `overflow: hidden` was removed, as it was only a remnant from the initial
-creation of `gbi` (see [Acknowledgements](#acknowledgements) for more on it's
+creation of `gbi` (see [Acknowledgements](#acknowledgements) for more on its
 meagre beginnings ; ). As later seen through [issue #59](https://github.com/timhagn/gatsby-background-image/issues/59),
 this might break some CSS styling like `border-radius`, so be sure to include it
 yourself, should you need such styles. Sorry for the inconvenience % )!
@@ -609,7 +658,7 @@ don't count on it in production ; ).
 Starting with `v0.7.5` an extra option is available preserving the
 [CSS stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)
 by deactivating the "opacity hack (`opacity: 0.99;`)" used on `<BackgroundImage />`
-to allow it's usage within stacking context changing element styled with e.g.
+to allow its usage within stacking context changing element styled with e.g.
 `grid` or `flex` per default.  
 Activating `preserveStackingContext` prevents this behavior - but allows you to
 use any stacking context changing elements (like elements styled with

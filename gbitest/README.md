@@ -1,7 +1,7 @@
 # GBI-Test
 
 A quick example repo for [`gatsby-background-image`](https://github.com/timhagn/gatsby-background-image) 
-to demonstrate what it can do and it's similarities & differences to `gatsby-image`.
+to demonstrate what it can do and its similarities & differences to `gatsby-image`.
 
 ## Creation
 
@@ -12,7 +12,7 @@ And last but not least, of course `gatsby-background-image` is part of the crew 
 
 ## Getting Started
 
-Simple clone this repo and run `yarn` or `npm install` to install.
+Simply clone this repo and run `yarn` or `npm install` to install.
 `yarn develop` or `npm run develop` gives you a working [localhost server](http://localhost:8000/).
 
 On the left side you see content wrapped by `<BackgroundImage />` from `gatsby-background-image`,
@@ -33,7 +33,7 @@ the mentioned file as well as at the end of the CSS-file [src/components/layout.
 To read a little more about Contributing to `gatsby-background-image`, see
 the [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md) 
 file over there : )!
-If that's TL;DR, just at least read though the passage on [Debugging](https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md#debugging)!
+If that's TL;DR, just at least read through the passage on [Debugging](https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md#debugging)!
 
 ## Scripts
 
