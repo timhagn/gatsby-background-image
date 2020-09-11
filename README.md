@@ -55,7 +55,7 @@ Since `gatsby-background-image@0.6.0`, this is a monorepo managed by
 
 ## Example Repo
 
-`gatsby-background-image` has an example repository to see it's similarities
+`gatsby-background-image` has an example repository to see its similarities
 & differences to `gatsby-image` side by side.  
 It's located at: [gbitest](https://github.com/timhagn/gbitest)
 To use it with `gatsby-background-image-es5` change the dependency there.
