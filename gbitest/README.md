@@ -31,9 +31,9 @@ the mentioned file as well as at the end of the CSS-file [src/components/layout.
 ## Contributing to `gatsby-background-image` with this repository
 
 To read a little more about Contributing to `gatsby-background-image`, see
-the [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md) 
+the [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/main/CONTRIBUTING.md) 
 file over there : )!
-If that's TL;DR, just at least read through the passage on [Debugging](https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md#debugging)!
+If that's TL;DR, just at least read through the passage on [Debugging](https://github.com/timhagn/gatsby-background-image/blob/main/CONTRIBUTING.md#debugging)!
 
 ## Scripts
 

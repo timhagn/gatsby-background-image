@@ -1,13 +1,13 @@
 {
   "name": "gbi-integration-test",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "dependencies": {
     "gatsby-background-image": "../packages/gatsby-background-image/",
     "gatsby-background-image-es5": "../packages/gatsby-background-image-es5/",
-    "jest": "^24.8.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "jest": "^26.6.3",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   },
   "scripts": {
     "prebootstrap": "yarn"
