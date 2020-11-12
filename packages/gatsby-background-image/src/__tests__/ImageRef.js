@@ -1,5 +1,6 @@
 import {
   fixedArrayMock,
+  fixedMock,
   fixedShapeMock,
   fluidArrayMock,
   fluidShapeMock,
