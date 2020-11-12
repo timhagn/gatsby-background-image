@@ -5,14 +5,14 @@
   <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
 </p>
 <p align="center">
-  <a href="https://github.com/timhagn/gatsby-background-image/blob/master/LICENSE">
+  <a href="https://github.com/timhagn/gatsby-background-image/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="gatsby-background-image is released under the MIT license." />
   </a>
   <a href="https://circleci.com/gh/timhagn/gatsby-background-image">
     <img src="https://circleci.com/gh/timhagn/gatsby-background-image.svg?style=shield" alt="Current CircleCI build status of gatsby-background-image." />
   </a>
   <a href="https://codecov.io/gh/timhagn/gatsby-background-image">
-    <img src="https://codecov.io/gh/timhagn/gatsby-background-image/branch/master/graph/badge.svg" />
+    <img src="https://codecov.io/gh/timhagn/gatsby-background-image/branch/main/graph/badge.svg" />
   </a>
   <a href="https://www.npmjs.org/package/gatsby-background-image">
     <img src="https://img.shields.io/npm/v/gatsby-background-image.svg" alt="Current npm package version." />
@@ -28,7 +28,7 @@ even more:
 **[Testing explained](#testing-gatsby-background-image) in its own section.**
 **[Art-Direction support](#how-to-use-with-art-direction-support) built in.**
 
-It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
+It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/main/packages/gatsby-image),
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,  
 **plus** being usable as a container (no more hacks with extra wrappers)  
@@ -43,7 +43,7 @@ _*Of course styleable with `styled-components` and the like!*_
 
 `gatsby-background-image` has a companion package completely transpiled to
 ES5: [`gatsby-background-image-es5`](https://www.npmjs.com/package/gatsby-background-image-es5).  
-Have a look at its [README](https://github.com/timhagn/gatsby-background-image/blob/master/packages/gatsby-background-image-es5/README.md),
+Have a look at its [README](https://github.com/timhagn/gatsby-background-image/blob/main/packages/gatsby-background-image-es5/README.md),
 it nearly works the same - though with ([nearly](#important)) all polyfills
 included to support legacy browsers it's nearly three times the size of
 this package.
@@ -768,7 +768,7 @@ work : ).
 
 Everyone is more than welcome to contribute to this little package!  
 Docs, Reviews, Testing, Code - whatever you want to add, just go for it : ).
-So have a look at our [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md) file and give it a go.
+So have a look at our [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/main/CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
 ## TODO

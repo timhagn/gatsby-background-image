@@ -5,14 +5,14 @@
   <i>Speedy, optimized <strong>background</strong>-images without the work!</i>
 </p>
 <p align="center">
-  <a href="https://github.com/timhagn/gatsby-background-image/blob/master/LICENSE">
+  <a href="https://github.com/timhagn/gatsby-background-image/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="gatsby-background-image-es5 is released under the MIT license." />
   </a>
   <a href="https://circleci.com/gh/timhagn/gatsby-background-image">
     <img src="https://circleci.com/gh/timhagn/gatsby-background-image.svg?style=shield" alt="Current CircleCI build status of gatsby-background-image." />
   </a>
   <a href="https://codecov.io/gh/timhagn/gatsby-background-image">
-    <img src="https://codecov.io/gh/timhagn/gatsby-background-image/branch/master/graph/badge.svg" />
+    <img src="https://codecov.io/gh/timhagn/gatsby-background-image/branch/main/graph/badge.svg" />
   </a>
   <a href="https://www.npmjs.org/package/gatsby-background-image-es5">
     <img src="https://img.shields.io/npm/v/gatsby-background-image-es5.svg" alt="Current npm package version." />
@@ -776,7 +776,7 @@ work : ).
 
 Everyone is more than welcome to contribute to this little package!  
 Docs, Reviews, Testing, Code - whatever you want to add, just go for it : ).
-So have a look at our [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/master/CONTRIBUTING.md) file and give it a go.
+So have a look at our [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/main/CONTRIBUTING.md) file and give it a go.
 Thanks in advance!
 
 ## TODO

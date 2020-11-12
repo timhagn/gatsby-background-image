@@ -162,7 +162,7 @@ it in `activate(Mutliple)ImageRef(s)()` to get the components `offsetWith & -Hei
 ## [0.8.8](https://github.com/timhagn/gatsby-background-image) (2019-08-31)
 
 **fix** Added `escapeClassNames()` & `specialChars` plugin option to finally
-solve #49 and making it possible to style `BackgroundImage` with [Overflow setting](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image#tailwind-css-and-suchlike-frameworks).
+solve #49 and making it possible to style `BackgroundImage` with [Overflow setting](https://github.com/timhagn/gatsby-background-image/tree/main/packages/gatsby-background-image#tailwind-css-and-suchlike-frameworks).
 
 ## [0.8.7](https://github.com/timhagn/gatsby-background-image) (2019-08-31)
 
@@ -182,7 +182,7 @@ prop to `getCurrentFromData()`. Fix `index.d.ts` in `gbi-es5`.
 
 **fix / doc:** Added 'addedClassName' to `gbi`'s `state` to prevent regeneration of
 classNames on every render. Should fix #56.
-Added information on [Overflow setting](https://github.com/timhagn/gatsby-background-image/tree/master/packages/gatsby-background-image#overflow-setting)
+Added information on [Overflow setting](https://github.com/timhagn/gatsby-background-image/tree/main/packages/gatsby-background-image#overflow-setting)
 to prevent issues like #59.
 
 ## [0.8.3](https://github.com/timhagn/gatsby-background-image) (2019-08-01)
