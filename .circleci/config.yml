@@ -6,13 +6,13 @@ version: 2.1
 
 orbs:
   # Use the codecov Orb
-  codecov: codecov/codecov@1.0.2
+  codecov: codecov/codecov@1.1.1
 
 jobs:
   build:
     docker:
-      # Node 11 Image
-      - image: circleci/node:11
+      # Node 14 Image
+      - image: cimg/node:14.15.0
     parallelism: 4
 
     working_directory: ~/gatsby-background-image
