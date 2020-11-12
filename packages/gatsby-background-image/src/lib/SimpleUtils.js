@@ -3,7 +3,8 @@
  *
  * @return {boolean}
  */
-export const isBrowser = () => typeof window !== 'undefined';
+export const isBrowser = () =>
+  typeof window !== `undefined` && typeof window.document !== `undefined`;
 
 /**
  * Tests a given value on being a string.

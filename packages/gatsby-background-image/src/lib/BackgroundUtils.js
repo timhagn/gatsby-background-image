@@ -4,7 +4,7 @@
  * @notice The className has to exactly match the CSS class
  * @param className string
  */
-import { isString, stringToArray, toCamelCase } from './SimpleUtils';
+import { isBrowser, isString, stringToArray, toCamelCase } from './SimpleUtils';
 
 /**
  * Gets styles rules by a class name.
@@ -13,8 +13,7 @@ import { isString, stringToArray, toCamelCase } from './SimpleUtils';
  * @param className string
  */
 export const getStyleRulesForClassName = className => {
-  const styleSheets =
-    typeof window !== `undefined` ? window.document.styleSheets : [];
+  const styleSheets = isBrowser() ? window.document.styleSheets : [];
   for (let i = 0; i < styleSheets.length; i++) {
     let classes;
     try {
@@ -116,7 +115,7 @@ export const getBackgroundStylesForSingleClass = className => {
  * @return {*}
  */
 const getBackgroundStyles = className => {
-  if (typeof window !== `undefined`) {
+  if (isBrowser()) {
     const classes = stringToArray(className);
     if (classes instanceof Array) {
       const classObjects = [];

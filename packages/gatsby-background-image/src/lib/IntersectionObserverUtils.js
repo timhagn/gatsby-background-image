@@ -1,3 +1,5 @@
+import { isBrowser } from "./SimpleUtils";
+
 let io;
 const listeners = new WeakMap();
 
@@ -29,7 +31,7 @@ export const callbackIO = entries => {
 export const getIO = rootMargin => {
   if (
     typeof io === `undefined` &&
-    typeof window !== `undefined` &&
+    isBrowser() &&
     window.IntersectionObserver
   ) {
     io = new window.IntersectionObserver(callbackIO, {

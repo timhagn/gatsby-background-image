@@ -22,7 +22,7 @@ import {
 } from './lib/StyleUtils';
 import { createNoScriptStyles, createPseudoStyles } from './lib/StyleCreation';
 import { listenToIntersections } from './lib/IntersectionObserverUtils';
-import { isString } from './lib/SimpleUtils';
+import { isBrowser, isString } from './lib/SimpleUtils';
 
 /**
  * Main Lazy-loading React background-image component
@@ -48,17 +48,13 @@ class BackgroundImage extends React.Component {
     const seenBefore = inImageCache(convertedProps);
 
     // Browser with Intersection Observer available
-    if (
-      !seenBefore &&
-      typeof window !== `undefined` &&
-      window.IntersectionObserver
-    ) {
+    if (!seenBefore && isBrowser() && window.IntersectionObserver) {
       isVisible = false;
       IOSupported = true;
     }
 
     // Never render image during SSR
-    if (typeof window === `undefined`) {
+    if (!isBrowser()) {
       isVisible = false;
     }
 

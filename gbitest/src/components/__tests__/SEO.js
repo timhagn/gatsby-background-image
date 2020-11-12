@@ -3,6 +3,9 @@ import { render } from '@testing-library/react'
 import { StaticQuery, useStaticQuery } from 'gatsby'
 import SEOPage from '../SEO'
 
+// Necessary to fixate generated className.
+jest.mock('short-uuid')
+
 const mockMetadata = {
   site: {
     siteMetadata: {
@@ -19,6 +22,9 @@ describe('SEO Page', () => {
     useStaticQuery.mockImplementation(() => ({
       ...mockMetadata,
     }))
+    // Freeze generated className.
+    const uuid = require('short-uuid')
+    uuid.generate.mockImplementation(() => '73WakrfVbNJBaAmhQtEeDv')
   })
 
   it('renders correctly', () => {

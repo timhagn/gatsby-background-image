@@ -119,7 +119,7 @@ exports[`<BackgroundImage /> with mock IO should call stacked critical fluid ima
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 0.25s;
+            transition: opacity 0.5s ease 250ms;
             background-position: center;
 background-repeat: repeat-y;
 background-size: contain;
@@ -168,7 +168,7 @@ exports[`<BackgroundImage /> with mock IO should not call onLoad without prop, f
             top: 0;
             left: 0;
             background-color: lightgray;
-            transition: opacity 0.5s ease 500ms;
+            transition: opacity 0.5s ease 250ms;
             background-position: center;
 background-repeat: repeat-y;
 background-size: contain;
@@ -214,7 +214,7 @@ exports[`<BackgroundImage /> with mock IO should render visible fixed image and 
             top: 0;
             left: 0;
             
-            transition: opacity 0.5s ease 0.25s;
+            transition: opacity 0.5s ease 250ms;
             background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
@@ -259,7 +259,7 @@ exports[`<BackgroundImage /> with mock IO should render visible fluid image 1`] 
             top: 0;
             left: 0;
             
-            transition: opacity 0.5s ease 0.25s;
+            transition: opacity 0.5s ease 250ms;
             background-position: center;
 background-repeat: no-repeat;
 background-size: cover;

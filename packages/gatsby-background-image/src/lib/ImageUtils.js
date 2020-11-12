@@ -7,7 +7,7 @@ import { filteredJoin, isBrowser, isString } from './SimpleUtils';
  * @return {boolean}
  */
 export const hasPictureElement = () =>
-  typeof HTMLPictureElement !== `undefined` || typeof window === `undefined`;
+  typeof HTMLPictureElement !== `undefined` || isBrowser();
 
 /**
  * Checks if fluid or fixed are image arrays.
