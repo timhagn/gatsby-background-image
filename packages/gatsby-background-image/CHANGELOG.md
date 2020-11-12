@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.1.2"></a>
+<a name="1.2.0"></a>
+
+## [1.2.0](https://github.com/timhagn/gatsby-background-image) (2020-11-12)
+
+**fix:** Fixed isBrowser() for edge cases in SSR (#136).
 
 ## [1.1.2](https://github.com/timhagn/gatsby-background-image) (2020-08-15)
 
