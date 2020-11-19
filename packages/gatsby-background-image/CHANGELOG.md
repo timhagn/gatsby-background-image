@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.3.0](https://github.com/timhagn/gatsby-background-image) (2020-11-19)
 
-**fix:** Added isBrowser() to check for hasNoScript preventing #131. 
+**fix:** Added isBrowser() to check for hasNoScript preventing #131.
 
 ## [1.2.0](https://github.com/timhagn/gatsby-background-image) (2020-11-12)
 
