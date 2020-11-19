@@ -64,8 +64,8 @@ class BackgroundImage extends React.Component {
       IOSupported = false;
     }
 
-    // Check if a noscript element should be included.
-    const hasNoScript = !(convertedProps.critical && !fadeIn);
+    // Check if a noscript element should be included, check on isBrowser() for #131.
+    const hasNoScript = !(convertedProps.critical && !fadeIn) && !isBrowser();
 
     // Set initial image state for transitioning.
     const imageState = 0;

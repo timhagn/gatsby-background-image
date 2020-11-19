@@ -41,7 +41,6 @@ background-size: contain;
           }
         
     </style>
-    <noscript />
     <h1>
       test
     </h1>
@@ -90,7 +89,6 @@ background-size: contain;
           }
         
     </style>
-    <noscript />
     <h1>
       test
     </h1>
@@ -139,7 +137,6 @@ background-size: contain;
           }
         
     </style>
-    <noscript />
     <h1>
       test
     </h1>
@@ -188,7 +185,6 @@ background-size: contain;
           }
         
     </style>
-    <noscript />
     <h1>
       test
     </h1>
@@ -234,7 +230,6 @@ background-size: cover;
           }
         
     </style>
-    <noscript />
   </div>
 </div>
 `;
@@ -279,7 +274,6 @@ background-size: cover;
           }
         
     </style>
-    <noscript />
   </div>
 </div>
 `;
@@ -327,7 +321,6 @@ background-size: contain;
           }
         
     </style>
-    <noscript />
     <h1>
       test
     </h1>

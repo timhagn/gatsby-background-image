@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.2.0"></a>
+<a name="1.3.0"></a>
+
+## [1.3.0](https://github.com/timhagn/gatsby-background-image) (2020-11-19)
+
+**fix:** Added isBrowser() to check for hasNoScript preventing #131. 
 
 ## [1.2.0](https://github.com/timhagn/gatsby-background-image) (2020-11-12)
 
