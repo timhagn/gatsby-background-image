@@ -787,4 +787,4 @@ _For anything you may think necessary tell me by opening an issue or a PR : )!_
 
 This package started by pilfering `gatsby-image`s excellent work and adapting
 it - but it's definitely outgrowing those wee beginnings.  
-Thanks go to its creators & the @gatsbyjs Team, anyways : )!
+Thanks go to its creators & the @gatsbyjs Team, anyways : )! 
