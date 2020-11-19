@@ -178,7 +178,7 @@ export const getUrlString = ({
     const stringArray = imageString.map(currentString => {
       if (currentString) {
         const base64 = isBase64(currentString);
-        const imageUrl = hasImageUrls || hasImageUrl(imageString);
+        const imageUrl = hasImageUrls || hasImageUrl(currentString);
         const currentReturnString =
           currentString && tracedSVG
             ? `"${currentString}"`

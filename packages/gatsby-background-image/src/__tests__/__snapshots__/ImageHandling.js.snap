@@ -5,10 +5,10 @@ Object {
   "afterOpacity": 1,
   "finalImage": true,
   "lastImage": "string_of_base64,imageString",
-  "nextImage": "url(http://test.webp),url(http://test.webp)",
+  "nextImage": "url('http://test.webp'),url('http://test.webp')",
   "nextImageArray": Array [
-    "url(http://test.webp)",
-    "url(http://test.webp)",
+    "url('http://test.webp')",
+    "url('http://test.webp')",
   ],
 }
 `;
@@ -18,10 +18,10 @@ Object {
   "afterOpacity": 1,
   "finalImage": true,
   "lastImage": "",
-  "nextImage": "url(http://test.jpg),url(http://test.jpg)",
+  "nextImage": "url('http://test.jpg'),url('http://test.jpg')",
   "nextImageArray": Array [
-    "url(http://test.jpg)",
-    "url(http://test.jpg)",
+    "url('http://test.jpg')",
+    "url('http://test.jpg')",
   ],
 }
 `;
