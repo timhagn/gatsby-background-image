@@ -11,6 +11,7 @@ import {
   createPictureRef,
   hasActivatedPictureRefs,
 } from '../lib/ImageRef';
+import { resetImageCache } from "../lib/ImageCache";
 
 describe(`createPictureRef()`, () => {
   it(`should return null on ssr or empty fluid / fixed prop`, () => {

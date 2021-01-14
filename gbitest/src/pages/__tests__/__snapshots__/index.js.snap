@@ -60,7 +60,7 @@ exports[`IndexPage renders correctly 1`] = `
     >
       <section
         aria-label="gbitest"
-        class="sc-jrAGrp gfPKbL gbi--802263448-undefined"
+        class="sc-jrAGrp eDrFkH gbi--802263448-undefined"
         id="gbitest"
         role="img"
         style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99;"
@@ -68,8 +68,8 @@ exports[`IndexPage renders correctly 1`] = `
       >
         <style>
           
-          .sc-jrAGrp.gfPKbL.gbi--802263448-undefined:before,
-          .sc-jrAGrp.gfPKbL.gbi--802263448-undefined:after {
+          .sc-jrAGrp.eDrFkH.gbi--802263448-undefined:before,
+          .sc-jrAGrp.eDrFkH.gbi--802263448-undefined:after {
             content: '';
             display: block;
             position: absolute;
@@ -84,13 +84,13 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .sc-jrAGrp.gfPKbL.gbi--802263448-undefined:before {
+          .sc-jrAGrp.eDrFkH.gbi--802263448-undefined:before {
             z-index: -100;
             
             
             opacity: 1; 
           }
-          .sc-jrAGrp.gfPKbL.gbi--802263448-undefined:after {
+          .sc-jrAGrp.eDrFkH.gbi--802263448-undefined:after {
             z-index: -101;
             
             
@@ -227,7 +227,7 @@ background-size: cover;
     style="position: fixed; bottom: 0px; left: 0px; background: rgb(0, 68, 111); z-index: 1; width: 100vw; padding: 1rem; text-align: center; color: white;"
   >
     © 
-    2020
+    2021
     , Built with
      
     <a

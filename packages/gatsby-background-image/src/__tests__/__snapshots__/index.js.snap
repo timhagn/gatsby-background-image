@@ -833,3 +833,50 @@ background-size: cover;
   </div>
 </div>
 `;
+
+exports[`<BackgroundImage /> should work without fluid / fixed image when keepStatic is given 1`] = `
+<div>
+  <div
+    class="gbi-2113735767-73WakrfVbNJBaAmhQtEeDv"
+    style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99;"
+  >
+    <style>
+      
+          .gbi-2113735767-73WakrfVbNJBaAmhQtEeDv:before,
+          .gbi-2113735767-73WakrfVbNJBaAmhQtEeDv:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            
+            transition: opacity 0.5s ease 250ms;
+            background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+          }
+          .gbi-2113735767-73WakrfVbNJBaAmhQtEeDv:before {
+            z-index: -100;
+            
+            
+            opacity: 1; 
+          }
+          .gbi-2113735767-73WakrfVbNJBaAmhQtEeDv:after {
+            z-index: -101;
+            
+            
+            
+          }
+        
+    </style>
+    <h1
+      id="kept-child"
+    >
+      I am a child
+    </h1>
+  </div>
+</div>
+`;

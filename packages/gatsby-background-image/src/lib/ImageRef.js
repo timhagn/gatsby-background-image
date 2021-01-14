@@ -120,18 +120,21 @@ export const activatePictureRef = (
       return imageData;
     }
 
+    if (selfRef) {
+      // Set original component's style.
+      imageRef.width = selfRef.offsetWidth;
+      imageRef.height = selfRef.offsetHeight;
+    }
+
     // Prevent adding HTMLPictureElement if it isn't supported (e.g. IE11),
     // but don't prevent it during SSR.
     if (hasPictureElement()) {
       const pic = document.createElement('picture');
       if (selfRef) {
         // Set original component's style.
-        imageRef.width = selfRef.offsetWidth;
-        imageRef.height = selfRef.offsetHeight;
         pic.width = imageRef.width;
         pic.height = imageRef.height;
       }
-      // TODO: check why only the 1400 image gets loaded as jpg & single / stacked images don't!
       if (hasArtDirectionArray(convertedProps)) {
         const sources = createArtDirectionSources(convertedProps).reverse();
         sources.forEach(currentSource => pic.appendChild(currentSource));
@@ -145,9 +148,6 @@ export const activatePictureRef = (
       }
       pic.appendChild(imageRef);
       bodyClone.appendChild(pic);
-    } else if (selfRef) {
-      imageRef.width = selfRef.offsetWidth;
-      imageRef.height = selfRef.offsetHeight;
     }
 
     imageRef.sizes = imageData.sizes || ``;

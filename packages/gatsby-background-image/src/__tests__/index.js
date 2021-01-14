@@ -132,6 +132,15 @@ describe(`<BackgroundImage />`, () => {
     expect(container).toMatchSnapshot();
   });
 
+  it(`should work without fluid / fixed image when keepStatic is given`, () => {
+    const { container } = render(
+      <BackgroundImage keepStatic>
+        <h1 id="kept-child">I am a child</h1>
+      </BackgroundImage>
+    );
+    expect(container).toMatchSnapshot();
+  });
+
   it(`should change style.display from 'inherit' to 'inline-block'`, () => {
     const { container } = render(
       <BackgroundImage fixed={fixedShapeMock} style={{ display: `inherit` }}>
