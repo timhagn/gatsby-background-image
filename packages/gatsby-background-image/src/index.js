@@ -265,6 +265,7 @@ class BackgroundImage extends React.Component {
       durationFadeIn,
       Tag,
       children,
+      keepStatic,
       ...props
     } = fixOpacity(
       convertProps(this.props),
@@ -296,7 +297,7 @@ class BackgroundImage extends React.Component {
 
     // Choose image object of fluid or fixed, return null if not present.
     const image = getCurrentSrcData({ fluid, fixed, returnArray: true });
-    const noScriptImageData = getCurrentSrcData({ fluid, fixed });
+    const noScriptImageData = getCurrentSrcData({ fluid, fixed }) || {};
     if (fluid || fixed) {
       if (fixed) {
         divStyle.width = style.width || image.width;
@@ -307,6 +308,9 @@ class BackgroundImage extends React.Component {
           delete divStyle.display;
         }
       }
+    } else if (keepStatic) {
+      // Prevent container from collapsing.
+      noScriptImageData.srcSet = '';
     } else {
       return null;
     }
@@ -397,6 +401,7 @@ BackgroundImage.defaultProps = {
   Tag: `div`,
   preserveStackingContext: false,
   rootMargin: `200px`,
+  keepStatic: false,
 };
 
 const fixedObject = PropTypes.shape({
@@ -447,6 +452,7 @@ BackgroundImage.propTypes = {
   Tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   preserveStackingContext: PropTypes.bool,
   rootMargin: PropTypes.string,
+  keepStatic: PropTypes.bool,
 };
 
 export default BackgroundImage;

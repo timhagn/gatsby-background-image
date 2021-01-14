@@ -62,6 +62,8 @@ const BackgroundSection = ({ className, children }) => {
           id="gbitest"
           role="img"
           aria-label="gbitest"
+          // Prevent the container from collapsing, should fluid / fixed be empty.
+          keepStatic
         >
           {children}
         </BackgroundImage>
@@ -91,13 +93,13 @@ const StyledWelcomeImage = styled(Img)`
 
 const StyledBackgroundSection = styled(BackgroundSection)`
   width: 100vw;
-  
-  // These three crucial styles (if existing) are directly parsed and added to 
+
+  // These three crucial styles (if existing) are directly parsed and added to
   // the pseudo-elements without further ado (except when overwritten).
   //background-repeat: repeat-y;
   //background-position: left center;
   //background-size: cover;
-  
+
   // With media-queries you have to overwrite the default options (see style={{}} above).
   // ${media.lessThan('large')`
   //   background-size: cover;
@@ -105,9 +107,9 @@ const StyledBackgroundSection = styled(BackgroundSection)`
   //     background-size: contain;
   //   }
   // `}
-  
+
   // For pseudo-elements you have to overwrite the default options (see style={{}} above).
-  // See: https://github.com/timhagn/gatsby-background-image/#styling--passed-through-styles 
+  // See: https://github.com/timhagn/gatsby-background-image/#styling--passed-through-styles
   //&:after, &:before {
   //   background-clip: content-box;
   //   background-size: contain;

@@ -659,10 +659,14 @@ use any stacking context changing elements (like elements styled with
 Starting with `v0.8.19` it's possible to change the IntersectionObservers'
 `rootMargin` with a prop of the same name.
 
+`v1.4.0` added a `keepStatic` switch preventing the container from collapsing &
+thus keeping all children (will probably be default in next major version).
+
 | Name                      | Type      | Description                                                                                 |
 | ------------------------- | --------- | ------------------------------------------------------------------------------------------- |
 | `preserveStackingContext` | `boolean` | Deactivates the "opacity hack" on `<BackgroundImage />` when set to true (Default: `false`) |
 | `rootMargin`              | `string`  | Changes the IntersectionObserver `rootMargin`. (Default: `200px`)                           |
+| `keepStatic`              | `boolean` | Prevents the container from collapsing should `fluid or fixed` be empty. (Default: `false`) |
 
 ## Changed props
 

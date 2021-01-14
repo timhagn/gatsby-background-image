@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.3.1"></a>
+<a name="1.4.0"></a>
+
+## [1.4.0](https://github.com/timhagn/gatsby-background-image) (2021-01-14)
+
+**feat:** Add `keepStatic` to prevent conatiner from collapsing when fluid or
+fixed imageData should be empty.
 
 ## [1.3.1](https://github.com/timhagn/gatsby-background-image) (2020-11-19)
 
