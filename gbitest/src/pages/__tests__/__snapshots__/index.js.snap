@@ -55,21 +55,18 @@ exports[`IndexPage renders correctly 1`] = `
   <div
     class="sc-gsTCUz jedleH"
   >
-    <div
-      class="sc-fubCfw letjyZ"
+    <section
+      aria-label="gbitest"
+      class="sc-jrAGrp bnPILv gbi--802263448-undefined"
+      id="gbitest"
+      role="img"
+      style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99;"
+      title="gbitest"
     >
-      <section
-        aria-label="gbitest"
-        class="sc-jrAGrp gfPKbL gbi--802263448-undefined"
-        id="gbitest"
-        role="img"
-        style="background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; opacity: 0.99;"
-        title="gbitest"
-      >
-        <style>
-          
-          .sc-jrAGrp.gfPKbL.gbi--802263448-undefined:before,
-          .sc-jrAGrp.gfPKbL.gbi--802263448-undefined:after {
+      <style>
+        
+          .sc-jrAGrp.bnPILv.gbi--802263448-undefined:before,
+          .sc-jrAGrp.bnPILv.gbi--802263448-undefined:after {
             content: '';
             display: block;
             position: absolute;
@@ -84,144 +81,81 @@ background-repeat: no-repeat;
 background-size: cover;
 
           }
-          .sc-jrAGrp.gfPKbL.gbi--802263448-undefined:before {
+          .sc-jrAGrp.bnPILv.gbi--802263448-undefined:before {
             z-index: -100;
             
             
             opacity: 1; 
           }
-          .sc-jrAGrp.gfPKbL.gbi--802263448-undefined:after {
+          .sc-jrAGrp.bnPILv.gbi--802263448-undefined:after {
             z-index: -101;
             
             
             
           }
         
-        </style>
-        <div
-          class="sc-bdfBwQ hwocte"
-        >
-          <div
-            class="sc-dlfnbm sc-hKgILt ivkxXu dblVyR"
-          >
-            <div>
-              <h1>
-                Hi people
-              </h1>
-              <p>
-                Welcome to the 
-                <code>
-                  gatsby-background-image/src
-                </code>
-                 test site.
-              </p>
-              <p>
-                As the left background, you see an image rendered by
-                 
-                <code>
-                  gatsby-background-image/src
-                </code>
-              </p>
-              <p>
-                To the right, the same image rendered by 
-                <code>
-                  gatsby-image
-                </code>
-              </p>
-              <div
-                class="sc-eCssSg kMTTKe"
-              >
-                <div
-                  class=" gatsby-image-wrapper"
-                  style="position: relative; overflow: hidden; border-radius: 15px;"
-                >
-                  <div
-                    aria-hidden="true"
-                    style="width: 100%; padding-bottom: 100%;"
-                  />
-                  <picture>
-                    <source
-                      sizes="100 200 300"
-                      srcset="asdfasdf"
-                    />
-                    <img
-                      alt=""
-                      loading="lazy"
-                      sizes="100 200 300"
-                      src="pretend-i-am-a-base64-encoded-image"
-                      srcset="asdfasdf"
-                      style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 500ms;"
-                    />
-                  </picture>
-                  <noscript>
-                    &lt;picture&gt;&lt;source srcset="asdfasdf" sizes="100 200 300" /&gt;&lt;img loading="lazy" sizes="100 200 300" srcset="asdfasdf" src="pretend-i-am-a-base64-encoded-image" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-                  </noscript>
-                </div>
-              </div>
-              Go to 
-              <a
-                class="sc-jSgupP gmnWVn"
-                href="/image-stack/"
-              >
-                image stack
-              </a>
-               to see an example of
-              <strong>
-                 multiple stacked background images
-              </strong>
-              .
-              <br />
-              Go to 
-              <a
-                class="sc-jSgupP gmnWVn"
-                href="/art-direction/"
-              >
-                art direction
-              </a>
-               to see an example of
-              <strong>
-                 art-directed background images
-              </strong>
-              .
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <div
-      class="sc-fubCfw letjyZ"
-    >
+      </style>
       <div
-        class="sc-pFZIQ NhORk gatsby-image-wrapper"
-        style="position: relative; overflow: hidden;"
+        class="sc-bdfBwQ hwocte"
       >
         <div
-          aria-hidden="true"
-          style="width: 100%; padding-bottom: 100%;"
-        />
-        <div
-          aria-hidden="true"
-          style="background-color: rgb(4, 14, 24); position: absolute; top: 0px; bottom: 0px; opacity: 1; right: 0px; left: 0px; transition-delay: 500ms;"
-        />
-        <picture>
-          <source
-            sizes="100 200 300"
-            srcset="asdfasdf"
-          />
-          <img
-            alt=""
-            loading="lazy"
-            sizes="100 200 300"
-            src="pretend-i-am-a-base64-encoded-image"
-            srcset="asdfasdf"
-            style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 500ms;"
-          />
-        </picture>
-        <noscript>
-          &lt;picture&gt;&lt;source srcset="asdfasdf" sizes="100 200 300" /&gt;&lt;img loading="lazy" sizes="100 200 300" srcset="asdfasdf" src="pretend-i-am-a-base64-encoded-image" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-        </noscript>
+          class="sc-dlfnbm sc-hKgILt ivkxXu dblVyR"
+        >
+          <div>
+            <h1>
+              Hi people
+            </h1>
+            <p>
+              Welcome to the 
+              <code>
+                gatsby-background-image/src
+              </code>
+               test site.
+            </p>
+            <p>
+              As the left background, you see an image rendered by
+               
+              <code>
+                gatsby-background-image/src
+              </code>
+            </p>
+            <p>
+              To the right, the same image rendered by
+               
+              <code>
+                gatsby-image
+              </code>
+            </p>
+            Go to 
+            <a
+              class="sc-jSgupP gmnWVn"
+              href="/image-stack/"
+            >
+              image stack
+            </a>
+             to see an example of
+            <strong>
+               multiple stacked background images
+            </strong>
+            .
+            <br />
+            Go to 
+            <a
+              class="sc-jSgupP gmnWVn"
+              href="/art-direction/"
+            >
+              art direction
+            </a>
+             
+            to see an example of
+            <strong>
+               art-directed background images
+            </strong>
+            .
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
   <footer
     style="position: fixed; bottom: 0px; left: 0px; background: rgb(0, 68, 111); z-index: 1; width: 100vw; padding: 1rem; text-align: center; color: white;"

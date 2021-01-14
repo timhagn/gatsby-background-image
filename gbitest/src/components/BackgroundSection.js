@@ -36,7 +36,7 @@ const BackgroundSection = ({ className, children }) => {
   const imageData = desktop.childImageSharp.fluid
   return (
     <StyledFullScreenWrapper>
-      <StyledSymetryWrapper>
+      {/*<StyledSymetryWrapper>*/}
         <BackgroundImage
           Tag="section"
           className={className}
@@ -65,15 +65,15 @@ const BackgroundSection = ({ className, children }) => {
         >
           {children}
         </BackgroundImage>
-      </StyledSymetryWrapper>
-      <StyledSymetryWrapper>
-        <StyledWelcomeImage
-          fluid={imageData}
-          backgroundColor={`#040e18`}
-          objectFit="cover"
-          objectPosition="50% 50%"
-        />
-      </StyledSymetryWrapper>
+      {/*</StyledSymetryWrapper>*/}
+      {/*<StyledSymetryWrapper>*/}
+      {/*  <StyledWelcomeImage*/}
+      {/*    fluid={imageData}*/}
+      {/*    backgroundColor={`#040e18`}*/}
+      {/*    objectFit="cover"*/}
+      {/*    objectPosition="50% 50%"*/}
+      {/*  />*/}
+      {/*</StyledSymetryWrapper>*/}
     </StyledFullScreenWrapper>
   )
 }
@@ -92,7 +92,7 @@ const StyledWelcomeImage = styled(Img)`
 const StyledBackgroundSection = styled(BackgroundSection)`
   width: 100vw;
   
-  // These three crucial styles (if existing) are directly parsed and added to 
+  // These three crucial styles (if existing) are directly parsed and added to
   // the pseudo-elements without further ado (except when overwritten).
   //background-repeat: repeat-y;
   //background-position: left center;

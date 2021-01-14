@@ -38,6 +38,7 @@
     "/index.js",
     "/index.d.ts",
     "/gatsby-node.js",
+    "/gatsby-ssr.js",
     "/gatsby-browser.js",
     "lib"
   ],
