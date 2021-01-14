@@ -10,15 +10,24 @@ const generateHtml = str => {
 
 const HeadComponents = [
   <style
-    key="my-script"
-    data-testid="gbi"
+    key="main-above"
+    data-gbi=""
     dangerouslySetInnerHTML={generateHtml(
       `.gatsby-image-wrapper { content: 'TEST'; }`
     )}
   />,
+  <script
+    key="gbi-script"
+    type="module"
+    dangerouslySetInnerHTML={generateHtml(`
+      const mainStyleTag = document.body.querySelector('[data-main-bgimage]');
+      const aboveTheFoldStyle = document.body.querySelector('[data-gbi]')
+      aboveTheFoldStyle.textContent = mainStyleTag.textContent;
+    `)}
+  />,
 ];
 
 exports.onRenderBody = ({ setHeadComponents }) => {
-  setHeadComponents(HeadComponents);
-  console.log('HERE!!!!!');
+  // setHeadComponents(HeadComponents);
+  // console.log('HERE in bg image SSR!!!!!');
 };

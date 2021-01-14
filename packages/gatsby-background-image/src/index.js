@@ -370,6 +370,7 @@ class BackgroundImage extends React.Component {
       >
         {/* Create style element to transition between pseudo-elements. */}
         <style
+          data-main-bgimage=""
           dangerouslySetInnerHTML={{
             __html: pseudoStyles,
           }}
