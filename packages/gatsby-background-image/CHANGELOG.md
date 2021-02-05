@@ -3,12 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.4.0"></a>
+<a name="1.4.1"></a>
+
+## [1.4.1](https://github.com/timhagn/gatsby-background-image) (2021-02-05)
+
+**bump:** Bump dependencies cause of warnings & add `jest-circus`.
 
 ## [1.4.0](https://github.com/timhagn/gatsby-background-image) (2021-01-14)
 
-**feat:** Add `keepStatic` to prevent conatiner from collapsing when fluid or
-fixed imageData should be empty.
+**feat:** Add `keepStatic` to prevent the container from collapsing when fluid 
+or fixed imageData should be empty.
 
 ## [1.3.1](https://github.com/timhagn/gatsby-background-image) (2020-11-19)
 
