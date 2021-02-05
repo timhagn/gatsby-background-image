@@ -138,14 +138,14 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/mocks/', '.cache'],
 
   // The regexp pattern Jest uses to detect test files
-  // testRegex: "",
+  // testRegex: '',
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: null,
 
   // This option allows use of a custom test runner
-  testRunner: 'jasmine2',
-  // testRunner: 'jest-circus/runner',
+  // testRunner: 'jasmine2',
+  testRunner: 'jest-circus/runner',
 
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
   testURL: 'http://localhost',
