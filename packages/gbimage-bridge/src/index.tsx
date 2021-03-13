@@ -36,18 +36,42 @@ const getPlaceholder = (imageData: IGatsbyImageData) => {
 };
 
 /**
+ * Extracts the extra src{Type} from sources srcSets.
+ *
+ * @param {string} srcSet
+ */
+const getSrc = (srcSet: string) => {
+  if (srcSet) {
+    const srcSetRegex = /(?:([^"'\s,]+)\s*(?:\s+\d+[wx])(?:,\s*)?)/gm;
+    const allSources = [...srcSet.matchAll(srcSetRegex)];
+    const initialSource = allSources.filter(
+      src => src?.[0].includes('100w') || src?.[0].includes('1x')
+    );
+    return initialSource?.[0][1];
+  }
+  return '';
+};
+
+/**
  * Loops through all sources & creates srcSet{Type} entries for `gbi`.
+ *
  * @param imageData
  */
-const getAllSrcSets = (imageData: IGatsbyImageData) => {
+const getAllExtraSrcSets = (imageData: IGatsbyImageData) => {
   if (imageData.images?.sources && Array.isArray(imageData.images?.sources)) {
     return imageData.images?.sources.reduce((srcSets, sourceImage) => {
       const typeFromMime = sourceImage?.type?.split('/')[1] || '';
-      const sourceType = typeFromMime?.charAt(0).toUpperCase() + typeFromMime;
-      const possibleSrcSet = `srcSet${sourceType}`;
-      if (sourceType && !(possibleSrcSet in srcSets)) {
+      const sourceType =
+        typeFromMime?.charAt(0).toUpperCase() + typeFromMime.slice(1);
+      const possibleExtraSrcSet = `srcSet${sourceType}`;
+      const possibleExtraSrc = `src${sourceType}`;
+      if (sourceType && !(possibleExtraSrcSet in srcSets)) {
         // @ts-ignore
-        srcSets[possibleSrcSet] = sourceImage?.srcSet;
+        srcSets[possibleExtraSrcSet] = sourceImage?.srcSet;
+      }
+      if (sourceType && !(possibleExtraSrc in srcSets)) {
+        // @ts-ignore
+        srcSets[possibleExtraSrc] = getSrc(sourceImage?.srcSet);
       }
       return srcSets;
     }, {});
@@ -55,7 +79,7 @@ const getAllSrcSets = (imageData: IGatsbyImageData) => {
   return {};
 };
 
-// TODO: add WebP & AVIF support (the latter to gbi as well ; ).
+// TODO: AVIF support to gbi as well ; ).
 // TODO: add tests.
 
 /**
@@ -116,11 +140,11 @@ export function convertToBgImage(
     const bgType = getBgImageType(imageData);
     const aspectRatio = getAspectRatio(imageData);
     const placeholder = getPlaceholder(imageData);
-    const srcSets = getAllSrcSets(imageData);
+    const extraSrcSets = getAllExtraSrcSets(imageData);
     // @ts-ignore
     returnBgObject[bgType] = {
       ...imageData.images.fallback,
-      ...srcSets,
+      ...extraSrcSets,
       ...placeholder,
       aspectRatio,
     };
