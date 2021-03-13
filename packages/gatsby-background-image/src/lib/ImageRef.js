@@ -139,6 +139,7 @@ export const activatePictureRef = (
         const sources = createArtDirectionSources(convertedProps).reverse();
         sources.forEach(currentSource => pic.appendChild(currentSource));
       }
+      // TODO: add functionality for multiple different extra srcSets (like srcSetAvif = )
       if (imageData.srcSetWebp) {
         const sourcesWebP = document.createElement('source');
         sourcesWebP.type = `image/webp`;

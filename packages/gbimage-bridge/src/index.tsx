@@ -65,14 +65,18 @@ const getAllExtraSrcSets = (imageData: IGatsbyImageData) => {
         typeFromMime?.charAt(0).toUpperCase() + typeFromMime.slice(1);
       const possibleExtraSrcSet = `srcSet${sourceType}`;
       const possibleExtraSrc = `src${sourceType}`;
-      if (sourceType && !(possibleExtraSrcSet in srcSets)) {
-        // @ts-ignore
-        srcSets[possibleExtraSrcSet] = sourceImage?.srcSet;
+      if (sourceType) {
+        if (!(possibleExtraSrcSet in srcSets)) {
+          // @ts-ignore
+          srcSets[possibleExtraSrcSet] = sourceImage?.srcSet;
+        }
+        if (!(possibleExtraSrc in srcSets)) {
+          // @ts-ignore
+          srcSets[possibleExtraSrc] = getSrc(sourceImage?.srcSet);
+        }
+        // TODO: add type & sizes downward compatible oO...
       }
-      if (sourceType && !(possibleExtraSrc in srcSets)) {
-        // @ts-ignore
-        srcSets[possibleExtraSrc] = getSrc(sourceImage?.srcSet);
-      }
+
       return srcSets;
     }, {});
   }
