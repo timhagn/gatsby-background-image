@@ -35,6 +35,9 @@ const getPlaceholder = (imageData: IGatsbyImageData) => {
   return {};
 };
 
+// TODO: add WebP & AVIF support (the latter to gbi as well ; ).
+// TODO: add tests.
+
 /**
  * Tries to Backport the new `gatsbyImageData` type to the classic `fluid` / `fixed` form.
  *
@@ -62,6 +65,7 @@ export function convertToBgImage(
 
 export interface IBgImageProps {
   fluid?: IGatsbyImageData;
+  fixed?: IGatsbyImageData;
   className?: string;
   onClick?: (e: Event) => void;
   tabIndex?: number;
