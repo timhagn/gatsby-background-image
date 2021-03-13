@@ -248,7 +248,7 @@ import { convertToBgImage } from "gbimage-bridge"
 import BackgroundImage from 'gatsby-background-image'
 
 const GbiBridged = () => {
-  const {placeholderImage, oldImage} = useStaticQuery(
+  const { placeholderImage } = useStaticQuery(
     graphql`
       query {
         placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {

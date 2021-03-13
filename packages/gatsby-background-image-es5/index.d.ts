@@ -25,13 +25,13 @@ declare module 'gatsby-background-image-es5' {
     media?: string
   }
 
-  type IntrinsicTags = keyof React.JSX.IntrinsicElements;
-  type DefaultExtraProps = { Tag?: 'div' } & React.JSX.IntrinsicElements['div'];
+  type IntrinsicTags = keyof JSX.IntrinsicElements;
+  type DefaultExtraProps = { Tag?: 'div' } & JSX.IntrinsicElements['div'];
   type InferExtraProps<T extends IntrinsicTags | void> = T extends infer U
     ? U extends IntrinsicTags
     ? U extends 'div'
     ? DefaultExtraProps
-    : { Tag: U } & React.JSX.IntrinsicElements[U]
+    : { Tag: U } & JSX.IntrinsicElements[U]
     : DefaultExtraProps
     : DefaultExtraProps
     ;

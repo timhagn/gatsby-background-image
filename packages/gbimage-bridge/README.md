@@ -54,7 +54,7 @@ aforementioned [migration guide](https://www.gatsbyjs.com/docs/reference/release
 ```jsx
 import { getImage } from "gatsby-plugin-image"
 
-const {placeholderImage, oldImage} = useStaticQuery(
+const { placeholderImage } = useStaticQuery(
     graphql`
       query {
         placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
@@ -73,7 +73,7 @@ const {placeholderImage, oldImage} = useStaticQuery(
 
   // Use like this:
   const bgImage = convertToBgImage(image);
-  
-  
+
+
 }
 ```
