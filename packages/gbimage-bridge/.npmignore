@@ -1,7 +1,3 @@
-
-packages/*/yarn.lock
-packages/*/package-lock.json
-
 # Logs
 logs
 *.log
@@ -16,7 +12,6 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
-junit.xml
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -30,27 +25,11 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
-examples/biz-website/public/
-examples/blog/public/
 *.un~
-dist
-bin/published.js
-
-# Build Path of Test Fixtures
-test/**/public
-.gatsby-context.js
-.DS_Store
-public/
-node_modules/
-.cache/
-.netlify
-
-# IDE specific
-.idea/
-.vscode/
-*.sw*
-
-.serverless/
 yarn.lock
 package-lock.json
-dist
+src
+flow-typed
+decls
+examples
+

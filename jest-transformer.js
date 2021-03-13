@@ -1,2 +1,2 @@
-const babelPreset = require(`babel-preset-gatsby-package`)()
-module.exports = require(`babel-jest`).createTransformer(babelPreset)
+const babelPreset = require(`babel-preset-gatsby-package`)();
+module.exports = require(`babel-jest`).createTransformer(babelPreset);
