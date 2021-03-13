@@ -78,6 +78,7 @@ export interface IBgImageProps {
  * @param {React.PropsWithChildren<IBgImageProps>} props
  * @return {JSX.Element}
  * @constructor
+ * @author @rburgst <https://github.com/rburgst>
  */
 export const BgImage: FunctionComponent<IBgImageProps> = props => {
   const { fluid, children, ...args } = props;

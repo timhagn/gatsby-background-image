@@ -1,6 +1,6 @@
 {
   "name": "gatsby-background-image-bridge",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Backports the new `gatsbyImageData` type to the classic form.",
   "repository": "https://github.com/timhagn/gatsby-background-image/tree/main/packages/gbimage-bridge",
   "authors": [
@@ -14,7 +14,7 @@
   "unpkg": "dist/index.umd.js",
   "scripts": {
     "build": "microbundle --jsx React.createElement",
-    "dev": "microbundle watch"
+    "dev": "microbundle --jsx React.createElement watch"
   },
   "devDependencies": {
     "gatsby-plugin-image": "^1.0.1",
