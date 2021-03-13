@@ -223,7 +223,69 @@ export const onClientEntry = () => {
 
 For the moment, until the next major version for `gatsby-background-image`, the 
 new syntax of image queries is only supported through a companion package called
-`gbimage-bridge`. Head over to its [README]()
+`gbimage-bridge`. Head over to its 
+[README](https://github.com/timhagn/gatsby-background-image/tree/main/packages/gbimage-bridge)
+to learn more, but here a TLDR installation instruction:
+
+```bash
+yarn add gbimage-bridge
+```
+
+or
+
+```bash
+npm install --save gbimage-bridge
+```
+
+and usage with `BackgroundImage` is as follows:
+
+```jsx
+import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+import { getImage } from "gatsby-plugin-image"
+
+import { convertToBgImage } from "gbimage-bridge"
+import BackgroundImage from 'gatsby-background-image'
+
+const GbiBridged = () => {
+  const {placeholderImage, oldImage} = useStaticQuery(
+    graphql`
+      query {
+        placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+          childImageSharp {
+            gatsbyImageData(
+              width: 200
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
+      }
+    `
+  )
+  const image = getImage(placeholderImage)
+
+  // Use like this:
+  const bgImage = convertToBgImage(image)
+
+  return (
+    <BackgroundImage
+      Tag="section"
+      // Spread bgImage into BackgroundImage:
+      {...bgImage}
+      preserveStackingContext
+    >
+      <div style={{minHeight: 1000, minWidth: 1000}}>
+        <GatsbyImage image={image} alt={"testimage"}/>
+      </div>
+    </BackgroundImage>
+  )
+}
+export default GbiBridged
+```
+
+But `gbimage-bridge` has also a `BgImage` wrapper component for this, so read 
+more [over there](https://github.com/timhagn/gatsby-background-image/tree/main/packages/gbimage-bridge) ; )!
 
 ## How to Use
 
