@@ -47,7 +47,7 @@ All the glamour (and speed) of `gatsby-image` for your Background Images!
 _*Of course styleable with `styled-components` and the like!*_
 
 _**For usage with Gatsby 3`gatsby-plugin-image` see:  
-[Gatsby 3 & gatsby-plugin-image](#gatsby-3-&-gatsby-plugin-image)!**_
+[Gatsby 3 & gatsby-plugin-image](#gatsby-3--gatsby-plugin-image)!**_
 
 ## Table of Contents
 
@@ -56,7 +56,7 @@ _**For usage with Gatsby 3`gatsby-plugin-image` see:
 - [Install](#install)
   - [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)
   - [Important](#important)
-- [Gatsby 3 & gatsby-plugin-image](#gatsby-3-&-gatsby-plugin-image)
+- [Gatsby 3 & gatsby-plugin-image](#gatsby-3--gatsby-plugin-image)
 - [How to Use](#how-to-use)
 - [How to Use with Multiple Images](#how-to-use-with-multiple-images)
 - [Configuration & props](#configuration--props)
