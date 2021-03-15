@@ -1,6 +1,6 @@
 {
   "name": "gbi",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@babel/cli": "^7.12.13",
     "@babel/core": "^7.12.13",
