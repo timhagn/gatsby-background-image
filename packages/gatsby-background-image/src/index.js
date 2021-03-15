@@ -413,6 +413,8 @@ const fixedObject = PropTypes.shape({
   tracedSVG: PropTypes.string,
   srcWebp: PropTypes.string,
   srcSetWebp: PropTypes.string,
+  srcAvif: PropTypes.string,
+  srcSetAvif: PropTypes.string,
   media: PropTypes.string,
 });
 
@@ -425,6 +427,8 @@ const fluidObject = PropTypes.shape({
   tracedSVG: PropTypes.string,
   srcWebp: PropTypes.string,
   srcSetWebp: PropTypes.string,
+  srcAvif: PropTypes.string,
+  srcSetAvif: PropTypes.string,
   media: PropTypes.string,
 });
 

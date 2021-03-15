@@ -110,7 +110,10 @@ export function convertToBgImage(
       ...imageData.images.fallback,
       ...extraSrcSets,
       ...placeholder,
-      aspectRatio,
+      ...(bgType === 'fluid' ? { aspectRatio } : {}),
+      ...(bgType === 'fixed'
+        ? { width: imageData.width, height: imageData.height }
+        : {}),
     };
     return returnBgObject;
   }

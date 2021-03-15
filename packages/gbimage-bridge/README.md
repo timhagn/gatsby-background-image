@@ -51,10 +51,16 @@ aforementioned [migration guide](https://www.gatsbyjs.com/docs/reference/release
 
 ## How to use
 
-```jsx
-import { getImage } from "gatsby-plugin-image"
+For your convenience this package exports a Wrapper around `BackgroundImage`,
+that automatically converts the new image format to the old one needed by it.
+Read later what happens "under the hood", but here's the wrapper:
 
-const { placeholderImage } = useStaticQuery(
+```jsx
+import { getImage } from 'gatsby-plugin-image';
+import { BgImage } from 'gbimage-bridge';
+
+const BridgeTest = () => {
+  const { placeholderImage } = useStaticQuery(
     graphql`
       query {
         placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
@@ -71,9 +77,9 @@ const { placeholderImage } = useStaticQuery(
   );
   const image = getImage(placeholderImage);
 
-  // Use like this:
-  const bgImage = convertToBgImage(image);
-
-
-}
+  return <BgImage image={image}></BgImage>;
+};
 ```
+
+All properties are passed through to `BackgroundImage` so use `BgImage` like a
+drop in replacement to 

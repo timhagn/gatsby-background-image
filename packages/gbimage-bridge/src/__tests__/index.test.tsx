@@ -107,7 +107,8 @@ const convertedFixedMock = {
     srcWebp: '/static/f6ae9d60c37065f389a04cb5ff400156/b5535/bubbles.webp',
     tracedSVG:
       "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='200'%20height='150'%20viewBox='0%200%20200%20150'%20preserveAspectRatio='none'%3e%3cpath%20d='M190%20127c-3%203-3%206-1%208%204%206%2011%204%2011-2s-5-9-10-6'%20fill='%23d3d3d3'%20fill-rule='evenodd'/%3e%3c/svg%3e",
-    aspectRatio: 1.3333333333333333,
+    width: 200,
+    height: 150,
   },
 };
 
