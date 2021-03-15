@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.4.1"></a>
+<a name="1.5.0"></a>
+
+## [1.5.0](https://github.com/timhagn/gatsby-background-image) (2021-03-15)
+
+**feat:** Add possibility of using AVIF in combination with `gbimage-bridge`.
 
 ## [1.4.1](https://github.com/timhagn/gatsby-background-image) (2021-02-05)
 

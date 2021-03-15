@@ -5,6 +5,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 <a name="0.1.0"></a>
 
-## [0.1.0](https://github.com/timhagn/gatsby-background-image) (2021-03-13)
+## [0.1.0](https://github.com/timhagn/gatsby-background-image) (2021-03-15)
 
 **feat:** initial release
