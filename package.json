@@ -63,5 +63,5 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "independent"
+  "version": "1.5.0"
 }
