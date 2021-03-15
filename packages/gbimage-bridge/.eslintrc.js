@@ -4,5 +4,6 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
     '@typescript-eslint/ban-ts-comment': [0],
+    'import/extensions': [0],
   },
 };
