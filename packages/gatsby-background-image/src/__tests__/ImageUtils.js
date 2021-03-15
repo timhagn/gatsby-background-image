@@ -178,6 +178,14 @@ describe(`getCurrentFromData() & getUrlString()`, () => {
     expect(returnedString).toMatchInlineSnapshot(`"url('http://some_image')"`);
   });
 
+  it(`getCurrentFromData() should return empty string if data isn't an object`, () => {
+    const returnedString = getCurrentFromData({
+      data: `test`,
+      propName: `blubb`,
+    });
+    expect(returnedString).toMatchInlineSnapshot(`""`);
+  });
+
   it(`getCurrentFromData() should return empty string for mismatched data as object & propName`, () => {
     const returnedString = getCurrentFromData({
       data: [{ blubb: null }],

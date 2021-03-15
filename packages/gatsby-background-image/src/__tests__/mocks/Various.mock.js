@@ -17,6 +17,7 @@ export const fluidShapeMock = {
   src: `test_fluid_image.jpg`,
   srcSet: `some srcSet`,
   srcSetWebp: `some srcSetWebp`,
+  srcSetAvif: `some srcSetWebp`,
   sizes: `(max-width: 600px) 100vw, 600px`,
   base64: `string_of_base64`,
 };
