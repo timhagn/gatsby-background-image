@@ -31,9 +31,9 @@ module.exports = {
     '/node_modules/',
     '/mocks/',
     '/gatsby-background-image/lib/',
-    '/gatsby-background-image/index.js/',
+    '/gatsby-background-image/index.js',
     '/gatsby-background-image-es5/lib/',
-    '/gatsby-background-image-es5/lib/index.js/',
+    '/gatsby-background-image-es5/lib/index.js',
   ],
 
   // A list of reporter names that Jest uses when writing coverage reports
