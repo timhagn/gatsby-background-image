@@ -85,7 +85,7 @@ const BridgeTest = () => {
   const pluginImage = getImage(image);
 
   return (
-          <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
+          <BgImage image={pluginImage} style={{ minWidth: 200, minHeight: 200 }}>
             <div>Hello from BgImage!</div>
           </BgImage>
   );
@@ -125,7 +125,7 @@ const StackedBridgeTest = () => {
   ].reverse();
 
   return (
-          <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
+          <BgImage image={backgroundFluidImageStack} style={{ minWidth: 200, minHeight: 200 }}>
             <div>Hello from BgImage!</div>
           </BgImage>
   );
