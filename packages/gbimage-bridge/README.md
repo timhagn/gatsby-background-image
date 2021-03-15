@@ -27,6 +27,7 @@ to see for yourself what changed in Gatsby 3 under the hood!
 
 - [Install](#install)
 - [How to Use](#how-to-use)
+  - [convertToBgImage()](#converttobgimage)
 - [Why this package](#why)
 
 ## Install
@@ -53,7 +54,10 @@ aforementioned [migration guide](https://www.gatsbyjs.com/docs/reference/release
 
 For your convenience this package exports a Wrapper around `BackgroundImage`,
 that automatically converts the new image format to the old one needed by it.
-Read later what happens "under the hood", but here's the wrapper:
+All properties are passed through to `BackgroundImage` so use `BgImage` like a
+drop in replacement for it.
+Read below what happens inside (& how tos for multiple images & suchlike),
+but here's the wrapper:
 
 ```jsx
 import { getImage } from 'gatsby-plugin-image';
@@ -75,11 +79,27 @@ const BridgeTest = () => {
       }
     `
   );
-  const image = getImage(placeholderImage);
-
-  return <BgImage image={image}></BgImage>;
+  const pluginImage = getImage(image);
+  
+  return (
+    <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
+      <div>Hello from BgImage!</div>
+    </BgImage>
+  );
 };
 ```
 
-All properties are passed through to `BackgroundImage` so use `BgImage` like a
-drop in replacement to 
+### convertToBgImage()
+
+Inside the Wrapper the following "magic" happens:
+
+```jsx
+// Convert it to the old format.
+const bgImage = convertToBgImage(pluginImage);
+```
+
+`convertToBgImage()` takes an image of the form `IGatsbyImageData` (the result
+from the new query). It then goes through the contents & extracts the necessary
+images & remaining fields needed. You can of course use the result of the
+function for the classic `gatsby-image` as well!
+

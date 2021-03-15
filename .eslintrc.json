@@ -3,6 +3,7 @@
   "parser": "babel-eslint",
   "plugins": ["prettier"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": [0],
     "arrow-body-style": [0],
     "consistent-return": [0],
     "func-names": [0],

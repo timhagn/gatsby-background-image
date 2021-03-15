@@ -6,12 +6,14 @@ import {
   convertToBgImage,
   getAllExtraSrcSets,
   getPlaceholder,
+  getSingleImage,
   getSrc,
+  IGatsbyImageDataExtended,
 } from '../index';
 
 // MOCKS
 
-const newFormatConstrainedMock: IGatsbyImageData = {
+const newFormatConstrainedMock: IGatsbyImageDataExtended = {
   layout: 'constrained',
   placeholder: {
     fallback:
@@ -61,7 +63,7 @@ const convertedFluidMock = {
   },
 };
 
-const newFormatFixedMock: IGatsbyImageData = {
+const newFormatFixedMock: IGatsbyImageDataExtended = {
   layout: 'fixed',
   placeholder: {
     fallback:
@@ -117,8 +119,14 @@ const convertedFixedMock = {
 describe(`convertToBgImage()`, () => {
   it('should return empty object when failing', () => {
     // @ts-ignore
+    const converted = convertToBgImage();
+    expect(converted).toEqual(null);
+  });
+
+  it('should return empty object when failing with data', () => {
+    // @ts-ignore
     const converted = convertToBgImage({});
-    expect(converted).toEqual({});
+    expect(converted).toEqual(null);
   });
 
   it('should convert constrained image', () => {
@@ -129,6 +137,66 @@ describe(`convertToBgImage()`, () => {
   it('should convert fixed image', () => {
     const converted = convertToBgImage(newFormatFixedMock);
     expect(converted).toEqual(convertedFixedMock);
+  });
+
+  it('should fail converting string array', () => {
+    const imageArray: string[] = ['', ''];
+    const converted = convertToBgImage(imageArray);
+    expect(converted).toEqual(null);
+  });
+
+  it('should convert an array of constrained images', () => {
+    const imageArray: IGatsbyImageDataExtended[] = [
+      newFormatConstrainedMock,
+      newFormatConstrainedMock,
+    ];
+    const converted = convertToBgImage(imageArray);
+    expect(converted).toEqual({
+      fluid: [convertedFluidMock.fluid, convertedFluidMock.fluid],
+    });
+  });
+
+  it('should convert an stacked image array with a string', () => {
+    const imageArray = [newFormatConstrainedMock, `testcss`];
+    const converted = convertToBgImage(imageArray);
+    expect(converted).toEqual({
+      fluid: [convertedFluidMock.fluid, `testcss`],
+    });
+  });
+
+  it('should convert an stacked image array with a string at first position', () => {
+    const imageArray = [`testcss`, newFormatConstrainedMock, `testcss`];
+    const converted = convertToBgImage(imageArray);
+    expect(converted).toEqual({
+      fluid: [`testcss`, convertedFluidMock.fluid, `testcss`],
+    });
+  });
+
+  it('should convert an stacked image array with media queries', () => {
+    const imageArray = [
+      {
+        ...newFormatConstrainedMock,
+        media: 'testcss',
+      },
+      `testcss`,
+    ];
+    const converted = convertToBgImage(imageArray);
+    expect(converted).toEqual({
+      fluid: [
+        {
+          ...convertedFluidMock.fluid,
+          media: 'testcss',
+        },
+        `testcss`,
+      ],
+    });
+  });
+});
+
+describe(`getSingleImage()`, () => {
+  it(`should return empty object when failing`, () => {
+    const converted = getSingleImage(['', '']);
+    expect(converted).toEqual(null);
   });
 });
 
