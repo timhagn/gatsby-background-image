@@ -76,7 +76,6 @@ const getAllExtraSrcSets = (imageData: IGatsbyImageData) => {
         }
         // TODO: add type & sizes downward compatible oO...
       }
-
       return srcSets;
     }, {});
   }

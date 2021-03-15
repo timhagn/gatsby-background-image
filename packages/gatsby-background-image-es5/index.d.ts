@@ -10,6 +10,8 @@ declare module 'gatsby-background-image-es5' {
     tracedSVG?: string
     srcWebp?: string
     srcSetWebp?: string
+    srcAvif?: string;
+    srcSetAvif?: string;
     media?: string
   }
 
@@ -22,6 +24,8 @@ declare module 'gatsby-background-image-es5' {
     tracedSVG?: string
     srcWebp?: string
     srcSetWebp?: string
+    srcAvif?: string;
+    srcSetAvif?: string;
     media?: string
   }
 
