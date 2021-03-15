@@ -3,9 +3,12 @@
   "parser": "babel-eslint",
   "plugins": ["prettier"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": [0],
+    "arrow-body-style": [0],
     "consistent-return": [0],
     "func-names": [0],
     "guard-for-in": [0],
+    "import/no-unresolved": [0],
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -30,11 +33,12 @@
     "no-restricted-globals": [0],
     "no-restricted-syntax": [0],
     "no-underscore-dangle": [0],
+    "no-unused-expressions": [0],
     "no-use-before-define": [0],
     "one-var": [0],
     "prettier/prettier": ["error"],
     "react/jsx-curly-brace-presence": [0],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/prop-types": [0],
     "react/jsx-one-expression-per-line": [0],
     "react/jsx-props-no-spreading": [0],

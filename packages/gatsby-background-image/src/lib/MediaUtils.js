@@ -1,5 +1,5 @@
 import smq from 'sort-media-queries';
-import { isBrowser } from './SimpleUtils';
+import { capitalize, isBrowser } from './SimpleUtils';
 
 /**
  * Return an array ordered by elements having a media prop, does not use
@@ -23,6 +23,28 @@ export const groupByMedia = imageVariants => {
 };
 
 /**
+ * Creates a single source element to add srcSets.
+ *
+ * @param {object}  image       The image to add sources from.
+ * @param {string}  type  Which srcSet to add.
+ */
+export const createSourceElementForSrcSet = (image, type) => {
+  const source = document.createElement('source');
+  const srcSetName = `srcSet${capitalize(type)}`;
+  if (srcSetName in image) {
+    source.type = `image/${type}`;
+    source.srcset = image[srcSetName];
+  }
+  if (image.sizes) {
+    source.sizes = image.sizes;
+  }
+  if (image.media) {
+    source.media = image.media;
+  }
+  return source.srcset ? source : null;
+};
+
+/**
  * Creates a source Array from media objects.
  *
  * @param fluid
@@ -35,16 +57,10 @@ export const createArtDirectionSources = ({ fluid, fixed }) => {
     if (!image.media) {
       return sources;
     }
-    const source = document.createElement('source');
-    if (image.srcSetWebp) {
-      source.type = `image/webp`;
-      source.srcset = image.srcSetWebp;
-    }
-    if (image.sizes) {
-      source.sizes = image.sizes;
-    }
-    source.media = image.media;
-    sources.push(source);
+    const sourceWebp = createSourceElementForSrcSet(image, 'webp');
+    const sourceAvif = createSourceElementForSrcSet(image, 'avif');
+    sourceWebp && sources.push(sourceWebp);
+    sourceAvif && sources.push(sourceAvif);
     return sources;
   }, []);
 };

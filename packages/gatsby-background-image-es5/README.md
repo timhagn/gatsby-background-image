@@ -38,6 +38,7 @@ rest of your images and even more:
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image),
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,  
+**plus** having **AVIF** support (with the help of [gbimage-bridge](https://github.com/timhagn/gatsby-background-image/tree/main/packages/gbimage-bridge))!  
 **plus** being usable as a container (no more hacks with extra wrappers)  
 **plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images)  
 **plus** being able to style with [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)
@@ -46,6 +47,9 @@ All the glamour (and speed) of `gatsby-image` for your Background Images!
 
 _*Of course styleable with `styled-components` and the like!*_
 
+_**For usage with Gatsby 3`gatsby-plugin-image` see:  
+[Gatsby 3 & gatsby-plugin-image](#gatsby-3--gatsby-plugin-image)!**_
+
 ## Table of Contents
 
 - [Example Repo](#example-repo)
@@ -53,6 +57,7 @@ _*Of course styleable with `styled-components` and the like!*_
 - [Install](#install)
   - [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)
   - [Important](#important)
+- [Gatsby 3 & gatsby-plugin-image](#gatsby-3--gatsby-plugin-image)
 - [How to Use](#how-to-use)
 - [How to Use with Multiple Images](#how-to-use-with-multiple-images)
 - [Configuration & props](#configuration--props)
@@ -195,7 +200,74 @@ module.exports = {
 ]
 ```
 
-And
+
+## Gatsby 3 & gatsby-plugin-image
+
+For the moment, until the next major version for `gatsby-background-image`, the
+new syntax of image queries is only supported through a companion package called
+`gbimage-bridge`. Head over to its
+[README](https://github.com/timhagn/gatsby-background-image/tree/main/packages/gbimage-bridge)
+to learn more, but here a TLDR installation instruction:
+
+```bash
+yarn add gbimage-bridge
+```
+
+or
+
+```bash
+npm install --save gbimage-bridge
+```
+
+and usage with `BackgroundImage` is as follows:
+
+```jsx
+import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+import { getImage } from "gatsby-plugin-image"
+
+import { convertToBgImage } from "gbimage-bridge"
+import BackgroundImage from 'gatsby-background-image'
+
+const GbiBridged = () => {
+  const { placeholderImage } = useStaticQuery(
+    graphql`
+      query {
+        placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+          childImageSharp {
+            gatsbyImageData(
+              width: 200
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
+      }
+    `
+  )
+  const image = getImage(placeholderImage)
+
+  // Use like this:
+  const bgImage = convertToBgImage(image)
+
+  return (
+    <BackgroundImage
+      Tag="section"
+      // Spread bgImage into BackgroundImage:
+      {...bgImage}
+      preserveStackingContext
+    >
+      <div style={{minHeight: 1000, minWidth: 1000}}>
+        <GatsbyImage image={image} alt={"testimage"}/>
+      </div>
+    </BackgroundImage>
+  )
+}
+export default GbiBridged
+```
+
+But `gbimage-bridge` has also a `BgImage` wrapper component for this, so read
+more [over there](https://github.com/timhagn/gatsby-background-image/tree/main/packages/gbimage-bridge) ; )!
 
 ## How to Use
 

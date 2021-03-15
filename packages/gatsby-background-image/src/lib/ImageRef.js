@@ -6,7 +6,11 @@ import {
   hasPictureElement,
   imageLoaded,
 } from './ImageUtils';
-import { createArtDirectionSources, hasArtDirectionArray } from './MediaUtils';
+import {
+  createArtDirectionSources,
+  createSourceElementForSrcSet,
+  hasArtDirectionArray,
+} from './MediaUtils';
 import { isBrowser, isString } from './SimpleUtils';
 import { inImageCache } from './ImageCache';
 
@@ -139,13 +143,12 @@ export const activatePictureRef = (
         const sources = createArtDirectionSources(convertedProps).reverse();
         sources.forEach(currentSource => pic.appendChild(currentSource));
       }
-      if (imageData.srcSetWebp) {
-        const sourcesWebP = document.createElement('source');
-        sourcesWebP.type = `image/webp`;
-        sourcesWebP.srcset = imageData.srcSetWebp;
-        sourcesWebP.sizes = imageData.sizes;
-        pic.appendChild(sourcesWebP);
-      }
+
+      const sourcesAvif = createSourceElementForSrcSet(imageData, 'avif');
+      sourcesAvif && pic.appendChild(sourcesAvif);
+      const sourcesWebp = createSourceElementForSrcSet(imageData, 'webp');
+      sourcesWebp && pic.appendChild(sourcesWebp);
+
       pic.appendChild(imageRef);
       bodyClone.appendChild(pic);
     }

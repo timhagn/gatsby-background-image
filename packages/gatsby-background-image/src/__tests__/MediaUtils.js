@@ -47,10 +47,22 @@ describe(`createArtDirectionStack()`, () => {
           type="image/webp"
         />,
         <source
+          media="(min-width: 491px)"
+          sizes="(max-width: 600px) 100vw, 600px"
+          srcset="some srcSetWebp"
+          type="image/avif"
+        />,
+        <source
           media="(min-width: 1401px)"
           sizes="(max-width: 600px) 100vw, 600px"
           srcset="some srcSetWebp"
           type="image/webp"
+        />,
+        <source
+          media="(min-width: 1401px)"
+          sizes="(max-width: 600px) 100vw, 600px"
+          srcset="some srcSetWebp"
+          type="image/avif"
         />,
       ]
     `);
@@ -92,16 +104,7 @@ describe(`createArtDirectionStack()`, () => {
     const testArtDirectionStack = createArtDirectionSources({
       fixed: mockArtDirectionStackFixedDepleted,
     });
-    expect(testArtDirectionStack).toMatchInlineSnapshot(`
-      Array [
-        <source
-          media="(min-width: 491px)"
-        />,
-        <source
-          media="(min-width: 1401px)"
-        />,
-      ]
-    `);
+    expect(testArtDirectionStack).toMatchInlineSnapshot(`Array []`);
   });
 });
 
