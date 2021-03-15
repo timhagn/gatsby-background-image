@@ -11,9 +11,12 @@
   <a href="https://www.npmjs.org/package/gbimage-bridge">
     <img src="https://img.shields.io/npm/v/gbimage-bridge.svg" alt="Current npm package version." />
   </a>
+  <a href="https://codecov.io/gh/timhagn/gatsby-background-image">
+    <img src="https://codecov.io/gh/timhagn/gatsby-background-image/branch/main/graph/badge.svg" />
+  </a>
 </p>
 
-`g(atsby-background-)image-bridge` bridges the gap between Gatsby 3's new 
+`g(atsby-background-)image-bridge` bridges the gap between Gatsby 3's new
 `gatsby-plugin-image` syntax of providing images and the old
 `fluid / fixed` syntax currently still used by
 [`gatsby-background-image`](https://github.com/timhagn/gatsby-background-image)
@@ -28,7 +31,7 @@ to see for yourself what changed in Gatsby 3 under the hood!
 - [Install](#install)
 - [How to Use](#how-to-use)
   - [convertToBgImage()](#converttobgimage)
-- [Why this package](#why-this-package)
+- [Contributing](#contributing)
 
 ## Install
 
@@ -65,7 +68,7 @@ import { BgImage } from 'gbimage-bridge';
 
 const BridgeTest = () => {
   const { placeholderImage } = useStaticQuery(
-    graphql`
+          graphql`
       query {
         placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
           childImageSharp {
@@ -82,9 +85,9 @@ const BridgeTest = () => {
   const pluginImage = getImage(image);
 
   return (
-    <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
-      <div>Hello from BgImage!</div>
-    </BgImage>
+          <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
+            <div>Hello from BgImage!</div>
+          </BgImage>
   );
 };
 ```
@@ -98,7 +101,7 @@ import { BgImage } from 'gbimage-bridge';
 
 const StackedBridgeTest = () => {
   const { placeholderImage } = useStaticQuery(
-    graphql`
+          graphql`
       query {
         placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
           childImageSharp {
@@ -122,9 +125,9 @@ const StackedBridgeTest = () => {
   ].reverse();
 
   return (
-    <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
-      <div>Hello from BgImage!</div>
-    </BgImage>
+          <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
+            <div>Hello from BgImage!</div>
+          </BgImage>
   );
 };
 ```
@@ -138,7 +141,7 @@ import { BgImage } from 'gbimage-bridge';
 
 const ArtDirectedBridgeTest = () => {
   const { mobileImage, desktopImage } = useStaticQuery(
-    graphql`
+          graphql`
       query {
         mobileImage: file(relativePath: { eq: "490x352.jpg" }) {
           childImageSharp {
@@ -168,9 +171,9 @@ const ArtDirectedBridgeTest = () => {
   ];
 
   return (
-    <BgImage image={sources} style={{ minWidth: 200, minHeight: 200 }}>
-      <div>Hello from BgImage!</div>
-    </BgImage>
+          <BgImage image={sources} style={{ minWidth: 200, minHeight: 200 }}>
+            <div>Hello from BgImage!</div>
+          </BgImage>
   );
 };
 ```
