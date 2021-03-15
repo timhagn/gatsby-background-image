@@ -169,9 +169,7 @@ export const convertSingleBgImage = (
  */
 const convertArrayOfImages = (
   imageData: (string | IGatsbyImageDataExtended)[]
-):
-  | [string, Partial<IFixedObject[] | IFluidObject[] | string | null>]
-  | [] => {
+): [string, Partial<IFixedObject[] | IFluidObject[] | string | null>] | [] => {
   // TODO: change to not extract from string!
   const singleImage = getSingleImage(imageData);
   if (singleImage) {

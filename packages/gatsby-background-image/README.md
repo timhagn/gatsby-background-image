@@ -31,7 +31,7 @@ images and even more:
 It has all the advantages of [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/main/packages/gatsby-image),
 including the "blur-up" technique or a "[traced placeholder](https://github.com/gatsbyjs/gatsby/issues/2435)"
 SVG to show a preview of the image while it loads,    
-**plus** having **AVIF** support!  
+**plus** having **AVIF** support (with the help of [gbimage-bridge](https://github.com/timhagn/gatsby-background-image/tree/main/packages/gbimage-bridge))!  
 **plus** being usable as a container (no more hacks with extra wrappers)  
 **plus** being able to work with [multiple stacked background images](#how-to-use-with-multiple-images)  
 **plus** being able to style with [Tailwind CSS and suchlike Frameworks](#tailwind-css-and-suchlike-frameworks)

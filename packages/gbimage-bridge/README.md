@@ -13,7 +13,7 @@
   </a>
 </p>
 
-`g(atsby-background-)image-bridge` bridges the gap between the new
+`g(atsby-background-)image-bridge` bridges the gap between Gatsby 3's new 
 `gatsby-plugin-image` syntax of providing images and the old
 `fluid / fixed` syntax currently still used by
 [`gatsby-background-image`](https://github.com/timhagn/gatsby-background-image)
@@ -28,7 +28,7 @@ to see for yourself what changed in Gatsby 3 under the hood!
 - [Install](#install)
 - [How to Use](#how-to-use)
   - [convertToBgImage()](#converttobgimage)
-- [Why this package](#why)
+- [Why this package](#why-this-package)
 
 ## Install
 
@@ -56,10 +56,10 @@ For your convenience this package exports a Wrapper around `BackgroundImage`,
 that automatically converts the new image format to the old one needed by it.
 All properties are passed through to `BackgroundImage` so use `BgImage` like a
 drop in replacement for it.
-Read below what happens inside (& how tos for multiple images & suchlike),
-but here's the wrapper:
+Read below what happens inside, but here's the wrapper:
 
 ```jsx
+import { graphql, useStaticQuery } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
 import { BgImage } from 'gbimage-bridge';
 
@@ -80,9 +80,95 @@ const BridgeTest = () => {
     `
   );
   const pluginImage = getImage(image);
-  
+
   return (
     <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
+      <div>Hello from BgImage!</div>
+    </BgImage>
+  );
+};
+```
+
+It of course works with stacked images...
+
+```jsx
+import { graphql, useStaticQuery } from 'gatsby';
+import { getImage } from 'gatsby-plugin-image';
+import { BgImage } from 'gbimage-bridge';
+
+const StackedBridgeTest = () => {
+  const { placeholderImage } = useStaticQuery(
+    graphql`
+      query {
+        placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+          childImageSharp {
+            gatsbyImageData(
+              width: 200
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
+      }
+    `
+  );
+  const pluginImage = getImage(image);
+
+  // Watch out for CSS's stacking order, especially when styling the individual
+  // positions! The lowermost image comes last!
+  const backgroundFluidImageStack = [
+    `linear-gradient(rgba(220, 15, 15, 0.73), rgba(4, 243, 67, 0.73))`,
+    pluginImage,
+  ].reverse();
+
+  return (
+    <BgImage image={placeholderImage} style={{ minWidth: 200, minHeight: 200 }}>
+      <div>Hello from BgImage!</div>
+    </BgImage>
+  );
+};
+```
+
+... and art-directed ones as well : )!
+
+```jsx
+import { graphql, useStaticQuery } from 'gatsby';
+import { getImage } from 'gatsby-plugin-image';
+import { BgImage } from 'gbimage-bridge';
+
+const ArtDirectedBridgeTest = () => {
+  const { mobileImage, desktopImage } = useStaticQuery(
+    graphql`
+      query {
+        mobileImage: file(relativePath: { eq: "490x352.jpg" }) {
+          childImageSharp {
+            fluid(maxWidth: 490, quality: 100) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        desktopImage: file(relativePath: { eq: "tree.jpg" }) {
+          childImageSharp {
+            fluid(quality: 100, maxWidth: 4160) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    `
+  );
+  // Set up the array of image data and `media` keys.
+  // You can have as many entries as you'd like.
+  const sources = [
+    ...getImage(mobileImage),
+    {
+      ...getImage(desktopImage),
+      media: `(min-width: 491px)`,
+    },
+  ];
+
+  return (
+    <BgImage image={sources} style={{ minWidth: 200, minHeight: 200 }}>
       <div>Hello from BgImage!</div>
     </BgImage>
   );
@@ -103,3 +189,10 @@ from the new query). It then goes through the contents & extracts the necessary
 images & remaining fields needed. You can of course use the result of the
 function for the classic `gatsby-image` as well!
 
+
+## Contributing
+
+Everyone is more than welcome to contribute to this little package!  
+Docs, Reviews, Testing, Code - whatever you want to add, just go for it : ).
+So have a look at our [CONTRIBUTING](https://github.com/timhagn/gatsby-background-image/blob/main/CONTRIBUTING.md) file and give it a go.
+Thanks in advance!
