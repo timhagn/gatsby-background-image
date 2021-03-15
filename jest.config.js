@@ -30,7 +30,6 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '/mocks/',
-    '/gatsby-background-image/',
     '/gatsby-background-image/lib/',
     '/gatsby-background-image-es5/lib/',
   ],
