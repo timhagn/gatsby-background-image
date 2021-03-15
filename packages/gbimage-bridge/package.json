@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-background-image-bridge",
+  "name": "gbimage-bridge",
   "version": "0.0.1",
   "description": "Backports the new `gatsbyImageData` type to the classic form.",
   "repository": "https://github.com/timhagn/gatsby-background-image/tree/main/packages/gbimage-bridge",
