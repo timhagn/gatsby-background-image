@@ -74,7 +74,6 @@ const getAllExtraSrcSets = (imageData: IGatsbyImageData) => {
           // @ts-ignore
           srcSets[possibleExtraSrc] = getSrc(sourceImage?.srcSet);
         }
-        // TODO: add type & sizes downward compatible oO...
       }
       return srcSets;
     }, {});

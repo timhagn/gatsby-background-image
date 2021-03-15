@@ -84,6 +84,11 @@ export const getCurrentFromData = ({
       ? getUrlString({ imageString: currentData[propName], tracedSVG, addUrl })
       : ``;
   }
+
+  if (typeof data !== 'object') {
+    return '';
+  }
+
   // If `currentSrc` or `src` is needed, check image load completion first.
   if ((propName === `currentSrc` || propName === 'src') && propName in data) {
     return getUrlString({

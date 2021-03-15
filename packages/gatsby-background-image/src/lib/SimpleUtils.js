@@ -44,7 +44,7 @@ export const toCamelCase = str =>
 /**
  * Converts camel-cased js style rules to CSS kebab-case strings.
  *
- * @param str string    Rule to transform
+ * @param {string}  str    Rule to transform
  * @return {boolean|string}
  */
 export const toKebabCase = str =>
@@ -52,6 +52,14 @@ export const toKebabCase = str =>
   str
     .replace(/\s|\W+/g, '')
     .replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
+
+/**
+ * Capitalizes first Char.
+ *
+ * @param {string}  str   Word to capitalize.
+ * @returns {string}
+ */
+export const capitalize = str => str?.charAt(0).toUpperCase() + str.slice(1);
 
 /**
  * Splits a given string (e.g. from classname) to an array.
