@@ -7,8 +7,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.1.2](https://github.com/timhagn/gatsby-background-image) (2021-03-15)
 
-**fix:** add `gatsby-plugin` keyword so hopefully `gbimage-bridge` will be added 
-to the plugin library 
+**fix:** add `gatsby-plugin` keyword so hopefully `gbimage-bridge` will be added
+to the plugin library
 
 ## [0.1.1](https://github.com/timhagn/gatsby-background-image) (2021-03-15)
 
