@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.1.2"></a>
+<a name="0.1.3"></a>
+
+## [0.1.3](https://github.com/timhagn/gatsby-background-image) (2021-04-15)
+
+**fix:** add correct `peerDependencies` of Gatsby
 
 ## [0.1.2](https://github.com/timhagn/gatsby-background-image) (2021-03-15)
 
