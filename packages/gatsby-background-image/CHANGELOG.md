@@ -3,13 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.5.2"></a>
+<a name="1.5.1"></a>
 
-## [1.5.2](https://github.com/timhagn/gatsby-background-image) (2021-04-15)
+## [1.5.1](https://github.com/timhagn/gatsby-background-image) (2021-04-15)
 
 **fix:** add correct `peerDependencies` of Gatsby
 
-## [1.5.1](https://github.com/timhagn/gatsby-background-image) (2021-03-15)
+## [1.5.0](https://github.com/timhagn/gatsby-background-image) (2021-03-15)
 
 **feat:** Add possibility of using AVIF in combination with `gbimage-bridge`.
 
