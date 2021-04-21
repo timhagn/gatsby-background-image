@@ -15,7 +15,7 @@
   "scripts": {
     "build": "microbundle --jsx React.createElement",
     "prepare": "cross-env NODE_ENV=production npm run build",
-    "dev": "microbundle --jsx React.createElement watch"
+    "watch": "microbundle --jsx React.createElement watch"
   },
   "devDependencies": {
     "gatsby-plugin-image": "^1.3.1",

@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.1.3"></a>
+<a name="0.1.4"></a>
+
+## [0.1.4](https://github.com/timhagn/gatsby-background-image) (2021-04-22)
+
+**patch:** add `undefined` to possible types of `convertToBgImage()` for #155
 
 ## [0.1.3](https://github.com/timhagn/gatsby-background-image) (2021-04-15)
 

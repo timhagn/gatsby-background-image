@@ -202,7 +202,10 @@ const convertArrayOfImages = (
  * @returns {Partial<IBackgroundImageProps>|{}}
  */
 export function convertToBgImage(
-  imageData: IGatsbyImageDataExtended | (string | IGatsbyImageDataExtended)[]
+  imageData:
+    | undefined
+    | IGatsbyImageDataExtended
+    | (string | IGatsbyImageDataExtended)[]
 ): Partial<IBackgroundImageProps | IBackgroundImageProps[] | null> {
   if (imageData) {
     if (Array.isArray(imageData)) {
