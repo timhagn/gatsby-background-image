@@ -3,8 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.5.2"></a>
+<a name="1.5.3"></a>
 
+## [1.5.3](https://github.com/timhagn/gatsby-background-image) (2021-04-28)
+
+**typo:** Fix code example in https://www.gatsbyjs.com/plugins/gatsby-background-image/#gatsby-3--gatsby-plugin-image
 ## [1.5.2](https://github.com/timhagn/gatsby-background-image) (2021-04-22)
 
 **patch:** bump deps
