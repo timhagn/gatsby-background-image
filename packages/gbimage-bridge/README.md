@@ -53,6 +53,20 @@ its [README](https://github.com/timhagn/gatsby-background-image/tree/main/packag
 For installation instructions of `gatsby-plugin-image`, follow the
 aforementioned [migration guide](https://www.gatsbyjs.com/docs/reference/release-notes/image-migration-guide/).
 
+
+## Support for older browsers
+
+If you want to use `gbimage-bridge` with `gatsby-background-image-es5` you have to install all three packages.
+Additionally, make sure you have `core-js` as a dependency in your `package.json`.
+
+```bash
+npm install --save gbimage-bridge gatsby-background-image gatsby-background-es5 core-js`
+```
+
+Add `import core-js/stable` to the component using `gbimage-bridge` and Gatsby will automatically add
+the needed polyfills.
+
+
 ## How to use
 
 For your convenience this package exports a Wrapper around `BackgroundImage`,
