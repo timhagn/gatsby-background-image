@@ -6,11 +6,9 @@ import BackgroundImage, {
 import { IGatsbyImageData } from 'gatsby-plugin-image/dist/src/components/gatsby-image.browser';
 import React, { FunctionComponent } from 'react';
 
-declare type BackgroundImageProps<T extends IntrinsicTags> = React.Component<InferExtraProps<T> & IBackgroundImageProps>;
-declare type IBaseBgImageProps<T extends IntrinsicTags> = Omit<BackgroundImageProps<T>, 'fluid' | 'fixed'>;
-
+type IBaseBgImageProps = Omit<IBackgroundImageProps, 'fluid' | 'fixed'>;
 export interface IBgImageProps extends IBaseBgImageProps {
-  image?: IGatsbyImageData | (string | IGatsbyImageData | undefined)[];
+  image?: IGatsbyImageData;
 }
 
 export interface IGatsbyImageDataExtended extends IGatsbyImageData {
