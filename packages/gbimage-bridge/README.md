@@ -60,13 +60,13 @@ If you want to use `gbimage-bridge` with `gatsby-background-image-es5` you have 
 Additionally, make sure you have `core-js` as a dependency in your `package.json`.
 
 ```bash
-yarn add gbimage-bridge gatsby-background-image gatsby-background-es5 core-js`
+yarn add gbimage-bridge gatsby-background-image gatsby-background-image-es5 core-js`
 ```
 
 or 
 
 ```bash
-npm install --save gbimage-bridge gatsby-background-image gatsby-background-es5 core-js`
+npm install --save gbimage-bridge gatsby-background-image gatsby-background-image-es5 core-js`
 ```
 
 Add `import core-js/stable` to the component using `gbimage-bridge` and Gatsby will automatically add
