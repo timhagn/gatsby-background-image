@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.5.3"></a>
+<a name="1.6.0"></a>
+
+## [1.6.0](https://github.com/timhagn/gatsby-background-image) (2021-12-22)
+
+**patch** Merge in #169 to fix #168.
 
 ## [1.5.3](https://github.com/timhagn/gatsby-background-image) (2021-04-28)
 

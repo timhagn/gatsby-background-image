@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.1.4"></a>
+<a name="0.2.0"></a>
+
+## [0.2.0](https://github.com/timhagn/gatsby-background-image) (2021-12-22)
+
+**patch:** fix TS any type after merging #164 (#161)
 
 ## [0.1.4](https://github.com/timhagn/gatsby-background-image) (2021-04-22)
 

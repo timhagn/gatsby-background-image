@@ -16,7 +16,7 @@
   </a>
 </p>
 
-`g(atsby-background-)image-bridge` bridges the gap between Gatsby 3's new
+`g(atsby-background-)image-bridge` bridges the gap between Gatsby 3+4's
 `gatsby-plugin-image` syntax of providing images and the old
 `fluid / fixed` syntax currently still used by
 [`gatsby-background-image`](https://github.com/timhagn/gatsby-background-image)
