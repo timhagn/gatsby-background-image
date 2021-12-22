@@ -1,8 +1,4 @@
-import BackgroundImage, {
-  IBackgroundImageProps,
-  IFixedObject,
-  IFluidObject,
-} from 'gatsby-background-image';
+import BackgroundImage, { IBackgroundImageProps, IFixedObject, IFluidObject, InferExtraProps, IntrinsicTags } from 'gatsby-background-image';
 import { IGatsbyImageData } from 'gatsby-plugin-image/dist/src/components/gatsby-image.browser';
 import React, { FunctionComponent } from 'react';
 
@@ -231,7 +227,7 @@ export function convertToBgImage(
  * @constructor
  * @author @rburgst <https://github.com/rburgst> (of the original in the Issue)
  */
-export const BgImage: FunctionComponent<IBgImageProps> = props => {
+export const BgImage: FunctionComponent<IBgImageProps<any>> = props => {
   const { image, children, ...args } = props;
   const bgImage = image && convertToBgImage(image);
   if (bgImage) {
