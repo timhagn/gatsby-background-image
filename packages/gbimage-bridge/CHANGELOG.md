@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.2.1"></a>
+<a name="0.2.2"></a>
+
+## [0.2.2](https://github.com/timhagn/gatsby-background-image) (2022-07-21)
+
+**merge:** merge in #177
 
 ## [0.2.1](https://github.com/timhagn/gatsby-background-image) (2021-12-22)
 
